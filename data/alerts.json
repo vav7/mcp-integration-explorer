@@ -1,0 +1,29 @@
+[
+  {
+    "id": "al-1",
+    "ts": "2026-09-24T18:52:00Z",
+    "app_id": 18,
+    "app": "Gladly",
+    "event": "site_down",
+    "message": "Gladly website went down (HTTP 503)",
+    "read": true
+  },
+  {
+    "id": "al-2",
+    "ts": "2026-09-24T17:40:00Z",
+    "app_id": 99,
+    "app": "YouTube Transcript",
+    "event": "official_mcp",
+    "message": "Shipped a vendor-official MCP server",
+    "read": true
+  },
+  {
+    "id": "al-3",
+    "ts": "2026-09-24T16:05:00Z",
+    "app_id": 65,
+    "app": "Supabase",
+    "event": "score",
+    "message": "Readiness score moved 88 -> 91",
+    "read": true
+  }
+]

@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Env / secrets
+.env
+.env.*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
+
+# NOTE: data/live_cache.json, static/data.snapshot.js and demo.html are
+# intentionally committed — they hold the last REAL fetch so the dashboard and
+# the portable demo render with genuine data out of the box. They are
+# regenerated on every refresh.

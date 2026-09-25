@@ -1,0 +1,62 @@
+{
+  "loopback-test": {
+    "name": "loopback-test",
+    "count": 2,
+    "last": "2026-09-24T17:15:49Z"
+  },
+  "cooldown-probe": {
+    "name": "cooldown-probe",
+    "count": 2,
+    "last": "2026-09-24T17:15:59Z"
+  },
+  "cooldown-y": {
+    "name": "cooldown-y",
+    "count": 1,
+    "last": "2026-09-24T17:17:20Z"
+  },
+  "acme-crm.io": {
+    "name": "acme-crm.io",
+    "count": 30,
+    "last": "2026-09-25T17:20:07Z"
+  },
+  "nvidia": {
+    "name": "nvidia",
+    "count": 4,
+    "last": "2026-09-24T21:00:03Z"
+  },
+  "notion": {
+    "name": "Notion",
+    "count": 1,
+    "last": "2026-09-25T17:05:58Z"
+  },
+  "cacheproof-app": {
+    "name": "cacheproof-app",
+    "count": 1,
+    "last": "2026-09-25T17:10:16Z"
+  },
+  "cacheproof-1790356327": {
+    "name": "cacheproof-1790356327",
+    "count": 1,
+    "last": "2026-09-25T17:12:08Z"
+  },
+  "cacheproof-1790356610": {
+    "name": "cacheproof-1790356610",
+    "count": 1,
+    "last": "2026-09-25T17:16:51Z"
+  },
+  "acme-1790357216.io": {
+    "name": "acme-1790357216.io",
+    "count": 1,
+    "last": "2026-09-25T17:26:57Z"
+  },
+  "acme-1790360145.io": {
+    "name": "acme-1790360145.io",
+    "count": 1,
+    "last": "2026-09-25T18:15:45Z"
+  },
+  "cacheproof-1790360263": {
+    "name": "cacheproof-1790360263",
+    "count": 1,
+    "last": "2026-09-25T18:17:45Z"
+  }
+}

@@ -1,0 +1,10 @@
+[
+  {
+    "app_id": 81,
+    "name": "Stripe",
+    "events": [
+      "official_mcp"
+    ],
+    "created": "2026-09-24T17:16:02Z"
+  }
+]

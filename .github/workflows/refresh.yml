@@ -1,0 +1,59 @@
+name: refresh-data
+
+# Free, self-updating data: re-fetch everything from the live sources on a
+# schedule and commit the refreshed cache/snapshot/demo back to the repo. The
+# dashboard and demo.html then always show recent real data with no server.
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"     # every 6 hours (off the top of the hour)
+  workflow_dispatch:            # allow manual runs
+  push:
+    branches: [main]
+    paths: ["data/apps.json", "src/**", "scripts/**"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-data
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Live refresh (registry + liveness + packages + GitHub + probes)
+        run: python scripts/refresh_once.py
+        env:
+          # The workflow token raises GitHub API limits so more repo stars resolve.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Rebuild portable demo snapshot
+        run: python scripts/build_demo.py
+
+      - name: Run honesty tests
+        run: python tests/test_classify.py
+
+      - name: Commit refreshed data
+        run: |
+          git config user.name "mcp-explorer-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/live_cache.json data/history.json data/changes.json static/data.snapshot.js demo.html
+          if git diff --cached --quiet; then
+            echo "No data changes to commit."
+          else
+            git commit -m "chore(data): live refresh $(date -u +%Y-%m-%dT%H:%MZ)"
+            git push
+          fi

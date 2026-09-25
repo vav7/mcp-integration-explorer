@@ -1,0 +1,37 @@
+# MCP Integration Explorer
+
+> Live, source-traceable integration readiness for 100 apps. Real data only — no fabricated claims.
+
+This service tracks 100 SaaS/developer apps and reports, from **live public sources**, whether each has an MCP (Model Context Protocol) server, whether it is vendor-official or community, how many real tools its endpoint exposes, its npm/PyPI download volume, its GitHub repo health, and whether its website is up. Every value is fetched from a real API and links back to its source.
+
+## Data sources (all free, no key required)
+- Official MCP Registry: https://registry.modelcontextprotocol.io/v0/servers
+- GitHub REST API: https://api.github.com
+- npm registry + downloads API; PyPI JSON API + pypistats
+- Live MCP endpoint handshakes (initialize -> tools/list)
+- Direct HTTP requests to each app's website
+
+## Key endpoints
+- [JSON snapshot of all data](/api/snapshot): full dataset + aggregate stats + source health
+- [Aggregate stats](/api/stats)
+- [Filtered apps](/api/apps): `?category=&mcp=&q=`
+- [Single app](/api/apps/{id}): all fetched evidence for one app
+- [Readiness leaderboard](/api/leaderboard)
+- [Opportunities](/api/opportunities): demand-but-no-official-MCP apps
+- [Time-series history](/api/history) and [recent changes](/api/changes)
+- [Export](/api/export): `?format=csv` or `?format=json`
+- [Server-Sent Events activity stream](/api/stream)
+- [Health](/api/health)
+
+## Definitions
+- vendor_official: the MCP server's reverse-domain namespace resolves to the app's own domain (e.g. com.stripe/mcp -> stripe.com). Shared-host namespaces (*.vercel.app, *.github.io) never count.
+- community: any other registry server that genuinely mentions the app.
+- live tools: the real tool count returned by handshaking the server's endpoint. Shared aggregator gateways are detected and excluded from app-specific counts.
+- readiness score (0-100): transparent weighted sum of official-MCP, live tools, downloads, stars, commit recency, and site uptime. Per-component breakdown is exposed per app.
+
+## Machine-readable alternative
+This explorer is itself an MCP server. Run `python -m src.mcp_server` and connect any MCP client to query tools: overview, list_apps, search_apps, get_app, top_by_readiness, apps_missing_official_mcp.
+
+## Honesty policy
+If a source returns nothing, the app is marked "none". If a fetch fails, "unknown". Values are never inferred or invented; each carries a fetch timestamp and source URL.
+- POST /api/mcp/compatibility-test {"url": "https://..."} -> behavioural MCP compatibility report (12 checks, percentage). Not an official certification.

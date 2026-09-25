@@ -1,0 +1,837 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MCP Integration Explorer · integration intelligence</title>
+<meta name="description" content="Live, evidence-backed MCP / agent integration readiness across applications. Real registry data, endpoint probes, GitHub, package adoption and liveness, with every signal traceable to its source.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;450;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=optional" rel="stylesheet">
+<script>
+  (function(){try{var t=localStorage.getItem('mcp_theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';}document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();
+</script>
+<link rel="stylesheet" href="/styles.css?v=18">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%2310151C'/><rect x='.5' y='.5' width='31' height='31' rx='6.5' fill='none' stroke='%23253140'/><circle cx='10' cy='10' r='2.4' fill='none' stroke='%234F7FFF' stroke-width='1.6'/><circle cx='10' cy='22' r='2.4' fill='none' stroke='%234F7FFF' stroke-width='1.6'/><circle cx='22' cy='16' r='2.4' fill='none' stroke='%234F7FFF' stroke-width='1.6'/><path d='M12 11l8 4M12 21l8-4' stroke='%234F7FFF' stroke-width='1.6'/></svg>">
+</head>
+<body>
+<div id="scrollProgress" aria-hidden="true"></div>
+<div class="ambient" aria-hidden="true"><div class="amb-grid"></div></div>
+<div class="amb-deep" id="ambDeep" aria-hidden="true"><i class="orb o1"></i><i class="orb o2"></i><i class="orb o3"></i><i class="orb o4"></i></div>
+
+<!-- floating app shell -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <button class="iconbtn" id="drawerBtn" aria-label="Toggle dashboard menu" aria-expanded="false" title="Dashboard menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <button class="iconbtn homebtn" id="homeBtn" type="button" aria-label="Home" title="Home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5L12 4l8 6.5"/><path d="M6.5 9.8V19a1 1 0 001 1h3.2v-5h2.6v5h3.2a1 1 0 001-1V9.8"/></svg>
+    </button>
+    <a class="logo" href="#top" id="logoLink" style="text-decoration:none;color:inherit">
+      <span class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+          <circle cx="7" cy="7" r="2.1"/><circle cx="7" cy="17" r="2.1"/><circle cx="17" cy="12" r="2.1"/><path d="M9 8l6 3M9 16l6-3"/>
+        </svg>
+      </span>
+      <span class="logo-txt"><b>MCP Integration Explorer</b><span id="tagline">Integration intelligence</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#help" data-nav="help" data-view="help" class="nav-help" title="New here? Start with the field guide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.4 5 8.2 4.3 5.6 4.3c-.9 0-1.6.7-1.6 1.5v11.4c0 .8.7 1.5 1.6 1.5 2.6 0 4.8.7 6.4 2.2 1.6-1.5 3.8-2.2 6.4-2.2.9 0 1.6-.7 1.6-1.5V5.8c0-.8-.7-1.5-1.6-1.5-2.6 0-4.8.7-6.4 2.2z"/><path d="M12 6.5v14.4"/></svg><span>Help</span></a>
+      <a href="#intelligence" data-nav="intelligence" data-view="intelligence">Intelligence</a>
+      <a href="#methodology" data-nav="methodology" data-view="methodology">Methodology</a>
+      <a href="#pricing" data-nav="pricing" data-view="pricing" data-pricing>Pricing</a>
+    </nav>
+    <div class="nav-right">
+      <button class="iconbtn searchicon" id="searchOpen" aria-label="Search apps, servers and repositories" title="Search  (Ctrl/⌘ K)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.2-3.2"/></svg>
+      </button>
+      <div class="statuspill" id="statusPill" title="Live data status"><span class="led off" id="liveLed"></span><span id="liveTxt">Connecting</span></div>
+      <button class="iconbtn" id="themeBtn" aria-label="Toggle theme" title="Toggle theme">
+        <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      </button>
+      <div class="dropdown" id="bellWrap">
+        <button class="iconbtn" id="bellBtn" aria-label="Alerts">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg>
+          <span class="bell-badge" id="bellBadge">0</span>
+        </button>
+        <div class="dropdown-menu alerts-menu" id="alertsMenu">
+          <div class="alerts-head"><span>Alerts</span><button class="linkbtn" id="markRead">Mark all read</button></div>
+          <div id="alertsList"></div>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="iconbtn" id="exportBtn" aria-label="Export">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 20h16"/></svg>
+        </button>
+        <div class="dropdown-menu" id="exportMenu">
+          <a href="#" data-fmt="csv">Download CSV</a>
+          <a href="#" data-fmt="json">Download JSON</a>
+        </div>
+      </div>
+      <button class="btn btn-primary" id="refreshBtn" title="Re-fetch live">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 10-2.3 6.3M20 5v6h-6"/></svg>
+        <span id="refreshLabel">Refresh</span>
+      </button>
+      <div class="dropdown navdrop">
+        <button class="iconbtn nav-toggle" id="navToggle" aria-label="Menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <div class="dropdown-menu nav-menu" id="navMenu">
+          <a href="#top" data-home>Home</a>
+          <a href="#overview">Overview</a><a href="#apps">Explorer</a><a href="#insights">Insights</a>
+          <a href="#intelligence" data-view="intelligence">Intelligence</a>
+          <a href="#methodology" data-view="methodology">Methodology</a>
+          <a href="#pricing" data-pricing>Pricing</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="shell" id="top">
+  <!-- overview: intelligence canvas -->
+  <section class="hero" id="overview">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">MCP Integration Intelligence</div>
+        <h1>Understand which software is ready for agents.</h1>
+        <p class="lede">Evidence-backed readiness signals across the software your teams already use: registry coverage, live endpoint probes, repository health and adoption. Every number links to its source.</p>
+        <button class="hero-search" id="heroSearch" aria-label="Search applications, MCP servers or repositories">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.2-3.2"/></svg>
+          <span>Search applications, MCP servers or repositories…</span>
+        </button>
+        <div class="status-strip">
+          <span class="led live" id="heroLed"></span>
+          <b id="heroUpdated">Updated …</b>
+          <span class="ss-sep"></span>
+          <span class="ss-src" id="heroSources">MCP Registry · GitHub · npm/PyPI · HTTP · probes</span>
+        </div>
+      </div>
+      <aside class="snap-panel reveal" data-replay aria-label="System snapshot">
+        <div class="sp-head"><span>System snapshot</span><span class="sp-live" id="spLive"><span class="led live"></span>live</span></div>
+        <div class="sp-rows">
+          <div class="sp-row"><span>Tracked applications</span><b id="hsApps">…</b></div>
+          <div class="sp-row"><span>MCP servers</span><b id="hsServers">…</b></div>
+          <div class="sp-row"><span>Official servers</span><b id="hsOfficial">…</b></div>
+          <div class="sp-row"><span>Live endpoints</span><b id="hsLive">…</b></div>
+        </div>
+        <div class="sp-div"></div>
+        <div class="sp-meta">
+          <div><span>Last verified</span><b id="spVerified">…</b></div>
+          <div><span>System status</span><b id="spStatus">…</b></div>
+        </div>
+      </aside>
+    </div>
+    <div id="modeBanner"></div>
+  </section>
+
+  <!-- coverage: open editorial -->
+  <section id="coverage">
+    <div class="sect-head row">
+      <div><div class="k">Platform coverage</div><h2>The tracked estate</h2></div>
+      <div class="hint" id="updatedHint"></div>
+    </div>
+    <div class="cov-grid">
+      <div id="metrics" class="reveal" data-replay></div>
+      <div class="reveal estate-panel" data-replay>
+        <div class="estate-title">Estate health</div>
+        <div class="estate-body" id="estateHealth"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- explorer: open data instrument + intelligence rail -->
+  <section id="apps">
+    <div class="sect-head">
+      <div class="k">Explorer</div>
+      <h2>Applications</h2>
+      <p><span id="cntAll">0</span> applications tracked. Open any row for its full evidence dossier.</p>
+    </div>
+    <div class="toolbar">
+      <div class="segmented" id="viewTabs">
+        <button class="active" data-view="explorer">Explorer</button>
+        <button data-view="leaderboard">Leaderboard</button>
+        <button data-view="opportunities">Opportunities <span class="cnt" id="cntOpp">0</span></button>
+      </div>
+      <div class="spacer"></div>
+      <div class="selectwrap">
+        <select id="catFilter" aria-label="Category"><option value="">All categories</option></select>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div id="statusChips" class="chips">
+        <span class="chipfilter active" data-status="">All</span>
+        <span class="chipfilter" data-status="vendor_official"><span class="cdot" style="background:var(--ok)"></span>Official</span>
+        <span class="chipfilter" data-status="community"><span class="cdot" style="background:var(--acc)"></span>Community</span>
+        <span class="chipfilter" data-status="none"><span class="cdot" style="background:var(--t4)"></span>None</span>
+      </div>
+    </div>
+    <div class="layout">
+      <div class="expl-col">
+        <div class="insight-col-title" id="viewTitle">Applications</div>
+        <div id="viewContent" class="scroller"></div>
+      </div>
+      <aside class="rail">
+        <div class="rail-panel reveal" data-replay>
+          <div class="rail-tabs" role="tablist" aria-label="Explorer feeds">
+            <button class="rail-tab active" type="button" role="tab" data-rail="changes" aria-selected="true">What changed <b id="railChangesN">0</b></button>
+            <button class="rail-tab" type="button" role="tab" data-rail="activity" aria-selected="false">Activity <span class="rail-dot" id="railDot" hidden></span></button>
+            <a class="rail-more" href="#signals" title="Jump to the signal wire on this page">signal wire ↓</a>
+          </div>
+          <div class="rail-pane active" id="railPaneChanges" role="tabpanel">
+            <div class="feed" id="changesFeed"></div>
+          </div>
+          <div class="rail-pane" id="railPaneActivity" role="tabpanel">
+            <div class="feed" id="feed"></div>
+            <div class="rail-foot"><span class="hint" id="feedHint">live stream · newest first</span></div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- insights: asymmetric editorial -->
+  <section id="insights">
+    <div class="sect-head"><div class="k">Insights</div><h2>Coverage &amp; readiness</h2>
+      <p>How much of the tracked ecosystem is currently agent-accessible?</p></div>
+    <div class="insight-grid">
+      <div class="reveal">
+        <div class="insight-col-title">MCP coverage by category</div>
+        <div class="bars" id="catbars"></div>
+        <div class="legend"><span><i style="background:var(--ok)"></i>Official</span><span><i style="background:var(--acc)"></i>Community</span><span><i style="background:var(--track)"></i>None</span></div>
+      </div>
+      <div class="reveal" style="transition-delay:.08s">
+        <div class="insight-col-title">Readiness distribution <span class="hint" style="margin-left:8px">avg <span id="avgReadiness">…</span></span></div>
+        <div class="bars" id="gradebars"></div>
+      </div>
+    </div>
+    <div class="insight-strip" id="insightStrip"></div>
+  </section>
+
+
+
+
+
+  <!-- deep dives: each opens its own full-screen view, exactly like pricing -->
+  <!-- signal wire: compact, capped, lives on the home page only -->
+  <section id="signals">
+    <div class="sect-head row">
+      <div><div class="k">Signal wire</div><h2>Latest signals</h2>
+        <p>The newest real changes the pipeline detected - registry moves, endpoint probes, liveness flips. Capped and compact; click any to open its dossier.</p></div>
+      <div class="sig-tabs" id="sigTabs">
+        <span class="chipfilter active" data-sig="">All</span>
+        <span class="chipfilter" data-sig="registry"><span class="cdot" style="background:var(--acc)"></span>Registry</span>
+        <span class="chipfilter" data-sig="endpoints"><span class="cdot" style="background:#22d3ee"></span>Endpoints</span>
+        <span class="chipfilter" data-sig="liveness"><span class="cdot" style="background:var(--warn)"></span>Liveness</span>
+        <span class="chipfilter" data-sig="alerts"><span class="cdot" style="background:#a78bfa"></span>Alerts</span>
+      </div>
+    </div>
+    <div class="sig-compact reveal" data-replay>
+      <div class="sig-head"><span class="sig-live"><span class="led live"></span>live wire</span><span class="hint" id="sigCount">…</span></div>
+      <div id="signalList" class="sig-grid"></div>
+    </div>
+  </section>
+
+  <section id="dive">
+    <div class="sect-head row">
+      <div><div class="k">Deep dives</div><h2>Go deeper</h2>
+        <p>Everything below opens in its own full-screen view, so this page stays short and the instruments get the room they need.</p></div>
+      <div class="hint" id="diveHint">2 full-screen views · computed live</div>
+    </div>
+    <div class="dive-grid">
+      <button class="dive-card reveal" type="button" data-replay data-openview="intelligence" style="--i:0">
+        <span class="dv-idx" aria-hidden="true">01</span>
+        <span class="dv-ring" aria-hidden="true"></span>
+        <span class="dv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5m0 14h16"/><path d="M8 15l3-4 2.5 2L20 7"/></svg></span>
+        <span class="dv-k">Landscape analytics</span>
+        <b>The market, measured</b>
+        <span class="dv-d">Five instruments in their own parts - where points come from, who ships the server, repository freshness, the adoption map and probe truth - each with a live wire over the refresh history.</span>
+        <span class="dv-meta">5 instruments · 3 live wires · cross-filters the explorer</span>
+        <span class="dv-motif" aria-hidden="true"><svg viewBox="0 0 96 26" fill="none"><rect x="0" y="14" width="10" height="12" rx="2"/><rect x="14" y="8" width="10" height="18" rx="2"/><rect x="28" y="17" width="10" height="9" rx="2"/><rect x="42" y="4" width="10" height="22" rx="2"/><path d="M60 18l10-8 8 5 12-11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="dv-go">Open view <i aria-hidden="true">→</i></span>
+        <span class="dv-shine" aria-hidden="true"></span>
+      </button>
+      <button class="dive-card reveal" type="button" data-replay data-openview="methodology" style="--i:1">
+        <span class="dv-idx" aria-hidden="true">02</span>
+        <span class="dv-ring" aria-hidden="true"></span>
+        <span class="dv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.4"/><circle cx="6" cy="18" r="2.4"/><circle cx="18" cy="12" r="2.4"/><path d="M8.4 7.2l7.2 3.6M8.4 16.8l7.2-3.6"/></svg></span>
+        <span class="dv-k">Methodology</span>
+        <b>How every signal is produced</b>
+        <span class="dv-d">The seven-stage evidence pipeline as live, expandable stages: each one shows the figure it produced from the current snapshot and the source it came from. Nothing inferred, nothing invented.</span>
+        <span class="dv-meta">7 stages · live figures · sources linked</span>
+        <span class="dv-motif" aria-hidden="true"><svg viewBox="0 0 96 26" fill="none"><circle cx="8" cy="13" r="4"/><circle cx="34" cy="13" r="4"/><circle cx="60" cy="13" r="4"/><circle cx="86" cy="13" r="4"/><path d="M12 13h18M38 13h18M64 13h18" stroke-width="2" stroke-linecap="round"/></svg></span>
+        <span class="dv-go">Open view <i aria-hidden="true">→</i></span>
+        <span class="dv-shine" aria-hidden="true"></span>
+      </button>
+    </div>
+  </section>
+
+  <!-- trends: the closing instrument on the home page -->
+  <section id="trends">
+    <div class="sect-head row">
+      <div><div class="k">Time series</div><h2>Trends</h2>
+        <p>Each point is a real refresh snapshot; history accumulates via the scheduled refresher and the 6-hourly cron.</p></div>
+      <div class="segmented" id="trendTabs"></div>
+    </div>
+    <div class="insight-col-title" id="trendTitle">Official MCP over time</div>
+    <div class="chart-wrap reveal" data-replay id="chart"></div>
+    <div class="hint" id="trendHint" style="margin-top:10px"></div>
+  </section>
+
+  <footer class="footer" id="footer">
+    <div class="fgrid">
+      <div class="fbrand reveal" data-replay>
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+            <circle cx="7" cy="7" r="2.1"/><circle cx="7" cy="17" r="2.1"/><circle cx="17" cy="12" r="2.1"/><path d="M9 8l6 3M9 16l6-3"/>
+          </svg>
+        </span>
+        <div class="fb-body">
+          <b>MCP Integration Explorer</b>
+          <p>Live, evidence-backed integration intelligence. Every metric is traceable to its source: the registry, real endpoint probes, GitHub and npm/PyPI. Nothing is inferred or invented.</p>
+          <p class="fstatus"><span class="led live" id="footLed"></span><span id="footStatus">live · continuously refreshed</span></p>
+          
+        </div>
+      </div>
+      <div class="fcol reveal" style="transition-delay:.05s"><h5>Windows</h5><ul>
+        <li><a href="#intelligence" data-view="intelligence">Intelligence</a></li>
+        <li><a href="#methodology" data-view="methodology">Methodology</a></li>
+        <li><a href="#help" data-view="help">Help &amp; field guide</a></li>
+        <li><a href="#pricing" data-pricing>Pricing</a></li></ul></div>
+      <div class="fcol reveal" style="transition-delay:.10s"><h5>On this page</h5><ul>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#apps">Explorer</a></li>
+        <li><a href="#insights">Insights</a></li>
+        <li><a href="#signals">Signal wire</a></li>
+        <li><a href="#trends">Trends</a></li></ul></div>
+      <div class="fcol reveal" style="transition-delay:.15s"><h5>Data &amp; tools</h5><ul>
+        <li><a href="#" id="fCsv">Export CSV</a></li>
+        <li><a href="#" id="fJson">Export JSON</a></li>
+        <li><a href="#" id="mcpLink">MCP server</a></li></ul></div>
+      <div class="fcol reveal" style="transition-delay:.20s"><h5>Live sources</h5><ul>
+        <li><a href="https://registry.modelcontextprotocol.io" target="_blank" rel="noopener">MCP Registry ↗</a></li>
+        <li><a href="https://docs.github.com/rest" target="_blank" rel="noopener">GitHub REST ↗</a></li>
+        <li><a href="https://www.npmjs.com" target="_blank" rel="noopener">npm ↗</a> · <a href="https://pypi.org" target="_blank" rel="noopener">PyPI ↗</a></li>
+        <li><a href="https://modelcontextprotocol.io" target="_blank" rel="noopener">modelcontextprotocol.io ↗</a></li></ul></div>
+    </div>
+    <div class="fbar">
+      <span>© 2026 MCP Integration Explorer. All rights reserved.</span>
+      <span class="fbar-mid">Made with <svg class="hvsvg" viewBox="0 0 24 24" role="img" aria-label="love"><defs><linearGradient id="hvGrad2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff4d67"/><stop offset=".55" stop-color="#e0143c"/><stop offset="1" stop-color="#9d0b28"/></linearGradient></defs><path fill="url(#hvGrad2)" d="M12 21s-7.6-4.9-10.1-9.3C.3 8.5 2.2 4.9 5.6 4.9c2 0 3.5 1.1 4.4 2.7.9-1.6 2.4-2.7 4.4-2.7 3.4 0 5.3 3.6 3.7 6.8C19.6 16.1 12 21 12 21z"/><path fill="rgba(255,255,255,.28)" d="M7.2 7.1c-.9.5-1.6 1.4-1.8 2.4-.1.5.5.8.8.4.5-.8 1.2-1.5 2-1.9.5-.3.1-1.2-1-.9z"/></svg> by <b class="goldshine">vav7</b></span>
+      <span class="fbar-r"><span id="footTime"></span></span>
+    </div>
+  </footer>
+</main>
+
+<!-- intelligence view: landscape analytics + trends + signals (full-screen, like pricing) -->
+<div class="pview" id="intelligenceView" role="dialog" aria-label="Intelligence">
+  <button class="pv-x" type="button" data-closeview aria-label="Close view" title="Close (Esc)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <div class="pview-in">
+    <button class="pv-back" type="button" data-closeview>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m0 0l6-6m-6 6l6 6"/></svg>
+      Back to dashboard</button>
+    <div class="pv-head">
+      <div class="k">Intelligence</div>
+      <h1>The landscape,<br>measured live.</h1>
+      <p>Five instruments, each in its own part, computed in your browser from the evidence the pipeline actually fetched. Click any segment to cross-filter the explorer.</p>
+    </div>
+    <div class="iv-bar">
+      <p class="iv-note">Nothing is estimated and nothing is invented: registry servers, endpoint probes, GitHub repositories, npm / PyPI adoption and liveness checks.</p>
+      <div class="hint" id="anUpdated"></div>
+    </div>
+    <div class="pv-tabs segmented" id="ivTabs" role="tablist" aria-label="Intelligence instruments">
+      <button type="button" role="tab" class="active" data-ivpart="supply" aria-selected="true">Score &amp; supply</button>
+      <button type="button" role="tab" data-ivpart="health" aria-selected="false">Code &amp; endpoints</button>
+      <button type="button" role="tab" data-ivpart="adoption" aria-selected="false">Adoption &amp; latency</button>
+    </div>
+    <div class="iv-partpane active" id="ivpSupply" role="tabpanel">
+<div class="iv-spark"><div class="ivs-h"><span>live wire · official vs community</span><span class="ivs-v"><i style="background:#34D399"></i><b id="spkOff">…</b><i style="background:#A78BFA"></i><b id="spkCom">…</b></span></div><div class="ivs-box" id="sparkSupply"></div></div>
+      <div class="an-grid an-2up g-supply" id="anGrid">
+      <div class="an-card reveal" data-replay id="anScore" style="--i:0">
+        <div class="an-h"><div><div class="an-k">Composition</div><h3>Where points come from</h3></div><span class="an-n" id="anNAvg" data-fmt="dec1">…</span></div>
+        <div class="an-b" id="anScoreBody"></div>
+      </div>
+      <div class="an-card reveal" data-replay id="anProv" style="--i:1">
+        <div class="an-h"><div><div class="an-k">Provenance</div><h3>Who ships the server</h3></div><span class="an-n" id="anNServers">…</span></div>
+        <div class="an-b" id="anProvBody"></div>
+      </div>
+      </div>
+    </div>
+    <div class="iv-partpane" id="ivpHealth" role="tabpanel" hidden>
+<div class="iv-spark"><div class="ivs-h"><span>live wire · tools vs responding sites</span><span class="ivs-v"><i style="background:#22D3EE"></i><b id="spkTools">…</b><i style="background:#FBBF24"></i><b id="spkResp">…</b></span></div><div class="ivs-box" id="sparkHealth"></div></div>
+      <div class="an-grid an-2up g-health">
+      <div class="an-card reveal" data-replay id="anFresh" style="--i:2">
+        <div class="an-h"><div><div class="an-k">Maintenance</div><h3>Repository freshness</h3></div><span class="an-n" id="anNRepos">…</span></div>
+        <div class="an-b" id="anFreshBody"></div>
+      </div>
+      <div class="an-card reveal" data-replay id="anProbe" style="--i:4">
+        <div class="an-h"><div><div class="an-k">Probe truth</div><h3>Endpoints &amp; live tools</h3></div><span class="an-n" id="anNTools">…</span></div>
+        <div class="an-b" id="anProbeBody"></div>
+      </div>
+      </div>
+    </div>
+    <div class="iv-partpane" id="ivpAdoption" role="tabpanel" hidden>
+<div class="iv-spark"><div class="ivs-h"><span>live wire · downloads vs stars</span><span class="ivs-v"><i style="background:#5B8CFF"></i><b id="spkDl">…</b><i style="background:#F59E0B"></i><b id="spkStars">…</b></span></div><div class="ivs-box" id="sparkAdoption"></div></div>
+      <div class="an-grid an-2up g-adoption">
+      <div class="an-card an-wide reveal" data-replay id="anScatter" style="--i:3">
+        <div class="an-h"><div><div class="an-k">Adoption map</div><h3>Stars vs downloads</h3></div><span class="an-hint">log-log · median lines · click a dot for the dossier</span></div>
+        <div class="an-b" id="anScatterBody"></div>
+        <div class="an-note" id="anScatterNote"></div>
+      </div>
+      <div class="an-card reveal" data-replay id="anLat" style="--i:5">
+        <div class="an-h"><div><div class="an-k">Liveness</div><h3>Site latency</h3></div><span class="an-n" id="anNLat" data-fmt="k">…</span></div>
+        <div class="an-b" id="anLatBody"></div>
+        <div class="an-note" id="anLatNote"></div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- methodology view (full-screen, like pricing) -->
+<div class="pview" id="methodologyView" role="dialog" aria-label="Methodology">
+  <button class="pv-x" type="button" data-closeview aria-label="Close view" title="Close (Esc)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <span id="methodology" aria-hidden="true" style="position:absolute;top:0;left:0;width:0;height:0;pointer-events:none"></span>
+  <div class="pview-in">
+    <button class="pv-back" type="button" data-closeview>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m0 0l6-6m-6 6l6 6"/></svg>
+      Back to dashboard</button>
+<div class="method-head reveal" data-replay>
+      <div class="k">Methodology</div>
+      <h2>How every signal is produced</h2>
+      <p>A transparent, source-traceable evidence pipeline. Nothing is inferred or invented; each stage records its source, weight and signal.</p>
+    </div>
+<div class="meth-strip reveal" data-replay>
+      <div class="ms-gauge"><svg viewBox="0 0 120 120" aria-hidden="true">
+        <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(140,150,180,.22)" stroke-width="9"/>
+        <circle id="msArc" cx="60" cy="60" r="50" fill="none" stroke="url(#msGrad)" stroke-width="9" stroke-linecap="round"
+          stroke-dasharray="314.16" stroke-dashoffset="314.16" style="transition:stroke-dashoffset 1.1s var(--ease)"/>
+        <defs><linearGradient id="msGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#5b8cff"/><stop offset=".55" stop-color="#8b5cf6"/><stop offset="1" stop-color="#22d3ee"/>
+        </linearGradient></defs>
+      </svg><div class="ms-v"><b id="msAvg" data-fmt="dec1">…</b><span>avg readiness</span></div></div>
+      <div class="ms-facts">
+        <div><b data-methlive="official">…</b><span>vendor-official</span></div>
+        <div><b data-methlive="community">…</b><span>community</span></div>
+        <div><b data-methlive="tools">…</b><span>live tools</span></div>
+        <div><b data-methlive="liveness">…</b><span>sites up</span></div>
+      </div>
+      <p class="ms-hint">Tap any stage to see the live figure it produced from the current snapshot, and the source it came from.</p>
+    </div>
+    <ol class="pipeline">
+      <li class="pipe reveal" data-replay data-meth="official" style="--i:0">
+        <button class="pipe-hit" type="button" aria-expanded="false">
+          <span class="pipe-n">01</span>
+          <div class="pipe-b"><h4>Vendor official</h4><p>The server's reverse-domain namespace resolves to the app's own domain (<code>com.stripe/mcp</code> → stripe.com). Shared hosts never qualify.</p></div>
+          <div class="pipe-m"><span>source · MCP Registry</span><span>weight 28%</span></div>
+          <span class="pipe-chev" aria-hidden="true">▾</span>
+        </button>
+        <div class="pipe-x"><div class="pipe-xin">
+          <div class="pipe-live"><b data-methlive="official">…</b><span>apps are vendor-official in the live snapshot right now</span></div>
+          <a class="lnk" href="https://registry.modelcontextprotocol.io" target="_blank" rel="noopener">MCP Registry ↗</a>
+        </div></div>
+      </li>
+      <li class="pipe reveal" data-replay data-meth="community" style="--i:1">
+        <button class="pipe-hit" type="button" aria-expanded="false">
+          <span class="pipe-n">02</span>
+          <div class="pipe-b"><h4>Community registry</h4><p>Any other registry server whose name, title or description genuinely mentions the app; aggregator gateways are flagged.</p></div>
+          <div class="pipe-m"><span>source · MCP Registry</span><span>signal · presence</span></div>
+          <span class="pipe-chev" aria-hidden="true">▾</span>
+        </button>
+        <div class="pipe-x"><div class="pipe-xin">
+          <div class="pipe-live"><b data-methlive="community">…</b><span>apps are served by a community registry server</span></div>
+          <a class="lnk" href="https://registry.modelcontextprotocol.io" target="_blank" rel="noopener">MCP Registry ↗</a>
+        </div></div>
+      </li>
+      <li class="pipe reveal" data-replay data-meth="tools" style="--i:2">
+        <button class="pipe-hit" type="button" aria-expanded="false">
+          <span class="pipe-n">03</span>
+          <div class="pipe-b"><h4>Live tools</h4><p>Real tool count from handshaking each endpoint (<code>initialize</code> → <code>tools/list</code>); gated or silent endpoints are reported as such.</p></div>
+          <div class="pipe-m"><span>source · endpoint probe</span><span>weight 14%</span></div>
+          <span class="pipe-chev" aria-hidden="true">▾</span>
+        </button>
+        <div class="pipe-x"><div class="pipe-xin">
+          <div class="pipe-live"><b data-methlive="tools">…</b><span>live tools listed across open endpoints</span></div>
+          <a class="lnk" href="https://modelcontextprotocol.io" target="_blank" rel="noopener">MCP spec ↗</a>
+        </div></div>
+      </li>
+      <li class="pipe reveal" data-replay data-meth="adoption" style="--i:3">
+        <button class="pipe-hit" type="button" aria-expanded="false">
+          <span class="pipe-n">04</span>
+          <div class="pipe-b"><h4>Adoption</h4><p>Monthly package downloads plus repository stars as a proxy for real-world usage.</p></div>
+          <div class="pipe-m"><span>source · npm / PyPI / GitHub</span><span>weight 16% + 14%</span></div>
+          <span class="pipe-chev" aria-hidden="true">▾</span>
+        </button>
+        <div class="pipe-x"><div class="pipe-xin">
+          <div class="pipe-live"><b data-methlive="adoption" data-fmt="k">…</b><span>package downloads per month across tracked servers</span></div>
+          <a class="lnk" href="https://www.npmjs.com" target="_blank" rel="noopener">npm ↗</a>
+        </div></div>
+      </li>
+      <li class="pipe reveal" data-replay data-meth="health" style="--i:4">
+        <button class="pipe-hit" type="button" aria-expanded="false">
+          <span class="pipe-n">05</span>
+          <div class="pipe-b"><h4>Repository health</h4><p>Commit recency, open issues, license and archived status of the server's source repository.</p></div>
+          <div class="pipe-m"><span>source · GitHub</span><span>weight 16%</span></div>
+          <span class="pipe-chev" aria-hidden="true">▾</span>
+        </button>
+        <div class="pipe-x"><div class="pipe-xin">
+          <div class="pipe-live"><b data-methlive="health">…</b><span>server repos committed within the last 90 days</span></div>
+          <a class="lnk" href="https://docs.github.com/rest" target="_blank" rel="noopener">GitHub REST ↗</a>
+        </div></div>
+      </li>
+      <li class="pipe reveal" data-replay data-meth="liveness" style="--i:5">
+        <button class="pipe-hit" type="button" aria-expanded="false">
+          <span class="pipe-n">06</span>
+          <div class="pipe-b"><h4>Liveness</h4><p>Direct HTTP request to the app's site: status, latency, reachability; distinguishes up / up-non-2xx / unreachable.</p></div>
+          <div class="pipe-m"><span>source · direct check</span><span>weight 12%</span></div>
+          <span class="pipe-chev" aria-hidden="true">▾</span>
+        </button>
+        <div class="pipe-x"><div class="pipe-xin">
+          <div class="pipe-live"><b data-methlive="liveness">…</b><span>of the tracked sites are reachable right now</span></div>
+          <span class="lnk">computed in-browser</span>
+        </div></div>
+      </li>
+      <li class="pipe reveal pipe-final" data-replay data-meth="score" style="--i:6">
+        <button class="pipe-hit" type="button" aria-expanded="false">
+          <span class="pipe-n">07</span>
+          <div class="pipe-b"><h4>Readiness score</h4><p>Weighted sum of the above, graded A-E. The per-component breakdown and evidence links are exposed on every application.</p></div>
+          <div class="pipe-m"><span>model · weighted 0-100</span><span>output · grade</span></div>
+          <span class="pipe-chev" aria-hidden="true">▾</span>
+        </button>
+        <div class="pipe-x"><div class="pipe-xin">
+          <div class="pipe-live"><b data-methlive="score" data-fmt="dec1">…</b><span>average integration readiness across the estate</span></div>
+          <span class="lnk">computed in-browser</span>
+        </div></div>
+      </li>
+    </ol>
+  </div>
+</div>
+
+<!-- help view: the field guide (full-screen window, book-marked) -->
+<div class="pview" id="helpView" role="dialog" aria-label="Help and field guide">
+  <button class="pv-x" type="button" data-closeview aria-label="Close view" title="Close (Esc)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <div class="pview-in help-in">
+    <button class="pv-back" type="button" data-closeview>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m0 0l6-6m-6 6l6 6"/></svg>
+      Back to dashboard</button>
+    <div class="help-head reveal" data-replay>
+      <span class="help-book" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.4 5 8.2 4.3 5.6 4.3c-.9 0-1.6.7-1.6 1.5v11.4c0 .8.7 1.5 1.6 1.5 2.6 0 4.8.7 6.4 2.2 1.6-1.5 3.8-2.2 6.4-2.2.9 0 1.6-.7 1.6-1.5V5.8c0-.8-.7-1.5-1.6-1.5-2.6 0-4.8.7-6.4 2.2z"/><path d="M12 6.5v14.4"/></svg></span>
+      <div class="help-tt">
+        <div class="k">Help · field guide</div>
+        <h1>Everything this dashboard means,<br>in plain words.</h1>
+        <p>Eighteen short answers, grouped the way you'll need them. Click a question to open its answer - nothing here is marketing, it's exactly what the data is and how to get at it.</p>
+      </div>
+    </div>
+    <div class="help-toc" role="navigation" aria-label="Guide contents">
+      <button class="htoc" type="button" data-hjump="hg-1"><b>01</b> Start here <span>3</span></button>
+      <button class="htoc" type="button" data-hjump="hg-2"><b>02</b> Reading the data <span>5</span></button>
+      <button class="htoc" type="button" data-hjump="hg-3"><b>03</b> Using the tools <span>7</span></button>
+      <button class="htoc" type="button" data-hjump="hg-4"><b>04</b> Honesty &amp; limits <span>3</span></button>
+    </div>
+    <div class="hq-cols">
+      <div class="hq-group" id="hg-1">
+        <div class="hq-gt">Start here</div>
+        <div class="hq-item reveal" data-replay style="--i:0">
+          <button class="hq" type="button" aria-expanded="false">
+            <span class="hq-n">01</span><span class="hq-q">What is this site, in one breath?</span>
+            <span class="hq-chev" aria-hidden="true">▾</span>
+          </button>
+          <div class="ha"><div class="ha-in"><p>A live, evidence-backed tracker of MCP integration readiness for 100 curated applications. For each app it answers: is there an MCP server, is it vendor-official or community, what can it actually do, how adopted and maintained is it, and is its site up - with every figure linked to the real source that produced it.</p></div></div>
+        </div>
+        <div class="hq-item reveal" data-replay style="--i:1">
+          <button class="hq" type="button" aria-expanded="false">
+            <span class="hq-n">02</span><span class="hq-q">What is MCP, quickly?</span>
+            <span class="hq-chev" aria-hidden="true">▾</span>
+          </button>
+          <div class="ha"><div class="ha-in"><p>The Model Context Protocol: an open standard that lets AI agents call a product's capabilities as tools. An MCP server exposes tools (actions), resources (data) and prompts (templates) over a JSON-RPC stream. This site measures how ready each product is for that world.</p></div></div>
+        </div>
+        <div class="hq-item reveal" data-replay style="--i:2">
+          <button class="hq" type="button" aria-expanded="false">
+            <span class="hq-n">03</span><span class="hq-q">How fresh is what I'm looking at?</span>
+            <span class="hq-chev" aria-hidden="true">▾</span>
+          </button>
+          <div class="ha"><div class="ha-in"><p>Every panel carries its own timestamp ("updated X ago"). The backend refreshes on a schedule (15 minutes by default, plus a 6-hourly cron that commits fresh data), the browser picks up a new refresh within seconds, and the Trends section graphs every refresh snapshot as a point in time.</p></div></div>
+        </div>
+      </div>
+      <div class="hq-group" id="hg-2">
+        <div class="hq-gt">Reading the data</div>
+        <div class="hq-item reveal" data-replay style="--i:0">
+          <button class="hq" type="button" aria-expanded="false">
+            <span class="hq-n">01</span><span class="hq-q">Official / Community / None - what's the difference?</span>
+            <span class="hq-chev" aria-hidden="true">▾</span>
+          </button>
+          <div class="ha"><div class="ha-in"><p>Official means the registry server's reverse-domain namespace resolves to the app's own domain (com.stripe/mcp to stripe.com) - domain-verified, not claimed. Community means a third-party server whose name/title/description genuinely mentions the app. None means the official MCP registry returned nothing for it - a registry coverage gap, not proof no server exists.</p></div></div>
+        </div>
+        <div class="hq-item reveal" data-replay style="--i:1">
+          <button class="hq" type="button" aria-expanded="false">
+            <span class="hq-n">02</span><span class="hq-q">What is the Readiness score and its grade?</span>
+            <span class="hq-chev" aria-hidden="true">▾</span>
+          </button>
+          <div class="ha"><div class="ha-in"><p>A transparent 0-100 weighted sum of six live signals: official MCP 28%, live capability 14%, adoption 16%, popularity 14%, maintenance 16%, availability 12%. Grades run A-E. Open any app and the Signal breakdown shows each component's exact contribution and its evidence.</p></div></div>
+        </div>
+        <div class="hq-item reveal" data-replay style="--i:2">
+          <button class="hq" type="button" aria-expanded="false">
+            <span class="hq-n">03</span><span class="hq-q">What are "live tools" and "auth gated"?</span>
+            <span class="hq-chev" aria-hidden="true">▾</span>
+          </button>
+          <div class="ha"><div class="ha-in"><p>Live tools are counted only from a real handshake with the server's endpoint (initialize then tools/list). Auth gated means the endpoint demanded credentials (401/402/403) - that is an auth wall, not zero capability, and we say so instead of guessing a number.</p></div></div>
+        </div>
+        <div class="hq-item reveal" data-replay style="--i:3">
+          <button class="hq" type="button" aria-expanded="false">
+            <span class="hq-n">04</span><span class="hq-q">What does the "gateway" tag mean?</span>
+            <span class="hq-chev" aria-hidden="true">▾</span>
+          </button>
+          <div class="ha"><div class="ha-in"><p>Some endpoints are shared aggregators serving the same toolset to many apps. When one toolset appears behind four or more apps we flag it as a generic gateway and exclude it from app-specific tool counts, so a 41-tool gateway is never credited to every app it wraps.</p></div></div>
+        </div>
+        <div class="hq-item reveal" data-replay style="--i:4">
+          <button class="hq" type="button" aria-expanded="false">
+            <span class="hq-n">05</span><span class="hq-q">Downloads, stars, liveness - what exactly are they?</span>
+            <span class="hq-chev" aria-hidden="true">▾</span>
+          </button>
+          <div class="ha"><div class="ha-in"><p>Downloads are npm/PyPI monthly downloads of the server's published package. Stars are GitHub stars of the repository the registry publishes for that server. Liveness is a direct HTTP check of the app's own site: the status code, latency and whether it responded.</p></div></div>
+        </div>
+      </div>
+      <div class="hq-group" id="hg-3">
+        <div class="hq-gt">Using the tools</div>
+        <div class="hq-item reveal" data-replay style="--i:0">
+          <button class="hq" type="button" aria-expanded="false">
+            <span class="hq-n">01</span><span class="hq-q">How do I find an app - or fetch one that isn't tracked?</span>
+            <span class="hq-chev" aria-hidden="true">▾</span>
+          </button>
+          <div class="ha"><div class="ha-in"><p>Press Ctrl/Cmd+K (or use the hero search). Curated matches appear instantly; as you type, the live MCP registry is queried for apps beyond the 100, and the Anywhere row fetches any application on the spot with a staged progress card.</p></div></div>
+        </div>
+        <div class="hq-item reveal" data-replay style="--i:1">
+          <button class="hq" type="button" aria-expanded="false">
+            <span class="hq-n">02</span><span class="hq-q">How does compare work?</span>
+            <span class="hq-chev" aria-hidden="true">▾</span>
+          </button>
+          <div class="ha"><div class="ha-in"><p>Hover a row and press + (up to four apps), then Compare. The deck shows readiness, status, servers, tools, downloads, stars, last commit, license and site side by side, starring the best value per metric. The grid grows a column per app - no empty slots.</p></div></div>
+        </div>
+        <div class="hq-item reveal" data-replay style="--i:2">
+          <button class="hq" type="button" aria-expanded="false">
+            <span class="hq-n">03</span><span class="hq-q">What is the Changes tab inside an app?</span>
+            <span class="hq-chev" aria-hidden="true">▾</span>
+          </button>
+          <div class="ha"><div class="ha-in"><p>A historical diff: what changed between two stored snapshots - tools added/removed/modified, schema and required-parameter changes, auth or protocol changes, endpoints, health - each rated as a potential breaking change (high/medium/low/info). You can pick any two snapshots to compare, and the timeline summarises day by day.</p></div></div>
+        </div>
+        <div class="hq-item reveal" data-replay style="--i:3">
+          <button class="hq" type="button" aria-expanded="false">
+            <span class="hq-n">04</span><span class="hq-q">What does "test compatibility" do?</span>
+            <span class="hq-chev" aria-hidden="true">▾</span>
+          </button>
+          <div class="ha"><div class="ha-in"><p>It runs a 12-check behavioural test against a server endpoint (reachable, TLS, handshake, protocol, capabilities, tools/resources/prompts, schema validity, JSON-RPC validity, error handling, auth) and scores it. It is a compatibility report from this explorer's point of view - explicitly not an official certification.</p></div></div>
+        </div>
+        <div class="hq-item reveal" data-replay style="--i:4">
+          <button class="hq" type="button" aria-expanded="false">
+            <span class="hq-n">05</span><span class="hq-q">How do watch and alerts work?</span>
+            <span class="hq-chev" aria-hidden="true">▾</span>
+          </button>
+          <div class="ha"><div class="ha-in"><p>Open an app and press Watch. When a refresh detects that it shipped an official MCP, went down, or changed, an alert fires to the bell, streams over the live wire, and can POST to a webhook (ALERT_WEBHOOK_URL) for Slack/Discord/Zapier.</p></div></div>
+        </div>
+        <div class="hq-item reveal" data-replay style="--i:5">
+          <button class="hq" type="button" aria-expanded="false">
+            <span class="hq-n">06</span><span class="hq-q">What do the three explorer tabs do?</span>
+            <span class="hq-chev" aria-hidden="true">▾</span>
+          </button>
+          <div class="ha"><div class="ha-in"><p>Explorer is the full filterable, sortable table of every tracked app. Leaderboard ranks them by readiness score. Opportunities lists the apps with real demand - stars, downloads, community servers - but no vendor-official MCP yet: the build candidates. Category, status and grade filters apply to all three.</p></div></div>
+        </div>
+        <div class="hq-item reveal" data-replay style="--i:6">
+          <button class="hq" type="button" aria-expanded="false">
+            <span class="hq-n">07</span><span class="hq-q">Can I take the data with me?</span>
+            <span class="hq-chev" aria-hidden="true">▾</span>
+          </button>
+          <div class="ha"><div class="ha-in"><p>Yes: the export menu downloads CSV or JSON of the whole dataset, every figure is also served by a plain REST API (see the README), and the explorer itself runs as an MCP server (python -m src.mcp_server) so agents can query it directly.</p></div></div>
+        </div>
+      </div>
+      <div class="hq-group" id="hg-4">
+        <div class="hq-gt">Honesty & limits</div>
+        <div class="hq-item reveal" data-replay style="--i:0">
+          <button class="hq" type="button" aria-expanded="false">
+            <span class="hq-n">01</span><span class="hq-q">Why does an app say None when I know it has an MCP?</span>
+            <span class="hq-chev" aria-hidden="true">▾</span>
+          </button>
+          <div class="ha"><div class="ha-in"><p>Because "none" means none in the official MCP registry. Verified examples: GitHub ships github/github-mcp-server and Netlify ships netlify/netlify-mcp, yet neither is published in the registry, so both read as community/none here. Read "none" as "not discoverable in the registry".</p></div></div>
+        </div>
+        <div class="hq-item reveal" data-replay style="--i:1">
+          <button class="hq" type="button" aria-expanded="false">
+            <span class="hq-n">02</span><span class="hq-q">Why do totals move a little between refreshes?</span>
+            <span class="hq-chev" aria-hidden="true">▾</span>
+          </button>
+          <div class="ha"><div class="ha-in"><p>Registry search is keyword-based and its result set shifts, so aggregate counts wobble by a few percent. A domain-verified official server is protected by an anti-flap rule: one blank cycle marks it "carried over", two in a row accept the removal. The trend chart is direction, not precision.</p></div></div>
+        </div>
+        <div class="hq-item reveal" data-replay style="--i:2">
+          <button class="hq" type="button" aria-expanded="false">
+            <span class="hq-n">03</span><span class="hq-q">Is anything estimated or invented?</span>
+            <span class="hq-chev" aria-hidden="true">▾</span>
+          </button>
+          <div class="ha"><div class="ha-in"><p>No. If a source returns nothing we show none; if a fetch fails we show unknown or auth-gated; every card names its source and every number rolls from the figure it replaced. The Methodology window lists all seven pipeline stages with their weights.</p></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="help-foot reveal" data-replay>
+      <span>Still curious? The <a href="#methodology" data-view="methodology">Methodology</a> window lists every pipeline stage and weight, and <a href="#intelligence" data-view="intelligence">Intelligence</a> shows the landscape computed live.</span>
+    </div>
+  </div>
+</div>
+
+<!-- pricing view: full-screen; only the site chrome + the boxes -->
+<div class="pview" id="pricingView" role="dialog" aria-label="Pricing plans">
+  <button class="pv-x" type="button" data-closeview aria-label="Close view" title="Close (Esc)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <div class="pview-in">
+    <button class="pv-back" id="pvBack" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m0 0l6-6m-6 6l6 6"/></svg>
+      Back to dashboard</button>
+    <div class="pv-head">
+      <div class="k">Plans</div>
+      <h1>Simple pricing,<br>serious intelligence.</h1>
+      <p>The public Explorer stays free, forever. Paid tiers unlock unlimited tracking, alerts and deep history. They launch soon; this is exactly what's coming.</p>
+    </div>
+    <div class="pv-grid">
+      <div class="pv-card current" style="--i:0">
+        <div class="pv-badge now">Current plan</div>
+        <div class="pv-name">Free</div>
+        <div class="pv-for">The public Explorer, open to everyone</div>
+        <div class="pv-price"><span class="amt">$0</span><span class="per">/ month</span></div>
+        <span class="pv-soon now"><span class="bd"></span>Active now</span>
+        <ul class="pv-feat">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Full evidence dossier for every tracked app</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Live registry, endpoint &amp; liveness probes</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Side-by-side compare, up to 4 apps</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>CSV &amp; JSON export of every view</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Leaderboard, opportunities &amp; trend history</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Watchlist with live in-browser alerts</li>
+        </ul>
+        <button class="btn btn-ghost pv-cta pv-cta-now" id="pvFreeCta" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>You're on this plan</button>
+      </div>
+      <div class="pv-card" style="--i:1">
+        <div class="pv-name">Pro</div>
+        <div class="pv-for">For individuals &amp; independent builders</div>
+        <div class="pv-price"><span class="amt">$10</span><span class="per">/ month</span></div>
+        <span class="pv-soon"><span class="bd"></span>Coming soon</span>
+        <ul class="pv-feat">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Unlimited app tracking, beyond the public 100</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Custom alerts &amp; webhooks (official launches, downtime)</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>90-day history &amp; trend exports</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Priority live refresh every 5 minutes</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Weekly signal digest by email</li>
+        </ul>
+        <button class="btn btn-ghost pv-cta" disabled>Launching soon</button>
+      </div>
+      <div class="pv-card featured" style="--i:2">
+        <div class="pv-badge">Most popular</div>
+        <div class="pv-name">Team</div>
+        <div class="pv-for">For platform, product &amp; integration teams</div>
+        <div class="pv-price"><span class="amt">$30</span><span class="per">/ month</span></div>
+        <span class="pv-soon"><span class="bd"></span>Coming soon</span>
+        <ul class="pv-feat">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Everything in Pro</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>5 team seats with shared watchlists</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>API keys &amp; programmatic access</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>2-year historical archive</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Slack &amp; email alert routing</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Private category tracking for your stack</li>
+        </ul>
+        <button class="btn btn-primary pv-cta" disabled>Launching soon</button>
+      </div>
+      <div class="pv-card" style="--i:3">
+        <div class="pv-name">Enterprise</div>
+        <div class="pv-for">For organizations with compliance needs</div>
+        <div class="pv-price"><span class="soon">Coming soon</span></div>
+        <span class="pv-soon"><span class="bd"></span>Custom terms</span>
+        <ul class="pv-feat">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Private / self-hosted registry &amp; probes</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>SSO / SAML &amp; audit logs</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Custom estate tracking for 1,000+ apps</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>SLA &amp; dedicated support</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Security review pack &amp; on-prem option</li>
+        </ul>
+        <button class="btn btn-ghost pv-cta" disabled>Contact at launch</button>
+      </div>
+    </div>
+    <div class="pv-foot">
+      <span><b>Every plan includes the full evidence pipeline.</b> Prices in USD, billed monthly. Launch pricing may be adjusted with early design partners. The public Explorer stays free.</span>
+    </div>
+  </div>
+</div>
+
+<!-- dashboard drawer (hamburger) -->
+<div class="dw-scrim" id="drawerScrim"></div>
+<aside class="drawer" id="drawer" aria-label="Dashboard menu">
+  <div class="dw-head">
+    <span class="logo-mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+        <circle cx="7" cy="7" r="2.1"/><circle cx="7" cy="17" r="2.1"/><circle cx="17" cy="12" r="2.1"/><path d="M9 8l6 3M9 16l6-3"/>
+      </svg>
+    </span>
+    <span class="dw-title">Dashboard</span>
+    <button class="dw-x" id="drawerClose" type="button" aria-label="Close menu">✕</button>
+  </div>
+  <div class="dw-body">
+    <div class="dw-group">
+      <div class="dw-label">Views</div>
+      <a class="dw-item" href="#top" data-dnav data-home><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5L12 4l8 6.5"/><path d="M6.5 9.8V19a1 1 0 001 1h3.2v-5h2.6v5h3.2a1 1 0 001-1V9.8"/></svg>Home</a>
+      <a class="dw-item" href="#help" data-dnav data-view="help"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.4 5 8.2 4.3 5.6 4.3c-.9 0-1.6.7-1.6 1.5v11.4c0 .8.7 1.5 1.6 1.5 2.6 0 4.8.7 6.4 2.2 1.6-1.5 3.8-2.2 6.4-2.2.9 0 1.6-.7 1.6-1.5V5.8c0-.8-.7-1.5-1.6-1.5-2.6 0-4.8.7-6.4 2.2z"/><path d="M12 6.5v14.4"/></svg>Help &amp; guide</a>
+      <a class="dw-item" href="#intelligence" data-dnav data-view="intelligence"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5m0 14h16"/><path d="M8 15l3-4 2.5 2L20 7"/></svg>Intelligence</a>
+      <a class="dw-item" href="#methodology" data-dnav data-view="methodology"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.4"/><circle cx="6" cy="18" r="2.4"/><circle cx="18" cy="12" r="2.4"/><path d="M8.4 7.2l7.2 3.6M8.4 16.8l7.2-3.6"/></svg>Methodology</a>
+      <a class="dw-item" href="#pricing" data-dnav data-pricing><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4L12 4.8V3H5v7h1.8l8.6 8.6a2 2 0 002.8 0l2.4-2.4a2 2 0 000-2.8z"/><circle cx="8.5" cy="6.5" r="1.2"/></svg>Pricing</a>
+    </div>
+    <div class="dw-sep"></div>
+    <div class="dw-group">
+      <div class="dw-label">Compare <b id="dwCmpN">0</b><span class="dw-of">/4</span></div>
+      <div class="dw-chips" id="dwChips"><span class="dw-empty">Tap + on any app row</span></div>
+      <button class="btn btn-primary dw-cmp" id="dwCompare" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3v18M15 3v18M3 9h18M3 15h18" opacity="0"/><path d="M8 7H5a1 1 0 00-1 1v8a1 1 0 001 1h3m8-10h3a1 1 0 011 1v8a1 1 0 01-1 1h-3M8 12h8"/></svg>
+        Compare selected</button>
+      <button class="dw-clear linkbtn" id="dwClear" type="button">Clear all</button>
+    </div>
+    <div class="dw-sep"></div>
+    <div class="dw-group">
+      <div class="dw-label">Actions</div>
+      <button class="dw-item" type="button" id="dwSearch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.2-3.2"/></svg>Search apps<span class="kbd dw-kbd">⌘K</span></button>
+      <button class="dw-item" type="button" id="dwRefresh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 10-2.3 6.3M20 5v6h-6"/></svg>Refresh live data</button>
+      <button class="dw-item" type="button" id="dwCsv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 20h16"/></svg>Export CSV</button>
+      <button class="dw-item" type="button" id="dwJson"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 20h16"/></svg>Export JSON</button>
+      <button class="dw-item" type="button" id="dwTheme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>Toggle theme</button>
+      <button class="dw-item" type="button" id="dwAlerts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg>Alerts <span class="dw-badge" id="dwAlertN">0</span></button>
+    </div>
+  </div>
+  <div class="dw-foot"><span class="led off" id="dwLed"></span><span id="dwStatus">Connecting</span><span class="dw-foot-r" id="dwCount">…</span></div>
+</aside>
+
+<!-- command palette -->
+<div class="cmdk-backdrop" id="cmdk">
+  <div class="cmdk" role="dialog" aria-modal="true">
+    <div class="cmdk-in">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.2-3.2"/></svg>
+      <input id="cmdkInput" placeholder="Search applications, MCP servers or repositories…" autocomplete="off" spellcheck="false">
+      <span class="kbd">esc</span>
+    </div>
+    <div class="cmdk-res" id="cmdkRes"></div>
+    <div class="cmdk-foot"><span><span class="kbd">↑</span><span class="kbd">↓</span> navigate</span><span><span class="kbd">↵</span> open</span><span style="margin-left:auto" id="cmdkCount"></span></div>
+  </div>
+</div>
+
+<!-- compare dock -->
+<div class="comparebar" id="compareBar">
+  <span class="cb-label">Compare</span>
+  <div class="cb-chips" id="compareChips"></div>
+  <button class="btn btn-ghost btn-sm" id="compareClear">Clear</button>
+  <button class="btn btn-primary btn-sm" id="compareGo">Compare</button>
+</div>
+
+<div class="backdrop" id="backdrop"></div>
+<div class="modal" id="modal" role="dialog" aria-modal="true"></div>
+<div class="comm-card" id="commCard" role="dialog" aria-label="Community servers"></div>
+<div class="toast" id="toast"></div>
+
+<script src="/data.snapshot.js?v=18"></script>
+<script src="/app.js?v=18"></script>
+</body>
+</html>
