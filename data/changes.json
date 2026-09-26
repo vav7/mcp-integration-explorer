@@ -1,5 +1,47 @@
 [
   {
+    "ts": "2026-09-26T16:32:28Z",
+    "app_id": 30,
+    "app": "Vonage",
+    "kind": "tools",
+    "message": "live tools 0 → 7"
+  },
+  {
+    "ts": "2026-09-26T16:32:28Z",
+    "app_id": 47,
+    "app": "Ecwid",
+    "kind": "tools",
+    "message": "live tools 0 → 12"
+  },
+  {
+    "ts": "2026-09-26T16:32:28Z",
+    "app_id": 48,
+    "app": "Gumroad",
+    "kind": "tools",
+    "message": "live tools 0 → 20"
+  },
+  {
+    "ts": "2026-09-26T16:32:28Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 8,554 → 8,581 (+27)"
+  },
+  {
+    "ts": "2026-09-26T16:32:28Z",
+    "app_id": 64,
+    "app": "Cloudflare",
+    "kind": "stars",
+    "message": "repo ★ 4,301 → 4,312 (+11)"
+  },
+  {
+    "ts": "2026-09-26T16:32:28Z",
+    "app_id": 67,
+    "app": "Snowflake",
+    "kind": "tools",
+    "message": "live tools 0 → 31"
+  },
+  {
     "ts": "2026-09-26T11:34:08Z",
     "app_id": 17,
     "app": "Plain",
@@ -1356,47 +1398,5 @@
     "app": "SE Ranking",
     "kind": "status",
     "message": "MCP status vendor_official → none"
-  },
-  {
-    "ts": "2026-09-23T17:45:33Z",
-    "app_id": 52,
-    "app": "SE Ranking",
-    "kind": "servers",
-    "message": "registry servers 1 → 0 (-1)"
-  },
-  {
-    "ts": "2026-09-23T17:45:33Z",
-    "app_id": 58,
-    "app": "Sherlock",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-09-23T17:45:33Z",
-    "app_id": 58,
-    "app": "Sherlock",
-    "kind": "servers",
-    "message": "registry servers 1 → 0 (-1)"
-  },
-  {
-    "ts": "2026-09-23T17:25:13Z",
-    "app_id": 99,
-    "app": "YouTube Transcript",
-    "kind": "site",
-    "message": "site came up"
-  },
-  {
-    "ts": "2026-09-23T16:52:40Z",
-    "app_id": 32,
-    "app": "Meta Ads",
-    "kind": "servers",
-    "message": "registry servers 3 → 5 (+2)"
-  },
-  {
-    "ts": "2026-09-23T16:52:40Z",
-    "app_id": 39,
-    "app": "Threads (Meta)",
-    "kind": "servers",
-    "message": "registry servers 3 → 5 (+2)"
   }
 ]
