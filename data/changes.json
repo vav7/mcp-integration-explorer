@@ -1,5 +1,47 @@
 [
   {
+    "ts": "2026-09-26T11:34:08Z",
+    "app_id": 17,
+    "app": "Plain",
+    "kind": "servers",
+    "message": "registry servers 3 → 4 (+1)"
+  },
+  {
+    "ts": "2026-09-26T11:34:08Z",
+    "app_id": 30,
+    "app": "Vonage",
+    "kind": "tools",
+    "message": "live tools 7 → 0"
+  },
+  {
+    "ts": "2026-09-26T11:34:08Z",
+    "app_id": 49,
+    "app": "Amazon Selling Partner",
+    "kind": "servers",
+    "message": "registry servers 9 → 8 (-1)"
+  },
+  {
+    "ts": "2026-09-26T11:34:08Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 8,523 → 8,554 (+31)"
+  },
+  {
+    "ts": "2026-09-26T11:34:08Z",
+    "app_id": 64,
+    "app": "Cloudflare",
+    "kind": "stars",
+    "message": "repo ★ 4,286 → 4,301 (+15)"
+  },
+  {
+    "ts": "2026-09-26T11:34:08Z",
+    "app_id": 67,
+    "app": "Snowflake",
+    "kind": "tools",
+    "message": "live tools 31 → 0"
+  },
+  {
     "ts": "2026-09-26T05:11:56Z",
     "app_id": 1,
     "app": "Salesforce",
@@ -1356,47 +1398,5 @@
     "app": "Threads (Meta)",
     "kind": "servers",
     "message": "registry servers 3 → 5 (+2)"
-  },
-  {
-    "ts": "2026-09-23T16:52:40Z",
-    "app_id": 58,
-    "app": "Sherlock",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-09-23T16:52:40Z",
-    "app_id": 58,
-    "app": "Sherlock",
-    "kind": "servers",
-    "message": "registry servers 0 → 1 (+1)"
-  },
-  {
-    "ts": "2026-09-23T16:52:40Z",
-    "app_id": 68,
-    "app": "MongoDB Atlas",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-09-23T16:52:40Z",
-    "app_id": 68,
-    "app": "MongoDB Atlas",
-    "kind": "servers",
-    "message": "registry servers 0 → 6 (+6)"
-  },
-  {
-    "ts": "2026-09-23T16:52:40Z",
-    "app_id": 68,
-    "app": "MongoDB Atlas",
-    "kind": "tools",
-    "message": "live tools 0 → 2"
-  },
-  {
-    "ts": "2026-09-23T16:52:40Z",
-    "app_id": 76,
-    "app": "Monday.com",
-    "kind": "servers",
-    "message": "registry servers 1 → 3 (+2)"
   }
 ]
