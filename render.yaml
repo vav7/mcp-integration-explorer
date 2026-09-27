@@ -1,0 +1,30 @@
+# Render blueprint (free tier).
+# One click: Render dashboard -> "New +" -> "Blueprint" -> pick this repository.
+# Render reads this file and provisions everything; no other setup needed.
+services:
+  - type: web
+    name: mcp-integration-explorer
+    runtime: python
+    plan: free
+    region: oregon                 # change at deploy time to a region near you
+    numInstances: 1                # single process owns the in-memory store
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m uvicorn src.app:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    autoDeploy: true               # redeploy on every push to the default branch
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11"
+      # The "live" part: background refresher every 15 min + boot refresh.
+      - key: NO_AUTO_REFRESH
+        value: "0"
+      # Safety: never let visitor-supplied URLs dial private/internal networks.
+      - key: BLOCK_PRIVATE_URLS
+        value: "1"
+      # Optional - set these in the Render dashboard, not here:
+      - key: GITHUB_TOKEN          # raises GitHub from ~60 req/h per IP
+        sync: false
+      - key: EXPLORER_API_KEY      # gates write endpoints behind X-API-Key
+        sync: false
+      - key: ALERT_WEBHOOK_URL     # POST fired alerts to Slack/Discord/Zapier
+        sync: false

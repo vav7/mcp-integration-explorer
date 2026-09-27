@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Env / secrets
+.env
+.env.*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
+
+# Test caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Verification screenshots are test OUTPUT: browser_check.py / mobile_check.py /
+# lookup_429_check.py rewrite them on every run. Only the curated gallery below
+# is committed, so a test run never dirties the repo or bloats history.
+docs/screenshots/*
+!docs/screenshots/v19-01-home.png
+!docs/screenshots/v20-06-methodology-open.png
+!docs/screenshots/v29-intel-bars.png
+!docs/screenshots/v32-desktop-list.png
+!docs/screenshots/v32-mobile-home.png
+!docs/screenshots/v36-view-lock-redx.png
+!docs/screenshots/v38-insight-panels.png
+!docs/screenshots/v38-mobile-compare.png
+
+# NOTE: data/live_cache.json, static/data.snapshot.js and demo.html are
+# intentionally committed — they hold the last REAL fetch so the dashboard and
+# the portable demo render with genuine data out of the box. They are
+# regenerated on every refresh.
+core
+core.*
+*.core
