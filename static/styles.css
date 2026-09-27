@@ -3788,3 +3788,80 @@ body.scroll-locked .nav{position:fixed;top:0;left:0;right:0}
   #catbars .br-v,#gradebars .br-v{grid-area:v}
   #catbars .bar-track,#gradebars .bar-track{grid-area:t}
 }
+
+/* ============================== v39 LAYER ==============================
+   The phone compare window, two reported problems:
+   1) it cut off its own content: the picker + grid column stood at full
+      height inside the modal's fixed shell with no vertical scroller, so
+      the bottom of the table was unreachable. The column now scrolls for
+      real on phones and tablets: the add-apps panel lifts away as the
+      reader scrolls and the whole table down to the foot note is
+      reachable. The shell is sized against the dynamic viewport, so an
+      open URL bar never hides the bottom of the sheet either.
+   2) no lag while scrolling: cells appear at once (no per-cell entrance
+      animation on phones), the column-width tween is off, the pinned
+      labels carry a lighter edge shadow while swiping, the window rises
+      faster, and the grid is no longer rebuilt on URL-bar resizes (the
+      script rebuilds only when the layout mode actually flips).        */
+@media(max-width:920px){
+  .modal.cmpwin{max-height:94vh;max-height:min(94vh,94dvh)}
+  .modal.cmpwin .cmp3{flex:0 1 auto;min-height:0;overflow-y:auto;
+    overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+  .modal.cmpwin .cmp3-view{max-height:none;overflow:visible}
+  /* the desktop equal-height rule stretched the grid into a dead band once
+     the column became a scroller: size the flex part from its rows only */
+  .modal.cmpwin .cmp-flex{min-height:0}
+}
+@media(max-width:760px){
+  .modal.cmpwin.open{animation-duration:.36s}
+  .cmp2-cell{animation:none}
+  .cmp2-head,.cmp2-row{transition:none}
+  .cmp-gridpart{transition:none}
+  .cmp2-corner,.cmp2-label{box-shadow:1px 0 0 rgba(122,158,255,.16),6px 0 12px -8px rgba(0,0,0,.85)}
+}
+[data-theme="light"] .cmp2-corner,[data-theme="light"] .cmp2-label{
+  box-shadow:1px 0 0 rgba(37,99,235,.18),6px 0 12px -9px rgba(15,23,42,.30)}
+
+/* ---- v39 layer, continued: give the table back the head's padding ----
+   on phones the compare head kept its desktop padding, spending ~30px of
+   a scarce viewport on air; the compact head leaves it to the rows.    */
+@media(max-width:760px){
+  .modal.cmpwin .mhead{padding:14px 14px 12px}
+  .modal.cmpwin .mh-sub{margin-top:5px;font-size:11.5px}
+  .modal.cmpwin .mhead h3{font-size:17px}
+}
+
+/* ---- v39 layer, continued: touch is touch in any orientation ----
+   a landscape phone is wider than 760px, so the portrait-only perf rules
+   missed it: the staggered cell pop and the column-width tween still ran
+   there. On any touch device, in any orientation, cells appear at once
+   and column widths never tween. */
+@media(hover:none){
+  .cmp2-cell,.cmp2-app{animation:none}
+  .cmp2-head,.cmp2-row{transition:none}
+  .cmp-gridpart{transition:none}
+}
+
+/* ============================== v40 LAYER ==============================
+   v40: the compare dock, rebuilt for phones. The old dock was one flex
+   row: four chips wrapped into a tall tower and the Compare button got
+   shoved out of its own box. Now the dock is a three row grid: label and
+   Clear on top, the chips on one scrollable row, and a full width
+   Compare button underneath that can never clip or overflow. The parked
+   slide uses 100% of the dock height so a taller dock still hides fully.
+   ======================================================================= */
+@media(max-width:760px), (hover:none) and (max-width:920px){
+  .comparebar{display:grid;grid-template-columns:1fr auto;
+    grid-template-areas:"lab clr" "chips chips" "go go";
+    gap:8px 10px;align-items:center;width:calc(100vw - 20px);max-width:calc(100vw - 20px);
+    padding:10px 12px;bottom:calc(10px + env(safe-area-inset-bottom,0px));
+    transform:translateX(-50%) translateY(calc(100% + 28px))}
+  .comparebar.show{transform:translateX(-50%) translateY(0)}
+  .cb-label{grid-area:lab}
+  #compareClear{grid-area:clr;margin:0}
+  .cb-chips{grid-area:chips;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;
+    max-width:100%;padding:1px 2px 4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .cb-chips::-webkit-scrollbar{display:none}
+  .cb-chip{flex:0 0 auto}
+  #compareGo{grid-area:go;width:100%}
+}

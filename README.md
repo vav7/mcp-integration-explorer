@@ -12,12 +12,12 @@ Portable demo: open `demo.html` straight from disk, no server needed.
 | Home & explorer | Intelligence |
 |:---:|:---:|
 | ![Home](docs/screenshots/v19-01-home.png) | ![Intelligence](docs/screenshots/v29-intel-bars.png) |
-| **Methodology, live** | **Explorer list, desktop** |
-| ![Methodology](docs/screenshots/v20-06-methodology-open.png) | ![Desktop list](docs/screenshots/v32-desktop-list.png) |
-| **Comparison deck on mobile** | **Explorer cards, mobile** |
-| ![Compare mobile](docs/screenshots/v38-mobile-compare.png) | ![Mobile home](docs/screenshots/v32-mobile-home.png) |
+| **Methodology, live** | **Comparison deck on mobile** |
+| ![Methodology](docs/screenshots/v20-06-methodology-open.png) | ![Compare mobile](docs/screenshots/v39-mobile-compare.png) |
+| **Explorer list, desktop** | **Explorer cards, mobile** |
+| ![Desktop list](docs/screenshots/v32-desktop-list.png) | ![Mobile home](docs/screenshots/v32-mobile-home.png) |
 | **Coverage & readiness panels** | **Full-screen views with pinned chrome** |
-| ![Insight panels](docs/screenshots/v38-insight-panels.png) | ![View lock](docs/screenshots/v36-view-lock-redx.png) |
+| ![Insight panels](docs/screenshots/v38-insight-panels.png) | ![Compare dock](docs/screenshots/v40-dock-4apps.png) |
 
 ## What it does
 

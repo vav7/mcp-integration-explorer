@@ -31,7 +31,7 @@ docs/screenshots/*
 !docs/screenshots/v32-mobile-home.png
 !docs/screenshots/v36-view-lock-redx.png
 !docs/screenshots/v38-insight-panels.png
-!docs/screenshots/v38-mobile-compare.png
+!docs/screenshots/v39-mobile-compare.png
 
 # NOTE: data/live_cache.json, static/data.snapshot.js and demo.html are
 # intentionally committed — they hold the last REAL fetch so the dashboard and
@@ -40,3 +40,4 @@ docs/screenshots/*
 core
 core.*
 *.core
+!docs/screenshots/v40-dock-4apps.png

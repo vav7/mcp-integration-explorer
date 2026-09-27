@@ -1830,6 +1830,7 @@
     $("#compareChips").innerHTML = apps.map(a => `<span class="cb-chip">${esc(a.app.name)}<button data-rm="${a.app.id}" title="Remove">×</button></span>`).join("");
     $$("#compareChips [data-rm]").forEach(b => b.onclick = () => toggleCompare(+b.dataset.rm));
     $("#compareGo").disabled = false;
+    const lb = $(".cb-label"); if (lb) lb.textContent = apps.length ? "Compare " + apps.length + "/4" : "Compare";
     renderDrawerCompare(apps);
   }
   /* ---------------- dashboard drawer (hamburger) ---------------- */
@@ -1859,6 +1860,9 @@
   /* ---------------- compare window: search-and-add picker + live grid ---------------- */
   function cmpApps() { return state.compare.map(id => ((state.snap && state.snap.apps) || []).find(a => a.app.id === id)).filter(Boolean); }
   const narrowGrid = () => !!(window.matchMedia && window.matchMedia("(max-width:760px)").matches);
+  /* v39: the layout mode the open grid was last built for; a resize
+     (URL bar toggle) rebuilds only when this flips, never mid-scroll. */
+  let cmpGridNarrow = null;
   function cmpGridHtml(apps) {
     const n = apps.length, showBest = n > 1;
     /* the grid always owns the full width: an app column appears when an app is
@@ -1953,6 +1957,7 @@
   }
   function renderCmp3View() {
     const v = $("#cmp3View"); if (!v) return;
+    cmpGridNarrow = narrowGrid();
     const apps = cmpApps(), n = apps.length;
     if (!n) {
       v.innerHTML = `<div class="cmp3-empty">${svg("apps", 1.4)}<div><b>Build your comparison</b>
@@ -1960,7 +1965,7 @@
       return;
     }
     v.innerHTML = `<div class="cmp-flex"><div class="cmp-gridpart n${n}">${cmpGridHtml(apps)}</div></div>` +
-      `<div class="cmp2-foot">${narrowGrid() ? "Swipe the grid sideways: the metric column stays pinned. " : ""}${n > 1 ? "Best value is highlighted per metric." : "One app on the board with every live metric."}` +
+      `<div class="cmp2-foot">${narrowGrid() ? "Swipe the grid sideways: the metric column stays pinned. Scroll the window up for the app picker. " : ""}${n > 1 ? "Best value is highlighted per metric." : "One app on the board with every live metric."}` +
       `${n < 4 ? " Add another from the list, or press the + rail in the grid." : " All four slots in use."}` +
       ` Click an app header to open its full evidence dossier.</div>`;
     $$("#modal .cmp2-app").forEach((el, i) => el.addEventListener("click", () => openModal(apps[i].app.id)));
@@ -2001,10 +2006,31 @@
       const add = b.querySelector(".cmp3-add"); if (add) add.textContent = !had ? "✓" : "+";
       if (!had) { b.classList.remove("justadded"); void b.offsetWidth; b.classList.add("justadded"); }
       applyCmp3Filter(lst); renderCmp3Count(countShown(lst)); renderCmp3View();
+      /* v39c: the moment the grid first appears on a phone, glide to
+         it: a fresh table must never hide below the fold while the
+         reader is still facing the picker. */
+      if (!had && state.compare.length === 1 && narrowGrid()) {
+        const c3 = $(".cmp3"), pk = $(".cmp3-pick");
+        if (c3 && pk) {
+          /* scrollTo(options) is missing on a long tail of old phones:
+             fall back to a plain assignment so the table still shows. */
+          try { c3.scrollTo({ top: pk.offsetHeight, behavior: reducedMotion ? "auto" : "smooth" }); }
+          catch (e) { c3.scrollTop = pk.offsetHeight; }
+        }
+      }
     };
     /* Render picker + grid one frame later so the modal's rise animation is
        never blocked by list layout: this is what fixes the open lag. */
-    requestAnimationFrame(() => { renderCmp3List(); renderCmp3View(); });
+    requestAnimationFrame(() => {
+      renderCmp3List(); renderCmp3View();
+      /* v39b: on phones with a selection on the board, open already
+         reading the table: the add-apps panel starts lifted above the
+         fold and one scroll up brings it back for more picks. */
+      if (narrowGrid() && cmpApps().length) {
+        const c3 = $(".cmp3"), pk = $(".cmp3-pick");
+        if (c3 && pk) c3.scrollTop = pk.offsetHeight;
+      }
+    });
   }
 
   function setUnread() { state.unread = ((state.snap && state.snap.alerts) || []).filter(a => !a.read).length; renderBell(); }
@@ -2546,10 +2572,21 @@
     const dwcl = $("#dwClear"); if (dwcl) dwcl.onclick = () => { state.compare = []; renderCompareBar(); renderView(); };
     $("#navToggle").onclick = e => { e.stopPropagation(); const d = $("#navToggle").closest(".dropdown"); const o = d.classList.contains("open"); closeDropdowns(); d.classList.toggle("open", !o); };
     $$("#navMenu a").forEach(a => a.addEventListener("click", () => closeDropdowns()));
-    window.addEventListener("resize", debounce(() => { renderTrend(true); if (viewOpen() === "intelligence") renderChartsNow(); const md = $("#modal"); if (md && md.classList.contains("cmpwin")) renderCmp3View(); }, 200), { passive: true });
+    let rszW = 0; try { rszW = window.innerWidth || 0; } catch (e) {}
+    window.addEventListener("resize", debounce(() => {
+      /* v39: URL-bar toggles change only the height; never redraw or
+         rebuild while the reader is mid-scroll on a phone. */
+      let w = 0; try { w = window.innerWidth || 0; } catch (e) {}
+      if (w !== rszW) { rszW = w; renderTrend(true); }
+      if (viewOpen() === "intelligence") renderChartsNow();
+      const md = $("#modal");
+      if (md && md.classList.contains("cmpwin") && narrowGrid() !== cmpGridNarrow) renderCmp3View();
+    }, 200), { passive: true });
   }
 
   async function init() {
+    /* v40 build stamp: the first thing a verifying console sees */
+    try { console.info("MCP Integration Explorer build v40"); } catch (e) {}
     loadRecent(); themeIcon();
     await loadSnapshot();
     try { bind(); } catch (e) { if (window.console) console.error("bind failed:", e); }
