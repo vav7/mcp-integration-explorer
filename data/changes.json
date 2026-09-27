@@ -1,5 +1,103 @@
 [
   {
+    "ts": "2026-09-27T17:04:56Z",
+    "app_id": 3,
+    "app": "Pipedrive",
+    "kind": "tools",
+    "message": "live tools 41 → 0"
+  },
+  {
+    "ts": "2026-09-27T17:04:56Z",
+    "app_id": 11,
+    "app": "Zendesk",
+    "kind": "tools",
+    "message": "live tools 41 → 0"
+  },
+  {
+    "ts": "2026-09-27T17:04:56Z",
+    "app_id": 12,
+    "app": "Intercom",
+    "kind": "tools",
+    "message": "live tools 41 → 0"
+  },
+  {
+    "ts": "2026-09-27T17:04:56Z",
+    "app_id": 13,
+    "app": "Freshdesk",
+    "kind": "tools",
+    "message": "live tools 41 → 0"
+  },
+  {
+    "ts": "2026-09-27T17:04:56Z",
+    "app_id": 22,
+    "app": "Twilio",
+    "kind": "tools",
+    "message": "live tools 41 → 0"
+  },
+  {
+    "ts": "2026-09-27T17:04:56Z",
+    "app_id": 23,
+    "app": "Zoho Cliq",
+    "kind": "tools",
+    "message": "live tools 41 → 0"
+  },
+  {
+    "ts": "2026-09-27T17:04:56Z",
+    "app_id": 35,
+    "app": "Mailchimp",
+    "kind": "tools",
+    "message": "live tools 41 → 0"
+  },
+  {
+    "ts": "2026-09-27T17:04:56Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 8,682 → 8,710 (+28)"
+  },
+  {
+    "ts": "2026-09-27T17:04:56Z",
+    "app_id": 75,
+    "app": "Asana",
+    "kind": "tools",
+    "message": "live tools 42 → 0"
+  },
+  {
+    "ts": "2026-09-27T17:04:56Z",
+    "app_id": 82,
+    "app": "Plaid",
+    "kind": "tools",
+    "message": "live tools 39 → 0"
+  },
+  {
+    "ts": "2026-09-27T17:04:56Z",
+    "app_id": 86,
+    "app": "QuickBooks",
+    "kind": "status",
+    "message": "MCP status none → community"
+  },
+  {
+    "ts": "2026-09-27T17:04:56Z",
+    "app_id": 86,
+    "app": "QuickBooks",
+    "kind": "servers",
+    "message": "registry servers 0 → 10 (+10)"
+  },
+  {
+    "ts": "2026-09-27T17:04:56Z",
+    "app_id": 98,
+    "app": "Mermaid CLI",
+    "kind": "status",
+    "message": "MCP status none → community"
+  },
+  {
+    "ts": "2026-09-27T17:04:56Z",
+    "app_id": 98,
+    "app": "Mermaid CLI",
+    "kind": "servers",
+    "message": "registry servers 0 → 5 (+5)"
+  },
+  {
     "ts": "2026-09-27T13:26:35Z",
     "app_id": 7,
     "app": "Zoho CRM",
@@ -1300,103 +1398,5 @@
     "app": "NotebookLM",
     "kind": "servers",
     "message": "registry servers 3 → 0 (-3)"
-  },
-  {
-    "ts": "2026-09-24T15:15:24Z",
-    "app_id": 91,
-    "app": "NotebookLM",
-    "kind": "tools",
-    "message": "live tools 43 → 0"
-  },
-  {
-    "ts": "2026-09-24T15:15:24Z",
-    "app_id": 98,
-    "app": "Mermaid CLI",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-09-24T15:15:24Z",
-    "app_id": 98,
-    "app": "Mermaid CLI",
-    "kind": "servers",
-    "message": "registry servers 5 → 0 (-5)"
-  },
-  {
-    "ts": "2026-09-24T15:15:24Z",
-    "app_id": 99,
-    "app": "YouTube Transcript",
-    "kind": "status",
-    "message": "MCP status vendor_official → community"
-  },
-  {
-    "ts": "2026-09-24T15:15:24Z",
-    "app_id": 99,
-    "app": "YouTube Transcript",
-    "kind": "servers",
-    "message": "registry servers 12 → 10 (-2)"
-  },
-  {
-    "ts": "2026-09-24T15:15:24Z",
-    "app_id": 99,
-    "app": "YouTube Transcript",
-    "kind": "stars",
-    "message": "repo ★ 10 → 29 (+19)"
-  },
-  {
-    "ts": "2026-09-23T18:47:53Z",
-    "app_id": 32,
-    "app": "Meta Ads",
-    "kind": "servers",
-    "message": "registry servers 3 → 5 (+2)"
-  },
-  {
-    "ts": "2026-09-23T18:47:53Z",
-    "app_id": 33,
-    "app": "LinkedIn Ads",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-09-23T18:47:53Z",
-    "app_id": 33,
-    "app": "LinkedIn Ads",
-    "kind": "servers",
-    "message": "registry servers 0 → 13 (+13)"
-  },
-  {
-    "ts": "2026-09-23T18:47:53Z",
-    "app_id": 45,
-    "app": "Magento (Adobe Commerce)",
-    "kind": "servers",
-    "message": "registry servers 3 → 4 (+1)"
-  },
-  {
-    "ts": "2026-09-23T18:47:53Z",
-    "app_id": 57,
-    "app": "Bright Data",
-    "kind": "servers",
-    "message": "registry servers 1 → 2 (+1)"
-  },
-  {
-    "ts": "2026-09-23T18:21:53Z",
-    "app_id": 32,
-    "app": "Meta Ads",
-    "kind": "servers",
-    "message": "registry servers 5 → 3 (-2)"
-  },
-  {
-    "ts": "2026-09-23T18:21:53Z",
-    "app_id": 33,
-    "app": "LinkedIn Ads",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-09-23T18:21:53Z",
-    "app_id": 33,
-    "app": "LinkedIn Ads",
-    "kind": "servers",
-    "message": "registry servers 13 → 0 (-13)"
   }
 ]
