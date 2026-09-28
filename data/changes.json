@@ -1,5 +1,194 @@
 [
   {
+    "ts": "2026-09-28T14:20:27Z",
+    "app_id": 7,
+    "app": "Zoho CRM",
+    "kind": "servers",
+    "message": "registry servers 13 → 16 (+3)"
+  },
+  {
+    "ts": "2026-09-28T14:20:27Z",
+    "app_id": 11,
+    "app": "Zendesk",
+    "kind": "tools",
+    "message": "live tools 0 → 41"
+  },
+  {
+    "ts": "2026-09-28T14:20:27Z",
+    "app_id": 13,
+    "app": "Freshdesk",
+    "kind": "tools",
+    "message": "live tools 0 → 41"
+  },
+  {
+    "ts": "2026-09-28T14:20:27Z",
+    "app_id": 22,
+    "app": "Twilio",
+    "kind": "tools",
+    "message": "live tools 0 → 41"
+  },
+  {
+    "ts": "2026-09-28T14:20:27Z",
+    "app_id": 30,
+    "app": "Vonage",
+    "kind": "tools",
+    "message": "live tools 7 → 0"
+  },
+  {
+    "ts": "2026-09-28T14:20:27Z",
+    "app_id": 32,
+    "app": "Meta Ads",
+    "kind": "servers",
+    "message": "registry servers 5 → 3 (-2)"
+  },
+  {
+    "ts": "2026-09-28T14:20:27Z",
+    "app_id": 39,
+    "app": "Threads (Meta)",
+    "kind": "servers",
+    "message": "registry servers 5 → 3 (-2)"
+  },
+  {
+    "ts": "2026-09-28T14:20:27Z",
+    "app_id": 47,
+    "app": "Ecwid",
+    "kind": "tools",
+    "message": "live tools 0 → 12"
+  },
+  {
+    "ts": "2026-09-28T14:20:27Z",
+    "app_id": 48,
+    "app": "Gumroad",
+    "kind": "tools",
+    "message": "live tools 0 → 20"
+  },
+  {
+    "ts": "2026-09-28T14:20:27Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 8,764 → 8,814 (+50)"
+  },
+  {
+    "ts": "2026-09-28T14:20:27Z",
+    "app_id": 57,
+    "app": "Bright Data",
+    "kind": "status",
+    "message": "MCP status community → none"
+  },
+  {
+    "ts": "2026-09-28T14:20:27Z",
+    "app_id": 57,
+    "app": "Bright Data",
+    "kind": "servers",
+    "message": "registry servers 5 → 0 (-5)"
+  },
+  {
+    "ts": "2026-09-28T14:20:27Z",
+    "app_id": 58,
+    "app": "Sherlock",
+    "kind": "status",
+    "message": "MCP status community → none"
+  },
+  {
+    "ts": "2026-09-28T14:20:27Z",
+    "app_id": 58,
+    "app": "Sherlock",
+    "kind": "servers",
+    "message": "registry servers 1 → 0 (-1)"
+  },
+  {
+    "ts": "2026-09-28T14:20:27Z",
+    "app_id": 68,
+    "app": "MongoDB Atlas",
+    "kind": "servers",
+    "message": "registry servers 22 → 15 (-7)"
+  },
+  {
+    "ts": "2026-09-28T14:20:27Z",
+    "app_id": 75,
+    "app": "Asana",
+    "kind": "tools",
+    "message": "live tools 0 → 42"
+  },
+  {
+    "ts": "2026-09-28T14:20:27Z",
+    "app_id": 80,
+    "app": "Harvest",
+    "kind": "status",
+    "message": "MCP status community → none"
+  },
+  {
+    "ts": "2026-09-28T14:20:27Z",
+    "app_id": 80,
+    "app": "Harvest",
+    "kind": "servers",
+    "message": "registry servers 4 → 0 (-4)"
+  },
+  {
+    "ts": "2026-09-28T14:20:27Z",
+    "app_id": 80,
+    "app": "Harvest",
+    "kind": "tools",
+    "message": "live tools 20 → 0"
+  },
+  {
+    "ts": "2026-09-28T14:20:27Z",
+    "app_id": 83,
+    "app": "Binance",
+    "kind": "status",
+    "message": "MCP status community → none"
+  },
+  {
+    "ts": "2026-09-28T14:20:27Z",
+    "app_id": 83,
+    "app": "Binance",
+    "kind": "servers",
+    "message": "registry servers 4 → 0 (-4)"
+  },
+  {
+    "ts": "2026-09-28T14:20:27Z",
+    "app_id": 86,
+    "app": "QuickBooks",
+    "kind": "status",
+    "message": "MCP status community → none"
+  },
+  {
+    "ts": "2026-09-28T14:20:27Z",
+    "app_id": 86,
+    "app": "QuickBooks",
+    "kind": "servers",
+    "message": "registry servers 10 → 0 (-10)"
+  },
+  {
+    "ts": "2026-09-28T14:20:27Z",
+    "app_id": 91,
+    "app": "NotebookLM",
+    "kind": "status",
+    "message": "MCP status community → none"
+  },
+  {
+    "ts": "2026-09-28T14:20:27Z",
+    "app_id": 91,
+    "app": "NotebookLM",
+    "kind": "servers",
+    "message": "registry servers 3 → 0 (-3)"
+  },
+  {
+    "ts": "2026-09-28T14:20:27Z",
+    "app_id": 91,
+    "app": "NotebookLM",
+    "kind": "tools",
+    "message": "live tools 43 → 0"
+  },
+  {
+    "ts": "2026-09-28T14:20:27Z",
+    "app_id": 99,
+    "app": "YouTube Transcript",
+    "kind": "servers",
+    "message": "registry servers 34 → 26 (-8)"
+  },
+  {
     "ts": "2026-09-28T05:37:46Z",
     "app_id": 7,
     "app": "Zoho CRM",
@@ -1209,194 +1398,5 @@
     "app": "Smartsheet",
     "kind": "site",
     "message": "site went down"
-  },
-  {
-    "ts": "2026-09-24T16:17:07Z",
-    "app_id": 83,
-    "app": "Binance",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-09-24T16:17:07Z",
-    "app_id": 83,
-    "app": "Binance",
-    "kind": "servers",
-    "message": "registry servers 4 → 0 (-4)"
-  },
-  {
-    "ts": "2026-09-24T16:17:07Z",
-    "app_id": 86,
-    "app": "QuickBooks",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-09-24T16:17:07Z",
-    "app_id": 86,
-    "app": "QuickBooks",
-    "kind": "servers",
-    "message": "registry servers 8 → 0 (-8)"
-  },
-  {
-    "ts": "2026-09-24T16:17:07Z",
-    "app_id": 91,
-    "app": "NotebookLM",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-09-24T16:17:07Z",
-    "app_id": 91,
-    "app": "NotebookLM",
-    "kind": "servers",
-    "message": "registry servers 3 → 0 (-3)"
-  },
-  {
-    "ts": "2026-09-24T16:17:07Z",
-    "app_id": 91,
-    "app": "NotebookLM",
-    "kind": "tools",
-    "message": "live tools 43 → 0"
-  },
-  {
-    "ts": "2026-09-24T16:17:07Z",
-    "app_id": 98,
-    "app": "Mermaid CLI",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-09-24T16:17:07Z",
-    "app_id": 98,
-    "app": "Mermaid CLI",
-    "kind": "servers",
-    "message": "registry servers 5 → 0 (-5)"
-  },
-  {
-    "ts": "2026-09-24T16:17:07Z",
-    "app_id": 99,
-    "app": "YouTube Transcript",
-    "kind": "status",
-    "message": "MCP status vendor_official → community"
-  },
-  {
-    "ts": "2026-09-24T16:17:07Z",
-    "app_id": 99,
-    "app": "YouTube Transcript",
-    "kind": "servers",
-    "message": "registry servers 12 → 10 (-2)"
-  },
-  {
-    "ts": "2026-09-24T15:55:59Z",
-    "app_id": 23,
-    "app": "Zoho Cliq",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-09-24T15:55:59Z",
-    "app_id": 23,
-    "app": "Zoho Cliq",
-    "kind": "servers",
-    "message": "registry servers 4 → 0 (-4)"
-  },
-  {
-    "ts": "2026-09-24T15:55:59Z",
-    "app_id": 23,
-    "app": "Zoho Cliq",
-    "kind": "tools",
-    "message": "live tools 41 → 0"
-  },
-  {
-    "ts": "2026-09-24T15:55:59Z",
-    "app_id": 32,
-    "app": "Meta Ads",
-    "kind": "servers",
-    "message": "registry servers 3 → 5 (+2)"
-  },
-  {
-    "ts": "2026-09-24T15:55:59Z",
-    "app_id": 39,
-    "app": "Threads (Meta)",
-    "kind": "servers",
-    "message": "registry servers 3 → 5 (+2)"
-  },
-  {
-    "ts": "2026-09-24T15:55:59Z",
-    "app_id": 52,
-    "app": "SE Ranking",
-    "kind": "status",
-    "message": "MCP status none → vendor_official"
-  },
-  {
-    "ts": "2026-09-24T15:55:59Z",
-    "app_id": 52,
-    "app": "SE Ranking",
-    "kind": "servers",
-    "message": "registry servers 0 → 1 (+1)"
-  },
-  {
-    "ts": "2026-09-24T15:55:59Z",
-    "app_id": 58,
-    "app": "Sherlock",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-09-24T15:55:59Z",
-    "app_id": 58,
-    "app": "Sherlock",
-    "kind": "servers",
-    "message": "registry servers 0 → 1 (+1)"
-  },
-  {
-    "ts": "2026-09-24T15:55:59Z",
-    "app_id": 83,
-    "app": "Binance",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-09-24T15:55:59Z",
-    "app_id": 83,
-    "app": "Binance",
-    "kind": "servers",
-    "message": "registry servers 0 → 4 (+4)"
-  },
-  {
-    "ts": "2026-09-24T15:55:59Z",
-    "app_id": 86,
-    "app": "QuickBooks",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-09-24T15:55:59Z",
-    "app_id": 86,
-    "app": "QuickBooks",
-    "kind": "servers",
-    "message": "registry servers 0 → 8 (+8)"
-  },
-  {
-    "ts": "2026-09-24T15:55:59Z",
-    "app_id": 91,
-    "app": "NotebookLM",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-09-24T15:55:59Z",
-    "app_id": 91,
-    "app": "NotebookLM",
-    "kind": "servers",
-    "message": "registry servers 0 → 3 (+3)"
-  },
-  {
-    "ts": "2026-09-24T15:55:59Z",
-    "app_id": 91,
-    "app": "NotebookLM",
-    "kind": "tools",
-    "message": "live tools 0 → 43"
   }
 ]
