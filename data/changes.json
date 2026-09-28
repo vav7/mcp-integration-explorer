@@ -1,5 +1,75 @@
 [
   {
+    "ts": "2026-09-28T05:37:46Z",
+    "app_id": 7,
+    "app": "Zoho CRM",
+    "kind": "servers",
+    "message": "registry servers 16 → 13 (-3)"
+  },
+  {
+    "ts": "2026-09-28T05:37:46Z",
+    "app_id": 11,
+    "app": "Zendesk",
+    "kind": "tools",
+    "message": "live tools 41 → 0"
+  },
+  {
+    "ts": "2026-09-28T05:37:46Z",
+    "app_id": 13,
+    "app": "Freshdesk",
+    "kind": "tools",
+    "message": "live tools 41 → 0"
+  },
+  {
+    "ts": "2026-09-28T05:37:46Z",
+    "app_id": 17,
+    "app": "Plain",
+    "kind": "servers",
+    "message": "registry servers 4 → 5 (+1)"
+  },
+  {
+    "ts": "2026-09-28T05:37:46Z",
+    "app_id": 22,
+    "app": "Twilio",
+    "kind": "tools",
+    "message": "live tools 41 → 0"
+  },
+  {
+    "ts": "2026-09-28T05:37:46Z",
+    "app_id": 47,
+    "app": "Ecwid",
+    "kind": "tools",
+    "message": "live tools 12 → 0"
+  },
+  {
+    "ts": "2026-09-28T05:37:46Z",
+    "app_id": 48,
+    "app": "Gumroad",
+    "kind": "tools",
+    "message": "live tools 20 → 0"
+  },
+  {
+    "ts": "2026-09-28T05:37:46Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 8,732 → 8,764 (+32)"
+  },
+  {
+    "ts": "2026-09-28T05:37:46Z",
+    "app_id": 75,
+    "app": "Asana",
+    "kind": "tools",
+    "message": "live tools 42 → 0"
+  },
+  {
+    "ts": "2026-09-28T05:37:46Z",
+    "app_id": 80,
+    "app": "Harvest",
+    "kind": "tools",
+    "message": "live tools 0 → 20"
+  },
+  {
     "ts": "2026-09-27T21:26:00Z",
     "app_id": 3,
     "app": "Pipedrive",
@@ -1328,75 +1398,5 @@
     "app": "NotebookLM",
     "kind": "tools",
     "message": "live tools 0 → 43"
-  },
-  {
-    "ts": "2026-09-24T15:55:59Z",
-    "app_id": 98,
-    "app": "Mermaid CLI",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-09-24T15:55:59Z",
-    "app_id": 98,
-    "app": "Mermaid CLI",
-    "kind": "servers",
-    "message": "registry servers 0 → 5 (+5)"
-  },
-  {
-    "ts": "2026-09-24T15:55:59Z",
-    "app_id": 99,
-    "app": "YouTube Transcript",
-    "kind": "status",
-    "message": "MCP status community → vendor_official"
-  },
-  {
-    "ts": "2026-09-24T15:55:59Z",
-    "app_id": 99,
-    "app": "YouTube Transcript",
-    "kind": "servers",
-    "message": "registry servers 10 → 12 (+2)"
-  },
-  {
-    "ts": "2026-09-24T15:55:59Z",
-    "app_id": 99,
-    "app": "YouTube Transcript",
-    "kind": "stars",
-    "message": "repo ★ 29 → 10 (-19)"
-  },
-  {
-    "ts": "2026-09-24T15:36:38Z",
-    "app_id": 67,
-    "app": "Snowflake",
-    "kind": "servers",
-    "message": "registry servers 7 → 6 (-1)"
-  },
-  {
-    "ts": "2026-09-24T15:15:24Z",
-    "app_id": 32,
-    "app": "Meta Ads",
-    "kind": "servers",
-    "message": "registry servers 5 → 3 (-2)"
-  },
-  {
-    "ts": "2026-09-24T15:15:24Z",
-    "app_id": 39,
-    "app": "Threads (Meta)",
-    "kind": "servers",
-    "message": "registry servers 5 → 3 (-2)"
-  },
-  {
-    "ts": "2026-09-24T15:15:24Z",
-    "app_id": 41,
-    "app": "Shopify",
-    "kind": "servers",
-    "message": "registry servers 12 → 11 (-1)"
-  },
-  {
-    "ts": "2026-09-24T15:15:24Z",
-    "app_id": 52,
-    "app": "SE Ranking",
-    "kind": "status",
-    "message": "MCP status vendor_official → none"
   }
 ]
