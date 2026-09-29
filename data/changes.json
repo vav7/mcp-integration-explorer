@@ -1,5 +1,33 @@
 [
   {
+    "ts": "2026-09-29T05:50:51Z",
+    "app_id": 22,
+    "app": "Twilio",
+    "kind": "tools",
+    "message": "live tools 0 → 41"
+  },
+  {
+    "ts": "2026-09-29T05:50:51Z",
+    "app_id": 23,
+    "app": "Zoho Cliq",
+    "kind": "tools",
+    "message": "live tools 0 → 41"
+  },
+  {
+    "ts": "2026-09-29T05:50:51Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 8,862 → 8,893 (+31)"
+  },
+  {
+    "ts": "2026-09-29T05:50:51Z",
+    "app_id": 99,
+    "app": "YouTube Transcript",
+    "kind": "servers",
+    "message": "registry servers 34 → 33 (-1)"
+  },
+  {
     "ts": "2026-09-28T23:21:53Z",
     "app_id": 22,
     "app": "Twilio",
@@ -1370,33 +1398,5 @@
     "app": "Mermaid CLI",
     "kind": "servers",
     "message": "registry servers 5 → 0 (-5)"
-  },
-  {
-    "ts": "2026-09-24T16:55:38Z",
-    "app_id": 99,
-    "app": "YouTube Transcript",
-    "kind": "status",
-    "message": "MCP status vendor_official → community"
-  },
-  {
-    "ts": "2026-09-24T16:55:38Z",
-    "app_id": 99,
-    "app": "YouTube Transcript",
-    "kind": "servers",
-    "message": "registry servers 12 → 10 (-2)"
-  },
-  {
-    "ts": "2026-09-24T16:37:01Z",
-    "app_id": 32,
-    "app": "Meta Ads",
-    "kind": "servers",
-    "message": "registry servers 3 → 5 (+2)"
-  },
-  {
-    "ts": "2026-09-24T16:37:01Z",
-    "app_id": 45,
-    "app": "Magento (Adobe Commerce)",
-    "kind": "servers",
-    "message": "registry servers 4 → 1 (-3)"
   }
 ]
