@@ -10,7 +10,7 @@ permissions:
 
 concurrency:
   group: refresh-data
-  cancel-in-progress: true  # Changed to true - cancels old runs when new one starts
+  cancel-in-progress: true
 
 jobs:
   refresh:
@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Full history for safe rebase
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
@@ -42,12 +42,16 @@ jobs:
           git config user.name "mcp-explorer-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           
+          # CRITICAL: Always sync with remote BEFORE committing
+          git fetch origin main
+          git reset --hard origin/main
+          
+          # Now add our freshly generated files on top of clean remote state
           git add data/live_cache.json data/history.json data/changes.json static/data.snapshot.js demo.html
           
           if git diff --cached --quiet; then
             echo "No data changes to commit."
           else
             git commit -m "chore(data): live refresh $(date -u +%Y-%m-%dT%H:%MZ')"
-            git pull --rebase origin main
             git push origin main
           fi
