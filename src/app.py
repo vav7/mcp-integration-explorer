@@ -32,20 +32,24 @@ from .store import STORE
 
 @asynccontextmanager
 async def lifespan(_app: "FastAPI"):
-    """Boot: load the last real fetch (instant data), then go live.
-
-    `on_event` is deprecated in modern FastAPI; the lifespan form also makes the
-    scheduler's lifecycle explicit, which matters on hosts that recycle workers.
-    """
+    """Boot: load data and start scheduler immediately."""
+    
+    # Load cached data from disk (fast)
     STORE.load_apps()
-    STORE.log("system", None, "", f"{config.APP_NAME} backend online. Starting first live refresh…", status="ok")
+    
+    STORE.log("system", None, "", f"{config.APP_NAME} backend online. Starting live refresh…", status="ok")
+    
+    # Start the scheduler immediately for live updates
     _app.state.scheduler = asyncio.create_task(run_scheduler())
+    
     yield
+    
+    # Cleanup on shutdown
     task = getattr(_app.state, "scheduler", None)
     if task:
         task.cancel()
-        with contextlib.suppress(asyncio.CancelledError):
-            await task
+    with contextlib.suppress(asyncio.CancelledError):
+        await task
 
 
 app = FastAPI(title=config.APP_NAME, version="1.0.0", lifespan=lifespan)
@@ -181,8 +185,14 @@ def _sse(payload: dict) -> str:
 
 @app.get("/api/health")
 async def health():
-    return {"ok": True, "app": config.APP_NAME, "apps_loaded": len(STORE.apps),
-            "refresh_running": STORE.refresh_running, "generated_at": STORE.generated_at}
+    return {
+        "ok": True, 
+        "app": config.APP_NAME, 
+        "apps_loaded": len(STORE.apps),
+        "refresh_running": STORE.refresh_running, 
+        "generated_at": STORE.generated_at,
+        "status": "initializing" if not STORE.apps else "ready"
+    }
 
 
 # --- intelligence endpoints ----------------------------------------------
