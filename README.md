@@ -4,6 +4,7 @@
 
 **A self-updating dashboard that measures how ready 100 popular SaaS apps are for AI-agent integration over the [Model Context Protocol](https://modelcontextprotocol.io) (MCP).**
 
+[![Live](https://img.shields.io/badge/Live-Render-7CFC00?logo=render&logoColor=white)](https://mcp-integration-explorer.onrender.com/)
 [![Refresh data](https://github.com/vav7/mcp-integration-explorer/actions/workflows/refresh.yml/badge.svg)](https://github.com/vav7/mcp-integration-explorer/actions/workflows/refresh.yml)
 ![Python 3.11](https://img.shields.io/badge/python-3.11-blue)
 ![FastAPI](https://img.shields.io/badge/backend-FastAPI-009688)
