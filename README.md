@@ -10,7 +10,7 @@
 ![FastAPI](https://img.shields.io/badge/backend-FastAPI-009688)
 ![No build step](https://img.shields.io/badge/frontend-vanilla%20JS%20%2B%20CSS-lightgrey)
 
-[**Live dashboard**](https://mcp-integration-explorer.onrender.com) · [**Portable demo**](demo.html) · [**Deploy guide**](DEPLOY.md) · [**Verification report**](VERIFICATION.md)
+[**Portable demo**](demo.html) · [**Deploy guide**](DEPLOY.md) · [**Verification report**](VERIFICATION.md)
 
 <img src="docs/screenshots/v19-01-home.png" alt="MCP Integration Explorer home screen" width="820">
 
