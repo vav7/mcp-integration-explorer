@@ -927,12 +927,14 @@ async def registry_suggestions(client: httpx.AsyncClient, q: str, limit: int = 8
         return []
     # The registry's search does not match multi-word queries at all (a space
     # means zero hits), so a spaced type-ahead is retried as a single token.
+    # Both variants run CONCURRENTLY - type-ahead is latency-critical.
     squashed = re.sub(r"[^a-z0-9]", "", q.lower())
-    queries = [q] + ([squashed] if " " in q and len(squashed) >= 3 else [])
+    urls = [f"{config.MCP_REGISTRY_URL}?search={quote_plus(term)}&limit=25"
+            for term in ([q] + ([squashed] if " " in q and len(squashed) >= 3 else []))]
+    responses = await asyncio.gather(
+        *[registry_get(client, url, timeout=config.SUGGEST_TIMEOUT) for url in urls])
     entries: list[dict] = []
-    for term in queries:
-        url = f"{config.MCP_REGISTRY_URL}?search={quote_plus(term)}&limit=25"
-        status, data = await registry_get(client, url, timeout=config.SUGGEST_TIMEOUT)
+    for status, data in responses:
         if status == 200 and isinstance(data, dict):
             entries.extend(data.get("servers", []))
     data = {"servers": entries}

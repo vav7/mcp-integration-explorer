@@ -312,6 +312,24 @@ async def search(q: str, limit: int = 8):
     """Type-ahead: curated matches (instant) + live MCP-registry suggestions."""
     q = (q or "").strip()
     tracked = []
+    registry: list = []
+
+    # Start the live registry query FIRST so it overlaps the tracked scan
+    # below; type-ahead latency is bounded by the slower of the two instead
+    # of their sum.
+    registry_task = None
+    if len(q) >= 2:
+        now = time.time()
+        hit = _search_cache.get(q.lower())
+        if hit and now - hit[0] < 90:
+            registry = hit[1]
+        else:
+            async def _suggest() -> list:
+                async with httpx.AsyncClient(headers={"User-Agent": config.USER_AGENT},
+                                             follow_redirects=True) as client:
+                    return await registry_suggestions(client, q, limit)
+            registry_task = asyncio.create_task(_suggest())
+
     if q:
         ql = q.lower()
         for a in STORE.apps:
@@ -324,19 +342,12 @@ async def search(q: str, limit: int = 8):
         tracked.sort(key=lambda x: (x["name"].lower().find(ql) < 0, x["name"].lower()))
         tracked = tracked[:limit]
 
-    registry: list = []
-    if len(q) >= 2:
-        now = time.time()
-        hit = _search_cache.get(q.lower())
-        if hit and now - hit[0] < 90:
-            registry = hit[1]
-        else:
-            try:
-                async with httpx.AsyncClient(headers={"User-Agent": config.USER_AGENT}, follow_redirects=True) as client:
-                    registry = await registry_suggestions(client, q, limit)
-                _cache_put(q.lower(), registry)
-            except Exception:
-                registry = []
+    if registry_task is not None:
+        try:
+            registry = await registry_task
+            _cache_put(q.lower(), registry)
+        except Exception:
+            registry = []
     return {"query": q, "tracked": tracked, "registry": registry}
 
 

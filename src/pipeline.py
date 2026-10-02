@@ -469,7 +469,13 @@ def _gateway_hint(probe) -> bool:
 
 
 async def discover_app(client: httpx.AsyncClient, name: str, website: str = "") -> AppLive:
-    """Fetch a brand-new app live and return its real record (not persisted)."""
+    """Fetch a brand-new app live and return its real record (not persisted).
+
+    The registry lookup runs first (everything else needs its output); the
+    three independent enrichments - website liveness, GitHub metadata and
+    package adoption - then fan out CONCURRENTLY, roughly halving the wall
+    time of the most expensive request we serve.
+    """
     from .fetchers import fetch_package_stats, namespace_to_domain  # noqa: F401
     from .models import App
     tmp = App(id=-1, name=name.strip(), category="Discovered", website=(website or "").strip())
@@ -480,18 +486,27 @@ async def discover_app(client: httpx.AsyncClient, name: str, website: str = "") 
     site = tmp.website or _derive_website(al.mcp.servers)
     if site:
         al.app.website = site
-        al.liveness = await check_liveness(client, al.app)
 
     official = [s for s in al.mcp.servers if s.classification == "vendor_official" and s.repository_url]
     anyrepo = [s for s in al.mcp.servers if s.repository_url]
     repo_url = official[0].repository_url if official else (anyrepo[0].repository_url if anyrepo else None)
     al.repo_url_hint = repo_url
-    if repo_url:
-        al.github = _merge_github(al.github, await fetch_github_from_repo(client, repo_url))
 
     pkgs = _collect_packages(al.mcp.servers, config.MAX_PACKAGES_PER_APP)
-    if pkgs:
-        al.packages = await fetch_package_stats(client, pkgs)
+
+    async def _github() -> None:
+        if repo_url:
+            al.github = _merge_github(al.github, await fetch_github_from_repo(client, repo_url))
+
+    async def _liveness() -> None:
+        if site:
+            al.liveness = await check_liveness(client, al.app)
+
+    async def _packages() -> None:
+        if pkgs:
+            al.packages = await fetch_package_stats(client, pkgs)
+
+    await asyncio.gather(_github(), _liveness(), _packages())
 
     server = _best_remote_server(al)
     if server is not None:
