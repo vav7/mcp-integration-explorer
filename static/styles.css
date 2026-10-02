@@ -4238,3 +4238,175 @@ html[data-theme="dark"] .ins{background:linear-gradient(170deg,rgba(18,25,41,.62
   .dive-card:hover .dv-motif svg *{animation:none}
   .sig-head .led{animation:none}
 }
+
+/* ============================================================================
+   v44 - OBSESSION II: deeper glass, the HUD snapshot panel in true 3D,
+   the Knowledge Vault book scene, and bulletproof reveal fallbacks so no
+   content can ever sit invisible waiting on an observer.
+   ========================================================================== */
+
+/* ---- deeper, glassier dark theme ---- */
+html[data-theme="dark"]{
+  --bg:#04060C; --atmo:#070B14;
+  --s1:rgba(9,13,22,.74); --s2:rgba(14,20,33,.8); --s3:rgba(19,26,42,.86);
+}
+html[data-theme="dark"] .ambient{background:
+  radial-gradient(1300px 640px at 84% -14%, rgba(34,211,238,.10), transparent 62%),
+  radial-gradient(1100px 640px at -12% 114%, rgba(139,92,246,.10), transparent 62%),
+  linear-gradient(180deg,#04060C,#080D18 42%,#04060C)}
+html[data-theme="dark"] .nav{background:rgba(5,8,15,.68);
+  backdrop-filter:blur(18px) saturate(150%);-webkit-backdrop-filter:blur(18px) saturate(150%);
+  border-bottom:1px solid rgba(148,180,255,.08)}
+html[data-theme="dark"] .modal{background:linear-gradient(170deg,rgba(11,15,25,.96),rgba(4,6,11,.97))}
+
+/* ---- bulletproof visibility: reveal systems can never strand content ---- */
+@keyframes pr3Fold{from{opacity:0;transform:perspective(1000px) rotateX(8deg) translateY(28px) scale(.985)}
+  to{opacity:1;transform:none}}
+.pr3{animation:pr3Fold .85s var(--ease-soft) calc(var(--pr3d,0ms) + 950ms) both}
+.pr3.pr3-in{animation:pr3Fold .85s var(--ease-soft) var(--pr3d,0ms) both}
+@keyframes revealFallback{to{opacity:1;transform:none}}
+main .reveal:not(.in){animation:revealFallback .5s var(--ease) 2s both}
+/* inside full-screen views the reveal system never hides anything: those
+   views run their own staged animations (pvUp, pipeIn, coinIn, book) */
+.pview .reveal{opacity:1;transform:none}
+
+/* ============================================================================
+   THE HUD SNAPSHOT PANEL - true 3D instrument
+   Rows live at different depths; a scanline sweeps; hovering tilts the whole
+   panel (premium.js) while values pop on Z.
+   ========================================================================== */
+.snap-panel{transform-style:preserve-3d}
+.sp-head,.sp-rows,.sp-meta,.sp-div{transform-style:preserve-3d}
+.sp-head{transform:translateZ(30px)}
+.sp-rows .sp-row{transform:translateZ(20px);transition:transform .4s var(--ease-soft),background .25s}
+.sp-rows .sp-row:hover{transform:translateZ(34px)}
+.sp-rows .sp-row b{transform:translateZ(10px);display:inline-block}
+.sp-meta{transform:translateZ(14px)}
+.snap-panel .sp-row{border-radius:10px}
+.snap-panel .sp-row:hover{background:rgba(34,211,238,.07)}
+.snap-panel .sp-rows{background-image:
+  linear-gradient(rgba(148,180,255,.045) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(148,180,255,.045) 1px,transparent 1px);
+  background-size:26px 26px;border-radius:12px}
+/* the scanline: a light band sweeping down the instrument, forever */
+.sp-scan{position:absolute;left:8px;right:8px;top:-30%;height:56px;border-radius:12px;
+  background:linear-gradient(180deg,transparent,rgba(125,235,250,.09) 45%,rgba(125,235,250,.16) 50%,rgba(125,235,250,.09) 55%,transparent);
+  mix-blend-mode:screen;animation:spScan 4.2s cubic-bezier(.4,0,.6,1) infinite;pointer-events:none}
+@keyframes spScan{0%{transform:translateY(0);opacity:0}12%{opacity:1}82%{opacity:1}100%{transform:translateY(560%);opacity:0}}
+/* value glow when a live tick lands (paired with app.js numup/numdown) */
+.sp-row b.numup{color:#5CEFC1;text-shadow:0 0 18px rgba(52,211,153,.45)}
+.sp-row b.numdown{color:#FF9AA6;text-shadow:0 0 18px rgba(248,113,113,.4)}
+/* entrance retires itself, tilt takes over (class added by premium.js) */
+.snap-panel.pr-done{animation:none}
+.snap-panel.pr-done.pr-tilt{transform:perspective(1100px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg))}
+
+/* ============================================================================
+   THE KNOWLEDGE VAULT (help view)
+   A full 3D book on a glowing pedestal: real spine, fanned page block that
+   turns pages in an endless loop, orbiting motes, floor shadow that breathes
+   with the float. Cover emblem: the field-guide glyph.
+   ========================================================================== */
+.help-head{display:flex;gap:34px;align-items:center;justify-content:space-between}
+.help-tt{flex:1 1 auto;min-width:0}
+.book-scene{flex:0 0 auto;width:300px;height:330px;position:relative;perspective:1200px;
+  display:grid;place-items:center}
+.bs-halo{position:absolute;inset:8%;border-radius:50%;
+  background:radial-gradient(circle,rgba(233,194,90,.16),rgba(233,194,90,.05) 45%,transparent 70%);
+  filter:blur(6px);animation:haloBreath 4.5s ease-in-out infinite}
+@keyframes haloBreath{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:1;transform:scale(1.07)}}
+.bs-shadow{position:absolute;bottom:26px;left:50%;width:180px;height:26px;margin-left:-90px;
+  border-radius:50%;background:radial-gradient(ellipse,rgba(0,0,0,.55),transparent 68%);
+  animation:shadowBreath 7s ease-in-out infinite}
+@keyframes shadowBreath{0%,100%{transform:scale(1);opacity:.8}50%{transform:scale(.86);opacity:.55}}
+/* orbiting motes on a tilted ring */
+.bs-orbit{position:absolute;width:238px;height:238px;left:50%;top:50%;margin:-119px 0 0 -119px;
+  border-radius:50%;border:1px dashed rgba(233,194,90,.28);
+  transform:rotateX(66deg);animation:orbitSpin 14s linear infinite;transform-style:preserve-3d}
+@keyframes orbitSpin{to{transform:rotateX(66deg) rotate(360deg)}}
+.bs-orbit i{position:absolute;top:-4px;left:50%;width:8px;height:8px;margin-left:-4px;border-radius:50%;
+  background:radial-gradient(circle,#FFE9A8,rgba(233,194,90,0) 72%);
+  box-shadow:0 0 12px rgba(233,194,90,.8)}
+.bs-orbit i:nth-child(2){top:auto;bottom:-4px;left:auto;right:50%;margin:0 -4px 0 0;width:6px;height:6px}
+.bs-orbit i:nth-child(3){top:50%;left:-4px;margin-top:-4px;width:5px;height:5px}
+/* the book itself: cover + spine + fanned pages, one continuous loop */
+.book3d{position:relative;width:128px;height:168px;transform-style:preserve-3d;
+  animation:bookLoop 7.5s ease-in-out infinite}
+@keyframes bookLoop{0%,100%{transform:rotateY(-17deg) rotateX(7deg) translateY(0)}
+  50%{transform:rotateY(-3deg) rotateX(2deg) translateY(-13px)}}
+.bb-cover{position:absolute;inset:0;border-radius:9px 15px 15px 9px;display:grid;place-items:center;
+  color:#F0D488;z-index:3;overflow:hidden;
+  background:linear-gradient(152deg,#2E2717 0%,#40351A 26%,#191307 62%,#241D0E 100%);
+  border:1px solid rgba(233,194,90,.55);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18),inset -14px 0 24px -14px rgba(0,0,0,.75),
+    0 20px 44px rgba(0,0,0,.5),0 0 40px rgba(233,194,90,.13)}
+.bb-cover::before{content:"";position:absolute;inset:7px;border-radius:6px;
+  border:1px solid rgba(233,194,90,.3);pointer-events:none}
+.bb-cover::after{content:"";position:absolute;top:0;bottom:0;left:-70%;width:42%;
+  transform:skewX(-20deg);background:linear-gradient(90deg,transparent,rgba(255,236,180,.16),transparent);
+  animation:coverSheen 5.5s var(--ease-soft) infinite}
+@keyframes coverSheen{0%,55%{left:-70%}85%,100%{left:135%}}
+.bb-cover svg{width:52px;height:52px;filter:drop-shadow(0 4px 10px rgba(0,0,0,.5))}
+/* spine: a real left face in 3D */
+.bb-spine{position:absolute;left:0;top:3px;bottom:3px;width:20px;border-radius:8px 0 0 8px;
+  transform-origin:left center;transform:rotateY(-78deg);
+  background:linear-gradient(90deg,#191408,#3A2F14 70%,rgba(233,194,90,.4));
+  border:1px solid rgba(233,194,90,.35);z-index:2}
+/* page block: five sheets on the right, turning one after another */
+.bb-pages{position:absolute;inset:5px 0 5px auto;width:104px;z-index:1;transform-style:preserve-3d}
+.bb-pages i{position:absolute;inset:0;border-radius:3px 10px 10px 3px;transform-origin:left center;
+  background:linear-gradient(90deg,#0E1420 0%,#DDE4EF 26%,#C2CCDD 78%,#A6B2C8 100%);
+  background-size:100% 100%;
+  box-shadow:3px 4px 12px rgba(0,0,0,.45)}
+.bb-pages i::after{content:"";position:absolute;inset:0;border-radius:inherit;
+  background:repeating-linear-gradient(180deg,rgba(20,28,44,.16) 0 2px,transparent 2px 4px)}
+.bb-pages i:nth-child(1){right:-3px;animation:pageTurnA 7.5s var(--ease-soft) infinite .55s}
+.bb-pages i:nth-child(2){right:-6px;animation:pageTurnA 7.5s var(--ease-soft) infinite 1.05s}
+.bb-pages i:nth-child(3){right:-9px;animation:pageTurnA 7.5s var(--ease-soft) infinite 1.55s}
+.bb-pages i:nth-child(4){right:-12px;animation:pageTurnA 7.5s var(--ease-soft) infinite 2.05s}
+.bb-pages i:nth-child(5){right:-15px;animation:pageTurnA 7.5s var(--ease-soft) infinite 2.55s}
+@keyframes pageTurnA{0%,74%{transform:rotateY(0) translateZ(-1.6px)}
+  82%{transform:rotateY(-34deg) translateZ(30px)}
+  90%,100%{transform:rotateY(0) translateZ(-1.6px)}}
+/* bookmark ribbon */
+.bb-ribbon{position:absolute;top:-8px;right:22px;width:10px;height:34px;z-index:4;
+  background:linear-gradient(180deg,#F0D488,#B98A2E);
+  clip-path:polygon(0 0,100% 0,100% 100%,50% 82%,0 100%);
+  filter:drop-shadow(0 2px 5px rgba(0,0,0,.45));
+  transform-origin:top center;animation:ribbonSway 4.5s ease-in-out infinite}
+/* entrance: the book lands out of depth when the view opens */
+#helpView.open .book-scene{animation:sceneIn 1s var(--ease-soft) both}
+@keyframes sceneIn{from{opacity:0;transform:translateY(26px) scale(.92)}to{opacity:1;transform:none}}
+/* headline: a slow metallic sheen crossing the words */
+html[data-theme="dark"] .help-tt h1{background:linear-gradient(178deg,#F5F8FF 22%,#8B9AC0 42%,#EAF0FF 58%,#8B9AC0 78%);
+  background-size:100% 300%;-webkit-background-clip:text;background-clip:text;
+  animation:titleSheen 7s ease-in-out infinite}
+@keyframes titleSheen{0%,100%{background-position:50% 0%}50%{background-position:50% 62%}}
+/* TOC chips: glass instruments */
+.htoc{border:1px solid var(--line);border-radius:12px;background:linear-gradient(165deg,var(--s2),var(--s1));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 10px 26px rgba(0,0,0,.3);
+  transition:transform .3s var(--ease-soft),border-color .25s,box-shadow .3s}
+.htoc b{color:#E8C96A}
+.htoc:hover{transform:translateY(-3px);border-color:rgba(233,194,90,.4);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 16px 36px rgba(0,0,0,.4),0 0 22px rgba(233,194,90,.1)}
+/* light theme: keep the scene but tone it for white */
+[data-theme="light"] .bb-cover{background:linear-gradient(152deg,#F7EBC8,rgba(185,138,46,.2) 30%,#FBF3DC 65%,rgba(185,138,46,.16));
+  color:#8A6A1C;border-color:rgba(160,120,30,.5)}
+[data-theme="light"] .bb-spine{background:linear-gradient(90deg,#D9C79A,#EEDFB6 70%,rgba(160,120,30,.35));border-color:rgba(160,120,30,.4)}
+[data-theme="light"] .bs-halo{background:radial-gradient(circle,rgba(185,138,46,.14),transparent 70%)}
+[data-theme="light"] .bs-orbit{border-color:rgba(160,120,30,.3)}
+[data-theme="light"] .bs-orbit i{background:radial-gradient(circle,#B98A2E,rgba(185,138,46,0) 72%)}
+
+/* methodology gauge floats gently now that the halo orbits it */
+.ms-gauge{animation:gaugeFloat 6s ease-in-out infinite}
+@keyframes gaugeFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+
+/* ---- motion safety (v44) ---- */
+@media(prefers-reduced-motion:reduce){
+  .sp-scan{display:none}
+  .book3d,.bs-orbit,.bs-shadow,.bs-halo,.bb-cover::after,.bb-pages i,.bb-ribbon{animation:none!important}
+  .book3d{transform:none}
+  .help-tt h1{animation:none}
+  .ms-gauge{animation:none}
+  .pr3{animation:none!important;opacity:1!important;transform:none!important}
+  main .reveal:not(.in){animation:none}
+}

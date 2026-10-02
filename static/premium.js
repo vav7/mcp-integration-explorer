@@ -34,7 +34,13 @@
       el.style.setProperty("--prd", (i * 90) + "ms");
     });
     const panel = $(".snap-panel", hero);
-    if (panel) panel.classList.add("pr-panel");
+    if (panel) {
+      panel.classList.add("pr-panel");
+      /* when the entrance lands, hand the panel to the 3D tilt system:
+         `.pr-done` retires the fill-forwards animation so both transforms
+         never fight over the element */
+      panel.addEventListener("animationend", () => panel.classList.add("pr-done"), { once: true });
+    }
   }
 
   /* ---------- 2. pointer-tracked 3D tilt + glare on premium cards ---------- */
@@ -47,9 +53,10 @@
   function bindTilt() {
     if (!OK) return;
     $$(TILT_SEL).forEach(el => {
-      /* the hero snapshot panel keeps its one-shot 3D entrance instead of
-         pointer tilt - two transforms fighting over it would look broken */
-      if (tiltTargets.has(el) || el.dataset.prTilt || el.closest(".hero")) return;
+      /* the hero snapshot panel first plays its one-shot 3D entrance, then
+         graduates to pointer tilt (pr-done retires the entrance animation) */
+      if (tiltTargets.has(el) || el.dataset.prTilt) return;
+      if (el.closest(".hero") && !el.classList.contains("pr-done")) return;
       el.dataset.prTilt = "1";
       el.classList.add("pr-tilt");
       tiltTargets.add(el);

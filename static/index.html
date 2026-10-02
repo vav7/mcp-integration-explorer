@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="build" content="v43">
+<meta name="build" content="v45">
 <title>MCP Integration Explorer · integration intelligence</title>
 <meta name="description" content="Live, evidence-backed MCP / agent integration readiness across applications. Real registry data, endpoint probes, GitHub, package adoption and liveness, with every signal traceable to its source.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,7 +12,7 @@
 <script>
   (function(){try{var t=localStorage.getItem('mcp_theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';}document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();
 </script>
-<link rel="stylesheet" href="/styles.css?v=43">
+<link rel="stylesheet" href="/styles.css?v=45">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%2310151C'/><rect x='.5' y='.5' width='31' height='31' rx='6.5' fill='none' stroke='%23253140'/><circle cx='10' cy='10' r='2.4' fill='none' stroke='%234F7FFF' stroke-width='1.6'/><circle cx='10' cy='22' r='2.4' fill='none' stroke='%234F7FFF' stroke-width='1.6'/><circle cx='22' cy='16' r='2.4' fill='none' stroke='%234F7FFF' stroke-width='1.6'/><path d='M12 11l8 4M12 21l8-4' stroke='%234F7FFF' stroke-width='1.6'/></svg>">
 </head>
 <body>
@@ -110,6 +110,7 @@
         </div>
       </div>
       <aside class="snap-panel reveal" data-replay aria-label="System snapshot">
+        <i class="sp-scan" aria-hidden="true"></i>
         <div class="sp-head"><span>System snapshot</span><span class="sp-live" id="spLive"><span class="led live"></span>live</span></div>
         <div class="sp-rows">
           <div class="sp-row"><span>Tracked applications</span><b id="hsApps">…</b></div>
@@ -521,11 +522,21 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m0 0l6-6m-6 6l6 6"/></svg>
       Back to dashboard</button>
     <div class="help-head reveal" data-replay>
-      <span class="help-book" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.4 5 8.2 4.3 5.6 4.3c-.9 0-1.6.7-1.6 1.5v11.4c0 .8.7 1.5 1.6 1.5 2.6 0 4.8.7 6.4 2.2 1.6-1.5 3.8-2.2 6.4-2.2.9 0 1.6-.7 1.6-1.5V5.8c0-.8-.7-1.5-1.6-1.5-2.6 0-4.8.7-6.4 2.2z"/><path d="M12 6.5v14.4"/></svg></span>
       <div class="help-tt">
         <div class="k">Help · field guide</div>
         <h1>Everything this dashboard means,<br>in plain words.</h1>
         <p>Eighteen short answers, grouped the way you'll need them. Click a question to open its answer - nothing here is marketing, it's exactly what the data is and how to get at it.</p>
+      </div>
+      <div class="book-scene" aria-hidden="true">
+        <span class="bs-halo"></span>
+        <span class="bs-orbit"><i></i><i></i><i></i></span>
+        <div class="book3d">
+          <span class="bb-spine"></span>
+          <span class="bb-pages"><i></i><i></i><i></i><i></i><i></i></span>
+          <span class="bb-cover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.4 5 8.2 4.3 5.6 4.3c-.9 0-1.6.7-1.6 1.5v11.4c0 .8.7 1.5 1.6 1.5 2.6 0 4.8.7 6.4 2.2 1.6-1.5 3.8-2.2 6.4-2.2.9 0 1.6-.7 1.6-1.5V5.8c0-.8-.7-1.5-1.6-1.5-2.6 0-4.8.7-6.4 2.2z"/><path d="M12 6.5v14.4"/></svg></span>
+          <span class="bb-ribbon"></span>
+        </div>
+        <span class="bs-shadow"></span>
       </div>
     </div>
     <div class="help-toc" role="navigation" aria-label="Guide contents">
@@ -835,7 +846,7 @@
 <!-- NOTE: data.snapshot.js (~2MB) is NOT loaded up front. The live API is the
      primary data source; the embedded snapshot is injected on demand only when
      the backend is unreachable, so a normal visit never parses it. -->
-<script src="/app.js?v=43"></script>
-<script src="/premium.js?v=43"></script>
+<script src="/app.js?v=45"></script>
+<script src="/premium.js?v=45"></script>
 </body>
 </html>

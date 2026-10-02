@@ -62,8 +62,11 @@ def _merge_github(old, new):
 
 
 #: how many consecutive empty registry cycles before a previously verified
-#: vendor-official server is allowed to drop off an app.
-EMPTY_CYCLES_BEFORE_DROP = 2
+#: vendor-official server is allowed to drop off an app. The registry's keyword
+#: search intermittently returns zero hits for published servers; four blank
+#: cycles (about an hour of steady-state refreshes) keeps the trend curves
+#: honest without letting them zigzag on a single throttled query.
+EMPTY_CYCLES_BEFORE_DROP = 4
 
 
 def _merge_mcp(old, new):
