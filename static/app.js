@@ -363,6 +363,21 @@
   const debounce = (fn, ms) => { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; };
 
   /* ---------------- data ---------------- */
+  /* The ~2MB embedded snapshot is injected ONLY when the live API cannot be
+     reached - a normal visit never parses it (it used to be a <script> tag,
+     costing every page load ~2MB of JS parse for data it threw away). */
+  let snapScriptTried = false;
+  function loadSnapshotScript() {
+    if (window.__SNAPSHOT__) return Promise.resolve();
+    if (snapScriptTried) return Promise.reject(new Error("snapshot already tried"));
+    snapScriptTried = true;
+    return new Promise((res, rej) => {
+      const s = document.createElement("script");
+      s.src = "/data.snapshot.js";
+      s.onload = res; s.onerror = () => rej(new Error("snapshot script failed"));
+      document.head.appendChild(s);
+    });
+  }
   async function loadSnapshot() {
     // Pure offline builds (demo.html) carry the real snapshot inline and skip
     // the network entirely for an instant, robust render.
@@ -381,6 +396,10 @@
       state.snap = sanitizeDashes(await r.json()); if (!state.live) { state.live = true; connectStream(); } render();
     } catch (e) {
       clearTimeout(timer);
+      try {
+        await loadSnapshotScript();
+        if (window.__SNAPSHOT__) { state.snap = sanitizeDashes(window.__SNAPSHOT__); state.live = false; render(); return; }
+      } catch (e2) {}
       if (window.__SNAPSHOT__) { state.snap = sanitizeDashes(window.__SNAPSHOT__); state.live = false; render(); }
       else $("#viewContent").innerHTML = `<div class="empty" style="padding:30px">No backend reachable and no snapshot embedded. Run <code class="mono">uvicorn src.app:app</code> then reload.</div>`;
     }
@@ -395,11 +414,24 @@
     }, 2000);
   }
 
+  /* Live "what changed" notifications: the stream replays history right after
+     connect, so new-change toasts are gated until the stream is truly live. */
+  const changeBuf = { n: 0, timer: 0 };
+  function noteChange() {
+    if (Date.now() < (state.esLiveAt || 0)) return;
+    changeBuf.n++;
+    clearTimeout(changeBuf.timer);
+    changeBuf.timer = setTimeout(() => {
+      const n = changeBuf.n; changeBuf.n = 0;
+      if (n > 0) toast(n === 1 ? "1 new live signal on the wire" : `${n} new live signals detected`, "bolt");
+    }, 1600);
+  }
   function connectStream() {
     if (state.es || !("EventSource" in window)) return;
     try { state.es = new EventSource("/api/stream"); } catch (e) { return; }
+    state.esLiveAt = Date.now() + 8000;   /* replay guard window */
     state.es.onmessage = (ev) => { let d; try { d = sanitizeDashes(JSON.parse(ev.data)); } catch (e) { return; }
-      if (d.type === "activity") { pushEvent(d); maybePull(); }
+      if (d.type === "activity") { pushEvent(d); maybePull(); if (d.kind === "change") noteChange(); }
       else if (d.type === "alert") { toast("🔔 " + (d.alert && d.alert.message ? d.alert.message : "Alert"), "shield"); loadSnapshot(); }
       else if (d.type === "ping") setLive(true, d.refresh_running);
       else if (d.type === "hello") setLive(true, state.refreshing); };

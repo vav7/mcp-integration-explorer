@@ -4006,3 +4006,76 @@ h1,h2{font-weight:700}
   .drawer.open .dw-head,.drawer.open .dw-body>*,.drawer.open .dw-foot{animation:none}
   html{scroll-behavior:auto}
 }
+
+/* ============================================================================
+   v42 - DEPTH SIGNATURE LAYER
+   The constellation (true 3D node network on canvas), section fold-ins,
+   tilt inner-pop, 800-weight display type, drawer v3. Every animation is
+   transform/opacity or a single DPR-capped canvas; nothing animates layout.
+   ========================================================================== */
+
+/* ---- the constellation: behind everything, fading out before the fold ---- */
+#prConstellation{position:fixed;inset:0;z-index:0;pointer-events:none;
+  opacity:.9;
+  -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 26%,rgba(0,0,0,.45) 55%,transparent 88%);
+          mask-image:linear-gradient(180deg,#000 0%,#000 26%,rgba(0,0,0,.45) 55%,transparent 88%)}
+[data-theme="light"] #prConstellation{opacity:.42}
+
+/* ---- display type: Sora ExtraBold, crisper and more dominant ---- */
+h1,h2{font-weight:800}
+.hero h1{font-size:clamp(42px,5.2vw,74px);letter-spacing:-.042em;line-height:1.01;
+  color:#F5F8FF;text-shadow:0 1px 0 rgba(255,255,255,.05),0 22px 70px rgba(34,211,238,.09)}
+[data-theme="light"] .hero h1{text-shadow:none;color:#0B1220}
+.sect-head h2{font-size:clamp(24px,2.4vw,34px);letter-spacing:-.035em;color:#F2F6FF}
+[data-theme="light"] .sect-head h2{color:#0B1220}
+.pv-head h1{font-size:clamp(34px,4.2vw,58px);letter-spacing:-.04em}
+.logo-txt b{font-weight:800;font-size:15.5px}
+.dw-title{font-weight:800}
+.an-card h3,.hq-gt,.help-tt h1,.method-head h2{letter-spacing:-.028em}
+.sb-num,.ins-v,.cov-val,.mh-score .sb-num{font-weight:700}
+
+/* ---- 3D fold-in on scroll (driven by premium.js IntersectionObserver) ---- */
+.pr3{opacity:0;transform:perspective(1000px) rotateX(8deg) translateY(28px) scale(.985);
+  transform-origin:50% 0;will-change:transform,opacity;
+  transition:opacity .75s var(--ease-soft) var(--pr3d,0ms),
+             transform .85s var(--ease-soft) var(--pr3d,0ms)}
+.pr3.pr3-in{opacity:1;transform:perspective(1000px) rotateX(0deg) translateY(0) scale(1)}
+
+/* ---- tilt inner-pop: the card's focal element floats above the glass ---- */
+.dive-card.pr-tilt .dv-ic,.pv-card.pr-tilt .pv-name,.snap-panel .sp-head{
+  transition:transform .5s var(--ease-soft);will-change:transform}
+.dive-card.pr-tilt:hover .dv-ic{transform:translateZ(34px) scale(1.08)}
+.pv-card.pr-tilt:hover .pv-name{transform:translateZ(26px)}
+.pr-tilt:hover{transform:perspective(1100px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) scale(1.012)}
+
+/* ---- drawer v3: icon tiles, spring stagger, glowing edge ---- */
+.drawer{width:330px}
+.drawer .dw-item svg{width:30px;height:30px;padding:7px;border-radius:9px;
+  background:linear-gradient(135deg,rgba(34,211,238,.10),rgba(139,92,246,.07));
+  border:1px solid var(--line);color:var(--t2);box-sizing:border-box}
+.drawer .dw-item{align-items:center;gap:11px}
+.drawer .dw-item:hover svg{color:#7DEBFA;transform:scale(1.06) translateZ(0);
+  border-color:rgba(34,211,238,.4);background:linear-gradient(135deg,rgba(34,211,238,.16),rgba(139,92,246,.10))}
+.drawer.open .dw-body>*{animation:dwSpring .6s cubic-bezier(.34,1.5,.5,1) both}
+@keyframes dwSpring{from{opacity:0;transform:translateX(-26px)}to{opacity:1;transform:none}}
+.dw-x{width:30px;height:30px;border-radius:9px;border:1px solid var(--line);color:var(--t3);
+  display:grid;place-items:center;transition:color .2s,border-color .2s,transform .3s var(--ease-soft),background .2s}
+.dw-x:hover{color:#FF8FA3;border-color:rgba(248,113,113,.4);background:rgba(248,113,113,.08);transform:rotate(90deg)}
+.dw-foot .led{box-shadow:0 0 0 0 rgba(52,211,153,.5)}
+.dw-foot:has(.led.live) .led{animation:ledRing 2.4s ease-out infinite}
+@keyframes ledRing{0%{box-shadow:0 0 0 0 rgba(52,211,153,.45)}70%{box-shadow:0 0 0 7px rgba(52,211,153,0)}100%{box-shadow:0 0 0 0 rgba(52,211,153,0)}}
+
+/* ---- live toast: rises with spring, glass, accent bar ---- */
+.toast{border-left:3px solid var(--acc)}
+
+/* ---- motion safety (v42 additions) ---- */
+@media(prefers-reduced-motion:reduce){
+  #prConstellation{display:none}
+  .pr3{opacity:1!important;transform:none!important;transition:none!important}
+  .drawer.open .dw-body>*{animation:none}
+  .dw-x,.dw-item,.pr-tilt,.dive-card.pr-tilt .dv-ic{transform:none!important}
+  .dw-foot:has(.led.live) .led{animation:none}
+}
+
+/* v42.1: specificity fix - .hero h1 (v41) out-ranked h1{font-weight:800} */
+.hero h1,h1,h2,.pv-head h1{font-weight:800}
