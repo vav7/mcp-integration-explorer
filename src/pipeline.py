@@ -296,33 +296,57 @@ async def probe_sources(client: httpx.AsyncClient) -> None:
 
 def record_snapshots(ids) -> None:
     """Persist one normalised fingerprint per integration after a refresh so a
-    later refresh can be diffed against it (src/diffing.py + the store archive)."""
+    later refresh can be diffed against it (src/diffing.py + the store archive).
+    The archive write is deferred to one flush in the caller: writing the whole
+    multi-megabyte index per app was ~100 disk rewrites per refresh."""
     for i in ids:
         al = STORE.live.get(i)
         if al is None:
             continue
         try:
-            STORE.record_app_snapshot(i, diffing.normalize_integration(al.model_dump(mode="json")))
+            STORE.record_app_snapshot(i, diffing.normalize_integration(al.model_dump(mode="json")),
+                                      persist=False)
         except Exception as exc:  # a diff failure must never break a refresh
             STORE.log("system", i, al.app.name, f"snapshot record failed: {type(exc).__name__}", status="warn")
 
 
-async def refresh_all(*, force_github: bool = False, do_probe: bool = True) -> None:
+async def flush_snapshots() -> None:
+    """Single archive flush per cycle, off the event loop."""
+    if STORE._snapshots_dirty:
+        await asyncio.to_thread(STORE.save_app_snapshots)
+
+
+async def refresh_all(*, force_github: bool = False, do_probe: bool = True,
+                      ids: list[int] | None = None) -> None:
+    """Refresh (a subset of) the estate and publish the resulting changes.
+
+    `ids=None` refreshes everything (boot + on-demand); the scheduler passes an
+    explicit stale slice each steady-state cycle so a single cycle fans out to
+    far fewer upstream calls — faster cycles, fewer 429s, and therefore fewer
+    'unknown' rows that a throttled run used to produce.
+    """
     if STORE.refresh_running:
         STORE.log("system", None, "", "Refresh already running; ignoring request.", status="warn")
         return
+    if not STORE.loaded:
+        STORE.log("system", None, "", "Snapshot still loading; skipping this cycle.", status="warn")
+        return
     STORE.refresh_running = True
-    ids = [a.id for a in STORE.apps]
-    before = {i: STORE.app_summary(STORE.live[i]) for i in ids if i in STORE.live}
-    STORE.log("system", None, "", f"Starting live refresh of {len(ids)} apps…", status="info")
+    all_ids = [a.id for a in STORE.apps]
+    target = list(ids) if ids else all_ids
+    # only ids we actually track
+    target = [i for i in target if i in {a.id for a in STORE.apps}]
+    before = {i: STORE.app_summary(STORE.live[i]) for i in target if i in STORE.live}
+    STORE.log("system", None, "", f"Starting live refresh of {len(target)} apps…", status="info")
     started = datetime.now(timezone.utc)
     try:
         async with httpx.AsyncClient(headers={"User-Agent": config.USER_AGENT}, follow_redirects=True) as client:
-            await probe_sources(client)
-            await refresh_ids(client, ids, force_github=force_github)
+            if ids is None:
+                await probe_sources(client)
+            await refresh_ids(client, target, force_github=force_github)
             if do_probe:
                 STORE.log("system", None, "", "Probing live MCP endpoints for real tool counts…", status="info")
-                await probe_ids(client, ids)
+                await probe_ids(client, target)
                 n_gen, n_apps = flag_generic_gateways()
                 if n_gen:
                     STORE.log("system", None, "",
@@ -332,16 +356,19 @@ async def refresh_all(*, force_github: bool = False, do_probe: bool = True) -> N
         STORE.log("system", None, "", f"Refresh error: {type(exc).__name__}: {exc}", status="error")
     finally:
         STORE.refresh_running = False
-        after = {i: STORE.app_summary(STORE.live[i]) for i in ids if i in STORE.live}
+        after = {i: STORE.app_summary(STORE.live[i]) for i in target if i in STORE.live}
         changes = STORE.diff_summaries(before, after)
         STORE.push_changes(changes)
         fired = STORE.generate_alerts(changes)
         if fired:
             STORE.log("system", None, "", f"🔔 {len(fired)} alert(s) fired for watched apps.", status="warn")
         STORE.record_history()
-        record_snapshots(ids)
-        STORE.save_cache()
-        write_snapshot_js()
+        record_snapshots(target)
+        await asyncio.gather(
+            asyncio.to_thread(STORE.save_cache),
+            asyncio.to_thread(STORE.save_app_snapshots),
+            asyncio.to_thread(write_snapshot_js),
+        )
         elapsed = (datetime.now(timezone.utc) - started).total_seconds()
         STORE.log("system", None, "",
                   f"Refresh complete in {elapsed:.0f}s · {len(changes)} change(s) detected · cache saved.",
@@ -349,23 +376,56 @@ async def refresh_all(*, force_github: bool = False, do_probe: bool = True) -> N
 
 
 async def run_scheduler() -> None:
-    """Background loop: initial refresh (with probes), then periodic refreshes.
+    """Background loop: boot refresh (with probes), then rolling refreshes.
 
-    With NO_AUTO_REFRESH the loop never starts: the instance serves the last
-    real fetch read-only (the GitHub Actions cron keeps data/ current), which is
-    what you want on an ephemeral-filesystem host or a shared egress IP.
+    Steady state refreshes only the STALE slice each cycle - apps whose last
+    successful fetch is older than the refresh interval, oldest first - instead
+    of re-querying every registry search for all 100 apps every 15 minutes.
+    Coverage stays at ~one interval per app while each cycle's upstream load
+    (and wall time) drops dramatically, which is what keeps registry 429s and
+    the 'unknown' rows they cause out of the data.
     """
     if config.NO_AUTO_REFRESH:
         STORE.log("system", None, "",
                   "Auto-refresh disabled (NO_AUTO_REFRESH): serving the last real fetch, read-only.",
                   status="info")
         return
+    # The boot loader runs in a worker thread; never refresh an empty estate.
+    waited = 0.0
+    while not STORE.loaded and waited < 180:
+        await asyncio.sleep(1.0)
+        waited += 1.0
     await asyncio.sleep(config.STARTUP_REFRESH_DELAY)
     if not config.NO_STARTUP_REFRESH:
         await refresh_all()
     while True:
         await asyncio.sleep(config.REFRESH_INTERVAL_FULL)
-        await refresh_all()
+        if STORE.refresh_running:
+            continue
+        due = _stale_ids()
+        if due and len(due) < len(STORE.apps):
+            await refresh_all(ids=due)
+        else:
+            await refresh_all()   # everything stale (or nothing is): full pass
+
+
+def _stale_ids(max_apps: int = 60) -> list[int]:
+    """Tracked app ids whose fetched data is older than one refresh interval,
+    oldest first, capped per cycle."""
+    now = datetime.now(timezone.utc)
+    ages: list[tuple[float, int]] = []
+    for a in STORE.apps:
+        al = STORE.live.get(a.id)
+        ts = getattr(al, "last_fetched", None) if al else None
+        if ts:
+            dt = _parse_ts(ts)
+            age = (now - dt).total_seconds() if dt else float("inf")
+        else:
+            age = float("inf")
+        ages.append((-min(age, 1e12), a.id))
+    ages.sort()   # most stale first
+    due = [i for neg_age, i in ages if -neg_age > config.REFRESH_INTERVAL_FULL or -neg_age >= 1e11]
+    return due[:max_apps]
 
 
 # --- static snapshot for offline preview ----------------------------------

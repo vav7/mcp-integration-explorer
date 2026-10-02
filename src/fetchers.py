@@ -698,54 +698,74 @@ def _parse_sse_or_json(text: str):
     return None
 
 
-async def fetch_package_stats(client: httpx.AsyncClient, packages: list[str]) -> list[PackageStat]:
-    """Resolve real adoption stats for 'registry:identifier' package strings."""
-    out: list[PackageStat] = []
-    seen: set[str] = set()
-    for raw in packages:
-        if raw in seen:
-            continue
-        seen.add(raw)
-        if ":" in raw:
-            reg, name = raw.split(":", 1)
-        else:
-            reg, name = "npm", raw
-        reg = reg.lower()
-        stat = PackageStat(registry=reg, name=name, fetched_at=utc_now())
-        try:
-            if reg == "npm":
-                stat.url = f"https://www.npmjs.com/package/{name}"
-                dl = await client.get(f"https://api.npmjs.org/downloads/point/last-month/{name}",
+async def _fetch_one_package(client: httpx.AsyncClient, raw: str) -> Optional[PackageStat]:
+    """Resolve adoption stats for a single 'registry:identifier' string."""
+    if ":" in raw:
+        reg, name = raw.split(":", 1)
+    else:
+        reg, name = "npm", raw
+    reg = reg.lower()
+    stat = PackageStat(registry=reg, name=name, fetched_at=utc_now())
+    try:
+        if reg == "npm":
+            stat.url = f"https://www.npmjs.com/package/{name}"
+            dl, meta = await asyncio.gather(
+                client.get(f"https://api.npmjs.org/downloads/point/last-month/{name}",
+                           timeout=config.HTTP_TIMEOUT),
+                client.get(f"https://registry.npmjs.org/{name}",
+                           headers={"Accept": "application/vnd.npm.install-v1+json"},
+                           timeout=config.HTTP_TIMEOUT),
+                return_exceptions=True,
+            )
+            if not isinstance(dl, Exception) and dl.status_code == 200:
+                stat.downloads_last_month = dl.json().get("downloads")
+            # abbreviated packument (small/fast) -> latest version
+            if not isinstance(meta, Exception) and meta.status_code == 200:
+                stat.version = (meta.json().get("dist-tags") or {}).get("latest")
+        elif reg == "pypi":
+            stat.url = f"https://pypi.org/project/{name}"
+            meta = await client.get(f"https://pypi.org/pypi/{name}/json", timeout=config.HTTP_TIMEOUT)
+            if meta.status_code == 200:
+                md = meta.json()
+                stat.version = (md.get("info") or {}).get("version")
+                rel = (md.get("releases") or {}).get(stat.version) or []
+                if rel:
+                    stat.last_published = rel[0].get("upload_time_iso_8601") or rel[0].get("upload_time")
+            try:
+                dl = await client.get(f"https://pypistats.org/api/packages/{name}/recent",
                                       timeout=config.HTTP_TIMEOUT)
                 if dl.status_code == 200:
-                    stat.downloads_last_month = dl.json().get("downloads")
-                # abbreviated packument (small/fast) -> latest version
-                meta = await client.get(f"https://registry.npmjs.org/{name}",
-                                        headers={"Accept": "application/vnd.npm.install-v1+json"},
-                                        timeout=config.HTTP_TIMEOUT)
-                if meta.status_code == 200:
-                    stat.version = (meta.json().get("dist-tags") or {}).get("latest")
-            elif reg == "pypi":
-                stat.url = f"https://pypi.org/project/{name}"
-                meta = await client.get(f"https://pypi.org/pypi/{name}/json", timeout=config.HTTP_TIMEOUT)
-                if meta.status_code == 200:
-                    md = meta.json()
-                    stat.version = (md.get("info") or {}).get("version")
-                    rel = (md.get("releases") or {}).get(stat.version) or []
-                    if rel:
-                        stat.last_published = rel[0].get("upload_time_iso_8601") or rel[0].get("upload_time")
-                try:
-                    dl = await client.get(f"https://pypistats.org/api/packages/{name}/recent",
-                                          timeout=config.HTTP_TIMEOUT)
-                    if dl.status_code == 200:
-                        stat.downloads_last_month = (dl.json().get("data") or {}).get("last_month")
-                except Exception:
-                    pass
-            else:
-                continue
-        except Exception as exc:
-            stat.error = f"{type(exc).__name__}"
-        out.append(stat)
+                    stat.downloads_last_month = (dl.json().get("data") or {}).get("last_month")
+            except Exception:
+                pass
+        else:
+            return None
+    except Exception as exc:
+        stat.error = f"{type(exc).__name__}"
+    return stat
+
+
+async def fetch_package_stats(client: httpx.AsyncClient, packages: list[str]) -> list[PackageStat]:
+    """Resolve real adoption stats for 'registry:identifier' package strings.
+
+    The lookups are independent, so they fan out concurrently instead of being
+    awaited one after another (three serial round-trips per app per cycle was a
+    large share of a refresh's wall time).
+    """
+    seen: list[str] = []
+    for raw in packages:
+        if raw not in seen:
+            seen.append(raw)
+    if not seen:
+        return []
+    sem = asyncio.Semaphore(4)
+
+    async def guarded(raw: str) -> Optional[PackageStat]:
+        async with sem:
+            return await _fetch_one_package(client, raw)
+
+    results = await asyncio.gather(*(guarded(r) for r in seen))
+    out = [r for r in results if r is not None]
     return out
 
 

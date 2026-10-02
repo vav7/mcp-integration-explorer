@@ -30,26 +30,35 @@ from .scoring import opportunity_score
 from .store import STORE
 
 
+async def _boot_load() -> None:
+    """Load the persisted snapshot OFF the connection-accepting critical path.
+
+    The cache is a multi-megabyte JSON document; parsing it through pydantic on
+    a constrained-CPU host (Render free tier) takes longer than the platform's
+    5-second health check. Uvicorn does not serve a single request until the
+    lifespan pre-yield block finishes, so that load used to fail every deploy's
+    health check before the app could answer a byte. Now the socket is live
+    immediately: /api/health answers while the snapshot loads in a worker
+    thread, and the scheduler waits for the load to land before refreshing.
+    """
+    await asyncio.to_thread(STORE.load_apps)
+    STORE.loaded = True
+    STORE.log("system", None, "", f"{config.APP_NAME} backend online. Starting live refresh…", status="ok")
+
+
 @asynccontextmanager
 async def lifespan(_app: "FastAPI"):
-    """Boot: load data and start scheduler immediately."""
-    
-    # Load cached data from disk (fast)
-    STORE.load_apps()
-    
-    STORE.log("system", None, "", f"{config.APP_NAME} backend online. Starting live refresh…", status="ok")
-    
-    # Start the scheduler immediately for live updates
+    """Boot: accept traffic instantly, load data + start scheduler in background."""
+    _app.state.loader = asyncio.create_task(_boot_load())
     _app.state.scheduler = asyncio.create_task(run_scheduler())
-    
     yield
-    
     # Cleanup on shutdown
-    task = getattr(_app.state, "scheduler", None)
-    if task:
-        task.cancel()
-    with contextlib.suppress(asyncio.CancelledError):
-        await task
+    for name in ("loader", "scheduler"):
+        task = getattr(_app.state, name, None)
+        if task:
+            task.cancel()
+            with contextlib.suppress(asyncio.CancelledError):
+                await task
 
 
 app = FastAPI(title=config.APP_NAME, version="1.0.0", lifespan=lifespan)
@@ -78,9 +87,21 @@ async def no_cache_assets(request, call_next):
 
 
 # --- data endpoints -------------------------------------------------------
+# The full snapshot is a large pydantic model dump (stats + every app). During a
+# refresh the dashboard polls it repeatedly, and re-serialising the whole tree
+# per request pins the event loop for hundreds of ms on a small instance - the
+# same pattern that used to trip the 5s health check. A 2-second TTL keeps
+# every response instantly fresh for humans while collapsing stampedes.
+_snap_cache: tuple[float, dict] | None = None
+
+
 @app.get("/api/snapshot")
 async def get_snapshot():
-    return STORE.snapshot().model_dump(mode="json")
+    global _snap_cache
+    now = time.monotonic()
+    if _snap_cache is None or now - _snap_cache[0] > 2.0:
+        _snap_cache = (now, STORE.snapshot().model_dump(mode="json"))
+    return _snap_cache[1]
 
 
 @app.get("/api/stats")
@@ -119,6 +140,8 @@ class RefreshBody(BaseModel):
 @app.post("/api/refresh")
 async def post_refresh(body: RefreshBody | None = None, _k: None = Depends(require_key)):
     """Trigger an on-demand live refresh (runs in background; watch the stream)."""
+    if not STORE.loaded:
+        return JSONResponse({"started": False, "reason": "loading"}, status_code=503)
     ids = body.ids if body else None
     do_probe = body.do_probe if body else True
     if ids:
@@ -139,8 +162,11 @@ async def _refresh_subset(ids: list[int], do_probe: bool = True) -> None:
         if do_probe:
             await probe_ids(client, ids)
     record_snapshots(ids)
-    STORE.save_cache()
-    write_snapshot_js()
+    # Multi-megabyte JSON serialisation must never run on the event loop; it is
+    # exactly the kind of stall a shared-CPU host turns into a failed check.
+    await asyncio.gather(asyncio.to_thread(STORE.save_cache),
+                         asyncio.to_thread(STORE.save_app_snapshots),
+                         asyncio.to_thread(write_snapshot_js))
 
 
 
@@ -185,14 +211,21 @@ def _sse(payload: dict) -> str:
 
 @app.get("/api/health")
 async def health():
-    return {
-        "ok": True, 
-        "app": config.APP_NAME, 
-        "apps_loaded": len(STORE.apps),
-        "refresh_running": STORE.refresh_running, 
-        "generated_at": STORE.generated_at,
-        "status": "initializing" if not STORE.apps else "ready"
-    }
+    """Platform health check: must answer in single-digit milliseconds, every
+    time. No aggregation, no I/O, no waiting on the data load - Render gives
+    this endpoint 5 seconds, and a cold boot must never spend any of them."""
+    return JSONResponse(
+        {
+            "ok": True,
+            "app": config.APP_NAME,
+            "apps_loaded": len(STORE.apps),
+            "loaded": STORE.loaded,
+            "refresh_running": STORE.refresh_running,
+            "generated_at": STORE.generated_at,
+            "status": "initializing" if not STORE.loaded else "ready",
+        },
+        headers={"Cache-Control": "no-store"},
+    )
 
 
 # --- intelligence endpoints ----------------------------------------------
@@ -522,8 +555,8 @@ async def _fetch_pinned(aid: int, name: str, website: str) -> None:
             discovered = await discover_app(client, name, website)
             discovered.app = STORE.live[aid].app   # keep the assigned id/category
             STORE.live[aid] = discovered
-        STORE.save_cache()
-        write_snapshot_js()
+        await asyncio.to_thread(STORE.save_cache)
+        await asyncio.to_thread(write_snapshot_js)
         STORE.log("refresh", aid, name,
                   f"Added & fetched · MCP {discovered.mcp.status} · readiness {discovered.readiness.score}",
                   status="ok")

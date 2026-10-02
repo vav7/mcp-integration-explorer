@@ -49,6 +49,8 @@ class Store:
         self.app_snapshots: dict[int, list[dict]] = {}
         self._subs: list[asyncio.Queue] = []
         self.refresh_running = False
+        self.loaded = False          # False until load_apps() finishes at boot
+        self._snapshots_dirty = False
         self.generated_at = utc_now()
         self.note = (
             "All fields are fetched live from real sources: the official MCP registry, "
@@ -280,12 +282,27 @@ class Store:
             json.dumps({str(k): v for k, v in self.app_snapshots.items()}, ensure_ascii=False),
             encoding="utf-8")
 
-    def record_app_snapshot(self, app_id: int, fingerprint: dict, ts: Optional[str] = None) -> bool:
+    def save_app_snapshots(self) -> None:
+        """Flush the snapshot archive once per refresh cycle, not once per app.
+
+        The archive is multi-megabyte; record_app_snapshot() used to rewrite it
+        for every single app it touched (about a hundred full-file writes per
+        refresh), each one stalling the event loop. The dirty flag batches
+        those into a single write; callers flush it via the pipeline."""
+        if not self._snapshots_dirty:
+            return
+        self._snapshots_dirty = False
+        self._save_app_snapshots()
+
+    def record_app_snapshot(self, app_id: int, fingerprint: dict, ts: Optional[str] = None,
+                            persist: bool = True) -> bool:
         """Append one normalised fingerprint for an integration.
 
         Unchanged refreshes store a lightweight pointer (hash only) so the
         timeline can show "no changes" days without duplicating payloads.
         Returns True when this snapshot differs from the previous one.
+        With persist=False the caller takes responsibility for calling
+        save_app_snapshots() once after a batch.
         """
         entries = self.app_snapshots.setdefault(int(app_id), [])
         h = diffing.fingerprint_hash(fingerprint)
@@ -297,7 +314,10 @@ class Store:
             entries[:] = entries[-config.APP_SNAPSHOTS_MAX:]
             self._ensure_resolvable(entries)
         self.app_snapshots[int(app_id)] = entries
-        self._save_app_snapshots()
+        self._snapshots_dirty = True
+        if persist:
+            self._save_app_snapshots()
+            self._snapshots_dirty = False
         return changed
 
     @staticmethod

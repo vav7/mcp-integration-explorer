@@ -117,7 +117,7 @@ LOOKUP_COOLDOWN_S = float(os.environ.get("LOOKUP_COOLDOWN_S", "30.0"))
 #   2. bounded retries + backoff   -> honours an upstream Retry-After header
 #   3. lookup result cache         -> a repeat lookup is served instantly instead
 #                                     of being rejected with our own 429
-REGISTRY_CACHE_S = float(os.environ.get("REGISTRY_CACHE_S", "300"))
+REGISTRY_CACHE_S = float(os.environ.get("REGISTRY_CACHE_S", "900"))
 REGISTRY_CACHE_MAX = int(os.environ.get("REGISTRY_CACHE_MAX", "400"))
 UPSTREAM_RETRIES = int(os.environ.get("UPSTREAM_RETRIES", "2"))
 UPSTREAM_BACKOFF_MAX_S = float(os.environ.get("UPSTREAM_BACKOFF_MAX_S", "6"))
