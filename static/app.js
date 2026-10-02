@@ -1144,11 +1144,11 @@
     const cols = [["name", "Application", ""], ["status", "MCP", ""], ["readiness", "Readiness", ""], ["tools", "Live tools", "right"], ["downloads", "Adoption", "right"], ["stars", "Repository", "right"], ["site", "Liveness", ""]];
     $("#viewContent").innerHTML = `<div class="tablewrap"><table class="grid"><thead><tr>${cols.map(c =>
       `<th data-sort="${c[0]}" class="${state.sortKey === c[0] ? "sorted" : ""}" style="${c[2] ? "text-align:right" : ""}">${c[1]}<span class="arw">${state.sortKey === c[0] ? (dir > 0 ? "▲" : "▼") : "▲"}</span></th>`).join("")}</tr></thead>
-      <tbody>${rows.map(a => {
+      <tbody>${rows.map((a, i) => {
         const gh = a.github && a.github.status === "found" && a.github.stars != null ? `<span class="stars">${svg("star", 2)} <b data-num="${a.github.stars}" data-fmt="k" data-nk="app:${a.app.id}:stars">${fmtNum(a.github.stars)}</b></span>` : `<span class="mut">-</span>`;
         const dl = dlOf(a);
         const rtitle = `Readiness ${a.readiness.score}/100 · grade ${a.readiness.grade} · open the app for the component breakdown & evidence`;
-        return `<tr data-id="${a.app.id}">
+        return `<tr data-id="${a.app.id}" style="--i:${Math.min(i, 18)}">
           <td><div class="appcell">${logoHtml(a)}<div class="appmeta"><div class="appname">${esc(a.app.name)}</div><div class="appcat">${esc(a.app.category)}</div></div>
             <button class="cmpbtn ${state.compare.includes(a.app.id) ? "on" : ""}" data-cmp="${a.app.id}" title="Add to compare" style="margin-left:auto">${state.compare.includes(a.app.id) ? "✓" : "+"}</button></div></td>
           <td data-label="MCP">${statusBadge(a.mcp.status)}</td>

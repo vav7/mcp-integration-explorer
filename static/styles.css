@@ -4410,3 +4410,192 @@ html[data-theme="dark"] .help-tt h1{background:linear-gradient(178deg,#F5F8FF 22
   .pr3{animation:none!important;opacity:1!important;transform:none!important}
   main .reveal:not(.in){animation:none}
 }
+
+/* ============================================================================
+   v46 - PHYSICAL DESIGN SYSTEM: objects with weight, cinematic transitions,
+   the How-It-Works flight, and Q&A as eye candy. This layer rebuilds the
+   components the old design only skinned: logos, buttons, toggles, the
+   compare dock, the dossier opening, explorer rows.
+   ========================================================================== */
+
+/* ---------------- app logos: objects, not images in squares ---------------- */
+.applogo{width:34px;height:34px;border-radius:11px;
+  background:linear-gradient(160deg,rgba(255,255,255,.10),rgba(255,255,255,.02) 55%,rgba(148,180,255,.06));
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 10px 24px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.16);
+  transform-style:preserve-3d;transition:transform .4s var(--ease-soft),box-shadow .3s,border-color .25s}
+.applogo img{padding:6px;filter:saturate(1.05) drop-shadow(0 2px 4px rgba(0,0,0,.4))}
+.applogo .ini{font:800 12px var(--font-display);letter-spacing:-.02em;
+  background:linear-gradient(160deg,var(--t2),var(--t4));-webkit-background-clip:text;background-clip:text;color:transparent}
+.applogo::after{content:"";position:absolute;top:0;bottom:0;left:-70%;width:48%;transform:skewX(-20deg);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);transition:left .6s var(--ease-soft)}
+table.grid tr:hover .applogo,.lk-head .applogo:hover,.appcell:hover .applogo{transform:perspective(400px) rotateY(-12deg) scale(1.06)}
+table.grid tr:hover .applogo::after,.appcell:hover .applogo::after{left:135%}
+.applogo.lg{width:48px;height:48px;border-radius:14px}
+/* site mark: a gilded system seal */
+.logo-mark{width:32px;height:32px;border-radius:10px;color:#8FF0FB;position:relative;
+  background:linear-gradient(160deg,rgba(34,211,238,.16),rgba(139,92,246,.10) 60%,rgba(10,15,26,.6));
+  border:1px solid rgba(34,211,238,.4);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 6px 18px rgba(34,211,238,.16)}
+.logo-mark::after{content:"";position:absolute;inset:-4px;border-radius:14px;
+  border:1px solid rgba(34,211,238,.18);pointer-events:none}
+.nav .logo-mark:hover::after{border-color:rgba(34,211,238,.45)}
+
+/* ---------------- buttons: tactile weight ---------------- */
+.btn{height:36px;padding:0 16px;border-radius:11px;font:650 13px var(--font);
+  transition:background .16s,border-color .16s,transform .34s var(--spring),box-shadow .3s var(--ease-soft)}
+.btn:active{transform:scale(.96)}
+.btn-sm{height:31px;padding:0 12px;border-radius:9px}
+.iconbtn{width:36px;height:36px;border-radius:11px;
+  background:linear-gradient(165deg,var(--s2),var(--s1));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 6px 16px rgba(0,0,0,.3);
+  transition:color .16s,border-color .2s,transform .38s var(--spring),box-shadow .3s}
+.iconbtn:hover{transform:translateY(-2px);box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 12px 26px rgba(0,0,0,.4);
+  border-color:rgba(34,211,238,.35)}
+.iconbtn:active{transform:translateY(0) scale(.94)}
+.iconbtn svg{transition:transform .4s var(--spring)}
+.iconbtn:hover svg{transform:scale(1.1)}
+#themeBtn:hover svg{transform:rotate(32deg) scale(1.08)}
+.btn-primary{position:relative;
+  background:linear-gradient(180deg,rgba(34,211,238,.22),rgba(34,211,238,.08));
+  border:1px solid rgba(34,211,238,.45);color:#9FF3FC;font-weight:700;
+  box-shadow:0 6px 24px rgba(34,211,238,.22),inset 0 1px 0 rgba(255,255,255,.12)}
+.btn-primary::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(120px 40px at 50% 0%,rgba(255,255,255,.16),transparent 70%)}
+/* segmented controls: an inset instrument track */
+.segmented{background:var(--s1);border:1px solid var(--line);border-radius:12px;padding:3px;
+  box-shadow:inset 0 2px 6px rgba(0,0,0,.35)}
+.segmented button{border-radius:9px;padding:8px 15px;font-weight:650}
+.segmented button.active{background:linear-gradient(180deg,var(--s3),var(--s2));
+  color:#9FF3FC;box-shadow:0 4px 14px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.1),0 0 0 1px rgba(34,211,238,.28)}
+.chipfilter{height:34px;border-radius:11px;background:var(--s1);border:1px solid var(--line);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05);font-weight:650;
+  transition:all .22s var(--ease-soft)}
+.chipfilter:hover{transform:translateY(-1px);border-color:var(--line2)}
+.chipfilter.active{background:linear-gradient(180deg,rgba(34,211,238,.2),rgba(34,211,238,.07));
+  color:#9FF3FC;border-color:rgba(34,211,238,.45);
+  box-shadow:0 4px 16px rgba(34,211,238,.16),inset 0 1px 0 rgba(255,255,255,.1)}
+/* the compare capture button: a glass jewel, not a plus in a square */
+.cmpbtn{width:26px;height:26px;border-radius:9px;opacity:0;font-weight:700;
+  background:linear-gradient(165deg,var(--s3),var(--s1));border:1px solid var(--line2);color:var(--t3);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 4px 12px rgba(0,0,0,.3);
+  transition:opacity .18s,color .18s,transform .45s var(--spring),border-color .2s,box-shadow .25s}
+table.grid tr:hover .cmpbtn{transform:scale(1.05)}
+.cmpbtn:hover{transform:scale(1.14) rotate(90deg)!important;color:#9FF3FC;border-color:rgba(34,211,238,.5);
+  box-shadow:0 6px 18px rgba(34,211,238,.25),inset 0 1px 0 rgba(255,255,255,.12)}
+.cmpbtn.on{opacity:1;transform:none;color:#04121A;font-weight:800;
+  background:linear-gradient(160deg,#67E8F9,#22D3EE);border-color:rgba(34,211,238,.7);
+  box-shadow:0 6px 20px rgba(34,211,238,.4),inset 0 1px 0 rgba(255,255,255,.35)}
+
+/* ---------------- compare dock: a floating glass tray ---------------- */
+.comparebar{border-radius:18px;padding:11px 13px 11px 18px;max-width:calc(100vw - 40px);
+  background:linear-gradient(170deg,rgba(18,25,41,.85),rgba(8,12,20,.92));
+  border:1px solid var(--line2);backdrop-filter:blur(20px) saturate(150%);
+  box-shadow:0 30px 80px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.08)}
+.comparebar::before{content:"";position:absolute;left:14px;right:14px;top:0;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,rgba(34,211,238,.7),rgba(139,92,246,.4) 45%,transparent 80%)}
+.comparebar.show{transform:translateX(-50%) translateY(0) scale(1)}
+.cb-chip{border-radius:12px;padding:6px 8px 6px 11px;background:linear-gradient(165deg,var(--s3),var(--s2));
+  border:1px solid var(--line2);box-shadow:inset 0 1px 0 rgba(255,255,255,.07);
+  transition:transform .35s var(--spring),border-color .2s}
+.cb-chip:hover{transform:translateY(-2px) scale(1.03)}
+.comparebar .btn-primary{box-shadow:0 8px 28px rgba(34,211,238,.35),inset 0 1px 0 rgba(255,255,255,.14)}
+
+/* ---------------- dossier opening: cinematic, not a pop ---------------- */
+@keyframes modalin46{from{opacity:0;transform:translate(-50%,-46%) scale(.94) translateY(26px);filter:blur(10px)}
+  to{opacity:1;transform:translate(-50%,-50%) scale(1) translateY(0);filter:blur(0)}}
+.modal.open{animation:modalin46 .5s var(--ease-soft) both}
+.modal.open .mhead{animation:pvUp .55s var(--ease-soft) .06s both}
+.modal.open .modal-body{animation:pvUp .6s var(--ease-soft) .14s both}
+.backdrop{transition:opacity .4s var(--ease-soft),backdrop-filter .4s var(--ease-soft)}
+
+/* ---------------- explorer rows: staggered materialization ---------------- */
+@keyframes rowIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+table.grid tbody tr{animation:rowIn .45s var(--ease-soft) calc(min(var(--i,0),18)*20ms) both}
+table.grid tbody tr{transition:background .2s}
+table.grid tbody tr:hover{background:linear-gradient(90deg,rgba(34,211,238,.05),rgba(34,211,238,.012) 55%,transparent)}
+.appname{font-weight:700;letter-spacing:-.01em}
+
+/* ============================================================================
+   THE FLIGHT PATH (help view): how this site works, as a 3D pipeline.
+   Six luminous stations on a beam; signal particles travel between them;
+   hovering a station raises it out of the plane.
+   ========================================================================== */
+.howscene{margin:6px 0 34px;border:1px solid var(--line);border-radius:20px;position:relative;overflow:hidden;
+  background:linear-gradient(170deg,rgba(17,24,39,.6),rgba(7,11,19,.85));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 24px 60px rgba(0,0,0,.4);
+  padding:26px 28px 30px;perspective:1200px}
+.howscene::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;
+  background:linear-gradient(90deg,rgba(34,211,238,.7),rgba(139,92,246,.4) 45%,transparent 80%)}
+.how-copy{margin-bottom:24px}
+.how-copy h3{margin:6px 0 0;font:800 clamp(19px,2vw,25px)/1.2 var(--font-display);letter-spacing:-.025em;color:var(--t1)}
+.how-copy p{margin:9px 0 0;font-size:12.5px;line-height:1.65;color:var(--t3);max-width:64ch}
+.how-rail{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;transform-style:preserve-3d;position:relative}
+.how-rail::before{content:"";position:absolute;top:31px;left:6%;right:6%;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,rgba(34,211,238,.45),rgba(139,92,246,.45) 50%,rgba(52,211,153,.45));
+  opacity:.55;box-shadow:0 0 14px rgba(34,211,238,.2)}
+.how-node{position:relative;text-align:center;padding:0 4px;transform-style:preserve-3d;
+  transition:transform .45s var(--ease-soft)}
+.how-node:hover{transform:translateZ(26px) translateY(-4px)}
+.hn-orb{position:relative;display:grid;place-items:center;width:62px;height:62px;margin:0 auto 12px;
+  border-radius:50%;color:#9FF3FC;transform-style:preserve-3d;
+  background:radial-gradient(circle at 32% 26%,rgba(34,211,238,.34),rgba(139,92,246,.16) 46%,rgba(8,12,20,.94) 74%);
+  border:1px solid rgba(34,211,238,.4);
+  box-shadow:0 12px 30px rgba(0,0,0,.5),0 0 24px rgba(34,211,238,.16),inset 0 1px 0 rgba(255,255,255,.16);
+  animation:orbFloat 5.5s ease-in-out infinite;animation-delay:calc(var(--hn)*-0.9s)}
+.hn-orb::before{content:"";position:absolute;inset:-7px;border-radius:50%;
+  border:1px dashed rgba(34,211,238,.28);animation:ringSpin 16s linear infinite}
+.hn-orb svg{width:22px;height:22px;position:relative;z-index:1}
+@keyframes orbFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+/* signal particles riding the beam between stations */
+.how-node::after{content:"";position:absolute;top:29px;left:calc(50% + 38px);width:7px;height:7px;border-radius:50%;
+  background:radial-gradient(circle,rgba(160,240,250,.95),rgba(34,211,238,0) 70%);
+  animation:signalHop 2.4s linear infinite;animation-delay:calc(var(--hn)*0.4s);pointer-events:none}
+.how-node:last-child::after{display:none}
+@keyframes signalHop{0%{transform:translateX(0);opacity:0}14%{opacity:1}86%{opacity:1}100%{transform:translateX(150px);opacity:0}}
+.how-node b{display:block;font:700 12.5px var(--font-display);letter-spacing:-.01em;color:var(--t1);margin-bottom:5px}
+.how-node p{font-size:11px;line-height:1.55;color:var(--t3);margin:0}
+#helpView.open .how-node{animation:howIn .7s var(--ease-soft) both;animation-delay:calc(.25s + var(--hn)*.11s)}
+@keyframes howIn{from{opacity:0;transform:translateY(22px) rotateX(-14deg)}to{opacity:1;transform:none}}
+@media(max-width:980px){
+  .how-rail{grid-template-columns:repeat(3,1fr);gap:22px 10px}
+  .how-rail::before{display:none}
+  .how-node::after{display:none}
+  .how-node{padding:0 8px}
+}
+@media(max-width:560px){.how-rail{grid-template-columns:repeat(2,1fr)}}
+
+/* ---------------- Q&A as eye candy ---------------- */
+.hq-item{border-radius:16px;position:relative;overflow:hidden;
+  background:linear-gradient(170deg,rgba(18,25,41,.6),rgba(8,12,20,.82));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 12px 30px rgba(0,0,0,.28)}
+.hq-item::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;
+  background:linear-gradient(180deg,var(--acc),var(--acc2));opacity:0;transition:opacity .3s}
+.hq-item:hover::before,.hq-item.open::before{opacity:.85}
+.hq-item::after{content:"";position:absolute;top:0;bottom:0;right:-70%;width:40%;transform:skewX(-18deg);
+  background:linear-gradient(90deg,transparent,rgba(190,220,255,.06),transparent);transition:right .7s var(--ease-soft);pointer-events:none}
+.hq-item:hover::after{right:135%}
+.hq-n{width:26px;height:26px;display:grid;place-items:center;border-radius:8px;font:800 10px var(--mono);
+  background:linear-gradient(160deg,rgba(34,211,238,.14),rgba(139,92,246,.08));
+  border:1px solid rgba(34,211,238,.3);color:#9FF3FC;transition:transform .4s var(--spring)}
+.hq-item:hover .hq-n{transform:scale(1.1) rotate(-4deg)}
+.hq-q{font-weight:650;font-size:13.5px;letter-spacing:-.01em}
+.hq{padding:15px 18px}
+.ha-in{border-top:1px solid var(--line);background:rgba(34,211,238,.03);
+  box-shadow:inset 0 10px 24px -18px rgba(34,211,238,.3)}
+.ha-in p{font-size:12.5px;line-height:1.75;color:var(--t2)}
+.hq-group{gap:10px}
+.hq-gt{font-size:10.5px}
+/* group headers as section plates */
+.hq-gt{display:flex;align-items:center;gap:12px}
+.hq-gt::before{content:"";width:22px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--acc),transparent)}
+
+/* ---------------- motion safety (v46) ---------------- */
+@media(prefers-reduced-motion:reduce){
+  table.grid tbody tr{animation:none}
+  .how-node,#helpView.open .how-node{animation:none}
+  .how-node::after{display:none}
+  .hn-orb,.hn-orb::before,.hq-item::after,.applogo::after{animation:none}
+  .applogo,.cmpbtn,.iconbtn{transition:none}
+  .modal.open,.modal.open .mhead,.modal.open .modal-body{animation-duration:.01s}
+}

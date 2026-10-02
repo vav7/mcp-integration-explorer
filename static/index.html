@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="build" content="v45">
+<meta name="build" content="v46">
 <title>MCP Integration Explorer · integration intelligence</title>
 <meta name="description" content="Live, evidence-backed MCP / agent integration readiness across applications. Real registry data, endpoint probes, GitHub, package adoption and liveness, with every signal traceable to its source.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,7 +12,7 @@
 <script>
   (function(){try{var t=localStorage.getItem('mcp_theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';}document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();
 </script>
-<link rel="stylesheet" href="/styles.css?v=45">
+<link rel="stylesheet" href="/styles.css?v=46">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%2310151C'/><rect x='.5' y='.5' width='31' height='31' rx='6.5' fill='none' stroke='%23253140'/><circle cx='10' cy='10' r='2.4' fill='none' stroke='%234F7FFF' stroke-width='1.6'/><circle cx='10' cy='22' r='2.4' fill='none' stroke='%234F7FFF' stroke-width='1.6'/><circle cx='22' cy='16' r='2.4' fill='none' stroke='%234F7FFF' stroke-width='1.6'/><path d='M12 11l8 4M12 21l8-4' stroke='%234F7FFF' stroke-width='1.6'/></svg>">
 </head>
 <body>
@@ -539,6 +539,38 @@
         <span class="bs-shadow"></span>
       </div>
     </div>
+    <div class="howscene reveal" data-replay aria-label="How this site works">
+      <div class="how-copy"><span class="k">How this site works</span>
+        <h3>From the live web to a readiness signal</h3>
+        <p>Every app walks this pipeline on every refresh. Nothing is simulated; each stage below is running right now on the live backend.</p>
+      </div>
+      <div class="how-rail" role="list">
+        <div class="how-node" role="listitem" style="--hn:0">
+          <span class="hn-orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1.6"/><rect x="14" y="3" width="7" height="7" rx="1.6"/><rect x="3" y="14" width="7" height="7" rx="1.6"/><rect x="14" y="14" width="7" height="7" rx="1.6"/></svg></span>
+          <b>App enters</b><p>100 curated apps, or any app you search for</p>
+        </div>
+        <div class="how-node" role="listitem" style="--hn:1">
+          <span class="hn-orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/></svg></span>
+          <b>Registry match</b><p>Official MCP registry search, domain-verified</p>
+        </div>
+        <div class="how-node" role="listitem" style="--hn:2">
+          <span class="hn-orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4.5 13H11l-1 9 8.5-11H12z"/></svg></span>
+          <b>Live probe</b><p>Real handshake: tool counts, auth gating</p>
+        </div>
+        <div class="how-node" role="listitem" style="--hn:3">
+          <span class="hn-orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9-5.2-2.8-5.2 2.8 1-5.9L3.5 9.7l5.9-.8z"/></svg></span>
+          <b>Evidence</b><p>Repository health + npm/PyPI adoption</p>
+        </div>
+        <div class="how-node" role="listitem" style="--hn:4">
+          <span class="hn-orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 14l4-4"/><circle cx="12" cy="14" r="8"/><path d="M4 14a8 8 0 0116 0"/></svg></span>
+          <b>Readiness</b><p>Weighted 0-100 score, graded A-E</p>
+        </div>
+        <div class="how-node" role="listitem" style="--hn:5">
+          <span class="hn-orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.2-2.9 7.6-7 9-4.1-1.4-7-4.8-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
+          <b>Watched live</b><p>Changes stream to you the moment they land</p>
+        </div>
+      </div>
+    </div>
     <div class="help-toc" role="navigation" aria-label="Guide contents">
       <button class="htoc" type="button" data-hjump="hg-1"><b>01</b> Start here <span>3</span></button>
       <button class="htoc" type="button" data-hjump="hg-2"><b>02</b> Reading the data <span>5</span></button>
@@ -846,7 +878,7 @@
 <!-- NOTE: data.snapshot.js (~2MB) is NOT loaded up front. The live API is the
      primary data source; the embedded snapshot is injected on demand only when
      the backend is unreachable, so a normal visit never parses it. -->
-<script src="/app.js?v=45"></script>
-<script src="/premium.js?v=45"></script>
+<script src="/app.js?v=46"></script>
+<script src="/premium.js?v=46"></script>
 </body>
 </html>
