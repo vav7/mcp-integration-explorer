@@ -506,7 +506,9 @@
     const least = entries.reduce((a, b) => cov(b) < cov(a) ? b : a);
     const ready = entries.reduce((a, b) => (b[1].avg_readiness || 0) > (a[1].avg_readiness || 0) ? b : a);
     const cell = (l, v, sub, cat, i) => `<div class="ins${insDone ? "" : " ins-rev reveal"}" style="--i:${i}" data-cat="${esc(cat)}" role="link" tabindex="0" title="Filter the explorer to ${esc(cat)}">
-      <span class="ins-l">${l}</span><span class="ins-v">${esc(v)}</span><span class="ins-s">${sub}</span><span class="ins-go">Explore category →</span></div>`;
+      <span class="ins-n" aria-hidden="true">0${i + 1}</span>
+      <span class="ins-rail" aria-hidden="true"></span>
+      <span class="ins-l">${l}</span><span class="ins-v">${esc(v)}</span><span class="ins-s">${sub}</span><span class="ins-go">Explore category <i>→</i></span></div>`;
     el.innerHTML = cell("Most covered category", most[0], `${Math.round(cov(most) * 100)}% have an MCP server`, most[0], 0) +
       cell("Highest readiness", ready[0], `avg score ${ready[1].avg_readiness ?? "-"}`, ready[0], 1) +
       cell("Lowest coverage", least[0], `${Math.round(cov(least) * 100)}% have an MCP server`, least[0], 2);

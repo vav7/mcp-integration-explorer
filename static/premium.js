@@ -38,7 +38,7 @@
   }
 
   /* ---------- 2. pointer-tracked 3D tilt + glare on premium cards ---------- */
-  const TILT_SEL = ".dive-card, .pv-card, .snap-panel, .estate-panel";
+  const TILT_SEL = ".dive-card, .pv-card, .snap-panel, .estate-panel, .ins";
   const MAX_DEG = 5.5;          // felt, never gimmicky
   const GLARE_MAX = 0.09;
   const tiltTargets = new Set();
@@ -265,7 +265,13 @@
         if (e.isIntersecting) { e.target.classList.add("pr3-in"); io.unobserve(e.target); }
       });
     }, { threshold: 0.15, rootMargin: "0px 0px -6% 0px" });
-    targets.forEach(el => io.observe(el));
+    targets.forEach(el => {
+      /* anything already on screen reveals immediately - no waiting on the
+         observer, so content can never sit hidden waiting for a callback */
+      const r = el.getBoundingClientRect();
+      if (r.top < (window.innerHeight || 800) && r.bottom > 0) el.classList.add("pr3-in");
+      else io.observe(el);
+    });
   }
 
   /* ---------- 5. boot ---------- */
@@ -281,7 +287,7 @@
       if (orbs.length && !orbRaf) orbRaf = requestAnimationFrame(orbTick);
     }
     /* new dashboard content (rendered rows, re-opened views) opts in late */
-    const mo = new MutationObserver(() => { bindTilt(); bindMagnetic(); });
+    const mo = new MutationObserver(() => { bindTilt(); bindMagnetic(); bindFoldIn(); });
     mo.observe(document.body, { childList: true, subtree: true });
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
