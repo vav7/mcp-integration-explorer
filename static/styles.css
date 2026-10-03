@@ -5104,3 +5104,55 @@ html[data-theme="dark"] .ambient{background:
   #chart .ct-area,#chart .ct-dot,#chart .ct-single{opacity:1!important;animation:none!important}
   .atlas-node.hot::after{animation:none;opacity:.4}
 }
+
+/* ============================================================================
+   v53 - SCROLL FREEDOM, CHART REPLAY, RICHER ATLAS PREVIEWS, FLUID SCAN
+   ========================================================================== */
+
+/* ---- 1. mobile scroll freedom: the page is the scroller, not a pane ---- */
+@media(max-width:920px){
+  #viewContent.scroller{overflow:visible!important;max-height:none!important;
+    overscroll-behavior:auto!important;
+    -webkit-mask-image:none!important;mask-image:none!important;
+    overflow-x:hidden}
+  .tablewrap{overflow-x:auto;max-height:none!important;overscroll-behavior-x:contain;
+    -webkit-overflow-scrolling:touch}
+  .atlas-field,.atlas-node,.tablewrap{touch-action:pan-x pan-y}
+}
+/* desktop keeps its designed inner-scroll shell */
+
+/* ---- 2. atlas: nodes gently drift (alive), tooltip spring + never clipped ---- */
+@keyframes anDrift{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-3px) rotate(1.6deg)}}
+.atlas-node .applogo{animation:anDrift 6.5s ease-in-out infinite;animation-delay:calc(var(--i,0)*-.4s)}
+.atlas-tip{transition:opacity .2s var(--ease-soft),transform .3s cubic-bezier(.34,1.4,.64,1)}
+.at-tip-bar{height:4px;border-radius:3px;background:rgba(148,180,255,.12);overflow:hidden;margin-top:9px}
+.at-tip-bar i{display:block;height:100%;border-radius:3px;background:var(--grad-acc);
+  box-shadow:0 0 10px rgba(139,157,255,.5)}
+.at-tip-st{display:flex;justify-content:space-between;align-items:center;margin-top:9px}
+.at-tip-st .lnk{font:600 10.5px var(--mono)}
+@media(max-width:920px),(pointer:coarse){
+  .atlas-node .applogo{animation:none}
+}
+
+/* ---- 3. system snapshot: fluid veil sweep + live pulse (no laggy line) ---- */
+.sp-scan{top:0;bottom:0;left:0;width:34%;height:auto;border-radius:0;
+  background:linear-gradient(100deg,transparent 0%,rgba(139,157,255,.05) 30%,
+    rgba(196,206,255,.12) 50%,rgba(139,157,255,.05) 70%,transparent 100%);
+  box-shadow:none;opacity:0;transform:translateX(-110%);
+  animation:spVeil 7.5s cubic-bezier(.45,.05,.55,.95) infinite}
+@keyframes spVeil{0%{transform:translateX(-110%);opacity:0}
+  12%{opacity:1}55%{opacity:.85}88%{opacity:.6}100%{transform:translateX(340%);opacity:0}}
+/* the live LED breathes a ring - the heartbeat of the instrument */
+.sp-live{position:relative}
+.sp-live .led{position:relative}
+.sp-live .led::after{content:"";position:absolute;inset:-3px;border-radius:50%;
+  border:1.5px solid rgba(52,211,153,.55);animation:ledPulse2 2.6s var(--ease-soft) infinite}
+@keyframes ledPulse2{0%{transform:scale(.6);opacity:.9}70%{transform:scale(2.1);opacity:0}100%{opacity:0}}
+[data-theme="light"] .sp-scan{background:linear-gradient(100deg,transparent,rgba(37,99,235,.08) 50%,transparent)}
+
+/* ---- motion safety ---- */
+@media(prefers-reduced-motion:reduce){
+  .sp-scan{display:none}
+  .sp-live .led::after{animation:none}
+  .atlas-node .applogo{animation:none}
+}

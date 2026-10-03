@@ -789,8 +789,11 @@
         if (en.isIntersecting) { wrap.classList.add("drawn"); wrap.dataset.drawn = "1"; wrap._drawObs.disconnect(); } });
       }, { threshold: .15, rootMargin: "0px 0px -4% 0px" });
     }
-    if (wrap.dataset.drawn === "1") wrap.classList.add("drawn", "instant");
-    else wrap.classList.remove("instant");
+    const metricChanged = wrap.dataset.metric !== state.trendMetric;
+    wrap.dataset.metric = state.trendMetric;
+    if (wrap.dataset.drawn !== "1") wrap.classList.remove("drawn", "instant");
+    else if (metricChanged) { wrap.classList.remove("drawn", "instant"); void wrap.offsetWidth; wrap.classList.add("drawn"); }
+    else wrap.classList.add("drawn", "instant");
     if (wrap._drawObs && wrap.dataset.drawn !== "1") { try { wrap._drawObs.observe(wrap); } catch (e) { wrap.classList.add("drawn", "instant"); } }
     const tip = $("#chartTip");
     $$("#chart .ct-hit").forEach(h => h.addEventListener("mousemove", () => {
@@ -1286,7 +1289,7 @@
      any viewport. Node size = repository stars, ring = MCP status, the top
      five pulse as live signals, and the legend isolates populations.
      touch-action: pan-y keeps phone scrolling fluid over the field. */
-  let atlasBound = false;
+  let atlasBoundEl = null;   /* the field is rebuilt on re-render: bind per instance */
   function renderAtlas(apps) {
     const list = apps.filter(match);
     const sig = "atlas|" + list.map(rowSig).join(",") + "|" + state.compare.join(".") + "|" + state.sortKey + state.sortDir;
@@ -1381,8 +1384,8 @@
     bindAtlas();
   }
   function bindAtlas() {
-    const f = $("#atlasField"); if (!f || atlasBound) return;
-    atlasBound = true;
+    const f = $("#atlasField"); if (!f || atlasBoundEl === f) return;
+    atlasBoundEl = f;
     let raf = 0;
     f.addEventListener("pointermove", (e) => {
       if (raf) return;
@@ -1403,13 +1406,17 @@
       const gh = a.github || {};
       t.innerHTML = "<div class=\"at-nm\">" + logoHtml(a) + "<b>" + esc(a.app.name) + "</b></div>" +
         "<div class=\"at-meta\"><span class=\"grade " + esc(a.readiness.grade) + "\">" + esc(a.readiness.grade) + " · " + a.readiness.score + "</span><span>" + esc(a.app.category) + "</span></div>" +
-        "<div class=\"at-figs\"><span>" + (STATUS_LABEL[a.mcp.status] || "") + "</span><span>" + (a.tools_count ? a.tools_count + " tools" : "no live tools") + "</span><span>" + (gh.stars ? fmtNum(gh.stars) + " stars" : "-") + "</span><span>" + (dlOf(a) ? fmtNum(dlOf(a)) + "/mo" : "-") + "</span></div>";
+        "<div class=\"at-figs\"><span>" + (STATUS_LABEL[a.mcp.status] || "") + "</span><span>" + (a.tools_count ? a.tools_count + " tools" : "no live tools") + "</span><span>" + (gh.stars ? fmtNum(gh.stars) + " stars" : "-") + "</span><span>" + (dlOf(a) ? fmtNum(dlOf(a)) + "/mo" : "-") + "</span></div>" +
+        "<div class=\"at-tip-bar\"><i style=\"width:" + Math.max(2, Math.min(100, a.readiness.score || 0)) + "%\"></i></div>" +
+        "<div class=\"at-tip-st\"><span class=\"hint\">click for the full dossier</span>" + (a.app.website ? "<a class=\"lnk\" href=\"" + esc(a.app.website) + "\" target=\"_blank\" rel=\"noopener\">site ↗</a>" : "") + "</div>";
       const fr = f.getBoundingClientRect(), nr = n.getBoundingClientRect();
       let tx = nr.left - fr.left + nr.width / 2, ty = nr.top - fr.top - 8;
       t.hidden = false;
-      const tw = t.offsetWidth;
+      const tw = t.offsetWidth, th = t.offsetHeight;
       tx = Math.max(12, Math.min(fr.width - tw - 12, tx - tw / 2));
-      t.style.left = tx + "px"; t.style.top = Math.max(8, ty - t.offsetHeight) + "px";
+      let tyy = ty - th;
+      if (tyy < 6) tyy = Math.min(fr.height - th - 6, nr.top - fr.top + nr.height + 8);
+      t.style.left = tx + "px"; t.style.top = Math.max(6, tyy) + "px";
       t.classList.add("show");
     });
     f.addEventListener("click", (e) => { const n = e.target.closest("[data-id]"); if (n) openModal(+n.dataset.id, n); });
