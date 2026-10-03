@@ -4511,7 +4511,7 @@ table.grid tr:hover .cmpbtn{transform:scale(1.05)}
 
 /* ---------------- explorer rows: staggered materialization ---------------- */
 @keyframes rowIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-table.grid tbody tr{animation:rowIn .45s var(--ease-soft) calc(min(var(--i,0),18)*20ms) both}
+table.grid tbody:not(.flipq) tr{animation:rowIn .45s var(--ease-soft) calc(min(var(--i,0),18)*20ms) both}
 table.grid tbody tr{transition:background .2s}
 table.grid tbody tr:hover{background:linear-gradient(90deg,rgba(34,211,238,.05),rgba(34,211,238,.012) 55%,transparent)}
 .appname{font-weight:700;letter-spacing:-.01em}
@@ -4559,7 +4559,7 @@ table.grid tbody tr:hover{background:linear-gradient(90deg,rgba(34,211,238,.05),
 @keyframes howIn{from{opacity:0;transform:translateY(22px) rotateX(-14deg)}to{opacity:1;transform:none}}
 @media(max-width:980px){
   .how-rail{grid-template-columns:repeat(3,1fr);gap:22px 10px}
-  .how-rail::before{display:none}
+  .how-rail::before,.how-rail::after{display:none}
   .how-node::after{display:none}
   .how-node{padding:0 8px}
 }
@@ -4598,4 +4598,146 @@ table.grid tbody tr:hover{background:linear-gradient(90deg,rgba(34,211,238,.05),
   .hn-orb,.hn-orb::before,.hq-item::after,.applogo::after{animation:none}
   .applogo,.cmpbtn,.iconbtn{transition:none}
   .modal.open,.modal.open .mhead,.modal.open .modal-body{animation-duration:.01s}
+}
+
+/* ============================================================================
+   v47 - THE ATLAS + UNBREAKABLE MOTION ENGINE + MOBILE BUTTER PASS
+   ========================================================================== */
+
+/* ---------------- the flight ghost (MotionFX) ---------------- */
+.fx-fly{border-radius:12px;overflow:visible}
+.fx-fly .applogo{width:100%;height:100%;margin:0}
+
+/* ---------------- ATLAS: the intelligence field ---------------- */
+.atlas-field{position:relative;height:clamp(420px,58vh,620px);border-radius:20px;overflow:hidden;
+  border:1px solid var(--line);cursor:crosshair;
+  background:
+    radial-gradient(900px 420px at 70% -10%,rgba(34,211,238,.06),transparent 60%),
+    radial-gradient(700px 380px at 8% 110%,rgba(139,92,246,.06),transparent 60%),
+    linear-gradient(175deg,rgba(13,19,32,.66),rgba(6,9,15,.9));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 24px 60px rgba(0,0,0,.4)}
+.atlas-gridbg{position:absolute;inset:0;
+  background-image:linear-gradient(rgba(148,180,255,.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(148,180,255,.05) 1px,transparent 1px);
+  background-size:56px 56px;
+  transform:scale(calc(1 + var(--mx,0)*.02));transition:transform .6s var(--ease-soft)}
+.atlas-axis{position:absolute;font:600 9.5px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--t4)}
+.atlas-axis.ax-y span{position:absolute;left:14px;top:46%;transform:rotate(180deg);writing-mode:vertical-rl}
+.atlas-axis.ax-x span{position:absolute;bottom:10px;left:50%;transform:translateX(-50%)}
+.atlas-node{position:absolute;left:var(--x);top:var(--y);width:var(--s);height:var(--s);
+  transform:translate(-50%,-50%) translate3d(calc(var(--mx,0)*var(--d)*1px),calc(var(--my,0)*var(--d)*1px),0);
+  border-radius:50%;padding:0;border:0;background:none;cursor:pointer;
+  animation:nodeBloom .7s var(--ease-soft) calc(min(var(--i,0),26)*24ms) both;
+  transition:filter .25s}
+@keyframes nodeBloom{from{opacity:0;scale:.4}to{opacity:1;scale:1}}
+.atlas-node .applogo{width:100%;height:100%;border-radius:50%;
+  transition:box-shadow .3s,border-color .3s}
+.atlas-node::before{content:"";position:absolute;inset:-7px;border-radius:50%;pointer-events:none;
+  border:2px solid transparent;transition:border-color .3s,transform .4s var(--ease-soft)}
+.atlas-node.vendor_official::before{border-color:rgba(52,211,153,.4)}
+.atlas-node.community::before{border-color:rgba(139,92,246,.38)}
+.atlas-node.none::before,.atlas-node.unknown::before,.atlas-node.pending::before{border-color:rgba(148,160,190,.25)}
+.atlas-node:hover{filter:brightness(1.15);z-index:5}
+.atlas-node:hover::before{transform:scale(1.22);border-color:rgba(34,211,238,.65)}
+.atlas-node:hover .applogo{box-shadow:0 0 30px rgba(34,211,238,.35),0 16px 34px rgba(0,0,0,.5)}
+.atlas-tip{position:absolute;z-index:9;min-width:230px;max-width:280px;padding:13px 15px;border-radius:14px;
+  border:1px solid var(--line2);background:linear-gradient(170deg,rgba(19,26,42,.96),rgba(8,12,20,.97));
+  box-shadow:0 24px 60px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.08);
+  opacity:0;transform:translateY(6px) scale(.97);transition:opacity .22s var(--ease-soft),transform .28s var(--ease-soft);
+  pointer-events:none}
+.atlas-tip.show{opacity:1;transform:translateY(0) scale(1)}
+.at-nm{display:flex;align-items:center;gap:11px}
+.at-nm .applogo{width:32px;height:32px}
+.at-nm b{font:700 14px var(--font-display);letter-spacing:-.015em;color:var(--t1)}
+.at-meta{display:flex;gap:10px;align-items:center;margin-top:9px;font-size:11.5px;color:var(--t3)}
+.at-figs{display:flex;flex-wrap:wrap;gap:6px 12px;margin-top:9px;padding-top:9px;border-top:1px solid var(--line);
+  font:600 10.5px var(--mono);color:var(--t2)}
+.atlas-legend{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;margin-top:12px;
+  font:600 11px var(--font);color:var(--t3)}
+.atlas-legend b{font:700 11.5px var(--mono);color:var(--t1)}
+.lg-dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:-1px}
+.lg-dot.o{background:#34D399;box-shadow:0 0 8px rgba(52,211,153,.6)}
+.lg-dot.c{background:#A78BFA;box-shadow:0 0 8px rgba(167,139,250,.55)}
+.lg-dot.n{background:rgba(148,160,190,.5)}
+
+/* ---------------- interactive pipeline: detail stage ---------------- */
+.how-rail::after{content:"";position:absolute;top:31px;left:6%;height:2px;border-radius:2px;z-index:1;
+  width:calc(var(--howp,5) / 5 * 88%);
+  background:linear-gradient(90deg,#7DEBFA,#8B7CF6);
+  box-shadow:0 0 16px rgba(34,211,238,.45);transition:width .5s var(--ease-soft)}
+.how-node{cursor:pointer}
+.how-node.active .hn-orb{border-color:rgba(34,211,238,.7);
+  box-shadow:0 12px 34px rgba(0,0,0,.5),0 0 34px rgba(34,211,238,.3),inset 0 1px 0 rgba(255,255,255,.2)}
+.how-node.active b{color:#9FF3FC}
+.how-detail{margin-top:20px;border-radius:16px;overflow:hidden}
+.how-detail .hd-in{display:flex;gap:16px;padding:18px 20px;border-radius:16px;
+  border:1px solid rgba(34,211,238,.3);
+  background:linear-gradient(165deg,rgba(34,211,238,.08),rgba(10,14,24,.85) 55%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 14px 34px rgba(0,0,0,.35)}
+.how-detail.pop .hd-in{animation:hdIn .45s var(--ease-soft) both}
+@keyframes hdIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.hd-n{flex:0 0 auto;width:38px;height:38px;border-radius:12px;display:grid;place-items:center;
+  font:800 14px var(--mono);color:#9FF3FC;
+  background:linear-gradient(160deg,rgba(34,211,238,.2),rgba(139,92,246,.12));
+  border:1px solid rgba(34,211,238,.4)}
+.hd-b b{font:700 15px var(--font-display);color:var(--t1);display:block;margin-bottom:5px}
+.hd-b p{margin:0;font-size:12.5px;line-height:1.7;color:var(--t2)}
+.hd-p{display:inline-block;margin-top:10px;font:600 10.5px var(--mono);letter-spacing:.06em;color:#7DEBFA;
+  background:rgba(34,211,238,.1);border:1px solid rgba(34,211,238,.3);border-radius:6px;padding:3px 8px}
+
+/* ---------------- compare window: the instrument assembles ---------------- */
+#modal.cmpwin .cmp3-pick{animation:howIn .5s var(--ease-soft) both}
+#modal.cmpwin .cmp3-view{animation:howIn .55s var(--ease-soft) .08s both}
+#modal.cmpwin .cmp3-mhead{animation:pvUp .45s var(--ease-soft) both}
+
+/* ============================================================================
+   MOBILE BUTTER PASS
+   Touch GPUs choke on backdrop-filter, giant blurs, paint-heavy keyframes and
+   layer explosions. Below the desktop breakpoint the experience keeps its
+   composition but loses every expensive effect - motion that communicates
+   stays, decoration goes.
+   ========================================================================== */
+@media(max-width:920px),(pointer:coarse){
+  /* 1. backdrop-filter: the #1 mobile jank source - gone */
+  .ins,.dive-card,.sig-compact,.comparebar,.drawer,.nav,.modal,.cmdk,.price-card.featured,
+  .snap-panel,.dropdown-menu,.toast,.atlas-tip,.howscene,.hq-item{
+    backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+  /* 2. pre-blurred gradient orbs instead of filter:blur(70px) layers */
+  .amb-deep .orb{filter:none!important;opacity:.26;transform:none!important}
+  .amb-deep .orb.o1,.amb-deep .orb.o2{animation:none!important}
+  /* 3. paint-heavy infinite animations: off on touch */
+  .snap-panel::before{animation:none;opacity:.25}
+  .sp-scan{display:none}
+  .hn-orb,.hn-orb::before{animation:none!important}
+  .how-node::after{display:none}
+  .book3d,.bs-orbit,.bs-halo,.bs-shadow,.bb-pages i,.bb-cover::after,.bb-ribbon{animation:none!important}
+  .book3d{transform:rotateY(-12deg) rotateX(4deg)}
+  .help-tt h1{animation:none!important}
+  .ms-gauge,.ms-gauge::before{animation:none!important}
+  .dw-head .logo-mark::before{animation:none}
+  .sig-head .led{animation:none}
+  .dw-foot:has(.led.live) .led{animation:none}
+  #prConstellation{display:none}
+  .nav .logo-mark::after{display:none}
+  /* 4. layer explosion control */
+  .pr-tilt,.pr3,.pr-rise,.pr-panel,.atlas-node{will-change:auto!important}
+  .pr-tilt{transform:none!important}
+  .how-detail .hd-in{animation:none!important}
+  /* 5. cheaper transitions: shorter shadows, no 3D depth on hover paths */
+  .applogo,.hq-n,.cb-chip,.cmpbtn,.iconbtn,.btn{transition-duration:.16s}
+  .atlas-node{transform:translate(-50%,-50%)}
+  .atlas-gridbg{transform:none;transition:none}
+}
+/* small screens: the vault scene and the how-copy reflow instead of overflow */
+@media(max-width:1100px){
+  .help-head{flex-wrap:wrap;gap:18px}
+  .book-scene{order:-1;width:220px;height:250px}
+  .book3d{width:100px;height:132px}
+  .bb-pages{width:82px}
+}
+@media(max-width:640px){
+  .book-scene{display:none}
+  .atlas-field{height:66vw;min-height:340px}
+  .atlas-tip{display:none}
+  .atlas-node:hover::before{transform:none}
 }

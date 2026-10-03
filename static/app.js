@@ -11,7 +11,7 @@
 
   const state = {
     snap: null, live: false, refreshing: false, firstRender: true,
-    view: "explorer", q: "", cat: "", status: "", grade: "",
+    view: "atlas", q: "", cat: "", status: "", grade: "",
     sortKey: "readiness", sortDir: -1, es: null, lastSnapPull: 0,
     cmdk: { open: false, idx: 0, items: [], query: "", registry: [], regQuery: "", regLoading: false },
     compare: [], recent: [], unread: 0, trendMetric: "official", sigFilter: "",
@@ -1100,8 +1100,9 @@
     const apps = state.snap.apps || [];
     $$("#viewTabs button").forEach(b => b.classList.toggle("active", b.dataset.view === state.view));
     syncDrawerView(); syncGradeChip();
-    $("#statusChips").style.display = state.view === "explorer" ? "" : "none";
-    if (state.view === "explorer") renderExplorer(apps);
+    $("#statusChips").style.display = (state.view === "explorer" || state.view === "atlas") ? "" : "none";
+    if (state.view === "atlas") renderAtlas(apps);
+    else if (state.view === "explorer") renderExplorer(apps);
     else if (state.view === "leaderboard") renderLeaderboard(apps);
     else renderOpportunities(apps);
     scanNums($("#viewContent")); scanBars($("#viewContent"));
@@ -1142,6 +1143,8 @@
     rows.sort((a, b) => { const x = val(a), y = val(b); return (x < y ? -1 : x > y ? 1 : 0) * dir; });
     $("#countHint").textContent = `${rows.length} / ${apps.length}`;
     const cols = [["name", "Application", ""], ["status", "MCP", ""], ["readiness", "Readiness", ""], ["tools", "Live tools", "right"], ["downloads", "Adoption", "right"], ["stars", "Repository", "right"], ["site", "Liveness", ""]];
+    const flipping = contentView === "explorer" && !!window.MotionFX;
+    if (flipping) MotionFX.record($("#viewContent"), "tr[data-id]");
     $("#viewContent").innerHTML = `<div class="tablewrap"><table class="grid"><thead><tr>${cols.map(c =>
       `<th data-sort="${c[0]}" class="${state.sortKey === c[0] ? "sorted" : ""}" style="${c[2] ? "text-align:right" : ""}">${c[1]}<span class="arw">${state.sortKey === c[0] ? (dir > 0 ? "▲" : "▼") : "▲"}</span></th>`).join("")}</tr></thead>
       <tbody>${rows.map((a, i) => {
@@ -1158,6 +1161,10 @@
           <td data-label="Repository" style="text-align:right">${gh}</td>
           <td data-label="Liveness">${siteHtml(a)}</td></tr>`;
       }).join("") || `<tr><td colspan="7"><div class="empty" style="padding:30px;text-align:center">No apps match those filters.</div></td></tr>`}</tbody></table></div>`;
+    if (flipping) {
+      const tb = $("#viewContent tbody");
+      if (tb) { tb.classList.add("flipq"); MotionFX.play($("#viewContent"), "tr[data-id]"); }
+    }
     contentView = "explorer";
     bindRows(); bindSort();
   }
@@ -1204,6 +1211,36 @@
     contentView = "opportunities";
     bindRows();
   }
+  /* ---------------- HOW-IT-WORKS: interactive stations ---------------- */
+  const HOW_STAGES = [
+    { t: "App enters", d: "A curated estate of 100 applications forms the tracked universe, and any app you search for can be fetched live on the spot. Each app is a record the pipeline keeps alive - never a static row in a table.", p: "state right now · 100 tracked applications" },
+    { t: "Registry match", d: "The official MCP registry is searched with the app's brand terms. Results are filtered to genuine brand mentions, then classified vendor-official only when the server's reverse-domain namespace resolves to the app's own domain - verified, never claimed.", p: "produces · MCP status + the server list" },
+    { t: "Live probe", d: "When a server publishes a remote endpoint, the pipeline performs a real MCP handshake: initialize, then tools/list. Open endpoints reveal their true tool counts; gated endpoints honestly report their auth wall instead of guessing.", p: "produces · live tool count / auth state" },
+    { t: "Evidence", d: "The server's repository is resolved through the GitHub API (stars, last commit, license, archived state) and its published packages through npm and PyPI (monthly downloads, latest version). Every figure links back to its source.", p: "produces · adoption + maintenance signals" },
+    { t: "Readiness", d: "All signals combine into a transparent weighted score: official MCP 28%, live capability 14%, adoption 16%, popularity 14%, maintenance 16%, availability 12%. Graded A-E, with the full component breakdown on every dossier.", p: "produces · 0-100 readiness + grade" },
+    { t: "Watched live", d: "Every refresh diffs against the previous cycle. Registry moves, tool changes and liveness flips stream to open dashboards within seconds, fire watched alerts, and land on the signal wire - this page is the pipeline's output.", p: "produces · the live signal wire" },
+  ];
+  let howBound = false;
+  function bindHow() {
+    const rail = document.querySelector(".how-rail"); if (!rail || howBound) return;
+    howBound = true;
+    const detail = document.getElementById("howDetail");
+    rail.style.setProperty("--howp", "5");
+    rail.addEventListener("click", (e) => {
+      const n = e.target.closest(".how-node");
+      if (!n) return;
+      const i = Math.max(0, Math.min(5, parseInt(n.style.getPropertyValue("--hn") || "0", 10)));
+      Array.prototype.forEach.call(rail.querySelectorAll(".how-node"), (x, xi) => x.classList.toggle("active", xi === i));
+      rail.style.setProperty("--howp", String(i + 1));
+      if (!detail) return;
+      const st = HOW_STAGES[i];
+      detail.hidden = false;
+      detail.innerHTML = "<div class=\"hd-in\"><span class=\"hd-n\">0" + (i + 1) + "</span><div class=\"hd-b\"><b>" + esc(st.t) + "</b><p>" + esc(st.d) + "</p><span class=\"hd-p\">" + esc(st.p) + "</span></div></div>";
+      detail.classList.remove("pop"); void detail.offsetWidth; detail.classList.add("pop");
+    });
+  }
+  bindHow();
+
   let cmdkBound = false;
   function bindCmdk() {
     if (cmdkBound) return; cmdkBound = true;
@@ -1213,15 +1250,103 @@
     res.addEventListener("mouseover", (e) => { const it = e.target.closest(".cmdk-item[data-i]"); if (it && +it.dataset.i !== state.cmdk.idx) select(it); });
   }
 
+  /* ---------------- ATLAS: the app intelligence field ----------------
+     The estate as a spatial field instead of rows: x = adoption (log scale),
+     y = readiness, node size = repository stars, ring = MCP status. The
+     camera parallaxes with the pointer; hovering opens a live preview; a
+     tap morphs the node into its dossier. */
+  let atlasBound = false;
+  function renderAtlas(apps) {
+    const list = apps.filter(match);
+    const sig = "atlas|" + list.map(rowSig).join(",") + "|" + state.compare.join(".") + "|" + state.sortKey + state.sortDir;
+    if (contentView === "atlas" && sigUnchanged("atlas", sig)) { bindAtlas(); return; }
+    $("#viewTitle").innerHTML = svg("bolt") + " Intelligence Atlas <span class=\"hint\" id=\"countHint\" style=\"margin-left:6px\">" + list.length + " / " + apps.length + " applications · position = adoption × readiness · tap a node</span>";
+    const val = (a) => Math.log10((dlOf(a) || 0) + 1);
+    const sorted = [...list].sort((x, y) => val(x) - val(y));
+    const xRank = new Map(sorted.map((a, i) => [a.app.id, sorted.length > 1 ? i / (sorted.length - 1) : .5]));
+    const counts = { vendor_official: 0, community: 0, none: 0 };
+    list.forEach(a => { if (a.mcp.status in counts) counts[a.mcp.status]++; });
+    const nodes = list.map((a, i) => {
+      /* deterministic jitter separates the dense zero-adoption cluster without
+         reshuffling between renders (same id -> same offset) */
+      const x = 7 + (xRank.get(a.app.id) ?? .5) * 86 + ((a.app.id * 41) % 9 - 4) * 0.9;
+      const y = 9 + (1 - (a.readiness.score || 0) / 100) * 82 + ((a.app.id * 23) % 7 - 3) * 1.5;
+      const stars = (a.github && a.github.stars) || 0;
+      const size = 30 + Math.min(26, Math.log10(stars + 1) * 6.5);
+      const depth = (4 + Math.log10(stars + 1) * 4.5).toFixed(1);
+      return "<button class=\"atlas-node " + esc(a.mcp.status) + "\" style=\"--x:" + x.toFixed(2) + "%;--y:" + y.toFixed(2) + "%;--s:" + size.toFixed(0) + "px;--d:" + depth + ";--i:" + Math.min(i, 26) + "\" data-id=\"" + a.app.id + "\" aria-label=\"" + esc(a.app.name) + "\">" + logoHtml(a) + "</button>";
+    }).join("");
+    $("#viewContent").innerHTML = "<div class=\"atlas-field\" id=\"atlasField\">" +
+      "<div class=\"atlas-gridbg\" aria-hidden=\"true\"></div>" +
+      "<div class=\"atlas-axis ax-y\" aria-hidden=\"true\"><span>readiness \u2191</span></div>" +
+      "<div class=\"atlas-axis ax-x\" aria-hidden=\"true\"><span>adoption \u2192</span></div>" +
+      "<div class=\"atlas-tip\" id=\"atlasTip\" hidden></div>" +
+      (nodes || "<div class=\"empty\" style=\"position:absolute;inset:0;display:grid;place-items:center\">No apps match those filters.</div>") +
+      "</div>" +
+      "<div class=\"atlas-legend\">" +
+      "<span><i class=\"lg-dot o\"></i>Official <b>" + counts.vendor_official + "</b></span>" +
+      "<span><i class=\"lg-dot c\"></i>Community <b>" + counts.community + "</b></span>" +
+      "<span><i class=\"lg-dot n\"></i>None <b>" + counts.none + "</b></span>" +
+      "<span class=\"hint\">node size = repo stars · hover for the live record</span>" +
+      "</div>";
+    contentView = "atlas";
+    bindAtlas();
+  }
+  function bindAtlas() {
+    const f = $("#atlasField"); if (!f || atlasBound) return;
+    atlasBound = true;
+    let raf = 0;
+    f.addEventListener("pointermove", (e) => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        const r = f.getBoundingClientRect();
+        f.style.setProperty("--mx", ((e.clientX - r.left) / r.width - .5).toFixed(3));
+        f.style.setProperty("--my", ((e.clientY - r.top) / r.height - .5).toFixed(3));
+      });
+    }, { passive: true });
+    f.addEventListener("pointerleave", () => { f.style.setProperty("--mx", 0); f.style.setProperty("--my", 0); const t = $("#atlasTip"); if (t) { t.hidden = true; t.classList.remove("show"); } });
+    f.addEventListener("pointerover", (e) => {
+      const n = e.target.closest("[data-id]"); const t = $("#atlasTip");
+      if (!t) return;
+      if (!n) { t.hidden = true; t.classList.remove("show"); return; }
+      const a = (state.snap.apps || []).find(x => x.app.id === +n.dataset.id);
+      if (!a) return;
+      const gh = a.github || {};
+      t.innerHTML = "<div class=\"at-nm\">" + logoHtml(a) + "<b>" + esc(a.app.name) + "</b></div>" +
+        "<div class=\"at-meta\"><span class=\"grade " + esc(a.readiness.grade) + "\">" + esc(a.readiness.grade) + " · " + a.readiness.score + "</span><span>" + esc(a.app.category) + "</span></div>" +
+        "<div class=\"at-figs\"><span>" + (STATUS_LABEL[a.mcp.status] || "") + "</span><span>" + (a.tools_count ? a.tools_count + " tools" : "no live tools") + "</span><span>" + (gh.stars ? fmtNum(gh.stars) + " stars" : "-") + "</span><span>" + (dlOf(a) ? fmtNum(dlOf(a)) + "/mo" : "-") + "</span></div>";
+      const fr = f.getBoundingClientRect(), nr = n.getBoundingClientRect();
+      let tx = nr.left - fr.left + nr.width / 2, ty = nr.top - fr.top - 8;
+      t.hidden = false;
+      const tw = t.offsetWidth;
+      tx = Math.max(12, Math.min(fr.width - tw - 12, tx - tw / 2));
+      t.style.left = tx + "px"; t.style.top = Math.max(8, ty - t.offsetHeight) + "px";
+      t.classList.add("show");
+    });
+    f.addEventListener("click", (e) => { const n = e.target.closest("[data-id]"); if (n) openModal(+n.dataset.id, n); });
+  }
+
   let rowsBound = false;
   function bindRows() {
     if (rowsBound) return;
     rowsBound = true;
     $("#viewContent").addEventListener("click", (e) => {
       const cmp = e.target.closest("[data-cmp]");
-      if (cmp) { e.stopPropagation(); toggleCompare(+cmp.dataset.cmp); return; }
+      if (cmp) {
+        e.stopPropagation();
+        const id = +cmp.dataset.cmp;
+        const adding = !state.compare.includes(id);
+        const srcLogo = cmp.closest("tr") ? cmp.closest("tr").querySelector(".applogo") : null;
+        toggleCompare(id);
+        if (adding && srcLogo && window.MotionFX) {
+          const dock = $("#compareBar");
+          if (dock) MotionFX.fly(srcLogo, dock, { html: srcLogo.outerHTML, dur: 640 });
+        }
+        return;
+      }
       const row = e.target.closest("[data-id]");
-      if (row) openModal(+row.dataset.id);
+      if (row) openModal(+row.dataset.id, row);
     });
   }
   function bindSort() { $$("table.grid th[data-sort]").forEach(th => th.addEventListener("click", () => { const k = th.dataset.sort; if (state.sortKey === k) state.sortDir *= -1; else { state.sortKey = k; state.sortDir = k === "name" ? 1 : -1; } renderView(); })); }
@@ -1264,7 +1389,7 @@
   async function loadActivity() { if (!state.live) return; try { const r = await fetch("/api/activity?limit=22", { cache: "no-store" }); const d = sanitizeDashes(await r.json()); (d.events || []).slice().reverse().forEach(pushEvent); } catch (e) {} }
 
   /* ---------------- modal ---------------- */
-  function openModal(id) { const a = (state.snap.apps || []).find(x => x.app.id === id); if (a) openModalData(a, { pinned: true }); }
+  function openModal(id, srcEl) { const a = (state.snap.apps || []).find(x => x.app.id === id); if (a) openModalData(a, { pinned: true, src: srcEl }); }
   function openModalData(a, opts = {}) {
     closeCommCard();
     const pinned = opts.pinned !== false;
@@ -1386,6 +1511,12 @@
         </div>` : ""}
       </div>`;
     $("#modal").classList.remove("cmpwin"); $("#modal").classList.add("open"); $("#backdrop").classList.add("open"); lockWindowScroll("modal");
+    /* shared-element handoff: the tapped logo physically becomes the dossier's */
+    if (opts.src && window.MotionFX) {
+      const sLogo = opts.src.querySelector ? opts.src.querySelector(".applogo") : null;
+      const dLogo = $("#modal .applogo.lg");
+      if (sLogo && dLogo) MotionFX.fly(sLogo, dLogo, { html: sLogo.outerHTML });
+    }
     const sbn = $("#modal .sb-num"); if (sbn) countUp(sbn, r.score || 0, v => String(v));
     if (pinned) pushRecent({ name: a.app.name, id: a.app.id, domain: hostname(a.app.website || "") });
     $("#closeModal").onclick = closeModal;

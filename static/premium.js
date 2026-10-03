@@ -107,7 +107,8 @@
    * tab is hidden, drawn once statically for touch/reduced-motion users.
    */
   function initConstellation() {
-    if (reduced) return;                       // motion-safety: nothing at all
+    /* phones and small viewports: the layer is decoration - skip it entirely */
+    if (reduced || coarse || window.innerWidth < 700) return;
     const existing = document.getElementById("prConstellation");
     if (existing) return;
     const canvas = document.createElement("canvas");
