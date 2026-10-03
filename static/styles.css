@@ -5014,3 +5014,93 @@ html[data-theme="dark"] .ambient{background:
   #chart .ct-area,#chart .ct-dot{opacity:1!important;animation:none!important}
   .sp-scan{display:none}
 }
+
+/* ============================================================================
+   v52 - ATLAS CLUSTERS, METRIC-FIRST STRIP, COLORED GATES, SEGMENT POLISH
+   ========================================================================== */
+
+/* ---------------- atlas: cluster grid, touch-friendly, alive ---------------- */
+.atlas-field,.atlas-node{touch-action:pan-y}
+.atlas-node{position:absolute;transform:translate(-50%,-50%) translate3d(calc(var(--mx,0)*var(--d)*1px),calc(var(--my,0)*var(--d)*1px),0)}
+.atlas-node.hot{z-index:4}
+.at-tag{position:absolute;top:calc(100% + 7px);left:50%;transform:translateX(-50%);
+  font:600 9.5px var(--mono);letter-spacing:.04em;color:#C7D2FF;white-space:nowrap;
+  background:rgba(6,9,15,.82);border:1px solid rgba(139,157,255,.3);border-radius:6px;
+  padding:2px 7px;pointer-events:none;max-width:130px;overflow:hidden;text-overflow:ellipsis}
+.atlas-node:hover .at-tag{color:#fff;border-color:rgba(139,157,255,.6)}
+@media(max-width:1250px){.at-tag{display:none}}
+/* tighter, rounder nodes: the cluster reads as a constellation, not tiles */
+.atlas-node .applogo{border-radius:50%!important}
+@media(max-width:920px),(pointer:coarse){
+  .atlas-node{--s:26px!important}
+  .at-tag{display:none}
+}
+
+/* ---------------- insight strip: the metric is the hero ---------------- */
+.insight-strip .ins{display:flex;flex-direction:column;align-items:flex-start;gap:7px;padding:22px 26px 20px}
+.insight-strip .ins-l{font:650 10px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--t3)}
+.insight-strip .ins-v{font-size:44px;font-weight:600;line-height:1;letter-spacing:-.03em}
+.insight-strip .ins-v::after{content:"";display:block;width:34px;height:2px;border-radius:2px;margin-top:10px;
+  background:linear-gradient(90deg,var(--acc),transparent)}
+.ins-a .ins-v::after{background:linear-gradient(90deg,#34D399,transparent)}
+.ins-b .ins-v::after{background:linear-gradient(90deg,#8B9DFF,transparent)}
+.ins-c .ins-v::after{background:linear-gradient(90deg,#FBBF24,transparent)}
+.ins-a .ins-v{color:#34D399}.ins-b .ins-v{color:#A5B4FC}.ins-c .ins-v{color:#FBBF24}
+.ins-cat{display:inline-flex;align-items:center;gap:8px;max-width:100%;margin-top:4px;
+  font:650 12px var(--font);color:var(--t1);
+  border:1px solid var(--line2);border-radius:99px;padding:5px 12px;
+  background:linear-gradient(165deg,var(--s3),var(--s1));
+  transition:border-color .25s,transform .35s var(--ease-soft)}
+.ins-cat i{font-style:normal;color:var(--acc);transition:transform .3s var(--spring)}
+.ins:hover .ins-cat{border-color:rgba(139,157,255,.5);transform:translateY(-1px)}
+.ins:hover .ins-cat i{transform:translateX(4px)}
+.ins-s{font-size:11.5px;line-height:1.55;color:var(--t3)}
+.ins-n{top:16px;right:18px;-webkit-text-stroke-color:rgba(148,180,255,.12)}
+@media(max-width:920px){.insight-strip .ins-v{font-size:36px}}
+
+/* ---------------- coverage segments: gaps + caps + better palette ---------------- */
+.bar-track{gap:2px;background:transparent;box-shadow:none}
+.bar-track i{border-radius:4px}
+.bar-track .o{background:linear-gradient(180deg,#3EE0A8,#1FA97C);box-shadow:0 0 10px rgba(52,211,153,.28)}
+.bar-track .c{background:linear-gradient(180deg,#9DADFF,#7C8FEF);box-shadow:0 0 10px rgba(139,157,255,.26)}
+.bar-track .n{background:repeating-linear-gradient(135deg,rgba(148,160,190,.34) 0 4px,rgba(148,160,190,.16) 4px 8px);
+  box-shadow:none}
+.bar-track{background:rgba(148,180,255,.07);border-radius:7px;padding:2px}
+/* grade bars keep their single-color fill but gain the same polish */
+.glink .bar-track i{border-radius:5px;box-shadow:0 0 12px rgba(139,157,255,.18)}
+
+/* ---------------- deep dives: color identity per gate ---------------- */
+.dive-card{cursor:pointer}
+.dive-card::after{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:0 3px 3px 0;
+  background:linear-gradient(180deg,#8B9DFF,#B49CFF);opacity:.8;transition:opacity .3s,width .3s}
+.dive-card:hover::after{width:4px;opacity:1}
+.dive-card:nth-child(2)::after{background:linear-gradient(180deg,#B49CFF,#7C6AE8)}
+.dv-k.k-a{color:#A5B4FC}.dv-k.k-b{color:#C3AEFF}
+.dv-core b{color:#F6F8FF;font-size:25px}
+.dv-d{color:var(--t2);font-size:13px;line-height:1.7}
+.dv-meta{color:var(--t3)}
+.dv-meta b{color:#C7D2FF;font-weight:700}
+.dive-card:nth-child(1) .dv-ic{color:#C7D2FF;background:linear-gradient(160deg,rgba(139,157,255,.22),rgba(139,157,255,.06))}
+.dive-card:nth-child(2) .dv-ic{color:#D8C8FF;background:linear-gradient(160deg,rgba(180,156,255,.22),rgba(180,156,255,.06))}
+.dive-card:nth-child(1):hover .dv-ic{box-shadow:0 10px 30px rgba(0,0,0,.4),0 0 30px rgba(139,157,255,.3)}
+.dive-card:nth-child(2):hover .dv-ic{box-shadow:0 10px 30px rgba(0,0,0,.4),0 0 30px rgba(180,156,255,.3)}
+.dv-motif svg *{stroke-width:2}
+.dive-card:nth-child(1) .dv-motif svg *{stroke:#93A5FF}
+.dive-card:nth-child(2) .dv-motif svg *{stroke:#B49CFF}
+[data-theme="light"] .dive-card::after{opacity:.9}
+
+/* ---------------- trend: the reveal lands ~1.6s, fires on partial view ---- */
+#chart.drawn .ct-line{animation:ctDraw 1.6s cubic-bezier(.25,.7,.3,1) forwards}
+#chart.drawn.instant .ct-line{animation-duration:.35s}
+#chart.drawn .ct-area{animation:ctFadeIn .8s .45s var(--ease-soft) both}
+#chart.drawn.instant .ct-area{animation-duration:.2s;animation-delay:0s}
+#chart.drawn .ct-dot{animation:ctFadeIn .4s both;animation-delay:calc(.75s + var(--di,0)*11ms)}
+#chart.drawn.instant .ct-dot{animation-duration:.12s;animation-delay:calc(var(--di,0)*2ms)}
+#chart.drawn .ct-single{animation:ctFadeIn .4s 1.3s both}
+#chart .ct-line{stroke-width:2.4px}
+
+@media(prefers-reduced-motion:reduce){
+  #chart.drawn .ct-line{animation:none;stroke-dashoffset:0!important}
+  #chart .ct-area,#chart .ct-dot,#chart .ct-single{opacity:1!important;animation:none!important}
+  .atlas-node.hot::after{animation:none;opacity:.4}
+}

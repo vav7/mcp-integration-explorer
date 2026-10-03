@@ -505,13 +505,16 @@
     const most = entries.reduce((a, b) => cov(b) > cov(a) ? b : a);
     const least = entries.reduce((a, b) => cov(b) < cov(a) ? b : a);
     const ready = entries.reduce((a, b) => (b[1].avg_readiness || 0) > (a[1].avg_readiness || 0) ? b : a);
-    const cell = (l, v, sub, cat, i) => `<div class="ins${insDone ? "" : " ins-rev reveal"}" style="--i:${i}" data-cat="${esc(cat)}" role="link" tabindex="0" title="Filter the explorer to ${esc(cat)}">
+    /* metric-first: the figure is the hero, the category rides as a chip */
+    const cell = (l, metric, fmt, sub, cat, i, accent) => `<div class="ins${insDone ? "" : " ins-rev reveal"} ins-${accent}" style="--i:${i}" data-cat="${esc(cat)}" role="link" tabindex="0" title="Filter the explorer to ${esc(cat)}">
       <span class="ins-n" aria-hidden="true">0${i + 1}</span>
-      <span class="ins-rail" aria-hidden="true"></span>
-      <span class="ins-l">${l}</span><span class="ins-v">${esc(v)}</span><span class="ins-s">${sub}</span><span class="ins-go">Explore category <i>→</i></span></div>`;
-    el.innerHTML = cell("Most covered category", most[0], `${Math.round(cov(most) * 100)}% have an MCP server`, most[0], 0) +
-      cell("Highest readiness", ready[0], `avg score ${ready[1].avg_readiness ?? "-"}`, ready[0], 1) +
-      cell("Lowest coverage", least[0], `${Math.round(cov(least) * 100)}% have an MCP server`, least[0], 2);
+      <span class="ins-l">${l}</span>
+      <span class="ins-v" data-num="${metric}" data-fmt="${fmt}" data-nk="ins:${i}">-</span>
+      <span class="ins-cat">${esc(cat)}<i>→</i></span>
+      <span class="ins-s">${sub}</span></div>`;
+    el.innerHTML = cell("Most covered estate", Math.round(cov(most) * 100), "pct", "of this category has a live MCP server", most[0], 0, "a") +
+      cell("Highest readiness", Math.round((ready[1].avg_readiness || 0) * 10), "dec1", "average readiness score across its apps", ready[0], 1, "b") +
+      cell("Widest gap", Math.round(cov(least) * 100), "pct", "coverage here - the clearest build opportunity", least[0], 2, "c");
     bindInsCards(); observeReveal();
   }
   let insDone = false;
@@ -587,6 +590,8 @@
     setLive(state.live, s.refresh_running);
     setUnread(); renderAlerts(); renderCompareBar();
     scanNums(document);
+    const df1 = $("#dvFig1"); if (df1) df1.textContent = (s.history || []).length + "-point live history";
+    const df2 = $("#dvFig2"); if (df2) df2.textContent = "7 stages · 6 weighted signals";
     $("#updatedHint").textContent = "updated " + timeAgo(s.generated_at);
     $("#footTime").textContent = "Last snapshot " + (s.generated_at ? new Date(s.generated_at).toLocaleString() : "-");
     state.firstRender = false;
@@ -782,7 +787,7 @@
     if (!wrap._drawObs && "IntersectionObserver" in window) {
       wrap._drawObs = new IntersectionObserver((es) => { es.forEach(en => {
         if (en.isIntersecting) { wrap.classList.add("drawn"); wrap.dataset.drawn = "1"; wrap._drawObs.disconnect(); } });
-      }, { threshold: .3 });
+      }, { threshold: .15, rootMargin: "0px 0px -4% 0px" });
     }
     if (wrap.dataset.drawn === "1") wrap.classList.add("drawn", "instant");
     else wrap.classList.remove("instant");
@@ -1276,9 +1281,11 @@
 
   /* ---------------- ATLAS: the app intelligence field ----------------
      The estate as a spatial field instead of rows: x = adoption (log scale),
-     y = readiness, node size = repository stars, ring = MCP status. The
-     camera parallaxes with the pointer; hovering opens a live preview; a
-     tap morphs the node into its dossier. */
+     y = readiness. Positions snap to a magnetic bin grid and each bin
+     arranges its apps in a small spiral, so nodes can never overlap - on
+     any viewport. Node size = repository stars, ring = MCP status, the top
+     five pulse as live signals, and the legend isolates populations.
+     touch-action: pan-y keeps phone scrolling fluid over the field. */
   let atlasBound = false;
   function renderAtlas(apps) {
     const list = apps.filter(match);
@@ -1286,21 +1293,70 @@
     if (contentView === "atlas" && sigUnchanged("atlas", sig)) { bindAtlas(); return; }
     $("#viewTitle").innerHTML = svg("bolt") + " Intelligence Atlas <span class=\"hint\" id=\"countHint\" style=\"margin-left:6px\">" + list.length + " / " + apps.length + " applications · position = adoption × readiness · tap a node</span>";
     const val = (a) => Math.log10((dlOf(a) || 0) + 1);
-    const sorted = [...list].sort((x, y) => val(x) - val(y));
+    const sorted = [...list].sort((a, b) => val(a) - val(b));
     const xRank = new Map(sorted.map((a, i) => [a.app.id, sorted.length > 1 ? i / (sorted.length - 1) : .5]));
     const counts = { vendor_official: 0, community: 0, none: 0 };
     list.forEach(a => { if (a.mcp.status in counts) counts[a.mcp.status]++; });
     const hot = new Set([...list].sort((a, b) => (b.readiness.score || 0) - (a.readiness.score || 0)).slice(0, 5).map(a => a.app.id));
-    const nodes = list.map((a, i) => {
-      /* deterministic jitter separates the dense zero-adoption cluster without
-         reshuffling between renders (same id -> same offset) */
-      const x = 7 + (xRank.get(a.app.id) ?? .5) * 86 + ((a.app.id * 41) % 9 - 4) * 0.9;
-      const y = 9 + (1 - (a.readiness.score || 0) / 100) * 82 + ((a.app.id * 23) % 7 - 3) * 1.5;
+    /* Desktop: magnetic bins + hex-packed lattice slots (clusters, no overlap).
+       Phone: an exact 10x10 grid with ONE app per cell - zero overlap by
+       construction, and every node stays a clean tap target. */
+    const narrow = window.innerWidth < 700;
+    const pos = new Map();
+    if (narrow) {
+      const XB = 10, YB = 10, used = new Set();
+      list.forEach(a => {
+        const xr = xRank.get(a.app.id) ?? .5;
+        const xb0 = Math.min(XB - 1, Math.floor(xr * XB));
+        const yb0 = Math.min(YB - 1, Math.floor((1 - (a.readiness.score || 0) / 100) * YB));
+        let best = null, bd = 1e9;
+        for (let xb = 0; xb < XB; xb++) for (let yb = 0; yb < YB; yb++) {
+          const kk = xb + "_" + yb;
+          if (used.has(kk)) continue;
+          const d = Math.abs(xb - xb0) * 1.15 + Math.abs(yb - yb0);
+          if (d < bd) { bd = d; best = [xb, yb]; }
+        }
+        if (!best) best = [xb0, yb0];
+        used.add(best[0] + "_" + best[1]);
+        const stars = (a.github && a.github.stars) || 0;
+        pos.set(a.app.id, { x: (best[0] + .5) / XB * 100, y: (best[1] + .5) / YB * 100,
+          size: 17, depth: 4 + Math.min(5, Math.log10(stars + 1) * 2), hotTag: false });
+      });
+    } else {
+      const XB = 12, YB = 7, U = 37;
+      const SLOT = [[0,0],[1,0],[-1,0],[0,1],[0,-1],[1,-1],[-1,1],[1,1],[-1,-1],
+                    [2,0],[-2,0],[0,2],[0,-2],[2,-1],[-2,1],[2,1],[-2,-1],[1.5,1.5],[-1.5,-1.5]];
+      const bins = new Map();
+      list.forEach(a => {
+        const xr = xRank.get(a.app.id) ?? .5;
+        const xb = Math.min(XB - 1, Math.floor(xr * XB));
+        const yb = Math.min(YB - 1, Math.floor((1 - (a.readiness.score || 0) / 100) * YB));
+        const k = xb + "_" + yb;
+        if (!bins.has(k)) bins.set(k, []);
+        bins.get(k).push(a);
+      });
+      bins.forEach((arr, k) => {
+        const parts = k.split("_").map(Number);
+        const cx = (parts[0] + .5) / XB * 100, cy = (parts[1] + .5) / YB * 100;
+        arr.forEach((a, i) => {
+          const slot = SLOT[Math.min(i, SLOT.length - 1)];
+          const ox = slot[0] * U, oy = slot[1] * U * .8;
+          const stars = (a.github && a.github.stars) || 0;
+          let size = 26 + Math.min(12, Math.log10(stars + 1) * 4);
+          if (arr.length > 1) size = Math.min(size, U - 7);
+          pos.set(a.app.id, { x: Math.min(94, Math.max(6, cx)) + ox / 10.1, y: Math.min(92, Math.max(8, cy)) + oy / 5.4,
+            size, depth: 4 + Math.log10(stars + 1) * 4.5 });
+        });
+      });
+    }
+    let nodes = "";
+    list.forEach(a => {
+      const p = pos.get(a.app.id); if (!p) return;
       const stars = (a.github && a.github.stars) || 0;
-      const size = 30 + Math.min(26, Math.log10(stars + 1) * 6.5);
-      const depth = (4 + Math.log10(stars + 1) * 4.5).toFixed(1);
-      return "<button class=\"atlas-node " + esc(a.mcp.status) + (hot.has(a.app.id) ? " hot" : "") + "\" style=\"--x:" + x.toFixed(2) + "%;--y:" + y.toFixed(2) + "%;--s:" + size.toFixed(0) + "px;--d:" + depth + ";--i:" + Math.min(i, 26) + "\" data-id=\"" + a.app.id + "\" aria-label=\"" + esc(a.app.name) + "\">" + logoHtml(a) + "</button>";
-    }).join("");
+      const depth = p.depth.toFixed ? p.depth.toFixed(1) : p.depth;
+      const tag = (!narrow && hot.has(a.app.id)) ? "<span class=\"at-tag\">" + esc(a.app.name) + "</span>" : "";
+      nodes += "<button class=\"atlas-node " + esc(a.mcp.status) + (hot.has(a.app.id) ? " hot" : "") + "\" style=\"left:" + p.x.toFixed(2) + "%;top:" + p.y.toFixed(2) + "%;--s:" + Math.round(p.size) + "px;--d:" + depth + ";--i:" + Math.min(nodes.length / 90, 26) + "\" data-id=\"" + a.app.id + "\" aria-label=\"" + esc(a.app.name) + "\">" + logoHtml(a) + tag + "</button>";
+    });
     $("#viewContent").innerHTML = "<div class=\"atlas-field\" id=\"atlasField\">" +
       "<div class=\"atlas-gridbg\" aria-hidden=\"true\"></div>" +
       "<div class=\"atlas-axis ax-y\" aria-hidden=\"true\"><span>readiness \u2191</span></div>" +
@@ -1312,7 +1368,7 @@
       "<span data-dim=\"vendor_official\" role=\"button\" tabindex=\"0\"><i class=\"lg-dot o\"></i>Official <b>" + counts.vendor_official + "</b></span>" +
       "<span data-dim=\"community\" role=\"button\" tabindex=\"0\"><i class=\"lg-dot c\"></i>Community <b>" + counts.community + "</b></span>" +
       "<span data-dim=\"none\" role=\"button\" tabindex=\"0\"><i class=\"lg-dot n\"></i>None <b>" + counts.none + "</b></span>" +
-      "<span class=\"hint\">node size = repo stars · hover for the live record</span>" +
+      "<span class=\"hint\">node size = repo stars · ring = status · tap a node for the dossier</span>" +
       "</div>";
     Array.prototype.forEach.call(document.querySelectorAll("#viewContent .atlas-legend [data-dim]"), (ch) => {
       ch.onclick = () => {
@@ -1358,6 +1414,13 @@
     });
     f.addEventListener("click", (e) => { const n = e.target.closest("[data-id]"); if (n) openModal(+n.dataset.id, n); });
   }
+  /* crossing the phone/desktop boundary changes the layout algorithm:
+     re-render the atlas once when it flips */
+  let atlasNarrow = window.innerWidth < 700;
+  window.addEventListener("resize", debounce(() => {
+    const n = window.innerWidth < 700;
+    if (n !== atlasNarrow && state.view === "atlas") { atlasNarrow = n; renderView(); }
+  }, 220), { passive: true });
 
   let rowsBound = false;
   function bindRows() {
