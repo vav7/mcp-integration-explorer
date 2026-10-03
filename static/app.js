@@ -683,7 +683,7 @@
     if (sigUnchanged("gradebars", grades.map(g => counts[g]).join(",") + "|" + st.avg_readiness)) return;
     const max = Math.max(1, ...Object.values(counts));
     const desc = { A: "80-100 · ready now", B: "60-79 · strong", C: "40-59 · partial", D: "20-39 · early", E: "0-19 · minimal" };
-    const col = { A: "#34d399", B: "#5b8cff", C: "#fbbf24", D: "#ff8a4d", E: "#fb7185" };
+    const col = { A: "#34d399", B: "#93A5FF", C: "#fbbf24", D: "#ff8a4d", E: "#fb7185" };
     $("#gradebars").innerHTML = grades.map(g => `<div class="bar-row glink${state.grade === g ? " sel" : ""}" data-g="${g}" role="button" tabindex="0" title="Grade ${g}: ${counts[g]} apps · click to filter the explorer">
       <span class="br-l"><span class="grade ${g}">${g}</span>${desc[g]}</span><div class="bar-track"><i style="width:${counts[g] / max * 100}%;background:linear-gradient(90deg,${col[g]},${col[g]}d9)"></i></div><b class="br-v" data-num="${counts[g]}">${counts[g]}</b></div>`).join("");
     bindGradebars();
@@ -779,7 +779,7 @@
      and liveness checks. Nothing is estimated and nothing is hardcoded. */
   const COMP_META = [
     ["official_mcp", "Official MCP", "#34D399"],
-    ["capability", "Live capability", "#22D3EE"],
+    ["capability", "Live capability", "#8B9DFF"],
     ["adoption", "Adoption", "#A78BFA"],
     ["popularity", "Popularity", "#60A5FA"],
     ["maintenance", "Maintenance", "#FBBF24"],
@@ -840,7 +840,7 @@
     $("#sparkSupply").innerHTML = sparkSvg(hist, [
       { get: p => p.official, color: "#34D399" }, { get: p => p.community, color: "#A78BFA" }]);
     $("#sparkHealth").innerHTML = sparkSvg(hist, [
-      { get: p => p.tools, color: "#22D3EE" }, { get: p => p.responding, color: "#FBBF24" }]);
+      { get: p => p.tools, color: "#8B9DFF" }, { get: p => p.responding, color: "#FBBF24" }]);
     $("#sparkAdoption").innerHTML = sparkSvg(hist, [
       { get: p => p.downloads, color: "#5B8CFF" }, { get: p => p.stars, color: "#F59E0B" }]);
     scanNums($("#intelligenceView"));

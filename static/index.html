@@ -3,16 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="build" content="v47">
+<meta name="build" content="v48">
 <title>MCP Integration Explorer · integration intelligence</title>
 <meta name="description" content="Live, evidence-backed MCP / agent integration readiness across applications. Real registry data, endpoint probes, GitHub, package adoption and liveness, with every signal traceable to its source.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;450;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=optional" rel="stylesheet">
 <script>
   (function(){try{var t=localStorage.getItem('mcp_theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';}document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();
 </script>
-<link rel="stylesheet" href="/styles.css?v=47">
+<link rel="stylesheet" href="/styles.css?v=48">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%2310151C'/><rect x='.5' y='.5' width='31' height='31' rx='6.5' fill='none' stroke='%23253140'/><circle cx='10' cy='10' r='2.4' fill='none' stroke='%234F7FFF' stroke-width='1.6'/><circle cx='10' cy='22' r='2.4' fill='none' stroke='%234F7FFF' stroke-width='1.6'/><circle cx='22' cy='16' r='2.4' fill='none' stroke='%234F7FFF' stroke-width='1.6'/><path d='M12 11l8 4M12 21l8-4' stroke='%234F7FFF' stroke-width='1.6'/></svg>">
 </head>
 <body>
@@ -224,9 +225,9 @@
       <div class="sig-tabs" id="sigTabs">
         <span class="chipfilter active" data-sig="">All</span>
         <span class="chipfilter" data-sig="registry"><span class="cdot" style="background:var(--acc)"></span>Registry</span>
-        <span class="chipfilter" data-sig="endpoints"><span class="cdot" style="background:#22d3ee"></span>Endpoints</span>
+        <span class="chipfilter" data-sig="endpoints"><span class="cdot" style="background:#8B9DFF"></span>Endpoints</span>
         <span class="chipfilter" data-sig="liveness"><span class="cdot" style="background:var(--warn)"></span>Liveness</span>
-        <span class="chipfilter" data-sig="alerts"><span class="cdot" style="background:#a78bfa"></span>Alerts</span>
+        <span class="chipfilter" data-sig="alerts"><span class="cdot" style="background:#B49CFF"></span>Alerts</span>
       </div>
     </div>
     <div class="sig-compact reveal" data-replay>
@@ -349,7 +350,7 @@
       <button type="button" role="tab" data-ivpart="adoption" aria-selected="false">Adoption &amp; latency</button>
     </div>
     <div class="iv-partpane active" id="ivpSupply" role="tabpanel">
-<div class="iv-spark"><div class="ivs-h"><span>live wire · official vs community</span><span class="ivs-v"><i style="background:#34D399"></i><b id="spkOff">…</b><i style="background:#A78BFA"></i><b id="spkCom">…</b></span></div><div class="ivs-box" id="sparkSupply"></div></div>
+<div class="iv-spark"><div class="ivs-h"><span>live wire · official vs community</span><span class="ivs-v"><i style="background:#34D399"></i><b id="spkOff">…</b><i style="background:#B49CFF"></i><b id="spkCom">…</b></span></div><div class="ivs-box" id="sparkSupply"></div></div>
       <div class="an-grid an-2up g-supply" id="anGrid">
       <div class="an-card reveal" data-replay id="anScore" style="--i:0">
         <div class="an-h"><div><div class="an-k">Composition</div><h3>Where points come from</h3></div><span class="an-n" id="anNAvg" data-fmt="dec1">…</span></div>
@@ -362,7 +363,7 @@
       </div>
     </div>
     <div class="iv-partpane" id="ivpHealth" role="tabpanel" hidden>
-<div class="iv-spark"><div class="ivs-h"><span>live wire · tools vs responding sites</span><span class="ivs-v"><i style="background:#22D3EE"></i><b id="spkTools">…</b><i style="background:#FBBF24"></i><b id="spkResp">…</b></span></div><div class="ivs-box" id="sparkHealth"></div></div>
+<div class="iv-spark"><div class="ivs-h"><span>live wire · tools vs responding sites</span><span class="ivs-v"><i style="background:#8B9DFF"></i><b id="spkTools">…</b><i style="background:#FBBF24"></i><b id="spkResp">…</b></span></div><div class="ivs-box" id="sparkHealth"></div></div>
       <div class="an-grid an-2up g-health">
       <div class="an-card reveal" data-replay id="anFresh" style="--i:2">
         <div class="an-h"><div><div class="an-k">Maintenance</div><h3>Repository freshness</h3></div><span class="an-n" id="anNRepos">…</span></div>
@@ -413,7 +414,7 @@
         <circle id="msArc" cx="60" cy="60" r="50" fill="none" stroke="url(#msGrad)" stroke-width="9" stroke-linecap="round"
           stroke-dasharray="314.16" stroke-dashoffset="314.16" style="transition:stroke-dashoffset 1.1s var(--ease)"/>
         <defs><linearGradient id="msGrad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#5b8cff"/><stop offset=".55" stop-color="#8b5cf6"/><stop offset="1" stop-color="#22d3ee"/>
+          <stop offset="0" stop-color="#5b8cff"/><stop offset=".55" stop-color="#8b5cf6"/><stop offset="1" stop-color="#8B9DFF"/>
         </linearGradient></defs>
       </svg><div class="ms-v"><b id="msAvg" data-fmt="dec1">…</b><span>avg readiness</span></div></div>
       <div class="ms-facts">
@@ -880,8 +881,8 @@
 <!-- NOTE: data.snapshot.js (~2MB) is NOT loaded up front. The live API is the
      primary data source; the embedded snapshot is injected on demand only when
      the backend is unreachable, so a normal visit never parses it. -->
-<script src="/app.js?v=47"></script>
-<script src="/motion.js?v=47"></script>
-<script src="/premium.js?v=47"></script>
+<script src="/app.js?v=48"></script>
+<script src="/motion.js?v=48"></script>
+<script src="/premium.js?v=48"></script>
 </body>
 </html>

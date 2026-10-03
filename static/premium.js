@@ -258,6 +258,22 @@
     });
   }
 
+  /* ---------- 4c. section titles: 3D fold-in ---------- */
+  function bindSectFold() {
+    $$(".sect-head").forEach(el => {
+      if (el.classList.contains("pr3-sect")) return;
+      el.classList.add("pr3-sect");
+      const r = el.getBoundingClientRect();
+      if (r.top < (window.innerHeight || 800) && r.bottom > 0) el.classList.add("pr3-in");
+      else if ("IntersectionObserver" in window) {
+        const io = new IntersectionObserver((es) => {
+          es.forEach(x => { if (x.isIntersecting) { x.target.classList.add("pr3-in"); io.disconnect(); } });
+        }, { threshold: .2 });
+        io.observe(el);
+      } else el.classList.add("pr3-in");
+    });
+  }
+
   /* ---------- 4b. section fold-in: 3D perspective entrance on scroll ---------- */
   function bindFoldIn() {
     const sel = ".insight-grid > *, .cov-grid > *, .sig-compact, .meth-strip, .chart-wrap";
@@ -288,14 +304,21 @@
   function init() {
     heroEntrance();
     initConstellation();
-    bindTilt(); bindMagnetic(); bindOrbs(); bindFoldIn();
+    bindTilt(); bindMagnetic(); bindOrbs(); bindFoldIn(); bindSectFold();
     if (OK) {
       document.addEventListener("pointermove", onTiltMove, { passive: true });
       document.addEventListener("pointerout", onTiltLeave, { passive: true });
       if (orbs.length && !orbRaf) orbRaf = requestAnimationFrame(orbTick);
     }
-    /* new dashboard content (rendered rows, re-opened views) opts in late */
-    const mo = new MutationObserver(() => { bindTilt(); bindMagnetic(); bindFoldIn(); });
+    /* new dashboard content (rendered rows, re-opened views) opts in late.
+       rAF-debounced: render() mutates hundreds of nodes and a per-mutation
+       scan on a phone is real jank. */
+    let moQueued = false;
+    const mo = new MutationObserver(() => {
+      if (moQueued) return;
+      moQueued = true;
+      requestAnimationFrame(() => { moQueued = false; bindTilt(); bindMagnetic(); bindFoldIn(); bindSectFold(); });
+    });
     mo.observe(document.body, { childList: true, subtree: true });
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
