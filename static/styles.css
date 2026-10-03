@@ -4843,3 +4843,174 @@ html[data-theme="dark"] .ambient{background:
   transition:opacity .7s var(--ease-soft),transform .8s var(--ease-soft)}
 .pr3-sect.pr3-in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.pr3-sect{opacity:1!important;transform:none!important;transition:none}}
+
+/* ============================================================================
+   v49 - SECTION REDESIGNS: instrument bars, editorial strip, dive gates,
+   stock-chart reveal, creative scanner. The old skins are overridden, the
+   new composition is authoritative.
+   ========================================================================== */
+
+/* ---------------- Coverage & readiness: data instruments ---------------- */
+.insight-grid{gap:18px}
+.bars{display:flex;flex-direction:column;gap:9px;padding:4px 2px}
+#catbars .bar-row,#gradebars .bar-row,.bar-row{display:block;border:1px solid var(--line);border-radius:14px;padding:13px 16px 12px;
+  background:linear-gradient(170deg,rgba(19,26,42,.5),rgba(8,12,20,.72));cursor:pointer;
+  transition:border-color .2s,transform .3s var(--ease-soft),background .2s}
+.bar-row:hover{transform:translateY(-2px);border-color:rgba(139,157,255,.4)}
+.bar-row .br-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:9px}
+.bar-row .br-l{font:650 12.5px var(--font);color:var(--t1);letter-spacing:-.01em;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-row .br-v{font:600 17px var(--font-display);letter-spacing:-.02em;color:var(--t1)}
+.bar-row .br-sub{margin-top:8px;font:500 9.5px var(--mono);letter-spacing:.06em;color:var(--t4);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-track{height:9px;border-radius:6px;background:rgba(148,180,255,.09);overflow:hidden;display:flex;
+  box-shadow:inset 0 1px 2px rgba(0,0,0,.3)}
+.bar-track i{display:block;height:100%;transition:width .7s var(--ease-soft)}
+.bar-track .o{background:linear-gradient(90deg,#34D399,#2DD4A8)}
+.bar-track .c{background:linear-gradient(90deg,#8B9DFF,#B49CFF)}
+.bar-track .n{background:rgba(148,160,190,.25)}
+.glink.sel{border-color:rgba(139,157,255,.55);background:linear-gradient(170deg,rgba(139,157,255,.1),rgba(8,12,20,.75))}
+.glink .grade{font-family:var(--font-display);font-weight:600;margin-right:9px;font-size:13px}
+
+/* ---------------- the 3 boxes: one editorial instrument strip ---------------- */
+.insight-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);
+  border-radius:18px;overflow:hidden;position:relative;
+  background:linear-gradient(170deg,rgba(17,24,39,.55),rgba(7,10,18,.82));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 20px 50px rgba(0,0,0,.35)}
+.insight-strip::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;z-index:1;
+  background:linear-gradient(90deg,rgba(139,157,255,.65),rgba(180,156,255,.4) 45%,transparent 80%)}
+.ins{border:0!important;border-radius:0!important;box-shadow:none!important;
+  background:transparent!important;border-left:1px solid var(--line)!important;
+  padding:22px 24px 20px;transition:background .25s}
+.ins:first-child{border-left:0!important}
+.ins:hover{background:rgba(139,157,255,.055)!important}
+.ins::before{display:none}
+.ins-n{top:14px;right:16px;-webkit-text-stroke-color:rgba(148,180,255,.13)}
+.ins-v{font-size:27px;font-weight:600}
+.ins-rail{left:0;top:16px;bottom:16px;width:2px}
+.ins-go{margin-top:16px}
+[data-theme="light"] .insight-strip{background:#fff}
+[data-theme="light"] .ins:hover{background:rgba(139,157,255,.05)!important}
+
+/* ---------------- Go deeper: editorial gate cards ---------------- */
+.dive-grid{grid-template-columns:1fr 1fr;gap:16px}
+.dive-card{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 30px;align-items:stretch;
+  padding:26px 28px 22px;border-radius:20px;min-height:196px;position:relative;overflow:hidden;
+  background:linear-gradient(168deg,rgba(20,27,44,.62),rgba(7,10,18,.86));
+  border:1px solid var(--line);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 18px 44px rgba(0,0,0,.35)}
+.dive-card::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;
+  background:linear-gradient(90deg,rgba(139,157,255,.75),rgba(180,156,255,.45) 42%,transparent 82%);
+  opacity:.75;transition:opacity .3s,box-shadow .3s}
+.dive-card:hover{transform:translateY(-5px);border-color:rgba(139,157,255,.4);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 34px 74px rgba(0,0,0,.5),0 0 30px rgba(139,157,255,.12)}
+.dive-card:hover::before{opacity:1;box-shadow:0 0 18px rgba(139,157,255,.4)}
+.dive-card .dv-idx{position:absolute;top:-8px;right:16px;font:600 96px/1 var(--font-display);letter-spacing:-.04em;
+  color:transparent;-webkit-text-stroke:1px rgba(139,157,255,.16);pointer-events:none;
+  transition:-webkit-text-stroke-color .35s,transform .5s var(--ease-soft)}
+.dive-card:hover .dv-idx{-webkit-text-stroke-color:rgba(139,157,255,.42);transform:translateY(4px)}
+.dv-core{display:flex;flex-direction:column;gap:10px;min-width:0;position:relative;z-index:1}
+.dv-core b{font:600 23px/1.15 var(--font-display);letter-spacing:-.02em;color:var(--t1)}
+.dv-d{font-size:12.5px;line-height:1.65;color:var(--t3);max-width:56ch}
+.dv-meta{font:600 9.5px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--t4);margin-top:2px}
+.dv-k{font:650 10px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:#93A5FF}
+.dv-wing{display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;gap:20px;position:relative;z-index:1}
+.dv-ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;color:#C7D2FF;
+  background:linear-gradient(160deg,rgba(139,157,255,.18),rgba(180,156,255,.08));
+  border:1px solid rgba(139,157,255,.4);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 8px 22px rgba(0,0,0,.35);
+  transition:transform .5s var(--ease-soft),box-shadow .3s}
+.dive-card:hover .dv-ic{transform:translateZ(26px) scale(1.06);box-shadow:0 10px 28px rgba(0,0,0,.4),0 0 26px rgba(139,157,255,.25)}
+.dv-ic svg{width:21px;height:21px}
+.dv-motif{width:118px;opacity:.55;transition:opacity .3s}
+.dive-card:hover .dv-motif{opacity:1}
+.dv-motif svg{width:100%;height:auto}
+.dv-motif svg *{stroke:#93A5FF;stroke-dasharray:190}
+.dive-card:hover .dv-motif svg *{animation:drawLine 1.2s var(--ease-soft) forwards}
+.dv-go{align-self:end;justify-self:start;position:relative;z-index:1;display:inline-flex;align-items:center;gap:8px;
+  font:700 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:#93A5FF}
+.dv-go i{font-style:normal;transition:transform .3s var(--spring)}
+.dive-card:hover .dv-go i{transform:translateX(6px)}
+.dv-ring,.dv-shine{display:none}
+[data-theme="light"] .dive-card{background:#fff}
+[data-theme="light"] .dv-ic{color:#4F5FBF}
+[data-theme="light"] .dv-motif svg *{stroke:#4F5FBF}
+@media(max-width:960px){
+  .dive-grid{grid-template-columns:1fr}
+  .dive-card{grid-template-columns:1fr;min-height:0;gap:14px}
+  .dv-wing{flex-direction:row;align-items:center}
+  .dv-motif{display:none}
+  .dv-idx{font-size:64px;top:-4px;right:12px}
+}
+
+/* ---------------- trend: the stock-chart reveal ---------------- */
+#chart .ct-area{opacity:0}
+#chart.drawn .ct-area{animation:ctFadeIn .7s .32s var(--ease-soft) both}
+#chart.drawn.instant .ct-area{animation-duration:.15s;animation-delay:0s}
+@keyframes ctFadeIn{from{opacity:0}to{opacity:1}}
+#chart .ct-dot{opacity:0}
+#chart.drawn .ct-dot{animation:ctFadeIn .35s both;animation-delay:calc(.6s + var(--di,0)*9ms)}
+#chart.drawn.instant .ct-dot{animation-duration:.12s;animation-delay:calc(var(--di,0)*2ms)}
+#chart .ct-line{filter:drop-shadow(0 0 7px rgba(139,157,255,.4))}
+#chart.drawn .ct-line{animation:ctDraw 1.05s var(--ease-soft) forwards}
+#chart.drawn.instant .ct-line{animation-duration:.28s}
+@keyframes ctDraw{to{stroke-dashoffset:0}}
+#chart .ct-single{opacity:0}
+#chart.drawn .ct-single{animation:ctFadeIn .4s .9s both}
+
+/* ---------------- atlas: depth, hot signals, dimming ---------------- */
+.atlas-node .applogo{box-shadow:0 6px 16px rgba(0,0,0,.38)}
+.atlas-node::before{border-width:1.5px}
+.atlas-node.hot::after{content:"";position:absolute;inset:-7px;border-radius:50%;
+  border:1.5px solid rgba(139,157,255,.55);pointer-events:none;
+  animation:hotPulse 3.2s var(--ease-soft) infinite;animation-delay:calc(var(--i,0)*.15s)}
+@keyframes hotPulse{0%{transform:scale(.92);opacity:.9}70%{transform:scale(1.38);opacity:0}100%{opacity:0}}
+.atlas-field.hide-community .atlas-node.community,
+.atlas-field.hide-vendor_official .atlas-node.vendor_official,
+.atlas-field.hide-none .atlas-node.none,
+.atlas-field.hide-unknown .atlas-node.unknown,
+.atlas-field.hide-pending .atlas-node.pending{opacity:.09;filter:grayscale(1)}
+.atlas-legend [data-dim]{cursor:pointer;padding:4px 9px;border-radius:8px;border:1px solid transparent;
+  transition:border-color .2s,opacity .2s,background .2s;user-select:none}
+.atlas-legend [data-dim]:hover{border-color:var(--line);background:var(--s1)}
+.atlas-legend [data-dim].off{opacity:.38}
+.atlas-legend [data-dim].off b{text-decoration:line-through}
+
+/* ---------------- snapshot: scanner beam + HUD brackets ---------------- */
+.sp-scan{top:9px;bottom:9px;left:0;width:2px;height:auto;border-radius:2px;overflow:visible;
+  background:linear-gradient(180deg,transparent,rgba(165,180,255,.85) 28%,#C7D2FF 50%,rgba(165,180,255,.85) 72%,transparent);
+  box-shadow:0 0 14px rgba(139,157,255,.55);mix-blend-mode:normal;
+  animation:spScanX 6.4s ease-in-out infinite;opacity:0}
+@keyframes spScanX{0%{left:1.2%;opacity:0}10%{opacity:.55}50%{opacity:.3}90%{opacity:.55}100%{left:98.8%;opacity:0}}
+.snap-panel{--ckc:rgba(139,157,255,.42);background-image:
+  linear-gradient(var(--ckc),var(--ckc)),linear-gradient(var(--ckc),var(--ckc)),
+  linear-gradient(var(--ckc),var(--ckc)),linear-gradient(var(--ckc),var(--ckc)),
+  linear-gradient(var(--ckc),var(--ckc)),linear-gradient(var(--ckc),var(--ckc)),
+  linear-gradient(var(--ckc),var(--ckc)),linear-gradient(var(--ckc),var(--ckc));
+  background-repeat:no-repeat;
+  background-size:15px 1.5px,1.5px 15px,15px 1.5px,1.5px 15px,15px 1.5px,1.5px 15px,15px 1.5px,1.5px 15px;
+  background-position:8px 8px,8px 8px,calc(100% - 8px) 8px,calc(100% - 8px) 8px,
+    8px calc(100% - 8px),8px calc(100% - 8px),calc(100% - 8px) calc(100% - 8px),calc(100% - 8px) calc(100% - 8px)}
+
+/* ---------------- mobile: atlas de-lag + layout stack ---------------- */
+@media(max-width:920px),(pointer:coarse){
+  .atlas-node{animation:none!important}
+  .atlas-node .applogo{box-shadow:none!important;border-width:1px}
+  .atlas-node::before{border-width:1px}
+  .atlas-node.hot::after{animation:none;opacity:.45;inset:-5px}
+  .atlas-node:hover{filter:none}
+  .atlas-field{height:78vw;min-height:320px}
+  .atlas-gridbg{background-size:40px 40px}
+  .sp-scan{display:none}
+  .bar-row{padding:11px 13px 10px}
+  .ins{padding:18px 18px 16px}
+  .insight-strip{grid-template-columns:1fr}
+  .ins{border-left:0!important;border-top:1px solid var(--line)!important}
+  .ins:first-child{border-top:0!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .atlas-node.hot::after{animation:none;opacity:.4}
+  #chart.drawn .ct-line{animation:none;stroke-dashoffset:0!important}
+  #chart .ct-area,#chart .ct-dot{opacity:1!important;animation:none!important}
+  .sp-scan{display:none}
+}

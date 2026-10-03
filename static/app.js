@@ -663,7 +663,11 @@
     $("#catbars").innerHTML = Object.entries(bc).map(([cat, c]) => {
       const t = c.apps || 1, o = (c.vendor_official || 0) / t * 100, cm = (c.community || 0) / t * 100, n = 100 - o - cm;
       const covered = Math.round(o + cm);
-      return `<div class="bar-row cat-link" data-cat="${esc(cat)}" title="${c.vendor_official || 0} official · ${c.community || 0} community · ${c.none || 0} none · avg readiness ${c.avg_readiness ?? 0} · click to filter"><span class="br-l">${esc(cat)}</span><div class="bar-track"><i class="o" style="width:${o}%"></i><i class="c" style="width:${cm}%"></i><i class="n" style="width:${n}%"></i></div><b class="br-v" data-num="${covered}" data-fmt="pct" data-nk="covpct:${esc(cat)}">${covered}%</b></div>`;
+      return `<div class="bar-row cat-link" data-cat="${esc(cat)}" title="${c.vendor_official || 0} official · ${c.community || 0} community · ${c.none || 0} none · avg readiness ${c.avg_readiness ?? 0} · click to filter">
+        <div class="br-top"><span class="br-l">${esc(cat)}</span><b class="br-v" data-num="${covered}" data-fmt="pct" data-nk="covpct:${esc(cat)}">${covered}%</b></div>
+        <div class="bar-track"><i class="o" style="width:${o}%"></i><i class="c" style="width:${cm}%"></i><i class="n" style="width:${n}%"></i></div>
+        <div class="br-sub">${c.apps || 0} apps · ${c.vendor_official || 0} official · ${c.community || 0} community · ${c.none || 0} none · avg ${c.avg_readiness ?? "-"}</div>
+      </div>`;
     }).join("") || `<div class="empty">No data yet.</div>`;
     bindCatbars();
   }
@@ -685,7 +689,10 @@
     const desc = { A: "80-100 · ready now", B: "60-79 · strong", C: "40-59 · partial", D: "20-39 · early", E: "0-19 · minimal" };
     const col = { A: "#34d399", B: "#93A5FF", C: "#fbbf24", D: "#ff8a4d", E: "#fb7185" };
     $("#gradebars").innerHTML = grades.map(g => `<div class="bar-row glink${state.grade === g ? " sel" : ""}" data-g="${g}" role="button" tabindex="0" title="Grade ${g}: ${counts[g]} apps · click to filter the explorer">
-      <span class="br-l"><span class="grade ${g}">${g}</span>${desc[g]}</span><div class="bar-track"><i style="width:${counts[g] / max * 100}%;background:linear-gradient(90deg,${col[g]},${col[g]}d9)"></i></div><b class="br-v" data-num="${counts[g]}">${counts[g]}</b></div>`).join("");
+        <div class="br-top"><span class="br-l"><span class="grade ${g}">${g}</span>${desc[g]}</span><b class="br-v" data-num="${counts[g]}">${counts[g]}</b></div>
+        <div class="bar-track"><i style="width:${counts[g] / max * 100}%;background:linear-gradient(90deg,${col[g]},${col[g]}d9)"></i></div>
+        <div class="br-sub">${counts[g]} application${counts[g] === 1 ? "" : "s"} in this grade</div>
+      </div>`).join("");
     bindGradebars();
   }
   let gradebarsBound = false;
@@ -740,9 +747,13 @@
     const Y = v => pad.t + ih - ((v - mn) / ((mx - mn) || 1)) * ih;
     const fmtD = ts => { const d = new Date(ts); return d.toLocaleDateString([], { month: "short", day: "numeric" }) + " " + d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }); };
     let grid = "", ylab = "";
-    for (let g = 0; g <= 3; g++) { const v = mn + (mx - mn) * g / 3, yy = Y(v);
+    /* nice ticks: no more duplicated/rounded-off axis labels */
+    const niceStep = (x) => { const p = Math.pow(10, Math.floor(Math.log10(x || 1))); const n = x / p;
+      return (n <= 1 ? 1 : n <= 2 ? 2 : n <= 2.5 ? 2.5 : n <= 5 ? 5 : 10) * p; };
+    const step = niceStep((mx - mn) / 3 || 1);
+    for (let v = Math.ceil(mn / step) * step; v <= mx + step * 1e-6; v += step) { const yy = Y(v);
       grid += `<line class="ct-grid" x1="${pad.l}" y1="${yy.toFixed(1)}" x2="${pad.l + iw}" y2="${yy.toFixed(1)}"/>`;
-      ylab += `<text class="ct-lab val" x="${pad.l - 9}" y="${(yy + 3).toFixed(1)}" text-anchor="end">${M.fmt(v)}</text>`; }
+      ylab += `<text class="ct-lab val" x="${pad.l - 9}" y="${(yy + 3).toFixed(1)}" text-anchor="end">${M.fmt(Math.abs(v) < 1e-9 ? 0 : v)}</text>`; }
     let xlab = hist.length > 1
       ? `<text class="ct-lab" x="${pad.l}" y="${H - 9}">${fmtD(hist[0].ts)}</text><text class="ct-lab" x="${pad.l + iw}" y="${H - 9}" text-anchor="end">${fmtD(hist[hist.length - 1].ts)}</text>`
       : `<text class="ct-lab" x="${pad.l + iw / 2}" y="${H - 9}" text-anchor="middle">${fmtD(hist[0].ts)}</text>`;
@@ -752,7 +763,7 @@
       line = "M" + pts.map(p => p[0].toFixed(1) + " " + p[1].toFixed(1)).join(" L ");
       area = line + ` L ${pts[pts.length - 1][0].toFixed(1)} ${(pad.t + ih).toFixed(1)} L ${pts[0][0].toFixed(1)} ${(pad.t + ih).toFixed(1)} Z`;
     }
-    const dots = pts.map(p => `<circle class="ct-dot" cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="4"/>`).join("");
+    const dots = pts.map((p, i) => `<circle class="ct-dot" style="--di:${i}" cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="4"/>`).join("");
     const single = pts.length === 1 ? `<circle class="ct-single" cx="${pts[0][0].toFixed(1)}" cy="${pts[0][1].toFixed(1)}" r="6.5"/>` : "";
     const hitw = pts.length > 1 ? iw / (pts.length - 1) : iw;
     const hits = pts.map((p, i) => `<rect class="ct-hit" data-i="${i}" x="${(p[0] - hitw / 2).toFixed(1)}" y="${pad.t}" width="${hitw.toFixed(1)}" height="${ih}"/>`).join("");
@@ -763,6 +774,19 @@
         ${area ? `<path class="ct-area" d="${area}" fill="url(#ctgrad)"/>` : ""}
         ${line ? `<path class="ct-line" d="${line}"/>` : ""}${single}${dots}${hits}
       </svg><div class="chart-tip" id="chartTip"></div>`;
+    /* stock-chart reveal: the line draws left->right the first time the chart
+       scrolls into view; later re-renders (metric switches, live updates)
+       redraw near-instantly so it never feels slow */
+    const lineEl = wrap.querySelector(".ct-line");
+    if (lineEl) { try { const L = lineEl.getTotalLength(); lineEl.style.strokeDasharray = L.toFixed(0); lineEl.style.strokeDashoffset = L.toFixed(0); } catch (e) {} }
+    if (!wrap._drawObs && "IntersectionObserver" in window) {
+      wrap._drawObs = new IntersectionObserver((es) => { es.forEach(en => {
+        if (en.isIntersecting) { wrap.classList.add("drawn"); wrap.dataset.drawn = "1"; wrap._drawObs.disconnect(); } });
+      }, { threshold: .3 });
+    }
+    if (wrap.dataset.drawn === "1") wrap.classList.add("drawn", "instant");
+    else wrap.classList.remove("instant");
+    if (wrap._drawObs && wrap.dataset.drawn !== "1") { try { wrap._drawObs.observe(wrap); } catch (e) { wrap.classList.add("drawn", "instant"); } }
     const tip = $("#chartTip");
     $$("#chart .ct-hit").forEach(h => h.addEventListener("mousemove", () => {
       const i = +h.dataset.i, p = pts[i];
@@ -1266,6 +1290,7 @@
     const xRank = new Map(sorted.map((a, i) => [a.app.id, sorted.length > 1 ? i / (sorted.length - 1) : .5]));
     const counts = { vendor_official: 0, community: 0, none: 0 };
     list.forEach(a => { if (a.mcp.status in counts) counts[a.mcp.status]++; });
+    const hot = new Set([...list].sort((a, b) => (b.readiness.score || 0) - (a.readiness.score || 0)).slice(0, 5).map(a => a.app.id));
     const nodes = list.map((a, i) => {
       /* deterministic jitter separates the dense zero-adoption cluster without
          reshuffling between renders (same id -> same offset) */
@@ -1274,7 +1299,7 @@
       const stars = (a.github && a.github.stars) || 0;
       const size = 30 + Math.min(26, Math.log10(stars + 1) * 6.5);
       const depth = (4 + Math.log10(stars + 1) * 4.5).toFixed(1);
-      return "<button class=\"atlas-node " + esc(a.mcp.status) + "\" style=\"--x:" + x.toFixed(2) + "%;--y:" + y.toFixed(2) + "%;--s:" + size.toFixed(0) + "px;--d:" + depth + ";--i:" + Math.min(i, 26) + "\" data-id=\"" + a.app.id + "\" aria-label=\"" + esc(a.app.name) + "\">" + logoHtml(a) + "</button>";
+      return "<button class=\"atlas-node " + esc(a.mcp.status) + (hot.has(a.app.id) ? " hot" : "") + "\" style=\"--x:" + x.toFixed(2) + "%;--y:" + y.toFixed(2) + "%;--s:" + size.toFixed(0) + "px;--d:" + depth + ";--i:" + Math.min(i, 26) + "\" data-id=\"" + a.app.id + "\" aria-label=\"" + esc(a.app.name) + "\">" + logoHtml(a) + "</button>";
     }).join("");
     $("#viewContent").innerHTML = "<div class=\"atlas-field\" id=\"atlasField\">" +
       "<div class=\"atlas-gridbg\" aria-hidden=\"true\"></div>" +
@@ -1284,11 +1309,18 @@
       (nodes || "<div class=\"empty\" style=\"position:absolute;inset:0;display:grid;place-items:center\">No apps match those filters.</div>") +
       "</div>" +
       "<div class=\"atlas-legend\">" +
-      "<span><i class=\"lg-dot o\"></i>Official <b>" + counts.vendor_official + "</b></span>" +
-      "<span><i class=\"lg-dot c\"></i>Community <b>" + counts.community + "</b></span>" +
-      "<span><i class=\"lg-dot n\"></i>None <b>" + counts.none + "</b></span>" +
+      "<span data-dim=\"vendor_official\" role=\"button\" tabindex=\"0\"><i class=\"lg-dot o\"></i>Official <b>" + counts.vendor_official + "</b></span>" +
+      "<span data-dim=\"community\" role=\"button\" tabindex=\"0\"><i class=\"lg-dot c\"></i>Community <b>" + counts.community + "</b></span>" +
+      "<span data-dim=\"none\" role=\"button\" tabindex=\"0\"><i class=\"lg-dot n\"></i>None <b>" + counts.none + "</b></span>" +
       "<span class=\"hint\">node size = repo stars · hover for the live record</span>" +
       "</div>";
+    Array.prototype.forEach.call(document.querySelectorAll("#viewContent .atlas-legend [data-dim]"), (ch) => {
+      ch.onclick = () => {
+        const fld = $("#atlasField"); if (!fld) return;
+        fld.classList.toggle("hide-" + ch.dataset.dim);
+        ch.classList.toggle("off");
+      };
+    });
     contentView = "atlas";
     bindAtlas();
   }

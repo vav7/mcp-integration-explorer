@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="build" content="v48">
+<meta name="build" content="v51">
 <title>MCP Integration Explorer · integration intelligence</title>
 <meta name="description" content="Live, evidence-backed MCP / agent integration readiness across applications. Real registry data, endpoint probes, GitHub, package adoption and liveness, with every signal traceable to its source.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +13,7 @@
 <script>
   (function(){try{var t=localStorage.getItem('mcp_theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';}document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();
 </script>
-<link rel="stylesheet" href="/styles.css?v=48">
+<link rel="stylesheet" href="/styles.css?v=51">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%2310151C'/><rect x='.5' y='.5' width='31' height='31' rx='6.5' fill='none' stroke='%23253140'/><circle cx='10' cy='10' r='2.4' fill='none' stroke='%234F7FFF' stroke-width='1.6'/><circle cx='10' cy='22' r='2.4' fill='none' stroke='%234F7FFF' stroke-width='1.6'/><circle cx='22' cy='16' r='2.4' fill='none' stroke='%234F7FFF' stroke-width='1.6'/><path d='M12 11l8 4M12 21l8-4' stroke='%234F7FFF' stroke-width='1.6'/></svg>">
 </head>
 <body>
@@ -245,27 +245,31 @@
     <div class="dive-grid">
       <button class="dive-card reveal" type="button" data-replay data-openview="intelligence" style="--i:0">
         <span class="dv-idx" aria-hidden="true">01</span>
-        <span class="dv-ring" aria-hidden="true"></span>
-        <span class="dv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5m0 14h16"/><path d="M8 15l3-4 2.5 2L20 7"/></svg></span>
-        <span class="dv-k">Landscape analytics</span>
-        <b>The market, measured</b>
-        <span class="dv-d">Five instruments in their own parts - where points come from, who ships the server, repository freshness, the adoption map and probe truth - each with a live wire over the refresh history.</span>
-        <span class="dv-meta">5 instruments · 3 live wires · cross-filters the explorer</span>
-        <span class="dv-motif" aria-hidden="true"><svg viewBox="0 0 96 26" fill="none"><rect x="0" y="14" width="10" height="12" rx="2"/><rect x="14" y="8" width="10" height="18" rx="2"/><rect x="28" y="17" width="10" height="9" rx="2"/><rect x="42" y="4" width="10" height="22" rx="2"/><path d="M60 18l10-8 8 5 12-11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="dv-core">
+          <span class="dv-k">Landscape analytics</span>
+          <b>The market, measured</b>
+          <span class="dv-d">Five instruments in their own parts - where points come from, who ships the server, repository freshness, the adoption map and probe truth - each with a live wire over the refresh history.</span>
+          <span class="dv-meta">5 instruments · 3 live wires · cross-filters the explorer</span>
+        </span>
+        <span class="dv-wing" aria-hidden="true">
+          <span class="dv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5m0 14h16"/><path d="M8 15l3-4 2.5 2L20 7"/></svg></span>
+          <span class="dv-motif"><svg viewBox="0 0 96 26" fill="none"><rect x="0" y="14" width="10" height="12" rx="2"/><rect x="14" y="8" width="10" height="18" rx="2"/><rect x="28" y="17" width="10" height="9" rx="2"/><rect x="42" y="4" width="10" height="22" rx="2"/><path d="M60 18l10-8 8 5 12-11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </span>
         <span class="dv-go">Open view <i aria-hidden="true">→</i></span>
-        <span class="dv-shine" aria-hidden="true"></span>
       </button>
       <button class="dive-card reveal" type="button" data-replay data-openview="methodology" style="--i:1">
         <span class="dv-idx" aria-hidden="true">02</span>
-        <span class="dv-ring" aria-hidden="true"></span>
-        <span class="dv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.4"/><circle cx="6" cy="18" r="2.4"/><circle cx="18" cy="12" r="2.4"/><path d="M8.4 7.2l7.2 3.6M8.4 16.8l7.2-3.6"/></svg></span>
-        <span class="dv-k">Methodology</span>
-        <b>How every signal is produced</b>
-        <span class="dv-d">The seven-stage evidence pipeline as live, expandable stages: each one shows the figure it produced from the current snapshot and the source it came from. Nothing inferred, nothing invented.</span>
-        <span class="dv-meta">7 stages · live figures · sources linked</span>
-        <span class="dv-motif" aria-hidden="true"><svg viewBox="0 0 96 26" fill="none"><circle cx="8" cy="13" r="4"/><circle cx="34" cy="13" r="4"/><circle cx="60" cy="13" r="4"/><circle cx="86" cy="13" r="4"/><path d="M12 13h18M38 13h18M64 13h18" stroke-width="2" stroke-linecap="round"/></svg></span>
+        <span class="dv-core">
+          <span class="dv-k">Methodology</span>
+          <b>How every signal is produced</b>
+          <span class="dv-d">The seven-stage evidence pipeline as live, expandable stages: each one shows the figure it produced from the current snapshot and the source it came from. Nothing inferred, nothing invented.</span>
+          <span class="dv-meta">7 stages · live figures · sources linked</span>
+        </span>
+        <span class="dv-wing" aria-hidden="true">
+          <span class="dv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.4"/><circle cx="6" cy="18" r="2.4"/><circle cx="18" cy="12" r="2.4"/><path d="M8.4 7.2l7.2 3.6M8.4 16.8l7.2-3.6"/></svg></span>
+          <span class="dv-motif"><svg viewBox="0 0 96 26" fill="none"><circle cx="8" cy="13" r="4"/><circle cx="34" cy="13" r="4"/><circle cx="60" cy="13" r="4"/><circle cx="86" cy="13" r="4"/><path d="M12 13h18M38 13h18M64 13h18" stroke-width="2" stroke-linecap="round"/></svg></span>
+        </span>
         <span class="dv-go">Open view <i aria-hidden="true">→</i></span>
-        <span class="dv-shine" aria-hidden="true"></span>
       </button>
     </div>
   </section>
@@ -881,8 +885,8 @@
 <!-- NOTE: data.snapshot.js (~2MB) is NOT loaded up front. The live API is the
      primary data source; the embedded snapshot is injected on demand only when
      the backend is unreachable, so a normal visit never parses it. -->
-<script src="/app.js?v=48"></script>
-<script src="/motion.js?v=48"></script>
-<script src="/premium.js?v=48"></script>
+<script src="/app.js?v=51"></script>
+<script src="/motion.js?v=51"></script>
+<script src="/premium.js?v=51"></script>
 </body>
 </html>
