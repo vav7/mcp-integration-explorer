@@ -33,9 +33,11 @@
       el.classList.add("pr-rise");
       el.style.setProperty("--prd", (i * 90) + "ms");
     });
-    /* the lede types in word by word, fast (25ms cadence), once */
+    /* the lede types in word by word, fast (24ms cadence), desktop only */
     const words = $$(".lede .tw", hero);
+    const phone = window.innerWidth < 700;
     words.forEach((w, i) => {
+      if (phone) { w.classList.add("tw-in"); return; }
       w.style.transitionDelay = (240 + i * 24) + "ms";
       requestAnimationFrame(() => requestAnimationFrame(() => w.classList.add("tw-in")));
     });

@@ -688,26 +688,53 @@
   function renderCatbars(st) {
     const bc = st.by_category || {};
     if (sigUnchanged("catbars", Object.entries(bc).map(([k, c]) => k + (c.apps || 0) + (c.vendor_official || 0) + (c.community || 0)).join(","))) return;
-    const R = 34, C = (2 * Math.PI * R).toFixed(1);
+    const R = 40, C = (2 * Math.PI * R).toFixed(1);
     $("#catbars").innerHTML = Object.entries(bc).map(([cat, c], i) => {
       const t = c.apps || 1;
       const o = (c.vendor_official || 0) / t, cm = (c.community || 0) / t;
+      const n = Math.max(0, 1 - o - cm);
       const cov = Math.round((o + cm) * 100);
-      const oLen = (C * o).toFixed(1), cmLen = (C * cm).toFixed(1);
-      return `<div class="donut cat-link" data-cat="${esc(cat)}" style="--i:${i};--olen:${oLen};--clen:${cmLen};--circ:${C}" title="${c.vendor_official || 0} official · ${c.community || 0} community · ${c.none || 0} none · avg readiness ${c.avg_readiness ?? 0} · click to filter">
+      const oLen = (C * o).toFixed(1), cmLen = (C * cm).toFixed(1), nLen = (C * n).toFixed(1);
+      const off2 = (-C * o).toFixed(1), off3 = (-C * (o + cm)).toFixed(1);
+      return `<div class="donut cat-link" data-cat="${esc(cat)}" style="--i:${i};--circ:${C}" title="${esc(cat)}: ${cov}% covered · click to filter">
         <div class="dn-wrap">
-          <svg viewBox="0 0 84 84" aria-hidden="true">
-            <circle class="dn-track" cx="42" cy="42" r="${R}"/>
-            <circle class="dn-off" cx="42" cy="42" r="${R}" transform="rotate(-90 42 42)"/>
-            <circle class="dn-com" cx="42" cy="42" r="${R}" transform="rotate(-90 42 42)"/>
+          <svg viewBox="0 0 96 96" aria-hidden="true">
+            <circle class="dn-arc dn-track" cx="48" cy="48" r="${R}"/>
+            <circle class="dn-arc dn-off" cx="48" cy="48" r="${R}" transform="rotate(-90 48 48)"
+              style="--da:${oLen};--do:0" data-hl="${c.vendor_official || 0} official">
+              <title>Official · ${c.vendor_official || 0} of ${c.apps || 0}</title>
+            </circle>
+            <circle class="dn-arc dn-com" cx="48" cy="48" r="${R}" transform="rotate(-90 48 48)"
+              style="--da:${cmLen};--do:${off2}" data-hl="${c.community || 0} community">
+              <title>Community · ${c.community || 0} of ${c.apps || 0}</title>
+            </circle>
+            <circle class="dn-arc dn-non" cx="48" cy="48" r="${R}" transform="rotate(-90 48 48)"
+              style="--da:${nLen};--do:${off3}" data-hl="${c.none || 0} without MCP">
+              <title>None · ${c.none || 0} of ${c.apps || 0}</title>
+            </circle>
           </svg>
           <b class="dn-val" data-num="${cov}" data-fmt="pct" data-nk="covpct:${esc(cat)}">0%</b>
         </div>
         <span class="dn-l">${esc(cat)}</span>
-        <span class="dn-sub">${c.apps || 0} apps · ${c.vendor_official || 0}/${c.community || 0}/${c.none || 0}</span>
+        <span class="dn-sub">${c.apps || 0} apps · avg ${c.avg_readiness ?? "-"}</span>
       </div>`;
     }).join("") || `<div class="empty">No data yet.</div>`;
-    /* circling reveal: arcs sweep around the first time the matrix is seen */
+    /* hovering an arc names it in the center, in that arc's colour */
+    Array.prototype.forEach.call(document.querySelectorAll("#catbars .donut"), (d) => {
+      const val = d.querySelector(".dn-val");
+      d.querySelectorAll(".dn-arc[data-hl]").forEach(arc => {
+        arc.addEventListener("pointerenter", () => {
+          val.dataset.fmt = ""; val.textContent = arc.dataset.hl; val.classList.add("hl");
+          d.classList.add("hl-" + (arc.classList.contains("dn-off") ? "o" : arc.classList.contains("dn-com") ? "c" : "n"));
+        });
+        arc.addEventListener("pointerleave", () => {
+          val.classList.remove("hl", "hl-o", "hl-c", "hl-n");
+          const num = val.dataset.num;
+          val.textContent = num + "%";
+        });
+      });
+    });
+    /* circling reveal on first view */
     const box = $("#catbars");
     if (box) {
       if (!box._donutObs && "IntersectionObserver" in window) {
@@ -1346,64 +1373,41 @@
     const counts = { vendor_official: 0, community: 0, none: 0 };
     list.forEach(a => { if (a.mcp.status in counts) counts[a.mcp.status]++; });
     const hot = new Set([...list].sort((a, b) => (b.readiness.score || 0) - (a.readiness.score || 0)).slice(0, 5).map(a => a.app.id));
-    /* Desktop: magnetic bins + hex-packed lattice slots (clusters, no overlap).
-       Phone: an exact 10x10 grid with ONE app per cell - zero overlap by
-       construction, and every node stays a clean tap target. */
+    /* BOTH modes: desired cell from adoption x readiness, conflicts resolved
+       to the nearest free cell. One app per cell -> overlap is impossible by
+       construction, at every viewport, with no collision resolver needed. */
     const narrow = window.innerWidth < 700;
+    const XB = narrow ? 10 : 14, YB = narrow ? 10 : 8;
+    const used = new Set();
     const pos = new Map();
-    if (narrow) {
-      const XB = 10, YB = 10, used = new Set();
-      list.forEach(a => {
-        const xr = xRank.get(a.app.id) ?? .5;
-        const xb0 = Math.min(XB - 1, Math.floor(xr * XB));
-        const yb0 = Math.min(YB - 1, Math.floor((1 - (a.readiness.score || 0) / 100) * YB));
-        let best = null, bd = 1e9;
-        for (let xb = 0; xb < XB; xb++) for (let yb = 0; yb < YB; yb++) {
-          const kk = xb + "_" + yb;
-          if (used.has(kk)) continue;
-          const d = Math.abs(xb - xb0) * 1.15 + Math.abs(yb - yb0);
-          if (d < bd) { bd = d; best = [xb, yb]; }
-        }
-        if (!best) best = [xb0, yb0];
-        used.add(best[0] + "_" + best[1]);
-        const stars = (a.github && a.github.stars) || 0;
-        pos.set(a.app.id, { x: (best[0] + .5) / XB * 100, y: (best[1] + .5) / YB * 100,
-          size: 17, depth: 4 + Math.min(5, Math.log10(stars + 1) * 2), hotTag: false });
-      });
-    } else {
-      const XB = 12, YB = 7, U = 37;
-      const SLOT = [[0,0],[1,0],[-1,0],[0,1],[0,-1],[1,-1],[-1,1],[1,1],[-1,-1],
-                    [2,0],[-2,0],[0,2],[0,-2],[2,-1],[-2,1],[2,1],[-2,-1],[1.5,1.5],[-1.5,-1.5]];
-      const bins = new Map();
-      list.forEach(a => {
-        const xr = xRank.get(a.app.id) ?? .5;
-        const xb = Math.min(XB - 1, Math.floor(xr * XB));
-        const yb = Math.min(YB - 1, Math.floor((1 - (a.readiness.score || 0) / 100) * YB));
-        const k = xb + "_" + yb;
-        if (!bins.has(k)) bins.set(k, []);
-        bins.get(k).push(a);
-      });
-      bins.forEach((arr, k) => {
-        const parts = k.split("_").map(Number);
-        const cx = (parts[0] + .5) / XB * 100, cy = (parts[1] + .5) / YB * 100;
-        arr.forEach((a, i) => {
-          const slot = SLOT[Math.min(i, SLOT.length - 1)];
-          const ox = slot[0] * U, oy = slot[1] * U * .8;
-          const stars = (a.github && a.github.stars) || 0;
-          let size = 26 + Math.min(12, Math.log10(stars + 1) * 4);
-          if (arr.length > 1) size = Math.min(size, U - 7);
-          pos.set(a.app.id, { x: Math.min(94, Math.max(6, cx)) + ox / 10.1, y: Math.min(92, Math.max(8, cy)) + oy / 5.4,
-            size, depth: 4 + Math.log10(stars + 1) * 4.5 });
-        });
-      });
-    }
+    list.forEach(a => {
+      const xr = xRank.get(a.app.id) ?? .5;
+      const xb0 = Math.min(XB - 1, Math.floor(xr * XB));
+      const yb0 = Math.min(YB - 1, Math.floor((1 - (a.readiness.score || 0) / 100) * YB));
+      let best = null, bd = 1e9;
+      for (let xb = 0; xb < XB; xb++) for (let yb = 0; yb < YB; yb++) {
+        const kk = xb + "_" + yb;
+        if (used.has(kk)) continue;
+        /* readiness is the honest axis - keep dy truer than dx */
+        const d = Math.abs(xb - xb0) * 1.2 + Math.abs(yb - yb0);
+        if (d < bd) { bd = d; best = [xb, yb]; }
+      }
+      if (!best) best = [xb0, yb0];
+      used.add(best[0] + "_" + best[1]);
+      const stars = (a.github && a.github.stars) || 0;
+      /* small deterministic in-cell offset keeps the field organic, never grid-dull */
+      const ox = narrow ? 0 : ((a.app.id * 41) % 9 - 4) * 1.8;
+      const oy = narrow ? 0 : ((a.app.id * 23) % 7 - 3) * 1.5;
+      const size = narrow ? 17 : 33 + Math.min(11, Math.log10(stars + 1) * 3.6);
+      pos.set(a.app.id, { x: (best[0] + .5) / XB * 100, y: (best[1] + .5) / YB * 100,
+        size, depth: 4 + Math.min(5, Math.log10(stars + 1) * 2), ox, oy });
+    });
     let nodes = "";
     list.forEach(a => {
       const p = pos.get(a.app.id); if (!p) return;
-      const stars = (a.github && a.github.stars) || 0;
       const depth = p.depth.toFixed ? p.depth.toFixed(1) : p.depth;
       const tag = (!narrow && hot.has(a.app.id)) ? "<span class=\"at-tag\">" + esc(a.app.name) + "</span>" : "";
-      nodes += "<button class=\"atlas-node " + esc(a.mcp.status) + (hot.has(a.app.id) ? " hot" : "") + "\" style=\"left:" + p.x.toFixed(2) + "%;top:" + p.y.toFixed(2) + "%;--s:" + Math.round(p.size) + "px;--d:" + depth + ";--i:" + Math.min(nodes.length / 90, 26) + "\" data-id=\"" + a.app.id + "\" aria-label=\"" + esc(a.app.name) + "\">" + logoHtml(a) + tag + "</button>";
+      nodes += "<button class=\"atlas-node " + esc(a.mcp.status) + (hot.has(a.app.id) ? " hot" : "") + "\" style=\"left:" + p.x.toFixed(2) + "%;top:" + p.y.toFixed(2) + "%;--s:" + Math.round(p.size) + "px;--d:" + depth + ";--ox:" + p.ox.toFixed(1) + "px;--oy:" + p.oy.toFixed(1) + "px;--i:" + Math.min(nodes.length / 90, 26) + "\" data-id=\"" + a.app.id + "\" aria-label=\"" + esc(a.app.name) + "\">" + logoHtml(a) + tag + "</button>";
     });
     $("#viewContent").innerHTML = "<div class=\"atlas-field\" id=\"atlasField\">" +
       "<div class=\"atlas-gridbg\" aria-hidden=\"true\"></div>" +
@@ -1432,45 +1436,6 @@
     }
     contentView = "atlas";
     bindAtlas();
-  }
-  /* measured collision resolution: after layout, push any overlapping pair
-     apart until the field is clean - guaranteed by iteration, not hope */
-  function resolveAtlasOverlaps() {
-    const f = $("#atlasField"); if (!f) return;
-    const fr = f.getBoundingClientRect();
-    const PAD = 10, BUF = 9;
-    const kids = Array.from(f.querySelectorAll(".atlas-node")).map(el => {
-      const r = el.getBoundingClientRect();
-      return { el, x: r.left - fr.left, y: r.top - fr.top, w: r.width, h: r.height };
-    });
-    const clamp = (b) => {
-      b.x = Math.max(PAD, Math.min(fr.width - b.w - PAD, b.x));
-      b.y = Math.max(PAD, Math.min(fr.height - b.h - PAD, b.y));
-    };
-    for (let iter = 0; iter < 24; iter++) {
-      let moved = false;
-      for (let i = 0; i < kids.length; i++) for (let j = i + 1; j < kids.length; j++) {
-        const a = kids[i], b = kids[j];
-        const ox = (Math.min(a.x + a.w, b.x + b.w) - Math.max(a.x, b.x));
-        const oy = (Math.min(a.y + a.h, b.y + b.h) - Math.max(a.y, b.y));
-        if (ox > 0 && oy > 0) {
-          /* separate along the center line - edge-pinned nodes can still
-             escape inward, so clamping cannot recreate the overlap */
-          const acx = a.x + a.w / 2, acy = a.y + a.h / 2;
-          const bcx = b.x + b.w / 2, bcy = b.y + b.h / 2;
-          let dx = acx - bcx, dy = acy - bcy;
-          let len = Math.sqrt(dx * dx + dy * dy) || 1;
-          dx /= len; dy /= len;
-          const push = (Math.min(ox, oy) + BUF) / 2 + 1;
-          a.x += dx * push; a.y += dy * push;
-          b.x -= dx * push; b.y -= dy * push;
-          clamp(a); clamp(b); moved = true;
-        }
-      }
-      if (!moved) break;
-    }
-    kids.forEach(b => { b.el.style.left = b.x.toFixed(1) + "px"; b.el.style.top = b.y.toFixed(1) + "px";
-      b.el.style.transform = "translate(0,0)"; });
   }
   function bindAtlas() {
     const f = $("#atlasField"); if (!f || atlasBoundEl === f) return;
