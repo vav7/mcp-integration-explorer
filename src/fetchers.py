@@ -938,6 +938,56 @@ async def registry_suggestions(client: httpx.AsyncClient, q: str, limit: int = 8
         if status == 200 and isinstance(data, dict):
             entries.extend(data.get("servers", []))
     data = {"servers": entries}
+
+    # Two extra free sources widen discovery beyond the registry: npm packages
+    # and Docker Hub images matching "<query> mcp". Both are keyless; failures
+    # degrade silently to registry-only suggestions.
+    async def _npm() -> list[dict]:
+        try:
+            r = await client.get("https://registry.npmjs.org/-/v1/search?text=" +
+                                 quote_plus((q + " mcp").strip()) + "&size=5",
+                                 timeout=config.SUGGEST_TIMEOUT)
+            if r.status_code != 200:
+                return []
+            out = []
+            for o in (r.json().get("objects") or [])[:5]:
+                p = (o or {}).get("package") or {}
+                name = p.get("name") or ""
+                if not name or "mcp" not in (name + " " + (p.get("description") or "")).lower():
+                    continue
+                links = p.get("links") or {}
+                out.append({"label": re.sub(r"[-_@/]+", " ", name).strip().title() or name,
+                            "slug": name, "server": "npm:" + name, "vendor_like": False,
+                            "description": (p.get("description") or "")[:90],
+                            "repository_url": links.get("repository") or "",
+                            "website_url": links.get("homepage") or "",
+                            "domain": "", "source": "npm"})
+            return out
+        except Exception:
+            return []
+
+    async def _docker() -> list[dict]:
+        try:
+            r = await client.get("https://hub.docker.com/v2/search/repositories/?query=" +
+                                 quote_plus((q + " mcp").strip()) + "&page_size=5",
+                                 timeout=config.SUGGEST_TIMEOUT)
+            if r.status_code != 200:
+                return []
+            out = []
+            for o in (r.json().get("results") or [])[:5]:
+                name = o.get("repo_name") or ""
+                if not name or "mcp" not in (name + " " + (o.get("short_description") or "")).lower():
+                    continue
+                out.append({"label": re.sub(r"[-_]+", " ", name).strip(),
+                            "slug": name, "server": "docker:" + name, "vendor_like": False,
+                            "description": (o.get("short_description") or "")[:90],
+                            "repository_url": "https://hub.docker.com/r/" + name,
+                            "website_url": "", "domain": "", "source": "docker"})
+            return out
+        except Exception:
+            return []
+
+    extra = await asyncio.gather(_npm(), _docker())
     out: list[dict] = []
     seen: set[str] = set()
     for entry in data.get("servers", []):
@@ -980,4 +1030,11 @@ async def registry_suggestions(client: httpx.AsyncClient, q: str, limit: int = 8
         })
         if len(out) >= limit:
             break
+    for group in extra:               # npm + docker hub discoveries, clearly sourced
+        for s in group:
+            if len(out) >= limit:
+                break
+            if s["slug"].lower() not in seen:
+                seen.add(s["slug"].lower())
+                out.append(s)
     return out

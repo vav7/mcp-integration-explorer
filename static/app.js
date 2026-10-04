@@ -336,6 +336,28 @@
       <circle cx="59" cy="59" r="${r}" fill="none" stroke="url(#gg)" stroke-width="9" stroke-linecap="round" stroke-dasharray="${c.toFixed(1)}" stroke-dashoffset="${off.toFixed(1)}" style="transition:stroke-dashoffset 1s cubic-bezier(.16,1,.3,1)"/>
     </svg><div class="gv"><div><b>${score}</b><span>GRADE ${esc(grade)}</span></div></div></div>`;
   }
+  /* the hero search ticker: three app marks rotate like a card shuffler */
+  let tickerTimer = 0;
+  function startSearchTicker() {
+    if (tickerTimer || !(state.snap && state.snap.apps || []).length) return;
+    const el = $("#hsTicker"); if (!el) return;
+    const slots = Array.from(el.children);
+    const fill = (slot, app) => {
+      const dom = logoDomain(app);
+      slot.classList.add("flip");
+      setTimeout(() => {
+        slot.innerHTML = dom ? `<img src="${favUrl(dom)}" alt="" decoding="async">` : `<span>${esc(initials(app.app.name))}</span>`;
+        slot.classList.remove("flip");
+      }, 260);
+    };
+    const tick = () => {
+      const apps = state.snap.apps || [];
+      if (!apps.length) return;
+      slots.forEach((s, i) => fill(s, apps[Math.floor(Math.random() * apps.length)]));
+    };
+    tick();
+    tickerTimer = setInterval(tick, 3400);
+  }
   function toast(msg, icon = "check") {
     const t = $("#toast"); t.innerHTML = svg(icon) + "<span>" + esc(msg) + "</span>"; t.classList.add("show");
     clearTimeout(t._tm); t._tm = setTimeout(() => t.classList.remove("show"), 2600);
@@ -588,6 +610,7 @@
     if (viewOpen() === "intelligence") { try { renderAnalytics(); setIvPart(state.ivPart || "supply"); } catch (e) {} }
     if (viewOpen() === "methodology") { try { populateMethodology(); } catch (e) {} }
     setLive(state.live, s.refresh_running);
+    startSearchTicker();
     setUnread(); renderAlerts(); renderCompareBar();
     scanNums(document);
     const df1 = $("#dvFig1"); if (df1) df1.textContent = (s.history || []).length + "-point live history";
@@ -1390,17 +1413,7 @@
   function bindAtlas() {
     const f = $("#atlasField"); if (!f || atlasBoundEl === f) return;
     atlasBoundEl = f;
-    let raf = 0;
-    f.addEventListener("pointermove", (e) => {
-      if (raf) return;
-      raf = requestAnimationFrame(() => {
-        raf = 0;
-        const r = f.getBoundingClientRect();
-        f.style.setProperty("--mx", ((e.clientX - r.left) / r.width - .5).toFixed(3));
-        f.style.setProperty("--my", ((e.clientY - r.top) / r.height - .5).toFixed(3));
-      });
-    }, { passive: true });
-    f.addEventListener("pointerleave", () => { f.style.setProperty("--mx", 0); f.style.setProperty("--my", 0); const t = $("#atlasTip"); if (t) { t.hidden = true; t.classList.remove("show"); } });
+    f.addEventListener("pointerleave", () => { const t = $("#atlasTip"); if (t) { t.hidden = true; t.classList.remove("show"); } });
     f.addEventListener("pointerover", (e) => {
       const n = e.target.closest("[data-id]"); const t = $("#atlasTip");
       if (!t) return;
@@ -1746,6 +1759,8 @@
     if (!ev || !ch) return;
     const onChanges = which === "changes";
     ev.hidden = onChanges; ch.hidden = !onChanges;
+    const shown = onChanges ? ch : ev;
+    shown.classList.remove("pane-in"); void shown.offsetWidth; shown.classList.add("pane-in");
     $$("#mTabs [data-mtab]").forEach(b => {
       const on = b.dataset.mtab === which;
       b.classList.toggle("active", on); b.setAttribute("aria-selected", on ? "true" : "false");
@@ -2102,6 +2117,11 @@
     $$("#compareChips [data-rm]").forEach(b => b.onclick = () => toggleCompare(+b.dataset.rm));
     $("#compareGo").disabled = false;
     const lb = $(".cb-label"); if (lb) lb.textContent = apps.length ? "Compare " + apps.length + "/4" : "Compare";
+    /* global tick sync: clearing from any surface (dock, drawer, compare
+       window) instantly clears every +/tick everywhere, including rows the
+       table re-render may have skipped */
+    $$("[data-cmp]").forEach(b => { const on = state.compare.includes(+b.dataset.cmp);
+      b.classList.toggle("on", on); b.textContent = on ? "✓" : "+"; });
     renderDrawerCompare(apps);
   }
   /* ---------------- dashboard drawer (hamburger) ---------------- */

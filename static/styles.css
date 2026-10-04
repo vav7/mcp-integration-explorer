@@ -5197,3 +5197,70 @@ html[data-theme="light"] .modal{background:#fff}
   /* favicons decode at boot, not lazily mid-scroll */
   .atlas-node .applogo img{content-visibility:visible}
 }
+
+/* ============================================================================
+   v55 - SELF-MOVING ATLAS, SEARCH TICKER, MOBILE LIST WINDOW, PANE MOTION
+   ========================================================================== */
+
+/* ---- atlas: the constellation wanders on its own (no mouse-follow) ---- */
+.atlas-field{cursor:default}
+.atlas-node{cursor:pointer;
+  animation-name:anWander, nodeBloom;
+  animation-duration:11s, .7s;
+  animation-timing-function:ease-in-out, var(--ease-soft);
+  animation-iteration-count:infinite, 1;
+  animation-direction:alternate, normal;
+  animation-fill-mode:none, both;
+  animation-delay:calc(var(--i,0)*-.7s), calc(min(var(--i,0),26)*24ms)}
+@keyframes anWander{0%{translate:0 0}33%{translate:6px -5px}66%{translate:-5px 4px}100%{translate:3px 6px}}
+/* per-node path variety: alternate + delay handles phase; amplitude via --d */
+.atlas-node{translate:0 0}
+@media(prefers-reduced-motion:reduce){.atlas-node{animation:none!important}}
+
+/* ---- hero search: dominant glass instrument + rotating app marks ---- */
+.hero-search{height:54px;border-radius:16px;padding:0 18px;gap:13px;position:relative;
+  background:linear-gradient(170deg,rgba(20,27,44,.72),rgba(8,12,20,.86));
+  border:1px solid rgba(148,180,255,.16);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 16px 44px rgba(0,0,0,.4);
+  transition:border-color .25s,box-shadow .35s var(--ease-soft),transform .3s var(--ease-soft)}
+.hero-search:hover,.hero-search:focus-visible{border-color:rgba(139,157,255,.5);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 20px 54px rgba(0,0,0,.5),0 0 34px rgba(139,157,255,.16);
+  transform:translateY(-1px)}
+.hero-search > svg{width:19px;height:19px;color:#A5B4FC}
+.hs-txt{font:500 15px var(--font);color:var(--t3);letter-spacing:-.01em}
+.hs-kbd{margin-left:auto;flex:0 0 auto;border:1px solid var(--line2);background:var(--s1);
+  border-radius:8px;padding:3px 9px;font:650 11px var(--mono);color:var(--t3)}
+.hs-ticker{display:inline-flex;gap:5px;flex:0 0 auto;perspective:300px}
+.hs-ticker i{width:24px;height:24px;border-radius:8px;overflow:hidden;display:grid;place-items:center;
+  background:linear-gradient(160deg,rgba(139,157,255,.14),rgba(20,27,44,.9));
+  border:1px solid rgba(148,180,255,.22);
+  transition:transform .28s ease-in,opacity .28s ease-in;transform-style:preserve-3d}
+.hs-ticker i img{width:100%;height:100%;object-fit:contain;padding:4px}
+.hs-ticker i span{font:800 9px var(--font-display);color:var(--t3)}
+.hs-ticker i.flip{transform:rotateX(88deg);opacity:0}
+[data-theme="light"] .hero-search{background:#fff}
+
+/* ---- dossier: pane switch animation (Evidence <-> Changes) ---- */
+@keyframes paneIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.pane-in{animation:paneIn .4s var(--ease-soft) both}
+.pane-in .chg:nth-child(1),.pane-in .evt:nth-child(1){animation:paneIn .4s var(--ease-soft) .05s both}
+.pane-in .chg:nth-child(2),.pane-in .evt:nth-child(2){animation:paneIn .4s var(--ease-soft) .1s both}
+.pane-in .chg:nth-child(3),.pane-in .evt:nth-child(3){animation:paneIn .4s var(--ease-soft) .15s both}
+.pane-in .chg:nth-child(4),.pane-in .evt:nth-child(4){animation:paneIn .4s var(--ease-soft) .2s both}
+.pane-in .chg:nth-child(5),.pane-in .evt:nth-child(5){animation:paneIn .4s var(--ease-soft) .25s both}
+.pane-in .chg:nth-child(n+6),.pane-in .evt:nth-child(n+6){animation:paneIn .4s var(--ease-soft) .3s both}
+
+/* ---- mobile: the list lives in a window, the page stays reachable ---- */
+@media(max-width:920px){
+  #viewContent.scroller{overflow-y:auto;max-height:min(70vh,600px);
+    overscroll-behavior:auto;-webkit-overflow-scrolling:touch;
+    -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 14px,#000 calc(100% - 16px),transparent 100%);
+    mask-image:linear-gradient(180deg,transparent 0,#000 14px,#000 calc(100% - 16px),transparent 100%)}
+  /* gentle end-fade hint that the window scrolls */
+  #viewContent.scroller::after{content:"";position:sticky;bottom:0;display:block;height:0}
+}
+@media(prefers-reduced-motion:reduce){
+  .atlas-node{animation:nodeBloom .5s var(--ease-soft) both!important}
+  .hs-ticker i{transition:none}
+  .pane-in,.pane-in .chg,.pane-in .evt{animation:none!important}
+}
