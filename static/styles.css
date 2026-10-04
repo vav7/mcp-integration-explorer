@@ -5156,3 +5156,44 @@ html[data-theme="dark"] .ambient{background:
   .sp-live .led::after{animation:none}
   .atlas-node .applogo{animation:none}
 }
+
+/* ============================================================================
+   v54 - BLAZING DOSSIER + HITCH-FREE ATLAS
+   The dossier opened through four stacked expensive effects (viewport
+   backdrop-blur + modal backdrop-filter + animated filter:blur + transform).
+   The atlas hit a one-frame paint/decode wall on phones. Both are fixed at
+   the root; nothing visual of importance is lost.
+   ========================================================================== */
+
+/* ---- dossier: instant-feeling, still cinematic (transform/opacity only) -- */
+#backdrop{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+  background:rgba(3,5,8,.78)}
+html[data-theme="light"] #backdrop{background:rgba(15,23,42,.35)}
+.modal{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+  background:linear-gradient(170deg,rgba(11,15,25,.985),rgba(5,8,13,.99));
+  contain:paint}
+html[data-theme="light"] .modal{background:#fff}
+@keyframes modalin46{from{opacity:0;transform:translate(-50%,-48.6%) scale(.965) translateY(16px)}
+  to{opacity:1;transform:translate(-50%,-50%) scale(1) translateY(0)}}
+.modal.open{animation:modalin46 .32s cubic-bezier(.2,.9,.3,1) both}
+.modal.open .mhead{animation-duration:.4s}
+.modal.open .modal-body{animation-duration:.46s}
+/* views keep their entrance but lose the full-screen blur keyframes */
+@keyframes pvIn41{from{opacity:0;transform:scale(.99) translateY(8px)}
+  to{opacity:1;transform:none}}
+@keyframes pvIn{from{opacity:0}to{opacity:1}}
+/* command palette: same treatment (it also blurred the whole viewport) */
+.cmdk-backdrop{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.cmdk{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+  background:linear-gradient(170deg,rgba(13,18,30,.985),rgba(6,9,15,.99))}
+
+/* ---- atlas: remove the one-frame wall on phones ---- */
+@media(max-width:920px),(pointer:coarse){
+  /* 100 gradient sheens + 100 layered node backgrounds repaint at once */
+  .applogo::after{display:none}
+  .atlas-node .applogo{background:rgba(255,255,255,.07);
+    border-color:rgba(148,180,255,.18);box-shadow:none}
+  .atlas-node{contain:layout style}
+  /* favicons decode at boot, not lazily mid-scroll */
+  .atlas-node .applogo img{content-visibility:visible}
+}

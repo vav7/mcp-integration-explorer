@@ -1380,6 +1380,10 @@
         ch.classList.toggle("off");
       };
     });
+    if (narrow) { /* decode the 100 favicons NOW - lazy decode mid-scroll is a frame hitch */
+      Array.prototype.forEach.call(document.querySelectorAll("#atlasField img[loading=lazy]"),
+        (im) => { im.loading = "eager"; });
+    }
     contentView = "atlas";
     bindAtlas();
   }
