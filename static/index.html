@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="build" content="v55">
+<meta name="build" content="v56">
 <title>MCP Integration Explorer · integration intelligence</title>
 <meta name="description" content="Live, evidence-backed MCP / agent integration readiness across applications. Real registry data, endpoint probes, GitHub, package adoption and liveness, with every signal traceable to its source.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +13,7 @@
 <script>
   (function(){try{var t=localStorage.getItem('mcp_theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';}document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();
 </script>
-<link rel="stylesheet" href="/styles.css?v=55">
+<link rel="stylesheet" href="/styles.css?v=56">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%2310151C'/><rect x='.5' y='.5' width='31' height='31' rx='6.5' fill='none' stroke='%23253140'/><circle cx='10' cy='10' r='2.4' fill='none' stroke='%234F7FFF' stroke-width='1.6'/><circle cx='10' cy='22' r='2.4' fill='none' stroke='%234F7FFF' stroke-width='1.6'/><circle cx='22' cy='16' r='2.4' fill='none' stroke='%234F7FFF' stroke-width='1.6'/><path d='M12 11l8 4M12 21l8-4' stroke='%234F7FFF' stroke-width='1.6'/></svg>">
 </head>
 <body>
@@ -98,12 +98,11 @@
       <div>
         <div class="eyebrow">MCP Integration Intelligence</div>
         <h1>Understand which software is ready for agents.</h1>
-        <p class="lede">Evidence-backed readiness signals across the software your teams already use: registry coverage, live endpoint probes, repository health and adoption. Every number links to its source.</p>
+        <p class="lede"><span class="tw">Evidence-backed</span> <span class="tw">readiness</span> <span class="tw">signals</span> <span class="tw">across</span> <span class="tw">the</span> <span class="tw">software</span> <span class="tw">your</span> <span class="tw">teams</span> <span class="tw">already</span> <span class="tw">use:</span> <span class="tw c-em">registry</span> <span class="tw c-em">coverage,</span> <span class="tw c-ep">live</span> <span class="tw c-ep">endpoint</span> <span class="tw c-ep">probes,</span> <span class="tw c-am">repository</span> <span class="tw c-am">health</span> <span class="tw c-am">and</span> <span class="tw c-vi">adoption.</span> <span class="tw">Every</span> <span class="tw">number</span> <span class="tw c-iv">links</span> <span class="tw c-iv">to</span> <span class="tw c-iv">its</span> <span class="tw c-iv">source.</span></p>
         <button class="hero-search" id="heroSearch" aria-label="Search applications, MCP servers or repositories">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.2-3.2"/></svg>
           <span class="hs-ticker" id="hsTicker" aria-hidden="true"><i></i><i></i><i></i></span>
           <span class="hs-txt">Search applications, MCP servers or repositories…</span>
-          <span class="hs-kbd">⌘K</span>
         </button>
         <div class="status-strip">
           <span class="led live" id="heroLed"></span>
@@ -887,8 +886,8 @@
 <!-- NOTE: data.snapshot.js (~2MB) is NOT loaded up front. The live API is the
      primary data source; the embedded snapshot is injected on demand only when
      the backend is unreachable, so a normal visit never parses it. -->
-<script src="/app.js?v=55"></script>
-<script src="/motion.js?v=55"></script>
-<script src="/premium.js?v=55"></script>
+<script src="/app.js?v=56"></script>
+<script src="/motion.js?v=56"></script>
+<script src="/premium.js?v=56"></script>
 </body>
 </html>

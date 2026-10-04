@@ -688,15 +688,37 @@
   function renderCatbars(st) {
     const bc = st.by_category || {};
     if (sigUnchanged("catbars", Object.entries(bc).map(([k, c]) => k + (c.apps || 0) + (c.vendor_official || 0) + (c.community || 0)).join(","))) return;
-    $("#catbars").innerHTML = Object.entries(bc).map(([cat, c]) => {
-      const t = c.apps || 1, o = (c.vendor_official || 0) / t * 100, cm = (c.community || 0) / t * 100, n = 100 - o - cm;
-      const covered = Math.round(o + cm);
-      return `<div class="bar-row cat-link" data-cat="${esc(cat)}" title="${c.vendor_official || 0} official · ${c.community || 0} community · ${c.none || 0} none · avg readiness ${c.avg_readiness ?? 0} · click to filter">
-        <div class="br-top"><span class="br-l">${esc(cat)}</span><b class="br-v" data-num="${covered}" data-fmt="pct" data-nk="covpct:${esc(cat)}">${covered}%</b></div>
-        <div class="bar-track"><i class="o" style="width:${o}%"></i><i class="c" style="width:${cm}%"></i><i class="n" style="width:${n}%"></i></div>
-        <div class="br-sub">${c.apps || 0} apps · ${c.vendor_official || 0} official · ${c.community || 0} community · ${c.none || 0} none · avg ${c.avg_readiness ?? "-"}</div>
+    const R = 34, C = (2 * Math.PI * R).toFixed(1);
+    $("#catbars").innerHTML = Object.entries(bc).map(([cat, c], i) => {
+      const t = c.apps || 1;
+      const o = (c.vendor_official || 0) / t, cm = (c.community || 0) / t;
+      const cov = Math.round((o + cm) * 100);
+      const oLen = (C * o).toFixed(1), cmLen = (C * cm).toFixed(1);
+      return `<div class="donut cat-link" data-cat="${esc(cat)}" style="--i:${i};--olen:${oLen};--clen:${cmLen};--circ:${C}" title="${c.vendor_official || 0} official · ${c.community || 0} community · ${c.none || 0} none · avg readiness ${c.avg_readiness ?? 0} · click to filter">
+        <div class="dn-wrap">
+          <svg viewBox="0 0 84 84" aria-hidden="true">
+            <circle class="dn-track" cx="42" cy="42" r="${R}"/>
+            <circle class="dn-off" cx="42" cy="42" r="${R}" transform="rotate(-90 42 42)"/>
+            <circle class="dn-com" cx="42" cy="42" r="${R}" transform="rotate(-90 42 42)"/>
+          </svg>
+          <b class="dn-val" data-num="${cov}" data-fmt="pct" data-nk="covpct:${esc(cat)}">0%</b>
+        </div>
+        <span class="dn-l">${esc(cat)}</span>
+        <span class="dn-sub">${c.apps || 0} apps · ${c.vendor_official || 0}/${c.community || 0}/${c.none || 0}</span>
       </div>`;
     }).join("") || `<div class="empty">No data yet.</div>`;
+    /* circling reveal: arcs sweep around the first time the matrix is seen */
+    const box = $("#catbars");
+    if (box) {
+      if (!box._donutObs && "IntersectionObserver" in window) {
+        box._donutObs = new IntersectionObserver((es) => { es.forEach(en => {
+          if (en.isIntersecting) { box.classList.add("drawn"); box.dataset.drawn = "1"; box._donutObs.disconnect(); } });
+        }, { threshold: .2 });
+      }
+      if (box.dataset.drawn === "1") box.classList.add("drawn");
+      else if (box._donutObs) { try { box._donutObs.observe(box); } catch (e) { box.classList.add("drawn"); } }
+      else box.classList.add("drawn");
+    }
     bindCatbars();
   }
   let catbarsBound = false;
@@ -1403,12 +1425,52 @@
         ch.classList.toggle("off");
       };
     });
+    if (!narrow) resolveAtlasOverlaps();
     if (narrow) { /* decode the 100 favicons NOW - lazy decode mid-scroll is a frame hitch */
       Array.prototype.forEach.call(document.querySelectorAll("#atlasField img[loading=lazy]"),
         (im) => { im.loading = "eager"; });
     }
     contentView = "atlas";
     bindAtlas();
+  }
+  /* measured collision resolution: after layout, push any overlapping pair
+     apart until the field is clean - guaranteed by iteration, not hope */
+  function resolveAtlasOverlaps() {
+    const f = $("#atlasField"); if (!f) return;
+    const fr = f.getBoundingClientRect();
+    const PAD = 10, BUF = 9;
+    const kids = Array.from(f.querySelectorAll(".atlas-node")).map(el => {
+      const r = el.getBoundingClientRect();
+      return { el, x: r.left - fr.left, y: r.top - fr.top, w: r.width, h: r.height };
+    });
+    const clamp = (b) => {
+      b.x = Math.max(PAD, Math.min(fr.width - b.w - PAD, b.x));
+      b.y = Math.max(PAD, Math.min(fr.height - b.h - PAD, b.y));
+    };
+    for (let iter = 0; iter < 24; iter++) {
+      let moved = false;
+      for (let i = 0; i < kids.length; i++) for (let j = i + 1; j < kids.length; j++) {
+        const a = kids[i], b = kids[j];
+        const ox = (Math.min(a.x + a.w, b.x + b.w) - Math.max(a.x, b.x));
+        const oy = (Math.min(a.y + a.h, b.y + b.h) - Math.max(a.y, b.y));
+        if (ox > 0 && oy > 0) {
+          /* separate along the center line - edge-pinned nodes can still
+             escape inward, so clamping cannot recreate the overlap */
+          const acx = a.x + a.w / 2, acy = a.y + a.h / 2;
+          const bcx = b.x + b.w / 2, bcy = b.y + b.h / 2;
+          let dx = acx - bcx, dy = acy - bcy;
+          let len = Math.sqrt(dx * dx + dy * dy) || 1;
+          dx /= len; dy /= len;
+          const push = (Math.min(ox, oy) + BUF) / 2 + 1;
+          a.x += dx * push; a.y += dy * push;
+          b.x -= dx * push; b.y -= dy * push;
+          clamp(a); clamp(b); moved = true;
+        }
+      }
+      if (!moved) break;
+    }
+    kids.forEach(b => { b.el.style.left = b.x.toFixed(1) + "px"; b.el.style.top = b.y.toFixed(1) + "px";
+      b.el.style.transform = "translate(0,0)"; });
   }
   function bindAtlas() {
     const f = $("#atlasField"); if (!f || atlasBoundEl === f) return;

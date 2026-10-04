@@ -33,6 +33,12 @@
       el.classList.add("pr-rise");
       el.style.setProperty("--prd", (i * 90) + "ms");
     });
+    /* the lede types in word by word, fast (25ms cadence), once */
+    const words = $$(".lede .tw", hero);
+    words.forEach((w, i) => {
+      w.style.transitionDelay = (240 + i * 24) + "ms";
+      requestAnimationFrame(() => requestAnimationFrame(() => w.classList.add("tw-in")));
+    });
     const panel = $(".snap-panel", hero);
     if (panel) {
       panel.classList.add("pr-panel");
