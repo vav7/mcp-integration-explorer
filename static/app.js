@@ -475,6 +475,7 @@
     else if (errored) { word = "Degraded"; cls = "led off"; }
     else { word = "Live"; cls = "led live"; }
     led.className = cls; txt.textContent = word;
+    if (word === "Live") txt.textContent = "Live · " + timeAgo(state.snap ? state.snap.generated_at : null);
     if (hled) hled.className = cls;
     const dled = $("#dwLed"); if (dled) dled.className = cls;
     const dtxt = $("#dwStatus"); if (dtxt) dtxt.textContent = word === "Live" ? "Live · streaming" : word;
@@ -597,6 +598,8 @@
 
   function render(keepScroll) {
     const s = state.snap; if (!s) return;
+    const boot = document.getElementById("boot");
+    if (boot) { boot.classList.add("boot-done"); setTimeout(() => boot.remove(), 420); }
     invalidateScrollCaches();
     const y = keepScroll ? window.scrollY : null;
     $("#tagline").textContent = "Live integration readiness";
@@ -2873,10 +2876,7 @@
         if (g) { g.scrollIntoView({ behavior: "smooth", block: "start" }); g.classList.remove("ping"); void g.offsetWidth; g.classList.add("ping"); }
         return;
       }
-      const q = e.target.closest ? e.target.closest(".hq") : null; if (!q) return;
-      const item = q.closest(".hq-item"); if (!item) return;
-      const open = item.classList.toggle("open");
-      q.setAttribute("aria-expanded", open ? "true" : "false");
+      /* accordion + search + demos are owned by static/help.js (v60) */
     });
     $$("#ivTabs [data-ivpart]").forEach(b => b.addEventListener("click", () => setIvPart(b.dataset.ivpart)));
     bindMethodology();
@@ -2925,6 +2925,8 @@
     const mm = location.pathname.match(/\/app\/(\d+)/); if (mm) openModal(+mm[1]);
     const h0 = (location.hash || "").replace(/^#/, "");
     if (h0 === "pricing") openPricing();
+    else if (h0 === "help") openView("help");
+    else if (h0.startsWith("help/")) { openView("help"); const sl = h0.slice(5); setTimeout(() => { if (window.__fghelp) window.__fghelp.expand(sl); }, 250); }
     else if (h0 === "methodology") openView("methodology");
     else if (h0 === "analytics" || h0 === "intelligence") openView("intelligence");
     else if (h0 === "help") openView("help");

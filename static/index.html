@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="build" content="v59">
+<meta name="build" content="v62">
 <title>MCP Integration Explorer · integration intelligence</title>
 <meta name="description" content="Live, evidence-backed MCP / agent integration readiness across applications. Real registry data, endpoint probes, GitHub, package adoption and liveness, with every signal traceable to its source.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,10 +16,16 @@
 <script>
   (function(){try{var t=localStorage.getItem('mcp_theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';}document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();
 </script>
-<link rel="stylesheet" href="/styles.css?v=59">
+<link rel="stylesheet" href="/styles.css?v=62">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%2310151C'/><rect x='.5' y='.5' width='31' height='31' rx='6.5' fill='none' stroke='%23253140'/><circle cx='10' cy='10' r='2.4' fill='none' stroke='%234F7FFF' stroke-width='1.6'/><circle cx='10' cy='22' r='2.4' fill='none' stroke='%234F7FFF' stroke-width='1.6'/><circle cx='22' cy='16' r='2.4' fill='none' stroke='%234F7FFF' stroke-width='1.6'/><path d='M12 11l8 4M12 21l8-4' stroke='%234F7FFF' stroke-width='1.6'/></svg>">
 </head>
 <body>
+<div id="boot" aria-hidden="true"><div class="boot-in">
+  <span class="boot-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="7" cy="7" r="2.1"/><circle cx="7" cy="17" r="2.1"/><circle cx="17" cy="12" r="2.1"/><path d="M9 8l6 3M9 16l6-3"/></svg></span>
+  <b>MCP Integration Explorer</b>
+  <span class="boot-bar"><i></i></span>
+  <span class="boot-msg">loading live data…</span>
+</div></div>
 <div id="scrollProgress" aria-hidden="true"></div>
 <div class="ambient" aria-hidden="true"><div class="amb-grid"></div></div>
 <div class="amb-deep" id="ambDeep" aria-hidden="true"><i class="orb o1"></i><i class="orb o2"></i><i class="orb o3"></i><i class="orb o4"></i></div>
@@ -528,33 +534,34 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
   </button>
   <div class="pview-in help-in">
-    <button class="pv-back" type="button" data-closeview>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m0 0l6-6m-6 6l6 6"/></svg>
-      Back to dashboard</button>
-    <div class="help-head reveal" data-replay>
-      <div class="help-tt">
-        <div class="k">Help · field guide</div>
-        <h1>Everything this dashboard means,<br>in plain words.</h1>
-        <p>Eighteen short answers, grouped the way you'll need them. Click a question to open its answer - nothing here is marketing, it's exactly what the data is and how to get at it.</p>
-      </div>
-      <div class="book-scene" aria-hidden="true">
-        <span class="bs-halo"></span>
-        <span class="bs-orbit"><i></i><i></i><i></i></span>
-        <div class="book3d">
-          <span class="bb-spine"></span>
-          <span class="bb-pages"><i></i><i></i><i></i><i></i><i></i></span>
-          <span class="bb-cover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.4 5 8.2 4.3 5.6 4.3c-.9 0-1.6.7-1.6 1.5v11.4c0 .8.7 1.5 1.6 1.5 2.6 0 4.8.7 6.4 2.2 1.6-1.5 3.8-2.2 6.4-2.2.9 0 1.6-.7 1.6-1.5V5.8c0-.8-.7-1.5-1.6-1.5-2.6 0-4.8.7-6.4 2.2z"/><path d="M12 6.5v14.4"/></svg></span>
-          <span class="bb-ribbon"></span>
+
+    <header class="fg-hero">
+      <div class="fg-hero-copy">
+        <div class="fg-eyebrow"><span class="fg-dot"></span>HELP · FIELD GUIDE</div>
+        <h1 class="fg-h1">Everything this dashboard means, <span class="fg-gold">in plain words.</span></h1>
+        <p class="fg-sub">Eighteen short answers, grouped the way you will need them. Nothing here is marketing - it is exactly what the data is and how to get at it.</p>
+        <div class="fg-search" role="search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.2-3.2"/></svg>
+          <input id="fgSearch" type="text" placeholder="Ask anything: readiness, auth gated, compare…" autocomplete="off" spellcheck="false" aria-label="Search the field guide">
+          <span class="fg-kbd">Ctrl K</span>
         </div>
-        <span class="bs-shadow"></span>
+        <div class="fg-chips" role="navigation" aria-label="Quick questions">
+          <button type="button" data-fgjump="what-is-mcp">What is MCP?</button>
+          <button type="button" data-fgjump="readiness-score">Readiness score</button>
+          <button type="button" data-fgjump="live-tools">Auth gated</button>
+          <button type="button" data-fgjump="export-data">Export data</button>
+        </div>
+        <div class="fg-live" id="fgLive" role="status"></div>
       </div>
-    </div>
-    <div class="howscene reveal" data-replay aria-label="How this site works">
-      <div class="how-copy"><span class="k">How this site works</span>
+      <div class="fg-orb" aria-hidden="true"><canvas id="fgOrb"></canvas></div>
+    </header>
+
+    <section class="fg-pipeline" aria-label="How this site works">
+      <div class="how-copy"><span class="k">HOW THIS SITE WORKS</span>
         <h3>From the live web to a readiness signal</h3>
-        <p>Every app walks this pipeline on every refresh. Nothing is simulated; each stage below is running right now on the live backend.</p>
+        <p>Every app walks this pipeline on every refresh. Nothing is simulated; each stage is running right now on the live backend. Click a stage to open its story.</p>
       </div>
-      <div class="how-rail" role="list">
+      <div class="how-rail" id="fgRail" role="list">
         <div class="how-node" role="listitem" style="--hn:0">
           <span class="hn-orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1.6"/><rect x="14" y="3" width="7" height="7" rx="1.6"/><rect x="3" y="14" width="7" height="7" rx="1.6"/><rect x="14" y="14" width="7" height="7" rx="1.6"/></svg></span>
           <b>App enters</b><p>100 curated apps, or any app you search for</p>
@@ -581,156 +588,255 @@
         </div>
       </div>
       <div class="how-detail" id="howDetail" hidden></div>
-    </div>
-    <div class="help-toc" role="navigation" aria-label="Guide contents">
-      <button class="htoc" type="button" data-hjump="hg-1"><b>01</b> Start here <span>3</span></button>
-      <button class="htoc" type="button" data-hjump="hg-2"><b>02</b> Reading the data <span>5</span></button>
-      <button class="htoc" type="button" data-hjump="hg-3"><b>03</b> Using the tools <span>7</span></button>
-      <button class="htoc" type="button" data-hjump="hg-4"><b>04</b> Honesty &amp; limits <span>3</span></button>
-    </div>
-    <div class="hq-cols">
-      <div class="hq-group" id="hg-1">
-        <div class="hq-gt">Start here</div>
-        <div class="hq-item reveal" data-replay style="--i:0">
-          <button class="hq" type="button" aria-expanded="false">
-            <span class="hq-n">01</span><span class="hq-q">What is this site, in one breath?</span>
-            <span class="hq-chev" aria-hidden="true">▾</span>
-          </button>
-          <div class="ha"><div class="ha-in"><p>A live, evidence-backed tracker of MCP integration readiness for 100 curated applications. For each app it answers: is there an MCP server, is it vendor-official or community, what can it actually do, how adopted and maintained is it, and is its site up - with every figure linked to the real source that produced it.</p></div></div>
-        </div>
-        <div class="hq-item reveal" data-replay style="--i:1">
-          <button class="hq" type="button" aria-expanded="false">
-            <span class="hq-n">02</span><span class="hq-q">What is MCP, quickly?</span>
-            <span class="hq-chev" aria-hidden="true">▾</span>
-          </button>
-          <div class="ha"><div class="ha-in"><p>The Model Context Protocol: an open standard that lets AI agents call a product's capabilities as tools. An MCP server exposes tools (actions), resources (data) and prompts (templates) over a JSON-RPC stream. This site measures how ready each product is for that world.</p></div></div>
-        </div>
-        <div class="hq-item reveal" data-replay style="--i:2">
-          <button class="hq" type="button" aria-expanded="false">
-            <span class="hq-n">03</span><span class="hq-q">How fresh is what I'm looking at?</span>
-            <span class="hq-chev" aria-hidden="true">▾</span>
-          </button>
-          <div class="ha"><div class="ha-in"><p>Every panel carries its own timestamp ("updated X ago"). The backend refreshes on a schedule (15 minutes by default, plus a 6-hourly cron that commits fresh data), the browser picks up a new refresh within seconds, and the Trends section graphs every refresh snapshot as a point in time.</p></div></div>
-        </div>
+    </section>
+
+    <section class="fg-featured" aria-label="Most asked">
+      <div class="fgf-head"><span class="k">MOST ASKED</span><h3>Start with these three</h3></div>
+      <div class="fgf-grid">
+        <button type="button" class="fgf-card" data-fgjump="what-is-this-site">
+          <span class="fgf-n">01</span><b>What is this site, in one breath?</b>
+          <span class="fgf-d">The 30-second version of the whole product.</span>
+          <span class="fgf-go">Read <i>→</i></span>
+        </button>
+        <button type="button" class="fgf-card" data-fgjump="readiness-score">
+          <span class="fgf-n">02</span><b>What is the Readiness score and its grade?</b>
+          <span class="fgf-d">Six live signals, one transparent 0-100 number.</span>
+          <span class="fgf-go">Read <i>→</i></span>
+        </button>
+        <button type="button" class="fgf-card" data-fgjump="estimated-invented">
+          <span class="fgf-n">03</span><b>Is anything estimated or invented?</b>
+          <span class="fgf-d">Short answer: no. The longer, honest answer inside.</span>
+          <span class="fgf-go">Read <i>→</i></span>
+        </button>
       </div>
-      <div class="hq-group" id="hg-2">
-        <div class="hq-gt">Reading the data</div>
-        <div class="hq-item reveal" data-replay style="--i:0">
-          <button class="hq" type="button" aria-expanded="false">
-            <span class="hq-n">01</span><span class="hq-q">Official / Community / None - what's the difference?</span>
-            <span class="hq-chev" aria-hidden="true">▾</span>
-          </button>
-          <div class="ha"><div class="ha-in"><p>Official means the registry server's reverse-domain namespace resolves to the app's own domain (com.stripe/mcp to stripe.com) - domain-verified, not claimed. Community means a third-party server whose name/title/description genuinely mentions the app. None means the official MCP registry returned nothing for it - a registry coverage gap, not proof no server exists.</p></div></div>
+    </section>
+
+    <div class="fg-shell">
+      <nav class="fg-rail" id="fgNav" aria-label="Guide sections">
+        <div class="fg-rail-title">GUIDE</div>
+        <button type="button" class="fg-nav-item active" data-group="hg-1"><b>01</b> Start here <span>3</span></button>
+        <button type="button" class="fg-nav-item" data-group="hg-2"><b>02</b> Reading the data <span>5</span></button>
+        <button type="button" class="fg-nav-item" data-group="hg-3"><b>03</b> Using the tools <span>7</span></button>
+        <button type="button" class="fg-nav-item" data-group="hg-4"><b>04</b> Honesty &amp; limits <span>3</span></button>
+        <div class="fg-rail-foot">
+          <button type="button" class="fg-expand" id="fgExpand" aria-pressed="false">Expand all</button>
+          <span class="fg-count" id="fgCount" role="status"></span>
         </div>
-        <div class="hq-item reveal" data-replay style="--i:1">
-          <button class="hq" type="button" aria-expanded="false">
-            <span class="hq-n">02</span><span class="hq-q">What is the Readiness score and its grade?</span>
-            <span class="hq-chev" aria-hidden="true">▾</span>
-          </button>
-          <div class="ha"><div class="ha-in"><p>A transparent 0-100 weighted sum of six live signals: official MCP 28%, live capability 14%, adoption 16%, popularity 14%, maintenance 16%, availability 12%. Grades run A-E. Open any app and the Signal breakdown shows each component's exact contribution and its evidence.</p></div></div>
+      </nav>
+      <div class="fg-canvas" id="fgCanvas">
+
+        <div class="hq-group" id="hg-1" data-title="Start here">
+          <div class="hq-gt">Start here</div>
+          <div class="hq-item" data-slug="what-is-this-site">
+            <button class="hq" type="button" aria-expanded="false" aria-controls="ha-what-is-this-site">
+              <span class="hq-n">01</span><span class="hq-q">What is this site, in one breath?</span>
+              <span class="hq-chev" aria-hidden="true">▾</span>
+            </button>
+            <div class="ha" id="ha-what-is-this-site"><div class="ha-in">
+              <p>A live, evidence-backed tracker of MCP integration readiness for 100 curated applications. For each app it answers: is there an MCP server, is it vendor-official or community, what can it actually do, how adopted and maintained is it, and is its site up - with every figure linked to the real source that produced it.</p>
+              <div class="ha-meta"><button type="button" class="ha-copy" data-slug="what-is-this-site">Copy link</button><span class="ha-vote"><button type="button" data-vote="1" data-slug="what-is-this-site" aria-label="Helpful">👍</button><button type="button" data-vote="-1" data-slug="what-is-this-site" aria-label="Not helpful">👎</button></span></div>
+            </div></div>
+          </div>
+          <div class="hq-item" data-slug="what-is-mcp">
+            <button class="hq" type="button" aria-expanded="false" aria-controls="ha-what-is-mcp">
+              <span class="hq-n">02</span><span class="hq-q">What is MCP, quickly?</span>
+              <span class="hq-chev" aria-hidden="true">▾</span>
+            </button>
+            <div class="ha" id="ha-what-is-mcp"><div class="ha-in">
+              <p>The Model Context Protocol: an open standard that lets AI agents call a product's capabilities as tools. An MCP server exposes tools (actions), resources (data) and prompts (templates) over a JSON-RPC stream. This site measures how ready each product is for that world.</p>
+              <div class="ha-meta"><button type="button" class="ha-copy" data-slug="what-is-mcp">Copy link</button><span class="ha-vote"><button type="button" data-vote="1" data-slug="what-is-mcp" aria-label="Helpful">👍</button><button type="button" data-vote="-1" data-slug="what-is-mcp" aria-label="Not helpful">👎</button></span></div>
+            </div></div>
+          </div>
+          <div class="hq-item" data-slug="how-fresh">
+            <button class="hq" type="button" aria-expanded="false" aria-controls="ha-how-fresh">
+              <span class="hq-n">03</span><span class="hq-q">How fresh is what I'm looking at?</span>
+              <span class="hq-chev" aria-hidden="true">▾</span>
+            </button>
+            <div class="ha" id="ha-how-fresh"><div class="ha-in">
+              <p>Every panel carries its own timestamp ("updated X ago"). The backend refreshes on a schedule (15 minutes by default, plus a 6-hourly cron that commits fresh data), the browser picks up a new refresh within seconds, and the Trends section graphs every refresh snapshot as a point in time.</p>
+              <div class="fg-demo" id="demoFresh"></div>
+              <div class="ha-meta"><button type="button" class="ha-copy" data-slug="how-fresh">Copy link</button><span class="ha-vote"><button type="button" data-vote="1" data-slug="how-fresh" aria-label="Helpful">👍</button><button type="button" data-vote="-1" data-slug="how-fresh" aria-label="Not helpful">👎</button></span></div>
+            </div></div>
+          </div>
         </div>
-        <div class="hq-item reveal" data-replay style="--i:2">
-          <button class="hq" type="button" aria-expanded="false">
-            <span class="hq-n">03</span><span class="hq-q">What are "live tools" and "auth gated"?</span>
-            <span class="hq-chev" aria-hidden="true">▾</span>
-          </button>
-          <div class="ha"><div class="ha-in"><p>Live tools are counted only from a real handshake with the server's endpoint (initialize then tools/list). Auth gated means the endpoint demanded credentials (401/402/403) - that is an auth wall, not zero capability, and we say so instead of guessing a number.</p></div></div>
+
+        <div class="hq-group" id="hg-2" data-title="Reading the data">
+          <div class="hq-gt">Reading the data</div>
+          <div class="hq-item" data-slug="official-community-none">
+            <button class="hq" type="button" aria-expanded="false" aria-controls="ha-ocn">
+              <span class="hq-n">01</span><span class="hq-q">Official / Community / None - what's the difference?</span>
+              <span class="hq-chev" aria-hidden="true">▾</span>
+            </button>
+            <div class="ha" id="ha-ocn"><div class="ha-in">
+              <p>Official means the registry server's reverse-domain namespace resolves to the app's own domain (com.stripe/mcp to stripe.com) - domain-verified, not claimed. Community means a third-party server whose name/title/description genuinely mentions the app. None means the official MCP registry returned nothing for it - a registry coverage gap, not proof no server exists.</p>
+              <p class="ha-pills"><span class="badge official">Official</span><span class="badge community">Community</span><span class="badge none">None</span></p>
+              <div class="fg-demo" id="demoStates"></div>
+              <div class="ha-meta"><button type="button" class="ha-copy" data-slug="official-community-none">Copy link</button><span class="ha-vote"><button type="button" data-vote="1" data-slug="official-community-none" aria-label="Helpful">👍</button><button type="button" data-vote="-1" data-slug="official-community-none" aria-label="Not helpful">👎</button></span></div>
+            </div></div>
+          </div>
+          <div class="hq-item" data-slug="readiness-score">
+            <button class="hq" type="button" aria-expanded="false" aria-controls="ha-readiness">
+              <span class="hq-n">02</span><span class="hq-q">What is the Readiness score and its grade?</span>
+              <span class="hq-chev" aria-hidden="true">▾</span>
+            </button>
+            <div class="ha" id="ha-readiness"><div class="ha-in">
+              <p>A transparent 0-100 weighted sum of six live signals: official MCP 28%, live capability 14%, adoption 16%, popularity 14%, maintenance 16%, availability 12%. Grades run A-E. Open any app and the Signal breakdown shows each component's exact contribution and its evidence.</p>
+              <div class="fg-demo" id="demoScore"></div>
+              <div class="ha-meta"><button type="button" class="ha-copy" data-slug="readiness-score">Copy link</button><span class="ha-vote"><button type="button" data-vote="1" data-slug="readiness-score" aria-label="Helpful">👍</button><button type="button" data-vote="-1" data-slug="readiness-score" aria-label="Not helpful">👎</button></span></div>
+            </div></div>
+          </div>
+          <div class="hq-item" data-slug="live-tools">
+            <button class="hq" type="button" aria-expanded="false" aria-controls="ha-live-tools">
+              <span class="hq-n">03</span><span class="hq-q">What are "live tools" and "auth gated"?</span>
+              <span class="hq-chev" aria-hidden="true">▾</span>
+            </button>
+            <div class="ha" id="ha-live-tools"><div class="ha-in">
+              <p>Live tools are counted only from a real handshake with the server's endpoint (initialize then tools/list). <span class="badge gated">auth gated</span> means the endpoint demanded credentials (401/402/403) - that is an auth wall, not zero capability, and we say so instead of guessing a number.</p>
+              <div class="ha-meta"><button type="button" class="ha-copy" data-slug="live-tools">Copy link</button><span class="ha-vote"><button type="button" data-vote="1" data-slug="live-tools" aria-label="Helpful">👍</button><button type="button" data-vote="-1" data-slug="live-tools" aria-label="Not helpful">👎</button></span></div>
+            </div></div>
+          </div>
+          <div class="hq-item" data-slug="gateway-tag">
+            <button class="hq" type="button" aria-expanded="false" aria-controls="ha-gateway">
+              <span class="hq-n">04</span><span class="hq-q">What does the "gateway" tag mean?</span>
+              <span class="hq-chev" aria-hidden="true">▾</span>
+            </button>
+            <div class="ha" id="ha-gateway"><div class="ha-in">
+              <p>Some endpoints are shared aggregators serving the same toolset to many apps. When one toolset appears behind four or more apps we flag it as a <span class="badge none">gateway</span> and exclude it from app-specific tool counts, so a 41-tool gateway is never credited to every app it wraps.</p>
+              <div class="ha-meta"><button type="button" class="ha-copy" data-slug="gateway-tag">Copy link</button><span class="ha-vote"><button type="button" data-vote="1" data-slug="gateway-tag" aria-label="Helpful">👍</button><button type="button" data-vote="-1" data-slug="gateway-tag" aria-label="Not helpful">👎</button></span></div>
+            </div></div>
+          </div>
+          <div class="hq-item" data-slug="downloads-stars-liveness">
+            <button class="hq" type="button" aria-expanded="false" aria-controls="ha-dsl">
+              <span class="hq-n">05</span><span class="hq-q">Downloads, stars, liveness - what exactly are they?</span>
+              <span class="hq-chev" aria-hidden="true">▾</span>
+            </button>
+            <div class="ha" id="ha-dsl"><div class="ha-in">
+              <p>Downloads are npm/PyPI monthly downloads of the server's published package. Stars are GitHub stars of the repository the registry publishes for that server. Liveness is a direct HTTP check of the app's own site: the status code, latency and whether it responded.</p>
+              <div class="ha-meta"><button type="button" class="ha-copy" data-slug="downloads-stars-liveness">Copy link</button><span class="ha-vote"><button type="button" data-vote="1" data-slug="downloads-stars-liveness" aria-label="Helpful">👍</button><button type="button" data-vote="-1" data-slug="downloads-stars-liveness" aria-label="Not helpful">👎</button></span></div>
+            </div></div>
+          </div>
         </div>
-        <div class="hq-item reveal" data-replay style="--i:3">
-          <button class="hq" type="button" aria-expanded="false">
-            <span class="hq-n">04</span><span class="hq-q">What does the "gateway" tag mean?</span>
-            <span class="hq-chev" aria-hidden="true">▾</span>
-          </button>
-          <div class="ha"><div class="ha-in"><p>Some endpoints are shared aggregators serving the same toolset to many apps. When one toolset appears behind four or more apps we flag it as a generic gateway and exclude it from app-specific tool counts, so a 41-tool gateway is never credited to every app it wraps.</p></div></div>
+
+        <div class="hq-group" id="hg-3" data-title="Using the tools">
+          <div class="hq-gt">Using the tools</div>
+          <div class="hq-item" data-slug="find-any-app">
+            <button class="hq" type="button" aria-expanded="false" aria-controls="ha-find">
+              <span class="hq-n">01</span><span class="hq-q">How do I find an app - or fetch one that isn't tracked?</span>
+              <span class="hq-chev" aria-hidden="true">▾</span>
+            </button>
+            <div class="ha" id="ha-find"><div class="ha-in">
+              <p>Press Ctrl/Cmd+K (or use the hero search). Curated matches appear instantly; as you type, the live MCP registry, npm and Docker Hub are queried for apps beyond the 100, and the Anywhere row fetches any application on the spot with a staged progress card.</p>
+              <div class="ha-meta"><button type="button" class="ha-copy" data-slug="find-any-app">Copy link</button><span class="ha-vote"><button type="button" data-vote="1" data-slug="find-any-app" aria-label="Helpful">👍</button><button type="button" data-vote="-1" data-slug="find-any-app" aria-label="Not helpful">👎</button></span></div>
+            </div></div>
+          </div>
+          <div class="hq-item" data-slug="compare-work">
+            <button class="hq" type="button" aria-expanded="false" aria-controls="ha-compare">
+              <span class="hq-n">02</span><span class="hq-q">How does compare work?</span>
+              <span class="hq-chev" aria-hidden="true">▾</span>
+            </button>
+            <div class="ha" id="ha-compare"><div class="ha-in">
+              <p>Hover a row and press + (up to four apps), then Compare. The deck shows readiness, status, servers, tools, downloads, stars, last commit, license and site side by side, starring the best value per metric. The grid grows a column per app - no empty slots.</p>
+              <div class="ha-meta"><button type="button" class="ha-copy" data-slug="compare-work">Copy link</button><span class="ha-vote"><button type="button" data-vote="1" data-slug="compare-work" aria-label="Helpful">👍</button><button type="button" data-vote="-1" data-slug="compare-work" aria-label="Not helpful">👎</button></span></div>
+            </div></div>
+          </div>
+          <div class="hq-item" data-slug="changes-tab">
+            <button class="hq" type="button" aria-expanded="false" aria-controls="ha-changes">
+              <span class="hq-n">03</span><span class="hq-q">What is the Changes tab inside an app?</span>
+              <span class="hq-chev" aria-hidden="true">▾</span>
+            </button>
+            <div class="ha" id="ha-changes"><div class="ha-in">
+              <p>A historical diff: what changed between two stored snapshots - tools added/removed/modified, schema and required-parameter changes, auth or protocol changes, endpoints, health - each rated as a potential breaking change (high/medium/low/info). You can pick any two snapshots to compare, and the timeline summarises day by day.</p>
+              <div class="ha-meta"><button type="button" class="ha-copy" data-slug="changes-tab">Copy link</button><span class="ha-vote"><button type="button" data-vote="1" data-slug="changes-tab" aria-label="Helpful">👍</button><button type="button" data-vote="-1" data-slug="changes-tab" aria-label="Not helpful">👎</button></span></div>
+            </div></div>
+          </div>
+          <div class="hq-item" data-slug="test-compatibility">
+            <button class="hq" type="button" aria-expanded="false" aria-controls="ha-compat">
+              <span class="hq-n">04</span><span class="hq-q">What does "test compatibility" do?</span>
+              <span class="hq-chev" aria-hidden="true">▾</span>
+            </button>
+            <div class="ha" id="ha-compat"><div class="ha-in">
+              <p>It runs a 12-check behavioural test against a server endpoint (reachable, TLS, handshake, protocol, capabilities, tools/resources/prompts, schema validity, JSON-RPC validity, error handling, auth) and scores it. It is a compatibility report from this explorer's point of view - explicitly not an official certification.</p>
+              <div class="ha-meta"><button type="button" class="ha-copy" data-slug="test-compatibility">Copy link</button><span class="ha-vote"><button type="button" data-vote="1" data-slug="test-compatibility" aria-label="Helpful">👍</button><button type="button" data-vote="-1" data-slug="test-compatibility" aria-label="Not helpful">👎</button></span></div>
+            </div></div>
+          </div>
+          <div class="hq-item" data-slug="watch-alerts">
+            <button class="hq" type="button" aria-expanded="false" aria-controls="ha-watch">
+              <span class="hq-n">05</span><span class="hq-q">How do watch and alerts work?</span>
+              <span class="hq-chev" aria-hidden="true">▾</span>
+            </button>
+            <div class="ha" id="ha-watch"><div class="ha-in">
+              <p>Open an app and press Watch. When a refresh detects that it shipped an official MCP, went down, or changed, an alert fires to the bell, streams over the live wire, and can POST to a webhook (ALERT_WEBHOOK_URL) for Slack/Discord/Zapier.</p>
+              <div class="ha-meta"><button type="button" class="ha-copy" data-slug="watch-alerts">Copy link</button><span class="ha-vote"><button type="button" data-vote="1" data-slug="watch-alerts" aria-label="Helpful">👍</button><button type="button" data-vote="-1" data-slug="watch-alerts" aria-label="Not helpful">👎</button></span></div>
+            </div></div>
+          </div>
+          <div class="hq-item" data-slug="explorer-tabs">
+            <button class="hq" type="button" aria-expanded="false" aria-controls="ha-tabs">
+              <span class="hq-n">06</span><span class="hq-q">What do the three explorer tabs do?</span>
+              <span class="hq-chev" aria-hidden="true">▾</span>
+            </button>
+            <div class="ha" id="ha-tabs"><div class="ha-in">
+              <p>The <b>Atlas</b> plots all apps as a spatial field (adoption × readiness). The <b>Explorer</b> is the full filterable, sortable table of every tracked app. The <b>Leaderboard</b> ranks them by readiness score, and <b>Opportunities</b> lists apps with real demand but no vendor-official MCP yet: the build candidates.</p>
+              <div class="ha-meta"><button type="button" class="ha-copy" data-slug="explorer-tabs">Copy link</button><span class="ha-vote"><button type="button" data-vote="1" data-slug="explorer-tabs" aria-label="Helpful">👍</button><button type="button" data-vote="-1" data-slug="explorer-tabs" aria-label="Not helpful">👎</button></span></div>
+            </div></div>
+          </div>
+          <div class="hq-item" data-slug="export-data">
+            <button class="hq" type="button" aria-expanded="false" aria-controls="ha-export">
+              <span class="hq-n">07</span><span class="hq-q">Can I take the data with me?</span>
+              <span class="hq-chev" aria-hidden="true">▾</span>
+            </button>
+            <div class="ha" id="ha-export"><div class="ha-in">
+              <p>Yes: the export menu downloads CSV or JSON of the whole dataset, every figure is also served by a plain REST API (see the README), and the explorer itself runs as an MCP server (python -m src.mcp_server) so agents can query it directly.</p>
+              <div class="ha-meta"><button type="button" class="ha-copy" data-slug="export-data">Copy link</button><span class="ha-vote"><button type="button" data-vote="1" data-slug="export-data" aria-label="Helpful">👍</button><button type="button" data-vote="-1" data-slug="export-data" aria-label="Not helpful">👎</button></span></div>
+            </div></div>
+          </div>
         </div>
-        <div class="hq-item reveal" data-replay style="--i:4">
-          <button class="hq" type="button" aria-expanded="false">
-            <span class="hq-n">05</span><span class="hq-q">Downloads, stars, liveness - what exactly are they?</span>
-            <span class="hq-chev" aria-hidden="true">▾</span>
-          </button>
-          <div class="ha"><div class="ha-in"><p>Downloads are npm/PyPI monthly downloads of the server's published package. Stars are GitHub stars of the repository the registry publishes for that server. Liveness is a direct HTTP check of the app's own site: the status code, latency and whether it responded.</p></div></div>
+
+        <div class="hq-group" id="hg-4" data-title="Honesty &amp; limits">
+          <div class="hq-gt">Honesty &amp; limits</div>
+          <div class="hq-item" data-slug="why-none">
+            <button class="hq" type="button" aria-expanded="false" aria-controls="ha-why-none">
+              <span class="hq-n">01</span><span class="hq-q">Why does an app say None when I know it has an MCP?</span>
+              <span class="hq-chev" aria-hidden="true">▾</span>
+            </button>
+            <div class="ha" id="ha-why-none"><div class="ha-in">
+              <p>Because "none" means none in the official MCP registry. Verified examples: GitHub ships github/github-mcp-server and Netlify ships netlify/netlify-mcp, yet neither is published in the registry, so both read as <span class="badge none">None</span> here. Read "none" as "not discoverable in the registry".</p>
+              <div class="ha-meta"><button type="button" class="ha-copy" data-slug="why-none">Copy link</button><span class="ha-vote"><button type="button" data-vote="1" data-slug="why-none" aria-label="Helpful">👍</button><button type="button" data-vote="-1" data-slug="why-none" aria-label="Not helpful">👎</button></span></div>
+            </div></div>
+          </div>
+          <div class="hq-item" data-slug="totals-move">
+            <button class="hq" type="button" aria-expanded="false" aria-controls="ha-totals">
+              <span class="hq-n">02</span><span class="hq-q">Why do totals move a little between refreshes?</span>
+              <span class="hq-chev" aria-hidden="true">▾</span>
+            </button>
+            <div class="ha" id="ha-totals"><div class="ha-in">
+              <p>Registry search is keyword-based and its result set shifts, so aggregate counts wobble by a few percent. A domain-verified official server is protected by an anti-flap rule: one blank cycle marks it "carried over", two in a row accept the removal. The trend chart is direction, not precision.</p>
+              <div class="ha-meta"><button type="button" class="ha-copy" data-slug="totals-move">Copy link</button><span class="ha-vote"><button type="button" data-vote="1" data-slug="totals-move" aria-label="Helpful">👍</button><button type="button" data-vote="-1" data-slug="totals-move" aria-label="Not helpful">👎</button></span></div>
+            </div></div>
+          </div>
+          <div class="hq-item" data-slug="estimated-invented">
+            <button class="hq" type="button" aria-expanded="false" aria-controls="ha-est">
+              <span class="hq-n">03</span><span class="hq-q">Is anything estimated or invented?</span>
+              <span class="hq-chev" aria-hidden="true">▾</span>
+            </button>
+            <div class="ha" id="ha-est"><div class="ha-in">
+              <p>No. If a source returns nothing we show none; if a fetch fails we show unknown or auth-gated; every card names its source and every number rolls from the figure it replaced. The Methodology window lists all seven pipeline stages with their weights.</p>
+              <div class="ha-meta"><button type="button" class="ha-copy" data-slug="estimated-invented">Copy link</button><span class="ha-vote"><button type="button" data-vote="1" data-slug="estimated-invented" aria-label="Helpful">👍</button><button type="button" data-vote="-1" data-slug="estimated-invented" aria-label="Not helpful">👎</button></span></div>
+            </div></div>
+          </div>
         </div>
-      </div>
-      <div class="hq-group" id="hg-3">
-        <div class="hq-gt">Using the tools</div>
-        <div class="hq-item reveal" data-replay style="--i:0">
-          <button class="hq" type="button" aria-expanded="false">
-            <span class="hq-n">01</span><span class="hq-q">How do I find an app - or fetch one that isn't tracked?</span>
-            <span class="hq-chev" aria-hidden="true">▾</span>
-          </button>
-          <div class="ha"><div class="ha-in"><p>Press Ctrl/Cmd+K (or use the hero search). Curated matches appear instantly; as you type, the live MCP registry is queried for apps beyond the 100, and the Anywhere row fetches any application on the spot with a staged progress card.</p></div></div>
-        </div>
-        <div class="hq-item reveal" data-replay style="--i:1">
-          <button class="hq" type="button" aria-expanded="false">
-            <span class="hq-n">02</span><span class="hq-q">How does compare work?</span>
-            <span class="hq-chev" aria-hidden="true">▾</span>
-          </button>
-          <div class="ha"><div class="ha-in"><p>Hover a row and press + (up to four apps), then Compare. The deck shows readiness, status, servers, tools, downloads, stars, last commit, license and site side by side, starring the best value per metric. The grid grows a column per app - no empty slots.</p></div></div>
-        </div>
-        <div class="hq-item reveal" data-replay style="--i:2">
-          <button class="hq" type="button" aria-expanded="false">
-            <span class="hq-n">03</span><span class="hq-q">What is the Changes tab inside an app?</span>
-            <span class="hq-chev" aria-hidden="true">▾</span>
-          </button>
-          <div class="ha"><div class="ha-in"><p>A historical diff: what changed between two stored snapshots - tools added/removed/modified, schema and required-parameter changes, auth or protocol changes, endpoints, health - each rated as a potential breaking change (high/medium/low/info). You can pick any two snapshots to compare, and the timeline summarises day by day.</p></div></div>
-        </div>
-        <div class="hq-item reveal" data-replay style="--i:3">
-          <button class="hq" type="button" aria-expanded="false">
-            <span class="hq-n">04</span><span class="hq-q">What does "test compatibility" do?</span>
-            <span class="hq-chev" aria-hidden="true">▾</span>
-          </button>
-          <div class="ha"><div class="ha-in"><p>It runs a 12-check behavioural test against a server endpoint (reachable, TLS, handshake, protocol, capabilities, tools/resources/prompts, schema validity, JSON-RPC validity, error handling, auth) and scores it. It is a compatibility report from this explorer's point of view - explicitly not an official certification.</p></div></div>
-        </div>
-        <div class="hq-item reveal" data-replay style="--i:4">
-          <button class="hq" type="button" aria-expanded="false">
-            <span class="hq-n">05</span><span class="hq-q">How do watch and alerts work?</span>
-            <span class="hq-chev" aria-hidden="true">▾</span>
-          </button>
-          <div class="ha"><div class="ha-in"><p>Open an app and press Watch. When a refresh detects that it shipped an official MCP, went down, or changed, an alert fires to the bell, streams over the live wire, and can POST to a webhook (ALERT_WEBHOOK_URL) for Slack/Discord/Zapier.</p></div></div>
-        </div>
-        <div class="hq-item reveal" data-replay style="--i:5">
-          <button class="hq" type="button" aria-expanded="false">
-            <span class="hq-n">06</span><span class="hq-q">What do the three explorer tabs do?</span>
-            <span class="hq-chev" aria-hidden="true">▾</span>
-          </button>
-          <div class="ha"><div class="ha-in"><p>Explorer is the full filterable, sortable table of every tracked app. Leaderboard ranks them by readiness score. Opportunities lists the apps with real demand - stars, downloads, community servers - but no vendor-official MCP yet: the build candidates. Category, status and grade filters apply to all three.</p></div></div>
-        </div>
-        <div class="hq-item reveal" data-replay style="--i:6">
-          <button class="hq" type="button" aria-expanded="false">
-            <span class="hq-n">07</span><span class="hq-q">Can I take the data with me?</span>
-            <span class="hq-chev" aria-hidden="true">▾</span>
-          </button>
-          <div class="ha"><div class="ha-in"><p>Yes: the export menu downloads CSV or JSON of the whole dataset, every figure is also served by a plain REST API (see the README), and the explorer itself runs as an MCP server (python -m src.mcp_server) so agents can query it directly.</p></div></div>
-        </div>
-      </div>
-      <div class="hq-group" id="hg-4">
-        <div class="hq-gt">Honesty & limits</div>
-        <div class="hq-item reveal" data-replay style="--i:0">
-          <button class="hq" type="button" aria-expanded="false">
-            <span class="hq-n">01</span><span class="hq-q">Why does an app say None when I know it has an MCP?</span>
-            <span class="hq-chev" aria-hidden="true">▾</span>
-          </button>
-          <div class="ha"><div class="ha-in"><p>Because "none" means none in the official MCP registry. Verified examples: GitHub ships github/github-mcp-server and Netlify ships netlify/netlify-mcp, yet neither is published in the registry, so both read as community/none here. Read "none" as "not discoverable in the registry".</p></div></div>
-        </div>
-        <div class="hq-item reveal" data-replay style="--i:1">
-          <button class="hq" type="button" aria-expanded="false">
-            <span class="hq-n">02</span><span class="hq-q">Why do totals move a little between refreshes?</span>
-            <span class="hq-chev" aria-hidden="true">▾</span>
-          </button>
-          <div class="ha"><div class="ha-in"><p>Registry search is keyword-based and its result set shifts, so aggregate counts wobble by a few percent. A domain-verified official server is protected by an anti-flap rule: one blank cycle marks it "carried over", two in a row accept the removal. The trend chart is direction, not precision.</p></div></div>
-        </div>
-        <div class="hq-item reveal" data-replay style="--i:2">
-          <button class="hq" type="button" aria-expanded="false">
-            <span class="hq-n">03</span><span class="hq-q">Is anything estimated or invented?</span>
-            <span class="hq-chev" aria-hidden="true">▾</span>
-          </button>
-          <div class="ha"><div class="ha-in"><p>No. If a source returns nothing we show none; if a fetch fails we show unknown or auth-gated; every card names its source and every number rolls from the figure it replaced. The Methodology window lists all seven pipeline stages with their weights.</p></div></div>
-        </div>
+
       </div>
     </div>
-    <div class="help-foot reveal" data-replay>
-      <span>Still curious? The <a href="#methodology" data-view="methodology">Methodology</a> window lists every pipeline stage and weight, and <a href="#intelligence" data-view="intelligence">Intelligence</a> shows the landscape computed live.</span>
+
+    <div class="fg-cta">
+      <p><b>Still curious?</b> The pipeline and the scoring model are both open instruments on this site - walk them end to end.</p>
+      <div class="fg-cta-btns">
+        <button type="button" class="btn btn-primary" data-openview="methodology">Open Methodology</button>
+        <button type="button" class="btn btn-ghost" data-openview="intelligence">Explore Intelligence</button>
+        <button type="button" class="btn btn-ghost" data-closeview>Back to dashboard</button>
+      </div>
     </div>
+
   </div>
 </div>
 
@@ -889,8 +995,9 @@
 <!-- NOTE: data.snapshot.js (~2MB) is NOT loaded up front. The live API is the
      primary data source; the embedded snapshot is injected on demand only when
      the backend is unreachable, so a normal visit never parses it. -->
-<script src="/app.js?v=59"></script>
-<script src="/motion.js?v=59"></script>
-<script src="/premium.js?v=59"></script>
+<script src="/app.js?v=62"></script>
+<script src="/motion.js?v=62"></script>
+<script src="/help.js?v=62"></script>
+<script src="/premium.js?v=62"></script>
 </body>
 </html>
