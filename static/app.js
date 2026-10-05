@@ -699,17 +699,28 @@
       return `<div class="donut cat-link" data-cat="${esc(cat)}" style="--i:${i};--circ:${C}" title="${esc(cat)}: ${cov}% covered · click to filter">
         <div class="dn-wrap">
           <svg viewBox="0 0 96 96" aria-hidden="true">
+            <defs>
+              <linearGradient id="dgo${i}" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#5CEFC1"/><stop offset="1" stop-color="#1FA97C"/>
+              </linearGradient>
+              <linearGradient id="dgc${i}" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#A5B4FC"/><stop offset="1" stop-color="#7C8FEF"/>
+              </linearGradient>
+              <linearGradient id="dgn${i}" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#5A657C"/><stop offset="1" stop-color="#39424F"/>
+              </linearGradient>
+            </defs>
             <circle class="dn-arc dn-track" cx="48" cy="48" r="${R}"/>
             <circle class="dn-arc dn-off" cx="48" cy="48" r="${R}" transform="rotate(-90 48 48)"
-              style="--da:${oLen};--do:0" data-hl="${c.vendor_official || 0} official">
+              stroke="url(#dgo${i})" style="--da:${oLen};--do:0" data-hl="${c.vendor_official || 0} official">
               <title>Official · ${c.vendor_official || 0} of ${c.apps || 0}</title>
             </circle>
             <circle class="dn-arc dn-com" cx="48" cy="48" r="${R}" transform="rotate(-90 48 48)"
-              style="--da:${cmLen};--do:${off2}" data-hl="${c.community || 0} community">
+              stroke="url(#dgc${i})" style="--da:${cmLen};--do:${off2}" data-hl="${c.community || 0} community">
               <title>Community · ${c.community || 0} of ${c.apps || 0}</title>
             </circle>
             <circle class="dn-arc dn-non" cx="48" cy="48" r="${R}" transform="rotate(-90 48 48)"
-              style="--da:${nLen};--do:${off3}" data-hl="${c.none || 0} without MCP">
+              stroke="url(#dgn${i})" style="--da:${nLen};--do:${off3}" data-hl="${c.none || 0} without MCP">
               <title>None · ${c.none || 0} of ${c.apps || 0}</title>
             </circle>
           </svg>
@@ -1429,7 +1440,6 @@
         ch.classList.toggle("off");
       };
     });
-    if (!narrow) resolveAtlasOverlaps();
     if (narrow) { /* decode the 100 favicons NOW - lazy decode mid-scroll is a frame hitch */
       Array.prototype.forEach.call(document.querySelectorAll("#atlasField img[loading=lazy]"),
         (im) => { im.loading = "eager"; });
