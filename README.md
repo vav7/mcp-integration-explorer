@@ -10,11 +10,21 @@
 ![FastAPI](https://img.shields.io/badge/backend-FastAPI-009688)
 ![No build step](https://img.shields.io/badge/frontend-vanilla%20JS%20%2B%20CSS-lightgrey)
 
-[**Portable demo**](demo.html) · [**Deploy guide**](DEPLOY.md) · [**Verification report**](VERIFICATION.md)
+[**Deploy guide**](DEPLOY.md) · [**Verification report**](VERIFICATION.md)
 
 <img src="docs/screenshots/v19-01-home.png" alt="MCP Integration Explorer home screen" width="820">
 
 </div>
+
+---
+
+## What's new in 2.0 — "Obsidian"
+
+- **Atlas** — all 100 apps as a spatial intelligence field (adoption × readiness, status-ringed logos, hover previews, tap-to-open dossiers). One app per cell: collision-free on every screen.
+- **Obsidian design system** — one muted violet accent on near-black graphite; gold, amber and neon are gone; matte hairline buttons; Clash Display + Satoshi typography.
+- **Field guide** — the Help page rebuilt as Mission Control: canvas constellation hero, gold-to-violet pipeline beam, sticky category rail with scroll-spy, interactive demos (readiness sliders, status morphs, live freshness), deep links (`#help/<slug>`).
+- **Methodology card deck** — the seven pipeline stages as a compact 3D deck with a weight spectrum bar.
+- **Reliability** — `/healthz` (sub-ms, no data access), `REFRESH_IN_SERVER` flag so GitHub Actions can be the sole data writer, async font loading, boot skeleton, 60fps-first motion (transform/opacity only, DPR capped, offscreen pausing).
 
 ---
 
@@ -149,11 +159,23 @@ pip install -r requirements.txt
 | Command | What it does |
 | --- | --- |
 | `./run.sh` | Starts the server with background refresh |
-| `./run.sh once` | Performs a single refresh and rebuilds `demo.html`, without serving |
+| `./run.sh once` | Performs a single refresh and rebuilds `static/data.snapshot.js`, without serving |
 
 The repo ships with a real fetched cache, so the dashboard renders fully **before the first refresh completes**.
 
 ## Configuration
+
+Key environment variables (all optional):
+
+| Variable | Default | Purpose |
+|---|---|---|
+| `GITHUB_TOKEN` | – | Raises GitHub API rate limits |
+| `EXPLORER_API_KEY` | – | Gates write endpoints behind `X-API-Key` |
+| `REFRESH_IN_SERVER` | `0` | Set `1` only if the server should refresh itself; leave `0` when GitHub Actions writes the data |
+| `NO_AUTO_REFRESH` | `0` | Serve stored data read-only (no scheduler) |
+| `BLOCK_PRIVATE_URLS` | `1` | SSRF guard on visitor-influenced fetches |
+
+## Configuration (legacy notes)
 
 Everything is optional. Set these as environment variables.
 
@@ -182,7 +204,7 @@ Everything is optional. Set these as environment variables.
 
 ## How data stays fresh
 
-- **GitHub Actions** ([`refresh.yml`](.github/workflows)) refreshes everything **every 6 hours** and commits `data/live_cache.json`, `data/history.json`, `data/changes.json`, `static/data.snapshot.js` and `demo.html` back to the repo, so the dashboard and the portable demo always open with recent real data.
+- **GitHub Actions** ([`refresh.yml`](.github/workflows)) refreshes everything **every 6 hours** and commits `data/live_cache.json`, `data/history.json`, `data/changes.json` and `static/data.snapshot.js` back to the repo, so the dashboard always opens with recent real data.
 - **The running server** also refreshes in the background (every 15 minutes by default) and on demand from the nav.
 - **Rate limits are handled, not hidden.** Upstream 429s are retried with exponential backoff that honours `Retry-After`, responses are cached, and the UI says whose limit was hit:
   - *"Slow down, not broken"*: this app's own per-IP cooldown, with a live countdown.
@@ -211,7 +233,7 @@ Everything is optional. Set these as environment variables.
 .
 ├── src/                  FastAPI app: fetchers, classifiers, scoring, diffing, compat tester
 ├── static/               The dashboard (vanilla JS + CSS, no build step)
-├── scripts/              refresh_once.py · build_demo.py · update_readme_stats.py
+├── scripts/              refresh_once.py · update_readme_stats.py
 ├── data/                 Curated app list, latest real cache, history, change log
 ├── tests/                Regression harness
 ├── docs/screenshots/     Curated screenshot gallery

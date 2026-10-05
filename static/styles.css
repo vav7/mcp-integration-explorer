@@ -6015,3 +6015,36 @@ html[data-theme="dark"] .pview{background:
   .ha{transition:none!important}
   .fg-replay{display:none}
 }
+
+/* ============================================================================
+   v65 - RELEASE POLISH: dark glass, quick motion (release: 2.0)
+   ========================================================================== */
+
+/* desktop-only glass depth on the field-guide + shell surfaces */
+@media(min-width:921px) and (pointer:fine){
+  .hq-item,.fgf-card,.fg-cta,.fg-pipeline,.fg-rail,.fg-hero .fg-orb{
+    backdrop-filter:blur(16px) saturate(140%);
+    -webkit-backdrop-filter:blur(16px) saturate(140%)}
+}
+
+/* quick unified motion: everything settles in <=260ms */
+.btn,.btn-ghost,.btn-primary,.iconbtn,.chipfilter,.fg-chips button,.cmpbtn,
+.fgf-card,.donut,.ins,.sig,.chg,.evt,.hq-item,.dive-card,.bar-row,.cb-chip{
+  transition-duration:.2s}
+.fg-nav-item{transition-duration:.18s}
+.fg-ind{transition-duration:.26s}
+
+/* glass hairline upgrade on the shell panels */
+.fg-rail,.fgf-card,.fg-cta,.fg-pipeline{
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 24px 60px rgba(0,0,0,.45)}
+
+/* the boot screen: sharper, faster, HD type */
+#boot{background:radial-gradient(600px 300px at 50% 42%,rgba(124,111,224,.08),transparent 70%),var(--bg-0)}
+.boot-in b{font:600 17px var(--font-display);letter-spacing:-.02em;color:#F2F6FF}
+.boot-msg{color:#8B89A3}
+#boot.boot-done{transition-duration:.3s}
+
+/* reduced motion: glass stays, motion goes */
+@media(prefers-reduced-motion:reduce){
+  .fg-ind{transition:none}
+}
