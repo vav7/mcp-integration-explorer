@@ -10,13 +10,16 @@ services:
     numInstances: 1                # single process owns the in-memory store
     buildCommand: pip install -r requirements.txt
     startCommand: python -m uvicorn src.app:app --host 0.0.0.0 --port $PORT
-    healthCheckPath: /api/health
+    healthCheckPath: /healthz
     autoDeploy: true               # redeploy on every push to the default branch
     envVars:
       - key: PYTHON_VERSION
         value: "3.11"
       # The "live" part: background refresher every 15 min + boot refresh.
       - key: NO_AUTO_REFRESH
+        value: "0"
+      # Set to "1" (dashboard) once GitHub Actions becomes the data writer.
+      - key: REFRESH_IN_SERVER
         value: "0"
       # Safety: never let visitor-supplied URLs dial private/internal networks.
       - key: BLOCK_PRIVATE_URLS

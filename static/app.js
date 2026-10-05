@@ -705,10 +705,10 @@
           <svg viewBox="0 0 96 96" aria-hidden="true">
             <defs>
               <linearGradient id="dgo${i}" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#2FD08C"/><stop offset="1" stop-color="#1E9E70"/>
+                <stop offset="0" stop-color="#5FB59A"/><stop offset="1" stop-color="#1E9E70"/>
               </linearGradient>
               <linearGradient id="dgc${i}" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#8FA3FF"/><stop offset="1" stop-color="#6C7FE8"/>
+                <stop offset="0" stop-color="#8479E6"/><stop offset="1" stop-color="#6C7FE8"/>
               </linearGradient>
               <linearGradient id="dgn${i}" x1="0" y1="0" x2="1" y2="1">
                 <stop offset="0" stop-color="#4A5470"/><stop offset="1" stop-color="#333D52"/>
@@ -781,7 +781,7 @@
     if (sigUnchanged("gradebars", grades.map(g => counts[g]).join(",") + "|" + st.avg_readiness)) return;
     const max = Math.max(1, ...Object.values(counts));
     const desc = { A: "80-100 · ready now", B: "60-79 · strong", C: "40-59 · partial", D: "20-39 · early", E: "0-19 · minimal" };
-    const col = { A: "#34d399", B: "#93A5FF", C: "#fbbf24", D: "#ff8a4d", E: "#fb7185" };
+    const col = { A: "#5FB59A", B: "#8479E6", C: "#A38FD0", D: "#ff8a4d", E: "#B05B73" };
     $("#gradebars").innerHTML = grades.map(g => `<div class="bar-row glink${state.grade === g ? " sel" : ""}" data-g="${g}" role="button" tabindex="0" title="Grade ${g}: ${counts[g]} apps · click to filter the explorer">
         <div class="br-top"><span class="br-l"><span class="grade ${g}">${g}</span>${desc[g]}</span><b class="br-v" data-num="${counts[g]}">${counts[g]}</b></div>
         <div class="bar-track"><i style="width:${counts[g] / max * 100}%;background:linear-gradient(90deg,${col[g]},${col[g]}d9)"></i></div>
@@ -899,11 +899,11 @@
      classifications, repository metadata, package downloads, endpoint probes
      and liveness checks. Nothing is estimated and nothing is hardcoded. */
   const COMP_META = [
-    ["official_mcp", "Official MCP", "#34D399"],
-    ["capability", "Live capability", "#8B9DFF"],
+    ["official_mcp", "Official MCP", "#5FB59A"],
+    ["capability", "Live capability", "#7C6FE0"],
     ["adoption", "Adoption", "#A78BFA"],
     ["popularity", "Popularity", "#60A5FA"],
-    ["maintenance", "Maintenance", "#FBBF24"],
+    ["maintenance", "Maintenance", "#A38FD0"],
     ["availability", "Availability", "#FB923C"],
   ];
   function anSetN(id, v) {
@@ -959,11 +959,11 @@
       return;
     }
     $("#sparkSupply").innerHTML = sparkSvg(hist, [
-      { get: p => p.official, color: "#34D399" }, { get: p => p.community, color: "#A78BFA" }]);
+      { get: p => p.official, color: "#5FB59A" }, { get: p => p.community, color: "#A78BFA" }]);
     $("#sparkHealth").innerHTML = sparkSvg(hist, [
-      { get: p => p.tools, color: "#8B9DFF" }, { get: p => p.responding, color: "#FBBF24" }]);
+      { get: p => p.tools, color: "#7C6FE0" }, { get: p => p.responding, color: "#A38FD0" }]);
     $("#sparkAdoption").innerHTML = sparkSvg(hist, [
-      { get: p => p.downloads, color: "#5B8CFF" }, { get: p => p.stars, color: "#F59E0B" }]);
+      { get: p => p.downloads, color: "#5B8CFF" }, { get: p => p.stars, color: "#8479E6" }]);
     scanNums($("#intelligenceView"));
   }
 
@@ -1011,7 +1011,7 @@
     const pc = { vendor_official: 0, community: 0, none: 0 };
     apps.forEach(a => { const m = a.mcp && a.mcp.status; if (m in pc) pc[m]++; });
     const totalN = apps.length, total = Math.max(1, totalN);
-    const segs = [["vendor_official", "Official", pc.vendor_official, "#34D399"],
+    const segs = [["vendor_official", "Official", pc.vendor_official, "#5FB59A"],
                   ["community", "Community", pc.community, "#A78BFA"],
                   ["none", "No server yet", pc.none, "#94A3B8"]];
     const sig = segs.map(s => s[2]).join(",") + "/" + totalN;
@@ -1072,8 +1072,8 @@
       const d = (now - t) / 864e5;
       if (d <= 30) b[0]++; else if (d <= 90) b[1]++; else if (d <= 365) b[2]++; else b[3]++;
     });
-    const rows = [["Commit ≤ 30 days", b[0], "#34D399"], ["31 to 90 days", b[1], "#A3E635"],
-      ["91 to 365 days", b[2], "#FBBF24"], ["Stale, over 1 year", b[3], "#FB7185"], ["No repo found", b[4], "#94A3B8"]];
+    const rows = [["Commit ≤ 30 days", b[0], "#5FB59A"], ["31 to 90 days", b[1], "#A3E635"],
+      ["91 to 365 days", b[2], "#A38FD0"], ["Stale, over 1 year", b[3], "#B05B73"], ["No repo found", b[4], "#94A3B8"]];
     const max = Math.max(1, ...rows.map(r => r[1]));
     const repos = b[0] + b[1] + b[2] + b[3], fresh = b[0] + b[1];
     el.innerHTML = rows.map(([l, v, c], i) => `
@@ -1156,8 +1156,8 @@
     const lat = apps.map(a => a.liveness && a.liveness.latency_ms).filter(v => v != null && v > 0);
     const lb = [0, 0, 0, 0];
     lat.forEach(v => { if (v < 250) lb[0]++; else if (v < 750) lb[1]++; else if (v < 1500) lb[2]++; else lb[3]++; });
-    const rows = [["Under 250 ms", lb[0], "#34D399"], ["250 to 750 ms", lb[1], "#A3E635"],
-      ["750 ms to 1.5 s", lb[2], "#FBBF24"], ["Over 1.5 s", lb[3], "#FB7185"]];
+    const rows = [["Under 250 ms", lb[0], "#5FB59A"], ["250 to 750 ms", lb[1], "#A3E635"],
+      ["750 ms to 1.5 s", lb[2], "#A38FD0"], ["Over 1.5 s", lb[3], "#B05B73"]];
     const maxL = Math.max(1, ...rows.map(r => r[1]));
     const medLat = st.median_latency_ms != null ? st.median_latency_ms
       : (lat.length ? lat.slice().sort((x, y) => x - y)[Math.floor(lat.length / 2)] : null);
@@ -2920,7 +2920,7 @@
     try { console.info("MCP Integration Explorer build v40"); } catch (e) {}
     loadRecent(); themeIcon();
     await loadSnapshot();
-    try { bind(); } catch (e) { if (window.console) console.error("bind failed:", e); }
+    try { bind(); } catch (e) { if (window.console) console.error("bind failed:", e); window.__bindErr = e.message + " || " + String(e.stack || "").slice(0, 300); }
     await loadActivity(); observeReveal();
     const mm = location.pathname.match(/\/app\/(\d+)/); if (mm) openModal(+mm[1]);
     const h0 = (location.hash || "").replace(/^#/, "");

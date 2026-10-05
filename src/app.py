@@ -209,6 +209,13 @@ def _sse(payload: dict) -> str:
     return f"data: {json.dumps(payload, ensure_ascii=False)}\n\n"
 
 
+@app.get("/healthz")
+def healthz():
+    """Render health check: a plain def with no data access - sub-millisecond
+    even while the snapshot loads or a refresh runs."""
+    return {"ok": True}
+
+
 @app.get("/api/health")
 async def health():
     """Platform health check: must answer in single-digit milliseconds, every

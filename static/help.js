@@ -5,6 +5,7 @@
  */
 (() => {
   "use strict";
+  try {
   const $ = (s, r) => (r || document).querySelector(s);
   const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
   let reduced = false, coarse = false;
@@ -80,62 +81,10 @@
     if (expanded) $$(".hq-item", view).forEach(initDemosIn);
   });
 
-  /* ---------------- live search ---------------- */
-  const search = $("#fgSearch"), count = $("#fgCount");
-  search.addEventListener("input", () => {
-    const q = search.value.trim().toLowerCase();
-    let hits = 0;
-    $$(".hq-group", view).forEach(g => {
-      let groupHits = 0;
-      $$(".hq-item", g).forEach(item => {
-        const qEl = $(".hq-q", item), aEl = $(".ha-in", item);
-        const text = (qEl.textContent + " " + aEl.textContent).toLowerCase();
-        const hit = !q || text.includes(q);
-        item.style.display = hit ? "" : "none";
-        if (hit) { groupHits++; hits++; }
-        /* highlight */
-        if (q && hit) {
-          const rx = new RegExp("(" + q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "ig");
-          if (!qEl.dataset.raw) qEl.dataset.raw = qEl.textContent;
-          qEl.innerHTML = qEl.dataset.raw.replace(rx, "<mark>$1</mark>");
-        } else if (qEl.dataset.raw) { qEl.innerHTML = qEl.dataset.raw; }
-      });
-      g.style.display = groupHits ? "" : "none";
-    });
-    count.textContent = q ? hits + " match" + (hits === 1 ? "" : "es") : "";
-    let empty = $("#fgEmpty");
-    if (!hits && q) {
-      if (!empty) {
-        empty = document.createElement("div"); empty.id = "fgEmpty"; empty.className = "fg-empty";
-        empty.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.2-3.2"/><path d="M8 11h6"/></svg><b>Nothing matches "<i></i>"</b><span>Try a shorter word - readiness, gateway, compare, export…</span>';
-        $("#fgCanvas").appendChild(empty);
-      }
-      empty.querySelector("i").textContent = q;
-      empty.style.display = "";
-    } else if (empty) empty.style.display = "none";
-  });
-
-  /* keyboard: / focuses, Esc clears, arrows+enter navigate */
+  /* keyboard: Esc closes open answers */
   document.addEventListener("keydown", (e) => {
-    const helpOpen = view.classList.contains("open");
-    if (!helpOpen) return;
-    const inField = document.activeElement === search;
-    if ((e.key === "/" && !inField) || ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k")) {
-      e.preventDefault(); view.scrollTo({ top: 0 }); search.focus(); return;
-    }
-    if (e.key === "Escape" && inField) { search.value = ""; search.dispatchEvent(new Event("input")); search.blur(); return; }
-    if (inField && (e.key === "ArrowDown" || e.key === "ArrowUp" || e.key === "Enter")) {
-      const items = $$(".hq-item", view).filter(i => i.style.display !== "none" && i.closest(".hq-group").style.display !== "none");
-      if (!items.length) return;
-      e.preventDefault();
-      const cur = items.findIndex(i => i.classList.contains("sel"));
-      const next = e.key === "Enter" ? Math.max(0, cur) : (cur + (e.key === "ArrowDown" ? 1 : items.length - 1)) % items.length;
-      $$(".hq-item.sel", view).forEach(i => i.classList.remove("sel"));
-      const it = items[cur < 0 && e.key !== "Enter" ? 0 : next];
-      it.classList.add("sel");
-      it.scrollIntoView({ block: "nearest", behavior: reduced ? "auto" : "smooth" });
-      if (e.key === "Enter") { setOpen(it, !it.classList.contains("open")); initDemosIn(it); }
-    }
+    if (!view.classList.contains("open")) return;
+    if (e.key === "Escape") { $$(".hq-item.open", view).forEach(i => setOpen(i, false)); }
   });
 
   /* ---------------- rail: jump + scroll-spy + gliding indicator ---------------- */
@@ -304,6 +253,272 @@
     .observe(view, { attributes: true, attributeFilter: ["class"] });
   if (view.classList.contains("open")) boot();
 
+
+
+  /* ================= C1: the 3D pipeline constellation =================
+     Six dark glass spheres on a 3D arc, pre-rendered as sprites. They
+     materialize one by one (shockwave + settle), hairline links draw
+     between them, data packets drift along. Mouse tilts the scene;
+     hover/tap brings a sphere forward and opens its story. */
+  const STAGES = [
+    { t: "App enters", d: "100 curated apps, or any app you search for, enter the tracked estate. Each becomes a living record the pipeline keeps fresh.", fig: "100 tracked applications" },
+    { t: "Registry match", d: "The official MCP registry is searched with brand terms, filtered to genuine mentions, and classified vendor-official only when the namespace resolves to the app's own domain.", fig: "domain-verified classification" },
+    { t: "Live probe", d: "A real MCP handshake (initialize, then tools/list) against published endpoints. Open endpoints reveal true tool counts; gated ones report their auth wall.", fig: "real tool counts / auth state" },
+    { t: "Evidence", d: "The server's repository goes through GitHub (stars, commits, license) and its packages through npm and PyPI (downloads, versions). Every figure links home.", fig: "adoption + maintenance signals" },
+    { t: "Readiness", d: "All signals combine into a transparent weighted score - official 28%, capability 14%, adoption 16%, popularity 14%, maintenance 16%, availability 12% - graded A-E.", fig: "0-100 score + grade" },
+    { t: "Watched live", d: "Each refresh diffs against the last: registry moves, tool changes, liveness flips stream to open dashboards and fire watched alerts.", fig: "the live signal wire" },
+  ];
+  const GLYPHS = [
+    (c) => { c.strokeRect(-7, -7, 6, 6); c.strokeRect(1, -7, 6, 6); c.strokeRect(-7, 1, 6, 6); c.strokeRect(1, 1, 6, 6); },
+    (c) => { c.beginPath(); c.moveTo(0, -9); c.lineTo(8, -4); c.lineTo(8, 5); c.lineTo(0, 9); c.lineTo(-8, 5); c.lineTo(-8, -4); c.closePath(); c.moveTo(0, -9); c.lineTo(0, 9); c.moveTo(-8, -4); c.lineTo(0, 0); c.lineTo(8, -4); },
+    (c) => { c.beginPath(); c.moveTo(2, -9); c.lineTo(-6, 1); c.lineTo(-1, 1); c.lineTo(-2, 9); c.lineTo(6, -1); c.lineTo(1, -1); c.closePath(); },
+    (c) => { for (let k = 0; k < 5; k++) { const a = -Math.PI / 2 + k * (Math.PI * 2 / 5); const b = a + Math.PI * 2 / 5 * 2; c.moveTo(Math.cos(a) * 8, Math.sin(a) * 8); c.lineTo(Math.cos(b) * 8, Math.sin(b) * 8); } },
+    (c) => { c.beginPath(); c.arc(0, 0, 8, Math.PI * .85, Math.PI * 2.15); c.moveTo(4, -3); c.lineTo(0, 2); c.lineTo(-3, -1); },
+    (c) => { c.beginPath(); c.moveTo(0, -9); c.lineTo(7, -6); c.lineTo(7, 2); c.quadraticCurveTo(7, 8, 0, 10); c.quadraticCurveTo(-7, 8, -7, 2); c.lineTo(-7, -6); c.closePath(); c.moveTo(-3, 0); c.lineTo(-1, 3); c.lineTo(3, -3); },
+  ];
+
+  function makeSprite(idx, size) {
+    const s = document.createElement("canvas");
+    s.width = s.height = size * 2;
+    const c = s.getContext("2d");
+    c.scale(2, 2);
+    const r = size / 2;
+    const g = c.createRadialGradient(r - r * .35, r - r * .45, r * .1, r, r, r);
+    g.addColorStop(0, "#1B1B2E"); g.addColorStop(.62, "#101020"); g.addColorStop(1, "#08080F");
+    c.fillStyle = g;
+    c.beginPath(); c.arc(r, r, r - 1, 0, 6.29); c.fill();
+    c.strokeStyle = "rgba(165,155,242,.5)"; c.lineWidth = 1.2;
+    c.beginPath(); c.arc(r, r, r - 1.2, Math.PI * .7, Math.PI * 1.9); c.stroke();
+    c.fillStyle = "rgba(255,255,255,.14)";
+    c.beginPath(); c.ellipse(r - r * .3, r - r * .48, r * .34, r * .16, -.5, 0, 6.29); c.fill();
+    c.strokeStyle = "rgba(195,194,255,.85)"; c.lineWidth = 1.3;
+    c.lineCap = "round"; c.lineJoin = "round";
+    c.save(); c.translate(r, r + 1); GLYPHS[idx](c); c.restore();
+    c.fillStyle = "rgba(195,194,255,.7)";
+    c.font = "600 7px ui-monospace, monospace"; c.textAlign = "center";
+    c.fillText("0" + (idx + 1), r, size - 5);
+    return s;
+  }
+
+  function bootPipeline() {
+    const wrap = document.querySelector(".fg3d-wrap");
+    const cv = document.getElementById("fg3d");
+    if (!wrap || !cv || cv._on) return;
+    cv._on = true;
+    const ctx = cv.getContext("2d");
+    const detail = document.getElementById("howDetail");
+    let W = 0, H = 0, raf = 0, running = false, started = false;
+    let mx = 0, my = 0, hov = -1;
+    const SP = 132, DPR = Math.min(devicePixelRatio || 1, 2);
+    const sprites = STAGES.map((_, i) => makeSprite(i, SP));
+    const N = STAGES.length;
+    let cheap = false, frameTimes = [], landed = [];
+
+    function size() {
+      W = wrap.clientWidth; H = Math.max(300, Math.min(430, W * .42));
+      cv.width = W * DPR; cv.height = H * DPR;
+      cv.style.height = H + "px";
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    }
+    function project(i, w, h) {
+      const spread = Math.min(w * .16, 190);
+      const x = (i - (N - 1) / 2) * spread;
+      const z = Math.abs(i - (N - 1) / 2) * 55;
+      const y = -Math.pow(z / 55, 2) * 12 + 18;
+      return { x: w / 2 + x, y: h * .52 + y, s: 320 / (320 + z) };
+    }
+
+    function draw(ts) {
+      if (!running) return;
+      ctx.clearRect(0, 0, W, H);
+      if (!cheap) {
+        ctx.fillStyle = "rgba(165,155,242,.35)";
+        for (let i = 0; i < 26; i++) {
+          const sx = (i * 97.3) % W, sy = (i * 61.7) % H;
+          const tw = .25 + .2 * Math.sin(ts / 900 + i);
+          ctx.globalAlpha = tw * .5;
+          ctx.beginPath(); ctx.arc(sx, sy, 1, 0, 6.29); ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+      }
+      const proj = STAGES.map((_, i) => {
+        const p = project(i, W, H);
+        const born = landed[i] >= 0 ? Math.min(1, (ts - landed[i]) / 420) : 0;
+        const settle = 1 - Math.pow(1 - born, 3);
+        return { ...p, born: landed[i] >= 0 ? 1 : 0, a: settle, sz: SP * p.s * (.6 + .4 * settle) };
+      });
+      for (let i = 0; i < N - 1; i++) {
+        if (proj[i].born < 1 || proj[i + 1].born < 1) continue;
+        const a = proj[i], b = proj[i + 1];
+        ctx.strokeStyle = "rgba(160,150,255,.22)"; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+        if (!cheap) {
+          const k = ((ts / 2600) + i / (N - 1)) % 1;
+          const px2 = a.x + (b.x - a.x) * k, py2 = a.y + (b.y - a.y) * k;
+          ctx.fillStyle = "rgba(195,194,255,.8)";
+          ctx.beginPath(); ctx.arc(px2, py2, 1.8, 0, 6.29); ctx.fill();
+        }
+      }
+      const order = proj.map((p, i) => i).sort((a, b) => proj[a].s - proj[b].s);
+      order.forEach(i => {
+        const p = proj[i];
+        if (p.a <= 0) return;
+        const x = p.x + mx * 14 * p.s, y = p.y + my * 10 * p.s;
+        const sz = p.sz * (i === hov ? 1.14 : 1);
+        ctx.globalAlpha = p.a;
+        if (i === hov) {
+          ctx.beginPath(); ctx.fillStyle = "rgba(124,111,224,.12)";
+          ctx.arc(x, y, sz * .72, 0, 6.29); ctx.fill();
+        }
+        ctx.drawImage(sprites[i], x - sz / 2, y - sz / 2, sz, sz);
+        ctx.globalAlpha = 1;
+        ctx.font = "600 11px ui-monospace, monospace"; ctx.textAlign = "center";
+        ctx.fillStyle = i === hov ? "#DAD6FF" : "rgba(163,161,184,.9)";
+        ctx.fillText(STAGES[i].t, x, y + sz / 2 + 18);
+        ctx.fillStyle = "rgba(124,111,224,.9)";
+        ctx.font = "500 8.5px ui-monospace, monospace";
+        ctx.fillText(STAGES[i].fig, x, y + sz / 2 + 31);
+      });
+      STAGES.forEach((_, i) => {
+        if (landed[i] < 0) return;
+        const age = ts - landed[i];
+        if (age < 620) {
+          const p = proj[i];
+          const k = age / 620;
+          ctx.strokeStyle = "rgba(165,155,242," + (.5 * (1 - k)).toFixed(3) + ")";
+          ctx.lineWidth = 1.5;
+          ctx.beginPath(); ctx.arc(p.x, p.y, SP * p.s * (.5 + k * .9), 0, 6.29); ctx.stroke();
+        }
+      });
+      raf = requestAnimationFrame(draw);
+    }
+
+    function start() {
+      size();
+      const t0 = now();
+      landed = new Array(N).fill(-1).map((_, i) => t0 + 120 + i * 280);
+      if (reduced) { landed = landed.map(() => t0 - 1000); still(); return; }
+      if (!running) { running = true; raf = requestAnimationFrame(draw); }
+      frameTimes = [];
+      const watchdog = (ts) => {
+        if (frameTimes.length < 60) {
+          frameTimes.push(ts);
+          if (frameTimes.length > 1 && ts - frameTimes[frameTimes.length - 2] > 20) cheap = true;
+          requestAnimationFrame(watchdog);
+        }
+      };
+      requestAnimationFrame(watchdog);
+    }
+    function still() { running = true; draw(now()); running = false; }
+
+    size();
+    /* the view opens with a scale animation: keep the canvas in sync with
+       the box's real size via ResizeObserver, not a one-shot measure */
+    if ("ResizeObserver" in window) {
+      new ResizeObserver(() => { size(); if (!running) still(); }).observe(wrap);
+    }
+    addEventListener("resize", () => { size(); if (!running) still(); }, { passive: true });
+    const io = new IntersectionObserver((es) => {
+      es.forEach(en => {
+        if (en.isIntersecting && !started) { started = true; start(); }
+        else if (!en.isIntersecting && running) { running = false; cancelAnimationFrame(raf); }
+        else if (en.isIntersecting && started && !running) { running = true; raf = requestAnimationFrame(draw); }
+      });
+    }, { threshold: .25 });
+    io.observe(wrap);
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) { running = false; cancelAnimationFrame(raf); }
+      else if (started && !running) { running = true; raf = requestAnimationFrame(draw); }
+    });
+    if (!coarse) wrap.addEventListener("pointermove", (e) => {
+      const r = wrap.getBoundingClientRect();
+      const cx2 = e.clientX - r.left, cy2 = e.clientY - r.top;
+      mx = (cx2 / r.width - .5) * 2; my = (cy2 / r.height - .5) * 2;
+      hov = -1;
+      STAGES.forEach((_, i) => {
+        const p = project(i, W, H);
+        if (Math.hypot(cx2 - p.x, cy2 - p.y) < SP * p.s * .62) hov = i;
+      });
+      if (hov >= 0) {
+        const st = STAGES[hov];
+        detail.hidden = false;
+        detail.innerHTML = '<div class="hd-in"><span class="hd-n">0' + (hov + 1) + '</span><div class="hd-b"><b>' + st.t + '</b><p>' + st.d + '</p><span class="hd-p">' + st.fig + '</span></div></div>';
+      }
+    }, { passive: true });
+    wrap.addEventListener("pointerleave", () => { hov = -1; });
+    wrap.addEventListener("click", (e) => {
+      const r = wrap.getBoundingClientRect();
+      const cx2 = e.clientX - r.left, cy2 = e.clientY - r.top;
+      STAGES.forEach((_, i) => {
+        const p = project(i, W, H);
+        if (Math.hypot(cx2 - p.x, cy2 - p.y) < SP * p.s * .62) {
+          const st = STAGES[i];
+          detail.hidden = false;
+          detail.innerHTML = '<div class="hd-in"><span class="hd-n">0' + (i + 1) + '</span><div class="hd-b"><b>' + st.t + '</b><p>' + st.d + '</p><span class="hd-p">' + st.fig + '</span></div></div>';
+        }
+      });
+    });
+    document.getElementById("fgReplay").addEventListener("click", () => { started = true; start(); });
+  }
+
+  /* ================= C3: methodology card deck ================= */
+  function bootDeck() {
+    const mv = document.getElementById("methodologyView");
+    const deck = mv ? mv.querySelector(".pipeline.deck") : null;
+    const spec = document.getElementById("deckSpectrum");
+    if (!mv || !deck || deck._on) return;
+    deck._on = true;
+    const cards = Array.from(deck.querySelectorAll(".pipe"));
+    const weights = [28, null, 14, 16, 16, 12];
+    const names = cards.map(c => (c.querySelector(".pipe-b h4") || {}).textContent || "");
+    if (spec) {
+      spec.innerHTML = cards.map((_, i) => {
+        const w = weights[i];
+        return '<span data-i="' + i + '" style="flex:' + (w ? w : 4) + '" title="' + (names[i] || "") + (w ? " · " + w + "%" : " · signal") + '"></span>';
+      }).join("");
+    }
+    let active = 0;
+    function render() {
+      cards.forEach((c, i) => {
+        const d = i - active;
+        c.style.zIndex = String(100 - Math.abs(d));
+        c.classList.toggle("is-active", d === 0);
+        if (d === 0) {
+          c.style.transform = "none"; c.style.opacity = "1";
+        } else if (d < 0) {
+          c.style.transform = "translateY(" + (d * 14) + "px) scale(" + (1 + d * .025) + ")";
+          c.style.opacity = String(Math.max(.25, 1 + d * .16));
+        } else {
+          c.style.transform = "translateY(" + (d * 16) + "px) scale(" + (1 - d * .035) + ")";
+          c.style.opacity = String(Math.max(.2, 1 - d * .22));
+        }
+      });
+      if (spec) Array.prototype.forEach.call(spec.children, (s, i) => s.classList.toggle("on", i === active));
+      cards.forEach((c, i) => {
+        const x = c.querySelector(".pipe-x");
+        if (x) x.classList.toggle("open", i === active);
+      });
+    }
+    cards.forEach((c, i) => {
+      (c.querySelector(".pipe-hit") || c).addEventListener("click", () => { active = i; render(); });
+    });
+    mv.addEventListener("keydown", (e) => {
+      if (!mv.classList.contains("open")) return;
+      if (e.key === "ArrowDown" || e.key === "ArrowRight") { active = Math.min(cards.length - 1, active + 1); render(); }
+      else if (e.key === "ArrowUp" || e.key === "ArrowLeft") { active = Math.max(0, active - 1); render(); }
+    });
+    render();
+  }
+
+  new MutationObserver(() => {
+    if (view.classList.contains("open")) { boot(); bootPipeline(); }
+    const mv = document.getElementById("methodologyView");
+    if (mv && mv.classList.contains("open")) bootDeck();
+  }).observe(view, { attributes: true, attributeFilter: ["class"] });
+  const mvEl = document.getElementById("methodologyView");
+  if (mvEl) new MutationObserver(() => { if (mvEl.classList.contains("open")) bootDeck(); })
+    .observe(mvEl, { attributes: true, attributeFilter: ["class"] });
+
   /* deep-link + jump API */
   window.__fghelp = {
     expand(slug) {
@@ -319,4 +534,5 @@
       item.classList.remove("ping"); void item.offsetWidth; item.classList.add("ping");
     },
   };
+  } catch (e) { window.__helpErr = e.message + " || " + String(e.stack || "").slice(0, 400); }
 })();

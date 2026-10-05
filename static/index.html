@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="build" content="v62">
+<meta name="build" content="v65">
 <title>MCP Integration Explorer · integration intelligence</title>
 <meta name="description" content="Live, evidence-backed MCP / agent integration readiness across applications. Real registry data, endpoint probes, GitHub, package adoption and liveness, with every signal traceable to its source.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,7 +16,7 @@
 <script>
   (function(){try{var t=localStorage.getItem('mcp_theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';}document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();
 </script>
-<link rel="stylesheet" href="/styles.css?v=62">
+<link rel="stylesheet" href="/styles.css?v=65">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%2310151C'/><rect x='.5' y='.5' width='31' height='31' rx='6.5' fill='none' stroke='%23253140'/><circle cx='10' cy='10' r='2.4' fill='none' stroke='%234F7FFF' stroke-width='1.6'/><circle cx='10' cy='22' r='2.4' fill='none' stroke='%234F7FFF' stroke-width='1.6'/><circle cx='22' cy='16' r='2.4' fill='none' stroke='%234F7FFF' stroke-width='1.6'/><path d='M12 11l8 4M12 21l8-4' stroke='%234F7FFF' stroke-width='1.6'/></svg>">
 </head>
 <body>
@@ -235,9 +235,9 @@
       <div class="sig-tabs" id="sigTabs">
         <span class="chipfilter active" data-sig="">All</span>
         <span class="chipfilter" data-sig="registry"><span class="cdot" style="background:var(--acc)"></span>Registry</span>
-        <span class="chipfilter" data-sig="endpoints"><span class="cdot" style="background:#8B9DFF"></span>Endpoints</span>
+        <span class="chipfilter" data-sig="endpoints"><span class="cdot" style="background:#7C6FE0"></span>Endpoints</span>
         <span class="chipfilter" data-sig="liveness"><span class="cdot" style="background:var(--warn)"></span>Liveness</span>
-        <span class="chipfilter" data-sig="alerts"><span class="cdot" style="background:#B49CFF"></span>Alerts</span>
+        <span class="chipfilter" data-sig="alerts"><span class="cdot" style="background:#A59BF2"></span>Alerts</span>
       </div>
     </div>
     <div class="sig-compact reveal" data-replay>
@@ -364,7 +364,7 @@
       <button type="button" role="tab" data-ivpart="adoption" aria-selected="false">Adoption &amp; latency</button>
     </div>
     <div class="iv-partpane active" id="ivpSupply" role="tabpanel">
-<div class="iv-spark"><div class="ivs-h"><span>live wire · official vs community</span><span class="ivs-v"><i style="background:#34D399"></i><b id="spkOff">…</b><i style="background:#B49CFF"></i><b id="spkCom">…</b></span></div><div class="ivs-box" id="sparkSupply"></div></div>
+<div class="iv-spark"><div class="ivs-h"><span>live wire · official vs community</span><span class="ivs-v"><i style="background:#5FB59A"></i><b id="spkOff">…</b><i style="background:#A59BF2"></i><b id="spkCom">…</b></span></div><div class="ivs-box" id="sparkSupply"></div></div>
       <div class="an-grid an-2up g-supply" id="anGrid">
       <div class="an-card reveal" data-replay id="anScore" style="--i:0">
         <div class="an-h"><div><div class="an-k">Composition</div><h3>Where points come from</h3></div><span class="an-n" id="anNAvg" data-fmt="dec1">…</span></div>
@@ -377,7 +377,7 @@
       </div>
     </div>
     <div class="iv-partpane" id="ivpHealth" role="tabpanel" hidden>
-<div class="iv-spark"><div class="ivs-h"><span>live wire · tools vs responding sites</span><span class="ivs-v"><i style="background:#8B9DFF"></i><b id="spkTools">…</b><i style="background:#FBBF24"></i><b id="spkResp">…</b></span></div><div class="ivs-box" id="sparkHealth"></div></div>
+<div class="iv-spark"><div class="ivs-h"><span>live wire · tools vs responding sites</span><span class="ivs-v"><i style="background:#7C6FE0"></i><b id="spkTools">…</b><i style="background:#A38FD0"></i><b id="spkResp">…</b></span></div><div class="ivs-box" id="sparkHealth"></div></div>
       <div class="an-grid an-2up g-health">
       <div class="an-card reveal" data-replay id="anFresh" style="--i:2">
         <div class="an-h"><div><div class="an-k">Maintenance</div><h3>Repository freshness</h3></div><span class="an-n" id="anNRepos">…</span></div>
@@ -390,7 +390,7 @@
       </div>
     </div>
     <div class="iv-partpane" id="ivpAdoption" role="tabpanel" hidden>
-<div class="iv-spark"><div class="ivs-h"><span>live wire · downloads vs stars</span><span class="ivs-v"><i style="background:#5B8CFF"></i><b id="spkDl">…</b><i style="background:#F59E0B"></i><b id="spkStars">…</b></span></div><div class="ivs-box" id="sparkAdoption"></div></div>
+<div class="iv-spark"><div class="ivs-h"><span>live wire · downloads vs stars</span><span class="ivs-v"><i style="background:#5B8CFF"></i><b id="spkDl">…</b><i style="background:#8479E6"></i><b id="spkStars">…</b></span></div><div class="ivs-box" id="sparkAdoption"></div></div>
       <div class="an-grid an-2up g-adoption">
       <div class="an-card an-wide reveal" data-replay id="anScatter" style="--i:3">
         <div class="an-h"><div><div class="an-k">Adoption map</div><h3>Stars vs downloads</h3></div><span class="an-hint">log-log · median lines · click a dot for the dossier</span></div>
@@ -428,7 +428,7 @@
         <circle id="msArc" cx="60" cy="60" r="50" fill="none" stroke="url(#msGrad)" stroke-width="9" stroke-linecap="round"
           stroke-dasharray="314.16" stroke-dashoffset="314.16" style="transition:stroke-dashoffset 1.1s var(--ease)"/>
         <defs><linearGradient id="msGrad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#5b8cff"/><stop offset=".55" stop-color="#8b5cf6"/><stop offset="1" stop-color="#8B9DFF"/>
+          <stop offset="0" stop-color="#5b8cff"/><stop offset=".55" stop-color="#8b5cf6"/><stop offset="1" stop-color="#7C6FE0"/>
         </linearGradient></defs>
       </svg><div class="ms-v"><b id="msAvg" data-fmt="dec1">…</b><span>avg readiness</span></div></div>
       <div class="ms-facts">
@@ -439,7 +439,8 @@
       </div>
       <p class="ms-hint">Tap any stage to see the live figure it produced from the current snapshot, and the source it came from.</p>
     </div>
-    <ol class="pipeline">
+    <div class="deck-spectrum" id="deckSpectrum" aria-hidden="true"></div>
+    <ol class="pipeline deck">
       <li class="pipe reveal" data-replay data-meth="official" style="--i:0">
         <button class="pipe-hit" type="button" aria-expanded="false">
           <span class="pipe-n">01</span>
@@ -540,11 +541,6 @@
         <div class="fg-eyebrow"><span class="fg-dot"></span>HELP · FIELD GUIDE</div>
         <h1 class="fg-h1">Everything this dashboard means, <span class="fg-gold">in plain words.</span></h1>
         <p class="fg-sub">Eighteen short answers, grouped the way you will need them. Nothing here is marketing - it is exactly what the data is and how to get at it.</p>
-        <div class="fg-search" role="search">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.2-3.2"/></svg>
-          <input id="fgSearch" type="text" placeholder="Ask anything: readiness, auth gated, compare…" autocomplete="off" spellcheck="false" aria-label="Search the field guide">
-          <span class="fg-kbd">Ctrl K</span>
-        </div>
         <div class="fg-chips" role="navigation" aria-label="Quick questions">
           <button type="button" data-fgjump="what-is-mcp">What is MCP?</button>
           <button type="button" data-fgjump="readiness-score">Readiness score</button>
@@ -561,32 +557,21 @@
         <h3>From the live web to a readiness signal</h3>
         <p>Every app walks this pipeline on every refresh. Nothing is simulated; each stage is running right now on the live backend. Click a stage to open its story.</p>
       </div>
-      <div class="how-rail" id="fgRail" role="list">
-        <div class="how-node" role="listitem" style="--hn:0">
-          <span class="hn-orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1.6"/><rect x="14" y="3" width="7" height="7" rx="1.6"/><rect x="3" y="14" width="7" height="7" rx="1.6"/><rect x="14" y="14" width="7" height="7" rx="1.6"/></svg></span>
-          <b>App enters</b><p>100 curated apps, or any app you search for</p>
-        </div>
-        <div class="how-node" role="listitem" style="--hn:1">
-          <span class="hn-orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/></svg></span>
-          <b>Registry match</b><p>Official MCP registry search, domain-verified</p>
-        </div>
-        <div class="how-node" role="listitem" style="--hn:2">
-          <span class="hn-orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4.5 13H11l-1 9 8.5-11H12z"/></svg></span>
-          <b>Live probe</b><p>Real handshake: tool counts, auth gating</p>
-        </div>
-        <div class="how-node" role="listitem" style="--hn:3">
-          <span class="hn-orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9-5.2-2.8-5.2 2.8 1-5.9L3.5 9.7l5.9-.8z"/></svg></span>
-          <b>Evidence</b><p>Repository health + npm/PyPI adoption</p>
-        </div>
-        <div class="how-node" role="listitem" style="--hn:4">
-          <span class="hn-orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 14l4-4"/><circle cx="12" cy="14" r="8"/><path d="M4 14a8 8 0 0116 0"/></svg></span>
-          <b>Readiness</b><p>Weighted 0-100 score, graded A-E</p>
-        </div>
-        <div class="how-node" role="listitem" style="--hn:5">
-          <span class="hn-orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.2-2.9 7.6-7 9-4.1-1.4-7-4.8-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
-          <b>Watched live</b><p>Changes stream to you the moment they land</p>
-        </div>
+      <div class="fg3d-wrap">
+        <canvas id="fg3d" aria-hidden="true"></canvas>
+        <button type="button" class="fg-replay" id="fgReplay" aria-label="Replay the pipeline animation">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 10-2.3 6.3M20 5v6h-6"/></svg>
+          Replay
+        </button>
       </div>
+      <ul class="fg-a11y-list">
+        <li>App enters - 100 curated apps, or any app you search for</li>
+        <li>Registry match - official MCP registry search, domain-verified</li>
+        <li>Live probe - real handshake: tool counts, auth gating</li>
+        <li>Evidence - repository health and npm/PyPI adoption</li>
+        <li>Readiness - weighted 0-100 score, graded A-E</li>
+        <li>Watched live - changes stream the moment they land</li>
+      </ul>
       <div class="how-detail" id="howDetail" hidden></div>
     </section>
 
@@ -995,9 +980,9 @@
 <!-- NOTE: data.snapshot.js (~2MB) is NOT loaded up front. The live API is the
      primary data source; the embedded snapshot is injected on demand only when
      the backend is unreachable, so a normal visit never parses it. -->
-<script src="/app.js?v=62"></script>
-<script src="/motion.js?v=62"></script>
-<script src="/help.js?v=62"></script>
-<script src="/premium.js?v=62"></script>
+<script src="/app.js?v=65"></script>
+<script src="/motion.js?v=65"></script>
+<script src="/help.js?v=65"></script>
+<script src="/premium.js?v=65"></script>
 </body>
 </html>

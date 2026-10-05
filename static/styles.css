@@ -5782,3 +5782,236 @@ html[data-theme="light"] .modal{background:#fff}
   #fgOrb{display:none}
 }
 @media(max-width:700px){.fg-kbd{display:none}.fg-orb{height:170px}}
+
+/* ============================================================================
+   v63 - OBSIDIAN DESIGN SYSTEM (Phase B)
+   One accent: muted violet. Gold and amber are extinct. Depth = tonal
+   surfaces + hairlines + inner top highlights, never glow or gradients.
+   ========================================================================== */
+
+:root{
+  --bg-0:#050509; --bg-1:#08080F; --bg-2:#0C0C16; --bg-3:#11111E;
+  --line:rgba(160,150,255,.09); --line-strong:rgba(160,150,255,.18);
+  --v3:#A59BF2; --v5:#7C6FE0; --v8:#2A2466;
+  /* legacy variable remap: every old cyan/gold call-site becomes Obsidian */
+  --acc:#7C6FE0; --acc2:#A59BF2; --teal:#7C6FE0;
+  --acc-bg:rgba(124,111,224,.13); --acc2-bg:rgba(165,155,242,.12);
+  --grad-acc:linear-gradient(135deg,#7C6FE0,#6C60C8);
+  --grad-ok:linear-gradient(90deg,#5FB59A,#4E9E85);
+  --grad-com:linear-gradient(90deg,#8479E6,#6C60C8);
+  --warn:#C9A86A; --dan:#C58A9E;
+  --bg:#050509; --atmo:#08080F;
+  --t1:#ECEBF4; --t2:#A3A1B8; --t3:#8B89A3; --t4:#6E6C85;
+}
+[data-theme="light"]{
+  --acc:#5D51C7; --acc2:#6D5EDB; --teal:#5D51C7;
+  --acc-bg:rgba(93,81,199,.1); --acc2-bg:rgba(109,94,219,.1);
+  --grad-acc:linear-gradient(135deg,#5D51C7,#4A3FB0);
+  --grad-ok:linear-gradient(90deg,#2E8F6E,#237A5C);
+  --grad-com:linear-gradient(90deg,#6D5EDB,#5346B8);
+}
+html[data-theme="dark"] body{background:var(--bg-0)}
+html[data-theme="dark"] .ambient{background:
+  radial-gradient(1200px 560px at 84% -14%, rgba(124,111,224,.07), transparent 62%),
+  radial-gradient(1000px 560px at -12% 114%, rgba(165,155,242,.05), transparent 62%),
+  linear-gradient(180deg,#050509,#0A0A14 42%,#050509)}
+html[data-theme="dark"] .modal{background:linear-gradient(170deg,rgba(12,12,22,.985),rgba(5,5,9,.99))}
+html[data-theme="dark"] .pview{background:
+  radial-gradient(1000px 460px at 50% -10%,rgba(124,111,224,.07),transparent 62%),
+  linear-gradient(180deg,#050509,#07070F)}
+
+/* grades: one cool desaturated ramp */
+.grade.A{color:#6FBF9F}.grade.B{color:#8479E6}.grade.C{color:#A38FD0}
+.grade.D{color:#C58A9E}.grade.E{color:#B05B73}
+.glink .bar-track i{box-shadow:none}
+.badge.official{color:#5FB59A;background:rgba(95,181,154,.1);border-color:rgba(95,181,154,.3)}
+.badge.community{color:#8479E6;background:rgba(132,121,230,.1);border-color:rgba(132,121,230,.3)}
+.badge.none,.badge.gated{color:#8A94AC;background:rgba(120,132,158,.1);border-color:rgba(120,132,158,.3)}
+.site.up{color:#5FB59A}.site.warn{color:#C9A86A}.site.down{color:#C58A9E}
+.grade.A,.grade.B,.grade.C,.grade.D,.grade.E{opacity:1}
+
+/* buttons: matte dark, hairline, inner highlight; hover = violet border +
+   1px lift + tonal step; primary = deep violet fill; press scale .98 */
+.btn,.btn-ghost,.btn-primary,.iconbtn,.chipfilter,.segmented button{border-radius:11px}
+.btn,.btn-ghost{background:var(--bg-3);border:1px solid var(--line-strong);color:var(--t1);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.btn:hover,.btn-ghost:hover{border-color:rgba(124,111,224,.4);transform:translateY(-1px);
+  background:var(--bg-2)}
+.btn:active,.btn-ghost:active,.iconbtn:active,.chipfilter:active{transform:scale(.98)}
+.btn-primary{background:var(--v8);border:1px solid rgba(124,111,224,.5);color:#ECEBF4;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 4px 18px rgba(42,36,102,.35)}
+.btn-primary:hover{background:#332B78;border-color:rgba(124,111,224,.65)}
+#refreshBtn svg{transition:transform .4s var(--ease-soft)}
+#refreshBtn:hover svg{transform:rotate(90deg)}
+.iconbtn{background:var(--bg-2);border:1px solid var(--line);color:var(--t2);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+.iconbtn:hover{background:var(--bg-3);border-color:rgba(124,111,224,.35);color:var(--t1);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+.chipfilter.active{background:rgba(124,111,224,.14);color:#C9C2FF;border-color:rgba(124,111,224,.45);
+  box-shadow:none}
+.segmented button.active{background:var(--bg-3);color:#DAD6FF;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 0 0 1px rgba(124,111,224,.3)}
+.btn-primary::after{display:none}
+[data-theme="dark"] .btn-primary{color:#ECEBF4}
+[data-theme="light"] .btn-primary{background:#4A3FB0;color:#fff}
+
+/* bars/rings: violet family, no multi-hue */
+.score .sbar i,.sb-bar i,.lb-bar i,.rcomp-row .rt i{background:linear-gradient(90deg,#7C6FE0,#A59BF2)}
+.bar-track .o{background:rgba(95,181,154,.75)}
+.bar-track .c{background:rgba(132,121,230,.75)}
+.bar-track .n{background:rgba(90,90,120,.4)}
+.dn-off{stroke:#5FB59A}.dn-com{stroke:#8479E6}.dn-non{stroke:#3A3950}
+.dn-3 .o{color:#5FB59A}.dn-3 .c{color:#8479E6}.dn-3 .n{color:#8A94AC}
+.lg-dot.o{background:#5FB59A}.lg-dot.c{background:#8479E6}.lg-dot.n{background:#4A5570}
+.tint,.an-card h3{color:inherit}
+/* constellation canvases + boot: violet */
+#prConstellation, #fgOrb{opacity:.8}
+.boot-mark{color:#A59BF2;border-color:rgba(124,111,224,.45);
+  background:linear-gradient(150deg,rgba(124,111,224,.2),rgba(10,10,20,.7))}
+.boot-bar i{background:linear-gradient(90deg,#7C6FE0,#A59BF2)}
+
+/* help page: gold is extinct - violet is the single accent */
+#helpView{--fg-gold:#A59BF2;--fg-gold2:#7C6FE0;--fg-indigo:#7C6FE0;--fg-live:#4DE2C5}
+.fg-gold{background:none;-webkit-background-clip:initial;background-clip:initial;
+  color:#A59BF2;animation:none}
+.fg-eyebrow,.fgf-head .k,.fgf-n,.fgf-go,.fg-gauge span,.hq-n,.fg-pipeline .how-copy .k,
+.fg-cta p b,.ha-copy:hover,.fg-expand:hover{color:#A59BF2}
+.fg-nav-item.active b{color:#A59BF2}
+.fg-nav-item.active{background:rgba(124,111,224,.1)}
+.fg-ind{background:linear-gradient(180deg,#A59BF2,#7C6FE0);box-shadow:0 0 10px rgba(124,111,224,.4)}
+.fg-nav-item.active{background:rgba(124,111,224,.1)}
+.hq-item.open{box-shadow:0 0 0 1px rgba(124,111,224,.4),0 18px 44px rgba(0,0,0,.4)}
+.hq-item.open .hq-chev{color:#A59BF2}
+.hq-n{color:#A59BF2;background:rgba(124,111,224,.1);border-color:rgba(124,111,224,.3)}
+.ha-in mark{background:rgba(124,111,224,.28);color:#DAD6FF}
+.fgf-card::before{background:linear-gradient(90deg,#7C6FE0,rgba(124,111,224,.4) 55%,transparent)}
+.fgf-card:hover{border-color:rgba(124,111,224,.45);box-shadow:0 26px 60px rgba(0,0,0,.45)}
+.fgf-card:hover .fgf-go i{transform:translateX(5px)}
+.fg-cta::before{background:linear-gradient(120deg,rgba(124,111,224,.5),rgba(165,155,242,.35) 50%,rgba(95,181,154,.3))}
+.fg-cta p b{color:#A59BF2}
+#helpView .how-rail::after{background:linear-gradient(90deg,#A59BF2,#8479E6);
+  box-shadow:0 0 14px rgba(124,111,224,.4)}
+#helpView .how-rail::before{background:linear-gradient(90deg,rgba(124,111,224,.5),rgba(165,155,242,.4) 55%,rgba(95,181,154,.4));opacity:.45}
+#helpView .hn-orb{color:#C9C2FF;border-color:rgba(124,111,224,.45);
+  background:radial-gradient(circle at 32% 26%,rgba(124,111,224,.32),rgba(42,36,102,.35) 46%,rgba(8,8,15,.94) 74%);
+  box-shadow:0 12px 30px rgba(0,0,0,.5),0 0 22px rgba(124,111,224,.16),inset 0 1px 0 rgba(255,255,255,.14)}
+#helpView .how-detail .hd-in{border-color:rgba(124,111,224,.35);
+  background:linear-gradient(165deg,rgba(124,111,224,.08),rgba(8,10,18,.9) 55%)}
+#helpView .how-detail .hd-n{color:#C9C2FF;border-color:rgba(124,111,224,.4);
+  background:linear-gradient(160deg,rgba(124,111,224,.18),rgba(42,36,102,.1))}
+#helpView .how-detail .hd-p{color:#C9C2FF;border-color:rgba(124,111,224,.35);background:rgba(124,111,224,.08)}
+.fg-empty svg{color:var(--t4)}
+.fg-seg button.on{background:rgba(124,111,224,.14);color:#C9C2FF}
+.fg-appcard.official{border-color:rgba(95,181,154,.4);background:linear-gradient(165deg,rgba(95,181,154,.08),rgba(10,10,18,.6))}
+.fg-appcard.community{border-color:rgba(132,121,230,.4);background:linear-gradient(165deg,rgba(132,121,230,.08),rgba(10,10,18,.6))}
+.fg-appcard.none{border-color:rgba(120,132,158,.35)}
+.fg-gauge .g-val{stroke:url(#fgGaugeGrad)}
+.fg-search{background:linear-gradient(170deg,rgba(124,111,224,.13),rgba(8,8,15,.94) 60%);
+  border:1px solid rgba(124,111,224,.4)}
+.fg-search:focus-within{border-color:rgba(124,111,224,.7);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 0 0 3px rgba(124,111,224,.15)}
+.fg-search svg{color:#A59BF2!important}
+.fg-kbd{color:#C9C2FF;border-color:rgba(124,111,224,.4);background:rgba(124,111,224,.12)}
+.fg-chips button:hover{border-color:rgba(124,111,224,.45);color:#F2F6FF}
+.fg-dot{background:#4DE2C5}
+.hero-search{background:linear-gradient(170deg,rgba(124,111,224,.15),rgba(8,8,15,.94) 62%);
+  border:1px solid rgba(124,111,224,.42)}
+[data-theme="light"] .hero-search{background:#fff}
+.hero-search::after{display:none}
+.hs-txt b{border-bottom-color:rgba(124,111,224,.65)}
+/* purge residual gold hexes anywhere they leak through legacy rules */
+.fg-eyebrow{color:#A59BF2}
+.stars,.fgf-head .k,.fg-gold{color:#A59BF2}
+
+/* dim light theme gold leftovers */
+[data-theme="light"] .fg-eyebrow,[data-theme="light"] .fgf-n{color:#5D51C7}
+
+/* methodology + insight hover: premium matte lift */
+.pipe:hover{background:linear-gradient(170deg,rgba(124,111,224,.06),transparent 65%)}
+.pipe:hover .pipe-n{border-color:rgba(124,111,224,.5);box-shadow:0 0 18px rgba(124,111,224,.18);color:#C9C2FF}
+.ins:hover{border-color:rgba(124,111,224,.4)!important;background:rgba(124,111,224,.05)!important}
+.dive-card:nth-child(1) .dv-ic,.dive-card:nth-child(1) .dv-motif svg *,
+.dive-card:nth-child(1) .dv-go,.dive-card:nth-child(1) .dv-k{color:#A59BF2}
+.dive-card:nth-child(1) .dv-motif svg *{stroke:#A59BF2}
+.dive-card:nth-child(2) .dv-ic,.dive-card:nth-child(2) .dv-motif svg *,
+.dive-card:nth-child(2) .dv-go,.dive-card:nth-child(2) .dv-k{color:#C9C2FF}
+.dive-card:nth-child(2) .dv-motif svg *{stroke:#C9C2FF}
+.dive-card::before{background:linear-gradient(90deg,#7C6FE0,rgba(124,111,224,.4) 45%,transparent)}
+.fgf-card::before{background:linear-gradient(90deg,#7C6FE0,rgba(124,111,224,.4) 50%,transparent)}
+#scrollProgress{background:linear-gradient(90deg,#7C6FE0,#A59BF2);box-shadow:0 0 10px rgba(124,111,224,.4)}
+.dv-ic{color:#C9C2FF;background:linear-gradient(160deg,rgba(124,111,224,.18),rgba(42,36,102,.1));
+  border-color:rgba(124,111,224,.4)}
+
+/* ============================================================================
+   v64 - C1 CANVAS PIPELINE + C3 DECK + FAQ 0fr + INDEX NUMERAL PURGE
+   ========================================================================== */
+
+/* ---- C1: the constellation stage ---- */
+.fg3d-wrap{position:relative;height:clamp(320px,40vw,420px);border-radius:22px;overflow:hidden;
+  border:1px solid var(--fg-line);
+  background:radial-gradient(700px 320px at 50% 30%,rgba(124,111,224,.08),transparent 65%),
+    linear-gradient(180deg,rgba(9,9,17,.7),rgba(5,5,9,.9))}
+#fg3d{width:100%;height:100%;display:block}
+.fg-replay{position:absolute;top:14px;right:14px;display:inline-flex;align-items:center;gap:7px;
+  padding:7px 13px;border-radius:99px;cursor:pointer;
+  font:600 10.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--t2);
+  background:rgba(12,12,22,.8);border:1px solid var(--line-strong);
+  transition:color .2s,border-color .2s,transform .3s var(--fg-ease)}
+.fg-replay:hover{color:#DAD6FF;border-color:rgba(124,111,224,.5);transform:translateY(-1px)}
+.fg-replay svg{width:13px;height:13px}
+.fg-a11y-list{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;
+  list-style:none;margin:0;padding:0}
+
+/* ---- C3: methodology card deck ---- */
+.deck-spectrum{display:flex;gap:3px;height:5px;border-radius:4px;overflow:hidden;margin:20px 0 0;
+  background:rgba(160,150,255,.08)}
+.deck-spectrum span{display:block;border-radius:3px;background:rgba(160,150,255,.18);
+  transition:background .3s,box-shadow .3s;cursor:default}
+.deck-spectrum span.on{background:linear-gradient(90deg,#A59BF2,#7C6FE0);
+  box-shadow:0 0 12px rgba(124,111,224,.5)}
+.pipeline.deck{display:block;position:relative;height:400px;margin:26px 0 0;perspective:1200px;
+  list-style:none;padding:0}
+.pipeline.deck .pipe{position:absolute;left:0;right:0;top:8px;margin:0;
+  border-radius:18px;padding:22px 26px;
+  border:1px solid var(--line-strong);
+  background:linear-gradient(170deg,var(--bg-3),var(--bg-1) 70%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 24px 60px rgba(0,0,0,.5);
+  transition:transform .5s cubic-bezier(.22,1,.36,1),opacity .5s cubic-bezier(.22,1,.36,1),
+    border-color .25s,box-shadow .3s;cursor:pointer}
+.pipeline.deck .pipe.is-active{border-color:rgba(124,111,224,.5);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 30px 70px rgba(0,0,0,.55),0 0 40px rgba(124,111,224,.1)}
+.pipeline.deck .pipe .pipe-n{background:none;border:0;font:700 10px var(--mono);color:#8479E6;
+  padding:0;width:auto;height:auto}
+.pipeline.deck .pipe.is-active .pipe-n{color:#C9C2FF}
+.pipeline.deck .pipe .pipe-chev{display:none}
+.pipeline.deck .pipe .pipe-x{display:none}
+.pipeline.deck .pipe.is-active .pipe-x{display:block;animation:paneIn .35s var(--fg-ease, ease) both}
+.pipeline.deck .pipe.is-active .pipe-m{opacity:.9}
+.meth-strip{margin-bottom:10px}
+@media(max-width:920px){
+  .pipeline.deck{height:auto;display:flex;flex-direction:column;gap:10px;perspective:none}
+  .pipeline.deck .pipe{position:relative;transform:none!important;opacity:1!important}
+  .pipeline.deck .pipe .pipe-x{display:none}
+  .pipeline.deck .pipe.is-active .pipe-x{display:block}
+  .deck-spectrum{display:none}
+}
+
+/* ---- C2: FAQ - plain mono index, 0fr->1fr height animation ---- */
+.hq-n{background:none!important;border:0!important;padding:0!important;
+  font:700 10.5px var(--mono);color:#8479E6;letter-spacing:.08em}
+.ha{display:grid!important;grid-template-rows:0fr;transition:grid-template-rows .42s var(--fg-ease, ease)!important}
+.hq-item.open .ha{grid-template-rows:1fr!important}
+.ha-in{min-height:0;overflow:hidden;margin:0!important;border-radius:0!important;
+  border-top:1px solid rgba(160,150,255,.12);background:rgba(10,10,18,.55)}
+.hq-item.open .ha-in{animation:haFade .3s var(--fg-ease, ease) both}
+
+/* ---- pipeline: click affordance ---- */
+.fg3d-wrap{cursor:pointer}
+.fg-pipeline .how-detail{margin-top:18px}
+
+/* reduced motion: final states instantly */
+@media(prefers-reduced-motion:reduce){
+  .pipeline.deck .pipe{transition:none}
+  .ha{transition:none!important}
+  .fg-replay{display:none}
+}

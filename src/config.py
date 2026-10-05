@@ -84,11 +84,15 @@ NO_STARTUP_REFRESH = os.environ.get("NO_STARTUP_REFRESH", "") == "1"
 # Let the first page load + snapshot fetch finish before the heavy initial refresh.
 STARTUP_REFRESH_DELAY = int(os.environ.get("STARTUP_REFRESH_DELAY", "6"))
 
+# When set, the server NEVER runs the refresh pipeline: GitHub Actions is the
+# only data writer and the instance purely serves stored data.
+REFRESH_IN_SERVER = os.environ.get("REFRESH_IN_SERVER", "") == "1"
+
 # Serve read-only from the committed snapshot: no scheduler at all. Use this on
 # hosts with an ephemeral filesystem or a shared egress IP - the data/ writes
 # would be lost on restart, and the unauthenticated GitHub quota is per IP, so N
 # dynos would each burn it. The GitHub Actions cron keeps data/ fresh instead.
-NO_AUTO_REFRESH = os.environ.get("NO_AUTO_REFRESH", "") == "1" or NO_STARTUP_REFRESH
+NO_AUTO_REFRESH = os.environ.get("NO_AUTO_REFRESH", "") == "1" or NO_STARTUP_REFRESH or REFRESH_IN_SERVER
 
 # --- Deployment hardening ---------------------------------------------------
 # Refuse to fetch or probe anything that resolves to a loopback, private,
