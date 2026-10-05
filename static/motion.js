@@ -13,7 +13,10 @@
 
   function fly(fromEl, toEl, opts = {}) {
     const done = () => { if (opts.onDone) opts.onDone(); };
-    if (!fromEl || !toEl || reduced || typeof fromEl.animate !== "function") { done(); return; }
+    let small = false, coarse = false;
+    try { small = matchMedia("(max-width: 920px)").matches;
+          coarse = matchMedia("(pointer: coarse)").matches; } catch (e) {}
+    if (!fromEl || !toEl || reduced || small || coarse || typeof fromEl.animate !== "function") { done(); return; }
     const a = fromEl.getBoundingClientRect();
     const b = toEl.getBoundingClientRect();
     if (!a.width || !b.width) { done(); return; }

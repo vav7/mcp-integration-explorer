@@ -687,64 +687,67 @@
   }
   function renderCatbars(st) {
     const bc = st.by_category || {};
-    if (sigUnchanged("catbars", Object.entries(bc).map(([k, c]) => k + (c.apps || 0) + (c.vendor_official || 0) + (c.community || 0)).join(","))) return;
+    if (sigUnchanged("catbars", Object.entries(bc).map(([k, c]) => k + (c.vendor_official || 0) + (c.community || 0) + (c.none || 0)).join(","))) return;
     const R = 40, C = (2 * Math.PI * R).toFixed(1);
+    const canHover = window.matchMedia && matchMedia("(hover: hover)").matches;
     $("#catbars").innerHTML = Object.entries(bc).map(([cat, c], i) => {
       const t = c.apps || 1;
-      const o = (c.vendor_official || 0) / t, cm = (c.community || 0) / t;
-      const n = Math.max(0, 1 - o - cm);
-      const cov = Math.round((o + cm) * 100);
-      const oLen = (C * o).toFixed(1), cmLen = (C * cm).toFixed(1), nLen = (C * n).toFixed(1);
-      const off2 = (-C * o).toFixed(1), off3 = (-C * (o + cm)).toFixed(1);
-      return `<div class="donut cat-link" data-cat="${esc(cat)}" style="--i:${i};--circ:${C}" title="${esc(cat)}: ${cov}% covered · click to filter">
+      const o = Math.round((c.vendor_official || 0) / t * 100);
+      const cm = Math.round((c.community || 0) / t * 100);
+      const n = Math.max(0, 100 - o - cm);
+      const oLen = (C * o / 100).toFixed(1), cmLen = (C * cm / 100).toFixed(1), nLen = (C * n / 100).toFixed(1);
+      const off2 = (-C * o / 100).toFixed(1), off3 = (-C * (o + cm) / 100).toFixed(1);
+      return `<div class="donut cat-link" data-cat="${esc(cat)}" style="--i:${i};--circ:${C}" title="${esc(cat)}: ${o + cm}% covered · click to filter">
         <div class="dn-wrap">
           <svg viewBox="0 0 96 96" aria-hidden="true">
             <defs>
               <linearGradient id="dgo${i}" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#5CEFC1"/><stop offset="1" stop-color="#1FA97C"/>
+                <stop offset="0" stop-color="#2FD08C"/><stop offset="1" stop-color="#1E9E70"/>
               </linearGradient>
               <linearGradient id="dgc${i}" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#A5B4FC"/><stop offset="1" stop-color="#7C8FEF"/>
+                <stop offset="0" stop-color="#8FA3FF"/><stop offset="1" stop-color="#6C7FE8"/>
               </linearGradient>
               <linearGradient id="dgn${i}" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#5A657C"/><stop offset="1" stop-color="#39424F"/>
+                <stop offset="0" stop-color="#4A5470"/><stop offset="1" stop-color="#333D52"/>
               </linearGradient>
             </defs>
             <circle class="dn-arc dn-track" cx="48" cy="48" r="${R}"/>
             <circle class="dn-arc dn-off" cx="48" cy="48" r="${R}" transform="rotate(-90 48 48)"
-              stroke="url(#dgo${i})" style="--da:${oLen};--do:0" data-hl="${c.vendor_official || 0} official">
+              stroke="url(#dgo${i})" style="--da:${oLen};--do:0" data-hl="${o}% official">
               <title>Official · ${c.vendor_official || 0} of ${c.apps || 0}</title>
             </circle>
             <circle class="dn-arc dn-com" cx="48" cy="48" r="${R}" transform="rotate(-90 48 48)"
-              stroke="url(#dgc${i})" style="--da:${cmLen};--do:${off2}" data-hl="${c.community || 0} community">
+              stroke="url(#dgc${i})" style="--da:${cmLen};--do:${off2}" data-hl="${cm}% community">
               <title>Community · ${c.community || 0} of ${c.apps || 0}</title>
             </circle>
             <circle class="dn-arc dn-non" cx="48" cy="48" r="${R}" transform="rotate(-90 48 48)"
-              stroke="url(#dgn${i})" style="--da:${nLen};--do:${off3}" data-hl="${c.none || 0} without MCP">
+              stroke="url(#dgn${i})" style="--da:${nLen};--do:${off3}" data-hl="${n}% none">
               <title>None · ${c.none || 0} of ${c.apps || 0}</title>
             </circle>
           </svg>
-          <b class="dn-val" data-num="${cov}" data-fmt="pct" data-nk="covpct:${esc(cat)}">0%</b>
+          <b class="dn-val" data-num="${o + cm}" data-fmt="pct" data-nk="covpct:${esc(cat)}">0%</b>
         </div>
         <span class="dn-l">${esc(cat)}</span>
-        <span class="dn-sub">${c.apps || 0} apps · avg ${c.avg_readiness ?? "-"}</span>
+        <span class="dn-3"><b class="o">${o}%</b><b class="c">${cm}%</b><b class="n">${n}%</b></span>
       </div>`;
     }).join("") || `<div class="empty">No data yet.</div>`;
-    /* hovering an arc names it in the center, in that arc's colour */
-    Array.prototype.forEach.call(document.querySelectorAll("#catbars .donut"), (d) => {
-      const val = d.querySelector(".dn-val");
-      d.querySelectorAll(".dn-arc[data-hl]").forEach(arc => {
-        arc.addEventListener("pointerenter", () => {
-          val.dataset.fmt = ""; val.textContent = arc.dataset.hl; val.classList.add("hl");
-          d.classList.add("hl-" + (arc.classList.contains("dn-off") ? "o" : arc.classList.contains("dn-com") ? "c" : "n"));
-        });
-        arc.addEventListener("pointerleave", () => {
-          val.classList.remove("hl", "hl-o", "hl-c", "hl-n");
-          const num = val.dataset.num;
-          val.textContent = num + "%";
+    /* hovering an arc names it in the center (fine pointers only - taps
+       on phones must never trigger the swap and leak text) */
+    if (canHover) {
+      Array.prototype.forEach.call(document.querySelectorAll("#catbars .donut"), (d) => {
+        const val = d.querySelector(".dn-val");
+        d.querySelectorAll(".dn-arc[data-hl]").forEach(arc => {
+          arc.addEventListener("pointerenter", () => {
+            val.dataset.fmt = ""; val.textContent = arc.dataset.hl; val.classList.add("hl");
+            d.classList.add("hl-" + (arc.classList.contains("dn-off") ? "o" : arc.classList.contains("dn-com") ? "c" : "n"));
+          });
+          arc.addEventListener("pointerleave", () => {
+            val.classList.remove("hl", "hl-o", "hl-c", "hl-n");
+            val.textContent = val.dataset.num + "%";
+          });
         });
       });
-    });
+    }
     /* circling reveal on first view */
     const box = $("#catbars");
     if (box) {
