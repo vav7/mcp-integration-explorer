@@ -6368,3 +6368,70 @@ html[data-theme="light"] #helpView,html[data-theme="light"] #methodologyView{
 @media(prefers-reduced-motion:reduce){
   #methodologyView.open .meth-strip,#methodologyView.open .pipeline.deck .pipe{animation:none!important}
 }
+
+/* ============================================================================
+   v2.0.0 STABILITY / ROPE LADDER FINISH
+   ========================================================================== */
+
+/* The close control is a viewport anchor, never part of content motion. */
+.pv-x,.pv-x:hover,.pv-x:active,.pview.open .pv-x{
+  position:fixed!important;top:16px!important;right:16px!important;
+  transform:none!important;animation:none!important;translate:none!important;
+  background:#090D18!important;color:#AEB8D4!important;
+  border-color:rgba(104,116,180,.28)!important;
+  box-shadow:0 8px 20px rgba(0,0,0,.42),inset 0 1px 0 rgba(185,195,235,.035)!important;
+  transition:color .18s ease,border-color .18s ease,background-color .18s ease!important
+}
+.pv-x:hover{color:#D8DCFF!important;border-color:rgba(139,146,235,.55)!important}
+.pv-x:active{transform:none!important}
+@media(max-width:860px){.pv-x,.pv-x:hover,.pv-x:active,.pview.open .pv-x{top:12px!important;right:12px!important}}
+
+/* Reserve the pipeline answer dock so it can never paint over the Q&A below. */
+#helpView .fg-pipeline{overflow:hidden;isolation:isolate}
+#helpView .how-detail{position:relative;z-index:2;min-height:92px;height:auto;margin-top:10px;border-radius:12px}
+#helpView .how-detail[hidden]{display:block!important;visibility:hidden!important;pointer-events:none!important}
+#helpView .how-detail .hd-in{min-height:76px;background:#080C16!important;border-color:rgba(83,96,155,.22);box-shadow:none}
+#helpView .how-detail .hd-b p{color:#8794B3}
+
+/* Remove the decorative top spectrum; the vertical rail is the ladder rope. */
+#methodologyView .deck-spectrum{display:none!important}
+#methodologyView .pipeline.deck{margin-top:14px}
+#methodologyView .pipeline.deck::before{left:18px;top:11px;bottom:11px;width:1px;background:linear-gradient(180deg,rgba(111,119,198,.62),rgba(54,72,121,.18))}
+
+/* Larger, site-native type without returning to oversized card geometry. */
+#methodologyView .method-head h2{font-family:var(--font-display);font-size:clamp(2.2rem,4.7vw,3.8rem);letter-spacing:-.035em}
+#methodologyView .pipeline.deck .pipe-hit{min-height:62px;padding:8px 12px;grid-template-columns:34px minmax(0,1fr) minmax(130px,auto) 16px}
+#methodologyView .pipeline.deck .pipe-b h4{font-family:var(--font-display);font-size:15px;line-height:1.15;color:#D8DDF3}
+#methodologyView .pipeline.deck .pipe-b p{font-family:var(--font);font-size:11.5px;line-height:1.35;color:#7E8CAA;white-space:normal;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+#methodologyView .pipeline.deck .pipe-m{font-family:var(--mono);font-size:8.5px}
+#methodologyView .pipeline.deck .pipe-xin{font-family:var(--font);font-size:12px}
+#methodologyView .pipeline.deck .pipe-live b{font-size:17px}
+#methodologyView .ms-facts b{font-size:16px}
+#methodologyView .ms-facts span{font-size:8.5px}
+
+/* A rope ladder drops top-to-bottom; the leading score is its first rung. */
+#methodologyView.open .pipeline.deck .pipe{animation-duration:.42s}
+#methodologyView.open .pipeline.deck .pipe:nth-child(1){animation-delay:.38s}
+#methodologyView.open .pipeline.deck .pipe:nth-child(2){animation-delay:.48s}
+#methodologyView.open .pipeline.deck .pipe:nth-child(3){animation-delay:.58s}
+#methodologyView.open .pipeline.deck .pipe:nth-child(4){animation-delay:.68s}
+#methodologyView.open .pipeline.deck .pipe:nth-child(5){animation-delay:.78s}
+#methodologyView.open .pipeline.deck .pipe:nth-child(6){animation-delay:.88s}
+#methodologyView.open .pipeline.deck .pipe:nth-child(7){animation-delay:.98s}
+
+/* Make all seven rungs consistently ink-dark, including the active answer. */
+#methodologyView .pipeline.deck .pipe.is-active{background:#0B1020!important;border-color:rgba(111,119,198,.42);box-shadow:inset 0 1px 0 rgba(185,195,235,.035),0 9px 24px rgba(0,0,0,.28)}
+#methodologyView .pipeline.deck .pipe-x{background:#070A12!important;border-top-color:rgba(83,96,155,.14)}
+
+@media(max-width:560px){
+  #methodologyView .pipeline.deck .pipe-hit{min-height:58px;padding:7px 9px;grid-template-columns:30px minmax(0,1fr) 14px}
+  #methodologyView .pipeline.deck .pipe-b h4{font-size:14px}
+  #methodologyView .pipeline.deck .pipe-b p{font-size:10.5px}
+  #methodologyView.open .pipeline.deck .pipe:nth-child(1){animation-delay:.30s}
+  #methodologyView.open .pipeline.deck .pipe:nth-child(2){animation-delay:.38s}
+  #methodologyView.open .pipeline.deck .pipe:nth-child(3){animation-delay:.46s}
+  #methodologyView.open .pipeline.deck .pipe:nth-child(4){animation-delay:.54s}
+  #methodologyView.open .pipeline.deck .pipe:nth-child(5){animation-delay:.62s}
+  #methodologyView.open .pipeline.deck .pipe:nth-child(6){animation-delay:.70s}
+  #methodologyView.open .pipeline.deck .pipe:nth-child(7){animation-delay:.78s}
+}

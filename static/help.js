@@ -366,9 +366,9 @@
         const sz = p.sz * (i === hov ? 1.14 : 1);
         ctx.globalAlpha = p.a;
         if (p.focus > 0) {
-          ctx.fillStyle = "rgba(104,101,205," + (.08 * p.focus).toFixed(3) + ")";
+          ctx.fillStyle = "rgba(104,101,205," + (.13 * p.focus).toFixed(3) + ")";
           ctx.beginPath(); ctx.arc(x, y, sz * (.72 + .18 * p.focus), 0, 6.29); ctx.fill();
-          ctx.strokeStyle = "rgba(145,146,235," + (.24 * p.focus).toFixed(3) + ")";
+          ctx.strokeStyle = "rgba(145,146,235," + (.34 * p.focus).toFixed(3) + ")";
           ctx.lineWidth = 1.2;
           ctx.beginPath(); ctx.arc(x, y, sz * (.64 + .22 * p.focus), 0, 6.29); ctx.stroke();
         }
@@ -402,7 +402,9 @@
     function start() {
       size();
       const t0 = performance.now();
-      landed = new Array(N).fill(-1).map((_, i) => t0 + 120 + i * 280);
+      /* Give each handoff its own beat: one station enters, settles and
+         focuses before the packet is allowed to travel to the next. */
+      landed = new Array(N).fill(-1).map((_, i) => t0 + 120 + i * 420);
       if (reduced) { landed = landed.map(() => t0 - 1000); still(); return; }
       if (!running) { running = true; raf = requestAnimationFrame(draw); }
       frameTimes = [];
