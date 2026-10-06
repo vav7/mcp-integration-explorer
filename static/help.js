@@ -499,6 +499,20 @@
       }).join("");
     }
     let active = 0;
+    function replayLadder() {
+      const score = mv.querySelector(".meth-strip");
+      if (score) score.classList.remove("ladder-score-in");
+      cards.forEach(c => c.classList.remove("ladder-rung-in"));
+      void mv.offsetWidth;
+      requestAnimationFrame(() => {
+        if (score) score.classList.add("ladder-score-in");
+        cards.forEach((c, i) => {
+          c.style.setProperty("--ladder-delay", (.38 + i * .1) + "s");
+          c.classList.add("ladder-rung-in");
+        });
+      });
+    }
+    mv._replayLadder = replayLadder;
     function render() {
       cards.forEach((c, i) => {
         c.style.zIndex = i === active ? "2" : "1";
@@ -532,6 +546,7 @@
       else if (e.key === "End") { e.preventDefault(); active = cards.length - 1; render(); }
     });
     render();
+    replayLadder();
   }
 
   new MutationObserver(() => {
@@ -549,7 +564,12 @@
     if (mv && mv.classList.contains("open")) bootDeck();
   }).observe(view, { attributes: true, attributeFilter: ["class"] });
   const mvEl = document.getElementById("methodologyView");
-  if (mvEl) new MutationObserver(() => { if (mvEl.classList.contains("open")) bootDeck(); })
+  if (mvEl) new MutationObserver(() => {
+    if (!mvEl.classList.contains("open")) return;
+    const alreadyBooted = !!mvEl._replayLadder;
+    bootDeck();
+    if (alreadyBooted && mvEl._replayLadder) mvEl._replayLadder();
+  })
     .observe(mvEl, { attributes: true, attributeFilter: ["class"] });
 
   /* deep-link + jump API */
