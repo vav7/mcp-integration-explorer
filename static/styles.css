@@ -6450,3 +6450,10 @@ html[data-theme="light"] #helpView,html[data-theme="light"] #methodologyView{
   #methodologyView.open .meth-strip:not(.ladder-score-in),#methodologyView.open .pipeline.deck .pipe:not(.ladder-rung-in){opacity:1;transform:none}
   #methodologyView.open .meth-strip,#methodologyView.open .pipeline.deck .pipe{animation:none!important}
 }
+
+/* No pointer-follow transforms: depth comes from the autonomous canvas drift
+   and fixed layout. Hover/press feedback stays local and never moves a node. */
+.pr-tilt,.pr-tilt:hover{transform:none!important}
+.atlas-node{transform:translate(-50%,-50%)!important}
+@media(pointer:fine){.atlas-node:hover{transform:translate(-50%,-50%) scale(1.035)!important}}
+.atlas-node:active{transform:translate(-50%,-50%) scale(.98)!important}

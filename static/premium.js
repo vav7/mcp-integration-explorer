@@ -10,8 +10,6 @@
 
   const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const coarse = matchMedia("(pointer: coarse)").matches;
-  const small = matchMedia("(max-width: 920px)").matches;
-  const OK = !reduced && !coarse && !small;
   const $ = (s, r) => (r || document).querySelector(s);
   const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
   const lerp = (a, b, t) => a + (b - a) * t;
@@ -51,52 +49,7 @@
     }
   }
 
-  /* ---------- 2. pointer-tracked 3D tilt + glare on premium cards ---------- */
-  const TILT_SEL = ".dive-card, .pv-card, .snap-panel, .estate-panel, .ins";
-  const MAX_DEG = 5.5;          // felt, never gimmicky
-  const GLARE_MAX = 0.09;
-  const tiltTargets = new Set();
-  let tiltRaf = 0;
-
-  function bindTilt() {
-    if (!OK) return;
-    $$(TILT_SEL).forEach(el => {
-      /* the hero snapshot panel first plays its one-shot 3D entrance, then
-         graduates to pointer tilt (pr-done retires the entrance animation) */
-      if (tiltTargets.has(el) || el.dataset.prTilt) return;
-      if (el.closest(".hero") && !el.classList.contains("pr-done")) return;
-      el.dataset.prTilt = "1";
-      el.classList.add("pr-tilt");
-      tiltTargets.add(el);
-    });
-  }
-  let tiltEvent = null;
-  function onTiltMove(e) {
-    tiltEvent = e;
-    if (tiltRaf) return;
-    tiltRaf = requestAnimationFrame(() => {
-      tiltRaf = 0;
-      const ev = tiltEvent; tiltEvent = null;
-      const el = ev && ev.target && ev.target.closest ? ev.target.closest(TILT_SEL) : null;
-      if (!el || !tiltTargets.has(el)) return;
-      const r = el.getBoundingClientRect();
-      const px = (ev.clientX - r.left) / r.width, py = (ev.clientY - r.top) / r.height;
-      el.style.setProperty("--ry", ((px - 0.5) * MAX_DEG).toFixed(2) + "deg");
-      el.style.setProperty("--rx", ((0.5 - py) * MAX_DEG).toFixed(2) + "deg");
-      el.style.setProperty("--gx", (px * 100).toFixed(1) + "%");
-      el.style.setProperty("--gy", (py * 100).toFixed(1) + "%");
-      el.style.setProperty("--glare", GLARE_MAX.toFixed(3));
-    });
-  }
-  function onTiltLeave(e) {
-    const el = e.target && e.target.closest ? e.target.closest(TILT_SEL) : null;
-    if (!el) return;
-    el.style.setProperty("--ry", "0deg");
-    el.style.setProperty("--rx", "0deg");
-    el.style.setProperty("--glare", "0");
-  }
-
-  /* ---------- 3. ambient orbs: scroll parallax with critical damping ---------- */
+  /* ---------- 2. ambient orbs: scroll parallax with critical damping ---------- */
   const orbs = [];
   function bindOrbs() {
     $$("#ambDeep .orb").forEach((o, i) => orbs.push({ el: o, depth: 0.028 + i * 0.013, x: 0, y: 0, tx: 0, ty: 0 }));
@@ -246,28 +199,7 @@
     frame(performance.now());
   }
 
-  /* ---------- 4. magnetic primary buttons ---------- */
-  function bindMagnetic() {
-    if (!OK) return;
-    $$(".btn-primary, .hero-search").forEach(el => {
-      if (el.dataset.prMag) return;
-      el.dataset.prMag = "1";
-      let r = null;
-      el.addEventListener("pointermove", (e) => {
-        r = r || el.getBoundingClientRect();
-        const dx = (e.clientX - r.left - r.width / 2) / r.width;
-        const dy = (e.clientY - r.top - r.height / 2) / r.height;
-        el.style.setProperty("--mx", (dx * 7).toFixed(2) + "px");
-        el.style.setProperty("--my", (dy * 5).toFixed(2) + "px");
-      });
-      el.addEventListener("pointerleave", () => {
-        el.style.setProperty("--mx", "0px"); el.style.setProperty("--my", "0px");
-        r = null;
-      });
-    });
-  }
-
-  /* ---------- 4c. section titles: 3D fold-in ---------- */
+  /* ---------- 3c. section titles: 3D fold-in ---------- */
   function bindSectFold() {
     $$(".sect-head").forEach(el => {
       if (el.classList.contains("pr3-sect")) return;
@@ -283,7 +215,7 @@
     });
   }
 
-  /* ---------- 4b. section fold-in: 3D perspective entrance on scroll ---------- */
+  /* ---------- 3b. section fold-in: 3D perspective entrance on scroll ---------- */
   function bindFoldIn() {
     const sel = ".insight-grid > *, .cov-grid > *, .sig-compact, .meth-strip, .chart-wrap";
     const targets = $$(sel);
@@ -313,14 +245,10 @@
   function init() {
     heroEntrance();
     initConstellation();
-    bindTilt(); bindMagnetic(); bindOrbs(); bindFoldIn(); bindSectFold();
-    if (OK) {
-      document.addEventListener("pointermove", onTiltMove, { passive: true });
-      document.addEventListener("pointerout", onTiltLeave, { passive: true });
-      if (orbs.length) {
-        addEventListener("scroll", wakeOrbs, { passive: true });
-        wakeOrbs();
-      }
+    bindOrbs(); bindFoldIn(); bindSectFold();
+    if (orbs.length) {
+      addEventListener("scroll", wakeOrbs, { passive: true });
+      wakeOrbs();
     }
     /* new dashboard content (rendered rows, re-opened views) opts in late.
        rAF-debounced: render() mutates hundreds of nodes and a per-mutation
@@ -329,7 +257,7 @@
     const mo = new MutationObserver(() => {
       if (moQueued) return;
       moQueued = true;
-      requestAnimationFrame(() => { moQueued = false; bindTilt(); bindMagnetic(); bindFoldIn(); bindSectFold(); });
+      requestAnimationFrame(() => { moQueued = false; bindFoldIn(); bindSectFold(); });
     });
     mo.observe(document.body, { childList: true, subtree: true });
   }
