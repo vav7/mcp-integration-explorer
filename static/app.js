@@ -2561,14 +2561,10 @@
   }
   let methBound = false;
   function bindMethodology() {
+    /* Methodology is owned by help.js. Keeping a second click controller here
+       used to toggle cards underneath the deck controller, causing flicker,
+       stale aria state and occasional double-open glitches. */
     if (methBound) return; methBound = true;
-    const ol = $("#methodologyView .pipeline"); if (!ol || !ol.addEventListener) return;
-    ol.addEventListener("click", (e) => {
-      const hit = e.target.closest ? e.target.closest(".pipe-hit") : null; if (!hit) return;
-      const li = hit.closest(".pipe"); if (!li) return;
-      const open = li.classList.toggle("open");
-      hit.setAttribute("aria-expanded", open ? "true" : "false");
-    });
   }
 
   /* ---------------- full-screen views (the pricing pattern, generalised) ---------------- */

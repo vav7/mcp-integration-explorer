@@ -6048,3 +6048,135 @@ html[data-theme="dark"] .pview{background:
 @media(prefers-reduced-motion:reduce){
   .fg-ind{transition:none}
 }
+
+/* ============================================================================
+   v2.0.0 FIELD GUIDE FINISH
+   One calm interaction language for the guide, methodology and Atlas.
+   Keep motion on transform/opacity/border only: no layout thrashing, no
+   filter-heavy hover effects, and no competing card animation controllers.
+   ========================================================================== */
+
+:root{
+  --motion-snap:cubic-bezier(.22,1,.36,1);
+  --motion-press:cubic-bezier(.32,.72,.35,1);
+}
+
+button:not(:disabled),a.lnk{
+  -webkit-tap-highlight-color:transparent;
+  transition:transform .2s var(--motion-snap),border-color .2s ease,
+    background-color .2s ease,color .2s ease,box-shadow .2s ease;
+}
+@media(pointer:fine){
+  button:not(:disabled):hover,a.lnk:hover{transform:translateY(-1px)}
+}
+button:not(:disabled):active,a.lnk:active{
+  transform:translateY(1px) scale(.985);
+  transition-duration:.08s;
+}
+
+/* Help / Field Guide: a quieter reading surface with clear visual chapters. */
+#helpView .pview-in{max-width:1160px;padding:38px 28px 76px}
+#helpView .fg-hero{grid-template-columns:minmax(0,1.08fr) minmax(280px,.72fr);gap:34px;margin:12px 0 26px}
+#helpView .fg-hero-copy{min-width:0}
+#helpView .fg-h1{max-width:760px;font-size:clamp(2.45rem,5.2vw,4.85rem);line-height:1.02}
+#helpView .fg-sub{max-width:62ch;font-size:15px}
+#helpView .fg-orb{height:300px;contain:layout paint;box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 26px 70px rgba(0,0,0,.24)}
+#helpView .fg-pipeline{margin:28px 0 18px;padding:24px 24px 26px;border-radius:24px;contain:layout paint}
+#helpView .fg3d-wrap{min-height:300px;contain:layout paint;isolation:isolate}
+#helpView .fg3d-wrap canvas{display:block;contain:strict}
+#helpView .how-detail{min-height:96px}
+#helpView .fg-featured{margin:24px 0 14px}
+#helpView .fgf-grid{gap:12px}
+#helpView .fg-shell{grid-template-columns:216px minmax(0,1fr);gap:20px;margin-top:22px}
+#helpView .fg-rail{top:18px;border-radius:18px;padding:14px;contain:layout paint}
+#helpView .fg-nav{gap:5px}
+#helpView .fg-nav-item{min-height:42px;border-radius:11px;padding:0 12px}
+#helpView .fg-canvas{min-width:0}
+#helpView .hq-group{margin:0 0 26px;display:grid;gap:9px}
+#helpView .hq-gt{margin:0 4px 2px}
+#helpView .hq-item{margin:0;border-radius:15px;overflow:hidden;contain:layout paint;box-shadow:inset 0 1px 0 rgba(255,255,255,.035)}
+#helpView .hq{min-height:64px;grid-template-columns:34px minmax(0,1fr) 22px;gap:14px;padding:0 18px}
+#helpView .hq-q{line-height:1.35}
+#helpView .hq-chev{transition:transform .22s var(--motion-snap),color .2s ease}
+#helpView .hq-item.open .hq-chev{transform:rotate(180deg)}
+#helpView .ha{grid-template-rows:0fr!important;transition:grid-template-rows .28s var(--motion-snap)!important}
+#helpView .hq-item.open .ha{grid-template-rows:1fr!important}
+#helpView .ha-in{min-height:0;overflow:hidden;padding:0 20px;border-top-color:rgba(160,150,255,.14)}
+#helpView .hq-item.open .ha-in{padding:0 20px 18px;animation:none}
+#helpView .ha-meta{padding-top:12px}
+#helpView .fg-expand{margin-top:4px}
+
+/* Methodology: a stable vertical presentation deck rather than stacked cards. */
+#methodologyView .pview-in{max-width:1060px;padding:38px 28px 78px}
+#methodologyView .method-head{max-width:740px;margin:14px 0 24px}
+#methodologyView .method-head h2{font-size:clamp(2.2rem,5vw,4rem);line-height:1.04;letter-spacing:-.035em}
+#methodologyView .method-head p{max-width:62ch;line-height:1.65}
+#methodologyView .meth-strip{display:grid;grid-template-columns:150px minmax(0,1fr);gap:24px;align-items:center;margin:0 0 12px;padding:18px 20px;border:1px solid rgba(160,150,255,.14);border-radius:20px;background:linear-gradient(150deg,rgba(22,27,48,.82),rgba(8,11,20,.72));box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+#methodologyView .ms-hint{grid-column:1/-1;margin:0;color:var(--t3);font-size:11px;line-height:1.55}
+#methodologyView .deck-spectrum{height:6px;margin:15px 0 0;gap:4px;cursor:pointer}
+#methodologyView .deck-spectrum span{height:6px;transition:background .2s ease,box-shadow .2s ease,transform .2s var(--motion-snap)}
+#methodologyView .deck-spectrum span:hover{transform:scaleY(1.7)}
+#methodologyView .pipeline.deck{height:auto;display:grid;gap:10px;margin:14px 0 0;padding:0;perspective:none}
+#methodologyView .pipeline.deck::before{content:"";position:absolute;left:20px;top:25px;bottom:25px;width:1px;background:linear-gradient(180deg,rgba(165,155,242,.55),rgba(77,226,197,.16));pointer-events:none}
+#methodologyView .pipeline.deck .pipe{position:relative;inset:auto;z-index:1!important;display:block;margin:0;padding:0;border-radius:17px;transform:none!important;opacity:1!important;background:linear-gradient(160deg,rgba(18,24,42,.92),rgba(8,12,21,.86));box-shadow:inset 0 1px 0 rgba(255,255,255,.045),0 12px 32px rgba(0,0,0,.22);transition:border-color .2s ease,box-shadow .2s ease,background .2s ease}
+#methodologyView .pipeline.deck .pipe.is-active{border-color:rgba(165,155,242,.56);background:linear-gradient(160deg,rgba(30,30,60,.95),rgba(9,13,24,.9));box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 18px 42px rgba(58,48,140,.22)}
+#methodologyView .pipeline.deck .pipe-hit{width:100%;display:grid;grid-template-columns:40px minmax(0,1fr) minmax(145px,auto) 20px;align-items:center;gap:16px;min-height:88px;padding:15px 18px;text-align:left;background:transparent;border:0;color:inherit;cursor:pointer}
+#methodologyView .pipeline.deck .pipe-n{position:relative;z-index:2;display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:rgba(124,111,224,.1);border:1px solid rgba(165,155,242,.28);font-size:11px;color:#A59BF2}
+#methodologyView .pipeline.deck .pipe-b h4{margin:0 0 5px;font-size:15px;color:#F1F3FF}
+#methodologyView .pipeline.deck .pipe-b p{margin:0;max-width:68ch;font-size:12px;line-height:1.55;color:var(--t3)}
+#methodologyView .pipeline.deck .pipe-m{display:grid;gap:4px;justify-items:end;font:500 9.5px/1.35 var(--mono);color:var(--t3);text-align:right}
+#methodologyView .pipeline.deck .pipe-chev{display:block;color:#8E87C9;transition:transform .22s var(--motion-snap),color .2s ease}
+#methodologyView .pipeline.deck .pipe.is-active .pipe-chev{transform:rotate(180deg);color:#DAD6FF}
+#methodologyView .pipeline.deck .pipe-x{display:grid!important;grid-template-rows:0fr;overflow:hidden;border-top:1px solid transparent;transition:grid-template-rows .28s var(--motion-snap),border-color .2s ease}
+#methodologyView .pipeline.deck .pipe-x.open{grid-template-rows:1fr;border-top-color:rgba(160,150,255,.14)}
+#methodologyView .pipeline.deck .pipe-xin{min-height:0;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:0 22px;color:var(--t2)}
+#methodologyView .pipeline.deck .pipe-x.open .pipe-xin{padding-top:14px;padding-bottom:16px}
+#methodologyView .pipeline.deck .pipe-live{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;font-size:12px}
+#methodologyView .pipeline.deck .pipe-live b{font:700 18px var(--mono);color:#DAD6FF}
+#methodologyView .pipeline.deck .lnk{font-size:11px;white-space:nowrap}
+
+/* Atlas: keep nodes composited and predictable; remove perpetual paint work. */
+.atlas-field{contain:layout paint;overscroll-behavior:contain}
+.atlas-node{contain:layout paint;animation:none!important;filter:none!important;transition:transform .18s var(--motion-snap),opacity .18s ease,border-color .18s ease}
+.atlas-node.hot::after{animation:none!important;opacity:.28}
+.atlas-node:hover{filter:none!important}
+.atlas-node .applogo{animation:none!important;box-shadow:none!important;transition:transform .18s var(--motion-snap),border-color .18s ease,background-color .18s ease}
+@media(pointer:fine){.atlas-node:hover .applogo{transform:scale(1.045)}}
+
+@media(max-width:920px){
+  #helpView .pview-in,#methodologyView .pview-in{padding-left:18px;padding-right:18px}
+  #helpView .fg-hero{grid-template-columns:1fr;gap:20px}
+  #helpView .fg-orb{height:210px}
+  #helpView .fg-shell{grid-template-columns:1fr;gap:14px}
+  #helpView .fg-rail{position:relative;top:auto}
+  #helpView .fg-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+  #methodologyView .meth-strip{grid-template-columns:120px minmax(0,1fr);gap:16px}
+  #methodologyView .pipeline.deck .pipe-hit{grid-template-columns:36px minmax(0,1fr) 18px;gap:12px}
+  #methodologyView .pipeline.deck .pipe-m{display:none}
+  #methodologyView .pipeline.deck .pipe-n{width:36px;height:36px}
+}
+@media(max-width:560px){
+  #helpView .pview-in,#methodologyView .pview-in{padding-top:26px;padding-bottom:54px}
+  #helpView .fg-h1{font-size:clamp(2.2rem,12vw,3.25rem)}
+  #helpView .fg-pipeline{padding:18px 14px 20px}
+  #helpView .fg3d-wrap{min-height:245px}
+  #helpView .fg-nav{grid-template-columns:1fr}
+  #helpView .hq{min-height:58px;padding:0 14px;gap:10px}
+  #helpView .ha-in{padding-left:14px;padding-right:14px}
+  #helpView .hq-item.open .ha-in{padding-left:14px;padding-right:14px}
+  #methodologyView .meth-strip{grid-template-columns:1fr;text-align:center}
+  #methodologyView .ms-gauge{margin:auto}
+  #methodologyView .ms-facts{grid-template-columns:repeat(2,1fr)}
+  #methodologyView .pipeline.deck::before{left:18px}
+  #methodologyView .pipeline.deck .pipe-hit{grid-template-columns:32px minmax(0,1fr) 17px;padding:13px 12px;gap:10px}
+  #methodologyView .pipeline.deck .pipe-n{width:32px;height:32px;border-radius:10px}
+  #methodologyView .pipeline.deck .pipe-b h4{font-size:14px}
+  #methodologyView .pipeline.deck .pipe-b p{font-size:11.5px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  button:not(:disabled),a.lnk,.atlas-node,.atlas-node .applogo,
+  #helpView .hq-chev,#methodologyView .pipe-chev{transition:none!important}
+  #helpView .fg-gold,.fg-dot::after{animation:none!important}
+  #methodologyView .pipeline.deck .pipe-x{transition:none!important}
+}

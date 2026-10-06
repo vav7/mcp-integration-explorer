@@ -222,6 +222,17 @@
       });
       raf = requestAnimationFrame(frame);
     }
+    function startOrb() {
+      if (reduced || coarse || running || document.hidden) return;
+      running = true; raf = requestAnimationFrame(frame);
+    }
+    function stopOrb() {
+      running = false;
+      if (raf) cancelAnimationFrame(raf);
+      raf = 0;
+    }
+    cv._start = startOrb;
+    cv._stop = stopOrb;
     size(); addEventListener("resize", () => { size(); if (!running) still(); }, { passive: true });
     function still() { running = true; frame(); running = false; }
     if (reduced || coarse) { still(); return; }
@@ -229,10 +240,10 @@
       const r = wrap.getBoundingClientRect();
       px = (e.clientX - r.left) / r.width - .5; py = (e.clientY - r.top) / r.height - .5;
     }, { passive: true });
-    running = true; raf = requestAnimationFrame(frame);
+    startOrb();
     document.addEventListener("visibilitychange", () => {
-      if (document.hidden) { running = false; cancelAnimationFrame(raf); }
-      else if (!running) { running = true; raf = requestAnimationFrame(frame); }
+      if (document.hidden) stopOrb();
+      else if (view.classList.contains("open")) startOrb();
     });
   }
 
@@ -313,12 +324,14 @@
     const sprites = STAGES.map((_, i) => makeSprite(i, SP));
     const N = STAGES.length;
     let cheap = false, frameTimes = [], landed = [];
+    let pointerRaf = 0, pendingPointer = null, lastHover = -2, wrapRect = null;
 
     function size() {
       W = wrap.clientWidth; H = Math.max(300, Math.min(430, W * .42));
       cv.width = W * DPR; cv.height = H * DPR;
       cv.style.height = H + "px";
       ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      wrapRect = wrap.getBoundingClientRect();
     }
     function project(i, w, h) {
       const spread = Math.min(w * .16, 190);
@@ -430,32 +443,39 @@
       if (document.hidden) { running = false; cancelAnimationFrame(raf); }
       else if (started && !running) { running = true; raf = requestAnimationFrame(draw); }
     });
+    function showDetail(i) {
+      if (!detail || i === lastHover) return;
+      lastHover = i;
+      if (i < 0) { detail.hidden = true; return; }
+      const st = STAGES[i];
+      detail.hidden = false;
+      detail.innerHTML = '<div class="hd-in"><span class="hd-n">0' + (i + 1) + '</span><div class="hd-b"><b>' + st.t + '</b><p>' + st.d + '</p><span class="hd-p">' + st.fig + '</span></div></div>';
+    }
     if (!coarse) wrap.addEventListener("pointermove", (e) => {
-      const r = wrap.getBoundingClientRect();
-      const cx2 = e.clientX - r.left, cy2 = e.clientY - r.top;
-      mx = (cx2 / r.width - .5) * 2; my = (cy2 / r.height - .5) * 2;
-      hov = -1;
-      STAGES.forEach((_, i) => {
-        const p = project(i, W, H);
-        if (Math.hypot(cx2 - p.x, cy2 - p.y) < SP * p.s * .62) hov = i;
+      pendingPointer = e;
+      if (pointerRaf) return;
+      pointerRaf = requestAnimationFrame(() => {
+        pointerRaf = 0;
+        const ev = pendingPointer; if (!ev) return;
+        const r = wrapRect || (wrapRect = wrap.getBoundingClientRect());
+        const cx2 = ev.clientX - r.left, cy2 = ev.clientY - r.top;
+        mx = (cx2 / r.width - .5) * 2; my = (cy2 / r.height - .5) * 2;
+        hov = -1;
+        STAGES.forEach((_, i) => {
+          const p = project(i, W, H);
+          if (Math.hypot(cx2 - p.x, cy2 - p.y) < SP * p.s * .62) hov = i;
+        });
+        showDetail(hov);
       });
-      if (hov >= 0) {
-        const st = STAGES[hov];
-        detail.hidden = false;
-        detail.innerHTML = '<div class="hd-in"><span class="hd-n">0' + (hov + 1) + '</span><div class="hd-b"><b>' + st.t + '</b><p>' + st.d + '</p><span class="hd-p">' + st.fig + '</span></div></div>';
-      }
     }, { passive: true });
-    wrap.addEventListener("pointerleave", () => { hov = -1; });
+    wrap.addEventListener("pointerenter", () => { wrapRect = wrap.getBoundingClientRect(); });
+    wrap.addEventListener("pointerleave", () => { pendingPointer = null; hov = -1; showDetail(-1); });
     wrap.addEventListener("click", (e) => {
-      const r = wrap.getBoundingClientRect();
+      const r = wrapRect || (wrapRect = wrap.getBoundingClientRect());
       const cx2 = e.clientX - r.left, cy2 = e.clientY - r.top;
       STAGES.forEach((_, i) => {
         const p = project(i, W, H);
-        if (Math.hypot(cx2 - p.x, cy2 - p.y) < SP * p.s * .62) {
-          const st = STAGES[i];
-          detail.hidden = false;
-          detail.innerHTML = '<div class="hd-in"><span class="hd-n">0' + (i + 1) + '</span><div class="hd-b"><b>' + st.t + '</b><p>' + st.d + '</p><span class="hd-p">' + st.fig + '</span></div></div>';
-        }
+        if (Math.hypot(cx2 - p.x, cy2 - p.y) < SP * p.s * .62) showDetail(i);
       });
     });
     document.getElementById("fgReplay").addEventListener("click", () => { started = true; start(); });
@@ -480,17 +500,14 @@
     let active = 0;
     function render() {
       cards.forEach((c, i) => {
-        const d = i - active;
-        c.style.zIndex = String(100 - Math.abs(d));
-        c.classList.toggle("is-active", d === 0);
-        if (d === 0) {
-          c.style.transform = "none"; c.style.opacity = "1";
-        } else if (d < 0) {
-          c.style.transform = "translateY(" + (d * 14) + "px) scale(" + (1 + d * .025) + ")";
-          c.style.opacity = String(Math.max(.25, 1 + d * .16));
-        } else {
-          c.style.transform = "translateY(" + (d * 16) + "px) scale(" + (1 - d * .035) + ")";
-          c.style.opacity = String(Math.max(.2, 1 - d * .22));
+        c.style.zIndex = i === active ? "2" : "1";
+        c.style.transform = "";
+        c.style.opacity = "";
+        c.classList.toggle("is-active", i === active);
+        const hit = c.querySelector(".pipe-hit");
+        if (hit) {
+          hit.setAttribute("aria-expanded", i === active ? "true" : "false");
+          hit.setAttribute("aria-current", i === active ? "step" : "false");
         }
       });
       if (spec) Array.prototype.forEach.call(spec.children, (s, i) => s.classList.toggle("on", i === active));
@@ -502,16 +519,30 @@
     cards.forEach((c, i) => {
       (c.querySelector(".pipe-hit") || c).addEventListener("click", () => { active = i; render(); });
     });
+    if (spec) spec.addEventListener("click", (e) => {
+      const target = e.target.closest("[data-i]");
+      if (target) { active = Math.max(0, Math.min(cards.length - 1, Number(target.dataset.i) || 0)); render(); }
+    });
     mv.addEventListener("keydown", (e) => {
       if (!mv.classList.contains("open")) return;
-      if (e.key === "ArrowDown" || e.key === "ArrowRight") { active = Math.min(cards.length - 1, active + 1); render(); }
-      else if (e.key === "ArrowUp" || e.key === "ArrowLeft") { active = Math.max(0, active - 1); render(); }
+      if (e.key === "ArrowDown" || e.key === "ArrowRight") { e.preventDefault(); active = Math.min(cards.length - 1, active + 1); render(); }
+      else if (e.key === "ArrowUp" || e.key === "ArrowLeft") { e.preventDefault(); active = Math.max(0, active - 1); render(); }
+      else if (e.key === "Home") { e.preventDefault(); active = 0; render(); }
+      else if (e.key === "End") { e.preventDefault(); active = cards.length - 1; render(); }
     });
     render();
   }
 
   new MutationObserver(() => {
-    if (view.classList.contains("open")) { boot(); bootPipeline(); }
+    if (view.classList.contains("open")) {
+      boot();
+      const orb = document.getElementById("fgOrb");
+      if (orb && orb._start) orb._start();
+      bootPipeline();
+    } else {
+      const orb = document.getElementById("fgOrb");
+      if (orb && orb._stop) orb._stop();
+    }
     const mv = document.getElementById("methodologyView");
     if (mv && mv.classList.contains("open")) bootDeck();
   }).observe(view, { attributes: true, attributeFilter: ["class"] });
