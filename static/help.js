@@ -335,21 +335,28 @@
       }
       const proj = STAGES.map((_, i) => {
         const p = project(i, W, H);
-        const born = landed[i] >= 0 ? Math.min(1, (ts - landed[i]) / 420) : 0;
+        const age = ts - landed[i];
+        const born = age >= 0 ? Math.min(1, age / 320) : 0;
         const settle = 1 - Math.pow(1 - born, 3);
-        return { ...p, born: landed[i] >= 0 ? 1 : 0, a: settle, sz: SP * p.s * (.6 + .4 * settle) };
+        const focus = age >= 0 ? Math.max(0, 1 - Math.abs(age - 230) / 190) : 0;
+        return { ...p, born: born >= 1 ? 1 : 0, a: settle, focus, sz: SP * p.s * (.58 + .42 * settle + .18 * focus) };
       });
       for (let i = 0; i < N - 1; i++) {
-        if (proj[i].born < 1 || proj[i + 1].born < 1) continue;
+        if (proj[i].born < 1 || proj[i + 1].a <= 0) continue;
         const a = proj[i], b = proj[i + 1];
-        ctx.strokeStyle = "rgba(160,150,255,.22)"; ctx.lineWidth = 1;
+        ctx.strokeStyle = "rgba(125,128,214," + (.16 * Math.min(a.a, b.a)).toFixed(3) + ")"; ctx.lineWidth = 1;
         ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
-        if (!cheap) {
-          const k = ((ts / 2600) + i / (N - 1)) % 1;
-          const px2 = a.x + (b.x - a.x) * k, py2 = a.y + (b.y - a.y) * k;
-          ctx.fillStyle = "rgba(195,194,255,.8)";
-          ctx.beginPath(); ctx.arc(px2, py2, 1.8, 0, 6.29); ctx.fill();
-        }
+      }
+      /* A single quiet signal packet moves into the newly active station.
+         It is intentionally bounded to the entrance window, so the animation
+         reads as a handoff rather than a perpetual neon effect. */
+      for (let i = 1; i < N; i++) {
+        const age = ts - landed[i];
+        if (age < 0 || age > 340 || proj[i - 1].born < 1) continue;
+        const k0 = Math.min(1, age / 340), k = 1 - Math.pow(1 - k0, 2);
+        const a = proj[i - 1], b = proj[i], px2 = a.x + (b.x - a.x) * k, py2 = a.y + (b.y - a.y) * k;
+        ctx.fillStyle = "rgba(151,153,241,.58)";
+        ctx.beginPath(); ctx.arc(px2, py2, 2.2, 0, 6.29); ctx.fill();
       }
       const order = proj.map((p, i) => i).sort((a, b) => proj[a].s - proj[b].s);
       order.forEach(i => {
@@ -358,8 +365,15 @@
         const x = p.x + mx * 14 * p.s, y = p.y + my * 10 * p.s;
         const sz = p.sz * (i === hov ? 1.14 : 1);
         ctx.globalAlpha = p.a;
+        if (p.focus > 0) {
+          ctx.fillStyle = "rgba(104,101,205," + (.08 * p.focus).toFixed(3) + ")";
+          ctx.beginPath(); ctx.arc(x, y, sz * (.72 + .18 * p.focus), 0, 6.29); ctx.fill();
+          ctx.strokeStyle = "rgba(145,146,235," + (.24 * p.focus).toFixed(3) + ")";
+          ctx.lineWidth = 1.2;
+          ctx.beginPath(); ctx.arc(x, y, sz * (.64 + .22 * p.focus), 0, 6.29); ctx.stroke();
+        }
         if (i === hov) {
-          ctx.beginPath(); ctx.fillStyle = "rgba(124,111,224,.12)";
+          ctx.beginPath(); ctx.fillStyle = "rgba(124,111,224,.08)";
           ctx.arc(x, y, sz * .72, 0, 6.29); ctx.fill();
         }
         ctx.drawImage(sprites[i], x - sz / 2, y - sz / 2, sz, sz);
@@ -377,7 +391,7 @@
         if (age < 620) {
           const p = proj[i];
           const k = age / 620;
-          ctx.strokeStyle = "rgba(165,155,242," + (.5 * (1 - k)).toFixed(3) + ")";
+          ctx.strokeStyle = "rgba(145,146,235," + (.28 * (1 - k)).toFixed(3) + ")";
           ctx.lineWidth = 1.5;
           ctx.beginPath(); ctx.arc(p.x, p.y, SP * p.s * (.5 + k * .9), 0, 6.29); ctx.stroke();
         }
@@ -463,7 +477,7 @@
         if (Math.hypot(cx2 - p.x, cy2 - p.y) < SP * p.s * .62) showDetail(i);
       });
     });
-    document.getElementById("fgReplay").addEventListener("click", () => { started = true; start(); });
+    cv._restart = () => { started = true; start(); };
   }
 
   /* ================= C3: methodology card deck ================= */
@@ -523,7 +537,8 @@
       boot();
       const orb = document.getElementById("fgOrb");
       if (orb && orb._start) orb._start();
-      bootPipeline();
+      const pipe = document.getElementById("fg3d");
+      if (pipe && pipe._restart) pipe._restart(); else bootPipeline();
     } else {
       const orb = document.getElementById("fgOrb");
       if (orb && orb._stop) orb._stop();

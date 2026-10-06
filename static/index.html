@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="build" content="v2.0.0-fieldguide3">
+<meta name="build" content="v2.0.0-fieldguide4">
 <title>MCP Integration Explorer · integration intelligence</title>
 <meta name="description" content="Live, evidence-backed MCP / agent integration readiness across applications. Real registry data, endpoint probes, GitHub, package adoption and liveness, with every signal traceable to its source.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,7 +16,7 @@
 <script>
   (function(){try{localStorage.setItem('mcp_theme','dark');}catch(e){}document.documentElement.setAttribute('data-theme','dark');})();
 </script>
-<link rel="stylesheet" href="/styles.css?v=2.0.0-fieldguide3">
+<link rel="stylesheet" href="/styles.css?v=2.0.0-fieldguide4">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%2310151C'/><rect x='.5' y='.5' width='31' height='31' rx='6.5' fill='none' stroke='%23253140'/><circle cx='10' cy='10' r='2.4' fill='none' stroke='%234F7FFF' stroke-width='1.6'/><circle cx='10' cy='22' r='2.4' fill='none' stroke='%234F7FFF' stroke-width='1.6'/><circle cx='22' cy='16' r='2.4' fill='none' stroke='%234F7FFF' stroke-width='1.6'/><path d='M12 11l8 4M12 21l8-4' stroke='%234F7FFF' stroke-width='1.6'/></svg>">
 </head>
 <body>
@@ -334,7 +334,7 @@
     </div>
     <div class="fbar">
       <span>© 2026 MCP Integration Explorer. All rights reserved.</span>
-      <span class="fbar-mid">Made with <svg class="hvsvg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="love"><path d="M20.8 8.9c0 5.4-8.8 10.1-8.8 10.1S3.2 14.3 3.2 8.9A4.7 4.7 0 0112 6.2a4.7 4.7 0 018.8 2.7z"/></svg> by <b class="goldshine">vav7</b></span>
+      <span class="fbar-mid">Made with <svg class="hvsvg" viewBox="0 0 24 24" fill="#ff4058" stroke="none" role="img" aria-label="love"><path d="M12 20.4S3.4 15.6 3.4 9.4A4.4 4.4 0 017.8 5c1.8 0 3.4 1 4.2 2.5C13 6 14.4 5 16.2 5a4.4 4.4 0 014.4 4.4c0 6.2-8.6 11-8.6 11z"/></svg> by <b class="goldshine">vav7</b></span>
       <span class="fbar-r"><span id="footTime"></span></span>
     </div>
   </footer>
@@ -559,10 +559,6 @@
       </div>
       <div class="fg3d-wrap">
         <canvas id="fg3d" aria-hidden="true"></canvas>
-        <button type="button" class="fg-replay" id="fgReplay" aria-label="Replay the pipeline animation">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 10-2.3 6.3M20 5v6h-6"/></svg>
-          Replay
-        </button>
       </div>
       <ul class="fg-a11y-list">
         <li>App enters - 100 curated apps, or any app you search for</li>
@@ -962,9 +958,9 @@
 <!-- NOTE: data.snapshot.js (~2MB) is NOT loaded up front. The live API is the
      primary data source; the embedded snapshot is injected on demand only when
      the backend is unreachable, so a normal visit never parses it. -->
-<script src="/app.js?v=2.0.0-fieldguide3"></script>
-<script src="/motion.js?v=2.0.0-fieldguide3"></script>
-<script src="/help.js?v=2.0.0-fieldguide3"></script>
-<script src="/premium.js?v=2.0.0-fieldguide3"></script>
+<script src="/app.js?v=2.0.0-fieldguide4"></script>
+<script src="/motion.js?v=2.0.0-fieldguide4"></script>
+<script src="/help.js?v=2.0.0-fieldguide4"></script>
+<script src="/premium.js?v=2.0.0-fieldguide4"></script>
 </body>
 </html>

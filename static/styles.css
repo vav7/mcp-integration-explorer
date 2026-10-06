@@ -6300,3 +6300,71 @@ html[data-theme="light"] #helpView,html[data-theme="light"] #methodologyView{
 
 /* Fine indigo heart: quiet, crisp and consistent with the dark system. */
 .fbar-mid .hvsvg{fill:none!important;stroke:#969CF4!important;filter:none!important;animation:none!important}
+
+/* ============================================================================
+   v2.0.0 LADDER / PIPELINE FINAL PASS
+   ========================================================================== */
+
+/* Score lands first, then the seven rungs fall in rapidly from above. */
+@keyframes methodologyScoreDrop{
+  from{opacity:0;transform:translate3d(0,-34px,0) scale(.98)}
+  to{opacity:1;transform:translate3d(0,0,0) scale(1)}
+}
+#methodologyView .meth-strip{min-height:0;padding:10px 13px;border-radius:12px;background:#080C16!important;border-color:rgba(83,96,155,.2);box-shadow:inset 0 1px 0 rgba(175,185,235,.025),0 8px 20px rgba(0,0,0,.24)}
+#methodologyView .ms-gauge{width:70px;height:70px}
+#methodologyView .ms-gauge svg{width:70px;height:70px}
+#methodologyView .ms-v b{font-size:18px;color:#C6CBFF}
+#methodologyView .ms-v span{font-size:7px;color:#63708F}
+#methodologyView .ms-facts{gap:14px}
+#methodologyView .ms-facts b{font-size:14px;color:#AAB3D3}
+#methodologyView .ms-facts span{font-size:7.5px;color:#606D8B}
+#methodologyView .ms-hint{font-size:9.5px;color:#626F8E}
+#methodologyView .pipeline.deck .pipe{animation:none!important;background:#090D18!important;border-color:rgba(83,96,155,.2);box-shadow:inset 0 1px 0 rgba(175,185,235,.022),0 6px 18px rgba(0,0,0,.22)}
+#methodologyView.open .meth-strip{animation:methodologyScoreDrop .34s var(--motion-snap) both}
+#methodologyView.open .pipeline.deck .pipe{animation:methodologyLadderIn .34s var(--motion-snap) both}
+#methodologyView.open .pipeline.deck .pipe:nth-child(1){animation-delay:.34s}
+#methodologyView.open .pipeline.deck .pipe:nth-child(2){animation-delay:.40s}
+#methodologyView.open .pipeline.deck .pipe:nth-child(3){animation-delay:.46s}
+#methodologyView.open .pipeline.deck .pipe:nth-child(4){animation-delay:.52s}
+#methodologyView.open .pipeline.deck .pipe:nth-child(5){animation-delay:.58s}
+#methodologyView.open .pipeline.deck .pipe:nth-child(6){animation-delay:.64s}
+#methodologyView.open .pipeline.deck .pipe:nth-child(7){animation-delay:.70s}
+#methodologyView .pipeline.deck .pipe-hit{min-height:55px;padding:7px 10px;grid-template-columns:30px minmax(0,1fr) minmax(118px,auto) 14px;gap:10px}
+#methodologyView .pipeline.deck .pipe-n{width:28px;height:28px;border-radius:8px;font-size:9px;background:#0C1122;border-color:rgba(125,133,220,.24)}
+#methodologyView .pipeline.deck .pipe-b h4{font-size:12.5px;margin-bottom:1px;color:#C7CDED}
+#methodologyView .pipeline.deck .pipe-b p{font-size:10px;line-height:1.25;color:#687593;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#methodologyView .pipeline.deck .pipe-m{font-size:8px;color:#56627F}
+#methodologyView .pipeline.deck .pipe-xin{padding-left:15px;padding-right:15px}
+#methodologyView .pipeline.deck .pipe-x.open .pipe-xin{padding-top:7px;padding-bottom:8px}
+
+/* Keep every Help surface near-black; indigo is an accent, never a bright fill. */
+#helpView .fg-pipeline,#helpView .fg-rail,#helpView .fgf-card,#helpView .hq-item{background:#080C16!important;border-color:rgba(83,96,155,.2);box-shadow:inset 0 1px 0 rgba(175,185,235,.022),0 8px 22px rgba(0,0,0,.24)}
+#helpView .hq-item.open{background:#0B1020!important;border-color:rgba(103,112,190,.34);box-shadow:0 9px 24px rgba(0,0,0,.3)}
+#helpView .ha-in{background:#060910!important;border-top-color:rgba(83,96,155,.16)}
+#helpView .hq-q{color:#C5CCE5}
+#helpView .ha-in p{color:#8B98B6}
+#helpView .fg3d-wrap{background:#070A12!important}
+#helpView .fg-orb{background:#070A12!important}
+#helpView .fg-featured .fgf-card b{color:#C4CAE1}
+#helpView .fg-nav-item.active{background:rgba(76,83,155,.14);color:#D1D7ED}
+
+/* The icon is a deliberate, quiet red heart rather than a glowing light. */
+.fbar-mid .hvsvg{width:14px;height:14px;fill:#FF4058!important;stroke:none!important;filter:none!important;animation:none!important}
+
+@media(max-width:560px){
+  #methodologyView .ms-gauge,#methodologyView .ms-gauge svg{width:64px;height:64px}
+  #methodologyView .pipeline.deck .pipe-hit{min-height:52px;padding:6px 8px;grid-template-columns:28px minmax(0,1fr) 13px;gap:8px}
+  #methodologyView .pipeline.deck .pipe-n{width:26px;height:26px}
+  #methodologyView .pipeline.deck .pipe-b h4{font-size:12px}
+  #methodologyView .pipeline.deck .pipe-b p{font-size:9.5px}
+  #methodologyView.open .pipeline.deck .pipe:nth-child(1){animation-delay:.28s}
+  #methodologyView.open .pipeline.deck .pipe:nth-child(2){animation-delay:.33s}
+  #methodologyView.open .pipeline.deck .pipe:nth-child(3){animation-delay:.38s}
+  #methodologyView.open .pipeline.deck .pipe:nth-child(4){animation-delay:.43s}
+  #methodologyView.open .pipeline.deck .pipe:nth-child(5){animation-delay:.48s}
+  #methodologyView.open .pipeline.deck .pipe:nth-child(6){animation-delay:.53s}
+  #methodologyView.open .pipeline.deck .pipe:nth-child(7){animation-delay:.58s}
+}
+@media(prefers-reduced-motion:reduce){
+  #methodologyView.open .meth-strip,#methodologyView.open .pipeline.deck .pipe{animation:none!important}
+}
