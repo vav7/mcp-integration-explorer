@@ -77,7 +77,9 @@
   let tweenRaf = 0;
   function tickTweens(t) {
     TWEENS.forEach(tw => {
-      const p = Math.min(1, (t - tw.t0) / tw.dur), e = 1 - Math.pow(1 - p, 3);
+      /* Keep a delayed frame from producing a negative count during a
+         background-tab wake-up or a long main-thread task. */
+      const p = Math.min(1, Math.max(0, (t - tw.t0) / tw.dur)), e = 1 - Math.pow(1 - p, 3);
       const v = Math.round(tw.from + (tw.to - tw.from) * e);
       if (tw.el.isConnected) tw.el.textContent = tw.fmt ? tw.fmt(v) : v.toLocaleString();
       else TWEENS.delete(tw);
@@ -1446,10 +1448,9 @@
         ch.classList.toggle("off");
       };
     });
-    if (narrow) { /* decode the 100 favicons NOW - lazy decode mid-scroll is a frame hitch */
-      Array.prototype.forEach.call(document.querySelectorAll("#atlasField img[loading=lazy]"),
-        (im) => { im.loading = "eager"; });
-    }
+    /* Keep atlas logos lazy on every device. Eagerly decoding 100 remote
+       favicons here blocks first paint and creates a burst of network and
+       image-decode work exactly when the atlas opens. */
     contentView = "atlas";
     bindAtlas();
   }

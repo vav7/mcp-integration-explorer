@@ -76,13 +76,18 @@ def require_key(x_api_key: Optional[str] = Header(default=None, alias="X-API-Key
 
 @app.middleware("http")
 async def no_cache_assets(request, call_next):
-    """Never serve stale HTML/JS/CSS: this is a live dashboard; browsers must
-    revalidate every time so a cached broken build can't linger."""
+    """Keep the document fresh while allowing versioned assets to stay warm.
+
+    The HTML carries an asset version query string, so static JS/CSS can be
+    cached between visits without risking an old bundle after a deploy.
+    """
     resp = await call_next(request)
     p = request.url.path
-    if p == "/" or p.endswith((".html", ".js", ".css")) or p == "/data.snapshot.js":
+    if p == "/" or p.endswith(".html"):
         resp.headers["Cache-Control"] = "no-store, max-age=0, must-revalidate"
         resp.headers["Pragma"] = "no-cache"
+    elif p.endswith((".js", ".css")) or p == "/data.snapshot.js":
+        resp.headers["Cache-Control"] = "public, max-age=604800, immutable"
     return resp
 
 

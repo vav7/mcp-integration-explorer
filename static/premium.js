@@ -70,16 +70,23 @@
       tiltTargets.add(el);
     });
   }
+  let tiltEvent = null;
   function onTiltMove(e) {
-    const el = e.target && e.target.closest ? e.target.closest(TILT_SEL) : null;
-    if (!el || !tiltTargets.has(el)) return;
-    const r = el.getBoundingClientRect();
-    const px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
-    el.style.setProperty("--ry", ((px - 0.5) * MAX_DEG).toFixed(2) + "deg");
-    el.style.setProperty("--rx", ((0.5 - py) * MAX_DEG).toFixed(2) + "deg");
-    el.style.setProperty("--gx", (px * 100).toFixed(1) + "%");
-    el.style.setProperty("--gy", (py * 100).toFixed(1) + "%");
-    el.style.setProperty("--glare", GLARE_MAX.toFixed(3));
+    tiltEvent = e;
+    if (tiltRaf) return;
+    tiltRaf = requestAnimationFrame(() => {
+      tiltRaf = 0;
+      const ev = tiltEvent; tiltEvent = null;
+      const el = ev && ev.target && ev.target.closest ? ev.target.closest(TILT_SEL) : null;
+      if (!el || !tiltTargets.has(el)) return;
+      const r = el.getBoundingClientRect();
+      const px = (ev.clientX - r.left) / r.width, py = (ev.clientY - r.top) / r.height;
+      el.style.setProperty("--ry", ((px - 0.5) * MAX_DEG).toFixed(2) + "deg");
+      el.style.setProperty("--rx", ((0.5 - py) * MAX_DEG).toFixed(2) + "deg");
+      el.style.setProperty("--gx", (px * 100).toFixed(1) + "%");
+      el.style.setProperty("--gy", (py * 100).toFixed(1) + "%");
+      el.style.setProperty("--glare", GLARE_MAX.toFixed(3));
+    });
   }
   function onTiltLeave(e) {
     const el = e.target && e.target.closest ? e.target.closest(TILT_SEL) : null;
@@ -94,9 +101,11 @@
   function bindOrbs() {
     $$("#ambDeep .orb").forEach((o, i) => orbs.push({ el: o, depth: 0.028 + i * 0.013, x: 0, y: 0, tx: 0, ty: 0 }));
   }
-  let scrollY = window.scrollY || 0, orbRaf = 0;
+  let scrollY = window.scrollY || 0, orbRaf = 0, orbTarget = scrollY;
   function orbTick() {
-    scrollY = lerp(scrollY, window.scrollY || 0, 0.08);
+    orbRaf = 0;
+    orbTarget = window.scrollY || 0;
+    scrollY = lerp(scrollY, orbTarget, 0.08);
     orbs.forEach(o => {
       o.tx = -scrollY * o.depth;
       o.ty = scrollY * o.depth * 0.6;
@@ -104,7 +113,12 @@
       if (Math.abs(o.x - o.tx) > 0.05 || Math.abs(o.y - o.ty) > 0.05)
         o.el.style.transform = `translate3d(${o.x.toFixed(2)}px,${o.y.toFixed(2)}px,0)`;
     });
-    if (orbs.length) orbRaf = requestAnimationFrame(orbTick);
+    if (orbs.length && Math.abs(scrollY - orbTarget) > 0.05) orbRaf = requestAnimationFrame(orbTick);
+  }
+
+  function wakeOrbs() {
+    orbTarget = window.scrollY || 0;
+    if (orbs.length && !orbRaf) orbRaf = requestAnimationFrame(orbTick);
   }
 
   /* ---------- 3b. THE CONSTELLATION: a live 3D app/servers network ----------
@@ -316,7 +330,10 @@
     if (OK) {
       document.addEventListener("pointermove", onTiltMove, { passive: true });
       document.addEventListener("pointerout", onTiltLeave, { passive: true });
-      if (orbs.length && !orbRaf) orbRaf = requestAnimationFrame(orbTick);
+      if (orbs.length) {
+        addEventListener("scroll", wakeOrbs, { passive: true });
+        wakeOrbs();
+      }
     }
     /* new dashboard content (rendered rows, re-opened views) opts in late.
        rAF-debounced: render() mutates hundreds of nodes and a per-mutation
