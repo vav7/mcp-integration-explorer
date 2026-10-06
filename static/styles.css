@@ -5990,7 +5990,7 @@ html[data-theme="dark"] .pview{background:
 .meth-strip{margin-bottom:10px}
 @media(max-width:920px){
   .pipeline.deck{height:auto;display:flex;flex-direction:column;gap:10px;perspective:none}
-  .pipeline.deck .pipe{position:relative;transform:none!important;opacity:1!important}
+  .pipeline.deck .pipe{position:relative;transform:none;opacity:1}
   .pipeline.deck .pipe .pipe-x{display:none}
   .pipeline.deck .pipe.is-active .pipe-x{display:block}
   .deck-spectrum{display:none}
@@ -6118,7 +6118,7 @@ button:not(:disabled):active,a.lnk:active{
 #methodologyView .deck-spectrum span:hover{transform:scaleY(1.7)}
 #methodologyView .pipeline.deck{height:auto;display:grid;gap:10px;margin:14px 0 0;padding:0;perspective:none}
 #methodologyView .pipeline.deck::before{content:"";position:absolute;left:20px;top:25px;bottom:25px;width:1px;background:linear-gradient(180deg,rgba(165,155,242,.55),rgba(77,226,197,.16));pointer-events:none}
-#methodologyView .pipeline.deck .pipe{position:relative;inset:auto;z-index:1!important;display:block;margin:0;padding:0;border-radius:17px;transform:none!important;opacity:1!important;background:linear-gradient(160deg,rgba(18,24,42,.92),rgba(8,12,21,.86));box-shadow:inset 0 1px 0 rgba(255,255,255,.045),0 12px 32px rgba(0,0,0,.22);transition:border-color .2s ease,box-shadow .2s ease,background .2s ease}
+#methodologyView .pipeline.deck .pipe{position:relative;inset:auto;z-index:1!important;display:block;margin:0;padding:0;border-radius:17px;transform:none;opacity:1;background:linear-gradient(160deg,rgba(18,24,42,.92),rgba(8,12,21,.86));box-shadow:inset 0 1px 0 rgba(255,255,255,.045),0 12px 32px rgba(0,0,0,.22);transition:border-color .2s ease,box-shadow .2s ease,background .2s ease}
 #methodologyView .pipeline.deck .pipe.is-active{border-color:rgba(165,155,242,.56);background:linear-gradient(160deg,rgba(30,30,60,.95),rgba(9,13,24,.9));box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 18px 42px rgba(58,48,140,.22)}
 #methodologyView .pipeline.deck .pipe-hit{width:100%;display:grid;grid-template-columns:40px minmax(0,1fr) minmax(145px,auto) 20px;align-items:center;gap:16px;min-height:88px;padding:15px 18px;text-align:left;background:transparent;border:0;color:inherit;cursor:pointer}
 #methodologyView .pipeline.deck .pipe-n{position:relative;z-index:2;display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:rgba(124,111,224,.1);border:1px solid rgba(165,155,242,.28);font-size:11px;color:#A59BF2}
@@ -6180,3 +6180,123 @@ button:not(:disabled):active,a.lnk:active{
   #helpView .fg-gold,.fg-dot::after{animation:none!important}
   #methodologyView .pipeline.deck .pipe-x{transition:none!important}
 }
+
+/* ============================================================================
+   v2.0.0 FIELD GUIDE DARK / COMPACT CORRECTION
+   ========================================================================== */
+
+/* Atlas nodes own their spatial transform. Excluding them from the global
+   button nudge prevents a click from moving the node before the dossier opens. */
+button.atlas-node:not(:disabled){transition:transform .18s var(--motion-snap),opacity .18s ease,border-color .18s ease}
+@media(pointer:fine){button.atlas-node:not(:disabled):hover{transform:translate(-50%,-50%) translate3d(calc(var(--mx,0)*var(--d)*1px),calc(var(--my,0)*var(--d)*1px),0) scale(1.035)}}
+button.atlas-node:not(:disabled):active{transform:translate(-50%,-50%) translate3d(calc(var(--mx,0)*var(--d)*1px),calc(var(--my,0)*var(--d)*1px),0) scale(.98)}
+
+/* Deep graphite / blue-indigo surfaces, including when the old theme toggle
+   has left data-theme="light" on the document. */
+#helpView,#methodologyView{
+  --t1:#EEF1FF;--t2:#B7C0DD;--t3:#7D89AA;--t4:#56627E;
+  --line:rgba(126,140,207,.17);--line-strong:rgba(126,140,207,.28);
+  --fg-gold:#9599F1;--fg-gold2:#4F5A9A;--fg-indigo:#777BE0;
+  --fg-live:#6EB9D8;--fg-line:rgba(126,140,207,.18);
+  background:
+    radial-gradient(900px 500px at 78% -12%,rgba(78,84,168,.16),transparent 64%),
+    radial-gradient(760px 520px at -10% 56%,rgba(33,52,104,.16),transparent 68%),
+    linear-gradient(180deg,#060811 0%,#070A14 54%,#05070E 100%)!important;
+  color:var(--t1)
+}
+html[data-theme="light"] #helpView,html[data-theme="light"] #methodologyView{
+  background:
+    radial-gradient(900px 500px at 78% -12%,rgba(78,84,168,.16),transparent 64%),
+    radial-gradient(760px 520px at -10% 56%,rgba(33,52,104,.16),transparent 68%),
+    linear-gradient(180deg,#060811 0%,#070A14 54%,#05070E 100%)!important;
+  color:#EEF1FF
+}
+#helpView .fg-pipeline,#helpView .fg-rail,#helpView .fgf-card,#helpView .hq-item,
+#methodologyView .meth-strip,#methodologyView .pipeline.deck .pipe{
+  background:linear-gradient(155deg,rgba(15,21,40,.92),rgba(5,8,17,.96));
+  border-color:rgba(117,130,199,.2);
+  box-shadow:inset 0 1px 0 rgba(200,210,255,.035),0 14px 36px rgba(0,0,0,.28)
+}
+#helpView .fg-pipeline{border-radius:18px}
+#helpView .fg-pipeline .how-copy .k,#helpView .fgf-head .k,#helpView .fg-nav-item.active b,
+#helpView .fgf-n,#helpView .fg-go,#methodologyView .method-head .k{color:#9A9FF2}
+#helpView .fg-chips button{background:rgba(18,24,46,.72);border-color:rgba(117,130,199,.22);color:#AEB8D4}
+#helpView .fg-chips button:hover{border-color:rgba(149,153,241,.55);color:#EEF1FF}
+#helpView .fg-live{color:#7583A6}
+#helpView .fg-orb{background:radial-gradient(420px 300px at 60% 40%,rgba(78,84,168,.13),transparent 65%),rgba(5,8,17,.78);border-color:rgba(117,130,199,.18)}
+#helpView .fg3d-wrap{background:radial-gradient(620px 220px at 50% 52%,rgba(68,73,157,.1),transparent 70%);border-radius:14px}
+#helpView .fg-replay{background:rgba(13,19,38,.8);border-color:rgba(117,130,199,.25);color:#AEB8D4}
+
+/* The Q&A is a reading list, not a stack of oversized cards. */
+#helpView .fg-shell{gap:16px;margin-top:18px}
+#helpView .fg-rail{padding:11px;border-radius:14px}
+#helpView .hq-group{gap:6px;margin-bottom:22px}
+#helpView .hq-item{border-radius:11px;box-shadow:inset 0 1px 0 rgba(200,210,255,.025)}
+#helpView .hq{min-height:50px;padding:0 13px;grid-template-columns:28px minmax(0,1fr) 18px;gap:10px}
+#helpView .hq-n{width:25px;height:25px;font-size:9px;background:rgba(86,94,175,.12);border-color:rgba(117,130,199,.24);color:#8D94D8}
+#helpView .hq-q{font-size:13.5px;color:#DCE2F5}
+#helpView .hq-item.open{border-color:rgba(117,130,199,.4);background:linear-gradient(155deg,rgba(20,27,52,.95),rgba(6,10,20,.98));box-shadow:0 10px 26px rgba(0,0,0,.26)}
+#helpView .ha-in{padding:0 15px;border-top-color:rgba(117,130,199,.16);background:rgba(6,10,21,.5)}
+#helpView .hq-item.open .ha-in{padding:0 15px 13px}
+#helpView .ha-in p{font-size:12.5px;line-height:1.6;color:#AEB9D5}
+#helpView .ha-pills{margin-top:8px}
+
+/* Methodology ladder: every stage drops in from above, one compact rung at a
+   time. It remains the same animation on desktop and mobile. */
+@keyframes methodologyLadderIn{
+  from{opacity:0;transform:translate3d(0,-54px,0) rotateX(-16deg)}
+  to{opacity:1;transform:translate3d(0,0,0) rotateX(0)}
+}
+#methodologyView .method-head{margin-bottom:18px}
+#methodologyView .method-head h2{color:#E9EDFF}
+#methodologyView .method-head p{color:#8996B7}
+#methodologyView .meth-strip{padding:14px 16px;gap:16px;border-radius:15px}
+#methodologyView .ms-hint{color:#7482A5}
+#methodologyView .deck-spectrum{margin-top:10px;background:rgba(86,94,175,.14)}
+#methodologyView .deck-spectrum span{background:rgba(117,130,199,.24)}
+#methodologyView .deck-spectrum span.on{background:linear-gradient(90deg,#686ED0,#9A9FF2);box-shadow:0 0 9px rgba(119,123,224,.35)}
+#methodologyView .pipeline.deck{gap:7px;margin-top:11px}
+#methodologyView .pipeline.deck::before{left:17px;top:19px;bottom:19px;background:linear-gradient(180deg,rgba(139,146,235,.58),rgba(71,95,145,.2))}
+#methodologyView .pipeline.deck .pipe{min-height:0;border-radius:12px;box-shadow:inset 0 1px 0 rgba(200,210,255,.035),0 8px 22px rgba(0,0,0,.22);animation:methodologyLadderIn .48s var(--motion-snap) both;animation-delay:calc(.05s + var(--i)*.065s)}
+#methodologyView .pipeline.deck .pipe.is-active{border-color:rgba(149,153,241,.48);background:linear-gradient(155deg,rgba(24,29,61,.96),rgba(7,11,23,.98));box-shadow:inset 0 1px 0 rgba(200,210,255,.05),0 12px 28px rgba(45,47,116,.24)}
+#methodologyView .pipeline.deck .pipe-hit{grid-template-columns:34px minmax(0,1fr) minmax(132px,auto) 16px;gap:12px;min-height:67px;padding:10px 13px}
+#methodologyView .pipeline.deck .pipe-n{width:32px;height:32px;border-radius:9px;background:rgba(86,94,175,.12);border-color:rgba(149,153,241,.25);color:#9A9FF2}
+#methodologyView .pipeline.deck .pipe-b h4{margin-bottom:3px;font-size:13.5px;color:#E5E9FB}
+#methodologyView .pipeline.deck .pipe-b p{font-size:11px;line-height:1.42;color:#7F8CAC}
+#methodologyView .pipeline.deck .pipe-m{font-size:8.5px;color:#667392}
+#methodologyView .pipeline.deck .pipe-chev{color:#8189C8}
+#methodologyView .pipeline.deck .pipe-xin{padding:0 18px}
+#methodologyView .pipeline.deck .pipe-x.open .pipe-xin{padding-top:10px;padding-bottom:11px}
+#methodologyView .pipeline.deck .pipe-live{font-size:11px;color:#9DAAD0}
+#methodologyView .pipeline.deck .pipe-live b{font-size:16px;color:#C4C9FF}
+
+/* Atlas is intentionally low-light: the field should read as ink, not neon. */
+.atlas-field{background:
+  radial-gradient(800px 400px at 76% -10%,rgba(64,70,145,.12),transparent 62%),
+  radial-gradient(620px 340px at 0% 110%,rgba(31,53,103,.12),transparent 64%),
+  linear-gradient(175deg,#080B16,#05070E)!important;border-color:rgba(117,130,199,.2);box-shadow:inset 0 1px 0 rgba(200,210,255,.025),0 18px 42px rgba(0,0,0,.3)}
+.atlas-gridbg{background-image:linear-gradient(rgba(117,130,199,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(117,130,199,.035) 1px,transparent 1px);background-size:52px 52px}
+.atlas-node.hot::after{opacity:.16!important}
+.atlas-node .applogo{box-shadow:none!important}
+.atlas-node:hover::before{border-color:rgba(149,153,241,.5)}
+.atlas-legend{color:#7180A2}
+.atlas-legend b{color:#AEB8D4}
+
+@media(max-width:920px){
+  #methodologyView .pipeline.deck .pipe-hit{grid-template-columns:32px minmax(0,1fr) 16px;min-height:62px;gap:10px;padding:9px 11px}
+  #methodologyView .pipeline.deck .pipe-m{display:none}
+}
+@media(max-width:560px){
+  #helpView .fg-pipeline{padding:16px 12px 18px}
+  #helpView .fg3d-wrap{min-height:235px}
+  #methodologyView .pipeline.deck .pipe-hit{grid-template-columns:30px minmax(0,1fr) 15px;min-height:59px;padding:8px 10px}
+  #methodologyView .pipeline.deck .pipe-n{width:29px;height:29px}
+  #methodologyView .pipeline.deck .pipe-b h4{font-size:13px}
+  #methodologyView .pipeline.deck .pipe-b p{font-size:10.5px}
+}
+@media(prefers-reduced-motion:reduce){
+  #methodologyView .pipeline.deck .pipe{animation:none}
+}
+
+/* Fine indigo heart: quiet, crisp and consistent with the dark system. */
+.fbar-mid .hvsvg{fill:none!important;stroke:#969CF4!important;filter:none!important;animation:none!important}

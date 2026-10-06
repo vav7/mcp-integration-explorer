@@ -16,8 +16,6 @@
   if (!view) return;
 
   /* ---------------- state ---------------- */
-  const LS = "fg_helpful";
-  const votes = (() => { try { return JSON.parse(localStorage.getItem(LS) || "{}"); } catch (e) { return {}; } })();
   let expanded = false;
   let booted = false;
 
@@ -30,25 +28,6 @@
   view.addEventListener("click", (e) => {
     const jump = e.target.closest("[data-fgjump]");
     if (jump) { e.preventDefault(); expand(jump.dataset.fgjump, true); return; }
-    const cp = e.target.closest(".ha-copy");
-    if (cp) {
-      const url = location.origin + location.pathname + "#help/" + cp.dataset.slug;
-      (navigator.clipboard ? navigator.clipboard.writeText(url) : Promise.reject())
-        .then(() => { cp.textContent = "Link copied"; setTimeout(() => cp.textContent = "Copy link", 1600); })
-        .catch(() => {});
-      return;
-    }
-    const v = e.target.closest("[data-vote]");
-    if (v) {
-      votes[v.dataset.slug] = +v.dataset.vote;
-      try { localStorage.setItem(LS, JSON.stringify(votes)); } catch (err) {}
-      const box = v.closest(".ha-vote");
-      box.classList.add("voted");
-      v.classList.add("picked");
-      const fb = box.querySelector(".ha-fb") || (() => { const s = document.createElement("span"); s.className = "ha-fb"; box.appendChild(s); return s; })();
-      fb.textContent = +v.dataset.vote === 1 ? "Thanks for the signal" : "Noted - we will improve this answer";
-      return;
-    }
     const q = e.target.closest(".hq");
     if (!q) return;
     const item = q.closest(".hq-item");
@@ -408,7 +387,7 @@
 
     function start() {
       size();
-      const t0 = now();
+      const t0 = performance.now();
       landed = new Array(N).fill(-1).map((_, i) => t0 + 120 + i * 280);
       if (reduced) { landed = landed.map(() => t0 - 1000); still(); return; }
       if (!running) { running = true; raf = requestAnimationFrame(draw); }
@@ -422,7 +401,7 @@
       };
       requestAnimationFrame(watchdog);
     }
-    function still() { running = true; draw(now()); running = false; }
+    function still() { running = true; draw(performance.now()); running = false; }
 
     size();
     /* the view opens with a scale animation: keep the canvas in sync with
@@ -439,6 +418,12 @@
       });
     }, { threshold: .25 });
     io.observe(wrap);
+    /* Some mobile WebViews do not deliver the first IntersectionObserver
+       notification while a fixed view is opening. Start one frame later as a
+       safe fallback; the observer still owns pause/resume afterwards. */
+    if (view.classList.contains("open")) requestAnimationFrame(() => {
+      if (!started) { started = true; start(); }
+    });
     document.addEventListener("visibilitychange", () => {
       if (document.hidden) { running = false; cancelAnimationFrame(raf); }
       else if (started && !running) { running = true; raf = requestAnimationFrame(draw); }

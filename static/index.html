@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="build" content="v2.0.0-fieldguide1">
+<meta name="build" content="v2.0.0-fieldguide3">
 <title>MCP Integration Explorer · integration intelligence</title>
 <meta name="description" content="Live, evidence-backed MCP / agent integration readiness across applications. Real registry data, endpoint probes, GitHub, package adoption and liveness, with every signal traceable to its source.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,9 +14,9 @@
 <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
 </noscript>
 <script>
-  (function(){try{var t=localStorage.getItem('mcp_theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';}document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();
+  (function(){try{localStorage.setItem('mcp_theme','dark');}catch(e){}document.documentElement.setAttribute('data-theme','dark');})();
 </script>
-<link rel="stylesheet" href="/styles.css?v=2.0.0-fieldguide1">
+<link rel="stylesheet" href="/styles.css?v=2.0.0-fieldguide3">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%2310151C'/><rect x='.5' y='.5' width='31' height='31' rx='6.5' fill='none' stroke='%23253140'/><circle cx='10' cy='10' r='2.4' fill='none' stroke='%234F7FFF' stroke-width='1.6'/><circle cx='10' cy='22' r='2.4' fill='none' stroke='%234F7FFF' stroke-width='1.6'/><circle cx='22' cy='16' r='2.4' fill='none' stroke='%234F7FFF' stroke-width='1.6'/><path d='M12 11l8 4M12 21l8-4' stroke='%234F7FFF' stroke-width='1.6'/></svg>">
 </head>
 <body>
@@ -58,7 +58,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.2-3.2"/></svg>
       </button>
       <div class="statuspill" id="statusPill" title="Live data status"><span class="led off" id="liveLed"></span><span id="liveTxt">Connecting</span></div>
-      <button class="iconbtn" id="themeBtn" aria-label="Toggle theme" title="Toggle theme">
+      <button class="iconbtn" id="themeBtn" aria-label="Dark theme" title="Dark theme">
         <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
       </button>
       <div class="dropdown" id="bellWrap">
@@ -334,7 +334,7 @@
     </div>
     <div class="fbar">
       <span>© 2026 MCP Integration Explorer. All rights reserved.</span>
-      <span class="fbar-mid">Made with <svg class="hvsvg" viewBox="0 0 24 24" role="img" aria-label="love"><defs><linearGradient id="hvGrad2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff4d67"/><stop offset=".55" stop-color="#e0143c"/><stop offset="1" stop-color="#9d0b28"/></linearGradient></defs><path fill="url(#hvGrad2)" d="M12 21s-7.6-4.9-10.1-9.3C.3 8.5 2.2 4.9 5.6 4.9c2 0 3.5 1.1 4.4 2.7.9-1.6 2.4-2.7 4.4-2.7 3.4 0 5.3 3.6 3.7 6.8C19.6 16.1 12 21 12 21z"/><path fill="rgba(255,255,255,.28)" d="M7.2 7.1c-.9.5-1.6 1.4-1.8 2.4-.1.5.5.8.8.4.5-.8 1.2-1.5 2-1.9.5-.3.1-1.2-1-.9z"/></svg> by <b class="goldshine">vav7</b></span>
+      <span class="fbar-mid">Made with <svg class="hvsvg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="love"><path d="M20.8 8.9c0 5.4-8.8 10.1-8.8 10.1S3.2 14.3 3.2 8.9A4.7 4.7 0 0112 6.2a4.7 4.7 0 018.8 2.7z"/></svg> by <b class="goldshine">vav7</b></span>
       <span class="fbar-r"><span id="footTime"></span></span>
     </div>
   </footer>
@@ -619,7 +619,6 @@
             </button>
             <div class="ha" id="ha-what-is-this-site"><div class="ha-in">
               <p>A live, evidence-backed tracker of MCP integration readiness for 100 curated applications. For each app it answers: is there an MCP server, is it vendor-official or community, what can it actually do, how adopted and maintained is it, and is its site up - with every figure linked to the real source that produced it.</p>
-              <div class="ha-meta"><button type="button" class="ha-copy" data-slug="what-is-this-site">Copy link</button><span class="ha-vote"><button type="button" data-vote="1" data-slug="what-is-this-site" aria-label="Helpful">👍</button><button type="button" data-vote="-1" data-slug="what-is-this-site" aria-label="Not helpful">👎</button></span></div>
             </div></div>
           </div>
           <div class="hq-item" data-slug="what-is-mcp">
@@ -629,7 +628,6 @@
             </button>
             <div class="ha" id="ha-what-is-mcp"><div class="ha-in">
               <p>The Model Context Protocol: an open standard that lets AI agents call a product's capabilities as tools. An MCP server exposes tools (actions), resources (data) and prompts (templates) over a JSON-RPC stream. This site measures how ready each product is for that world.</p>
-              <div class="ha-meta"><button type="button" class="ha-copy" data-slug="what-is-mcp">Copy link</button><span class="ha-vote"><button type="button" data-vote="1" data-slug="what-is-mcp" aria-label="Helpful">👍</button><button type="button" data-vote="-1" data-slug="what-is-mcp" aria-label="Not helpful">👎</button></span></div>
             </div></div>
           </div>
           <div class="hq-item" data-slug="how-fresh">
@@ -640,7 +638,6 @@
             <div class="ha" id="ha-how-fresh"><div class="ha-in">
               <p>Every panel carries its own timestamp ("updated X ago"). The backend refreshes on a schedule (15 minutes by default, plus a 6-hourly cron that commits fresh data), the browser picks up a new refresh within seconds, and the Trends section graphs every refresh snapshot as a point in time.</p>
               <div class="fg-demo" id="demoFresh"></div>
-              <div class="ha-meta"><button type="button" class="ha-copy" data-slug="how-fresh">Copy link</button><span class="ha-vote"><button type="button" data-vote="1" data-slug="how-fresh" aria-label="Helpful">👍</button><button type="button" data-vote="-1" data-slug="how-fresh" aria-label="Not helpful">👎</button></span></div>
             </div></div>
           </div>
         </div>
@@ -656,7 +653,6 @@
               <p>Official means the registry server's reverse-domain namespace resolves to the app's own domain (com.stripe/mcp to stripe.com) - domain-verified, not claimed. Community means a third-party server whose name/title/description genuinely mentions the app. None means the official MCP registry returned nothing for it - a registry coverage gap, not proof no server exists.</p>
               <p class="ha-pills"><span class="badge official">Official</span><span class="badge community">Community</span><span class="badge none">None</span></p>
               <div class="fg-demo" id="demoStates"></div>
-              <div class="ha-meta"><button type="button" class="ha-copy" data-slug="official-community-none">Copy link</button><span class="ha-vote"><button type="button" data-vote="1" data-slug="official-community-none" aria-label="Helpful">👍</button><button type="button" data-vote="-1" data-slug="official-community-none" aria-label="Not helpful">👎</button></span></div>
             </div></div>
           </div>
           <div class="hq-item" data-slug="readiness-score">
@@ -667,7 +663,6 @@
             <div class="ha" id="ha-readiness"><div class="ha-in">
               <p>A transparent 0-100 weighted sum of six live signals: official MCP 28%, live capability 14%, adoption 16%, popularity 14%, maintenance 16%, availability 12%. Grades run A-E. Open any app and the Signal breakdown shows each component's exact contribution and its evidence.</p>
               <div class="fg-demo" id="demoScore"></div>
-              <div class="ha-meta"><button type="button" class="ha-copy" data-slug="readiness-score">Copy link</button><span class="ha-vote"><button type="button" data-vote="1" data-slug="readiness-score" aria-label="Helpful">👍</button><button type="button" data-vote="-1" data-slug="readiness-score" aria-label="Not helpful">👎</button></span></div>
             </div></div>
           </div>
           <div class="hq-item" data-slug="live-tools">
@@ -677,7 +672,6 @@
             </button>
             <div class="ha" id="ha-live-tools"><div class="ha-in">
               <p>Live tools are counted only from a real handshake with the server's endpoint (initialize then tools/list). <span class="badge gated">auth gated</span> means the endpoint demanded credentials (401/402/403) - that is an auth wall, not zero capability, and we say so instead of guessing a number.</p>
-              <div class="ha-meta"><button type="button" class="ha-copy" data-slug="live-tools">Copy link</button><span class="ha-vote"><button type="button" data-vote="1" data-slug="live-tools" aria-label="Helpful">👍</button><button type="button" data-vote="-1" data-slug="live-tools" aria-label="Not helpful">👎</button></span></div>
             </div></div>
           </div>
           <div class="hq-item" data-slug="gateway-tag">
@@ -687,7 +681,6 @@
             </button>
             <div class="ha" id="ha-gateway"><div class="ha-in">
               <p>Some endpoints are shared aggregators serving the same toolset to many apps. When one toolset appears behind four or more apps we flag it as a <span class="badge none">gateway</span> and exclude it from app-specific tool counts, so a 41-tool gateway is never credited to every app it wraps.</p>
-              <div class="ha-meta"><button type="button" class="ha-copy" data-slug="gateway-tag">Copy link</button><span class="ha-vote"><button type="button" data-vote="1" data-slug="gateway-tag" aria-label="Helpful">👍</button><button type="button" data-vote="-1" data-slug="gateway-tag" aria-label="Not helpful">👎</button></span></div>
             </div></div>
           </div>
           <div class="hq-item" data-slug="downloads-stars-liveness">
@@ -697,7 +690,6 @@
             </button>
             <div class="ha" id="ha-dsl"><div class="ha-in">
               <p>Downloads are npm/PyPI monthly downloads of the server's published package. Stars are GitHub stars of the repository the registry publishes for that server. Liveness is a direct HTTP check of the app's own site: the status code, latency and whether it responded.</p>
-              <div class="ha-meta"><button type="button" class="ha-copy" data-slug="downloads-stars-liveness">Copy link</button><span class="ha-vote"><button type="button" data-vote="1" data-slug="downloads-stars-liveness" aria-label="Helpful">👍</button><button type="button" data-vote="-1" data-slug="downloads-stars-liveness" aria-label="Not helpful">👎</button></span></div>
             </div></div>
           </div>
         </div>
@@ -711,7 +703,6 @@
             </button>
             <div class="ha" id="ha-find"><div class="ha-in">
               <p>Press Ctrl/Cmd+K (or use the hero search). Curated matches appear instantly; as you type, the live MCP registry, npm and Docker Hub are queried for apps beyond the 100, and the Anywhere row fetches any application on the spot with a staged progress card.</p>
-              <div class="ha-meta"><button type="button" class="ha-copy" data-slug="find-any-app">Copy link</button><span class="ha-vote"><button type="button" data-vote="1" data-slug="find-any-app" aria-label="Helpful">👍</button><button type="button" data-vote="-1" data-slug="find-any-app" aria-label="Not helpful">👎</button></span></div>
             </div></div>
           </div>
           <div class="hq-item" data-slug="compare-work">
@@ -721,7 +712,6 @@
             </button>
             <div class="ha" id="ha-compare"><div class="ha-in">
               <p>Hover a row and press + (up to four apps), then Compare. The deck shows readiness, status, servers, tools, downloads, stars, last commit, license and site side by side, starring the best value per metric. The grid grows a column per app - no empty slots.</p>
-              <div class="ha-meta"><button type="button" class="ha-copy" data-slug="compare-work">Copy link</button><span class="ha-vote"><button type="button" data-vote="1" data-slug="compare-work" aria-label="Helpful">👍</button><button type="button" data-vote="-1" data-slug="compare-work" aria-label="Not helpful">👎</button></span></div>
             </div></div>
           </div>
           <div class="hq-item" data-slug="changes-tab">
@@ -731,7 +721,6 @@
             </button>
             <div class="ha" id="ha-changes"><div class="ha-in">
               <p>A historical diff: what changed between two stored snapshots - tools added/removed/modified, schema and required-parameter changes, auth or protocol changes, endpoints, health - each rated as a potential breaking change (high/medium/low/info). You can pick any two snapshots to compare, and the timeline summarises day by day.</p>
-              <div class="ha-meta"><button type="button" class="ha-copy" data-slug="changes-tab">Copy link</button><span class="ha-vote"><button type="button" data-vote="1" data-slug="changes-tab" aria-label="Helpful">👍</button><button type="button" data-vote="-1" data-slug="changes-tab" aria-label="Not helpful">👎</button></span></div>
             </div></div>
           </div>
           <div class="hq-item" data-slug="test-compatibility">
@@ -741,7 +730,6 @@
             </button>
             <div class="ha" id="ha-compat"><div class="ha-in">
               <p>It runs a 12-check behavioural test against a server endpoint (reachable, TLS, handshake, protocol, capabilities, tools/resources/prompts, schema validity, JSON-RPC validity, error handling, auth) and scores it. It is a compatibility report from this explorer's point of view - explicitly not an official certification.</p>
-              <div class="ha-meta"><button type="button" class="ha-copy" data-slug="test-compatibility">Copy link</button><span class="ha-vote"><button type="button" data-vote="1" data-slug="test-compatibility" aria-label="Helpful">👍</button><button type="button" data-vote="-1" data-slug="test-compatibility" aria-label="Not helpful">👎</button></span></div>
             </div></div>
           </div>
           <div class="hq-item" data-slug="watch-alerts">
@@ -751,7 +739,6 @@
             </button>
             <div class="ha" id="ha-watch"><div class="ha-in">
               <p>Open an app and press Watch. When a refresh detects that it shipped an official MCP, went down, or changed, an alert fires to the bell, streams over the live wire, and can POST to a webhook (ALERT_WEBHOOK_URL) for Slack/Discord/Zapier.</p>
-              <div class="ha-meta"><button type="button" class="ha-copy" data-slug="watch-alerts">Copy link</button><span class="ha-vote"><button type="button" data-vote="1" data-slug="watch-alerts" aria-label="Helpful">👍</button><button type="button" data-vote="-1" data-slug="watch-alerts" aria-label="Not helpful">👎</button></span></div>
             </div></div>
           </div>
           <div class="hq-item" data-slug="explorer-tabs">
@@ -761,7 +748,6 @@
             </button>
             <div class="ha" id="ha-tabs"><div class="ha-in">
               <p>The <b>Atlas</b> plots all apps as a spatial field (adoption × readiness). The <b>Explorer</b> is the full filterable, sortable table of every tracked app. The <b>Leaderboard</b> ranks them by readiness score, and <b>Opportunities</b> lists apps with real demand but no vendor-official MCP yet: the build candidates.</p>
-              <div class="ha-meta"><button type="button" class="ha-copy" data-slug="explorer-tabs">Copy link</button><span class="ha-vote"><button type="button" data-vote="1" data-slug="explorer-tabs" aria-label="Helpful">👍</button><button type="button" data-vote="-1" data-slug="explorer-tabs" aria-label="Not helpful">👎</button></span></div>
             </div></div>
           </div>
           <div class="hq-item" data-slug="export-data">
@@ -771,7 +757,6 @@
             </button>
             <div class="ha" id="ha-export"><div class="ha-in">
               <p>Yes: the export menu downloads CSV or JSON of the whole dataset, every figure is also served by a plain REST API (see the README), and the explorer itself runs as an MCP server (python -m src.mcp_server) so agents can query it directly.</p>
-              <div class="ha-meta"><button type="button" class="ha-copy" data-slug="export-data">Copy link</button><span class="ha-vote"><button type="button" data-vote="1" data-slug="export-data" aria-label="Helpful">👍</button><button type="button" data-vote="-1" data-slug="export-data" aria-label="Not helpful">👎</button></span></div>
             </div></div>
           </div>
         </div>
@@ -785,7 +770,6 @@
             </button>
             <div class="ha" id="ha-why-none"><div class="ha-in">
               <p>Because "none" means none in the official MCP registry. Verified examples: GitHub ships github/github-mcp-server and Netlify ships netlify/netlify-mcp, yet neither is published in the registry, so both read as <span class="badge none">None</span> here. Read "none" as "not discoverable in the registry".</p>
-              <div class="ha-meta"><button type="button" class="ha-copy" data-slug="why-none">Copy link</button><span class="ha-vote"><button type="button" data-vote="1" data-slug="why-none" aria-label="Helpful">👍</button><button type="button" data-vote="-1" data-slug="why-none" aria-label="Not helpful">👎</button></span></div>
             </div></div>
           </div>
           <div class="hq-item" data-slug="totals-move">
@@ -795,7 +779,6 @@
             </button>
             <div class="ha" id="ha-totals"><div class="ha-in">
               <p>Registry search is keyword-based and its result set shifts, so aggregate counts wobble by a few percent. A domain-verified official server is protected by an anti-flap rule: one blank cycle marks it "carried over", two in a row accept the removal. The trend chart is direction, not precision.</p>
-              <div class="ha-meta"><button type="button" class="ha-copy" data-slug="totals-move">Copy link</button><span class="ha-vote"><button type="button" data-vote="1" data-slug="totals-move" aria-label="Helpful">👍</button><button type="button" data-vote="-1" data-slug="totals-move" aria-label="Not helpful">👎</button></span></div>
             </div></div>
           </div>
           <div class="hq-item" data-slug="estimated-invented">
@@ -805,7 +788,6 @@
             </button>
             <div class="ha" id="ha-est"><div class="ha-in">
               <p>No. If a source returns nothing we show none; if a fetch fails we show unknown or auth-gated; every card names its source and every number rolls from the figure it replaced. The Methodology window lists all seven pipeline stages with their weights.</p>
-              <div class="ha-meta"><button type="button" class="ha-copy" data-slug="estimated-invented">Copy link</button><span class="ha-vote"><button type="button" data-vote="1" data-slug="estimated-invented" aria-label="Helpful">👍</button><button type="button" data-vote="-1" data-slug="estimated-invented" aria-label="Not helpful">👎</button></span></div>
             </div></div>
           </div>
         </div>
@@ -944,7 +926,7 @@
       <button class="dw-item" type="button" id="dwRefresh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 10-2.3 6.3M20 5v6h-6"/></svg>Refresh live data</button>
       <button class="dw-item" type="button" id="dwCsv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 20h16"/></svg>Export CSV</button>
       <button class="dw-item" type="button" id="dwJson"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 20h16"/></svg>Export JSON</button>
-      <button class="dw-item" type="button" id="dwTheme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>Toggle theme</button>
+      <button class="dw-item" type="button" id="dwTheme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>Dark theme</button>
       <button class="dw-item" type="button" id="dwAlerts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg>Alerts <span class="dw-badge" id="dwAlertN">0</span></button>
     </div>
   </div>
@@ -980,9 +962,9 @@
 <!-- NOTE: data.snapshot.js (~2MB) is NOT loaded up front. The live API is the
      primary data source; the embedded snapshot is injected on demand only when
      the backend is unreachable, so a normal visit never parses it. -->
-<script src="/app.js?v=2.0.0-fieldguide1"></script>
-<script src="/motion.js?v=2.0.0-fieldguide1"></script>
-<script src="/help.js?v=2.0.0-fieldguide1"></script>
-<script src="/premium.js?v=2.0.0-fieldguide1"></script>
+<script src="/app.js?v=2.0.0-fieldguide3"></script>
+<script src="/motion.js?v=2.0.0-fieldguide3"></script>
+<script src="/help.js?v=2.0.0-fieldguide3"></script>
+<script src="/premium.js?v=2.0.0-fieldguide3"></script>
 </body>
 </html>

@@ -41,7 +41,7 @@
       /* land: a soft blink on the destination so the handoff reads as one object */
       try {
         toEl.animate(
-          [{ transform: "scale(1.14)", filter: "brightness(1.35)" }, { transform: "scale(1)", filter: "brightness(1)" }],
+          [{ transform: "scale(1.035)", opacity: .92 }, { transform: "scale(1)", opacity: 1 }],
           { duration: 260, easing: "cubic-bezier(.34,1.56,.64,1)" });
       } catch (e) {}
       ghost.remove(); done();

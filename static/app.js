@@ -376,13 +376,12 @@
   const MOON = '<path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/>';
   function themeIcon() { const ic = $("#themeIcon"); if (ic) ic.innerHTML = document.documentElement.getAttribute("data-theme") === "light" ? SUN : MOON; }
   function toggleTheme() {
-    const next = document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light";
     const root = document.documentElement;
-    root.classList.add("theme-anim");
-    root.setAttribute("data-theme", next);
-    setTimeout(() => root.classList.remove("theme-anim"), 260);
-    try { localStorage.setItem("mcp_theme", next); } catch (e) {}
-    themeIcon(); toast(next === "light" ? "Light theme" : "Dark theme", "check");
+    /* The product surface is intentionally dark-only: mixed light/dark
+       surfaces were a major source of visual glare in the field views. */
+    root.setAttribute("data-theme", "dark");
+    try { localStorage.setItem("mcp_theme", "dark"); } catch (e) {}
+    themeIcon(); toast("Dark theme", "check");
   }
   const debounce = (fn, ms) => { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; };
 
@@ -1426,7 +1425,7 @@
       const p = pos.get(a.app.id); if (!p) return;
       const depth = p.depth.toFixed ? p.depth.toFixed(1) : p.depth;
       const tag = (!narrow && hot.has(a.app.id)) ? "<span class=\"at-tag\">" + esc(a.app.name) + "</span>" : "";
-      nodes += "<button class=\"atlas-node " + esc(a.mcp.status) + (hot.has(a.app.id) ? " hot" : "") + "\" style=\"left:" + p.x.toFixed(2) + "%;top:" + p.y.toFixed(2) + "%;--s:" + Math.round(p.size) + "px;--d:" + depth + ";--ox:" + p.ox.toFixed(1) + "px;--oy:" + p.oy.toFixed(1) + "px;--i:" + Math.min(nodes.length / 90, 26) + "\" data-id=\"" + a.app.id + "\" aria-label=\"" + esc(a.app.name) + "\">" + logoHtml(a) + tag + "</button>";
+      nodes += "<button type=\"button\" class=\"atlas-node " + esc(a.mcp.status) + (hot.has(a.app.id) ? " hot" : "") + "\" style=\"left:" + p.x.toFixed(2) + "%;top:" + p.y.toFixed(2) + "%;--s:" + Math.round(p.size) + "px;--d:" + depth + ";--ox:" + p.ox.toFixed(1) + "px;--oy:" + p.oy.toFixed(1) + "px;--i:" + Math.min(nodes.length / 90, 26) + "\" data-id=\"" + a.app.id + "\" aria-label=\"" + esc(a.app.name) + "\">" + logoHtml(a) + tag + "</button>";
     });
     $("#viewContent").innerHTML = "<div class=\"atlas-field\" id=\"atlasField\">" +
       "<div class=\"atlas-gridbg\" aria-hidden=\"true\"></div>" +
