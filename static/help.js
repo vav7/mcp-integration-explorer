@@ -169,7 +169,6 @@
       a: (i / N) * Math.PI * 2, r: 28 + (i % 5) * 16,
       sp: .0016 + (i % 4) * .0006, gold: i % 7 === 0, y: (i % 3 - 1) * 10,
     }));
-    let px = 0, py = 0;
     function size() {
       const dpr = Math.min(devicePixelRatio || 1, 1.6);
       W = wrap.clientWidth; H = wrap.clientHeight;
@@ -180,7 +179,7 @@
       if (!running) return;
       t += 1;
       ctx.clearRect(0, 0, W, H);
-      const cx = W / 2 + px * 10, cy = H / 2 + py * 8;
+      const cx = W / 2, cy = H / 2;
       const P = nodes.map(n => {
         n.a += n.sp;
         return { x: cx + Math.cos(n.a) * n.r * (W / 340), y: cy + Math.sin(n.a) * n.r * .52 + n.y, g: n.gold };
@@ -203,7 +202,7 @@
     }
     function startOrb() {
       if (reduced || coarse || running || document.hidden) return;
-      running = true; raf = requestAnimationFrame(frame);
+      running = true; frame(performance.now());
     }
     function stopOrb() {
       running = false;
@@ -215,10 +214,6 @@
     size(); addEventListener("resize", () => { size(); if (!running) still(); }, { passive: true });
     function still() { running = true; frame(); running = false; }
     if (reduced || coarse) { still(); return; }
-    wrap.addEventListener("pointermove", (e) => {
-      const r = wrap.getBoundingClientRect();
-      px = (e.clientX - r.left) / r.width - .5; py = (e.clientY - r.top) / r.height - .5;
-    }, { passive: true });
     startOrb();
     document.addEventListener("visibilitychange", () => {
       if (document.hidden) stopOrb();
@@ -248,8 +243,8 @@
   /* ================= C1: the 3D pipeline constellation =================
      Six dark glass spheres on a 3D arc, pre-rendered as sprites. They
      materialize one by one (shockwave + settle), hairline links draw
-     between them, data packets drift along. Mouse tilts the scene;
-     hover/tap brings a sphere forward and opens its story. */
+     between them, data packets drift along. The scene is self-contained;
+     clicking a sphere opens its story without cursor-tracking motion. */
   const STAGES = [
     { t: "App enters", d: "100 curated apps, or any app you search for, enter the tracked estate. Each becomes a living record the pipeline keeps fresh.", fig: "100 tracked applications" },
     { t: "Registry match", d: "The official MCP registry is searched with brand terms, filtered to genuine mentions, and classified vendor-official only when the namespace resolves to the app's own domain.", fig: "domain-verified classification" },
@@ -298,12 +293,12 @@
     const ctx = cv.getContext("2d");
     const detail = document.getElementById("howDetail");
     let W = 0, H = 0, raf = 0, running = false, started = false;
-    let mx = 0, my = 0, hov = -1;
+    let hov = -1;
     const SP = 132, DPR = Math.min(devicePixelRatio || 1, 2);
     const sprites = STAGES.map((_, i) => makeSprite(i, SP));
     const N = STAGES.length;
     let cheap = false, frameTimes = [], landed = [];
-    let pointerRaf = 0, pendingPointer = null, lastHover = -2, wrapRect = null;
+    let lastHover = -2, wrapRect = null;
 
     function size() {
       W = wrap.clientWidth; H = Math.max(300, Math.min(430, W * .42));
@@ -362,7 +357,7 @@
       order.forEach(i => {
         const p = proj[i];
         if (p.a <= 0) return;
-        const x = p.x + mx * 14 * p.s, y = p.y + my * 10 * p.s;
+        const x = p.x, y = p.y;
         const sz = p.sz * (i === hov ? 1.14 : 1);
         ctx.globalAlpha = p.a;
         if (p.focus > 0) {
@@ -404,9 +399,9 @@
       const t0 = performance.now();
       /* Give each handoff its own beat: one station enters, settles and
          focuses before the packet is allowed to travel to the next. */
-      landed = new Array(N).fill(-1).map((_, i) => t0 + 120 + i * 420);
+      landed = new Array(N).fill(-1).map((_, i) => t0 - 90 + i * 420);
       if (reduced) { landed = landed.map(() => t0 - 1000); still(); return; }
-      if (!running) { running = true; raf = requestAnimationFrame(draw); }
+      if (!running) { running = true; draw(t0); }
       frameTimes = [];
       const watchdog = (ts) => {
         if (frameTimes.length < 60) {
@@ -452,25 +447,6 @@
       detail.hidden = false;
       detail.innerHTML = '<div class="hd-in"><span class="hd-n">0' + (i + 1) + '</span><div class="hd-b"><b>' + st.t + '</b><p>' + st.d + '</p><span class="hd-p">' + st.fig + '</span></div></div>';
     }
-    if (!coarse) wrap.addEventListener("pointermove", (e) => {
-      pendingPointer = e;
-      if (pointerRaf) return;
-      pointerRaf = requestAnimationFrame(() => {
-        pointerRaf = 0;
-        const ev = pendingPointer; if (!ev) return;
-        const r = wrapRect || (wrapRect = wrap.getBoundingClientRect());
-        const cx2 = ev.clientX - r.left, cy2 = ev.clientY - r.top;
-        mx = (cx2 / r.width - .5) * 2; my = (cy2 / r.height - .5) * 2;
-        hov = -1;
-        STAGES.forEach((_, i) => {
-          const p = project(i, W, H);
-          if (Math.hypot(cx2 - p.x, cy2 - p.y) < SP * p.s * .62) hov = i;
-        });
-        showDetail(hov);
-      });
-    }, { passive: true });
-    wrap.addEventListener("pointerenter", () => { wrapRect = wrap.getBoundingClientRect(); });
-    wrap.addEventListener("pointerleave", () => { pendingPointer = null; hov = -1; showDetail(-1); });
     wrap.addEventListener("click", (e) => {
       const r = wrapRect || (wrapRect = wrap.getBoundingClientRect());
       const cx2 = e.clientX - r.left, cy2 = e.clientY - r.top;

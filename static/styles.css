@@ -6006,7 +6006,7 @@ html[data-theme="dark"] .pview{background:
 .hq-item.open .ha-in{animation:haFade .3s var(--fg-ease, ease) both}
 
 /* ---- pipeline: click affordance ---- */
-.fg3d-wrap{cursor:pointer}
+.fg3d-wrap{cursor:default}
 .fg-pipeline .how-detail{margin-top:18px}
 
 /* reduced motion: final states instantly */

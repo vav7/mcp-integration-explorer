@@ -123,8 +123,8 @@
 
   /* ---------- 3b. THE CONSTELLATION: a live 3D app/servers network ----------
    * A real perspective-projected 3D point field: every node is an "app",
-   * every line a possible MCP link. It drifts, breathes, follows the pointer
-   * with damped parallax and recedes with scroll - the signature depth layer
+   * every line a possible MCP link. It drifts, breathes, and recedes with
+   * scroll - the signature depth layer
    * of the site. Canvas 2D (no WebGL dependency), DPR-capped, paused when the
    * tab is hidden, drawn once statically for touch/reduced-motion users.
    */
@@ -152,8 +152,6 @@
         ph: Math.random() * Math.PI * 2,         // pulse phase
       });
     }
-    let rx = 0, ry = 0, trx = 0, try_ = 0;       // damped pointer rotation
-    let px = 0.5, py = 0.5;                      // pointer 0..1
     let running = true, last = performance.now(), t = 0;
 
     function resize() {
@@ -166,31 +164,18 @@
     resize();
     addEventListener("resize", resize, { passive: true });
 
-    if (!coarse) {
-      addEventListener("pointermove", (e) => {
-        px = e.clientX / W; py = e.clientY / H;
-        try_ = (px - 0.5) * 0.5; trx = (py - 0.5) * 0.36;
-      }, { passive: true });
-    }
-
     const FOCAL = 1.9, DIST = 3.2;               // perspective constants
     function project(p) {
-      /* rotate around X then Y, then perspective-divide */
-      const cy1 = Math.cos(ry), sy1 = Math.sin(ry), cx1 = Math.cos(rx), sx1 = Math.sin(rx);
-      let x = p.x, y = p.y, z = p.z;
-      let x1 = x * cy1 + z * sy1, z1 = -x * sy1 + z * cy1;
-      let y1 = y * cx1 - z1 * sx1, z2 = y * sx1 + z1 * cx1;
-      const zz = z2 + DIST;
+      /* fixed perspective; node drift provides the motion without pointer input */
+      const zz = p.z + DIST;
       const s = FOCAL / zz;
-      return { sx: W / 2 + x1 * s * (W / 2.6), sy: H / 2 + y1 * s * (H / 2.2), s, z: zz };
+      return { sx: W / 2 + p.x * s * (W / 2.6), sy: H / 2 + p.y * s * (H / 2.2), s, z: zz };
     }
 
     function frame(now) {
       if (!running) return;
       const dt = Math.min(50, now - last); last = now;
       t += dt * 0.001;
-      rx = lerp(rx, trx, 0.045); ry = lerp(ry, try_, 0.045);
-
       ctx.clearRect(0, 0, W, H);
       const sy = Math.min(1, (window.scrollY || 0) / Math.max(1, H));  // recede on scroll
 
@@ -256,7 +241,9 @@
       if (document.hidden) { running = false; }
       else if (!running) { running = true; last = performance.now(); requestAnimationFrame(frame); }
     });
-    requestAnimationFrame(frame);
+    /* paint the first constellation frame synchronously so the page never
+       exposes an empty canvas while the animation loop is being scheduled. */
+    frame(performance.now());
   }
 
   /* ---------- 4. magnetic primary buttons ---------- */
