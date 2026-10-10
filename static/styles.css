@@ -365,12 +365,6 @@ table.grid tbody tr:hover .cmpbtn,table.grid tbody tr:focus-within .cmpbtn,.cmpb
 .chart-tip .tt-t{color:var(--t3);font-weight:500}
 .chart-empty{display:grid;place-items:center;height:100%;color:var(--t4);font-size:13px;text-align:center}
 #trendTabs button{padding:6px 11px;font-size:11.5px}
-
-/* methodology: editorial vertical progression */
-.method-head{margin:104px 0 48px;max-width:760px}
-.method-head .k{font:600 10.5px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--acc);margin-bottom:12px}
-.method-head h2{font-size:clamp(24px,2.6vw,32px);letter-spacing:-.025em;margin:0;font-weight:600}
-.method-head p{margin:12px 0 0;color:var(--t3);font-size:14px;line-height:1.7}
 .pipeline{list-style:none;margin:0;padding:0}
 .pipe{display:grid;grid-template-columns:72px minmax(0,1fr) auto;gap:28px;align-items:start;padding:28px 0;position:relative}
 .pipe::before{content:"";position:absolute;left:35px;top:64px;bottom:0;width:1px;background:var(--line)}
@@ -2137,7 +2131,6 @@ body.pv-on .comparebar{display:none}
   .pv-head h1{font-size:clamp(32px,8vw,44px)}
 }
 
-
 /* ============================================================================
    v13 - PRICING MOTION + FREE TIER + LIGHT CLARITY
    1. entrance animations refill as `backwards`: fill `both` kept the final
@@ -2742,7 +2735,6 @@ body.pv-on .comparebar{display:none}
   .cmp3{grid-template-columns:1fr}
 }
 
-
 /* ============================================================================
    v16 LAYER - honest "carried over" flag (reuses existing tokens only)
    ========================================================================== */
@@ -2751,7 +2743,6 @@ body.pv-on .comparebar{display:none}
   padding:2px 6px;border-radius:99px;cursor:help}
 .srv-head .tag.stale{margin-left:8px}
 .ci-row .tag.stale{margin-left:8px}
-
 
 /* ============================================================================
    v17 LAYER - paging controls + a tighter explorer rhythm (existing tokens only)
@@ -2776,7 +2767,6 @@ body.pv-on .comparebar{display:none}
 /* the paged table no longer needs a 74vh inner scroll, so let it sit flush */
 .lbwrap,.oppwrap{border:0}
 @media(max-width:760px){.pager{justify-content:center}.pg-btn.all{margin-left:0}}
-
 
 /* ============================================================================
    v19 LAYER - aligned explorer blocks + premium scroller + landscape in parts
@@ -2840,14 +2830,12 @@ body.pv-on .comparebar{display:none}
   .rail-pane .feed{max-height:320px}
 }
 
-
 /* ============================================================================
    v19b LAYER - bound the explorer grid row; let the compact wire size itself
    ========================================================================== */
 .layout{grid-template-rows:minmax(0,1fr)}
 .expl-col{min-height:0}
 #signalList.sig-grid{overflow:visible;max-height:none}
-
 
 /* ============================================================================
    v19c LAYER - the compact signal wire as tidy cards (no row-border overflow)
@@ -2858,7 +2846,6 @@ body.pv-on .comparebar{display:none}
   background:var(--s1);padding:11px 13px;align-items:center}
 #signalList.sig-grid .sig:hover{border-color:var(--line2);background:var(--s2)}
 #signalList.sig-grid .sig-msg{-webkit-line-clamp:1;line-height:1.45}
-
 
 /* ============================================================================
    v20 LAYER - 3x2 intelligence tabs + live interactive methodology
@@ -2914,16 +2901,6 @@ body.pv-on .comparebar{display:none}
 .meth-strip{display:grid;grid-template-columns:auto 1fr auto;gap:26px;align-items:center;
   margin:8px 0 30px;padding:18px 22px;border:1px solid var(--line);border-radius:var(--rf);
   background:linear-gradient(150deg,var(--s2),var(--s1) 70%)}
-.ms-gauge{position:relative;width:96px;height:96px;flex:0 0 auto}
-.ms-gauge svg{width:96px;height:96px;transform:rotate(-90deg)}
-.ms-v{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.ms-v b{font:800 24px var(--font-display);letter-spacing:-.03em}
-.ms-v span{font:600 8.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--t4)}
-.ms-facts{display:flex;gap:26px;flex-wrap:wrap}
-.ms-facts div{display:flex;flex-direction:column;gap:2px}
-.ms-facts b{font:800 20px var(--font-display);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
-.ms-facts span{font:600 9px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--t4)}
-.ms-hint{margin:0;color:var(--t4);font-size:11.5px;max-width:26ch;text-align:right;line-height:1.6}
 @media(max-width:900px){
   .meth-strip{grid-template-columns:1fr;gap:16px}
   .ms-hint{text-align:left;max-width:none}
@@ -2935,7 +2912,6 @@ body.pv-on .comparebar{display:none}
   .pipe:hover{transform:none}
 }
 
-
 /* ============================================================================
    v20b LAYER - the legacy .pipe is a 3-column grid with its own connector line;
    inside the methodology window the grid now lives on .pipe-hit, so neutralise
@@ -2945,7 +2921,6 @@ body.pv-on .comparebar{display:none}
 .pview .pipe::before{display:none}
 .pview .pipe-m{grid-column:auto}
 @media(max-width:900px){.pview .pipe-m{grid-column:auto}}
-
 
 /* ============================================================================
    v21 LAYER - MCP compatibility report panel (existing tokens only)
@@ -3004,7 +2979,6 @@ body.pv-on .comparebar{display:none}
 @media(max-width:640px){.compat-url{display:none}.compat-meta{gap:12px}}
 @media(prefers-reduced-motion:reduce){.cp-row,.compat-ring{animation:none!important}}
 
-
 /* ============================================================================
    v22 LAYER - historical diff / breaking-change pane (existing tokens only)
    ========================================================================== */
@@ -3051,7 +3025,6 @@ body.pv-on .comparebar{display:none}
 .tl-dot.brk{background:var(--dan);box-shadow:0 0 0 3px var(--dan-bg)}
 .tl-dot.quiet{background:var(--t4);box-shadow:0 0 0 3px var(--s2)}
 .tl-txt{font-size:12px;color:var(--t2)}
-
 
 /* ============================================================================
    v23 LAYER - the live-lookup progress card finally gets its styles (its step
@@ -3103,7 +3076,6 @@ body.pv-on .comparebar{display:none}
   .lk-spin{animation-duration:1.4s}
 }
 
-
 /* ============================================================================
    v24 LAYER - bars slide, they never replay their entrance on a refresh.
    The old `barload` / `anFW` scaleX(0) keyframes re-ran on every innerHTML
@@ -3117,14 +3089,12 @@ body.pv-on .comparebar{display:none}
   .bar-track i,.an-ftrack i{transition:none}
 }
 
-
 /* ============================================================================
    v25 LAYER - the provenance donut slides instead of re-spinning
    ========================================================================== */
 .an-seg{transition:stroke-dasharray .8s var(--ease),stroke-dashoffset .8s var(--ease)}
 .an-lgn,.an-lgp,.an-dc b{font-variant-numeric:tabular-nums}
 @media(prefers-reduced-motion:reduce){.an-seg{transition:none}}
-
 
 /* ============================================================================
    v26 LAYER - the alerts dropdown finally gets its layout. The rows and their
@@ -3146,7 +3116,6 @@ body.pv-on .comparebar{display:none}
 .alert.unread .aname::after{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;
   background:var(--acc);margin-left:7px;vertical-align:1px}
 
-
 /* ============================================================================
    v27 LAYER - perf only: the scroller's edge fades move from mask-image (which
    repaints the whole scrolling region on every wheel tick) to two static
@@ -3160,7 +3129,6 @@ body.pv-on .comparebar{display:none}
 .expl-col::before{top:0;background:linear-gradient(180deg,var(--bg),transparent)}
 .expl-col::after{bottom:0;background:linear-gradient(0deg,var(--bg),transparent)}
 .an-card,.sig-compact,.rail-panel{contain:layout style}
-
 
 /* ============================================================================
    v28 LAYER - premium AMOLED-blue surfaces, no sliced rows, darker opened
@@ -3228,7 +3196,6 @@ table.grid tbody tr:hover{background:rgba(62,123,250,.055)}
 [data-theme="light"] .iv-spark{background:#FFFFFF}
 [data-theme="light"] .rcomp-row,[data-theme="light"] .opp{box-shadow:none}
 
-
 /* ============================================================================
    v29 LAYER - footer credit
    ========================================================================== */
@@ -3240,7 +3207,6 @@ table.grid tbody tr:hover{background:rgba(62,123,250,.055)}
 .fbar{position:relative}
 @media(max-width:900px){.fbar-mid{position:static;transform:none;display:block;margin-top:6px}}
 @media(prefers-reduced-motion:reduce){.fbar-mid .hv{animation:none}}
-
 
 /* ============================================================================
    v30 LAYER - gold credit, help window, premium deep-dive plates
@@ -3262,15 +3228,10 @@ table.grid tbody tr:hover{background:rgba(62,123,250,.055)}
 .nav-help svg{width:14px;height:14px;color:var(--acc)}
 /* --- help window --- */
 .help-in{max-width:860px}
-.help-head{display:flex;gap:22px;align-items:flex-start;margin:30px 0 34px}
 .help-book{width:64px;height:64px;border-radius:18px;flex:0 0 auto;display:grid;place-items:center;
   color:#d9b64a;background:linear-gradient(160deg,rgba(233,194,90,.14),rgba(233,194,90,.04));
   border:1px solid rgba(233,194,90,.35);box-shadow:0 10px 30px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.08)}
 .help-book svg{width:30px;height:30px}
-.help-tt .k{color:#d9b64a}
-.help-tt h1{margin:0;font-size:clamp(30px,3.6vw,46px);font-weight:800;letter-spacing:-.035em;line-height:1.06;
-  background:linear-gradient(178deg,var(--t1) 30%,#7d8db0);-webkit-background-clip:text;background-clip:text}
-.help-tt p{margin:14px 0 0;color:var(--t3);font-size:13.5px;line-height:1.7;max-width:62ch}
 .hq-group{margin:0 0 30px}
 .hq-gt{font:700 10px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--acc);
   margin:0 0 10px;display:flex;align-items:center;gap:10px}
@@ -3326,7 +3287,6 @@ table.grid tbody tr:hover{background:rgba(62,123,250,.055)}
   .dive-card:hover .dv-shine{animation:none}
 }
 
-
 /* ============================================================================
    v31 LAYER - opaque views, aligned footer credit, two-column help
    ========================================================================== */
@@ -3373,14 +3333,11 @@ table.grid tbody tr:hover{background:rgba(62,123,250,.055)}
   .fbar>span:first-child,.fbar-r{justify-self:center;text-align:center;white-space:normal}
 }
 
-
 /* ============================================================================
    v32 LAYER - wide help, mobile pass, rounded app-list plate
    ========================================================================== */
 /* --- 1. help at home width --- */
 .pview-in.help-in{max-width:1240px}
-.help-head{max-width:none}
-.help-tt p{max-width:74ch}
 .hq-cols{gap:0 34px}
 .help-toc{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
 .help-toc::-webkit-scrollbar{display:none}
@@ -3493,7 +3450,6 @@ html{overflow-x:hidden}
   .amb-deep{overflow:hidden}
 }
 
-
 /* ============================================================================
    v33 LAYER - the footer as boxed, bigger-type columns; credit is one pill.
    De-duplicated: each destination appears exactly once across the footer.
@@ -3552,7 +3508,6 @@ html{overflow-x:hidden}
   .fcredit{white-space:normal}
 }
 
-
 /* ============================================================================
    v34 LAYER - back to the editorial footer: borderless columns, generous
    spacing, no panels/dots/rules. Keeps v33's de-duplication and trim, the
@@ -3592,7 +3547,6 @@ html{overflow-x:hidden}
   .fbar{grid-template-columns:1fr;justify-items:center;text-align:center;gap:8px}
   .fbar>span:first-child,.fbar-r{justify-self:center;text-align:center;white-space:normal}
 }
-
 
 /* ============================== v36 LAYER ==============================
    1) the window scroll-lock itself lives in app.js (lockWindowScroll /
@@ -4147,14 +4101,6 @@ html[data-theme="dark"] .ins{background:linear-gradient(170deg,rgba(18,25,41,.62
 @keyframes drawLine{from{stroke-dashoffset:190}to{stroke-dashoffset:0}}
 .dive-card:hover .dv-ring{animation:ringSpin 8s linear infinite}
 @keyframes ringSpin{to{rotate:360deg}}
-
-/* ============================================================================
-   THE LIVING BOOK (help view)
-   A real 3D book: glass-gold cover, fanned page block, bookmark ribbon.
-   On view open it rises out of depth and settles at a jaunty angle, then
-   floats; every few seconds a page turns. Hover swings the cover wide.
-   ========================================================================== */
-.help-head{perspective:900px}
 .help-book{position:relative;width:84px;height:88px;border-radius:14px;place-items:center;
   transform-style:preserve-3d;color:#E8C96A;
   background:linear-gradient(155deg,rgba(233,194,90,.2),rgba(233,194,90,.05) 55%,rgba(120,90,20,.12));
@@ -4219,12 +4165,6 @@ html[data-theme="dark"] .ins{background:linear-gradient(170deg,rgba(18,25,41,.62
 #methodologyView.open .pipe-n{animation:coinIn .95s var(--spring) both;
   animation-delay:calc(.24s + var(--i,0)*.11s)}
 @keyframes coinIn{from{opacity:0;transform:rotateX(-165deg) scale(.55)}to{opacity:1;transform:none}}
-/* gauge: orbiting dashed halo + lift */
-.ms-gauge{position:relative}
-.ms-gauge::before{content:"";position:absolute;inset:-13px;border-radius:50%;
-  border:1px dashed rgba(122,158,255,.28);animation:ringSpin 26s linear infinite;pointer-events:none}
-.ms-gauge svg{filter:drop-shadow(0 14px 34px rgba(139,157,255,.14))}
-.method-head h2,.meth-strip,.help-head{will-change:auto}
 
 /* ---------------- motion safety (v43) ---------------- */
 @media(prefers-reduced-motion:reduce){
@@ -4298,87 +4238,12 @@ main .reveal:not(.in){animation:revealFallback .5s var(--ease) 2s both}
 .snap-panel.pr-done{animation:none}
 .snap-panel.pr-done.pr-tilt{transform:perspective(1100px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg))}
 
-/* ============================================================================
-   THE KNOWLEDGE VAULT (help view)
-   A full 3D book on a glowing pedestal: real spine, fanned page block that
-   turns pages in an endless loop, orbiting motes, floor shadow that breathes
-   with the float. Cover emblem: the field-guide glyph.
-   ========================================================================== */
-.help-head{display:flex;gap:34px;align-items:center;justify-content:space-between}
-.help-tt{flex:1 1 auto;min-width:0}
-.book-scene{flex:0 0 auto;width:300px;height:330px;position:relative;perspective:1200px;
-  display:grid;place-items:center}
-.bs-halo{position:absolute;inset:8%;border-radius:50%;
-  background:radial-gradient(circle,rgba(233,194,90,.16),rgba(233,194,90,.05) 45%,transparent 70%);
-  filter:blur(6px);animation:haloBreath 4.5s ease-in-out infinite}
-@keyframes haloBreath{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:1;transform:scale(1.07)}}
-.bs-shadow{position:absolute;bottom:26px;left:50%;width:180px;height:26px;margin-left:-90px;
-  border-radius:50%;background:radial-gradient(ellipse,rgba(0,0,0,.55),transparent 68%);
-  animation:shadowBreath 7s ease-in-out infinite}
-@keyframes shadowBreath{0%,100%{transform:scale(1);opacity:.8}50%{transform:scale(.86);opacity:.55}}
-/* orbiting motes on a tilted ring */
-.bs-orbit{position:absolute;width:238px;height:238px;left:50%;top:50%;margin:-119px 0 0 -119px;
-  border-radius:50%;border:1px dashed rgba(233,194,90,.28);
-  transform:rotateX(66deg);animation:orbitSpin 14s linear infinite;transform-style:preserve-3d}
-@keyframes orbitSpin{to{transform:rotateX(66deg) rotate(360deg)}}
-.bs-orbit i{position:absolute;top:-4px;left:50%;width:8px;height:8px;margin-left:-4px;border-radius:50%;
-  background:radial-gradient(circle,#FFE9A8,rgba(233,194,90,0) 72%);
-  box-shadow:0 0 12px rgba(233,194,90,.8)}
-.bs-orbit i:nth-child(2){top:auto;bottom:-4px;left:auto;right:50%;margin:0 -4px 0 0;width:6px;height:6px}
-.bs-orbit i:nth-child(3){top:50%;left:-4px;margin-top:-4px;width:5px;height:5px}
-/* the book itself: cover + spine + fanned pages, one continuous loop */
-.book3d{position:relative;width:128px;height:168px;transform-style:preserve-3d;
-  animation:bookLoop 7.5s ease-in-out infinite}
-@keyframes bookLoop{0%,100%{transform:rotateY(-17deg) rotateX(7deg) translateY(0)}
-  50%{transform:rotateY(-3deg) rotateX(2deg) translateY(-13px)}}
-.bb-cover{position:absolute;inset:0;border-radius:9px 15px 15px 9px;display:grid;place-items:center;
-  color:#F0D488;z-index:3;overflow:hidden;
-  background:linear-gradient(152deg,#2E2717 0%,#40351A 26%,#191307 62%,#241D0E 100%);
-  border:1px solid rgba(233,194,90,.55);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.18),inset -14px 0 24px -14px rgba(0,0,0,.75),
-    0 20px 44px rgba(0,0,0,.5),0 0 40px rgba(233,194,90,.13)}
-.bb-cover::before{content:"";position:absolute;inset:7px;border-radius:6px;
-  border:1px solid rgba(233,194,90,.3);pointer-events:none}
-.bb-cover::after{content:"";position:absolute;top:0;bottom:0;left:-70%;width:42%;
-  transform:skewX(-20deg);background:linear-gradient(90deg,transparent,rgba(255,236,180,.16),transparent);
-  animation:coverSheen 5.5s var(--ease-soft) infinite}
-@keyframes coverSheen{0%,55%{left:-70%}85%,100%{left:135%}}
-.bb-cover svg{width:52px;height:52px;filter:drop-shadow(0 4px 10px rgba(0,0,0,.5))}
 /* spine: a real left face in 3D */
 .bb-spine{position:absolute;left:0;top:3px;bottom:3px;width:20px;border-radius:8px 0 0 8px;
   transform-origin:left center;transform:rotateY(-78deg);
   background:linear-gradient(90deg,#191408,#3A2F14 70%,rgba(233,194,90,.4));
   border:1px solid rgba(233,194,90,.35);z-index:2}
-/* page block: five sheets on the right, turning one after another */
-.bb-pages{position:absolute;inset:5px 0 5px auto;width:104px;z-index:1;transform-style:preserve-3d}
-.bb-pages i{position:absolute;inset:0;border-radius:3px 10px 10px 3px;transform-origin:left center;
-  background:linear-gradient(90deg,#0E1420 0%,#DDE4EF 26%,#C2CCDD 78%,#A6B2C8 100%);
-  background-size:100% 100%;
-  box-shadow:3px 4px 12px rgba(0,0,0,.45)}
-.bb-pages i::after{content:"";position:absolute;inset:0;border-radius:inherit;
-  background:repeating-linear-gradient(180deg,rgba(20,28,44,.16) 0 2px,transparent 2px 4px)}
-.bb-pages i:nth-child(1){right:-3px;animation:pageTurnA 7.5s var(--ease-soft) infinite .55s}
-.bb-pages i:nth-child(2){right:-6px;animation:pageTurnA 7.5s var(--ease-soft) infinite 1.05s}
-.bb-pages i:nth-child(3){right:-9px;animation:pageTurnA 7.5s var(--ease-soft) infinite 1.55s}
-.bb-pages i:nth-child(4){right:-12px;animation:pageTurnA 7.5s var(--ease-soft) infinite 2.05s}
-.bb-pages i:nth-child(5){right:-15px;animation:pageTurnA 7.5s var(--ease-soft) infinite 2.55s}
-@keyframes pageTurnA{0%,74%{transform:rotateY(0) translateZ(-1.6px)}
-  82%{transform:rotateY(-34deg) translateZ(30px)}
-  90%,100%{transform:rotateY(0) translateZ(-1.6px)}}
-/* bookmark ribbon */
-.bb-ribbon{position:absolute;top:-8px;right:22px;width:10px;height:34px;z-index:4;
-  background:linear-gradient(180deg,#F0D488,#B98A2E);
-  clip-path:polygon(0 0,100% 0,100% 100%,50% 82%,0 100%);
-  filter:drop-shadow(0 2px 5px rgba(0,0,0,.45));
-  transform-origin:top center;animation:ribbonSway 4.5s ease-in-out infinite}
-/* entrance: the book lands out of depth when the view opens */
-#helpView.open .book-scene{animation:sceneIn 1s var(--ease-soft) both}
-@keyframes sceneIn{from{opacity:0;transform:translateY(26px) scale(.92)}to{opacity:1;transform:none}}
-/* headline: a slow metallic sheen crossing the words */
-html[data-theme="dark"] .help-tt h1{background:linear-gradient(178deg,#F5F8FF 22%,#8B9AC0 42%,#EAF0FF 58%,#8B9AC0 78%);
-  background-size:100% 300%;-webkit-background-clip:text;background-clip:text;
-  animation:titleSheen 7s ease-in-out infinite}
-@keyframes titleSheen{0%,100%{background-position:50% 0%}50%{background-position:50% 62%}}
+
 /* TOC chips: glass instruments */
 .htoc{border:1px solid var(--line);border-radius:12px;background:linear-gradient(165deg,var(--s2),var(--s1));
   box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 10px 26px rgba(0,0,0,.3);
@@ -4386,17 +4251,7 @@ html[data-theme="dark"] .help-tt h1{background:linear-gradient(178deg,#F5F8FF 22
 .htoc b{color:#E8C96A}
 .htoc:hover{transform:translateY(-3px);border-color:rgba(233,194,90,.4);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 16px 36px rgba(0,0,0,.4),0 0 22px rgba(233,194,90,.1)}
-/* light theme: keep the scene but tone it for white */
-[data-theme="light"] .bb-cover{background:linear-gradient(152deg,#F7EBC8,rgba(185,138,46,.2) 30%,#FBF3DC 65%,rgba(185,138,46,.16));
-  color:#8A6A1C;border-color:rgba(160,120,30,.5)}
 [data-theme="light"] .bb-spine{background:linear-gradient(90deg,#D9C79A,#EEDFB6 70%,rgba(160,120,30,.35));border-color:rgba(160,120,30,.4)}
-[data-theme="light"] .bs-halo{background:radial-gradient(circle,rgba(185,138,46,.14),transparent 70%)}
-[data-theme="light"] .bs-orbit{border-color:rgba(160,120,30,.3)}
-[data-theme="light"] .bs-orbit i{background:radial-gradient(circle,#B98A2E,rgba(185,138,46,0) 72%)}
-
-/* methodology gauge floats gently now that the halo orbits it */
-.ms-gauge{animation:gaugeFloat 6s ease-in-out infinite}
-@keyframes gaugeFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
 
 /* ---- motion safety (v44) ---- */
 @media(prefers-reduced-motion:reduce){
@@ -4525,9 +4380,6 @@ table.grid tbody tr:hover{background:linear-gradient(90deg,rgba(139,157,255,.05)
   padding:26px 28px 30px;perspective:1200px}
 .howscene::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;
   background:linear-gradient(90deg,rgba(139,157,255,.7),rgba(139,92,246,.4) 45%,transparent 80%)}
-.how-copy{margin-bottom:24px}
-.how-copy h3{margin:6px 0 0;font:800 clamp(19px,2vw,25px)/1.2 var(--font-display);letter-spacing:-.025em;color:var(--t1)}
-.how-copy p{margin:9px 0 0;font-size:12.5px;line-height:1.65;color:var(--t3);max-width:64ch}
 .how-rail{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;transform-style:preserve-3d;position:relative}
 .how-rail::before{content:"";position:absolute;top:31px;left:6%;right:6%;height:2px;border-radius:2px;
   background:linear-gradient(90deg,rgba(139,157,255,.45),rgba(139,92,246,.45) 50%,rgba(52,211,153,.45));
@@ -4535,16 +4387,7 @@ table.grid tbody tr:hover{background:linear-gradient(90deg,rgba(139,157,255,.05)
 .how-node{position:relative;text-align:center;padding:0 4px;transform-style:preserve-3d;
   transition:transform .45s var(--ease-soft)}
 .how-node:hover{transform:translateZ(26px) translateY(-4px)}
-.hn-orb{position:relative;display:grid;place-items:center;width:62px;height:62px;margin:0 auto 12px;
-  border-radius:50%;color:#CBD5FF;transform-style:preserve-3d;
-  background:radial-gradient(circle at 32% 26%,rgba(139,157,255,.34),rgba(139,92,246,.16) 46%,rgba(8,12,20,.94) 74%);
-  border:1px solid rgba(139,157,255,.4);
-  box-shadow:0 12px 30px rgba(0,0,0,.5),0 0 24px rgba(139,157,255,.16),inset 0 1px 0 rgba(255,255,255,.16);
-  animation:orbFloat 5.5s ease-in-out infinite;animation-delay:calc(var(--hn)*-0.9s)}
-.hn-orb::before{content:"";position:absolute;inset:-7px;border-radius:50%;
-  border:1px dashed rgba(139,157,255,.28);animation:ringSpin 16s linear infinite}
-.hn-orb svg{width:22px;height:22px;position:relative;z-index:1}
-@keyframes orbFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
 /* signal particles riding the beam between stations */
 .how-node::after{content:"";position:absolute;top:29px;left:calc(50% + 38px);width:7px;height:7px;border-radius:50%;
   background:radial-gradient(circle,rgba(160,240,250,.95),rgba(139,157,255,0) 70%);
@@ -4664,16 +4507,8 @@ table.grid tbody tr:hover{background:linear-gradient(90deg,rgba(139,157,255,.05)
   background:linear-gradient(90deg,#C7D2FF,#8B7CF6);
   box-shadow:0 0 16px rgba(139,157,255,.45);transition:width .5s var(--ease-soft)}
 .how-node{cursor:pointer}
-.how-node.active .hn-orb{border-color:rgba(139,157,255,.7);
-  box-shadow:0 12px 34px rgba(0,0,0,.5),0 0 34px rgba(139,157,255,.3),inset 0 1px 0 rgba(255,255,255,.2)}
 .how-node.active b{color:#CBD5FF}
-.how-detail{margin-top:20px;border-radius:16px;overflow:hidden}
-.how-detail .hd-in{display:flex;gap:16px;padding:18px 20px;border-radius:16px;
-  border:1px solid rgba(139,157,255,.3);
-  background:linear-gradient(165deg,rgba(139,157,255,.08),rgba(10,14,24,.85) 55%);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 14px 34px rgba(0,0,0,.35)}
-.how-detail.pop .hd-in{animation:hdIn .45s var(--ease-soft) both}
-@keyframes hdIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
 .hd-n{flex:0 0 auto;width:38px;height:38px;border-radius:12px;display:grid;place-items:center;
   font:800 14px var(--mono);color:#CBD5FF;
   background:linear-gradient(160deg,rgba(139,157,255,.2),rgba(139,92,246,.12));
@@ -5535,21 +5370,6 @@ html[data-theme="light"] .modal{background:#fff}
 }
 #helpView .pview-in{max-width:1180px;padding-bottom:60px}
 
-/* ---- hero ---- */
-.fg-hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:30px;align-items:center;
-  margin:26px 0 8px;position:relative}
-.fg-eyebrow{display:inline-flex;align-items:center;gap:9px;font:700 10px var(--mono);
-  letter-spacing:.16em;color:var(--fg-gold);margin-bottom:14px}
-.fg-dot{width:7px;height:7px;border-radius:50%;background:var(--fg-live);position:relative}
-.fg-dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;
-  border:1.5px solid rgba(77,226,197,.5);animation:ledPulse2 2.4s ease-out infinite}
-.fg-h1{margin:0;font:600 clamp(2.4rem,4.6vw,4.4rem)/1.06 var(--font-display);
-  letter-spacing:-.02em;word-spacing:.02em;color:#F6F8FF}
-.fg-gold{background:linear-gradient(100deg,var(--fg-gold) 10%,#F4DCA8 45%,var(--fg-gold2) 90%);
-  background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
-  animation:fgGold 6s ease-in-out infinite alternate}
-@keyframes fgGold{from{background-position:0% 0}to{background-position:100% 0}}
-.fg-sub{margin:16px 0 0;font-size:16px;line-height:1.65;color:var(--t2);max-width:60ch}
 .fg-search{margin-top:22px;display:flex;align-items:center;gap:12px;height:56px;padding:0 18px;
   border-radius:18px;cursor:text;
   background:linear-gradient(170deg,rgba(124,108,255,.14),rgba(10,13,24,.92) 60%);
@@ -5563,18 +5383,6 @@ html[data-theme="light"] .modal{background:#fff}
 .fg-search input::placeholder{color:var(--t3)}
 .fg-kbd{flex:0 0 auto;font:650 10px var(--mono);color:#C3BBFF;border:1px solid rgba(124,108,255,.4);
   border-radius:7px;padding:3px 8px;background:rgba(124,108,255,.12)}
-.fg-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-.fg-chips button{height:36px;padding:0 15px;border-radius:99px;cursor:pointer;
-  font:600 12px var(--font);color:var(--t2);
-  background:linear-gradient(165deg,rgba(20,27,44,.7),rgba(9,13,22,.85));
-  border:1px solid var(--fg-line);transition:color .2s,border-color .2s,transform .3s var(--fg-ease)}
-.fg-chips button:hover{color:#F2F6FF;border-color:rgba(232,194,122,.45);transform:translateY(-2px)}
-.fg-live{margin-top:16px;font:500 11px var(--mono);color:var(--t3);display:flex;align-items:center;gap:8px}
-.fg-orb{position:relative;height:360px;border-radius:24px;overflow:hidden;
-  border:1px solid var(--fg-line);
-  background:radial-gradient(420px 300px at 60% 40%,rgba(124,108,255,.12),transparent 65%),
-    radial-gradient(300px 240px at 30% 75%,rgba(232,194,122,.07),transparent 60%),
-    rgba(7,10,18,.6)}
 #fgOrb{width:100%;height:100%;display:block}
 @media(max-width:1000px){.fg-hero{grid-template-columns:1fr}.fg-orb{height:220px}}
 
@@ -5587,75 +5395,11 @@ html[data-theme="light"] .modal{background:#fff}
   radial-gradient(900px 460px at 8% 20%,rgba(232,194,122,.06),transparent 60%),
   linear-gradient(180deg,#070912,#05070D 60%)}
 [data-theme="light"] #helpView{background:linear-gradient(180deg,#FBF7EE,#F4F0E6 55%,#EEF1F7)}
-
-/* ---- pipeline: gold beam, glass cards ---- */
-.fg-pipeline{margin:40px 0 8px;border:1px solid var(--fg-line);border-radius:22px;padding:26px 28px 30px;
-  background:linear-gradient(170deg,rgba(17,23,38,.5),rgba(7,10,17,.8));position:relative;overflow:hidden}
-.fg-pipeline .how-copy .k{color:var(--fg-gold)}
-.fg-pipeline .how-copy h3{color:#F6F8FF;font-weight:600}
 #helpView .how-rail::before{background:linear-gradient(90deg,rgba(232,194,122,.5),rgba(124,108,255,.4) 55%,rgba(77,226,197,.4));opacity:.5}
 #helpView .how-rail::after{background:linear-gradient(90deg,var(--fg-gold),#D8B268);
   box-shadow:0 0 16px rgba(232,194,122,.5);width:calc(var(--howp,5)/5*88%)}
-#helpView .hn-orb{color:#F0D9A4;border-color:rgba(232,194,122,.45);
-  background:radial-gradient(circle at 32% 26%,rgba(232,194,122,.3),rgba(124,108,255,.14) 46%,rgba(8,11,18,.94) 74%);
-  box-shadow:0 12px 30px rgba(0,0,0,.5),0 0 24px rgba(232,194,122,.14),inset 0 1px 0 rgba(255,255,255,.16)}
 #helpView .how-node.active b{color:var(--fg-gold)}
-#helpView .how-detail .hd-in{border-color:rgba(232,194,122,.35);
-  background:linear-gradient(165deg,rgba(232,194,122,.08),rgba(10,13,22,.88) 55%)}
-#helpView .how-detail .hd-n{color:var(--fg-gold);border-color:rgba(232,194,122,.4);
-  background:linear-gradient(160deg,rgba(232,194,122,.18),rgba(124,108,255,.08))}
-#helpView .how-detail .hd-p{color:var(--fg-gold);border-color:rgba(232,194,122,.35);background:rgba(232,194,122,.08)}
-
-/* ---- featured strip ---- */
-.fg-featured{margin:34px 0 8px}
-.fgf-head{display:flex;align-items:baseline;gap:14px;margin-bottom:14px}
-.fgf-head .k{color:var(--fg-gold)}
-.fgf-head h3{margin:0;font:600 19px var(--font-display);letter-spacing:-.02em;color:var(--t1)}
-.fgf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.fgf-card{position:relative;overflow:hidden;text-align:left;cursor:pointer;padding:20px 22px;
-  border-radius:18px;border:1px solid var(--fg-line);
-  background:linear-gradient(168deg,rgba(20,27,44,.6),rgba(7,10,17,.82));
-  display:flex;flex-direction:column;gap:8px;color:var(--t2);
-  transition:transform .35s var(--fg-ease),border-color .25s,box-shadow .3s}
-.fgf-card::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;
-  background:linear-gradient(90deg,var(--fg-gold),rgba(124,108,255,.5) 55%,transparent)}
-.fgf-card:hover{transform:translateY(-4px);border-color:rgba(232,194,122,.45);
-  box-shadow:0 26px 60px rgba(0,0,0,.45),0 0 30px rgba(232,194,122,.1)}
-.fgf-n{font:600 11px var(--mono);color:var(--fg-gold);letter-spacing:.1em}
-.fgf-card b{font:600 16px/1.3 var(--font-display);letter-spacing:-.015em;color:var(--t1)}
-.fgf-d{font-size:12px;line-height:1.55;color:var(--t3)}
-.fgf-go{margin-top:6px;font:700 10.5px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--fg-gold)}
-.fgf-go i{font-style:normal;transition:transform .3s var(--fg-ease)}
-.fgf-card:hover .fgf-go i{transform:translateX(5px)}
 @media(max-width:920px){.fgf-grid{grid-template-columns:1fr}}
-
-/* ---- FAQ: sticky rail + canvas ---- */
-.fg-shell{display:grid;grid-template-columns:250px minmax(0,1fr);gap:26px;margin:34px 0 8px;align-items:start}
-.fg-rail{position:sticky;top:14px;display:flex;flex-direction:column;gap:4px;padding:14px 12px;
-  border:1px solid var(--fg-line);border-radius:18px;
-  background:linear-gradient(170deg,rgba(17,23,38,.6),rgba(7,10,17,.8));position:sticky}
-.fg-rail-title{font:700 9.5px var(--mono);letter-spacing:.18em;color:var(--t4);padding:4px 10px 10px}
-.fg-nav-item{position:relative;display:flex;align-items:center;gap:10px;width:100%;padding:11px 12px;
-  border:0;background:none;border-radius:11px;cursor:pointer;text-align:left;
-  font:600 12.5px var(--font);color:var(--t3);transition:color .2s,background .2s}
-.fg-nav-item b{font:700 9.5px var(--mono);color:var(--t4);transition:color .2s}
-.fg-nav-item span{margin-left:auto;font:600 10px var(--mono);color:var(--t4)}
-.fg-nav-item:hover{color:var(--t1);background:rgba(139,157,255,.06)}
-.fg-nav-item.active{color:#F6F8FF;background:rgba(232,194,122,.08)}
-.fg-nav-item.active b{color:var(--fg-gold)}
-.fg-ind{position:absolute;left:0;width:2.5px;border-radius:3px;
-  background:linear-gradient(180deg,var(--fg-gold),var(--fg-gold2));
-  box-shadow:0 0 12px rgba(232,194,122,.5);
-  transition:top .35s var(--fg-ease),height .35s var(--fg-ease)}
-.fg-rail-foot{display:flex;flex-direction:column;gap:8px;margin-top:10px;padding:10px 10px 2px;
-  border-top:1px solid var(--fg-line)}
-.fg-expand{border:1px solid var(--fg-line);background:var(--s1);color:var(--t2);border-radius:10px;
-  padding:8px;font:600 11px var(--font);cursor:pointer;transition:color .2s,border-color .2s}
-.fg-expand:hover{color:var(--fg-gold);border-color:rgba(232,194,122,.4)}
-.fg-count{font:500 10px var(--mono);color:var(--t4);text-align:center}
-
-/* FAQ cards */
-.fg-canvas{display:flex;flex-direction:column;gap:26px;min-width:0}
 .hq-group{scroll-margin-top:60px}
 .hq-gt{color:var(--fg-gold);font:700 10.5px var(--mono);letter-spacing:.16em}
 .hq-group{--ping:#E8C27A}
@@ -5727,19 +5471,6 @@ html[data-theme="light"] .modal{background:#fff}
 .fg-empty svg{width:34px;height:34px;color:var(--t4)}
 .fg-empty b{color:var(--t2);font:600 15px var(--font-display)}
 
-/* ---- footer CTA ---- */
-.fg-cta{margin:40px 0 10px;padding:26px 30px;border-radius:22px;text-align:center;position:relative;
-  background:linear-gradient(170deg,rgba(20,27,44,.6),rgba(7,10,17,.85))}
-.fg-cta::before{content:"";position:absolute;inset:-1px;border-radius:23px;padding:1px;pointer-events:none;
-  background:linear-gradient(120deg,rgba(232,194,122,.5),rgba(124,108,255,.4) 50%,rgba(77,226,197,.35));
-  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-  -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-  mask-composite:exclude}
-.fg-cta p{margin:0 0 16px;font-size:14px;color:var(--t2)}
-.fg-cta p b{color:var(--fg-gold)}
-.fg-cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.fg-cta-btns .btn{height:42px;border-radius:12px}
-
 /* ---- responsive ---- */
 @media(max-width:920px){
   .fg-shell{grid-template-columns:1fr;gap:16px}
@@ -5772,9 +5503,6 @@ html[data-theme="light"] .modal{background:#fff}
 .hero-search{background:linear-gradient(170deg,rgba(124,108,255,.17),rgba(12,15,26,.92) 62%);
   border:1px solid rgba(124,108,255,.45)}
 [data-theme="light"] .hero-search{background:linear-gradient(170deg,rgba(124,108,255,.1),#fff 60%)}
-
-/* ---- headline word-spacing guarantee (the squished-words bug) ---- */
-.help-tt h1,.fg-h1,.pv-head h1,.hero h1{word-spacing:.02em;letter-spacing:-.02em}
 
 @media(prefers-reduced-motion:reduce){
   .fg-gold,.fg-dot::after,.sp-live .led::after,.boot-mark,.boot-bar i,.hero-search::after{animation:none!important}
@@ -5872,34 +5600,15 @@ html[data-theme="dark"] .pview{background:
 
 /* help page: gold is extinct - violet is the single accent */
 #helpView{--fg-gold:#A59BF2;--fg-gold2:#7C6FE0;--fg-indigo:#7C6FE0;--fg-live:#4DE2C5}
-.fg-gold{background:none;-webkit-background-clip:initial;background-clip:initial;
-  color:#A59BF2;animation:none}
 .fg-eyebrow,.fgf-head .k,.fgf-n,.fgf-go,.fg-gauge span,.hq-n,.fg-pipeline .how-copy .k,
 .fg-cta p b,.ha-copy:hover,.fg-expand:hover{color:#A59BF2}
-.fg-nav-item.active b{color:#A59BF2}
-.fg-nav-item.active{background:rgba(124,111,224,.1)}
-.fg-ind{background:linear-gradient(180deg,#A59BF2,#7C6FE0);box-shadow:0 0 10px rgba(124,111,224,.4)}
-.fg-nav-item.active{background:rgba(124,111,224,.1)}
 .hq-item.open{box-shadow:0 0 0 1px rgba(124,111,224,.4),0 18px 44px rgba(0,0,0,.4)}
 .hq-item.open .hq-chev{color:#A59BF2}
 .hq-n{color:#A59BF2;background:rgba(124,111,224,.1);border-color:rgba(124,111,224,.3)}
 .ha-in mark{background:rgba(124,111,224,.28);color:#DAD6FF}
-.fgf-card::before{background:linear-gradient(90deg,#7C6FE0,rgba(124,111,224,.4) 55%,transparent)}
-.fgf-card:hover{border-color:rgba(124,111,224,.45);box-shadow:0 26px 60px rgba(0,0,0,.45)}
-.fgf-card:hover .fgf-go i{transform:translateX(5px)}
-.fg-cta::before{background:linear-gradient(120deg,rgba(124,111,224,.5),rgba(165,155,242,.35) 50%,rgba(95,181,154,.3))}
-.fg-cta p b{color:#A59BF2}
 #helpView .how-rail::after{background:linear-gradient(90deg,#A59BF2,#8479E6);
   box-shadow:0 0 14px rgba(124,111,224,.4)}
 #helpView .how-rail::before{background:linear-gradient(90deg,rgba(124,111,224,.5),rgba(165,155,242,.4) 55%,rgba(95,181,154,.4));opacity:.45}
-#helpView .hn-orb{color:#C9C2FF;border-color:rgba(124,111,224,.45);
-  background:radial-gradient(circle at 32% 26%,rgba(124,111,224,.32),rgba(42,36,102,.35) 46%,rgba(8,8,15,.94) 74%);
-  box-shadow:0 12px 30px rgba(0,0,0,.5),0 0 22px rgba(124,111,224,.16),inset 0 1px 0 rgba(255,255,255,.14)}
-#helpView .how-detail .hd-in{border-color:rgba(124,111,224,.35);
-  background:linear-gradient(165deg,rgba(124,111,224,.08),rgba(8,10,18,.9) 55%)}
-#helpView .how-detail .hd-n{color:#C9C2FF;border-color:rgba(124,111,224,.4);
-  background:linear-gradient(160deg,rgba(124,111,224,.18),rgba(42,36,102,.1))}
-#helpView .how-detail .hd-p{color:#C9C2FF;border-color:rgba(124,111,224,.35);background:rgba(124,111,224,.08)}
 .fg-empty svg{color:var(--t4)}
 .fg-seg button.on{background:rgba(124,111,224,.14);color:#C9C2FF}
 .fg-appcard.official{border-color:rgba(95,181,154,.4);background:linear-gradient(165deg,rgba(95,181,154,.08),rgba(10,10,18,.6))}
@@ -5912,19 +5621,11 @@ html[data-theme="dark"] .pview{background:
   box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 0 0 3px rgba(124,111,224,.15)}
 .fg-search svg{color:#A59BF2!important}
 .fg-kbd{color:#C9C2FF;border-color:rgba(124,111,224,.4);background:rgba(124,111,224,.12)}
-.fg-chips button:hover{border-color:rgba(124,111,224,.45);color:#F2F6FF}
-.fg-dot{background:#4DE2C5}
 .hero-search{background:linear-gradient(170deg,rgba(124,111,224,.15),rgba(8,8,15,.94) 62%);
   border:1px solid rgba(124,111,224,.42)}
 [data-theme="light"] .hero-search{background:#fff}
 .hero-search::after{display:none}
 .hs-txt b{border-bottom-color:rgba(124,111,224,.65)}
-/* purge residual gold hexes anywhere they leak through legacy rules */
-.fg-eyebrow{color:#A59BF2}
-.stars,.fgf-head .k,.fg-gold{color:#A59BF2}
-
-/* dim light theme gold leftovers */
-[data-theme="light"] .fg-eyebrow,[data-theme="light"] .fgf-n{color:#5D51C7}
 
 /* methodology + insight hover: premium matte lift */
 .pipe:hover{background:linear-gradient(170deg,rgba(124,111,224,.06),transparent 65%)}
@@ -5937,20 +5638,9 @@ html[data-theme="dark"] .pview{background:
 .dive-card:nth-child(2) .dv-go,.dive-card:nth-child(2) .dv-k{color:#C9C2FF}
 .dive-card:nth-child(2) .dv-motif svg *{stroke:#C9C2FF}
 .dive-card::before{background:linear-gradient(90deg,#7C6FE0,rgba(124,111,224,.4) 45%,transparent)}
-.fgf-card::before{background:linear-gradient(90deg,#7C6FE0,rgba(124,111,224,.4) 50%,transparent)}
 #scrollProgress{background:linear-gradient(90deg,#7C6FE0,#A59BF2);box-shadow:0 0 10px rgba(124,111,224,.4)}
 .dv-ic{color:#C9C2FF;background:linear-gradient(160deg,rgba(124,111,224,.18),rgba(42,36,102,.1));
   border-color:rgba(124,111,224,.4)}
-
-/* ============================================================================
-   v64 - C1 CANVAS PIPELINE + C3 DECK + FAQ 0fr + INDEX NUMERAL PURGE
-   ========================================================================== */
-
-/* ---- C1: the constellation stage ---- */
-.fg3d-wrap{position:relative;height:clamp(320px,40vw,420px);border-radius:22px;overflow:hidden;
-  border:1px solid var(--fg-line);
-  background:radial-gradient(700px 320px at 50% 30%,rgba(124,111,224,.08),transparent 65%),
-    linear-gradient(180deg,rgba(9,9,17,.7),rgba(5,5,9,.9))}
 #fg3d{width:100%;height:100%;display:block}
 .fg-replay{position:absolute;top:14px;right:14px;display:inline-flex;align-items:center;gap:7px;
   padding:7px 13px;border-radius:99px;cursor:pointer;
@@ -5959,16 +5649,6 @@ html[data-theme="dark"] .pview{background:
   transition:color .2s,border-color .2s,transform .3s var(--fg-ease)}
 .fg-replay:hover{color:#DAD6FF;border-color:rgba(124,111,224,.5);transform:translateY(-1px)}
 .fg-replay svg{width:13px;height:13px}
-.fg-a11y-list{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;
-  list-style:none;margin:0;padding:0}
-
-/* ---- C3: methodology card deck ---- */
-.deck-spectrum{display:flex;gap:3px;height:5px;border-radius:4px;overflow:hidden;margin:20px 0 0;
-  background:rgba(160,150,255,.08)}
-.deck-spectrum span{display:block;border-radius:3px;background:rgba(160,150,255,.18);
-  transition:background .3s,box-shadow .3s;cursor:default}
-.deck-spectrum span.on{background:linear-gradient(90deg,#A59BF2,#7C6FE0);
-  box-shadow:0 0 12px rgba(124,111,224,.5)}
 .pipeline.deck{display:block;position:relative;height:400px;margin:26px 0 0;perspective:1200px;
   list-style:none;padding:0}
 .pipeline.deck .pipe{position:absolute;left:0;right:0;top:8px;margin:0;
@@ -6005,10 +5685,6 @@ html[data-theme="dark"] .pview{background:
   border-top:1px solid rgba(160,150,255,.12);background:rgba(10,10,18,.55)}
 .hq-item.open .ha-in{animation:haFade .3s var(--fg-ease, ease) both}
 
-/* ---- pipeline: click affordance ---- */
-.fg3d-wrap{cursor:default}
-.fg-pipeline .how-detail{margin-top:18px}
-
 /* reduced motion: final states instantly */
 @media(prefers-reduced-motion:reduce){
   .pipeline.deck .pipe{transition:none}
@@ -6031,12 +5707,6 @@ html[data-theme="dark"] .pview{background:
 .btn,.btn-ghost,.btn-primary,.iconbtn,.chipfilter,.fg-chips button,.cmpbtn,
 .fgf-card,.donut,.ins,.sig,.chg,.evt,.hq-item,.dive-card,.bar-row,.cb-chip{
   transition-duration:.2s}
-.fg-nav-item{transition-duration:.18s}
-.fg-ind{transition-duration:.26s}
-
-/* glass hairline upgrade on the shell panels */
-.fg-rail,.fgf-card,.fg-cta,.fg-pipeline{
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 24px 60px rgba(0,0,0,.45)}
 
 /* the boot screen: sharper, faster, HD type */
 #boot{background:radial-gradient(600px 300px at 50% 42%,rgba(124,111,224,.08),transparent 70%),var(--bg-0)}
@@ -6076,22 +5746,7 @@ button:not(:disabled):active,a.lnk:active{
 
 /* Help / Field Guide: a quieter reading surface with clear visual chapters. */
 #helpView .pview-in{max-width:1160px;padding:38px 28px 76px}
-#helpView .fg-hero{grid-template-columns:minmax(0,1.08fr) minmax(280px,.72fr);gap:34px;margin:12px 0 26px}
-#helpView .fg-hero-copy{min-width:0}
-#helpView .fg-h1{max-width:760px;font-size:clamp(2.45rem,5.2vw,4.85rem);line-height:1.02}
-#helpView .fg-sub{max-width:62ch;font-size:15px}
-#helpView .fg-orb{height:300px;contain:layout paint;box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 26px 70px rgba(0,0,0,.24)}
-#helpView .fg-pipeline{margin:28px 0 18px;padding:24px 24px 26px;border-radius:24px;contain:layout paint}
-#helpView .fg3d-wrap{min-height:300px;contain:layout paint;isolation:isolate}
-#helpView .fg3d-wrap canvas{display:block;contain:strict}
-#helpView .how-detail{min-height:96px}
-#helpView .fg-featured{margin:24px 0 14px}
-#helpView .fgf-grid{gap:12px}
-#helpView .fg-shell{grid-template-columns:216px minmax(0,1fr);gap:20px;margin-top:22px}
-#helpView .fg-rail{top:18px;border-radius:18px;padding:14px;contain:layout paint}
 #helpView .fg-nav{gap:5px}
-#helpView .fg-nav-item{min-height:42px;border-radius:11px;padding:0 12px}
-#helpView .fg-canvas{min-width:0}
 #helpView .hq-group{margin:0 0 26px;display:grid;gap:9px}
 #helpView .hq-gt{margin:0 4px 2px}
 #helpView .hq-item{margin:0;border-radius:15px;overflow:hidden;contain:layout paint;box-shadow:inset 0 1px 0 rgba(255,255,255,.035)}
@@ -6104,18 +5759,10 @@ button:not(:disabled):active,a.lnk:active{
 #helpView .ha-in{min-height:0;overflow:hidden;padding:0 20px;border-top-color:rgba(160,150,255,.14)}
 #helpView .hq-item.open .ha-in{padding:0 20px 18px;animation:none}
 #helpView .ha-meta{padding-top:12px}
-#helpView .fg-expand{margin-top:4px}
 
 /* Methodology: a stable vertical presentation deck rather than stacked cards. */
 #methodologyView .pview-in{max-width:1060px;padding:38px 28px 78px}
-#methodologyView .method-head{max-width:740px;margin:14px 0 24px}
-#methodologyView .method-head h2{font-size:clamp(2.2rem,5vw,4rem);line-height:1.04;letter-spacing:-.035em}
-#methodologyView .method-head p{max-width:62ch;line-height:1.65}
 #methodologyView .meth-strip{display:grid;grid-template-columns:150px minmax(0,1fr);gap:24px;align-items:center;margin:0 0 12px;padding:18px 20px;border:1px solid rgba(160,150,255,.14);border-radius:20px;background:linear-gradient(150deg,rgba(22,27,48,.82),rgba(8,11,20,.72));box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
-#methodologyView .ms-hint{grid-column:1/-1;margin:0;color:var(--t3);font-size:11px;line-height:1.55}
-#methodologyView .deck-spectrum{height:6px;margin:15px 0 0;gap:4px;cursor:pointer}
-#methodologyView .deck-spectrum span{height:6px;transition:background .2s ease,box-shadow .2s ease,transform .2s var(--motion-snap)}
-#methodologyView .deck-spectrum span:hover{transform:scaleY(1.7)}
 #methodologyView .pipeline.deck{height:auto;display:grid;gap:10px;margin:14px 0 0;padding:0;perspective:none}
 #methodologyView .pipeline.deck::before{content:"";position:absolute;left:20px;top:25px;bottom:25px;width:1px;background:linear-gradient(180deg,rgba(165,155,242,.55),rgba(77,226,197,.16));pointer-events:none}
 #methodologyView .pipeline.deck .pipe{position:relative;inset:auto;z-index:1!important;display:block;margin:0;padding:0;border-radius:17px;transform:none;opacity:1;background:linear-gradient(160deg,rgba(18,24,42,.92),rgba(8,12,21,.86));box-shadow:inset 0 1px 0 rgba(255,255,255,.045),0 12px 32px rgba(0,0,0,.22);transition:border-color .2s ease,box-shadow .2s ease,background .2s ease}
@@ -6217,19 +5864,7 @@ html[data-theme="light"] #helpView,html[data-theme="light"] #methodologyView{
   border-color:rgba(117,130,199,.2);
   box-shadow:inset 0 1px 0 rgba(200,210,255,.035),0 14px 36px rgba(0,0,0,.28)
 }
-#helpView .fg-pipeline{border-radius:18px}
-#helpView .fg-pipeline .how-copy .k,#helpView .fgf-head .k,#helpView .fg-nav-item.active b,
-#helpView .fgf-n,#helpView .fg-go,#methodologyView .method-head .k{color:#9A9FF2}
-#helpView .fg-chips button{background:rgba(18,24,46,.72);border-color:rgba(117,130,199,.22);color:#AEB8D4}
-#helpView .fg-chips button:hover{border-color:rgba(149,153,241,.55);color:#EEF1FF}
-#helpView .fg-live{color:#7583A6}
-#helpView .fg-orb{background:radial-gradient(420px 300px at 60% 40%,rgba(78,84,168,.13),transparent 65%),rgba(5,8,17,.78);border-color:rgba(117,130,199,.18)}
-#helpView .fg3d-wrap{background:radial-gradient(620px 220px at 50% 52%,rgba(68,73,157,.1),transparent 70%);border-radius:14px}
 #helpView .fg-replay{background:rgba(13,19,38,.8);border-color:rgba(117,130,199,.25);color:#AEB8D4}
-
-/* The Q&A is a reading list, not a stack of oversized cards. */
-#helpView .fg-shell{gap:16px;margin-top:18px}
-#helpView .fg-rail{padding:11px;border-radius:14px}
 #helpView .hq-group{gap:6px;margin-bottom:22px}
 #helpView .hq-item{border-radius:11px;box-shadow:inset 0 1px 0 rgba(200,210,255,.025)}
 #helpView .hq{min-height:50px;padding:0 13px;grid-template-columns:28px minmax(0,1fr) 18px;gap:10px}
@@ -6247,14 +5882,7 @@ html[data-theme="light"] #helpView,html[data-theme="light"] #methodologyView{
   from{opacity:0;transform:translate3d(0,-54px,0) rotateX(-16deg)}
   to{opacity:1;transform:translate3d(0,0,0) rotateX(0)}
 }
-#methodologyView .method-head{margin-bottom:18px}
-#methodologyView .method-head h2{color:#E9EDFF}
-#methodologyView .method-head p{color:#8996B7}
 #methodologyView .meth-strip{padding:14px 16px;gap:16px;border-radius:15px}
-#methodologyView .ms-hint{color:#7482A5}
-#methodologyView .deck-spectrum{margin-top:10px;background:rgba(86,94,175,.14)}
-#methodologyView .deck-spectrum span{background:rgba(117,130,199,.24)}
-#methodologyView .deck-spectrum span.on{background:linear-gradient(90deg,#686ED0,#9A9FF2);box-shadow:0 0 9px rgba(119,123,224,.35)}
 #methodologyView .pipeline.deck{gap:7px;margin-top:11px}
 #methodologyView .pipeline.deck::before{left:17px;top:19px;bottom:19px;background:linear-gradient(180deg,rgba(139,146,235,.58),rgba(71,95,145,.2))}
 #methodologyView .pipeline.deck .pipe{min-height:0;border-radius:12px;box-shadow:inset 0 1px 0 rgba(200,210,255,.035),0 8px 22px rgba(0,0,0,.22);animation:methodologyLadderIn .48s var(--motion-snap) both;animation-delay:calc(.05s + var(--i)*.065s)}
@@ -6311,14 +5939,6 @@ html[data-theme="light"] #helpView,html[data-theme="light"] #methodologyView{
   to{opacity:1;transform:translate3d(0,0,0) scale(1)}
 }
 #methodologyView .meth-strip{min-height:0;padding:10px 13px;border-radius:12px;background:#080C16!important;border-color:rgba(83,96,155,.2);box-shadow:inset 0 1px 0 rgba(175,185,235,.025),0 8px 20px rgba(0,0,0,.24)}
-#methodologyView .ms-gauge{width:70px;height:70px}
-#methodologyView .ms-gauge svg{width:70px;height:70px}
-#methodologyView .ms-v b{font-size:18px;color:#C6CBFF}
-#methodologyView .ms-v span{font-size:7px;color:#63708F}
-#methodologyView .ms-facts{gap:14px}
-#methodologyView .ms-facts b{font-size:14px;color:#AAB3D3}
-#methodologyView .ms-facts span{font-size:7.5px;color:#606D8B}
-#methodologyView .ms-hint{font-size:9.5px;color:#626F8E}
 #methodologyView .pipeline.deck .pipe{animation:none!important;background:#090D18!important;border-color:rgba(83,96,155,.2);box-shadow:inset 0 1px 0 rgba(175,185,235,.022),0 6px 18px rgba(0,0,0,.22)}
 #methodologyView.open .meth-strip{animation:methodologyScoreDrop .34s var(--motion-snap) both}
 #methodologyView.open .pipeline.deck .pipe{animation:methodologyLadderIn .34s var(--motion-snap) both}
@@ -6343,10 +5963,6 @@ html[data-theme="light"] #helpView,html[data-theme="light"] #methodologyView{
 #helpView .ha-in{background:#060910!important;border-top-color:rgba(83,96,155,.16)}
 #helpView .hq-q{color:#C5CCE5}
 #helpView .ha-in p{color:#8B98B6}
-#helpView .fg3d-wrap{background:#070A12!important}
-#helpView .fg-orb{background:#070A12!important}
-#helpView .fg-featured .fgf-card b{color:#C4CAE1}
-#helpView .fg-nav-item.active{background:rgba(76,83,155,.14);color:#D1D7ED}
 
 /* The icon is a deliberate, quiet red heart rather than a glowing light. */
 .fbar-mid .hvsvg{width:14px;height:14px;fill:#FF4058!important;stroke:none!important;filter:none!important;animation:none!important}
@@ -6386,37 +6002,19 @@ html[data-theme="light"] #helpView,html[data-theme="light"] #methodologyView{
 .pv-x:hover{color:#D8DCFF!important;border-color:rgba(139,146,235,.55)!important}
 .pv-x:active{transform:none!important}
 @media(max-width:860px){.pv-x,.pv-x:hover,.pv-x:active,.pview.open .pv-x{top:12px!important;right:12px!important}}
-
-/* Reserve the pipeline answer dock so it can never paint over the Q&A below. */
-#helpView .fg-pipeline{overflow:hidden;isolation:isolate;padding-bottom:118px}
-#helpView .fg-pipeline::before{display:none!important}
-#helpView .how-detail{position:absolute;left:24px;right:24px;bottom:18px;z-index:2;height:82px;min-height:0;margin:0;border-radius:12px}
-#helpView .how-detail[hidden]{display:block!important;visibility:hidden!important;pointer-events:none!important}
-#helpView .how-detail .hd-in{height:100%;min-height:0;box-sizing:border-box;background:#080C16!important;border-color:rgba(83,96,155,.22);box-shadow:none}
-#helpView .how-detail .hd-b p{color:#8794B3}
-
-/* Remove the decorative top spectrum; the vertical rail is the ladder rope. */
-#methodologyView .deck-spectrum{display:none!important}
 #methodologyView .pipeline.deck{margin-top:14px}
 #methodologyView .pipeline.deck::before{left:18px;top:11px;bottom:11px;width:1px;background:linear-gradient(180deg,rgba(111,119,198,.62),rgba(54,72,121,.18))}
-
-/* Larger, site-native type without returning to oversized card geometry. */
-#methodologyView .method-head h2{font-family:var(--font-display);font-size:clamp(2.2rem,4.7vw,3.8rem);letter-spacing:-.035em}
 #methodologyView .pipeline.deck .pipe-hit{min-height:62px;padding:8px 12px;grid-template-columns:34px minmax(0,1fr) minmax(130px,auto) 16px}
 #methodologyView .pipeline.deck .pipe-b h4{font-family:var(--font-display);font-size:15px;line-height:1.15;color:#D8DDF3}
 #methodologyView .pipeline.deck .pipe-b p{font-family:var(--font);font-size:11.5px;line-height:1.35;color:#7E8CAA;white-space:normal;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
 #methodologyView .pipeline.deck .pipe-m{font-family:var(--mono);font-size:8.5px}
 #methodologyView .pipeline.deck .pipe-xin{font-family:var(--font);font-size:12px}
 #methodologyView .pipeline.deck .pipe-live b{font-size:17px}
-#methodologyView .ms-facts b{font-size:16px}
-#methodologyView .ms-facts span{font-size:8.5px}
 
 /* A rope ladder drops top-to-bottom; the leading score is its first rung. */
 #methodologyView.open .pipeline.deck .pipe{animation-duration:.42s}
 #methodologyView .meth-strip,#methodologyView .pipeline.deck .pipe{animation:none!important}
-#methodologyView.open .meth-strip:not(.ladder-score-in){opacity:0;transform:translate3d(0,-34px,0) scale(.98)}
 #methodologyView.open .pipeline.deck .pipe:not(.ladder-rung-in){opacity:0;transform:translate3d(0,-54px,0) rotateX(-16deg)}
-#methodologyView .meth-strip.ladder-score-in{animation:methodologyScoreDrop .34s var(--motion-snap) both!important}
 #methodologyView .pipeline.deck .pipe.ladder-rung-in{animation:methodologyLadderIn .42s var(--motion-snap) var(--ladder-delay) both!important}
 #methodologyView.open .pipeline.deck .pipe:nth-child(1){animation-delay:.38s}
 #methodologyView.open .pipeline.deck .pipe:nth-child(2){animation-delay:.48s}

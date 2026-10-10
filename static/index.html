@@ -23,10 +23,32 @@
 <body>
 <div id="boot" aria-hidden="true"><div class="boot-in">
   <span class="boot-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="7" cy="7" r="2.1"/><circle cx="7" cy="17" r="2.1"/><circle cx="17" cy="12" r="2.1"/><path d="M9 8l6 3M9 16l6-3"/></svg></span>
-  <b>MCP Integration Explorer</b>
+  <b class="boot-name">MCP Integration Explorer</b>
+  <span class="boot-tag">integration intelligence</span>
   <span class="boot-bar"><i></i></span>
-  <span class="boot-msg">loading live data…</span>
-</div></div>
+  <span class="boot-msg" id="bootMsg">contacting MCP registry…</span>
+  <span class="boot-steps" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+</div>
+<script>
+  /* self-contained leading-screen copy: real pipeline terminology, cycling.
+     Runs before any bundle; app.js removes #boot when the first render lands. */
+  (function () {
+    var m = ["contacting MCP registry…", "resolving vendor namespaces…", "handshaking live endpoints…",
+             "counting tools & auth walls…", "weighing adoption & maintenance…", "probing site liveness…",
+             "scoring readiness 0-100…"];
+    var el = document.getElementById("bootMsg"), i = 0, dead = false;
+    function next() {
+      if (dead || !el || !el.isConnected) return;
+      el.classList.add("swap");
+      setTimeout(function () {
+        i = (i + 1) % m.length; el.textContent = m[i]; el.classList.remove("swap");
+      }, 240);
+      setTimeout(next, 1600);
+    }
+    setTimeout(next, 1400);
+    window.__bootStop = function () { dead = true; };
+  })();
+</script></div>
 <div id="scrollProgress" aria-hidden="true"></div>
 <div class="ambient" aria-hidden="true"><div class="amb-grid"></div></div>
 <div class="amb-deep" id="ambDeep" aria-hidden="true"><i class="orb o1"></i><i class="orb o2"></i><i class="orb o3"></i><i class="orb o4"></i></div>

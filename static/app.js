@@ -600,7 +600,8 @@
   function render(keepScroll) {
     const s = state.snap; if (!s) return;
     const boot = document.getElementById("boot");
-    if (boot) { boot.classList.add("boot-done"); setTimeout(() => boot.remove(), 420); }
+    if (boot) { try { if (window.__bootStop) window.__bootStop(); } catch (e) {}
+      boot.classList.add("boot-done"); setTimeout(() => boot.remove(), 460); }
     invalidateScrollCaches();
     const y = keepScroll ? window.scrollY : null;
     $("#tagline").textContent = "Live integration readiness";

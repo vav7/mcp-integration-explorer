@@ -24,14 +24,7 @@ Thumbs.db
 # lookup_429_check.py rewrite them on every run. Only the curated gallery below
 # is committed, so a test run never dirties the repo or bloats history.
 docs/screenshots/*
-!docs/screenshots/v19-01-home.png
-!docs/screenshots/v20-06-methodology-open.png
-!docs/screenshots/v29-intel-bars.png
-!docs/screenshots/v32-desktop-list.png
-!docs/screenshots/v32-mobile-home.png
-!docs/screenshots/v36-view-lock-redx.png
-!docs/screenshots/v38-insight-panels.png
-!docs/screenshots/v39-mobile-compare.png
+!docs/screenshots/gallery-*.png
 
 # NOTE: data/live_cache.json, static/data.snapshot.js and demo.html are
 # intentionally committed — they hold the last REAL fetch so the dashboard and

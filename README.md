@@ -10,9 +10,9 @@
 ![FastAPI](https://img.shields.io/badge/backend-FastAPI-009688)
 ![No build step](https://img.shields.io/badge/frontend-vanilla%20JS%20%2B%20CSS-lightgrey)
 
-[**Deploy guide**](DEPLOY.md) · [**Verification report**](VERIFICATION.md)
+[**Deploy guide**](DEPLOY.md)
 
-<img src="docs/screenshots/v19-01-home.png" alt="MCP Integration Explorer home screen" width="820">
+<img src="docs/screenshots/gallery-home.png" alt="MCP Integration Explorer home screen" width="820">
 
 </div>
 
@@ -241,7 +241,6 @@ Everything is optional. Set these as environment variables.
 ├── .github/workflows/    refresh.yml (6-hourly data refresh)
 ├── demo.html             Generated self-contained snapshot of the live data
 ├── DEPLOY.md             Full deployment guide
-├── VERIFICATION.md       Independent verification & change report
 ├── Dockerfile · fly.toml · render.yaml · run.sh · requirements.txt
 ```
 
@@ -268,7 +267,7 @@ Full details (env vars, health checks, TLS/proxy notes, smoke tests): **[DEPLOY.
 
 ## Testing
 
-The `tests/` folder is the regression harness behind [VERIFICATION.md](VERIFICATION.md): classification, registry recall, compatibility tester, diffing and rate-limit suites, plus JS and real-Chromium UI checks.
+The `tests/` folder is the regression harness: classification, registry recall, compatibility tester, diffing and rate-limit suites, plus JS and real-Chromium UI checks.
 
 ```bash
 python -m pytest tests/
@@ -294,20 +293,20 @@ python -m pytest tests/
 
 <table>
   <tr>
-    <td align="center"><img src="docs/screenshots/v19-01-home.png" alt="Home and explorer"><br><sub><b>Home &amp; explorer</b></sub></td>
-    <td align="center"><img src="docs/screenshots/v29-intel-bars.png" alt="Intelligence"><br><sub><b>Intelligence</b></sub></td>
+    <td align="center"><img src="docs/screenshots/gallery-home.png" alt="Home"><br><sub><b>Home &amp; live snapshot</b></sub></td>
+    <td align="center"><img src="docs/screenshots/gallery-atlas.png" alt="Atlas"><br><sub><b>Intelligence Atlas (canvas)</b></sub></td>
   </tr>
   <tr>
-    <td align="center"><img src="docs/screenshots/v20-06-methodology-open.png" alt="Methodology"><br><sub><b>Methodology, live</b></sub></td>
-    <td align="center"><img src="docs/screenshots/v38-insight-panels.png" alt="Coverage and readiness panels"><br><sub><b>Coverage &amp; readiness panels</b></sub></td>
+    <td align="center"><img src="docs/screenshots/gallery-help.png" alt="Help field guide"><br><sub><b>Help · signal wire</b></sub></td>
+    <td align="center"><img src="docs/screenshots/gallery-methodology.png" alt="Methodology"><br><sub><b>Methodology ladder</b></sub></td>
   </tr>
   <tr>
-    <td align="center"><img src="docs/screenshots/v32-desktop-list.png" alt="Explorer list on desktop"><br><sub><b>Explorer list, desktop</b></sub></td>
-    <td align="center"><img src="docs/screenshots/v32-mobile-home.png" alt="Explorer cards on mobile" width="260"><br><sub><b>Explorer cards, mobile</b></sub></td>
+    <td align="center"><img src="docs/screenshots/gallery-intelligence.png" alt="Intelligence"><br><sub><b>Intelligence instruments</b></sub></td>
+    <td align="center"><img src="docs/screenshots/gallery-pricing.png" alt="Pricing"><br><sub><b>Pricing window</b></sub></td>
   </tr>
   <tr>
-    <td align="center"><img src="docs/screenshots/v39-mobile-compare.png" alt="Comparison deck on mobile" width="260"><br><sub><b>Comparison deck, mobile</b></sub></td>
-    <td align="center"><img src="docs/screenshots/v40-dock-4apps.png" alt="Compare dock with four apps" width="260"><br><sub><b>Compare dock, 4 apps</b></sub></td>
+    <td align="center"><img src="docs/screenshots/gallery-boot.png" alt="Leading screen"><br><sub><b>Premium leading screen</b></sub></td>
+    <td align="center"><img src="docs/screenshots/gallery-drawer.png" alt="Drawer"><br><sub><b>Ink-glass drawer</b></sub></td>
   </tr>
 </table>
 

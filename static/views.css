@@ -816,3 +816,100 @@ body.pv-on .snap-panel::before, body.pv-on .sp-scan{ animation-play-state:paused
 @media (max-width:700px){
   #viewContent.scroller.atlas-flat .atlas-field{ height:clamp(300px, 66vw, 460px) }
 }
+
+
+/* ==========================================================================
+   16. v3.0 - PREMIUM LEADING SCREEN, INK DRAWER GLASS, DARKER METHODOLOGY,
+       ORB FILTER PURGE
+   ========================================================================== */
+
+/* ---- the leading screen: static HTML, first paint, real terminology ---- */
+#boot{
+  background:
+    radial-gradient(900px 460px at 50% 38%, rgba(139,157,255,.10), transparent 62%),
+    radial-gradient(700px 420px at 84% 112%, rgba(139,92,246,.07), transparent 60%),
+    linear-gradient(180deg, #05070D, #070B14 55%, #05070D);
+  transition:opacity .45s var(--ease), visibility 0s .45s }
+#boot::before{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background-image:linear-gradient(rgba(148,180,255,.03) 1px, transparent 1px),
+                   linear-gradient(90deg, rgba(148,180,255,.03) 1px, transparent 1px);
+  background-size:64px 64px;
+  -webkit-mask-image:radial-gradient(72% 56% at 50% 44%, #000, transparent 78%);
+  mask-image:radial-gradient(72% 56% at 50% 44%, #000, transparent 78%) }
+#boot.boot-done{ opacity:0; visibility:hidden; pointer-events:none }
+#boot .boot-in{ position:relative; gap:0 }
+#boot .boot-mark{
+  width:64px; height:64px; border-radius:20px; color:#C7D2FF;
+  background-image:linear-gradient(180deg, rgba(139,157,255,.16), rgba(139,92,246,.07)),
+                   linear-gradient(180deg, rgba(13,19,34,.95), rgba(7,10,18,.98));
+  border:1px solid rgba(139,157,255,.35);
+  box-shadow:0 1px 0 rgba(255,255,255,.08) inset, 0 18px 44px rgba(0,0,0,.55),
+             0 0 34px rgba(139,92,246,.22);
+  animation:bootPulse 2.6s var(--ease) infinite }
+#boot .boot-mark svg{ width:30px; height:30px }
+@keyframes bootPulse{
+  0%,100%{ box-shadow:0 1px 0 rgba(255,255,255,.08) inset, 0 18px 44px rgba(0,0,0,.55), 0 0 26px rgba(139,92,246,.16) }
+  50%{ box-shadow:0 1px 0 rgba(255,255,255,.10) inset, 0 18px 44px rgba(0,0,0,.55), 0 0 46px rgba(139,92,246,.34) } }
+#boot .boot-name{
+  margin-top:18px; font:800 22px var(--font-display); letter-spacing:-.02em;
+  background:linear-gradient(178deg, #F6F9FF 30%, #B7C7EA 96%);
+  -webkit-background-clip:text; background-clip:text; color:transparent }
+#boot .boot-tag{
+  margin-top:7px; font:700 9.5px var(--mono); letter-spacing:.28em;
+  text-transform:uppercase; color:var(--t4) }
+#boot .boot-bar{
+  margin-top:24px; width:min(320px, 62vw); height:4px; border-radius:4px;
+  background:rgba(148,180,255,.10);
+  box-shadow:0 0 0 1px rgba(148,180,255,.06), 0 2px 12px rgba(0,0,0,.4) inset }
+#boot .boot-bar i{
+  width:38%; border-radius:4px;
+  background:linear-gradient(90deg, #8B9DFF, #8B5CF6 60%, #34D399);
+  box-shadow:0 0 14px rgba(139,157,255,.8);
+  animation:bootSlide 1.5s cubic-bezier(.45,.05,.55,.95) infinite }
+@keyframes bootSlide{ 0%{ transform:translateX(-110%) } 100%{ transform:translateX(320%) } }
+#boot .boot-msg{
+  margin-top:15px; font:600 10.5px var(--mono); letter-spacing:.16em;
+  text-transform:uppercase; color:var(--t3);
+  transition:opacity .24s var(--ease), transform .24s var(--ease) }
+#boot .boot-msg.swap{ opacity:0; transform:translateY(4px) }
+#boot .boot-steps{ display:flex; gap:7px; margin-top:20px }
+#boot .boot-steps i{
+  width:5px; height:5px; border-radius:50%; background:rgba(148,180,255,.16);
+  animation:bootDot 1.8s var(--ease) infinite }
+#boot .boot-steps i:nth-child(2){ animation-delay:.15s }
+#boot .boot-steps i:nth-child(3){ animation-delay:.3s }
+#boot .boot-steps i:nth-child(4){ animation-delay:.45s }
+#boot .boot-steps i:nth-child(5){ animation-delay:.6s }
+#boot .boot-steps i:nth-child(6){ animation-delay:.75s }
+@keyframes bootDot{
+  0%,100%{ background:rgba(148,180,255,.16); transform:scale(1) }
+  40%{ background:#8B9DFF; transform:scale(1.4); box-shadow:0 0 10px rgba(139,157,255,.85) } }
+
+/* ---- drawer: ink glass, blur lands AFTER the slide (no re-blur lag) ---- */
+.drawer{
+  background:linear-gradient(180deg, rgba(5,7,12,.86), rgba(2,3,7,.92));
+  transition:transform .26s cubic-bezier(.2,.7,.25,1);
+  backdrop-filter:none; -webkit-backdrop-filter:none;
+  box-shadow:24px 0 70px rgba(0,0,0,.62) }
+.drawer.open{
+  background:linear-gradient(180deg, rgba(5,7,12,.78), rgba(2,3,7,.84));
+  backdrop-filter:blur(16px) saturate(140%);
+  -webkit-backdrop-filter:blur(16px) saturate(140%);
+  transition:transform .26s cubic-bezier(.2,.7,.25,1),
+             backdrop-filter 0s .26s, -webkit-backdrop-filter 0s .26s }
+.dw-head{ background:linear-gradient(180deg, rgba(139,157,255,.06), transparent 78%) }
+.dw-foot{ background:rgba(2,3,7,.55) }
+
+/* ---- methodology: deeper ink boxes ---- */
+#methodologyView .mt2-pipe{
+  background-image:linear-gradient(168deg, rgba(9,13,22,.94), rgba(4,6,10,.97)) }
+#methodologyView .mt2-strip, #methodologyView .mt2-spec{
+  background-image:linear-gradient(168deg, rgba(9,13,22,.92), rgba(4,6,10,.96)) }
+#methodologyView .mt2-live{
+  background:linear-gradient(180deg, rgba(139,157,255,.05), rgba(139,157,255,.012)) }
+#methodologyView .mt2-foot{
+  background:linear-gradient(168deg, rgba(9,13,22,.95), rgba(3,5,9,.98)) }
+
+/* ---- ambient orbs: the 70px blur added nothing the gradients don't do --- */
+.amb-deep .orb{ filter:none !important; opacity:.55 }
