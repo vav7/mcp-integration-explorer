@@ -359,7 +359,7 @@
   }
 
   /* ---- the sequencer: laser hops box to box, each box reveals + triggers - */
-  let seqTimer = 0, seqIdle = 0;
+  let seqTimer = 0;
   const HOP = 430;            /* ms between stations: blazing but legible */
   function seqStop() { if (seqTimer) { clearTimeout(seqTimer); seqTimer = 0; } }
   function seqStart() {
@@ -383,26 +383,18 @@
     const el = stageEls[i];
     if (el) { el.classList.remove("dim"); el.classList.add("seen"); zap(el); }
     if (i < stageEls.length - 1) seqTimer = setTimeout(() => hop(i + 1), HOP);
-    else seqTimer = setTimeout(() => {           /* seamless loop: sweep home */
-      stageEls.forEach(e2 => e2.classList.remove("on"));
-      laserTo(0, true);
-      seqTimer = setTimeout(() => hop(0), 300);
-    }, 1200);
+    else seqTimer = setTimeout(() => {           /* done: park it, no repeat */
+      laser.classList.remove("live");
+      seqTimer = 0;
+    }, 1100);
   }
   function userPick(i) {
     seqStop();
-    if (seqIdle) clearTimeout(seqIdle);
     measureWire();
     laserTo(i, true);
     showStage(i, true);
     const el = stageEls[i];
     if (el) { el.classList.remove("dim"); el.classList.add("seen"); zap(el); }
-    /* hand the wheel back to the sequencer after a beat */
-    seqIdle = setTimeout(() => {
-      if (view.classList.contains("open")) {
-        seqTimer = setTimeout(() => hop((i + 1) % stageEls.length), HOP);
-      }
-    }, 5200);
   }
   if (stagesWrap) {
     stagesWrap.addEventListener("click", (e) => {
@@ -433,7 +425,7 @@
     if (!mview || !ladder || !rope) return;
     const cards = $$(".mt2-pipe", ladder);
     if (!cards.length || !ladder.clientHeight) return;   /* not laid out yet */
-    if (ropeRaf) { cancelAnimationFrame(ropeRaf); ropeRaf = 0; }
+    if (ropeRaf) { clearTimeout(ropeRaf); ropeRaf = 0; }
     if (reduced) { cards.forEach(c => c.classList.add("seen")); return; }
     ladder.classList.add("dropping");
     cards.forEach(c => c.classList.remove("seen"));
@@ -441,36 +433,34 @@
     rope.style.opacity = "";
     rope.style.height = "0px";
     const lr = ladder.getBoundingClientRect();
-    const H = Math.max(120, ladder.clientHeight - 36);
-    /* thresholds in ladder space, measured the unambiguous way; the rope tip
-       sits at 18px + y, so a rung fires the moment the tip reaches its middle */
-    const th = cards.map(c => {
+    /* one step per rung: the rope glides (200ms) to exactly the rung centre at
+       the same instant that rung springs in - stepped, always in sync */
+    const pts = cards.map(c => {
       const r = c.getBoundingClientRect();
-      return (r.top - lr.top) + Math.min(r.height * 0.5, 70) - 18;
+      return Math.max(0, (r.top - lr.top) + Math.min(r.height * 0.5, 70) - 18);
     });
-    const fired = cards.map(() => false);
-    const t0 = performance.now(), DUR = 1400;
-    const step = (ts) => {
+    let i = 0;
+    const STEP = 300;
+    const tick = () => {
       ropeRaf = 0;
-      const k = Math.min(1, (ts - t0) / DUR);
-      const e = 1 - Math.pow(1 - k, 3);
-      const y = e * H;
-      rope.style.height = y.toFixed(1) + "px";
-      cards.forEach((c, i) => {
-        if (!fired[i] && y >= th[i]) { fired[i] = true; c.classList.add("seen"); }
-      });
-      if (k < 1) { ropeRaf = requestAnimationFrame(step); }
-      else {
-        cards.forEach(c => c.classList.add("seen"));
-        setTimeout(() => {
-          ladder.classList.remove("dropping");
-          rope.classList.remove("live");
-          rope.style.opacity = "0";
-          rope.style.height = "0px";
-        }, 520);
+      if (!mview.classList.contains("open")) { finish(); return; }
+      if (i < cards.length) {
+        rope.style.height = pts[i].toFixed(1) + "px";
+        cards[i].classList.add("seen");
+        i++;
+        ropeRaf = setTimeout(tick, STEP);
+      } else {
+        ropeRaf = setTimeout(finish, 430);
       }
     };
-    ropeRaf = requestAnimationFrame(step);
+    const finish = () => {
+      ropeRaf = 0;
+      cards.forEach(c => c.classList.add("seen"));
+      ladder.classList.remove("dropping");
+      rope.style.opacity = "0";
+      rope.style.height = "0px";
+    };
+    ropeRaf = setTimeout(tick, 140);
   }
 
   function bootMethodology() {

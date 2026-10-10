@@ -539,7 +539,7 @@
   animation:none; transition:none }
 #methodologyView .mt2-ladder.dropping .mt2-pipe.seen{
   opacity:1; transform:none; pointer-events:auto;
-  transition:opacity .34s var(--ease), transform .52s var(--spring) }
+  transition:opacity .16s linear, transform .34s var(--spring) }
 #methodologyView .mt2-pipe.seen .pipe-n{ animation:mt2npop .55s var(--spring) both }
 @keyframes mt2npop{ 0%{ transform:scale(.6); } 55%{ transform:scale(1.12) rotate(-4deg) } 100%{ transform:scale(1) } }
 #methodologyView .mt2-ladder.dropping::after{ opacity:0 }
@@ -647,3 +647,48 @@
 body.pv-on .amb-deep .orb{ animation-play-state:paused }
 body.pv-on #prConstellation{ visibility:hidden }
 body.pv-on .snap-panel::before, body.pv-on .sp-scan{ animation-play-state:paused }
+
+/* ==========================================================================
+   11. v2.3 - DARK PREMIUM CONTROLS + INK DRAWER + STEPPED ROPE
+   No candy-bright gradients: controls are dark glass with a violet edge,
+   exactly the site's own voice.
+   ========================================================================== */
+.btn-primary{
+  color:var(--t1);
+  border:1px solid rgba(139,157,255,.34);
+  background-image:
+    linear-gradient(180deg, rgba(139,157,255,.20), rgba(139,92,246,.10) 52%, rgba(139,92,246,.03)),
+    linear-gradient(180deg, rgba(13,19,34,.94), rgba(7,10,18,.96));
+  box-shadow:0 1px 0 rgba(255,255,255,.05) inset, 0 10px 26px rgba(0,0,0,.44),
+             0 0 0 1px rgba(139,157,255,.05), 0 0 20px rgba(139,92,246,.10) }
+.btn-primary:hover{
+  color:#F2F6FF; border-color:rgba(139,157,255,.52);
+  background-image:
+    linear-gradient(180deg, rgba(139,157,255,.28), rgba(139,92,246,.15) 52%, rgba(139,92,246,.05)),
+    linear-gradient(180deg, rgba(16,23,40,.95), rgba(8,12,20,.97));
+  box-shadow:0 1px 0 rgba(255,255,255,.07) inset, 0 14px 32px rgba(0,0,0,.52),
+             0 0 0 1px rgba(139,157,255,.10), 0 0 26px rgba(139,92,246,.16) }
+.btn-primary::after{ background:linear-gradient(100deg, transparent, rgba(190,210,255,.20), transparent) }
+.btn-primary:disabled, .btn-primary[disabled]{ opacity:.5; box-shadow:none; transform:none }
+.btn-primary:disabled:hover, .btn-primary[disabled]:hover{ transform:none; border-color:rgba(139,157,255,.34) }
+#refreshBtn::before{ background:radial-gradient(60% 120% at 50% 100%, rgba(139,157,255,.26), transparent 70%) }
+.btn-ghost{ background-image:linear-gradient(180deg, rgba(10,15,26,.85), rgba(6,9,15,.9)) }
+
+/* ---- the drawer: ink black glass -------------------------------------- */
+.drawer{
+  background:linear-gradient(180deg, rgba(7,10,17,.99), rgba(3,5,9,.995));
+  border-right:1px solid rgba(148,180,255,.09);
+  box-shadow:24px 0 90px rgba(0,0,0,.66), inset -1px 0 0 rgba(255,255,255,.02) }
+.dw-head{ background:radial-gradient(340px 90px at 10% -60%, rgba(139,157,255,.07), transparent 70%);
+  border-bottom:1px solid rgba(148,180,255,.07) }
+.dw-x{ background:rgba(255,255,255,.03) }
+.dw-item:hover{ background:rgba(139,157,255,.06); color:var(--t1) }
+.dw-item:active{ background:rgba(139,157,255,.10) }
+.dw-sep{ background:rgba(148,180,255,.07) }
+.dw-foot{ background:rgba(3,5,9,.72); border-top:1px solid rgba(148,180,255,.07) }
+.dw-scrim{ background:rgba(1,2,5,.76) }
+.dw-chips .dw-empty{ color:var(--t4) }
+
+/* ---- rope moves in steps, locked to the rung it just lit --------------- */
+#methodologyView .mt2-rope{
+  transition:height .2s cubic-bezier(.3,.75,.25,1), opacity .3s linear }
