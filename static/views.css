@@ -522,30 +522,37 @@
   animation:fg2zap .6s var(--ease) forwards }
 @keyframes fg2zap{ from{ opacity:1; transform:scale(1) } to{ opacity:0; transform:scale(1.14) } }
 
-/* --- methodology: the rope ladder --------------------------------------- */
-#methodologyView .mt2-ladderbox{ position:relative }
-#methodologyView .mt2-rope{
-  position:absolute; left:31px; top:18px; width:2px; height:0; border-radius:2px; z-index:3;
-  background:linear-gradient(180deg,#EAF0FF,#8B9DFF 18%,#8B5CF6 62%,#34D399);
-  box-shadow:0 0 16px rgba(139,157,255,.85), 0 0 40px rgba(139,92,246,.35);
-  pointer-events:none; opacity:0; transition:opacity .3s linear }
-#methodologyView .mt2-rope.live{ opacity:1 }
-#methodologyView .mt2-rope::after{
-  content:""; position:absolute; left:50%; bottom:-5px; width:10px; height:10px;
-  margin-left:-5px; border-radius:50%; background:#EAF0FF;
-  box-shadow:0 0 16px 4px rgba(139,157,255,.9), 0 0 44px 10px rgba(139,92,246,.4) }
-#methodologyView .mt2-ladder.dropping .mt2-pipe{
-  opacity:0; transform:translateY(30px) scale(.98); pointer-events:none;
-  animation:none; transition:none }
-#methodologyView .mt2-ladder.dropping .mt2-pipe.seen{
-  opacity:1; transform:none; pointer-events:auto;
-  transition:opacity .16s linear, transform .34s var(--spring) }
-#methodologyView .mt2-pipe.seen .pipe-n{ animation:mt2npop .55s var(--spring) both }
-@keyframes mt2npop{ 0%{ transform:scale(.6); } 55%{ transform:scale(1.12) rotate(-4deg) } 100%{ transform:scale(1) } }
-#methodologyView .mt2-ladder.dropping::after{ opacity:0 }
-@media (max-width:700px){
-  #methodologyView .mt2-rope{ left:23px }
-}
+/* --- methodology: ladder-fall entrance (pure CSS, zero timers) ----------
+   Each rung drops in from above, one after another - a ladder unrolling
+   top to bottom. Compositor-only (opacity/transform), staggered by --i,
+   re-triggered by toggling .stack when the window opens. No JS clock,
+   no line to fall out of sync, nothing to lag. */
+@keyframes mt2rung{
+  0%{ opacity:0; transform:translateY(-34px) scale(.985) }
+  60%{ opacity:1 }
+  100%{ opacity:1; transform:none } }
+#methodologyView .mt2-ladder.stack .mt2-pipe{
+  animation:mt2rung .52s var(--spring) both;
+  animation-delay:calc(var(--i, 0) * 95ms) }
+/* the clicked rung's number: same dark-glass glow as the Refresh button */
+#methodologyView .pipe-n{ position:relative }
+#methodologyView .mt2-pipe.open .pipe-n{
+  color:#F4F8FF;
+  background-image:
+    linear-gradient(180deg, rgba(139,157,255,.42), rgba(139,92,246,.20) 55%, rgba(139,92,246,.07)),
+    linear-gradient(180deg, rgba(18,26,46,.95), rgba(9,13,22,.97));
+  border-color:rgba(139,157,255,.72);
+  box-shadow:0 1px 0 rgba(255,255,255,.12) inset,
+             0 0 0 1px rgba(139,157,255,.20),
+             0 0 26px rgba(139,157,255,.62),
+             0 0 60px rgba(139,92,246,.28),
+             0 8px 22px rgba(0,0,0,.5) }
+#methodologyView .mt2-pipe.open .pipe-n::after{
+  content:""; position:absolute; inset:-4px; border-radius:17px; pointer-events:none;
+  border:1px solid rgba(139,157,255,.65);
+  box-shadow:0 0 18px rgba(139,157,255,.5);
+  animation:mt2ring .7s var(--ease) forwards }
+@keyframes mt2ring{ from{ opacity:.9; transform:scale(.92) } to{ opacity:0; transform:scale(1.35) } }
 
 /* ==========================================================================
    9. PREMIUM CONTROL KIT - one button language for the whole product
@@ -689,6 +696,3 @@ body.pv-on .snap-panel::before, body.pv-on .sp-scan{ animation-play-state:paused
 .dw-scrim{ background:rgba(1,2,5,.76) }
 .dw-chips .dw-empty{ color:var(--t4) }
 
-/* ---- rope moves in steps, locked to the rung it just lit --------------- */
-#methodologyView .mt2-rope{
-  transition:height .2s cubic-bezier(.3,.75,.25,1), opacity .3s linear }

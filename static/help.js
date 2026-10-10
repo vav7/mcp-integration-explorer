@@ -416,51 +416,14 @@
     { n: "Maintenance", w: 16, c: "#FBBF24", stage: 4 },
     { n: "Availability", w: 12, c: "#38BDF8", stage: 5 },
   ];
-  let ropeRaf = 0;
-  /* the rope ladder: a glowing line is thrown top->bottom and every rung it
-     passes springs into existence - one continuous gesture, ~1.4s */
-  function ropeDrop() {
+  /* ladder-fall entrance: pure CSS stagger, re-triggered on every open */
+  function replayLadder() {
+    if (!mview) return;
     const ladder = $(".mt2-ladder", mview);
-    const rope = $(".mt2-rope", mview);
-    if (!mview || !ladder || !rope) return;
-    const cards = $$(".mt2-pipe", ladder);
-    if (!cards.length || !ladder.clientHeight) return;   /* not laid out yet */
-    if (ropeRaf) { clearTimeout(ropeRaf); ropeRaf = 0; }
-    if (reduced) { cards.forEach(c => c.classList.add("seen")); return; }
-    ladder.classList.add("dropping");
-    cards.forEach(c => c.classList.remove("seen"));
-    rope.classList.add("live");
-    rope.style.opacity = "";
-    rope.style.height = "0px";
-    const lr = ladder.getBoundingClientRect();
-    /* one step per rung: the rope glides (200ms) to exactly the rung centre at
-       the same instant that rung springs in - stepped, always in sync */
-    const pts = cards.map(c => {
-      const r = c.getBoundingClientRect();
-      return Math.max(0, (r.top - lr.top) + Math.min(r.height * 0.5, 70) - 18);
-    });
-    let i = 0;
-    const STEP = 300;
-    const tick = () => {
-      ropeRaf = 0;
-      if (!mview.classList.contains("open")) { finish(); return; }
-      if (i < cards.length) {
-        rope.style.height = pts[i].toFixed(1) + "px";
-        cards[i].classList.add("seen");
-        i++;
-        ropeRaf = setTimeout(tick, STEP);
-      } else {
-        ropeRaf = setTimeout(finish, 430);
-      }
-    };
-    const finish = () => {
-      ropeRaf = 0;
-      cards.forEach(c => c.classList.add("seen"));
-      ladder.classList.remove("dropping");
-      rope.style.opacity = "0";
-      rope.style.height = "0px";
-    };
-    ropeRaf = setTimeout(tick, 140);
+    if (!ladder) return;
+    ladder.classList.remove("stack");
+    void ladder.offsetWidth;
+    ladder.classList.add("stack");
   }
 
   function bootMethodology() {
@@ -577,10 +540,10 @@
     if (view.classList.contains("open")) onHelpOpen(); else onHelpClose();
   }).observe(view, { attributes: true, attributeFilter: ["class"] });
   if (mview) new MutationObserver(() => {
-    if (mview.classList.contains("open")) { bootMethodology(); ropeDrop(); }
+    if (mview.classList.contains("open")) { bootMethodology(); replayLadder(); }
   }).observe(mview, { attributes: true, attributeFilter: ["class"] });
   if (view.classList.contains("open")) onHelpOpen();
-  if (mview && mview.classList.contains("open")) { bootMethodology(); ropeDrop(); }
+  if (mview && mview.classList.contains("open")) { bootMethodology(); replayLadder(); }
 
   /* deep-link + jump API (used by app.js hash router and the footer) */
   window.__fghelp = {

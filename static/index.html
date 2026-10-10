@@ -460,10 +460,8 @@
       <div class="mt2-legend" id="mt2Legend"></div>
     </div>
 
-    <div class="mt2-ladderbox">
-      <i class="mt2-rope" aria-hidden="true"></i>
-      <ol class="pipeline mt2-ladder">
-      <li class="pipe mt2-pipe reveal" data-replay data-meth="official" style="--i:0">
+    <ol class="pipeline mt2-ladder">
+      <li class="pipe mt2-pipe" data-meth="official" style="--i:0">
         <button class="pipe-hit" type="button" aria-expanded="false">
           <span class="pipe-n">01</span>
           <div class="pipe-b"><h4>Vendor official</h4><p>The server's reverse-domain namespace resolves to the app's own domain (<code>com.stripe/mcp</code> &rarr; stripe.com). Shared hosts never qualify.</p></div>
@@ -475,7 +473,7 @@
             <a class="lnk" href="https://registry.modelcontextprotocol.io" target="_blank" rel="noopener">MCP Registry &#8599;</a></div>
         </div></div>
       </li>
-      <li class="pipe mt2-pipe reveal" data-replay data-meth="community" style="--i:1">
+      <li class="pipe mt2-pipe" data-meth="community" style="--i:1">
         <button class="pipe-hit" type="button" aria-expanded="false">
           <span class="pipe-n">02</span>
           <div class="pipe-b"><h4>Community registry</h4><p>Any other registry server whose name, title or description genuinely mentions the app; aggregator gateways are flagged and excluded from tool credit.</p></div>
@@ -487,7 +485,7 @@
             <a class="lnk" href="https://registry.modelcontextprotocol.io" target="_blank" rel="noopener">MCP Registry &#8599;</a></div>
         </div></div>
       </li>
-      <li class="pipe mt2-pipe reveal" data-replay data-meth="tools" style="--i:2">
+      <li class="pipe mt2-pipe" data-meth="tools" style="--i:2">
         <button class="pipe-hit" type="button" aria-expanded="false">
           <span class="pipe-n">03</span>
           <div class="pipe-b"><h4>Live tools</h4><p>Real tool count from handshaking each endpoint (<code>initialize</code> &rarr; <code>tools/list</code>); gated or silent endpoints are reported as such, never guessed.</p></div>
@@ -499,7 +497,7 @@
             <a class="lnk" href="https://modelcontextprotocol.io" target="_blank" rel="noopener">MCP spec &#8599;</a></div>
         </div></div>
       </li>
-      <li class="pipe mt2-pipe reveal" data-replay data-meth="adoption" style="--i:3">
+      <li class="pipe mt2-pipe" data-meth="adoption" style="--i:3">
         <button class="pipe-hit" type="button" aria-expanded="false">
           <span class="pipe-n">04</span>
           <div class="pipe-b"><h4>Adoption</h4><p>Monthly package downloads plus repository stars as a proxy for real-world usage, on a log scale so a solo tool and an ecosystem never share a band by accident.</p></div>
@@ -511,7 +509,7 @@
             <a class="lnk" href="https://www.npmjs.com" target="_blank" rel="noopener">npm &#8599;</a></div>
         </div></div>
       </li>
-      <li class="pipe mt2-pipe reveal" data-replay data-meth="health" style="--i:4">
+      <li class="pipe mt2-pipe" data-meth="health" style="--i:4">
         <button class="pipe-hit" type="button" aria-expanded="false">
           <span class="pipe-n">05</span>
           <div class="pipe-b"><h4>Repository health</h4><p>Commit recency, open issues, license and archived status of the server's source repository, fetched from the GitHub REST API.</p></div>
@@ -523,7 +521,7 @@
             <a class="lnk" href="https://docs.github.com/rest" target="_blank" rel="noopener">GitHub REST &#8599;</a></div>
         </div></div>
       </li>
-      <li class="pipe mt2-pipe reveal" data-replay data-meth="liveness" style="--i:5">
+      <li class="pipe mt2-pipe" data-meth="liveness" style="--i:5">
         <button class="pipe-hit" type="button" aria-expanded="false">
           <span class="pipe-n">06</span>
           <div class="pipe-b"><h4>Liveness</h4><p>Direct HTTP request to the app's site: status, latency, reachability; distinguishes up / up-non-2xx / unreachable instead of collapsing them.</p></div>
@@ -535,7 +533,7 @@
             <span class="lnk">computed in-browser</span></div>
         </div></div>
       </li>
-      <li class="pipe mt2-pipe mt2-final reveal" data-replay data-meth="score" style="--i:6">
+      <li class="pipe mt2-pipe mt2-final" data-meth="score" style="--i:6">
         <button class="pipe-hit" type="button" aria-expanded="false">
           <span class="pipe-n">07</span>
           <div class="pipe-b"><h4>Readiness score</h4><p>Weighted sum of the above, graded A-E. The per-component breakdown and every evidence link are exposed on each application's dossier.</p></div>
@@ -547,8 +545,7 @@
             <span class="lnk">computed in-browser</span></div>
         </div></div>
       </li>
-      </ol>
-    </div>
+    </ol>
 
     <div class="pv-foot mt2-foot">
       <div class="mt2-foot-btns">
