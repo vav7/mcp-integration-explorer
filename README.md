@@ -292,22 +292,17 @@ python -m pytest tests/
 
 <table>
   <tr>
-    <td align="center"><img src="docs/screenshots/gallery-home.png" alt="Home"><br><sub><b>Home &amp; live snapshot</b></sub></td>
-    <td align="center"><img src="docs/screenshots/gallery-atlas.png" alt="Atlas"><br><sub><b>Intelligence Atlas (canvas)</b></sub></td>
+    <td align="center" width="50%"><a href="docs/screenshots/gallery-atlas.png"><img src="docs/screenshots/gallery-atlas.png" alt="Intelligence Atlas - every app as a glass disc on the adoption x readiness field" width="720"></a><br><sub><b>Intelligence Atlas</b> - 100 apps as one canvas, ring = status, size = stars</sub></td>
+    <td align="center" width="50%"><a href="docs/screenshots/gallery-intelligence.png"><img src="docs/screenshots/gallery-intelligence.png" alt="Intelligence window - live wires, composition, provenance, adoption and latency instruments" width="720"></a><br><sub><b>Intelligence</b> - three instrument tabs, every figure traceable</sub></td>
   </tr>
   <tr>
-    <td align="center"><img src="docs/screenshots/gallery-help.png" alt="Help field guide"><br><sub><b>Help · signal wire</b></sub></td>
-    <td align="center"><img src="docs/screenshots/gallery-methodology.png" alt="Methodology"><br><sub><b>Methodology ladder</b></sub></td>
-  </tr>
-  <tr>
-    <td align="center"><img src="docs/screenshots/gallery-intelligence.png" alt="Intelligence"><br><sub><b>Intelligence instruments</b></sub></td>
-    <td align="center"><img src="docs/screenshots/gallery-pricing.png" alt="Pricing"><br><sub><b>Pricing window</b></sub></td>
-  </tr>
-  <tr>
-    <td align="center"><img src="docs/screenshots/gallery-boot.png" alt="Leading screen"><br><sub><b>Premium leading screen</b></sub></td>
-    <td align="center"><img src="docs/screenshots/gallery-drawer.png" alt="Drawer"><br><sub><b>Ink-glass drawer</b></sub></td>
+    <td align="center"><a href="docs/screenshots/gallery-help.png"><img src="docs/screenshots/gallery-help.png" alt="Help field guide - signal wire stages and eighteen plain-word answers" width="720"></a><br><sub><b>Help / Field Guide</b> - the signal wire + 18 plain-word answers</sub></td>
+    <td align="center"><a href="docs/screenshots/gallery-methodology.png"><img src="docs/screenshots/gallery-methodology.png" alt="Methodology window - gauge, score composition spectrum and seven-stage ladder" width="720"></a><br><sub><b>Methodology</b> - gauge, composition spectrum, seven-stage ladder</sub></td>
   </tr>
 </table>
+
+> The window you see first - the premium leading screen - is plain HTML/CSS,
+> so it paints before any data lands, on any host.
 
 ## License
 

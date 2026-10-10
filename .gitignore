@@ -20,9 +20,7 @@ Thumbs.db
 .mypy_cache/
 .ruff_cache/
 
-# Verification screenshots are test OUTPUT: browser_check.py / mobile_check.py /
-# lookup_429_check.py rewrite them on every run. Only the curated gallery below
-# is committed, so a test run never dirties the repo or bloats history.
+# Curated README gallery - the only images in the repo.
 docs/screenshots/*
 !docs/screenshots/gallery-*.png
 
