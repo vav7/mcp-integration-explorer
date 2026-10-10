@@ -112,19 +112,3 @@ Then open `/` in a browser: the Live pill is green, the table is populated,
 `demo.html` in the repo root is a **self-contained offline snapshot** of the
 dashboard (real data, no backend). Open it directly from disk for demos, or
 attach it to an issue/PR - it is not a substitute for the live service.
-
-
-## Vercel (static snapshot mode)
-
-`vercel.json` publishes the `static/` folder as a pure static site. There is
-no backend on Vercel: the dashboard shows the **premium leading screen**,
-tries `/api/snapshot`, and when that 404s it falls back to the embedded
-`data.snapshot.js` - the full dashboard in *snapshot mode* with real data
-from the last committed refresh. Perfect as a zero-cold-start preview /
-marketing surface while the live instance runs on Fly/Render.
-
-1. `python3 scripts/refresh_once.py && python3 scripts/build_demo.py` (or rely
-   on the GitHub Action that keeps `data/` + `static/data.snapshot.js` fresh).
-2. Import the repo in Vercel - framework preset *Other*, no build command,
-   output directory `static` (already declared in `vercel.json`).
-3. Deploy. Every push of refreshed data redeploys a fresh snapshot.
