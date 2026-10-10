@@ -233,7 +233,8 @@ Everything is optional. Set these as environment variables.
 .
 ├── src/                  FastAPI app: fetchers, classifiers, scoring, diffing, compat tester
 ├── static/               The dashboard (vanilla JS + CSS, no build step)
-├── scripts/              refresh_once.py · update_readme_stats.py
+│                         views.css = premium Help / Methodology layer
+├── scripts/              refresh_once.py · build_demo.py · update_readme_stats.py
 ├── data/                 Curated app list, latest real cache, history, change log
 ├── tests/                Regression harness
 ├── docs/screenshots/     Curated screenshot gallery
