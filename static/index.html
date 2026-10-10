@@ -460,7 +460,9 @@
       <div class="mt2-legend" id="mt2Legend"></div>
     </div>
 
-    <ol class="pipeline mt2-ladder">
+    <div class="mt2-ladderbox">
+      <i class="mt2-rope" aria-hidden="true"></i>
+      <ol class="pipeline mt2-ladder">
       <li class="pipe mt2-pipe reveal" data-replay data-meth="official" style="--i:0">
         <button class="pipe-hit" type="button" aria-expanded="false">
           <span class="pipe-n">01</span>
@@ -545,9 +547,18 @@
             <span class="lnk">computed in-browser</span></div>
         </div></div>
       </li>
-    </ol>
+      </ol>
+    </div>
 
     <div class="pv-foot mt2-foot">
+      <div class="mt2-foot-btns">
+        <button type="button" class="btn btn-primary" data-openview="help">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.4 5 8.2 4.3 5.6 4.3c-.9 0-1.6.7-1.6 1.5v11.4c0 .8.7 1.5 1.6 1.5 2.6 0 4.8.7 6.4 2.2 1.6-1.5 3.8-2.2 6.4-2.2.9 0 1.6-.7 1.6-1.5V5.8c0-.8-.7-1.5-1.6-1.5-2.6 0-4.8.7-6.4 2.2z"/><path d="M12 6.5v14.4"/></svg>
+          Open the field guide</button>
+        <button type="button" class="btn btn-ghost" data-closeview>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m0 0l6-6m-6 6l6 6"/></svg>
+          Back to dashboard</button>
+      </div>
       <span><b>Every figure above is a measurement, not an estimate.</b> If a source returns nothing the site shows none; if a fetch fails it shows unknown or auth-gated. Weights are public and the scoring model ships in <code>src/scoring.py</code>.</span>
     </div>
   </div>
@@ -597,7 +608,7 @@
         <h3>From the live web to a readiness signal</h3>
         <p>Every app walks this pipeline on every refresh. Nothing is simulated &mdash; each stage runs against the real source. Select a stage to read its story.</p>
       </div>
-      <div class="fg2-wire" aria-hidden="true"><i class="fg2-packet"></i><i class="fg2-packet p2"></i></div>
+      <div class="fg2-wire" aria-hidden="true"><i class="fg2-laser"></i></div>
       <ol class="fg2-stages" id="fgStages">
         <li class="fg2-stage" data-stage="0">
           <button class="fg2-stage-hit" type="button" aria-expanded="false">

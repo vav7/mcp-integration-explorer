@@ -70,6 +70,7 @@
   }
 
   function wakeOrbs() {
+    if (document.body.classList.contains("pv-on")) return;   /* hidden anyway */
     orbTarget = window.scrollY || 0;
     if (orbs.length && !orbRaf) orbRaf = requestAnimationFrame(orbTick);
   }
@@ -125,8 +126,9 @@
       return { sx: W / 2 + p.x * s * (W / 2.6), sy: H / 2 + p.y * s * (H / 2.2), s, z: zz };
     }
 
+    const viewsOpen = () => document.body.classList.contains("pv-on");
     function frame(now) {
-      if (!running) return;
+      if (!running || viewsOpen()) { running = false; return; }
       const dt = Math.min(50, now - last); last = now;
       t += dt * 0.001;
       ctx.clearRect(0, 0, W, H);
@@ -190,10 +192,14 @@
       addEventListener("resize", still, { passive: true });
       return;
     }
-    document.addEventListener("visibilitychange", () => {
-      if (document.hidden) { running = false; }
-      else if (!running) { running = true; last = performance.now(); requestAnimationFrame(frame); }
-    });
+    const wake = () => {
+      if (document.hidden || viewsOpen()) { running = false; return; }
+      if (!running) { running = true; last = performance.now(); requestAnimationFrame(frame); }
+    };
+    document.addEventListener("visibilitychange", wake);
+    /* an opaque full-screen view hides this layer completely - do not burn
+       frames painting underneath it */
+    new MutationObserver(wake).observe(document.body, { attributes: true, attributeFilter: ["class"] });
     /* paint the first constellation frame synchronously so the page never
        exposes an empty canvas while the animation loop is being scheduled. */
     frame(performance.now());

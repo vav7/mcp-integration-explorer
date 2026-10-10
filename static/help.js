@@ -312,12 +312,40 @@
   const stagesWrap = $("#fgStages");
   const stageEls = $$(".fg2-stage", stagesWrap || view);
   const detail = $("#howDetail");
-  let stageIdx = -1, stageTimer = 0, stageHold = false;
+  const wire = $(".fg2-wire", view);
+  const laser = $(".fg2-laser", view);
+  let stageIdx = -1;
+
+  /* ---- laser geometry: one transform per hop, measured once per resize -- */
+  let laserX = [];
+  function measureWire() {
+    if (!wire || !laser || !stageEls.length) return;
+    try {
+      const wr = wire.getBoundingClientRect();
+      laserX = stageEls.map(el => {
+        const r = el.getBoundingClientRect();
+        return r.left + r.width / 2 - wr.left;
+      });
+    } catch (e) { laserX = []; }
+  }
+  function laserTo(i, fast) {
+    if (!laser || !laserX.length) return;
+    const x = Math.max(0, (laserX[i] || 0) - 32);
+    laser.classList.toggle("sweep", !!fast);
+    laser.classList.add("live");
+    laser.style.transform = "translate3d(" + x.toFixed(1) + "px,0,0)";
+  }
+  function laserOff() { if (laser) laser.classList.remove("live"); }
+  function zap(el) {
+    if (!el) return;
+    el.classList.remove("zap"); void el.offsetWidth; el.classList.add("zap");
+    setTimeout(() => el.classList.remove("zap"), 700);
+  }
+
   function showStage(i, user) {
     if (!stageEls.length || !detail) return;
     i = Math.max(0, Math.min(stageEls.length - 1, i));
-    if (user) stageHold = true;
-    if (i === stageIdx) return;
+    if (i === stageIdx && !user) return;
     stageIdx = i;
     stageEls.forEach((el, k) => {
       el.classList.toggle("on", k === i);
@@ -329,20 +357,61 @@
     detail.innerHTML = '<div class="hd-in"><span class="hd-n">0' + (i + 1) + '</span><div class="hd-b"><b>' +
       st.t + '</b><p>' + st.d + '</p><span class="hd-p">' + st.fig + '</span></div></div>';
   }
-  function stageTick() {
-    if (stageHold || reduced || !view.classList.contains("open") || document.hidden) return;
-    showStage((stageIdx + 1) % Math.max(1, stageEls.length), false);
+
+  /* ---- the sequencer: laser hops box to box, each box reveals + triggers - */
+  let seqTimer = 0, seqIdle = 0;
+  const HOP = 430;            /* ms between stations: blazing but legible */
+  function seqStop() { if (seqTimer) { clearTimeout(seqTimer); seqTimer = 0; } }
+  function seqStart() {
+    seqStop();
+    if (!stageEls.length) return;
+    if (reduced) {
+      stageEls.forEach(el => { el.classList.remove("dim"); el.classList.add("seen"); });
+      laserOff(); showStage(0, false); return;
+    }
+    measureWire();
+    stageEls.forEach(el => { el.classList.add("dim"); el.classList.remove("seen", "on", "zap"); });
+    stageIdx = -1;
+    laserTo(0, true);
+    seqTimer = setTimeout(() => hop(0), 240);
+  }
+  function hop(i) {
+    seqTimer = 0;
+    if (!view.classList.contains("open") || document.hidden) return;
+    laserTo(i, false);
+    showStage(i, false);
+    const el = stageEls[i];
+    if (el) { el.classList.remove("dim"); el.classList.add("seen"); zap(el); }
+    if (i < stageEls.length - 1) seqTimer = setTimeout(() => hop(i + 1), HOP);
+    else seqTimer = setTimeout(() => {           /* seamless loop: sweep home */
+      stageEls.forEach(e2 => e2.classList.remove("on"));
+      laserTo(0, true);
+      seqTimer = setTimeout(() => hop(0), 300);
+    }, 1200);
+  }
+  function userPick(i) {
+    seqStop();
+    if (seqIdle) clearTimeout(seqIdle);
+    measureWire();
+    laserTo(i, true);
+    showStage(i, true);
+    const el = stageEls[i];
+    if (el) { el.classList.remove("dim"); el.classList.add("seen"); zap(el); }
+    /* hand the wheel back to the sequencer after a beat */
+    seqIdle = setTimeout(() => {
+      if (view.classList.contains("open")) {
+        seqTimer = setTimeout(() => hop((i + 1) % stageEls.length), HOP);
+      }
+    }, 5200);
   }
   if (stagesWrap) {
     stagesWrap.addEventListener("click", (e) => {
       const hit = e.target.closest(".fg2-stage-hit");
       if (!hit) return;
-      const li = hit.closest(".fg2-stage");
-      showStage(stageEls.indexOf(li), true);
+      userPick(stageEls.indexOf(hit.closest(".fg2-stage")));
     });
-    stagesWrap.addEventListener("mouseenter", () => { stageHold = true; });
-    stagesWrap.addEventListener("mouseleave", () => { stageHold = false; });
   }
+  addEventListener("resize", () => { measureWire(); if (stageIdx >= 0) laserTo(stageIdx, true); }, { passive: true });
 
   /* ======================================================================
      6. methodology ladder + score-composition spectrum
@@ -355,6 +424,55 @@
     { n: "Maintenance", w: 16, c: "#FBBF24", stage: 4 },
     { n: "Availability", w: 12, c: "#38BDF8", stage: 5 },
   ];
+  let ropeRaf = 0;
+  /* the rope ladder: a glowing line is thrown top->bottom and every rung it
+     passes springs into existence - one continuous gesture, ~1.4s */
+  function ropeDrop() {
+    const ladder = $(".mt2-ladder", mview);
+    const rope = $(".mt2-rope", mview);
+    if (!mview || !ladder || !rope) return;
+    const cards = $$(".mt2-pipe", ladder);
+    if (!cards.length || !ladder.clientHeight) return;   /* not laid out yet */
+    if (ropeRaf) { cancelAnimationFrame(ropeRaf); ropeRaf = 0; }
+    if (reduced) { cards.forEach(c => c.classList.add("seen")); return; }
+    ladder.classList.add("dropping");
+    cards.forEach(c => c.classList.remove("seen"));
+    rope.classList.add("live");
+    rope.style.opacity = "";
+    rope.style.height = "0px";
+    const lr = ladder.getBoundingClientRect();
+    const H = Math.max(120, ladder.clientHeight - 36);
+    /* thresholds in ladder space, measured the unambiguous way; the rope tip
+       sits at 18px + y, so a rung fires the moment the tip reaches its middle */
+    const th = cards.map(c => {
+      const r = c.getBoundingClientRect();
+      return (r.top - lr.top) + Math.min(r.height * 0.5, 70) - 18;
+    });
+    const fired = cards.map(() => false);
+    const t0 = performance.now(), DUR = 1400;
+    const step = (ts) => {
+      ropeRaf = 0;
+      const k = Math.min(1, (ts - t0) / DUR);
+      const e = 1 - Math.pow(1 - k, 3);
+      const y = e * H;
+      rope.style.height = y.toFixed(1) + "px";
+      cards.forEach((c, i) => {
+        if (!fired[i] && y >= th[i]) { fired[i] = true; c.classList.add("seen"); }
+      });
+      if (k < 1) { ropeRaf = requestAnimationFrame(step); }
+      else {
+        cards.forEach(c => c.classList.add("seen"));
+        setTimeout(() => {
+          ladder.classList.remove("dropping");
+          rope.classList.remove("live");
+          rope.style.opacity = "0";
+          rope.style.height = "0px";
+        }, 520);
+      }
+    };
+    ropeRaf = requestAnimationFrame(step);
+  }
+
   function bootMethodology() {
     if (!mview || mview._on) return;
     mview._on = true;
@@ -445,7 +563,6 @@
     booted = true;
     bootOrb();
     activateGroup("hg-1", false);
-    showStage(0, false);
     syncCount();
     const st = window.__mcpx && window.__mcpx.state;
     const fl = $("#fgLive");
@@ -458,23 +575,22 @@
     boot();
     const orb = document.getElementById("fgOrb");
     if (orb && orb._start) orb._start();
-    if (!stageTimer) stageTimer = setInterval(stageTick, 3200);
-    stageHold = false;
+    seqStart();
   }
   function onHelpClose() {
     const orb = document.getElementById("fgOrb");
     if (orb && orb._stop) orb._stop();
-    if (stageTimer) { clearInterval(stageTimer); stageTimer = 0; }
+    seqStop();
+    laserOff();
   }
   new MutationObserver(() => {
     if (view.classList.contains("open")) onHelpOpen(); else onHelpClose();
-    if (mview && mview.classList.contains("open")) bootMethodology();
   }).observe(view, { attributes: true, attributeFilter: ["class"] });
   if (mview) new MutationObserver(() => {
-    if (mview.classList.contains("open")) bootMethodology();
+    if (mview.classList.contains("open")) { bootMethodology(); ropeDrop(); }
   }).observe(mview, { attributes: true, attributeFilter: ["class"] });
   if (view.classList.contains("open")) onHelpOpen();
-  if (mview && mview.classList.contains("open")) bootMethodology();
+  if (mview && mview.classList.contains("open")) { bootMethodology(); ropeDrop(); }
 
   /* deep-link + jump API (used by app.js hash router and the footer) */
   window.__fghelp = {

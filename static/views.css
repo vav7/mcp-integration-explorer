@@ -106,15 +106,19 @@
 #helpView .fg2-how-head p{ margin:10px 0 0; grid-column:1; color:var(--t3); font-size:13px; line-height:1.7; max-width:62ch }
 #helpView .fg2-wire{
   position:relative; height:2px; margin:34px 6px 0; border-radius:2px;
-  background:linear-gradient(90deg, transparent, rgba(139,157,255,.35) 12%, rgba(139,92,246,.35) 88%, transparent) }
-#helpView .fg2-packet{
-  position:absolute; top:50%; left:0; width:46px; height:2px; margin-top:-1px; border-radius:2px;
-  background:linear-gradient(90deg, transparent, #8B9DFF 60%, #DDE6FF);
-  filter:drop-shadow(0 0 6px rgba(139,157,255,.9));
-  animation:fg2wire 4.6s cubic-bezier(.55,.06,.35,.94) infinite }
-#helpView .fg2-packet.p2{ animation-delay:2.3s; background:linear-gradient(90deg, transparent, #8B5CF6 60%, #E6DEFF);
-  filter:drop-shadow(0 0 6px rgba(139,92,246,.9)) }
-@keyframes fg2wire{ 0%{left:-6%;opacity:0} 8%{opacity:1} 92%{opacity:1} 100%{left:102%;opacity:0} }
+  background:linear-gradient(90deg, transparent, rgba(139,157,255,.22) 10%, rgba(139,92,246,.22) 90%, transparent) }
+/* the laser: one compositor-only element, positioned by transform */
+#helpView .fg2-laser{
+  position:absolute; top:50%; left:0; width:64px; height:2px; margin-top:-1px; border-radius:2px;
+  background:linear-gradient(90deg, rgba(139,157,255,0), #8B9DFF 55%, #EAF0FF);
+  box-shadow:0 0 10px rgba(139,157,255,.85), 0 0 26px rgba(139,92,246,.45);
+  transform:translate3d(0,-0px,0); opacity:0;
+  transition:transform .26s cubic-bezier(.5,.05,.2,1), opacity .2s linear; will-change:transform }
+#helpView .fg2-laser.live{ opacity:1 }
+#helpView .fg2-laser::after{
+  content:""; position:absolute; right:-3px; top:50%; width:7px; height:7px; margin-top:-3.5px; border-radius:50%;
+  background:#EAF0FF; box-shadow:0 0 12px 3px rgba(139,157,255,.9) }
+#helpView .fg2-laser.sweep{ transition:transform .18s cubic-bezier(.6,0,.4,1), opacity .18s linear }
 #helpView .fg2-stages{
   list-style:none; margin:0; padding:26px 0 0; display:grid;
   grid-template-columns:repeat(6,minmax(0,1fr)); gap:12px }
@@ -485,7 +489,7 @@
 @media (prefers-reduced-motion: reduce){
   #helpView *, #methodologyView *{ animation-duration:.01ms !important; animation-iteration-count:1 !important;
     transition-duration:.01ms !important }
-  #helpView .fg2-packet, #helpView .fg2-rings, #helpView .fg2-orb-glow, #helpView .fg2-float{ animation:none !important }
+  #helpView .fg2-laser, #helpView .fg2-rings, #helpView .fg2-orb-glow, #helpView .fg2-float{ animation:none !important }
 }
 [data-theme="light"] #helpView .fg2-orbwrap,
 [data-theme="light"] #helpView .fg2-how,
@@ -499,3 +503,147 @@
   background:linear-gradient(178deg,#0B1220 30%,#3B4A68); -webkit-background-clip:text; background-clip:text }
 [data-theme="light"] #helpView .fg2-item{ background:#fff }
 [data-theme="light"] #helpView .fg2-ain{ background:rgba(37,99,235,.03) }
+
+/* ==========================================================================
+   8. SEQUENCERS: laser wire (help) + rope ladder (methodology)
+   ========================================================================== */
+/* --- help stages: unseen -> revealed -> lit -> zap flash ---------------- */
+#helpView .fg2-stage{ position:relative }
+#helpView .fg2-stage.dim .fg2-stage-hit{
+  opacity:.30; filter:saturate(.35) brightness(.85); box-shadow:none; transform:none }
+#helpView .fg2-stage.dim .fg2-sico{ background:rgba(148,180,255,.05); border-color:var(--line); color:var(--t4) }
+#helpView .fg2-stage.seen .fg2-stage-hit{ opacity:1; filter:none;
+  animation:fg2pop .4s var(--spring) both }
+@keyframes fg2pop{ from{ opacity:0; transform:translateY(16px) scale(.95) } to{ opacity:1; transform:none } }
+#helpView .fg2-stage.zap .fg2-stage-hit::after{
+  content:""; position:absolute; inset:-1px; border-radius:14px; pointer-events:none;
+  border:1px solid rgba(139,157,255,.9);
+  box-shadow:0 0 22px rgba(139,157,255,.55), inset 0 0 18px rgba(139,157,255,.28);
+  animation:fg2zap .6s var(--ease) forwards }
+@keyframes fg2zap{ from{ opacity:1; transform:scale(1) } to{ opacity:0; transform:scale(1.14) } }
+
+/* --- methodology: the rope ladder --------------------------------------- */
+#methodologyView .mt2-ladderbox{ position:relative }
+#methodologyView .mt2-rope{
+  position:absolute; left:31px; top:18px; width:2px; height:0; border-radius:2px; z-index:3;
+  background:linear-gradient(180deg,#EAF0FF,#8B9DFF 18%,#8B5CF6 62%,#34D399);
+  box-shadow:0 0 16px rgba(139,157,255,.85), 0 0 40px rgba(139,92,246,.35);
+  pointer-events:none; opacity:0; transition:opacity .3s linear }
+#methodologyView .mt2-rope.live{ opacity:1 }
+#methodologyView .mt2-rope::after{
+  content:""; position:absolute; left:50%; bottom:-5px; width:10px; height:10px;
+  margin-left:-5px; border-radius:50%; background:#EAF0FF;
+  box-shadow:0 0 16px 4px rgba(139,157,255,.9), 0 0 44px 10px rgba(139,92,246,.4) }
+#methodologyView .mt2-ladder.dropping .mt2-pipe{
+  opacity:0; transform:translateY(30px) scale(.98); pointer-events:none;
+  animation:none; transition:none }
+#methodologyView .mt2-ladder.dropping .mt2-pipe.seen{
+  opacity:1; transform:none; pointer-events:auto;
+  transition:opacity .34s var(--ease), transform .52s var(--spring) }
+#methodologyView .mt2-pipe.seen .pipe-n{ animation:mt2npop .55s var(--spring) both }
+@keyframes mt2npop{ 0%{ transform:scale(.6); } 55%{ transform:scale(1.12) rotate(-4deg) } 100%{ transform:scale(1) } }
+#methodologyView .mt2-ladder.dropping::after{ opacity:0 }
+@media (max-width:700px){
+  #methodologyView .mt2-rope{ left:23px }
+}
+
+/* ==========================================================================
+   9. PREMIUM CONTROL KIT - one button language for the whole product
+   ========================================================================== */
+.btn{
+  position:relative; overflow:hidden; isolation:isolate;
+  display:inline-flex; align-items:center; gap:9px;
+  font:700 12.5px/1 var(--font-display); letter-spacing:.01em;
+  padding:11px 18px; border-radius:12px; cursor:pointer;
+  transition:transform .2s var(--spring), box-shadow .24s var(--ease),
+             border-color .2s, background-color .2s, color .2s }
+.btn svg{ width:15px; height:15px; flex:0 0 auto; transition:transform .3s var(--spring) }
+.btn:active{ transform:translateY(1px) scale(.985) }
+.btn:focus-visible{ outline:2px solid var(--acc); outline-offset:3px }
+/* sheen sweep - compositor only */
+.btn::after{
+  content:""; position:absolute; top:0; bottom:0; left:-70%; width:45%; z-index:1;
+  transform:translateX(0) skewX(-18deg); opacity:0; pointer-events:none;
+  background:linear-gradient(100deg, transparent, rgba(255,255,255,.34), transparent) }
+.btn:hover::after{ animation:btnSheen .7s var(--ease) }
+@keyframes btnSheen{ from{ transform:translateX(0) skewX(-18deg); opacity:1 }
+  to{ transform:translateX(340%) skewX(-18deg); opacity:0 } }
+
+.btn-primary{
+  color:#071021; border:1px solid rgba(139,157,255,.5);
+  background-image:linear-gradient(135deg,#A5B4FF 0%,#8B9DFF 34%,#8B5CF6 100%);
+  box-shadow:0 2px 10px rgba(139,157,255,.34), 0 10px 30px rgba(139,92,246,.22),
+             inset 0 1px 0 rgba(255,255,255,.55), inset 0 -1px 0 rgba(7,16,33,.25) }
+.btn-primary:hover{ transform:translateY(-2px);
+  box-shadow:0 4px 14px rgba(139,157,255,.44), 0 16px 40px rgba(139,92,246,.30),
+             inset 0 1px 0 rgba(255,255,255,.6), inset 0 -1px 0 rgba(7,16,33,.25) }
+.btn-primary::after{ background:linear-gradient(100deg, transparent, rgba(255,255,255,.55), transparent) }
+
+.btn-ghost{
+  color:var(--t2); border:1px solid var(--boxln); background-image:var(--boxg-in);
+  box-shadow:0 1px 0 rgba(255,255,255,.03) inset, 0 6px 18px rgba(0,0,0,.28) }
+.btn-ghost:hover{ color:var(--t1); border-color:rgba(139,157,255,.42); transform:translateY(-2px);
+  box-shadow:0 1px 0 rgba(255,255,255,.05) inset, 0 12px 28px rgba(0,0,0,.38),
+             0 0 0 1px rgba(139,157,255,.12), 0 0 22px rgba(139,157,255,.10) }
+.btn-ghost:hover svg{ transform:translateX(-2px) }
+.btn-primary:hover svg{ transform:rotate(-8deg) scale(1.06) }
+
+/* nav refresh: the product's heartbeat control */
+#refreshBtn{ padding:10px 16px; border-radius:12px }
+#refreshBtn svg{ transition:transform .5s var(--spring) }
+#refreshBtn:hover svg{ transform:rotate(180deg) }
+#refreshBtn::before{
+  content:""; position:absolute; inset:-1px; border-radius:inherit; z-index:-1; opacity:.55;
+  background:radial-gradient(60% 120% at 50% 100%, rgba(139,157,255,.55), transparent 70%);
+  transition:opacity .25s }
+#refreshBtn:hover::before{ opacity:1 }
+#refreshBtn.refreshing svg{ animation:btnSpin 1s linear infinite }
+@keyframes btnSpin{ to{ transform:rotate(360deg) } }
+
+/* icon buttons + links get the same care */
+.iconbtn{ transition:color .18s, border-color .18s, background-color .18s, transform .2s var(--spring), box-shadow .22s }
+.iconbtn:hover{ transform:translateY(-1px); border-color:rgba(139,157,255,.4);
+  box-shadow:0 8px 20px rgba(0,0,0,.35), 0 0 0 1px rgba(139,157,255,.12) }
+.lnk{ transition:color .18s, border-color .18s, background-color .18s, transform .2s var(--spring) }
+.lnk:hover{ transform:translateY(-1px); border-color:rgba(139,157,255,.45); text-decoration:none }
+.dw-item{ transition:color .16s, background-color .16s, transform .18s var(--spring) }
+.dw-item:hover{ transform:translateX(3px) }
+
+/* methodology closing bar: note + actions, one premium plate */
+#methodologyView .mt2-foot{
+  display:flex; align-items:center; justify-content:space-between; gap:22px; flex-wrap:wrap;
+  position:relative; overflow:hidden; margin-top:30px; padding:0; border-radius:var(--rf);
+  border:1px solid var(--boxln); background:linear-gradient(168deg, rgba(15,21,36,.96), rgba(7,10,17,.98));
+  box-shadow:var(--boxsh) }
+#methodologyView .mt2-foot::before{
+  content:""; position:absolute; left:0; right:0; top:0; height:1px; pointer-events:none;
+  background:linear-gradient(90deg, transparent, rgba(139,157,255,.75) 30%, rgba(139,92,246,.55) 62%, transparent) }
+#methodologyView .mt2-foot > span{
+  flex:1 1 420px; padding:22px 26px; border-radius:0; background:none }
+#methodologyView .mt2-foot-btns{
+  display:flex; gap:10px; flex-wrap:wrap; padding:18px 22px; margin-left:auto; order:2 }
+@media (max-width:900px){
+  #methodologyView .mt2-foot{ flex-direction:column; align-items:stretch }
+  #methodologyView .mt2-foot-btns{ order:2; padding:4px 18px 18px }
+  #methodologyView .mt2-foot > span{ order:1; padding:20px 18px 6px }
+}
+
+/* ==========================================================================
+   10. PERFORMANCE: kill the repaint monsters, pause what nobody sees
+   ========================================================================== */
+/* a 100vw x full-height 48px-blur layer repainting on every scroll frame */
+#methodologyView #methodology::before,
+#methodologyView #methodology::after{ content:none !important }
+/* the hero halo animated a masked conic-gradient through a registered custom
+   property = full repaint every frame, forever. Static hairline instead. */
+.snap-panel::before{ animation:none !important; opacity:.42; will-change:opacity }
+/* blend-mode scanline over the snapshot panel repainted the panel each frame */
+.sp-scan{ mix-blend-mode:normal !important }
+/* blurred floating chips sat on top of an animating canvas: re-blur per frame */
+#helpView .fg2-float{ backdrop-filter:none; -webkit-backdrop-filter:none;
+  background:rgba(8,12,20,.86) }
+#helpView .fg2-orb-glow{ filter:none }
+/* nothing behind an opaque full-screen view needs to animate */
+body.pv-on .amb-deep .orb{ animation-play-state:paused }
+body.pv-on #prConstellation{ visibility:hidden }
+body.pv-on .snap-panel::before, body.pv-on .sp-scan{ animation-play-state:paused }
