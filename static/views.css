@@ -913,3 +913,12 @@ body.pv-on .snap-panel::before, body.pv-on .sp-scan{ animation-play-state:paused
 
 /* ---- ambient orbs: the 70px blur added nothing the gradients don't do --- */
 .amb-deep .orb{ filter:none !important; opacity:.55 }
+
+/* ==========================================================================
+   17. v3.5 - kill the UA grey button face
+   Chrome's dark color-scheme paints every <button> with a #6B6B6B face when
+   no author background-COLOR is set. Our glass buttons only set translucent
+   background-IMAGES, so the grey bled through the stage cards, hero chips,
+   expand button and ghost buttons. Glass or nothing:
+   ========================================================================== */
+button{ background-color:transparent }
