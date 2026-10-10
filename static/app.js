@@ -752,12 +752,17 @@
         });
       });
     }
+    /* paint the arcs inline: the numbers are already in the markup, and an
+       inline dasharray beats any cascade/transition quirk - the matrix can
+       never render grey again. The CSS transition still animates it, so the
+       circling reveal stays. */
+    paintDonuts($("#catbars"));
     /* circling reveal on first view */
     const box = $("#catbars");
     if (box) {
       if (!box._donutObs && "IntersectionObserver" in window) {
         box._donutObs = new IntersectionObserver((es) => { es.forEach(en => {
-          if (en.isIntersecting) { box.classList.add("drawn"); box.dataset.drawn = "1"; box._donutObs.disconnect(); } });
+          if (en.isIntersecting) { box.classList.add("drawn"); box.dataset.drawn = "1"; paintDonuts(box); box._donutObs.disconnect(); } });
         }, { threshold: .05, rootMargin: "0px 0px -4% 0px" });
       }
       /* never gate the colours on the observer alone: if any part of the
@@ -768,11 +773,42 @@
         const r0 = box.getBoundingClientRect(), vh = window.innerHeight || 800;
         onScreen = r0.top < vh * .92 && r0.bottom > 0;
       } catch (e) { onScreen = true; }
-      if (box.dataset.drawn === "1" || onScreen) { box.classList.add("drawn"); box.dataset.drawn = "1"; if (box._donutObs) box._donutObs.disconnect(); }
+      if (box.dataset.drawn === "1" || onScreen) { box.classList.add("drawn"); box.dataset.drawn = "1"; paintDonuts(box); if (box._donutObs) box._donutObs.disconnect(); }
       else if (box._donutObs) { try { box._donutObs.observe(box); } catch (e) { box.classList.add("drawn"); } }
       else box.classList.add("drawn");
+      /* belt & braces: a plain scroll check as well, so no environment can
+         leave the matrix grey (starved observer callbacks included) */
+      if (box.dataset.drawn !== "1" && !box._scrollFallback) {
+        box._scrollFallback = true;
+        let q = 0;
+        const check = () => {
+          q = 0;
+          if (box.dataset.drawn === "1") { removeEventListener("scroll", onScroll); return; }
+          const r = box.getBoundingClientRect(), vh = window.innerHeight || 800;
+          if (r.top < vh * .9 && r.bottom > 0) {
+            box.classList.add("drawn"); box.dataset.drawn = "1"; paintDonuts(box);
+            if (box._donutObs) box._donutObs.disconnect();
+            removeEventListener("scroll", onScroll);
+          }
+        };
+        const onScroll = () => { if (!q) q = requestAnimationFrame(check); };
+        addEventListener("scroll", onScroll, { passive: true });
+      }
     }
     bindCatbars();
+  }
+  function paintDonuts(box) {
+    if (!box) return;
+    Array.prototype.forEach.call(box.querySelectorAll(".dn-arc"), (arc) => {
+      if (arc.classList.contains("dn-track")) return;
+      const da = parseFloat(arc.style.getPropertyValue("--da")) || 0;
+      const doff = parseFloat(arc.style.getPropertyValue("--do")) || 0;
+      const don = arc.closest(".donut");
+      const circ = parseFloat(don ? don.style.getPropertyValue("--circ") : 0) || 0;
+      if (!circ) return;
+      arc.style.strokeDasharray = da.toFixed(1) + " " + Math.max(0, circ - da).toFixed(1);
+      arc.style.strokeDashoffset = doff.toFixed(1);
+    });
   }
   let catbarsBound = false;
   function bindCatbars() {
@@ -1237,6 +1273,9 @@
     else if (state.view === "leaderboard") renderLeaderboard(apps);
     else renderOpportunities(apps);
     scanNums($("#viewContent")); scanBars($("#viewContent"));
+    /* the atlas is a poster, not a list window: never an inner scrollbar */
+    const vc0 = $("#viewContent");
+    if (vc0) vc0.classList.toggle("atlas-flat", state.view === "atlas");
     syncPlateFit();
   }
   /* A plate whose content FITS must not stay a scroll container: a

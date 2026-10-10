@@ -805,3 +805,14 @@ body.pv-on .snap-panel::before, body.pv-on .sp-scan{ animation-play-state:paused
    !important because a legacy mobile layer locks the plate with
    !important (styles.css ~5386) - a fitting plate must win. */
 #viewContent.scroller.fits{ overflow:visible !important; max-height:none !important }
+
+/* ==========================================================================
+   15. v2.9 - the atlas is a poster: no inner scrollbar, ever
+   ========================================================================== */
+#viewContent.scroller.atlas-flat{
+  overflow:visible !important; max-height:none !important;
+  -webkit-mask-image:none !important; mask-image:none !important }
+#viewContent.scroller.atlas-flat .atlas-field{ height:clamp(340px, 56vh, 620px) }
+@media (max-width:700px){
+  #viewContent.scroller.atlas-flat .atlas-field{ height:clamp(300px, 66vw, 460px) }
+}
