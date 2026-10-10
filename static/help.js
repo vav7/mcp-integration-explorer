@@ -416,14 +416,31 @@
     { n: "Maintenance", w: 16, c: "#FBBF24", stage: 4 },
     { n: "Availability", w: 12, c: "#38BDF8", stage: 5 },
   ];
-  /* ladder-fall entrance: pure CSS stagger, re-triggered on every open */
+  /* Ladder reveal: rungs wait off-stage and fall into place ONE BY ONE as
+     they enter the window (IntersectionObserver on the scrolling view).
+     No clock, no line - the scroll itself is the sequencer. */
+  let ladderIO = null;
   function replayLadder() {
     if (!mview) return;
     const ladder = $(".mt2-ladder", mview);
     if (!ladder) return;
-    ladder.classList.remove("stack");
-    void ladder.offsetWidth;
-    ladder.classList.add("stack");
+    const cards = $$(".mt2-pipe", ladder);
+    if (ladderIO) { ladderIO.disconnect(); ladderIO = null; }
+    cards.forEach(c => { c.classList.remove("in-view"); c.style.animationDelay = ""; });
+    if (reduced || !("IntersectionObserver" in window)) {
+      cards.forEach(c => c.classList.add("in-view"));
+      return;
+    }
+    ladderIO = new IntersectionObserver((es) => {
+      let k = 0;
+      es.forEach(en => {
+        if (!en.isIntersecting) return;
+        en.target.style.animationDelay = (k++ * 90) + "ms";
+        en.target.classList.add("in-view");
+        ladderIO.unobserve(en.target);
+      });
+    }, { root: mview, rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+    cards.forEach(c => ladderIO.observe(c));
   }
 
   function bootMethodology() {
@@ -511,6 +528,7 @@
      7. open / close orchestration
      ====================================================================== */
   let booted = false;
+  let helpBootTimer = 0;
   function boot() {
     if (booted) return;
     booted = true;
@@ -525,12 +543,21 @@
       : '<span class="led off"></span>snapshot mode';
   }
   function onHelpOpen() {
-    boot();
-    const orb = document.getElementById("fgOrb");
-    if (orb && orb._start) orb._start();
-    seqStart();
+    /* let the window entrance (pvIn + head rise, ~340ms) finish before any
+       canvas boot or measurement touches the main thread - opening Help must
+       feel exactly like opening Pricing / Intelligence / Methodology */
+    if (helpBootTimer) clearTimeout(helpBootTimer);
+    helpBootTimer = setTimeout(() => {
+      helpBootTimer = 0;
+      if (!view.classList.contains("open")) return;
+      boot();
+      const orb = document.getElementById("fgOrb");
+      if (orb && orb._start) orb._start();
+      seqStart();
+    }, 430);
   }
   function onHelpClose() {
+    if (helpBootTimer) { clearTimeout(helpBootTimer); helpBootTimer = 0; }
     const orb = document.getElementById("fgOrb");
     if (orb && orb._stop) orb._stop();
     seqStop();

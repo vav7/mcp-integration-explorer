@@ -377,15 +377,13 @@
 #methodologyView .mt2-legend button:hover, #methodologyView .mt2-legend button.on{ color:var(--t1) }
 
 /* --- the ladder ---------------------------------------------------------- */
-#methodologyView .mt2-ladder{ position:relative; list-style:none; margin:30px 0 0; padding:0 0 0 0; gap:14px; display:grid }
-#methodologyView .mt2-ladder::before{
-  content:""; position:absolute; left:31px; top:18px; bottom:18px; width:2px; border-radius:2px;
-  background:linear-gradient(180deg, rgba(139,157,255,.05), rgba(139,157,255,.16), rgba(139,92,246,.05)); }
-#methodologyView .mt2-ladder::after{
-  content:""; position:absolute; left:31px; top:18px; width:2px; border-radius:2px;
-  height:calc((100% - 36px) * var(--spine, 0));
-  background:linear-gradient(180deg, #8B9DFF, #8B5CF6 70%, #34D399);
-  box-shadow:0 0 14px rgba(139,157,255,.75); transition:height .18s linear }
+#methodologyView .mt2-ladder{ position:relative; list-style:none; margin:30px 0 0; padding:0; gap:14px; display:grid }
+/* the legacy vertical rail line is gone too - nothing falls, nothing chases */
+#methodologyView .pipeline::before, #methodologyView .pipeline::after{ content:none !important }
+/* rungs wait off-stage until they enter the window, then fall into place */
+#methodologyView .mt2-pipe{ opacity:0; transform:translateY(-30px) scale(.985) }
+#methodologyView .mt2-pipe.in-view{ opacity:1; transform:none;
+  animation:mt2rung .5s var(--spring) both }
 #methodologyView .mt2-pipe{
   position:relative; display:block; padding:0; border-radius:var(--rf);
   border:1px solid var(--boxln); background-image:var(--boxg); box-shadow:var(--boxsh);
@@ -453,7 +451,6 @@
 #helpView.open .fg2-cta{ animation:pvUp .55s var(--ease) .3s both }
 #methodologyView.open .mt2-strip{ animation:pvUp .55s var(--ease) .12s both }
 #methodologyView.open .mt2-spec{ animation:pvUp .55s var(--ease) .18s both }
-#methodologyView.open .mt2-pipe{ animation:pvCard .6s var(--spring) both; animation-delay:calc(.22s + var(--i, 0) * 80ms) }
 #methodologyView.open .mt2-foot{ animation:pvUp .5s var(--ease) .5s both }
 
 @media (max-width:1120px){
@@ -531,9 +528,6 @@
   0%{ opacity:0; transform:translateY(-34px) scale(.985) }
   60%{ opacity:1 }
   100%{ opacity:1; transform:none } }
-#methodologyView .mt2-ladder.stack .mt2-pipe{
-  animation:mt2rung .52s var(--spring) both;
-  animation-delay:calc(var(--i, 0) * 95ms) }
 /* the clicked rung's number: same dark-glass glow as the Refresh button */
 #methodologyView .pipe-n{ position:relative }
 #methodologyView .mt2-pipe.open .pipe-n{
@@ -655,6 +649,14 @@ body.pv-on .amb-deep .orb{ animation-play-state:paused }
 body.pv-on #prConstellation{ visibility:hidden }
 body.pv-on .snap-panel::before, body.pv-on .sp-scan{ animation-play-state:paused }
 
+/* ---- intelligence: equal instruments, filled charts -------------------- */
+#intelligenceView .an-grid.an-2up{ grid-auto-rows:1fr }
+#intelligenceView .an-card{ display:flex; flex-direction:column; height:100% }
+#intelligenceView .an-card .an-b{ flex:1 1 auto; min-height:0 }
+#intelligenceView .an-card .an-h{ align-items:flex-start }
+#intelligenceView .iv-spark .ivs-box{ height:96px }
+#intelligenceView .an-note{ margin-top:auto }
+
 /* ==========================================================================
    11. v2.3 - DARK PREMIUM CONTROLS + INK DRAWER + STEPPED ROPE
    No candy-bright gradients: controls are dark glass with a violet edge,
@@ -696,3 +698,24 @@ body.pv-on .snap-panel::before, body.pv-on .sp-scan{ animation-play-state:paused
 .dw-scrim{ background:rgba(1,2,5,.76) }
 .dw-chips .dw-empty{ color:var(--t4) }
 
+
+
+/* ==========================================================================
+   12. v2.5 - atlas discs: covered glass, premium depth
+   ========================================================================== */
+.atlas-node{
+  border-radius:50%;
+  background:radial-gradient(circle at 32% 26%, rgba(255,255,255,.16), rgba(13,19,34,.55) 52%, rgba(6,9,16,.78));
+  box-shadow:0 10px 26px rgba(0,0,0,.52), inset 0 1px 0 rgba(255,255,255,.10),
+             inset 0 -6px 14px rgba(0,0,0,.42);
+  transition:transform .22s var(--spring), box-shadow .24s, filter .2s }
+.atlas-node .applogo{ border-radius:50%; overflow:hidden;
+  box-shadow:0 2px 8px rgba(0,0,0,.45) }
+.atlas-node:hover{ scale:1.12; filter:none; z-index:6;
+  box-shadow:0 16px 36px rgba(0,0,0,.6), 0 0 0 1px rgba(139,157,255,.35),
+             0 0 26px rgba(139,157,255,.28), inset 0 1px 0 rgba(255,255,255,.14) }
+/* glass cover over each disc so the field reads as instruments, not stickers */
+.atlas-node .applogo::before{
+  content:""; position:absolute; inset:0; border-radius:50%; pointer-events:none; z-index:2;
+  background:linear-gradient(180deg, rgba(255,255,255,.20), rgba(255,255,255,.03) 44%, transparent 58%),
+             radial-gradient(130% 95% at 50% 118%, rgba(3,6,12,.62), transparent 62%) }

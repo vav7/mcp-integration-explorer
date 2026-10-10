@@ -1417,7 +1417,8 @@
       const ox = narrow ? 0 : ((a.app.id * 41) % 9 - 4) * 1.8;
       const oy = narrow ? 0 : ((a.app.id * 23) % 7 - 3) * 1.5;
       const size = narrow ? 17 : 33 + Math.min(11, Math.log10(stars + 1) * 3.6);
-      pos.set(a.app.id, { x: (best[0] + .5) / XB * 100, y: (best[1] + .5) / YB * 100,
+      /* pad the field so edge discs are never clipped by the rounded frame */
+      pos.set(a.app.id, { x: 4 + (best[0] + .5) / XB * 92, y: 6 + (best[1] + .5) / YB * 88,
         size, depth: 4 + Math.min(5, Math.log10(stars + 1) * 2), ox, oy });
     });
     let nodes = "";
@@ -1453,14 +1454,30 @@
     contentView = "atlas";
     bindAtlas();
   }
+  /* While the field is scrolling, nodes slide under a resting cursor and
+     pointerover would fire a tooltip rebuild (innerHTML + 3 rects) per node
+     crossed - that is what made the wheel feel dead over the atlas. */
+  let atlasScrollUntil = 0;
+  function bindAtlasScrollGuard() {
+    if (bindAtlasScrollGuard.on) return; bindAtlasScrollGuard.on = true;
+    const bump = () => { atlasScrollUntil = Date.now() + 200; };
+    addEventListener("scroll", bump, { passive: true });
+    addEventListener("wheel", bump, { passive: true });
+    const vc = $("#viewContent"); if (vc) vc.addEventListener("scroll", bump, { passive: true });
+  }
   function bindAtlas() {
     const f = $("#atlasField"); if (!f || atlasBoundEl === f) return;
     atlasBoundEl = f;
-    f.addEventListener("pointerleave", () => { const t = $("#atlasTip"); if (t) { t.hidden = true; t.classList.remove("show"); } });
+    bindAtlasScrollGuard();
+    let tipNode = null;
+    f.addEventListener("pointerleave", () => { tipNode = null; const t = $("#atlasTip"); if (t) { t.hidden = true; t.classList.remove("show"); } });
     f.addEventListener("pointerover", (e) => {
+      if (Date.now() < atlasScrollUntil) return;          /* scrolling: skip */
       const n = e.target.closest("[data-id]"); const t = $("#atlasTip");
       if (!t) return;
-      if (!n) { t.hidden = true; t.classList.remove("show"); return; }
+      if (!n) { tipNode = null; t.hidden = true; t.classList.remove("show"); return; }
+      if (n === tipNode && !t.hidden) return;             /* same node: skip */
+      tipNode = n;
       const a = (state.snap.apps || []).find(x => x.app.id === +n.dataset.id);
       if (!a) return;
       const gh = a.github || {};
