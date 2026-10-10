@@ -758,9 +758,17 @@
       if (!box._donutObs && "IntersectionObserver" in window) {
         box._donutObs = new IntersectionObserver((es) => { es.forEach(en => {
           if (en.isIntersecting) { box.classList.add("drawn"); box.dataset.drawn = "1"; box._donutObs.disconnect(); } });
-        }, { threshold: .2 });
+        }, { threshold: .05, rootMargin: "0px 0px -4% 0px" });
       }
-      if (box.dataset.drawn === "1") box.classList.add("drawn");
+      /* never gate the colours on the observer alone: if any part of the
+         matrix is on screen (or the box is taller than the viewport), draw
+         now - a starved callback must never leave grey donuts behind */
+      let onScreen = false;
+      try {
+        const r0 = box.getBoundingClientRect(), vh = window.innerHeight || 800;
+        onScreen = r0.top < vh * .92 && r0.bottom > 0;
+      } catch (e) { onScreen = true; }
+      if (box.dataset.drawn === "1" || onScreen) { box.classList.add("drawn"); box.dataset.drawn = "1"; if (box._donutObs) box._donutObs.disconnect(); }
       else if (box._donutObs) { try { box._donutObs.observe(box); } catch (e) { box.classList.add("drawn"); } }
       else box.classList.add("drawn");
     }
@@ -1229,6 +1237,24 @@
     else if (state.view === "leaderboard") renderLeaderboard(apps);
     else renderOpportunities(apps);
     scanNums($("#viewContent")); scanBars($("#viewContent"));
+    syncPlateFit();
+  }
+  /* A plate whose content FITS must not stay a scroll container: a
+     non-scrollable overflow:auto box captures touch gestures and, at zero
+     scroll range, the page behind feels frozen (mobile atlas/explorer).
+     Drop the scroller entirely when there is nothing to scroll. */
+  function syncPlateFit() {
+    const vc = $("#viewContent");
+    if (!vc || !vc.classList.contains("scroller")) return;
+    vc.classList.remove("fits");
+    let fits = false;
+    try {
+      /* both axes must fit: overflow-y:visible computes back to auto when
+         the other axis stays a scroll axis, which would keep swallowing
+         touch gestures exactly as before */
+      fits = vc.scrollHeight <= vc.clientHeight + 4 && vc.scrollWidth <= vc.clientWidth + 4;
+    } catch (e) {}
+    vc.classList.toggle("fits", fits);
   }
   function match(a) {
     if (state.cat && a.app.category !== state.cat) return false;
@@ -1381,6 +1407,186 @@
      five pulse as live signals, and the legend isolates populations.
      touch-action: pan-y keeps phone scrolling fluid over the field. */
   let atlasBoundEl = null;   /* the field is rebuilt on re-render: bind per instance */
+  /* ======================================================================
+     ATLAS v3 - ONE static canvas instead of ~100 DOM buttons + ~100 remote
+     favicons + per-node bloom animations + hover filters.
+     Draw once; redraw only on hover change, resize or data change. No rAF
+     loop, no network on first paint (glass discs + initials; favicons fade
+     in later, idle-time, progressively). Wheel and touch pass straight
+     through to the page, so scrolling over the field never feels frozen.
+     ====================================================================== */
+  const ATLAS = { nodes: [], hover: -1, dim: new Set(), imgs: new Map(),
+                  canvas: null, ctx: null, field: null, tip: null, W: 0, H: 0, dpr: 1 };
+  const STATUS_RING = { vendor_official: "#34D399", community: "#8B5CF6",
+    none: "rgba(148,160,190,.55)", unknown: "rgba(148,160,190,.40)", pending: "rgba(245,158,11,.55)" };
+
+  function atlasSize() {
+    const f = ATLAS.field;
+    if (!f || !ATLAS.canvas) return;
+    const w = f.clientWidth, h = f.clientHeight;
+    if (!w || !h) return;
+    ATLAS.dpr = Math.min(window.devicePixelRatio || 1, 2);
+    ATLAS.W = w; ATLAS.H = h;
+    ATLAS.canvas.width = Math.round(w * ATLAS.dpr);
+    ATLAS.canvas.height = Math.round(h * ATLAS.dpr);
+    ATLAS.ctx.setTransform(ATLAS.dpr, 0, 0, ATLAS.dpr, 0, 0);
+    for (const n of ATLAS.nodes) { n.x = n.fx / 100 * w; n.y = n.fy / 100 * h; }
+  }
+  function atlasDraw() {
+    const c = ATLAS.ctx;
+    if (!c || !ATLAS.W) return;
+    c.clearRect(0, 0, ATLAS.W, ATLAS.H);
+    for (const n of ATLAS.nodes) {
+      const dim = ATLAS.dim.has(n.status);
+      const hov = ATLAS.hover === n.i;
+      const r = Math.max(6, n.r * (hov ? 1.12 : 1));
+      c.globalAlpha = dim ? .15 : 1;
+      if ((n.hot || hov) && !dim) {
+        c.beginPath();
+        c.fillStyle = hov ? "rgba(139,157,255,.20)" : "rgba(139,157,255,.09)";
+        c.arc(n.x, n.y, r + (hov ? 12 : 8), 0, 6.2832); c.fill();
+      }
+      const g = c.createRadialGradient(n.x - r * .35, n.y - r * .4, r * .1, n.x, n.y, r);
+      g.addColorStop(0, "rgba(40,50,78,.96)");
+      g.addColorStop(.55, "rgba(16,22,38,.96)");
+      g.addColorStop(1, "rgba(8,11,20,.98)");
+      c.beginPath(); c.fillStyle = g; c.arc(n.x, n.y, r, 0, 6.2832); c.fill();
+      const img = ATLAS.imgs.get(n.id);
+      c.save();
+      c.beginPath(); c.arc(n.x, n.y, r - 1.5, 0, 6.2832); c.clip();
+      if (img && img.complete && img.naturalWidth) {
+        c.drawImage(img, n.x - r + 1.5, n.y - r + 1.5, (r - 1.5) * 2, (r - 1.5) * 2);
+        const v = c.createLinearGradient(n.x, n.y - r, n.x, n.y + r);
+        v.addColorStop(0, "rgba(255,255,255,.13)");
+        v.addColorStop(.45, "rgba(255,255,255,.02)");
+        v.addColorStop(1, "rgba(3,6,12,.34)");
+        c.fillStyle = v; c.fillRect(n.x - r, n.y - r, r * 2, r * 2);
+      } else {
+        c.fillStyle = n.ring;
+        c.font = "700 " + Math.max(9, Math.round(r * .8)) + "px ui-monospace, monospace";
+        c.textAlign = "center"; c.textBaseline = "middle";
+        c.fillText(n.initial, n.x, n.y + 1);
+      }
+      c.restore();
+      c.beginPath();
+      c.lineWidth = hov ? 2.4 : 1.6;
+      c.strokeStyle = hov ? "#8B9DFF" : n.ring;
+      c.arc(n.x, n.y, r - .8, 0, 6.2832); c.stroke();
+      c.beginPath();
+      c.lineWidth = 1;
+      c.strokeStyle = "rgba(255,255,255,.16)";
+      c.arc(n.x, n.y, r - 1.5, Math.PI * 1.15, Math.PI * 1.85); c.stroke();
+      c.globalAlpha = 1;
+    }
+  }
+  let atlasDrawQ = false;
+  function atlasQueueDraw() {
+    if (atlasDrawQ) return;
+    atlasDrawQ = true;
+    requestAnimationFrame(() => { atlasDrawQ = false; atlasDraw(); });
+  }
+  function atlasLoadLogos(list) {
+    const idle = window.requestIdleCallback || ((fn) => setTimeout(fn, 400));
+    let i = 0;
+    const step = () => {
+      let budget = 6;
+      while (i < list.length && budget-- > 0) {
+        const a = list[i++];
+        const dom = a.app.website ? String(a.app.website).replace(/^https?:\/\//, "").split("/")[0] : "";
+        if (!dom || ATLAS.imgs.has(a.app.id)) continue;
+        const im = new Image();
+        im.decoding = "async";
+        im.onload = () => atlasQueueDraw();
+        im.onerror = () => {};
+        im.src = "https://www.google.com/s2/favicons?domain=" + encodeURIComponent(dom) + "&sz=64";
+        ATLAS.imgs.set(a.app.id, im);
+      }
+      if (i < list.length) idle(step);
+    };
+    idle(step);
+  }
+  function atlasHit(mx, my) {
+    let best = -1, bd = 1e9;
+    for (const n of ATLAS.nodes) {
+      if (ATLAS.dim.has(n.status)) continue;
+      const dx = mx - n.x, dy = my - n.y, d = dx * dx + dy * dy;
+      const rr = (n.r + 5) * (n.r + 5);
+      if (d < rr && d < bd) { bd = d; best = n.i; }
+    }
+    return best;
+  }
+  function atlasTipShow(n) {
+    const t = ATLAS.tip, f = ATLAS.field;
+    if (!t || !f) return;
+    const a = n.app, gh = a.github || {};
+    t.innerHTML = "<div class=\"at-nm\">" + logoHtml(a) + "<b>" + esc(a.app.name) + "</b></div>" +
+      "<div class=\"at-meta\"><span class=\"grade " + esc(a.readiness.grade) + "\">" + esc(a.readiness.grade) + " · " + a.readiness.score + "</span><span>" + esc(a.app.category) + "</span></div>" +
+      "<div class=\"at-figs\"><span>" + (STATUS_LABEL[a.mcp.status] || "") + "</span><span>" + (a.tools_count ? a.tools_count + " tools" : "no live tools") + "</span><span>" + (gh.stars ? fmtNum(gh.stars) + " stars" : "-") + "</span><span>" + (dlOf(a) ? fmtNum(dlOf(a)) + "/mo" : "-") + "</span></div>" +
+      "<div class=\"at-tip-bar\"><i style=\"width:" + Math.max(2, Math.min(100, a.readiness.score || 0)) + "%\"></i></div>" +
+      "<div class=\"at-tip-st\"><span class=\"hint\">click for the full dossier</span>" + (a.app.website ? "<a class=\"lnk\" href=\"" + esc(a.app.website) + "\" target=\"_blank\" rel=\"noopener\">site ↗</a>" : "") + "</div>";
+    t.hidden = false;
+    const fr = f.getBoundingClientRect();
+    const tw = t.offsetWidth, th = t.offsetHeight;
+    const tx = Math.max(12, Math.min(fr.width - tw - 12, n.x - tw / 2));
+    let ty = n.y - n.r - 10 - th;
+    if (ty < 6) ty = Math.min(fr.height - th - 6, n.y + n.r + 10);
+    t.style.left = tx + "px"; t.style.top = Math.max(6, ty) + "px";
+    t.classList.add("show");
+  }
+  function atlasTipHide() {
+    const t = ATLAS.tip;
+    if (t) { t.hidden = true; t.classList.remove("show"); }
+  }
+  /* While the field scrolls, nodes slide under a resting cursor; rebuilding
+     the tooltip per node crossed is what made wheels feel dead over the
+     atlas. Suppress hover work during scroll and for repeat hovers. */
+  let atlasScrollUntil = 0;
+  function bindAtlasScrollGuard() {
+    if (bindAtlasScrollGuard.on) return; bindAtlasScrollGuard.on = true;
+    const bump = () => { atlasScrollUntil = Date.now() + 200; };
+    addEventListener("scroll", bump, { passive: true });
+    addEventListener("wheel", bump, { passive: true });
+    const vc = $("#viewContent"); if (vc) vc.addEventListener("scroll", bump, { passive: true });
+  }
+  function bindAtlas() {
+    const f = $("#atlasField");
+    if (!f || atlasBoundEl === f) return;
+    atlasBoundEl = f;
+    ATLAS.field = f;
+    ATLAS.canvas = f.querySelector("canvas");
+    ATLAS.tip = $("#atlasTip", f);
+    if (!ATLAS.canvas) return;
+    ATLAS.ctx = ATLAS.canvas.getContext("2d");
+    atlasSize(); atlasDraw();
+    bindAtlasScrollGuard();
+    let moveQ = 0, lastX = -1, lastY = -1;
+    f.addEventListener("pointermove", (e) => {
+      if (moveQ || Date.now() < atlasScrollUntil) return;
+      lastX = e.clientX; lastY = e.clientY;
+      moveQ = requestAnimationFrame(() => {
+        moveQ = 0;
+        const fr = f.getBoundingClientRect();
+        const h = atlasHit(lastX - fr.left, lastY - fr.top);
+        if (h === ATLAS.hover) return;
+        ATLAS.hover = h;
+        f.style.cursor = h >= 0 ? "pointer" : "";
+        atlasDraw();
+        if (h >= 0) atlasTipShow(ATLAS.nodes[h]); else atlasTipHide();
+      });
+    }, { passive: true });
+    f.addEventListener("pointerleave", () => {
+      ATLAS.hover = -1; atlasTipHide(); atlasQueueDraw();
+    });
+    f.addEventListener("click", (e) => {
+      const fr = f.getBoundingClientRect();
+      const h = atlasHit(e.clientX - fr.left, e.clientY - fr.top);
+      if (h >= 0) openModal(ATLAS.nodes[h].id, null);
+    });
+    if (!bindAtlas.resized) {
+      bindAtlas.resized = true;
+      addEventListener("resize", debounce(() => { atlasSize(); atlasDraw(); }, 160), { passive: true });
+    }
+  }
   function renderAtlas(apps) {
     const list = apps.filter(match);
     const sig = "atlas|" + list.map(rowSig).join(",") + "|" + state.compare.join(".") + "|" + state.sortKey + state.sortDir;
@@ -1392,13 +1598,11 @@
     const counts = { vendor_official: 0, community: 0, none: 0 };
     list.forEach(a => { if (a.mcp.status in counts) counts[a.mcp.status]++; });
     const hot = new Set([...list].sort((a, b) => (b.readiness.score || 0) - (a.readiness.score || 0)).slice(0, 5).map(a => a.app.id));
-    /* BOTH modes: desired cell from adoption x readiness, conflicts resolved
-       to the nearest free cell. One app per cell -> overlap is impossible by
-       construction, at every viewport, with no collision resolver needed. */
+    /* same honest grid as before: adoption x readiness, one app per cell */
     const narrow = window.innerWidth < 700;
     const XB = narrow ? 10 : 14, YB = narrow ? 10 : 8;
     const used = new Set();
-    const pos = new Map();
+    const placed = [];
     list.forEach(a => {
       const xr = xRank.get(a.app.id) ?? .5;
       const xb0 = Math.min(XB - 1, Math.floor(xr * XB));
@@ -1407,34 +1611,34 @@
       for (let xb = 0; xb < XB; xb++) for (let yb = 0; yb < YB; yb++) {
         const kk = xb + "_" + yb;
         if (used.has(kk)) continue;
-        /* readiness is the honest axis - keep dy truer than dx */
         const d = Math.abs(xb - xb0) * 1.2 + Math.abs(yb - yb0);
         if (d < bd) { bd = d; best = [xb, yb]; }
       }
       if (!best) best = [xb0, yb0];
       used.add(best[0] + "_" + best[1]);
-      const stars = (a.github && a.github.stars) || 0;
-      /* small deterministic in-cell offset keeps the field organic, never grid-dull */
-      const ox = narrow ? 0 : ((a.app.id * 41) % 9 - 4) * 1.8;
-      const oy = narrow ? 0 : ((a.app.id * 23) % 7 - 3) * 1.5;
-      const size = narrow ? 17 : 33 + Math.min(11, Math.log10(stars + 1) * 3.6);
-      /* pad the field so edge discs are never clipped by the rounded frame */
-      pos.set(a.app.id, { x: 4 + (best[0] + .5) / XB * 92, y: 6 + (best[1] + .5) / YB * 88,
-        size, depth: 4 + Math.min(5, Math.log10(stars + 1) * 2), ox, oy });
+      placed.push({ a, xb: best[0], yb: best[1] });
     });
-    let nodes = "";
-    list.forEach(a => {
-      const p = pos.get(a.app.id); if (!p) return;
-      const depth = p.depth.toFixed ? p.depth.toFixed(1) : p.depth;
-      const tag = (!narrow && hot.has(a.app.id)) ? "<span class=\"at-tag\">" + esc(a.app.name) + "</span>" : "";
-      nodes += "<button type=\"button\" class=\"atlas-node " + esc(a.mcp.status) + (hot.has(a.app.id) ? " hot" : "") + "\" style=\"left:" + p.x.toFixed(2) + "%;top:" + p.y.toFixed(2) + "%;--s:" + Math.round(p.size) + "px;--d:" + depth + ";--ox:" + p.ox.toFixed(1) + "px;--oy:" + p.oy.toFixed(1) + "px;--i:" + Math.min(nodes.length / 90, 26) + "\" data-id=\"" + a.app.id + "\" aria-label=\"" + esc(a.app.name) + "\">" + logoHtml(a) + tag + "</button>";
+    ATLAS.nodes = placed.map((p, i) => {
+      const a = p.a, stars = (a.github && a.github.stars) || 0;
+      return {
+        i, id: a.app.id, app: a,
+        fx: 4 + (p.xb + .5) / XB * 92, fy: 6 + (p.yb + .5) / YB * 88,
+        r: narrow ? 10 : 15 + Math.min(7, Math.log10(stars + 1) * 2.1),
+        status: a.mcp.status,
+        ring: STATUS_RING[a.mcp.status] || STATUS_RING.none,
+        initial: (a.app.name || "?").trim().charAt(0).toUpperCase(),
+        hot: hot.has(a.app.id), x: 0, y: 0,
+      };
     });
+    ATLAS.hover = -1;
+    window.__atlas = ATLAS; window.__atlasStage = "nodes";
     $("#viewContent").innerHTML = "<div class=\"atlas-field\" id=\"atlasField\">" +
       "<div class=\"atlas-gridbg\" aria-hidden=\"true\"></div>" +
       "<div class=\"atlas-axis ax-y\" aria-hidden=\"true\"><span>readiness \u2191</span></div>" +
       "<div class=\"atlas-axis ax-x\" aria-hidden=\"true\"><span>adoption \u2192</span></div>" +
+      "<canvas id=\"atlasCanvas\"></canvas>" +
       "<div class=\"atlas-tip\" id=\"atlasTip\" hidden></div>" +
-      (nodes || "<div class=\"empty\" style=\"position:absolute;inset:0;display:grid;place-items:center\">No apps match those filters.</div>") +
+      (ATLAS.nodes.length ? "" : "<div class=\"empty\" style=\"position:absolute;inset:0;display:grid;place-items:center\">No apps match those filters.</div>") +
       "</div>" +
       "<div class=\"atlas-legend\">" +
       "<span data-dim=\"vendor_official\" role=\"button\" tabindex=\"0\"><i class=\"lg-dot o\"></i>Official <b>" + counts.vendor_official + "</b></span>" +
@@ -1443,61 +1647,19 @@
       "<span class=\"hint\">node size = repo stars · ring = status · tap a node for the dossier</span>" +
       "</div>";
     Array.prototype.forEach.call(document.querySelectorAll("#viewContent .atlas-legend [data-dim]"), (ch) => {
-      ch.onclick = () => {
-        const fld = $("#atlasField"); if (!fld) return;
-        fld.classList.toggle("hide-" + ch.dataset.dim);
+      const toggle = () => {
+        ATLAS.dim.has(ch.dataset.dim) ? ATLAS.dim.delete(ch.dataset.dim) : ATLAS.dim.add(ch.dataset.dim);
         ch.classList.toggle("off");
+        atlasQueueDraw();
       };
+      ch.onclick = toggle;
+      ch.onkeydown = (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); } };
     });
-    /* Keep atlas logos lazy on every device. Eagerly decoding 100 remote
-       favicons here blocks first paint and creates a burst of network and
-       image-decode work exactly when the atlas opens. */
     contentView = "atlas";
     bindAtlas();
-  }
-  /* While the field is scrolling, nodes slide under a resting cursor and
-     pointerover would fire a tooltip rebuild (innerHTML + 3 rects) per node
-     crossed - that is what made the wheel feel dead over the atlas. */
-  let atlasScrollUntil = 0;
-  function bindAtlasScrollGuard() {
-    if (bindAtlasScrollGuard.on) return; bindAtlasScrollGuard.on = true;
-    const bump = () => { atlasScrollUntil = Date.now() + 200; };
-    addEventListener("scroll", bump, { passive: true });
-    addEventListener("wheel", bump, { passive: true });
-    const vc = $("#viewContent"); if (vc) vc.addEventListener("scroll", bump, { passive: true });
-  }
-  function bindAtlas() {
-    const f = $("#atlasField"); if (!f || atlasBoundEl === f) return;
-    atlasBoundEl = f;
-    bindAtlasScrollGuard();
-    let tipNode = null;
-    f.addEventListener("pointerleave", () => { tipNode = null; const t = $("#atlasTip"); if (t) { t.hidden = true; t.classList.remove("show"); } });
-    f.addEventListener("pointerover", (e) => {
-      if (Date.now() < atlasScrollUntil) return;          /* scrolling: skip */
-      const n = e.target.closest("[data-id]"); const t = $("#atlasTip");
-      if (!t) return;
-      if (!n) { tipNode = null; t.hidden = true; t.classList.remove("show"); return; }
-      if (n === tipNode && !t.hidden) return;             /* same node: skip */
-      tipNode = n;
-      const a = (state.snap.apps || []).find(x => x.app.id === +n.dataset.id);
-      if (!a) return;
-      const gh = a.github || {};
-      t.innerHTML = "<div class=\"at-nm\">" + logoHtml(a) + "<b>" + esc(a.app.name) + "</b></div>" +
-        "<div class=\"at-meta\"><span class=\"grade " + esc(a.readiness.grade) + "\">" + esc(a.readiness.grade) + " · " + a.readiness.score + "</span><span>" + esc(a.app.category) + "</span></div>" +
-        "<div class=\"at-figs\"><span>" + (STATUS_LABEL[a.mcp.status] || "") + "</span><span>" + (a.tools_count ? a.tools_count + " tools" : "no live tools") + "</span><span>" + (gh.stars ? fmtNum(gh.stars) + " stars" : "-") + "</span><span>" + (dlOf(a) ? fmtNum(dlOf(a)) + "/mo" : "-") + "</span></div>" +
-        "<div class=\"at-tip-bar\"><i style=\"width:" + Math.max(2, Math.min(100, a.readiness.score || 0)) + "%\"></i></div>" +
-        "<div class=\"at-tip-st\"><span class=\"hint\">click for the full dossier</span>" + (a.app.website ? "<a class=\"lnk\" href=\"" + esc(a.app.website) + "\" target=\"_blank\" rel=\"noopener\">site ↗</a>" : "") + "</div>";
-      const fr = f.getBoundingClientRect(), nr = n.getBoundingClientRect();
-      let tx = nr.left - fr.left + nr.width / 2, ty = nr.top - fr.top - 8;
-      t.hidden = false;
-      const tw = t.offsetWidth, th = t.offsetHeight;
-      tx = Math.max(12, Math.min(fr.width - tw - 12, tx - tw / 2));
-      let tyy = ty - th;
-      if (tyy < 6) tyy = Math.min(fr.height - th - 6, nr.top - fr.top + nr.height + 8);
-      t.style.left = tx + "px"; t.style.top = Math.max(6, tyy) + "px";
-      t.classList.add("show");
-    });
-    f.addEventListener("click", (e) => { const n = e.target.closest("[data-id]"); if (n) openModal(+n.dataset.id, n); });
+    atlasSize(); atlasDraw();
+    atlasLoadLogos(list);
+    window.__atlas = ATLAS;   /* test/debug hook: node geometry + hover state */
   }
   /* crossing the phone/desktop boundary changes the layout algorithm:
      re-render the atlas once when it flips */
@@ -1505,6 +1667,7 @@
   window.addEventListener("resize", debounce(() => {
     const n = window.innerWidth < 700;
     if (n !== atlasNarrow && state.view === "atlas") { atlasNarrow = n; renderView(); }
+    else syncPlateFit();
   }, 220), { passive: true });
 
   let rowsBound = false;

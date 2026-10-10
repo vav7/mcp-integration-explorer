@@ -787,3 +787,21 @@ body.pv-on .snap-panel::before, body.pv-on .sp-scan{ animation-play-state:paused
 /* ---- scroll chaining: the plate must hand over to the page ------------- */
 #viewContent.scroller{ overscroll-behavior-y:auto }
 .atlas-field, .atlas-node{ touch-action:pan-y; -webkit-overflow-scrolling:touch }
+
+
+/* ==========================================================================
+   14. v2.8 - canvas atlas surface
+   ========================================================================== */
+#atlasCanvas{ position:absolute; inset:0; width:100%; height:100%; display:block;
+  touch-action:pan-y; -webkit-overflow-scrolling:touch }
+.atlas-field{ cursor:crosshair }
+/* legacy contain:paint + overscroll:contain turned the field into a
+   zero-range touch trap: the gesture died inside it on phones. The field
+   must let the page scroll under fingers and wheels alike. */
+.atlas-field{ contain:none; overscroll-behavior:auto; touch-action:pan-y }
+
+/* a fitting plate is not a scroll container - touch reaches the page.
+   BOTH axes: overflow-y:visible computes back to auto if x stays auto.
+   !important because a legacy mobile layer locks the plate with
+   !important (styles.css ~5386) - a fitting plate must win. */
+#viewContent.scroller.fits{ overflow:visible !important; max-height:none !important }
