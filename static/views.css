@@ -720,3 +720,70 @@ body.pv-on .snap-panel::before, body.pv-on .sp-scan{ animation-play-state:paused
   content:""; position:absolute; inset:0; border-radius:50%; pointer-events:none; z-index:2;
   background:linear-gradient(180deg, rgba(255,255,255,.20), rgba(255,255,255,.03) 44%, transparent 58%),
              radial-gradient(130% 95% at 50% 118%, rgba(3,6,12,.62), transparent 62%) }
+
+/* ==========================================================================
+   13. v2.7 - DARK-GLASS NUMBERING + DARK-GLOW STAGES + GLASS DRAWER
+   Every numbered tile wears the Refresh-button language: dark glass,
+   violet edge, inner top light; lit/open states glow instead of filling
+   with candy gradient.
+   ========================================================================== */
+#helpView .fg2-sn, #helpView .fg2-qn, #helpView .fg2-fn, #helpView .fg2-gt span,
+#helpView .fg2-sico{
+  color:var(--t2);
+  background-image:
+    linear-gradient(180deg, rgba(139,157,255,.13), rgba(139,92,246,.05) 60%, rgba(139,92,246,.02)),
+    linear-gradient(180deg, rgba(13,19,34,.92), rgba(7,10,18,.95));
+  border:1px solid rgba(139,157,255,.26);
+  box-shadow:0 1px 0 rgba(255,255,255,.05) inset, 0 4px 12px rgba(0,0,0,.42) }
+#helpView .fg2-sico{ color:#B9C6FF }
+/* lit / open: dark glass with a bright halo - never a flat bright fill */
+#helpView .fg2-stage.on .fg2-sn,
+#helpView .fg2-item.open .fg2-qn,
+#helpView .fg2-stage.on .fg2-sico{
+  color:#F4F8FF;
+  border-color:rgba(139,157,255,.68);
+  background-image:
+    linear-gradient(180deg, rgba(139,157,255,.38), rgba(139,92,246,.17) 55%, rgba(139,92,246,.06)),
+    linear-gradient(180deg, rgba(18,26,46,.95), rgba(9,13,22,.97));
+  box-shadow:0 1px 0 rgba(255,255,255,.10) inset,
+             0 0 0 1px rgba(139,157,255,.16),
+             0 0 22px rgba(139,157,255,.50),
+             0 0 54px rgba(139,92,246,.22),
+             0 6px 18px rgba(0,0,0,.5) }
+/* the lit stage card: dark glow, not violet wash */
+#helpView .fg2-stage.on .fg2-stage-hit{
+  border-color:rgba(139,157,255,.46);
+  background-image:
+    linear-gradient(165deg, rgba(139,157,255,.10), rgba(139,92,246,.04) 55%, transparent),
+    var(--boxg-in);
+  box-shadow:0 18px 40px rgba(0,0,0,.5),
+             0 0 0 1px rgba(139,157,255,.10),
+             0 0 34px rgba(139,92,246,.14) }
+#helpView .fg2-item.open .fg2-qn{ color:#F4F8FF }
+/* group chips + most-asked chips stay quiet until hovered */
+#helpView .fg2-fcard:hover .fg2-fn{
+  color:#F4F8FF; border-color:rgba(139,157,255,.6);
+  box-shadow:0 1px 0 rgba(255,255,255,.08) inset, 0 0 18px rgba(139,157,255,.4) }
+
+/* ---- drawer: true glassmorphism, blur only while parked (no slide lag) -- */
+.drawer{
+  background:linear-gradient(180deg, rgba(9,13,22,.84), rgba(4,6,11,.88));
+  border-right:1px solid rgba(148,180,255,.10);
+  backdrop-filter:none; -webkit-backdrop-filter:none }
+.drawer.open{
+  backdrop-filter:blur(18px) saturate(150%);
+  -webkit-backdrop-filter:blur(18px) saturate(150%);
+  background:linear-gradient(180deg, rgba(9,13,22,.78), rgba(4,6,11,.84));
+  box-shadow:24px 0 90px rgba(0,0,0,.62), inset -1px 0 0 rgba(255,255,255,.03) }
+.dw-head{
+  background:linear-gradient(180deg, rgba(139,157,255,.07), transparent 78%);
+  border-bottom:1px solid rgba(148,180,255,.08) }
+.dw-foot{ background:rgba(3,5,9,.55); border-top:1px solid rgba(148,180,255,.08) }
+.dw-sep{ background:rgba(148,180,255,.08) }
+.dw-item{ border-color:transparent }
+.dw-item:hover{ background:rgba(139,157,255,.07); border-color:rgba(139,157,255,.16) }
+.dw-scrim{ background:rgba(1,2,5,.70) }
+
+/* ---- scroll chaining: the plate must hand over to the page ------------- */
+#viewContent.scroller{ overscroll-behavior-y:auto }
+.atlas-field, .atlas-node{ touch-action:pan-y; -webkit-overflow-scrolling:touch }

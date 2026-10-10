@@ -2569,12 +2569,10 @@
   }
   let methViewCache = null;
   function updateSpine() {
-    const v = methViewCache || (methViewCache = $("#methodologyView"));
-    if (!v || !v.classList.contains("open")) return;
-    const ol = $(".pipeline", v); if (!ol) return;
-    const r = ol.getBoundingClientRect(), vh = window.innerHeight || 800;
-    const p = Math.max(0, Math.min(1, (vh * 0.8 - r.top) / (r.height || 1)));
-    ol.style.setProperty("--spine", p.toFixed(3));
+    /* v2.5 removed the scroll-falling spine line; keep the hook, do nothing.
+       A getBoundingClientRect on every scroll frame of the methodology
+       window was pure waste once nothing consumed --spine. */
+    return;
   }
   let methBound = false;
   function bindMethodology() {

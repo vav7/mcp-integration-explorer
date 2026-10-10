@@ -266,7 +266,7 @@
           const pulse = 0.7 + 0.3 * Math.sin(t * 0.03 + p.ph);
           const core = R((p.g ? 3.1 : 2.1) * p.d * (0.85 + 0.3 * pulse), 0.6, 8);
           const halo = R(core * 3.4, 1, 26);
-          const col = p.g ? "232,194,122" : "139,157,255";
+          const col = p.g ? "52,211,153" : "139,157,255";
           ctx.beginPath();
           ctx.fillStyle = "rgba(" + col + "," + (0.14 * pulse * p.d).toFixed(3) + ")";
           ctx.arc(p.x, p.y, halo, 0, 6.2832); ctx.fill();
