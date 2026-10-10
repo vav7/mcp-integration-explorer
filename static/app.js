@@ -929,7 +929,8 @@
       const vals = hist.map(sr.get);
       let mn = Math.min(...vals), mx = Math.max(...vals);
       if (mn === mx) { mn -= 1; mx += 1; }
-      const Y = v => padT + ih - ((v - mn) / (mx - mn)) * ih;
+      /* headroom so a near-flat series never glues to the ceiling/floor */
+      const Y = v => padT + ih * .86 - ((v - mn) / (mx - mn)) * ih * .72;
       const pts = vals.map((v, i) => [X(i), Y(v)]);
       const line = "M" + pts.map(p => p[0].toFixed(1) + " " + p[1].toFixed(1)).join(" L ");
       const area = si === 0
