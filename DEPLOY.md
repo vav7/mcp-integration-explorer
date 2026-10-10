@@ -2,11 +2,11 @@
 
 The app is a single long-running Python (FastAPI) process that serves the
 dashboard, refreshes the data in the background, and streams live activity over
-SSE. It needs a host that runs a **persistent process** - i.e. Render, Fly.io,
+SSE. It needs a host that runs a **persistent process** - i.e. Render,
 or any Docker/VPS host. (Serverless/static platforms such as Vercel or Netlify
 cannot run it: no background scheduler, no writable disk, no long-lived SSE.)
 
-Everything required is already in the repo: `render.yaml`, `fly.toml`,
+Everything required is already in the repo: `render.yaml`,
 `Dockerfile`, and a `data/` folder with the last real fetch so cold boots are
 instant.
 
@@ -41,20 +41,15 @@ Free-tier realities (both normal, neither fatal):
   the next visit;
 - the **disk is ephemeral**, so watches/alerts/pinned apps reset on a restart.
   The dataset itself is fine: it reloads from the repo on boot and keeps
-  refreshing in memory. If you want those to survive, use Fly.io with a volume
-  (below) or a VPS.
+  refreshing in memory.
 
-## Fly.io - persistent volume, still free-ish
+## Making state survive (optional)
 
-```bash
-fly launch --copy-config      # reads fly.toml + Dockerfile
-fly volumes create mcp_data --region iad
-# add to fly.toml:  [mounts] source="mcp_data" destination="/app/data"
-fly deploy
-```
-
-The volume makes watches/alerts/history/pinned apps survive restarts.
-512 MB shared-cpu is plenty; `auto_stop_machines` keeps idle cost at zero.
+Watches, alerts and pinned apps live in `data/`. On Render's ephemeral disk
+they reset on restart - which is cosmetic, because the dataset itself
+reloads from the repo on boot and keeps refreshing in memory. If you want
+them to survive, run the Docker image on any host with a volume mounted at
+the repo's `data/` directory (see below).
 
 ## Any Docker host / VPS
 

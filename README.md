@@ -241,7 +241,7 @@ Everything is optional. Set these as environment variables.
 ├── .github/workflows/    refresh.yml (6-hourly data refresh)
 ├── demo.html             Generated self-contained snapshot of the live data
 ├── DEPLOY.md             Full deployment guide
-├── Dockerfile · fly.toml · render.yaml · run.sh · requirements.txt
+├── Dockerfile · render.yaml · run.sh · requirements.txt
 ```
 
 ## Deployment
@@ -252,7 +252,6 @@ Serverless/static platforms such as Vercel or Netlify **cannot** run it.
 | Platform | How |
 | --- | --- |
 | **Render** *(recommended)* | New + → Blueprint → select the repo. Reads `render.yaml`. |
-| **Fly.io** | `fly launch --copy-config`, then add a volume so watches/alerts survive restarts. |
 | **Docker / VPS** | See below. |
 
 ```bash
@@ -267,7 +266,7 @@ Full details (env vars, health checks, TLS/proxy notes, smoke tests): **[DEPLOY.
 
 ## Testing
 
-The `tests/` folder is the regression harness: classification, registry recall, compatibility tester, diffing and rate-limit suites, plus JS and real-Chromium UI checks.
+The `tests/` folder is the regression harness: classification, registry recall, compatibility tester, diffing and rate-limit suites, plus live lookup and rate-limit checks against the real registries.
 
 ```bash
 python -m pytest tests/
