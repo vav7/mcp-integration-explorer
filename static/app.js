@@ -3062,7 +3062,7 @@
     }, { passive: true });
     window.addEventListener("resize", () => { invalidateScrollCaches(); updateSP(); updateDeep(); updateSpy(); }, { passive: true });
     updateSP(); updateDeep(); updateSpy();
-    $("#themeBtn").onclick = toggleTheme;
+    const tb = $("#themeBtn"); if (tb) tb.onclick = toggleTheme;   /* dark-only product: button removed in v3.8 */
     $("#heroSearch").onclick = openCmdk;
     /* ---- home: the one obvious way back to the top of the dashboard ---- */
     const goHome = () => {

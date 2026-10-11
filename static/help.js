@@ -95,21 +95,19 @@
   const rail = $("#fgNav");
   function activateGroup(id, scroll) {
     $$(".fg2-nav-item", rail || view).forEach(b => b.classList.toggle("active", b.dataset.group === id));
+    /* v3.8: the guide is a deck of four bundles, not one 18-item scroll -
+       only the active group exists on screen; items rise in as a bundle */
+    $$(".hq-group", view).forEach(g => g.classList.toggle("tab-on", g.id === id));
     if (scroll) {
-      const g = document.getElementById(id);
-      if (g) view.scrollTo({ top: Math.max(0, scrollTopOf(g) - 70), behavior: reduced ? "auto" : "smooth" });
+      const shell = $(".fg2-shell", view);
+      if (shell) view.scrollTo({ top: Math.max(0, scrollTopOf(shell) - 80), behavior: reduced ? "auto" : "smooth" });
     }
   }
   if (rail) rail.addEventListener("click", (e) => {
     const b = e.target.closest(".fg2-nav-item");
     if (b) activateGroup(b.dataset.group, true);
   });
-  if ("IntersectionObserver" in window) {
-    const spy = new IntersectionObserver((es) => {
-      es.forEach(en => { if (en.isIntersecting) activateGroup(en.target.id, false); });
-    }, { root: view, rootMargin: "-18% 0px -62% 0px" });
-    $$(".hq-group", view).forEach(g => spy.observe(g));
-  }
+  /* (scroll-spy removed in v3.8: with one bundle visible there is nothing to spy) */
 
   /* ======================================================================
      3. inline demos (built lazily on first open)

@@ -922,3 +922,75 @@ body.pv-on .snap-panel::before, body.pv-on .sp-scan{ animation-play-state:paused
    expand button and ghost buttons. Glass or nothing:
    ========================================================================== */
 button{ background-color:transparent }
+
+/* ==========================================================================
+   18. v3.7 - BLUR WHITELIST: glass only where nothing scrolls underneath
+   A backdrop-filter re-blurs its whole region on EVERY frame anything
+   behind it moves. The sticky nav, hero snapshot panel, insight cards and
+   the entire help accordion were blurring per scroll frame - the single
+   biggest source of jank left. From now on only true open-and-static
+   overlays keep a blur; everything else gets near-opaque ink, which reads
+   identical on this dark canvas.
+   ========================================================================== */
+*:not(.modal):not(.cmdk):not(.cmdk-backdrop):not(.dropdown-menu):not(.backdrop):not(.drawer.open){
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important }
+/* compensate with density so the look stays premium */
+.nav{ background:rgba(6,9,15,.97) }
+html[data-theme="dark"] .nav{ background:rgba(5,8,15,.97) }
+.snap-panel{ background-image:linear-gradient(168deg, rgba(15,21,36,.93), rgba(7,10,17,.97)) }
+.ins, .dive-card, .sig-compact{
+  background-image:linear-gradient(170deg, rgba(18,25,41,.90), rgba(8,12,20,.95)) }
+.pv-x{ background:rgba(15,21,35,.94) }
+.comparebar{ background:rgba(10,14,24,.97) }
+.dropdown-menu{ background:rgba(12,17,28,.97) }
+.cmdk{ background:rgba(10,14,24,.97) }
+.modal{ background:linear-gradient(170deg, rgba(16,22,34,.985), rgba(8,11,18,.99)) }
+/* mobile: the fade mask on the list plate costs a repaint per scroll frame */
+#viewContent.scroller{ -webkit-mask-image:none !important; mask-image:none !important }
+/* skip painting whole home sections until they approach the viewport */
+#signals, #trends, .footer{
+  content-visibility:auto; contain-intrinsic-size:auto 720px }
+
+/* ==========================================================================
+   19. v3.8 - BUNDLE DECK GUIDE + DEEPER INK, LESS BLUE
+   ========================================================================== */
+/* the four guide groups are a deck: one bundle on screen, items rise in
+   staggered - the 18-question marathon scroll is gone */
+#helpView .hq-group{ display:none }
+#helpView .hq-group.tab-on{ display:block }
+#helpView .hq-group.tab-on .fg2-gt{ animation:fg2bundle .4s var(--ease) both }
+#helpView .hq-group.tab-on .fg2-item{ animation:fg2bundle .42s var(--spring) both }
+#helpView .hq-group.tab-on .fg2-item:nth-child(2){ animation-delay:.05s }
+#helpView .hq-group.tab-on .fg2-item:nth-child(3){ animation-delay:.10s }
+#helpView .hq-group.tab-on .fg2-item:nth-child(4){ animation-delay:.15s }
+#helpView .hq-group.tab-on .fg2-item:nth-child(5){ animation-delay:.20s }
+#helpView .hq-group.tab-on .fg2-item:nth-child(6){ animation-delay:.25s }
+#helpView .hq-group.tab-on .fg2-item:nth-child(7){ animation-delay:.30s }
+#helpView .hq-group.tab-on .fg2-item:nth-child(8){ animation-delay:.35s }
+@keyframes fg2bundle{
+  from{ opacity:0; transform:translateY(18px) scale(.985) }
+  to{ opacity:1; transform:none } }
+/* rail becomes the deck switcher: no scrolling needed to change bundle */
+#helpView .fg2-rail{ top:12px }
+
+/* ---- deeper ink everywhere: darker canvas, quieter blues ---- */
+:root{
+  --bg:#04060B; --atmo:#070A11;
+  --s1:rgba(11,15,22,.72); --s2:rgba(15,20,28,.82); --s3:rgba(19,24,33,.90);
+  --line:rgba(255,255,255,.045); --line2:rgba(255,255,255,.085);
+  --t2:#8B96AA; --t3:#5A6577; --t4:#3F4956;
+  --boxln:rgba(148,163,196,.10);
+  --boxg:linear-gradient(168deg, rgba(11,15,23,.94), rgba(5,7,11,.97));
+  --boxg-in:linear-gradient(160deg, rgba(9,13,21,.72), rgba(5,7,11,.58));
+}
+.ambient{
+  background:
+    radial-gradient(1200px 560px at 86% -10%, rgba(99,125,255,.05), transparent 62%),
+    radial-gradient(1000px 560px at -8% 110%, rgba(112,88,235,.04), transparent 62%),
+    linear-gradient(180deg, var(--bg), var(--atmo) 42%, var(--bg)) }
+.pview{
+  background:
+    radial-gradient(920px 430px at 50% -10%, rgba(99,125,255,.07), transparent 62%),
+    radial-gradient(700px 400px at 88% 110%, rgba(120,90,240,.045), transparent 60%),
+    linear-gradient(180deg, rgba(5,7,11,.99), rgba(3,5,8,.995)) }
