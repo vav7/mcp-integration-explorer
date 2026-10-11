@@ -18,16 +18,6 @@
 
 ---
 
-## What's new in 2.0 — "Obsidian"
-
-- **Atlas** — all 100 apps as a spatial intelligence field (adoption × readiness, status-ringed logos, hover previews, tap-to-open dossiers). One app per cell: collision-free on every screen.
-- **Obsidian design system** — one muted violet accent on near-black graphite; gold, amber and neon are gone; matte hairline buttons; Clash Display + Satoshi typography.
-- **Field guide** — the Help page rebuilt as Mission Control: canvas constellation hero, gold-to-violet pipeline beam, sticky category rail with scroll-spy, interactive demos (readiness sliders, status morphs, live freshness), deep links (`#help/<slug>`).
-- **Methodology card deck** — the seven pipeline stages as a compact 3D deck with a weight spectrum bar.
-- **Reliability** — `/healthz` (sub-ms, no data access), `REFRESH_IN_SERVER` flag so GitHub Actions can be the sole data writer, async font loading, boot skeleton, 60fps-first motion (transform/opacity only, DPR capped, offscreen pausing).
-
----
-
 ## Table of contents
 
 - [Overview](#overview)
