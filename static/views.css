@@ -994,3 +994,291 @@ html[data-theme="dark"] .nav{ background:rgba(5,8,15,.97) }
     radial-gradient(920px 430px at 50% -10%, rgba(99,125,255,.07), transparent 62%),
     radial-gradient(700px 400px at 88% 110%, rgba(120,90,240,.045), transparent 60%),
     linear-gradient(180deg, rgba(5,7,11,.99), rgba(3,5,8,.995)) }
+<<<<<<< HEAD
+=======
+
+/* ==========================================================================
+   20. v3.9 - shine, dominance, white 07, darker tips & trends
+   ========================================================================== */
+/* nav links: a little more presence */
+.nav-links a{ color:#C7D0DE; font-weight:600; font-size:13.5px; letter-spacing:.005em }
+.nav-links a:hover{ color:#F2F6FF; background:rgba(139,157,255,.08) }
+.nav-links a.active{ color:#FFFFFF; background:rgba(139,157,255,.12) }
+
+/* brand: the mark sweeps a sheen, the wordmark carries a travelling light */
+.logo-mark{ position:relative; overflow:hidden }
+.logo-mark::after{
+  content:""; position:absolute; top:-60%; left:-70%; width:45%; height:220%;
+  transform:translateX(0) skewX(-18deg); opacity:0; pointer-events:none;
+  background:linear-gradient(100deg, transparent, rgba(255,255,255,.55), transparent) }
+#helpView, #methodologyView, #intelligenceView, #pricingView{ }
+.logo-mark::after{ animation:logoSheen 5.2s var(--ease) infinite }
+@keyframes logoSheen{
+  0%,70%{ transform:translateX(0) skewX(-18deg); opacity:0 }
+  76%{ opacity:1 }
+  92%,100%{ transform:translateX(340%) skewX(-18deg); opacity:0 } }
+.logo-txt b{
+  background:linear-gradient(100deg, #EDF1F8 0%, #EDF1F8 42%, #C4CEFF 50%, #EDF1F8 58%, #EDF1F8 100%);
+  background-size:220% 100%;
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  animation:logoTextShine 7s linear infinite }
+@keyframes logoTextShine{ 0%{ background-position:130% 0 } 100%{ background-position:-130% 0 } }
+
+/* methodology: clean rung heads, and the final figure reads WHITE */
+#methodologyView .pipe-b h4{ font-weight:700; letter-spacing:-.012em; color:#EEF2F9 }
+#methodologyView .mt2-final .mt2-live b{
+  background:none; -webkit-background-clip:border-box; background-clip:border-box;
+  color:#F2F6FF; -webkit-text-fill-color:#F2F6FF }
+
+/* atlas hover card + logo shine: darker, quieter */
+.atlas-tip{
+  background:linear-gradient(170deg, rgba(9,12,19,.985), rgba(4,6,10,.99));
+  border-color:rgba(148,180,255,.14) }
+.applogo::after{ background:linear-gradient(90deg, transparent, rgba(255,255,255,.10), transparent) }
+
+/* trends: dim the wire to premium */
+#trends .ct-line{ opacity:.78 }
+#trends .ct-dot{ opacity:.85 }
+#trends .chart-wrap{ background:linear-gradient(180deg, rgba(9,13,21,.55), rgba(5,7,11,.7)) }
+
+/* the two shine loops respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .logo-mark::after, .logo-txt b{ animation:none !important }
+  .logo-txt b{ background:none; color:var(--t1); -webkit-text-fill-color:currentColor }
+}
+
+/* ==========================================================================
+   21. v3.10 - HD TYPE + ATLAS INK & CRISP RINGS
+   ========================================================================== */
+/* type renders crisp: real Outfit/Inter/JetBrains now load (display=swap),
+   plus subpixel discipline everywhere */
+html{ -webkit-text-size-adjust:100% }
+body{
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  font-synthesis-weight:none }
+.mono, .hint, .fg2-sfig, .pipe-m span, .mt2-fact span, .fg2-rail-title,
+.fg2-count, .dw-label, .sp-meta span{ -webkit-font-smoothing:antialiased }
+
+/* atlas: the field goes near-black so the discs read as instruments */
+.atlas-field{
+  background:
+    radial-gradient(900px 420px at 70% -10%, rgba(139,157,255,.045), transparent 60%),
+    radial-gradient(700px 380px at 8% 110%, rgba(139,92,246,.04), transparent 60%),
+    linear-gradient(175deg, rgba(7,10,16,.82), rgba(2,4,8,.94)) !important;
+  border-color:rgba(148,180,255,.10) }
+.atlas-gridbg{ opacity:.55 }
+.atlas-legend{ color:var(--t3) }
+
+/* ---- v3.10 type stack, decided ONCE, last sheet wins --------------------
+   Clash Display only ships 500/600/700: every 800 on a display face was
+   synthesised fake-bold = the soft "not HD" look. Real weights only. */
+:root{
+  --font:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --font-display:"Clash Display","Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+h1,h2,h3,h4,.pv-head h1,.sect-head h2,.fg2-h1,.mt2-head h1,.hero h1,
+.fg2-how-head h3,.fg2-feat-head h3,.dw-title,.sp-head,.estate-title,
+.rail-title,.insight-col-title,.sb-title,.msect-h,.fg2-gt,.mt2-spec-t,
+.mt2-fact b,.pv-name,.fg2-rail-title,.opp h4,.pipe-b h4,.fg2-fcard b,
+.logo-txt b,.footer h5{ font-weight:700 }
+
+/* ==========================================================================
+   22. v3.11 - MOBILE: instant compositor-only expansion, no layout anims
+   grid-template-rows transitions re-layout every frame - on phones that
+   reads as jitter when a Q&A or a methodology rung opens. On touch/small
+   screens the panel now snaps open and its CONTENT plays a 260ms
+   opacity/transform rise (compositor only). Sticky tap-hover transforms
+   and shine sweeps are killed too. Containment keeps any remaining layout
+   local to the panel.
+   ========================================================================== */
+#helpView .ha-in{ contain:layout paint }
+#methodologyView .pipe-xin{ contain:layout paint }
+@keyframes fg2ans{ from{ opacity:0; transform:translateY(9px) } to{ opacity:1; transform:none } }
+@media (pointer:coarse), (max-width:900px){
+  #helpView .ha{ transition:none !important }
+  #helpView .hq-item.open .fg2-ain{ animation:fg2ans .26s var(--ease) both }
+  #methodologyView .pipe-x{ transition:none !important }
+  #methodologyView .mt2-pipe.open .mt2-live{ animation:fg2ans .26s var(--ease) both }
+  /* taps must not leave hover motion running */
+  .fg2-item:hover, .fg2-fcard:hover, .mt2-pipe:hover, .fg2-stage-hit:hover,
+  .fg2-item:hover .fg2-qn, .mt2-pipe:hover .pipe-n, .fg2-fcard:hover .fg2-fn{
+    transform:none !important }
+  .fg2-item::after, .fg2-fcard::after{ content:none !important }
+  .fg2-item:hover, .mt2-pipe:hover{ box-shadow:none !important }
+  /* snap the rung/stage glow instead of transitioning it */
+  .fg2-stage-hit, .fg2-qn, .fg2-sico, .pipe-n, .mt2-pipe{ transition-duration:.12s !important }
+}
+
+/* ==========================================================================
+   23. v3.12 - compare feedback without geometry; atlas hover de-bloomed
+   ========================================================================== */
+.cb-chip.pop{ animation:cbpop .3s var(--spring) both }
+@keyframes cbpop{ from{ opacity:0; transform:scale(.72) } to{ opacity:1; transform:scale(1) } }
+.applogo.send{ animation:logoSend .34s var(--ease) }
+@keyframes logoSend{
+  0%{ transform:scale(1) }
+  35%{ transform:scale(.84); box-shadow:0 0 0 3px rgba(139,157,255,.35), 0 6px 16px rgba(0,0,0,.45) }
+  100%{ transform:scale(1) } }
+/* atlas hover: a crisp lift + hairline ring, not a purple bloom */
+.atlas-node:hover{
+  box-shadow:0 12px 28px rgba(0,0,0,.55), 0 0 0 1px rgba(139,157,255,.26),
+             0 0 14px rgba(139,92,246,.10) }
+.atlas-node:hover::before{ transform:scale(1.10); border-color:rgba(139,157,255,.42) }
+.atlas-node:hover .applogo{ box-shadow:0 6px 16px rgba(0,0,0,.50) }
+
+/* ---- v3.13: hover halo, premium-small ---- */
+.atlas-node::before{ inset:-4px }
+.atlas-node:hover{ scale:1.06;
+  box-shadow:0 10px 24px rgba(0,0,0,.52), 0 0 0 1px rgba(139,157,255,.22),
+             0 0 8px rgba(139,92,246,.08) }
+.atlas-node:hover::before{ transform:scale(1.04); border-color:rgba(139,157,255,.38) }
+
+/* ==========================================================================
+   24. v3.17 - SLOW THE REVEALS TO A WATCHABLE PACE
+   Donuts circle in ~2s with a 90ms per-donut stagger; reveal-plate bars
+   grow in 1.4s. Live table/score bars elsewhere keep their snappy .7s.
+   ========================================================================== */
+/* v3.20.1: NO transition on the arcs - the clockwise sweep is rAF-driven;
+   an !important transition here made every frame restart a 2s ease, so the
+   head raced ahead while the arcs crawled (the "not working" desync). */
+#catbars .dn-arc{ transition:stroke-width .2s var(--ease-soft) }
+#gradebars .bar-track i, #coverage .bar-track i,
+.an-card .bar-track i, .an-ftrack i{
+  transition:width 1.8s cubic-bezier(.25,.7,.3,1) }   /* matches the pie sweep */
+/* keep each donut's repaint inside its own box while the sweep runs */
+#catbars .dn-wrap{ contain:layout paint }
+
+/* ==========================================================================
+   25. v3.18 - dark-blue tick, HD boot, atlas ambient, compact brand
+   ========================================================================== */
+/* compare tick: dark glass chip with a deep blue check - no neon anywhere */
+.cmpbtn.on{
+  color:#9DB1FF;
+  background:linear-gradient(180deg, rgba(139,157,255,.16), rgba(139,92,246,.07)), rgba(10,14,24,.92);
+  border-color:rgba(139,157,255,.40);
+  box-shadow:0 0 0 1px rgba(139,157,255,.10), 0 4px 12px rgba(0,0,0,.42),
+             0 0 14px rgba(139,92,246,.14) }
+.cmpbtn.on:hover{ color:#C4D0FF; border-color:rgba(139,157,255,.55) }
+
+/* boot: high-end HD colour - jewel gradient bar with travelling hue + glow */
+#boot .boot-bar{
+  height:5px; border-radius:6px; background:rgba(148,180,255,.07);
+  box-shadow:0 0 0 1px rgba(148,180,255,.09), inset 0 2px 6px rgba(0,0,0,.55),
+             0 0 24px rgba(139,92,246,.10) }
+#boot .boot-bar i{
+  border-radius:6px;
+  background:linear-gradient(90deg, #34D399 0%, #5EEAD4 14%, #7DE7F8 30%,
+             #8B9DFF 50%, #8B5CF6 70%, #C4B5FD 86%, #34D399 100%);
+  background-size:220% 100%;
+  box-shadow:0 0 16px rgba(125,231,248,.50), 0 0 36px rgba(139,92,246,.34),
+             inset 0 1px 0 rgba(255,255,255,.55);
+  animation:bootSlide 1.6s cubic-bezier(.45,.05,.55,.95) infinite,
+            bootHue 3.4s linear infinite }
+@keyframes bootHue{ 0%{ background-position:0% 0 } 100%{ background-position:-220% 0 } }
+#boot .boot-name{
+  background:linear-gradient(178deg, #FFFFFF 16%, #E4EBFF 48%, #A9BCE9 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  filter:drop-shadow(0 0 20px rgba(139,157,255,.28)) }
+#boot .boot-tag{ color:#55617A; letter-spacing:.34em }
+#boot .boot-mark{
+  box-shadow:0 1px 0 rgba(255,255,255,.10) inset, 0 18px 44px rgba(0,0,0,.6),
+             0 0 40px rgba(139,92,246,.30), 0 0 0 1px rgba(139,157,255,.30) }
+#boot .boot-steps i{ background:rgba(148,180,255,.22) }
+@keyframes bootDot{
+  0%,100%{ background:rgba(148,180,255,.22); transform:scale(1) }
+  40%{ background:#8B9DFF; transform:scale(1.45); box-shadow:0 0 12px rgba(139,157,255,.9) } }
+
+/* atlas ambient: two dim nebulae drifting under the discs + edge vignette.
+   Transform-only, 26s, barely there - dark, premium, cool. */
+.atlas-field::before{
+  content:""; position:absolute; inset:-18%; pointer-events:none;
+  background:
+    radial-gradient(38% 30% at 28% 32%, rgba(99,125,255,.055), transparent 70%),
+    radial-gradient(34% 28% at 72% 64%, rgba(139,92,246,.050), transparent 70%),
+    radial-gradient(26% 22% at 52% 16%, rgba(52,211,153,.035), transparent 70%);
+  animation:atlasAmb 26s ease-in-out infinite alternate }
+@keyframes atlasAmb{
+  from{ transform:translate3d(-2%, -1%, 0) scale(1) }
+  to{ transform:translate3d(2%, 1.5%, 0) scale(1.07) } }
+.atlas-field::after{
+  content:""; position:absolute; inset:0; pointer-events:none; border-radius:inherit;
+  background:radial-gradient(120% 92% at 50% 46%, transparent 52%, rgba(2,4,8,.5) 100%) }
+
+@media (prefers-reduced-motion: reduce){
+  #boot .boot-bar i{ animation:bootSlide 1.6s cubic-bezier(.45,.05,.55,.95) infinite }
+  .atlas-field::before{ animation:none }
+}
+
+/* footer wordmark = the home button */
+.fb-home{ color:inherit; text-decoration:none; transition:color .18s }
+.fb-home:hover{ color:var(--acc); text-decoration:none }
+
+/* ==========================================================================
+   26. v3.24 - the seek bar, jewel-grade
+   ========================================================================== */
+/* premium dark instrument: one violet-ink stroke ending in a white-hot tip,
+   and ABSENT inside full-screen windows (body.pv-on) so it never reads stuck */
+#scrollProgress{
+  height:2px;
+  background:linear-gradient(90deg, rgba(139,157,255,.16), rgba(139,157,255,.82) 58%,
+             #CFE0FF 90%, #FFFFFF 100%);
+  box-shadow:0 0 8px rgba(139,157,255,.38), 0 0 2px rgba(207,224,255,.55);
+  transition:opacity .22s var(--ease) }
+body.pv-on #scrollProgress{
+  opacity:0; visibility:hidden;
+  transition:opacity .22s var(--ease), visibility 0s .22s }
+
+/* ==========================================================================
+   27. v3.26 - the nav strip bows out inside windows, returns at top
+   ========================================================================== */
+.nav{ transition:transform .32s var(--ease) }
+body.pv-on .nav.nav-hide{ transform:translateY(-102%) }
+/* views paint from y=0 under the nav so hiding it leaves no gap */
+.pview{ top:0; padding-top:var(--nav-h) }
+
+/* v3.26.1 - the close button rides with the nav: parked under it while the
+   nav is up, gliding into the true corner when the nav bows out */
+.pv-x{ transition:top .32s var(--ease), background-color .2s, border-color .2s, color .2s }
+body.nav-hidden .pv-x{ top:14px }
+
+/* v3.26.1 - the close button: a fixed viewport anchor that rides with the
+   nav (parked under it while the nav is up, gliding into the true corner
+   when the nav bows out). Overrides the legacy sticky!important hack that
+   left it floating mid-air. */
+.pv-x, .pview.open .pv-x{
+  position:fixed !important; right:16px !important; margin:0 !important;
+  top:calc(var(--nav-h) + 12px) !important;
+  transition:top .32s var(--ease), color .18s ease, border-color .18s ease,
+             background-color .18s ease !important }
+body.nav-hidden .pv-x{ top:12px !important }
+@media (max-width:860px){
+  .pv-x, .pview.open .pv-x{ top:calc(var(--nav-h) + 8px) !important; right:10px !important }
+  body.nav-hidden .pv-x{ top:10px !important }
+}
+
+/* v3.26.2 - our own close control: the legacy .pv-x sits under a v2.0
+   sticky!important straitjacket that fights every override, so it retires.
+   .vx2 is a fixed viewport anchor that rides with the nav: parked under it
+   while the nav is up, gliding into the true corner when the nav bows out. */
+.pv-x{ display:none !important }
+.vx2{
+  position:fixed; top:calc(var(--nav-h) + 12px); right:16px; z-index:60;
+  width:40px; height:40px; border-radius:12px; display:grid; place-items:center;
+  cursor:pointer; border:1px solid rgba(148,180,255,.16);
+  background:rgba(9,13,24,.88); color:#AEB8D4;
+  box-shadow:0 8px 20px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.04);
+  transition:top .32s var(--ease), color .18s ease, border-color .18s ease,
+             background-color .18s ease, transform .2s var(--spring) }
+.vx2 svg{ width:16px; height:16px; display:block }
+.vx2:hover{ color:#F2F6FF; border-color:rgba(139,157,255,.45);
+  background:rgba(13,18,32,.94); transform:rotate(90deg) }
+.vx2:active{ transform:rotate(90deg) scale(.92) }
+.vx2:focus-visible{ outline:2px solid var(--acc); outline-offset:2px }
+body.nav-hidden .vx2{ top:12px }
+@media (max-width:860px){
+  .vx2{ top:calc(var(--nav-h) + 8px); right:10px; width:34px; height:34px; border-radius:10px }
+  body.nav-hidden .vx2{ top:10px }
+}
+>>>>>>> 359995e (enhancements,bugs fixes)

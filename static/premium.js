@@ -196,6 +196,15 @@
       if (document.hidden || viewsOpen()) { running = false; return; }
       if (!running) { running = true; last = performance.now(); requestAnimationFrame(frame); }
     };
+    /* v3.23: a full-viewport canvas repainting during scroll is the home
+       page's biggest paint cost - pause it while the wheel is turning and
+       resume once the reader settles. */
+    let scrollResume = 0;
+    addEventListener("scroll", () => {
+      running = false;
+      if (scrollResume) clearTimeout(scrollResume);
+      scrollResume = setTimeout(() => { scrollResume = 0; wake(); }, 400);
+    }, { passive: true });
     document.addEventListener("visibilitychange", wake);
     /* an opaque full-screen view hides this layer completely - do not burn
        frames painting underneath it */
@@ -223,7 +232,7 @@
 
   /* ---------- 3b. section fold-in: 3D perspective entrance on scroll ---------- */
   function bindFoldIn() {
-    const sel = ".insight-grid > *, .cov-grid > *, .sig-compact, .meth-strip, .chart-wrap";
+    const sel = ".sig-compact, .meth-strip, .chart-wrap";   /* v3.23: coverage plates no longer fold on scroll */
     const targets = $$(sel);
     if (!targets.length || !("IntersectionObserver" in window)) return;
     targets.forEach((el, i) => {

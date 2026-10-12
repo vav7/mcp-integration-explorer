@@ -3,22 +3,29 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<<<<<<< HEAD
 <meta name="build" content="v3.8.0-ink">
+=======
+<meta name="build" content="v3.26.2-vx">
+>>>>>>> 359995e (enhancements,bugs fixes)
 <title>MCP Integration Explorer · integration intelligence</title>
 <meta name="description" content="Live, evidence-backed MCP / agent integration readiness across applications. Real registry data, endpoint probes, GitHub, package adoption and liveness, with every signal traceable to its source.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;450;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=optional" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript>
-<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
-</noscript>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script>
   (function(){try{localStorage.setItem('mcp_theme','dark');}catch(e){}document.documentElement.setAttribute('data-theme','dark');})();
 </script>
+<<<<<<< HEAD
 <link rel="stylesheet" href="/styles.css?v=3.8.0-ink">
 <link rel="stylesheet" href="/views.css?v=3.8.0-ink">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%2310151C'/><rect x='.5' y='.5' width='31' height='31' rx='6.5' fill='none' stroke='%23253140'/><circle cx='10' cy='10' r='2.4' fill='none' stroke='%234F7FFF' stroke-width='1.6'/><circle cx='10' cy='22' r='2.4' fill='none' stroke='%234F7FFF' stroke-width='1.6'/><circle cx='22' cy='16' r='2.4' fill='none' stroke='%234F7FFF' stroke-width='1.6'/><path d='M12 11l8 4M12 21l8-4' stroke='%234F7FFF' stroke-width='1.6'/></svg>">
+=======
+<link rel="stylesheet" href="/styles.css?v=3.26.2-vx">
+<link rel="stylesheet" href="/views.css?v=3.26.2-vx">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%238B9DFF'/><stop offset='1' stop-color='%238B5CF6'/></linearGradient></defs><rect width='32' height='32' rx='8' fill='%2305070D'/><rect x='.5' y='.5' width='31' height='31' rx='7.5' fill='none' stroke='%23253140'/><circle cx='10' cy='10' r='2.6' fill='none' stroke='url(%23g)' stroke-width='1.8'/><circle cx='10' cy='22' r='2.6' fill='none' stroke='url(%23g)' stroke-width='1.8'/><circle cx='22' cy='16' r='2.6' fill='none' stroke='url(%23g)' stroke-width='1.8'/><path d='M12 11l8 4M12 21l8-4' stroke='url(%23g)' stroke-width='1.8'/></svg>">
+>>>>>>> 359995e (enhancements,bugs fixes)
 </head>
 <body>
 <div id="boot" aria-hidden="true"><div class="boot-in">
@@ -58,9 +65,6 @@
   <div class="nav-inner">
     <button class="iconbtn" id="drawerBtn" aria-label="Toggle dashboard menu" aria-expanded="false" title="Dashboard menu">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-    </button>
-    <button class="iconbtn homebtn" id="homeBtn" type="button" aria-label="Home" title="Home">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5L12 4l8 6.5"/><path d="M6.5 9.8V19a1 1 0 001 1h3.2v-5h2.6v5h3.2a1 1 0 001-1V9.8"/></svg>
     </button>
     <a class="logo" href="#top" id="logoLink" style="text-decoration:none;color:inherit">
       <span class="logo-mark" aria-hidden="true">
@@ -319,13 +323,8 @@
   <footer class="footer" id="footer">
     <div class="fgrid">
       <div class="fbrand reveal" data-replay>
-        <span class="logo-mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
-            <circle cx="7" cy="7" r="2.1"/><circle cx="7" cy="17" r="2.1"/><circle cx="17" cy="12" r="2.1"/><path d="M9 8l6 3M9 16l6-3"/>
-          </svg>
-        </span>
         <div class="fb-body">
-          <b>MCP Integration Explorer</b>
+          <b><a class="fb-home" href="#top" data-home>MCP Integration Explorer</a></b>
           <p>Live, evidence-backed integration intelligence. Every metric is traceable to its source: the registry, real endpoint probes, GitHub and npm/PyPI. Nothing is inferred or invented.</p>
           <p class="fstatus"><span class="led live" id="footLed"></span><span id="footStatus">live · continuously refreshed</span></p>
           
@@ -362,6 +361,10 @@
 
 <!-- intelligence view: landscape analytics + trends + signals (full-screen, like pricing) -->
 <div class="pview" id="intelligenceView" role="dialog" aria-label="Intelligence">
+  <button class="vx2" type="button" data-closeview aria-label="Close view" title="Close (Esc)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+
   <button class="pv-x" type="button" data-closeview aria-label="Close view" title="Close (Esc)">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
   </button>
@@ -430,6 +433,10 @@
 <!-- methodology view (full-screen, like pricing) -->
 <!-- methodology view (full-screen, like pricing) -->
 <div class="pview" id="methodologyView" role="dialog" aria-label="Methodology">
+  <button class="vx2" type="button" data-closeview aria-label="Close view" title="Close (Esc)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+
   <button class="pv-x" type="button" data-closeview aria-label="Close view" title="Close (Esc)">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
   </button>
@@ -583,6 +590,10 @@
 <!-- help view: the field guide (full-screen window, book-marked) -->
 <!-- help view: the field guide (full-screen window, book-marked) -->
 <div class="pview" id="helpView" role="dialog" aria-label="Help and field guide">
+  <button class="vx2" type="button" data-closeview aria-label="Close view" title="Close (Esc)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+
   <button class="pv-x" type="button" data-closeview aria-label="Close view" title="Close (Esc)">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
   </button>
@@ -595,7 +606,7 @@
           Back to dashboard</button>
         <div class="fg2-k"><span class="help-book" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.4 5 8.2 4.3 5.6 4.3c-.9 0-1.6.7-1.6 1.5v11.4c0 .8.7 1.5 1.6 1.5 2.6 0 4.8.7 6.4 2.2 1.6-1.5 3.8-2.2 6.4-2.2.9 0 1.6-.7 1.6-1.5V5.8c0-.8-.7-1.5-1.6-1.5-2.6 0-4.8.7-6.4 2.2z"/><path d="M12 6.5v14.4"/></svg></span>HELP · FIELD GUIDE</div>
         <h1 class="fg2-h1">Everything this dashboard means, <em>in plain words.</em></h1>
-        <p class="fg2-sub">Eighteen short answers, grouped the way you will need them. Nothing here is marketing &mdash; it is exactly what the data is, where it comes from, and how to get at it.</p>
+        <p class="fg2-sub">Eighteen short answers, grouped the way you will need them. Nothing here is marketing. It is exactly what the data is, where it comes from, and how to get at it.</p>
         <div class="fg2-chips" role="navigation" aria-label="Quick questions">
           <button type="button" data-fgjump="what-is-mcp">What is MCP?</button>
           <button type="button" data-fgjump="readiness-score">Readiness score</button>
@@ -622,7 +633,7 @@
       <div class="fg2-how-head">
         <div class="fg2-k">HOW THIS SITE WORKS</div>
         <h3>From the live web to a readiness signal</h3>
-        <p>Every app walks this pipeline on every refresh. Nothing is simulated &mdash; each stage runs against the real source. Select a stage to read its story.</p>
+        <p>Every app walks this pipeline on every refresh. Nothing is simulated. Each stage runs against the real source. Select a stage to read its story.</p>
       </div>
       <div class="fg2-wire" aria-hidden="true"><i class="fg2-laser"></i></div>
       <ol class="fg2-stages" id="fgStages">
@@ -922,6 +933,10 @@
 
 <!-- pricing view: full-screen; only the site chrome + the boxes -->
 <div class="pview" id="pricingView" role="dialog" aria-label="Pricing plans">
+  <button class="vx2" type="button" data-closeview aria-label="Close view" title="Close (Esc)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+
   <button class="pv-x" type="button" data-closeview aria-label="Close view" title="Close (Esc)">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
   </button>
@@ -1074,9 +1089,16 @@
 <!-- NOTE: data.snapshot.js (~2MB) is NOT loaded up front. The live API is the
      primary data source; the embedded snapshot is injected on demand only when
      the backend is unreachable, so a normal visit never parses it. -->
+<<<<<<< HEAD
 <script src="/app.js?v=3.8.0-ink"></script>
 <script src="/motion.js?v=3.8.0-ink"></script>
 <script src="/help.js?v=3.8.0-ink"></script>
 <script src="/premium.js?v=3.8.0-ink"></script>
+=======
+<script src="/app.js?v=3.26.2-vx"></script>
+<script src="/motion.js?v=3.26.2-vx"></script>
+<script src="/help.js?v=3.26.2-vx"></script>
+<script src="/premium.js?v=3.26.2-vx"></script>
+>>>>>>> 359995e (enhancements,bugs fixes)
 </body>
 </html>

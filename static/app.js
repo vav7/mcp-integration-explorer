@@ -4,6 +4,7 @@
  * real snapshot. All derived views (leaderboard, opportunities, export) are
  * computed client-side so they work with or without the backend.
  */
+  window.__MCPC_VERSION__ = "3.26.2-vx";   /* type this in console to verify your build */
 (() => {
   "use strict";
   const $ = (s, r = document) => r.querySelector(s);
@@ -618,6 +619,7 @@
     startSearchTicker();
     setUnread(); renderAlerts(); renderCompareBar();
     scanNums(document);
+    armCoverageReplay();
     const df1 = $("#dvFig1"); if (df1) df1.textContent = (s.history || []).length + "-point live history";
     const df2 = $("#dvFig2"); if (df2) df2.textContent = "7 stages · 6 weighted signals";
     $("#updatedHint").textContent = "updated " + timeAgo(s.generated_at);
@@ -637,7 +639,15 @@
     $("#liveTxt").dataset.sources = okc + "/" + sources.length;
   }
 
+  let metricsSig = "";
   function renderMetrics(st) {
+    /* v3.13: without this guard every background refresh rebuilt the whole
+       coverage section - donut values snapped to 0% and re-rolled, bars
+       regrew, numbers juggled while you were reading them. Rebuild only
+       when the stats actually changed. */
+    const sig = "m|" + Object.keys(st).map(k => k + ":" + st[k]).join(",");
+    if (sig === metricsSig && $("#metrics") && $("#catbars")) return;
+    metricsSig = sig;
     const hist = (state.snap && state.snap.history) || [];
     const prev = hist.length > 1 ? hist[hist.length - 2] : null;
     const responded = (st.open_endpoints || 0) + (st.auth_gated_endpoints || 0);
@@ -753,49 +763,9 @@
         });
       });
     }
-    /* paint the arcs inline: the numbers are already in the markup, and an
-       inline dasharray beats any cascade/transition quirk - the matrix can
-       never render grey again. The CSS transition still animates it, so the
-       circling reveal stays. */
-    paintDonuts($("#catbars"));
-    /* circling reveal on first view */
-    const box = $("#catbars");
-    if (box) {
-      if (!box._donutObs && "IntersectionObserver" in window) {
-        box._donutObs = new IntersectionObserver((es) => { es.forEach(en => {
-          if (en.isIntersecting) { box.classList.add("drawn"); box.dataset.drawn = "1"; paintDonuts(box); box._donutObs.disconnect(); } });
-        }, { threshold: .05, rootMargin: "0px 0px -4% 0px" });
-      }
-      /* never gate the colours on the observer alone: if any part of the
-         matrix is on screen (or the box is taller than the viewport), draw
-         now - a starved callback must never leave grey donuts behind */
-      let onScreen = false;
-      try {
-        const r0 = box.getBoundingClientRect(), vh = window.innerHeight || 800;
-        onScreen = r0.top < vh * .92 && r0.bottom > 0;
-      } catch (e) { onScreen = true; }
-      if (box.dataset.drawn === "1" || onScreen) { box.classList.add("drawn"); box.dataset.drawn = "1"; paintDonuts(box); if (box._donutObs) box._donutObs.disconnect(); }
-      else if (box._donutObs) { try { box._donutObs.observe(box); } catch (e) { box.classList.add("drawn"); } }
-      else box.classList.add("drawn");
-      /* belt & braces: a plain scroll check as well, so no environment can
-         leave the matrix grey (starved observer callbacks included) */
-      if (box.dataset.drawn !== "1" && !box._scrollFallback) {
-        box._scrollFallback = true;
-        let q = 0;
-        const check = () => {
-          q = 0;
-          if (box.dataset.drawn === "1") { removeEventListener("scroll", onScroll); return; }
-          const r = box.getBoundingClientRect(), vh = window.innerHeight || 800;
-          if (r.top < vh * .9 && r.bottom > 0) {
-            box.classList.add("drawn"); box.dataset.drawn = "1"; paintDonuts(box);
-            if (box._donutObs) box._donutObs.disconnect();
-            removeEventListener("scroll", onScroll);
-          }
-        };
-        const onScroll = () => { if (!q) q = requestAnimationFrame(check); };
-        addEventListener("scroll", onScroll, { passive: true });
-      }
-    }
+    /* arcs are painted inline ONLY when the matrix reveals (see the three
+       paintDonuts calls in the reveal paths) - painting at render time would
+       pre-empt the circling transition and the user would never see it. */
     bindCatbars();
   }
   function paintDonuts(box) {
@@ -810,6 +780,139 @@
       arc.style.strokeDasharray = da.toFixed(1) + " " + Math.max(0, circ - da).toFixed(1);
       arc.style.strokeDashoffset = doff.toFixed(1);
     });
+  }
+  /* Coverage & readiness: every time the section scrolls into view the
+     donuts circle in and the distribution bars grow from 0. Numbers keep
+     their values - only the shapes perform. */
+  /* CLOCKWISE LOADING SWEEP: one bright head travels around each ring like a
+     spinner while the segments fill in behind it - rAF interpolation, so it
+     is identical on every browser engine. 2.4s per pie, 90ms stagger. */
+  function drawDonutsClockwise(box) {
+    if (!box) return;
+    const jobs = [];
+    Array.prototype.forEach.call(box.querySelectorAll(".donut"), (don, di) => {
+      const circ = parseFloat(don.style.getPropertyValue("--circ")) || 0;
+      const svg = don.querySelector("svg");
+      const first = don.querySelector(".dn-arc:not(.dn-track)");
+      if (!circ || !svg || !first) return;
+      const arcs = [];
+      Array.prototype.forEach.call(don.querySelectorAll(".dn-arc"), (arc) => {
+        if (arc.classList.contains("dn-track")) return;
+        const da = parseFloat(arc.style.getPropertyValue("--da")) || 0;
+        const doff = parseFloat(arc.style.getPropertyValue("--do")) || 0;
+        arc.style.transition = "none";
+        arc.style.strokeDashoffset = doff.toFixed(1);
+        arc.style.strokeDasharray = "0 " + circ.toFixed(1);
+        arcs.push({ arc, da, start: Math.abs(doff) });
+      });
+      jobs.push({ arcs, circ, di });
+    });
+    if (!jobs.length) return;
+    if (reducedMotion || typeof requestAnimationFrame !== "function") {
+      jobs.forEach(J => J.arcs.forEach(o => { o.arc.style.strokeDasharray = o.da.toFixed(1) + " " + (J.circ - o.da).toFixed(1); }));
+      return;
+    }
+    const TOTAL = 1800, STAG = 60;
+    const t0 = performance.now();
+    const tick = (now) => {
+      let busy = false;
+      for (const J of jobs) {
+        const t = now - t0 - J.di * STAG;
+        const swept = t <= 0 ? 0 : Math.min(1, t / TOTAL) * J.circ;
+        for (const o of J.arcs) {
+          const vis = Math.max(0, Math.min(o.da, swept - o.start));
+          o.arc.style.strokeDasharray = vis.toFixed(2) + " " + (J.circ - vis).toFixed(2);
+          if (vis < o.da - .01) busy = true;
+        }
+        if (t > 0 && t < TOTAL) busy = true;
+      }
+      if (busy) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+  /* the intelligence provenance pie gets the same clockwise loading sweep */
+  function drawProvClockwise(el) {
+    const svg = el && el.querySelector("svg.an-donut");
+    if (!svg) return;
+    const segs = Array.from(svg.querySelectorAll(".an-seg"));
+    if (!segs.length) return;
+    const R = parseFloat(segs[0].getAttribute("r")) || 46;
+    const circ = 2 * Math.PI * R;
+    const jobs = segs.map(c => {
+      const dash = (c.getAttribute("stroke-dasharray") || "0 0").split(/[, ]+/).map(Number);
+      const da = dash[0] || 0;
+      const start = Math.abs(parseFloat(c.getAttribute("stroke-dashoffset")) || 0);
+      c.style.transition = "none";
+      c.style.strokeDasharray = "0 " + circ.toFixed(1);
+      return { c, da, start };
+    });
+    if (reducedMotion) {
+      jobs.forEach(o => { o.c.style.strokeDasharray = o.da.toFixed(1) + " " + (circ - o.da).toFixed(1); });
+      return;
+    }
+    const TOTAL = 1400, t0 = performance.now();
+    const tick = (now) => {
+      const t = now - t0;
+      const swept = Math.min(1, t / TOTAL) * circ;
+      let busy = t < TOTAL;
+      for (const o of jobs) {
+        const vis = Math.max(0, Math.min(o.da, swept - o.start));
+        o.c.style.strokeDasharray = vis.toFixed(2) + " " + (circ - vis).toFixed(2);
+        if (vis < o.da - .01) busy = true;
+      }
+      if (busy) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+  function replayCoverage() {
+    const cov = $("#coverage");
+    const box = $("#catbars");
+    if (box) {
+      box.classList.add("drawn");
+      drawDonutsClockwise(box);
+    }
+    if (cov) {
+      Array.from(cov.querySelectorAll(BAR_SEL)).forEach(el => {
+        const k = numKeyOf(el); if (k) delete BARMEMO[k];
+        el.style.transition = "none"; el.style.width = "0%"; void el.offsetWidth; el.style.transition = "";
+      });
+      requestAnimationFrame(() => scanBars(cov));
+    }
+  }
+  function armCoverageReplay() {
+    /* ONE trigger for the pies AND the adjacent readiness bars: they start
+       on the same frame and run the same 1.8s, so the whole plate loads as
+       a single synced instrument. Armed on the grid that holds both. */
+    const box = $("#catbars");
+    const gb = $("#gradebars");
+    const target = (box && box.closest(".insight-grid")) || box;
+    if (target && !target._replayArm) {
+      target._replayArm = true;
+      whenSeen(target, () => { replayCoverage(); if (gb) replayBars(gb); }, .25);
+    }
+  }
+
+  function armTrendDraw(wrap) {
+    const line = wrap && wrap.querySelector(".ct-line");
+    const area = wrap && wrap.querySelector(".ct-area");
+    if (!line) return;
+    let L = 0;
+    try { L = line.getTotalLength(); } catch (e) {}
+    if (!L) return;
+    line.style.animation = "none";
+    line.style.strokeDasharray = L + " " + L;
+    line.style.strokeDashoffset = String(L);
+    if (area) area.style.opacity = "0";
+    const sec = $("#trends") || wrap;
+    sec._seenArm = 0;              /* a rebuilt line gets a fresh reveal */
+    whenSeen(sec, () => {
+      try {
+        line.animate([{ strokeDashoffset: L }, { strokeDashoffset: 0 }],
+          { duration: reducedMotion ? 1 : 2400, easing: "cubic-bezier(.25,.7,.3,1)", fill: "forwards" });
+        if (area) area.animate([{ opacity: 0 }, { opacity: 1 }],
+          { duration: reducedMotion ? 1 : 1000, delay: 700, fill: "forwards" });
+      } catch (e) { line.style.strokeDashoffset = "0"; if (area) area.style.opacity = ""; }
+    }, .18);
   }
   let catbarsBound = false;
   function bindCatbars() {
@@ -830,7 +933,7 @@
     const col = { A: "#5FB59A", B: "#8479E6", C: "#A38FD0", D: "#ff8a4d", E: "#B05B73" };
     $("#gradebars").innerHTML = grades.map(g => `<div class="bar-row glink${state.grade === g ? " sel" : ""}" data-g="${g}" role="button" tabindex="0" title="Grade ${g}: ${counts[g]} apps · click to filter the explorer">
         <div class="br-top"><span class="br-l"><span class="grade ${g}">${g}</span>${desc[g]}</span><b class="br-v" data-num="${counts[g]}">${counts[g]}</b></div>
-        <div class="bar-track"><i style="width:${counts[g] / max * 100}%;background:linear-gradient(90deg,${col[g]},${col[g]}d9)"></i></div>
+        <div class="bar-track"><i data-bar="${(counts[g] / max * 100).toFixed(1)}" data-nk="gb:${g}" style="width:${counts[g] / max * 100}%;background:linear-gradient(90deg,${col[g]},${col[g]}d9)"></i></div>
         <div class="br-sub">${counts[g]} application${counts[g] === 1 ? "" : "s"} in this grade</div>
       </div>`).join("");
     bindGradebars();
@@ -909,7 +1012,7 @@
     const hits = pts.map((p, i) => `<rect class="ct-hit" data-i="${i}" x="${(p[0] - hitw / 2).toFixed(1)}" y="${pad.t}" width="${hitw.toFixed(1)}" height="${ih}"/>`).join("");
     wrap.innerHTML = `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" preserveAspectRatio="none">
         <defs><linearGradient id="ctgrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#5b8cff" stop-opacity="0.34"/><stop offset="1" stop-color="#5b8cff" stop-opacity="0"/></linearGradient></defs>
+          <stop offset="0" stop-color="#5b8cff" stop-opacity="0.15"/><stop offset="1" stop-color="#5b8cff" stop-opacity="0"/></linearGradient></defs>
         ${grid}<line class="ct-axis" x1="${pad.l}" y1="${pad.t + ih}" x2="${pad.l + iw}" y2="${pad.t + ih}"/>${ylab}${xlab}
         ${area ? `<path class="ct-area" d="${area}" fill="url(#ctgrad)"/>` : ""}
         ${line ? `<path class="ct-line" d="${line}"/>` : ""}${single}${dots}${hits}
@@ -919,6 +1022,12 @@
        redraw near-instantly so it never feels slow */
     const lineEl = wrap.querySelector(".ct-line");
     if (lineEl) { try { const L = lineEl.getTotalLength(); lineEl.style.strokeDasharray = L.toFixed(0); lineEl.style.strokeDashoffset = L.toFixed(0); } catch (e) {} }
+    /* v3.13.2: the legacy #chart.drawn + ctDraw reveal never fired reliably
+       (class never landed; inline dash state fought the keyframes). The
+       draw is now a WAAPI animation armed by an IntersectionObserver on
+       #trends: guaranteed left-to-right, 1.6s, once per rebuild, only when
+       the chart is actually seen. */
+    armTrendDraw(wrap);
     if (!wrap._drawObs && "IntersectionObserver" in window) {
       wrap._drawObs = new IntersectionObserver((es) => { es.forEach(en => {
         if (en.isIntersecting) { wrap.classList.add("drawn"); wrap.dataset.drawn = "1"; wrap._drawObs.disconnect(); } });
@@ -964,6 +1073,18 @@
      real refresh history. Redrawn only when a new point lands, so they update
      in front of your eyes on every refresh without replaying pointlessly. */
   let sparkSig = "";
+  /* catmull-rom -> cubic bezier: wires read as measured signals, not zigzags */
+  function smoothPath(pts) {
+    if (!pts || pts.length < 3) return "M" + (pts || []).map(p => p[0].toFixed(1) + " " + p[1].toFixed(1)).join(" L ");
+    let d = "M" + pts[0][0].toFixed(1) + " " + pts[0][1].toFixed(1);
+    for (let i = 0; i < pts.length - 1; i++) {
+      const p0 = pts[Math.max(0, i - 1)], p1 = pts[i], p2 = pts[i + 1], p3 = pts[Math.min(pts.length - 1, i + 2)];
+      const c1x = p1[0] + (p2[0] - p0[0]) / 6, c1y = p1[1] + (p2[1] - p0[1]) / 6;
+      const c2x = p2[0] - (p3[0] - p1[0]) / 6, c2y = p2[1] - (p3[1] - p1[1]) / 6;
+      d += " C" + c1x.toFixed(1) + " " + c1y.toFixed(1) + "," + c2x.toFixed(1) + " " + c2y.toFixed(1) + "," + p2[0].toFixed(1) + " " + p2[1].toFixed(1);
+    }
+    return d;
+  }
   function sparkSvg(hist, series) {
     const W = 560, H = 74, padL = 4, padR = 4, padT = 8, padB = 8;
     const iw = W - padL - padR, ih = H - padT - padB;
@@ -977,7 +1098,7 @@
       /* headroom so a near-flat series never glues to the ceiling/floor */
       const Y = v => padT + ih * .86 - ((v - mn) / (mx - mn)) * ih * .72;
       const pts = vals.map((v, i) => [X(i), Y(v)]);
-      const line = "M" + pts.map(p => p[0].toFixed(1) + " " + p[1].toFixed(1)).join(" L ");
+      const line = smoothPath(pts);
       const area = si === 0
         ? line + ` L ${pts[pts.length - 1][0].toFixed(1)} ${(padT + ih).toFixed(1)} L ${pts[0][0].toFixed(1)} ${(padT + ih).toFixed(1)} Z`
         : "";
@@ -988,6 +1109,76 @@
     });
     return `<svg viewBox="0 0 ${W} ${H}" width="100%" height="${H}" preserveAspectRatio="none" role="img" aria-label="history sparkline">${out}</svg>`;
   }
+  /* v3.16: the bulletproof reveal trigger. A 500ms rect poll (cheap: one
+     getBoundingClientRect) guarantees the draw fires the first time the chart
+     is on screen in ANY browser, even with starved observers/rAF; the
+     observer and scroll listener are just fast paths. Fires once. */
+  function whenSeen(el, fn, th) {
+    if (!el || el._seenArm) return;
+    el._seenArm = 1;
+    const cut = th ? (1 - th) : .88;      /* how much of the viewport deep the
+                                            top may sit before we call it seen */
+    let done = false, iv = 0;
+    const tryRun = () => {
+      if (done) return;
+      let r;
+      try { r = el.getBoundingClientRect(); } catch (e) { return; }
+      const vh = window.innerHeight || 800;
+      if (r.width > 0 && r.height > 0 && r.top < vh * cut && r.bottom > 0) {
+        done = true;
+        if (iv) clearInterval(iv);
+        requestAnimationFrame(fn);
+      }
+    };
+    iv = setInterval(tryRun, 500);
+    setTimeout(() => { if (!done && iv) clearInterval(iv); }, 120000);
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver((es) => {
+        es.forEach(en => { if (en.isIntersecting) { tryRun(); io.disconnect(); } });
+      }, { threshold: th || .15 });
+      io.observe(el);
+    }
+    addEventListener("scroll", () => { if (!done) requestAnimationFrame(tryRun); }, { passive: true, capture: true });
+    /* no arm-time probe: during load the layout can momentarily report an
+       element as visible, which would consume the one-shot reveal unseen */
+  }
+  /* fire fn every time el ENTERS the viewport (and once immediately if it is
+     already on screen): observer + rAF-throttled scroll fallback, so a reveal
+     can never be "consumed while hidden" again */
+
+  /* regrow every bar in a container from 0 when it is (re)seen */
+  function replayBars(root) {
+    if (!root) return;
+    Array.from(root.querySelectorAll(BAR_SEL)).forEach(el => {
+      const k = numKeyOf(el); if (k) delete BARMEMO[k];
+      el.style.transition = "none"; el.style.width = "0%"; void el.offsetWidth; el.style.transition = "";
+    });
+    requestAnimationFrame(() => scanBars(root));
+  }
+  /* quick left-to-right draw-in for line graphs (compositor-cheap dash
+     transition, ~650ms, skipped for reduced motion) */
+  function drawLines(root, dur) {
+    if (!root || reducedMotion) return;
+    Array.prototype.forEach.call(root.querySelectorAll("path.ivs-line, path.ct-line"), (p) => {
+      try {
+        const L = p.getTotalLength();
+        if (!L) return;   /* hidden pane: nothing to measure, draw on reveal */
+        p.style.transition = "none";
+        p.style.strokeDasharray = L + " " + L;
+        p.style.strokeDashoffset = String(L);
+        if (p.animate && !reducedMotion) {
+          p.animate([{ strokeDashoffset: L }, { strokeDashoffset: 0 }],
+            { duration: (dur || 1.15) * 1000, easing: "cubic-bezier(.45,.05,.35,1)", fill: "forwards" });
+        } else {
+          p.style.strokeDashoffset = "0";
+        }
+      } catch (e) {}
+    });
+    Array.prototype.forEach.call(root.querySelectorAll(".ct-area, .ivs-fill"), (a) => {
+      a.style.transition = "none"; a.style.opacity = "0"; void a.offsetWidth;
+      a.style.transition = "opacity .7s ease .45s"; a.style.opacity = "";
+    });
+  }
   function renderIntelSparks() {
     const hist = (state.snap && state.snap.history) || [];
     const box = $("#sparkSupply"); if (!box) return;
@@ -997,6 +1188,16 @@
     put("#spkOff", last.official); put("#spkCom", last.community);
     put("#spkTools", last.tools); put("#spkResp", last.responding);
     put("#spkDl", last.downloads, "k"); put("#spkStars", last.stars, "k");
+    /* each wire draws the first time ITS box is seen - open, or tab switch */
+    ["#sparkSupply", "#sparkHealth", "#sparkAdoption"].forEach(sel => {
+      const bx = $(sel);
+      if (!bx) return;
+      if (!bx._drawArmed) { bx._drawArmed = 1; whenSeen(bx, () => drawLines(bx)); }
+      /* a NEW history point rebuilt this wire while you look at it: redraw,
+         so the graph visibly grows with the live numbers */
+      const r = bx.getBoundingClientRect(), vh = window.innerHeight || 800;
+      if (r.width > 0 && r.top < vh * .9 && r.bottom > 0) requestAnimationFrame(() => drawLines(bx));
+    });
     if (sig === sparkSig) { scanNums($("#intelligenceView")); return; }
     sparkSig = sig;
     if (hist.length < 2) {
@@ -1030,6 +1231,10 @@
     renderAnScore(apps, st); renderAnProv(apps); renderAnFresh(apps); renderAnScatter(apps); renderAnProbe(apps, st);
     const up = $("#anUpdated"); if (up) up.textContent = `computed in-browser from the live snapshot · ${timeAgo(s.generated_at)}`;
     bindAnalytics(); markGradeSel(); renderIntelSparks(); scanNums($("#intelligenceView")); scanBars($("#intelligenceView"));
+    ["#ivpSupply", "#ivpHealth", "#ivpAdoption"].forEach(sel => {
+      const pane = $(sel);
+      if (pane && !pane._barsArmed) { pane._barsArmed = 1; whenSeen(pane, () => replayBars(pane)); }
+    });
   }
   function renderAnScore(apps, st) {
     const el = $("#anScoreBody"); if (!el) return;
@@ -1108,6 +1313,7 @@
         <button class="an-lg" type="button" data-act="status" data-v="${k}" title="Filter the explorer to ${esc(l)}">
           <span class="an-lgd" style="background:${c};color:${c}"></span><span class="an-lgl">${esc(l)}</span>
           <span class="an-lgn" data-num="${v}" data-nk="anl:${k}">${v}</span><span class="an-lgp" data-num="${Math.round(v / total * 100)}" data-fmt="pct" data-nk="anp:${k}">${Math.round(v / total * 100)}%</span></button>`).join("")}</div>`;
+    whenSeen(el, () => drawProvClockwise(el));
     el.dataset.sig = sig;
   }
   function renderAnFresh(apps) {
@@ -1458,7 +1664,7 @@
   const ATLAS = { nodes: [], hover: -1, dim: new Set(), imgs: new Map(),
                   canvas: null, ctx: null, field: null, tip: null, W: 0, H: 0, dpr: 1 };
   const STATUS_RING = { vendor_official: "#34D399", community: "#8B5CF6",
-    none: "rgba(148,160,190,.55)", unknown: "rgba(148,160,190,.40)", pending: "rgba(245,158,11,.55)" };
+    none: "#5A6579", unknown: "#4A5468", pending: "#D97706" };
 
   function atlasSize() {
     const f = ATLAS.field;
@@ -1479,28 +1685,41 @@
     for (const n of ATLAS.nodes) {
       const dim = ATLAS.dim.has(n.status);
       const hov = ATLAS.hover === n.i;
-      const r = Math.max(6, n.r * (hov ? 1.12 : 1));
+      const r = Math.max(6, n.r * (hov ? 1.06 : 1));
       c.globalAlpha = dim ? .15 : 1;
       if ((n.hot || hov) && !dim) {
         c.beginPath();
-        c.fillStyle = hov ? "rgba(139,157,255,.20)" : "rgba(139,157,255,.09)";
-        c.arc(n.x, n.y, r + (hov ? 12 : 8), 0, 6.2832); c.fill();
+        c.fillStyle = hov ? "rgba(139,157,255,.13)" : "rgba(139,157,255,.06)";
+        c.arc(n.x, n.y, r + (hov ? 6 : 5), 0, 6.2832); c.fill();
       }
       const g = c.createRadialGradient(n.x - r * .35, n.y - r * .4, r * .1, n.x, n.y, r);
-      g.addColorStop(0, "rgba(40,50,78,.96)");
-      g.addColorStop(.55, "rgba(16,22,38,.96)");
-      g.addColorStop(1, "rgba(8,11,20,.98)");
+      g.addColorStop(0, "rgba(23,29,45,.97)");
+      g.addColorStop(.55, "rgba(9,13,21,.98)");
+      g.addColorStop(1, "rgba(3,5,9,.99)");
       c.beginPath(); c.fillStyle = g; c.arc(n.x, n.y, r, 0, 6.2832); c.fill();
+      /* dark rim first: separates the disc from the field, makes the ring crisp */
+      c.beginPath(); c.lineWidth = 2.4; c.strokeStyle = "rgba(0,0,0,.55)";
+      c.arc(n.x, n.y, r - .4, 0, 6.2832); c.stroke();
       const img = ATLAS.imgs.get(n.id);
       c.save();
       c.beginPath(); c.arc(n.x, n.y, r - 1.5, 0, 6.2832); c.clip();
       if (img && img.complete && img.naturalWidth) {
-        c.drawImage(img, n.x - r + 1.5, n.y - r + 1.5, (r - 1.5) * 2, (r - 1.5) * 2);
-        const v = c.createLinearGradient(n.x, n.y - r, n.x, n.y + r);
-        v.addColorStop(0, "rgba(255,255,255,.13)");
-        v.addColorStop(.45, "rgba(255,255,255,.02)");
-        v.addColorStop(1, "rgba(3,6,12,.34)");
-        c.fillStyle = v; c.fillRect(n.x - r, n.y - r, r * 2, r * 2);
+        /* compact premium mark: the logo sits inset on the glass disc, not
+           edge-to-edge - reads as an app icon on an instrument */
+        const lr = r * 0.64;
+        c.imageSmoothingEnabled = true;
+        if ("imageSmoothingQuality" in c) c.imageSmoothingQuality = "high";
+        c.save();
+        c.beginPath(); c.arc(n.x, n.y, lr, 0, 6.2832); c.clip();
+        c.drawImage(img, n.x - lr, n.y - lr, lr * 2, lr * 2);
+        const v = c.createLinearGradient(n.x, n.y - lr, n.x, n.y + lr);
+        v.addColorStop(0, "rgba(255,255,255,.10)");
+        v.addColorStop(.5, "rgba(255,255,255,.015)");
+        v.addColorStop(1, "rgba(2,4,8,.38)");
+        c.fillStyle = v; c.fillRect(n.x - lr, n.y - lr, lr * 2, lr * 2);
+        c.restore();
+        c.beginPath(); c.lineWidth = 1; c.strokeStyle = "rgba(255,255,255,.10)";
+        c.arc(n.x, n.y, lr + .5, 0, 6.2832); c.stroke();
       } else {
         c.fillStyle = n.ring;
         c.font = "700 " + Math.max(9, Math.round(r * .8)) + "px ui-monospace, monospace";
@@ -1509,9 +1728,9 @@
       }
       c.restore();
       c.beginPath();
-      c.lineWidth = hov ? 2.4 : 1.6;
-      c.strokeStyle = hov ? "#8B9DFF" : n.ring;
-      c.arc(n.x, n.y, r - .8, 0, 6.2832); c.stroke();
+      c.lineWidth = hov ? 2.2 : 1.5;
+      c.strokeStyle = hov ? "#A5B4FF" : n.ring;
+      c.arc(n.x, n.y, r - 1.6, 0, 6.2832); c.stroke();
       c.beginPath();
       c.lineWidth = 1;
       c.strokeStyle = "rgba(255,255,255,.16)";
@@ -1532,13 +1751,14 @@
       let budget = 6;
       while (i < list.length && budget-- > 0) {
         const a = list[i++];
-        const dom = a.app.website ? String(a.app.website).replace(/^https?:\/\//, "").split("/")[0] : "";
+        let dom = "";
+        try { dom = logoDomain(a) || ""; } catch (e) { dom = ""; }
         if (!dom || ATLAS.imgs.has(a.app.id)) continue;
         const im = new Image();
         im.decoding = "async";
         im.onload = () => atlasQueueDraw();
         im.onerror = () => {};
-        im.src = "https://www.google.com/s2/favicons?domain=" + encodeURIComponent(dom) + "&sz=64";
+        im.src = "https://www.google.com/s2/favicons?domain=" + encodeURIComponent(dom) + "&sz=128";
         ATLAS.imgs.set(a.app.id, im);
       }
       if (i < list.length) idle(step);
@@ -1671,7 +1891,6 @@
       };
     });
     ATLAS.hover = -1;
-    window.__atlas = ATLAS; window.__atlasStage = "nodes";
     $("#viewContent").innerHTML = "<div class=\"atlas-field\" id=\"atlasField\">" +
       "<div class=\"atlas-gridbg\" aria-hidden=\"true\"></div>" +
       "<div class=\"atlas-axis ax-y\" aria-hidden=\"true\"><span>readiness \u2191</span></div>" +
@@ -1699,7 +1918,6 @@
     bindAtlas();
     atlasSize(); atlasDraw();
     atlasLoadLogos(list);
-    window.__atlas = ATLAS;   /* test/debug hook: node geometry + hover state */
   }
   /* crossing the phone/desktop boundary changes the layout algorithm:
      re-render the atlas once when it flips */
@@ -1721,10 +1939,25 @@
         const id = +cmp.dataset.cmp;
         const adding = !state.compare.includes(id);
         const srcLogo = cmp.closest("tr") ? cmp.closest("tr").querySelector(".applogo") : null;
+        if (adding) { const bar0 = $("#compareBar"); if (bar0) bar0.dataset.pop = String(id); }
         toggleCompare(id);
+        /* v3.13: the logo flight is back, but glitch-proof. The old wobble
+           came from measuring the dock mid-slide/mid-recentre. Now: freeze
+           the bar's transition, force layout, measure the chip's FINAL rect,
+           keep the chip invisible while the ghost travels, and pop it the
+           instant the ghost lands. One smooth motion, nothing stale. */
         if (adding && srcLogo && window.MotionFX) {
-          const dock = $("#compareBar");
-          if (dock) MotionFX.fly(srcLogo, dock, { html: srcLogo.outerHTML, dur: 640 });
+          const bar = $("#compareBar");
+          const chip = bar ? bar.querySelector('.cb-chip[data-id="' + id + '"]') : null;
+          if (chip) {
+            const bt = bar.style.transition;
+            bar.style.transition = "none"; void bar.offsetWidth;
+            window.MotionFX.fly(srcLogo, chip, { html: srcLogo.outerHTML, dur: 520, onDone: () => {
+              chip.style.opacity = "";
+              chip.classList.add("pop");
+            } });
+            bar.style.transition = bt;
+          }
         }
         return;
       }
@@ -2378,6 +2611,13 @@
     else bar.classList.add("show");
     const apps = state.compare.map(id => (state.snap.apps || []).find(a => a.app.id === id)).filter(Boolean);
     $("#compareChips").innerHTML = apps.map(a => `<span class="cb-chip">${esc(a.app.name)}<button data-rm="${a.app.id}" title="Remove">×</button></span>`).join("");
+    const popId = bar.dataset.pop;
+    if (popId) {
+      delete bar.dataset.pop;
+      const chip = Array.from(bar.querySelectorAll(".cb-chip"))
+        .find(c => c.querySelector('[data-rm="' + popId + '"]'));
+      if (chip) { chip.dataset.id = popId; chip.style.opacity = "0"; }
+    }
     $$("#compareChips [data-rm]").forEach(b => b.onclick = () => toggleCompare(+b.dataset.rm));
     $("#compareGo").disabled = false;
     const lb = $(".cb-label"); if (lb) lb.textContent = apps.length ? "Compare " + apps.length + "/4" : "Compare";
@@ -2817,6 +3057,8 @@
     } catch (e) {}
   }
   function closeAllViews() {
+    const nav1 = $("#nav"); if (nav1) nav1.classList.remove("nav-hide");
+    document.body.classList.remove("nav-hidden");
     VIEWS.forEach(v => { const el = $(VIEW_EL[v]); if (el) el.classList.remove("open"); });
     state.view_open = "";
     document.body.classList.remove("pv-on");
@@ -2851,6 +3093,9 @@
     });
     const pane = next === "supply" ? $("#ivpSupply") : next === "health" ? $("#ivpHealth") : $("#ivpAdoption");
     if (pane) {
+      /* deterministic: a tab flip must always redraw that pane's wire and
+         regrow its bars, even if an observer is a frame late */
+      requestAnimationFrame(() => { drawLines(pane); replayBars(pane); });
       scanNums(pane);
       $$(".reveal", pane).forEach(e => { e.classList.remove("out"); e.classList.add("in"); });
       if (next === "adoption") requestAnimationFrame(() => { try { if (state.snap && state.snap.apps) renderAnScatter(state.snap.apps); } catch (e) {} });
@@ -2861,6 +3106,8 @@
     if (name === "pricing") { openPricing(); return; }
     closeModal(); closeCommCard(); setDrawer(false); closeCmdk();
     VIEWS.forEach(v => { const el = $(VIEW_EL[v]); if (el) el.classList.toggle("open", v === name); });
+    const nav0 = $("#nav"); if (nav0) nav0.classList.remove("nav-hide");
+    document.body.classList.remove("nav-hidden");
     state.view_open = name;
     document.body.classList.add("pv-on");
     lockWindowScroll("view");
@@ -3028,12 +3275,26 @@
       ambDeep.classList.toggle("on", r.top < vh * 0.92);
     };
     const updateSP = () => {
+      /* dashboard-only instrument: inside full-screen windows the bar is
+         hidden by CSS (body.pv-on), so it can never read as stuck */
       const h = document.documentElement;
       if (scrollMaxCache < 0) scrollMaxCache = h.scrollHeight - h.clientHeight;
       const max = scrollMaxCache;
       const p = max > 0 ? Math.min(1, (window.scrollY || h.scrollTop) / max) : 0;
       if (sp) sp.style.transform = "scaleX(" + p + ")";
     };
+    /* v3.26: inside a full-screen window the nav strip bows out on scroll
+       and returns at the top - smoothly, transform-only */
+    addEventListener("scroll", (e) => {
+      const v = viewOpen();
+      if (!v) return;
+      const el = $(VIEW_EL[v]);
+      if (!el || e.target !== el) return;
+      const hid = el.scrollTop > 12;
+      const nav = $("#nav");
+      if (nav) nav.classList.toggle("nav-hide", hid);
+      document.body.classList.toggle("nav-hidden", hid);   /* the close button rides with the nav */
+    }, { passive: true, capture: true });
     /* ---- scrollspy: nav always mirrors where you are ---- */
     const SPY = [["overview", "#overview"], ["explorer", "#apps"], ["insights", "#insights"], ["dive", "#dive"]];
     const updateSpy = () => {
@@ -3067,12 +3328,16 @@
     /* ---- home: the one obvious way back to the top of the dashboard ---- */
     const goHome = () => {
       closeAllViews(); closeModal(); closeCommCard(); setDrawer(false);
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      /* instant, exact top - no smooth glide, no anchor jump, no residue */
+      try { document.documentElement.style.scrollBehavior = "auto"; } catch (e) {}
+      window.scrollTo({ top: 0, behavior: "instant" });
+      try { document.documentElement.style.scrollBehavior = ""; } catch (e) {}
+      const vc = $("#viewContent"); if (vc) vc.scrollTop = 0;
       try { if (history.replaceState) history.replaceState(null, "", location.pathname + (location.search || "")); } catch (e) {}
     };
     const hb = $("#homeBtn"); if (hb) hb.onclick = goHome;
     const lgl = $("#logoLink");
-    if (lgl) lgl.addEventListener("click", e => { if (viewOpen()) { e.preventDefault(); goHome(); } });
+    if (lgl) lgl.addEventListener("click", e => { e.preventDefault(); goHome(); });
     $$("[data-home]").forEach(a => a.addEventListener("click", e => { e.preventDefault(); goHome(); }));
     /* ---- deep-dive views: from the toolbar, drawer, footer or a card ---- */
     $$("[data-view]").forEach(a => a.addEventListener("click", e => {
