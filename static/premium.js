@@ -94,7 +94,7 @@
 
     const ctx = canvas.getContext("2d", { alpha: true });
     let W = 0, H = 0, DPR = 1;
-    const N = window.innerWidth < 1400 ? 44 : 56;   // node count by viewport (v3: capped, links are O(n^2))
+    const N = window.innerWidth < 1400 ? 34 : 44;   // node count by viewport (v3: capped, links are O(n^2))
     const nodes = [];
     for (let i = 0; i < N; i++) {
       nodes.push({

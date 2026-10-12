@@ -557,44 +557,5 @@
     "responding": 100,
     "reachable": 94,
     "avg_readiness": 45.7
-  },
-  {
-    "ts": "2026-10-11T22:05:42Z",
-    "official": 14,
-    "community": 70,
-    "none": 16,
-    "servers": 540,
-    "tools": 323,
-    "downloads": 1183334,
-    "stars": 23454,
-    "responding": 100,
-    "reachable": 94,
-    "avg_readiness": 49.0
-  },
-  {
-    "ts": "2026-10-12T06:14:49Z",
-    "official": 14,
-    "community": 69,
-    "none": 17,
-    "servers": 536,
-    "tools": 280,
-    "downloads": 1183334,
-    "stars": 23522,
-    "responding": 100,
-    "reachable": 94,
-    "avg_readiness": 48.6
-  },
-  {
-    "ts": "2026-10-12T15:48:58Z",
-    "official": 14,
-    "community": 66,
-    "none": 20,
-    "servers": 492,
-    "tools": 317,
-    "downloads": 1181608,
-    "stars": 23636,
-    "responding": 100,
-    "reachable": 94,
-    "avg_readiness": 48.2
   }
 ]

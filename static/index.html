@@ -3,11 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<<<<<<< HEAD
-<meta name="build" content="v3.8.0-ink">
-=======
-<meta name="build" content="v3.26.2-vx">
->>>>>>> 359995e (enhancements,bugs fixes)
+<meta name="build" content="v3.27.0-stable">
 <title>MCP Integration Explorer · integration intelligence</title>
 <meta name="description" content="Live, evidence-backed MCP / agent integration readiness across applications. Real registry data, endpoint probes, GitHub, package adoption and liveness, with every signal traceable to its source.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,42 +13,39 @@
 <script>
   (function(){try{localStorage.setItem('mcp_theme','dark');}catch(e){}document.documentElement.setAttribute('data-theme','dark');})();
 </script>
-<<<<<<< HEAD
-<link rel="stylesheet" href="/styles.css?v=3.8.0-ink">
-<link rel="stylesheet" href="/views.css?v=3.8.0-ink">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%2310151C'/><rect x='.5' y='.5' width='31' height='31' rx='6.5' fill='none' stroke='%23253140'/><circle cx='10' cy='10' r='2.4' fill='none' stroke='%234F7FFF' stroke-width='1.6'/><circle cx='10' cy='22' r='2.4' fill='none' stroke='%234F7FFF' stroke-width='1.6'/><circle cx='22' cy='16' r='2.4' fill='none' stroke='%234F7FFF' stroke-width='1.6'/><path d='M12 11l8 4M12 21l8-4' stroke='%234F7FFF' stroke-width='1.6'/></svg>">
-=======
-<link rel="stylesheet" href="/styles.css?v=3.26.2-vx">
-<link rel="stylesheet" href="/views.css?v=3.26.2-vx">
+<link rel="stylesheet" href="/styles.css?v=3.27.0-stable">
+<link rel="stylesheet" href="/views.css?v=3.27.0-stable">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%238B9DFF'/><stop offset='1' stop-color='%238B5CF6'/></linearGradient></defs><rect width='32' height='32' rx='8' fill='%2305070D'/><rect x='.5' y='.5' width='31' height='31' rx='7.5' fill='none' stroke='%23253140'/><circle cx='10' cy='10' r='2.6' fill='none' stroke='url(%23g)' stroke-width='1.8'/><circle cx='10' cy='22' r='2.6' fill='none' stroke='url(%23g)' stroke-width='1.8'/><circle cx='22' cy='16' r='2.6' fill='none' stroke='url(%23g)' stroke-width='1.8'/><path d='M12 11l8 4M12 21l8-4' stroke='url(%23g)' stroke-width='1.8'/></svg>">
->>>>>>> 359995e (enhancements,bugs fixes)
 </head>
 <body>
 <div id="boot" aria-hidden="true"><div class="boot-in">
   <span class="boot-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="7" cy="7" r="2.1"/><circle cx="7" cy="17" r="2.1"/><circle cx="17" cy="12" r="2.1"/><path d="M9 8l6 3M9 16l6-3"/></svg></span>
   <b class="boot-name">MCP Integration Explorer</b>
-  <span class="boot-tag">integration intelligence</span>
   <span class="boot-bar"><i></i></span>
-  <span class="boot-msg" id="bootMsg">contacting MCP registry…</span>
-  <span class="boot-steps" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+  <span class="boot-log" id="bootLog"></span>
 </div>
 <script>
-  /* self-contained leading-screen copy: real pipeline terminology, cycling.
-     Runs before any bundle; app.js removes #boot when the first render lands. */
+  /* sleek terminal boot: technical lines append fast, last four stay */
   (function () {
-    var m = ["contacting MCP registry…", "resolving vendor namespaces…", "handshaking live endpoints…",
-             "counting tools & auth walls…", "weighing adoption & maintenance…", "probing site liveness…",
-             "scoring readiness 0-100…"];
-    var el = document.getElementById("bootMsg"), i = 0, dead = false;
-    function next() {
+    var L = ["> GET registry.modelcontextprotocol.io - 200",
+             "> resolve com.stripe/mcp -> stripe.com",
+             "> handshake initialize -> tools/list",
+             "> probe endpoints - auth gates flagged",
+             "> github / npm / pypi adoption signals",
+             "> liveness: status + latency per site",
+             "> score 100 estates - grade A-E",
+             "> attach live change stream"];
+    var el = document.getElementById("bootLog"), i = 0, dead = false;
+    function push() {
       if (dead || !el || !el.isConnected) return;
-      el.classList.add("swap");
-      setTimeout(function () {
-        i = (i + 1) % m.length; el.textContent = m[i]; el.classList.remove("swap");
-      }, 240);
-      setTimeout(next, 1600);
+      var s = document.createElement("span");
+      s.textContent = L[i % L.length];
+      el.appendChild(s);
+      while (el.children.length > 4) el.removeChild(el.firstChild);
+      i++;
+      setTimeout(push, 240);
     }
-    setTimeout(next, 1400);
+    setTimeout(push, 100);
     window.__bootStop = function () { dead = true; };
   })();
 </script></div>
@@ -361,9 +354,6 @@
 
 <!-- intelligence view: landscape analytics + trends + signals (full-screen, like pricing) -->
 <div class="pview" id="intelligenceView" role="dialog" aria-label="Intelligence">
-  <button class="vx2" type="button" data-closeview aria-label="Close view" title="Close (Esc)">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
-  </button>
 
   <button class="pv-x" type="button" data-closeview aria-label="Close view" title="Close (Esc)">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
@@ -433,9 +423,6 @@
 <!-- methodology view (full-screen, like pricing) -->
 <!-- methodology view (full-screen, like pricing) -->
 <div class="pview" id="methodologyView" role="dialog" aria-label="Methodology">
-  <button class="vx2" type="button" data-closeview aria-label="Close view" title="Close (Esc)">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
-  </button>
 
   <button class="pv-x" type="button" data-closeview aria-label="Close view" title="Close (Esc)">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
@@ -590,9 +577,6 @@
 <!-- help view: the field guide (full-screen window, book-marked) -->
 <!-- help view: the field guide (full-screen window, book-marked) -->
 <div class="pview" id="helpView" role="dialog" aria-label="Help and field guide">
-  <button class="vx2" type="button" data-closeview aria-label="Close view" title="Close (Esc)">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
-  </button>
 
   <button class="pv-x" type="button" data-closeview aria-label="Close view" title="Close (Esc)">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
@@ -933,9 +917,6 @@
 
 <!-- pricing view: full-screen; only the site chrome + the boxes -->
 <div class="pview" id="pricingView" role="dialog" aria-label="Pricing plans">
-  <button class="vx2" type="button" data-closeview aria-label="Close view" title="Close (Esc)">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
-  </button>
 
   <button class="pv-x" type="button" data-closeview aria-label="Close view" title="Close (Esc)">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
@@ -1017,6 +998,10 @@
   </div>
 </div>
 
+  <button class="vx2" type="button" data-closeview aria-label="Close view" title="Close (Esc)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+
 <!-- dashboard drawer (hamburger) -->
 <div class="dw-scrim" id="drawerScrim"></div>
 <aside class="drawer" id="drawer" aria-label="Dashboard menu">
@@ -1089,16 +1074,9 @@
 <!-- NOTE: data.snapshot.js (~2MB) is NOT loaded up front. The live API is the
      primary data source; the embedded snapshot is injected on demand only when
      the backend is unreachable, so a normal visit never parses it. -->
-<<<<<<< HEAD
-<script src="/app.js?v=3.8.0-ink"></script>
-<script src="/motion.js?v=3.8.0-ink"></script>
-<script src="/help.js?v=3.8.0-ink"></script>
-<script src="/premium.js?v=3.8.0-ink"></script>
-=======
-<script src="/app.js?v=3.26.2-vx"></script>
-<script src="/motion.js?v=3.26.2-vx"></script>
-<script src="/help.js?v=3.26.2-vx"></script>
-<script src="/premium.js?v=3.26.2-vx"></script>
->>>>>>> 359995e (enhancements,bugs fixes)
+<script src="/app.js?v=3.27.0-stable"></script>
+<script src="/motion.js?v=3.27.0-stable"></script>
+<script src="/help.js?v=3.27.0-stable"></script>
+<script src="/premium.js?v=3.27.0-stable"></script>
 </body>
 </html>

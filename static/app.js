@@ -4,7 +4,7 @@
  * real snapshot. All derived views (leaderboard, opportunities, export) are
  * computed client-side so they work with or without the backend.
  */
-  window.__MCPC_VERSION__ = "3.26.2-vx";   /* type this in console to verify your build */
+  window.__MCPC_VERSION__ = "3.27.0-stable";   /* type this in console to verify your build */
 (() => {
   "use strict";
   const $ = (s, r = document) => r.querySelector(s);
@@ -784,53 +784,32 @@
   /* Coverage & readiness: every time the section scrolls into view the
      donuts circle in and the distribution bars grow from 0. Numbers keep
      their values - only the shapes perform. */
-  /* CLOCKWISE LOADING SWEEP: one bright head travels around each ring like a
-     spinner while the segments fill in behind it - rAF interpolation, so it
-     is identical on every browser engine. 2.4s per pie, 90ms stagger. */
+  /* CLOCKWISE SWEEP, lightweight: one style write per arc, the browser's
+     own transition interpolates (no rAF loop, no per-frame JS). 1.1s per
+     pie, 70ms stagger, linear so it reads as a constant clock hand. */
   function drawDonutsClockwise(box) {
     if (!box) return;
-    const jobs = [];
-    Array.prototype.forEach.call(box.querySelectorAll(".donut"), (don, di) => {
+    let di = 0;
+    Array.prototype.forEach.call(box.querySelectorAll(".donut"), (don) => {
       const circ = parseFloat(don.style.getPropertyValue("--circ")) || 0;
-      const svg = don.querySelector("svg");
-      const first = don.querySelector(".dn-arc:not(.dn-track)");
-      if (!circ || !svg || !first) return;
-      const arcs = [];
+      if (!circ) return;
+      const delay = di++ * 70;
       Array.prototype.forEach.call(don.querySelectorAll(".dn-arc"), (arc) => {
         if (arc.classList.contains("dn-track")) return;
         const da = parseFloat(arc.style.getPropertyValue("--da")) || 0;
         const doff = parseFloat(arc.style.getPropertyValue("--do")) || 0;
+        const fin = da.toFixed(1) + " " + Math.max(0, circ - da).toFixed(1);
         arc.style.transition = "none";
         arc.style.strokeDashoffset = doff.toFixed(1);
         arc.style.strokeDasharray = "0 " + circ.toFixed(1);
-        arcs.push({ arc, da, start: Math.abs(doff) });
+        void arc.getBoundingClientRect();
+        arc.style.transition = reducedMotion
+          ? "none"
+          : "stroke-dasharray 1.1s linear " + delay + "ms";
+        arc.style.strokeDasharray = fin;
       });
-      jobs.push({ arcs, circ, di });
     });
-    if (!jobs.length) return;
-    if (reducedMotion || typeof requestAnimationFrame !== "function") {
-      jobs.forEach(J => J.arcs.forEach(o => { o.arc.style.strokeDasharray = o.da.toFixed(1) + " " + (J.circ - o.da).toFixed(1); }));
-      return;
-    }
-    const TOTAL = 1800, STAG = 60;
-    const t0 = performance.now();
-    const tick = (now) => {
-      let busy = false;
-      for (const J of jobs) {
-        const t = now - t0 - J.di * STAG;
-        const swept = t <= 0 ? 0 : Math.min(1, t / TOTAL) * J.circ;
-        for (const o of J.arcs) {
-          const vis = Math.max(0, Math.min(o.da, swept - o.start));
-          o.arc.style.strokeDasharray = vis.toFixed(2) + " " + (J.circ - vis).toFixed(2);
-          if (vis < o.da - .01) busy = true;
-        }
-        if (t > 0 && t < TOTAL) busy = true;
-      }
-      if (busy) requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
   }
-  /* the intelligence provenance pie gets the same clockwise loading sweep */
   function drawProvClockwise(el) {
     const svg = el && el.querySelector("svg.an-donut");
     if (!svg) return;
@@ -852,9 +831,8 @@
     }
     const TOTAL = 1400, t0 = performance.now();
     const tick = (now) => {
-      const t = now - t0;
-      const swept = Math.min(1, t / TOTAL) * circ;
-      let busy = t < TOTAL;
+      const swept = Math.min(1, (now - t0) / TOTAL) * circ;
+      let busy = (now - t0) < TOTAL;
       for (const o of jobs) {
         const vis = Math.max(0, Math.min(o.da, swept - o.start));
         o.c.style.strokeDasharray = vis.toFixed(2) + " " + (circ - vis).toFixed(2);
@@ -1168,7 +1146,7 @@
         p.style.strokeDashoffset = String(L);
         if (p.animate && !reducedMotion) {
           p.animate([{ strokeDashoffset: L }, { strokeDashoffset: 0 }],
-            { duration: (dur || 1.15) * 1000, easing: "cubic-bezier(.45,.05,.35,1)", fill: "forwards" });
+            { duration: (dur || 0.9) * 1000, easing: "cubic-bezier(.45,.05,.35,1)", fill: "forwards" });
         } else {
           p.style.strokeDashoffset = "0";
         }

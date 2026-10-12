@@ -823,69 +823,38 @@ body.pv-on .snap-panel::before, body.pv-on .sp-scan{ animation-play-state:paused
        ORB FILTER PURGE
    ========================================================================== */
 
-/* ---- the leading screen: static HTML, first paint, real terminology ---- */
-#boot{
-  background:
-    radial-gradient(900px 460px at 50% 38%, rgba(139,157,255,.10), transparent 62%),
-    radial-gradient(700px 420px at 84% 112%, rgba(139,92,246,.07), transparent 60%),
-    linear-gradient(180deg, #05070D, #070B14 55%, #05070D);
-  transition:opacity .45s var(--ease), visibility 0s .45s }
-#boot::before{
-  content:""; position:absolute; inset:0; pointer-events:none;
-  background-image:linear-gradient(rgba(148,180,255,.03) 1px, transparent 1px),
-                   linear-gradient(90deg, rgba(148,180,255,.03) 1px, transparent 1px);
-  background-size:64px 64px;
-  -webkit-mask-image:radial-gradient(72% 56% at 50% 44%, #000, transparent 78%);
-  mask-image:radial-gradient(72% 56% at 50% 44%, #000, transparent 78%) }
-#boot.boot-done{ opacity:0; visibility:hidden; pointer-events:none }
-#boot .boot-in{ position:relative; gap:0 }
+/* ---- the leading screen: fully dark, sleek, terminal-fast --------------- */
+#boot{ background:#05070D; transition:opacity .3s var(--ease), visibility 0s .3s }
+#boot::before{ content:none }
+#boot .boot-in{ gap:0 }
 #boot .boot-mark{
-  width:64px; height:64px; border-radius:20px; color:#C7D2FF;
-  background-image:linear-gradient(180deg, rgba(139,157,255,.16), rgba(139,92,246,.07)),
-                   linear-gradient(180deg, rgba(13,19,34,.95), rgba(7,10,18,.98));
-  border:1px solid rgba(139,157,255,.35);
-  box-shadow:0 1px 0 rgba(255,255,255,.08) inset, 0 18px 44px rgba(0,0,0,.55),
-             0 0 34px rgba(139,92,246,.22);
-  animation:bootPulse 2.6s var(--ease) infinite }
-#boot .boot-mark svg{ width:30px; height:30px }
-@keyframes bootPulse{
-  0%,100%{ box-shadow:0 1px 0 rgba(255,255,255,.08) inset, 0 18px 44px rgba(0,0,0,.55), 0 0 26px rgba(139,92,246,.16) }
-  50%{ box-shadow:0 1px 0 rgba(255,255,255,.10) inset, 0 18px 44px rgba(0,0,0,.55), 0 0 46px rgba(139,92,246,.34) } }
+  width:44px; height:44px; border-radius:12px; color:#8B9DFF;
+  background:rgba(139,157,255,.07); border:1px solid rgba(139,157,255,.20);
+  box-shadow:none; animation:none }
+#boot .boot-mark svg{ width:21px; height:21px }
 #boot .boot-name{
-  margin-top:18px; font:800 22px var(--font-display); letter-spacing:-.02em;
-  background:linear-gradient(178deg, #F6F9FF 30%, #B7C7EA 96%);
-  -webkit-background-clip:text; background-clip:text; color:transparent }
-#boot .boot-tag{
-  margin-top:7px; font:700 9.5px var(--mono); letter-spacing:.28em;
-  text-transform:uppercase; color:var(--t4) }
+  margin-top:14px; font:700 15px var(--font-display); letter-spacing:.005em;
+  color:#EAF0FF; background:none; -webkit-background-clip:border-box;
+  background-clip:border-box; -webkit-text-fill-color:currentColor; filter:none }
 #boot .boot-bar{
-  margin-top:24px; width:min(320px, 62vw); height:4px; border-radius:4px;
-  background:rgba(148,180,255,.10);
-  box-shadow:0 0 0 1px rgba(148,180,255,.06), 0 2px 12px rgba(0,0,0,.4) inset }
+  margin-top:16px; width:180px; height:2px; border-radius:2px;
+  background:rgba(148,180,255,.10); box-shadow:none; overflow:hidden }
 #boot .boot-bar i{
-  width:38%; border-radius:4px;
-  background:linear-gradient(90deg, #8B9DFF, #8B5CF6 60%, #34D399);
-  box-shadow:0 0 14px rgba(139,157,255,.8);
-  animation:bootSlide 1.5s cubic-bezier(.45,.05,.55,.95) infinite }
+  width:40%; border-radius:2px; box-shadow:none;
+  background:linear-gradient(90deg, rgba(139,157,255,.25), #8B9DFF 70%, #EAF0FF);
+  animation:bootSlide 1.1s cubic-bezier(.45,.05,.55,.95) infinite }
 @keyframes bootSlide{ 0%{ transform:translateX(-110%) } 100%{ transform:translateX(320%) } }
-#boot .boot-msg{
-  margin-top:15px; font:600 10.5px var(--mono); letter-spacing:.16em;
-  text-transform:uppercase; color:var(--t3);
-  transition:opacity .24s var(--ease), transform .24s var(--ease) }
-#boot .boot-msg.swap{ opacity:0; transform:translateY(4px) }
-#boot .boot-steps{ display:flex; gap:7px; margin-top:20px }
-#boot .boot-steps i{
-  width:5px; height:5px; border-radius:50%; background:rgba(148,180,255,.16);
-  animation:bootDot 1.8s var(--ease) infinite }
-#boot .boot-steps i:nth-child(2){ animation-delay:.15s }
-#boot .boot-steps i:nth-child(3){ animation-delay:.3s }
-#boot .boot-steps i:nth-child(4){ animation-delay:.45s }
-#boot .boot-steps i:nth-child(5){ animation-delay:.6s }
-#boot .boot-steps i:nth-child(6){ animation-delay:.75s }
-@keyframes bootDot{
-  0%,100%{ background:rgba(148,180,255,.16); transform:scale(1) }
-  40%{ background:#8B9DFF; transform:scale(1.4); box-shadow:0 0 10px rgba(139,157,255,.85) } }
-
+#boot .boot-log{
+  margin-top:16px; width:300px; max-width:74vw; min-height:84px;
+  display:flex; flex-direction:column; gap:6px; text-align:left;
+  font:500 10px/1.45 var(--mono); letter-spacing:.05em; color:#4A5670 }
+#boot .boot-log span{ animation:bootLine .22s var(--ease) both }
+#boot .boot-log span:last-child{ color:#9AA8C7 }
+@keyframes bootLine{ from{ opacity:0; transform:translateY(3px) } to{ opacity:1; transform:none } }
+@media (prefers-reduced-motion: reduce){
+  #boot .boot-bar i{ animation:none; transform:none; width:100% }
+  #boot .boot-log span{ animation:none }
+}
 /* ---- drawer: ink glass, blur lands AFTER the slide (no re-blur lag) ---- */
 .drawer{
   background:linear-gradient(180deg, rgba(5,7,12,.86), rgba(2,3,7,.92));
@@ -994,8 +963,6 @@ html[data-theme="dark"] .nav{ background:rgba(5,8,15,.97) }
     radial-gradient(920px 430px at 50% -10%, rgba(99,125,255,.07), transparent 62%),
     radial-gradient(700px 400px at 88% 110%, rgba(120,90,240,.045), transparent 60%),
     linear-gradient(180deg, rgba(5,7,11,.99), rgba(3,5,8,.995)) }
-<<<<<<< HEAD
-=======
 
 /* ==========================================================================
    20. v3.9 - shine, dominance, white 07, darker tips & trends
@@ -1146,7 +1113,7 @@ h1,h2,h3,h4,.pv-head h1,.sect-head h2,.fg2-h1,.mt2-head h1,.hero h1,
 #catbars .dn-arc{ transition:stroke-width .2s var(--ease-soft) }
 #gradebars .bar-track i, #coverage .bar-track i,
 .an-card .bar-track i, .an-ftrack i{
-  transition:width 1.8s cubic-bezier(.25,.7,.3,1) }   /* matches the pie sweep */
+  transition:width 1.1s cubic-bezier(.25,.7,.3,1) }   /* matches the pie sweep */
 /* keep each donut's repaint inside its own box while the sweep runs */
 #catbars .dn-wrap{ contain:layout paint }
 
@@ -1235,8 +1202,11 @@ body.pv-on #scrollProgress{
    ========================================================================== */
 .nav{ transition:transform .32s var(--ease) }
 body.pv-on .nav.nav-hide{ transform:translateY(-102%) }
-/* views paint from y=0 under the nav so hiding it leaves no gap */
-.pview{ top:0; padding-top:var(--nav-h) }
+/* views keep their original geometry; when the nav bows out the whole
+   window glides up with it (compositor-only transform) - no gaps, no
+   sticky/fixed fights, identical on phone and desktop */
+body.pv-on .pview{ transition:transform .32s var(--ease) }
+body.pv-on.nav-hidden .pview{ transform:translateY(calc(-1 * var(--nav-h))) }
 
 /* v3.26.1 - the close button rides with the nav: parked under it while the
    nav is up, gliding into the true corner when the nav bows out */
@@ -1264,21 +1234,22 @@ body.nav-hidden .pv-x{ top:12px !important }
    while the nav is up, gliding into the true corner when the nav bows out. */
 .pv-x{ display:none !important }
 .vx2{
-  position:fixed; top:calc(var(--nav-h) + 12px); right:16px; z-index:60;
+  display:none;
+  position:fixed; top:calc(var(--nav-h) + 12px); right:16px; z-index:80;
   width:40px; height:40px; border-radius:12px; display:grid; place-items:center;
   cursor:pointer; border:1px solid rgba(148,180,255,.16);
   background:rgba(9,13,24,.88); color:#AEB8D4;
   box-shadow:0 8px 20px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.04);
   transition:top .32s var(--ease), color .18s ease, border-color .18s ease,
              background-color .18s ease, transform .2s var(--spring) }
+body.pv-on .vx2{ display:grid }
 .vx2 svg{ width:16px; height:16px; display:block }
+body.nav-hidden .vx2{ top:12px }
 .vx2:hover{ color:#F2F6FF; border-color:rgba(139,157,255,.45);
   background:rgba(13,18,32,.94); transform:rotate(90deg) }
 .vx2:active{ transform:rotate(90deg) scale(.92) }
 .vx2:focus-visible{ outline:2px solid var(--acc); outline-offset:2px }
-body.nav-hidden .vx2{ top:12px }
 @media (max-width:860px){
   .vx2{ top:calc(var(--nav-h) + 8px); right:10px; width:34px; height:34px; border-radius:10px }
   body.nav-hidden .vx2{ top:10px }
 }
->>>>>>> 359995e (enhancements,bugs fixes)
