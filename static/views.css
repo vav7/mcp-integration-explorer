@@ -525,8 +525,7 @@
    re-triggered by toggling .stack when the window opens. No JS clock,
    no line to fall out of sync, nothing to lag. */
 @keyframes mt2rung{
-  0%{ opacity:0; transform:translateY(-34px) scale(.985) }
-  60%{ opacity:1 }
+  0%{ opacity:0; transform:scale(.985) }
   100%{ opacity:1; transform:none } }
 /* the clicked rung's number: same dark-glass glow as the Refresh button */
 #methodologyView .pipe-n{ position:relative }
@@ -824,25 +823,32 @@ body.pv-on .snap-panel::before, body.pv-on .sp-scan{ animation-play-state:paused
    ========================================================================== */
 
 /* ---- the leading screen: fully dark, sleek, terminal-fast --------------- */
-#boot{ background:#05070D; transition:opacity .3s var(--ease), visibility 0s .3s }
+#boot{
+  background:rgba(5,7,13,.62);
+  backdrop-filter:blur(18px) saturate(130%);
+  -webkit-backdrop-filter:blur(18px) saturate(130%);
+  transition:opacity .3s var(--ease), visibility 0s .3s }
 #boot::before{ content:none }
 #boot .boot-in{ gap:0 }
 #boot .boot-mark{
-  width:44px; height:44px; border-radius:12px; color:#8B9DFF;
-  background:rgba(139,157,255,.07); border:1px solid rgba(139,157,255,.20);
-  box-shadow:none; animation:none }
-#boot .boot-mark svg{ width:21px; height:21px }
+  width:52px; height:52px; border-radius:14px; color:#A5B4FF;
+  background:linear-gradient(180deg, rgba(139,157,255,.14), rgba(139,92,246,.06)), rgba(9,13,22,.9);
+  border:1px solid rgba(139,157,255,.30);
+  box-shadow:0 1px 0 rgba(255,255,255,.06) inset, 0 10px 30px rgba(0,0,0,.5);
+  animation:none }
+#boot .boot-mark svg{ width:24px; height:24px }
 #boot .boot-name{
-  margin-top:14px; font:700 15px var(--font-display); letter-spacing:.005em;
-  color:#EAF0FF; background:none; -webkit-background-clip:border-box;
+  margin-top:16px; font:700 21px var(--font-display); letter-spacing:-.02em;
+  color:#EDF1F8; background:none; -webkit-background-clip:border-box;
   background-clip:border-box; -webkit-text-fill-color:currentColor; filter:none }
 #boot .boot-bar{
   margin-top:16px; width:180px; height:2px; border-radius:2px;
   background:rgba(148,180,255,.10); box-shadow:none; overflow:hidden }
 #boot .boot-bar i{
-  width:40%; border-radius:2px; box-shadow:none;
-  background:linear-gradient(90deg, rgba(139,157,255,.25), #8B9DFF 70%, #EAF0FF);
-  animation:bootSlide 1.1s cubic-bezier(.45,.05,.55,.95) infinite }
+  width:38%; border-radius:2px;
+  background:#8B9DFF;                      /* solid HD violet - no gradient */
+  box-shadow:0 0 12px rgba(139,157,255,.65), 0 0 3px rgba(207,224,255,.8);
+  animation:bootSlide 1s cubic-bezier(.45,.05,.55,.95) infinite }
 @keyframes bootSlide{ 0%{ transform:translateX(-110%) } 100%{ transform:translateX(320%) } }
 #boot .boot-log{
   margin-top:16px; width:300px; max-width:74vw; min-height:84px;
@@ -918,7 +924,7 @@ html[data-theme="dark"] .nav{ background:rgba(5,8,15,.97) }
 /* mobile: the fade mask on the list plate costs a repaint per scroll frame */
 #viewContent.scroller{ -webkit-mask-image:none !important; mask-image:none !important }
 /* skip painting whole home sections until they approach the viewport */
-#signals, #trends, .footer{
+#signals, #trends{
   content-visibility:auto; contain-intrinsic-size:auto 720px }
 
 /* ==========================================================================
@@ -1206,6 +1212,7 @@ body.pv-on .nav.nav-hide{ transform:translateY(-102%) }
    window glides up with it (compositor-only transform) - no gaps, no
    sticky/fixed fights, identical on phone and desktop */
 body.pv-on .pview{ transition:transform .32s var(--ease) }
+.pview{ bottom:calc(-1 * var(--nav-h)) }   /* extra height hangs off-screen: no bottom gap when the window glides up */
 body.pv-on.nav-hidden .pview{ transform:translateY(calc(-1 * var(--nav-h))) }
 
 /* v3.26.1 - the close button rides with the nav: parked under it while the
@@ -1236,13 +1243,13 @@ body.nav-hidden .pv-x{ top:12px !important }
 .vx2{
   display:none;
   position:fixed; top:calc(var(--nav-h) + 12px); right:16px; z-index:80;
-  width:40px; height:40px; border-radius:12px; display:grid; place-items:center;
+  width:40px; height:40px; border-radius:12px; place-items:center;
   cursor:pointer; border:1px solid rgba(148,180,255,.16);
   background:rgba(9,13,24,.88); color:#AEB8D4;
   box-shadow:0 8px 20px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.04);
   transition:top .32s var(--ease), color .18s ease, border-color .18s ease,
              background-color .18s ease, transform .2s var(--spring) }
-body.pv-on .vx2{ display:grid }
+body.pv-on .vx2{ display:grid; place-items:center }
 .vx2 svg{ width:16px; height:16px; display:block }
 body.nav-hidden .vx2{ top:12px }
 .vx2:hover{ color:#F2F6FF; border-color:rgba(139,157,255,.45);
@@ -1252,4 +1259,12 @@ body.nav-hidden .vx2{ top:12px }
 @media (max-width:860px){
   .vx2{ top:calc(var(--nav-h) + 8px); right:10px; width:34px; height:34px; border-radius:10px }
   body.nav-hidden .vx2{ top:10px }
+}
+
+/* ---- v3.28: phones skip paint-heavy ambient loops ---- */
+@media (pointer:coarse){
+  .amb-deep .orb{ animation:none !important }
+  .logo-mark::after{ animation:none !important }
+  .logo-txt b{ animation:none !important; background:none; color:var(--t1); -webkit-text-fill-color:currentColor }
+  .sp-scan{ display:none !important }
 }

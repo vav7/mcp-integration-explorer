@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="build" content="v3.27.0-stable">
+<meta name="build" content="v3.28.0-boot">
 <title>MCP Integration Explorer · integration intelligence</title>
 <meta name="description" content="Live, evidence-backed MCP / agent integration readiness across applications. Real registry data, endpoint probes, GitHub, package adoption and liveness, with every signal traceable to its source.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,8 +13,8 @@
 <script>
   (function(){try{localStorage.setItem('mcp_theme','dark');}catch(e){}document.documentElement.setAttribute('data-theme','dark');})();
 </script>
-<link rel="stylesheet" href="/styles.css?v=3.27.0-stable">
-<link rel="stylesheet" href="/views.css?v=3.27.0-stable">
+<link rel="stylesheet" href="/styles.css?v=3.28.0-boot">
+<link rel="stylesheet" href="/views.css?v=3.28.0-boot">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%238B9DFF'/><stop offset='1' stop-color='%238B5CF6'/></linearGradient></defs><rect width='32' height='32' rx='8' fill='%2305070D'/><rect x='.5' y='.5' width='31' height='31' rx='7.5' fill='none' stroke='%23253140'/><circle cx='10' cy='10' r='2.6' fill='none' stroke='url(%23g)' stroke-width='1.8'/><circle cx='10' cy='22' r='2.6' fill='none' stroke='url(%23g)' stroke-width='1.8'/><circle cx='22' cy='16' r='2.6' fill='none' stroke='url(%23g)' stroke-width='1.8'/><path d='M12 11l8 4M12 21l8-4' stroke='url(%23g)' stroke-width='1.8'/></svg>">
 </head>
 <body>
@@ -25,8 +25,13 @@
   <span class="boot-log" id="bootLog"></span>
 </div>
 <script>
-  /* sleek terminal boot: technical lines append fast, last four stay */
+  /* sleek terminal boot: first visit of a session only, hard 2s cap,
+     technical lines append every 150ms, last four stay */
   (function () {
+    var boot = document.getElementById("boot");
+    var seen = false;
+    try { seen = sessionStorage.getItem("mcpx_boot") === "1";
+          sessionStorage.setItem("mcpx_boot", "1"); } catch (e) {}
     var L = ["> GET registry.modelcontextprotocol.io - 200",
              "> resolve com.stripe/mcp -> stripe.com",
              "> handshake initialize -> tools/list",
@@ -35,7 +40,8 @@
              "> liveness: status + latency per site",
              "> score 100 estates - grade A-E",
              "> attach live change stream"];
-    var el = document.getElementById("bootLog"), i = 0, dead = false;
+    var el = document.getElementById("bootLog"), i = 0, dead = seen;
+    if (seen && boot) boot.classList.add("boot-done");
     function push() {
       if (dead || !el || !el.isConnected) return;
       var s = document.createElement("span");
@@ -43,10 +49,18 @@
       el.appendChild(s);
       while (el.children.length > 4) el.removeChild(el.firstChild);
       i++;
-      setTimeout(push, 240);
+      setTimeout(push, 150);
     }
-    setTimeout(push, 100);
-    window.__bootStop = function () { dead = true; };
+    if (!seen) setTimeout(push, 80);
+    /* never longer than 2 seconds, whatever the network does */
+    setTimeout(function () {
+      if (boot && !boot.classList.contains("boot-done")) boot.classList.add("boot-done");
+      dead = true;
+    }, 2000);
+    window.__bootStop = function () {
+      dead = true;
+      if (boot && !boot.classList.contains("boot-done")) boot.classList.add("boot-done");
+    };
   })();
 </script></div>
 <div id="scrollProgress" aria-hidden="true"></div>
@@ -1074,9 +1088,9 @@
 <!-- NOTE: data.snapshot.js (~2MB) is NOT loaded up front. The live API is the
      primary data source; the embedded snapshot is injected on demand only when
      the backend is unreachable, so a normal visit never parses it. -->
-<script src="/app.js?v=3.27.0-stable"></script>
-<script src="/motion.js?v=3.27.0-stable"></script>
-<script src="/help.js?v=3.27.0-stable"></script>
-<script src="/premium.js?v=3.27.0-stable"></script>
+<script src="/app.js?v=3.28.0-boot"></script>
+<script src="/motion.js?v=3.28.0-boot"></script>
+<script src="/help.js?v=3.28.0-boot"></script>
+<script src="/premium.js?v=3.28.0-boot"></script>
 </body>
 </html>

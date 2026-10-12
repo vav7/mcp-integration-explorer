@@ -4,7 +4,7 @@
  * real snapshot. All derived views (leaderboard, opportunities, export) are
  * computed client-side so they work with or without the backend.
  */
-  window.__MCPC_VERSION__ = "3.27.0-stable";   /* type this in console to verify your build */
+  window.__MCPC_VERSION__ = "3.28.0-boot";   /* type this in console to verify your build */
 (() => {
   "use strict";
   const $ = (s, r = document) => r.querySelector(s);
@@ -793,11 +793,17 @@
     Array.prototype.forEach.call(box.querySelectorAll(".donut"), (don) => {
       const circ = parseFloat(don.style.getPropertyValue("--circ")) || 0;
       if (!circ) return;
-      const delay = di++ * 70;
+      const delay0 = di++ * 60;
       Array.prototype.forEach.call(don.querySelectorAll(".dn-arc"), (arc) => {
         if (arc.classList.contains("dn-track")) return;
         const da = parseFloat(arc.style.getPropertyValue("--da")) || 0;
         const doff = parseFloat(arc.style.getPropertyValue("--do")) || 0;
+        const start = Math.abs(doff);
+        /* one continuous clockwise wipe: each segment's transition starts
+           exactly when the hand reaches it - native interpolation, no JS
+           per frame, whole ring in 0.5s */
+        const dur = Math.max(60, (da / circ) * 500);
+        const del = delay0 + (start / circ) * 500;
         const fin = da.toFixed(1) + " " + Math.max(0, circ - da).toFixed(1);
         arc.style.transition = "none";
         arc.style.strokeDashoffset = doff.toFixed(1);
@@ -805,7 +811,7 @@
         void arc.getBoundingClientRect();
         arc.style.transition = reducedMotion
           ? "none"
-          : "stroke-dasharray 1.1s linear " + delay + "ms";
+          : "stroke-dasharray " + dur + "ms linear " + del + "ms";
         arc.style.strokeDasharray = fin;
       });
     });
@@ -817,30 +823,20 @@
     if (!segs.length) return;
     const R = parseFloat(segs[0].getAttribute("r")) || 46;
     const circ = 2 * Math.PI * R;
-    const jobs = segs.map(c => {
+    segs.forEach(c => {
       const dash = (c.getAttribute("stroke-dasharray") || "0 0").split(/[, ]+/).map(Number);
       const da = dash[0] || 0;
       const start = Math.abs(parseFloat(c.getAttribute("stroke-dashoffset")) || 0);
+      const dur = Math.max(60, (da / circ) * 500);
+      const del = (start / circ) * 500;
+      const fin = da.toFixed(1) + " " + Math.max(0, circ - da).toFixed(1);
       c.style.transition = "none";
       c.style.strokeDasharray = "0 " + circ.toFixed(1);
-      return { c, da, start };
+      void c.getBoundingClientRect();
+      c.style.transition = reducedMotion ? "none"
+        : "stroke-dasharray " + dur + "ms linear " + del + "ms";
+      c.style.strokeDasharray = fin;
     });
-    if (reducedMotion) {
-      jobs.forEach(o => { o.c.style.strokeDasharray = o.da.toFixed(1) + " " + (circ - o.da).toFixed(1); });
-      return;
-    }
-    const TOTAL = 1400, t0 = performance.now();
-    const tick = (now) => {
-      const swept = Math.min(1, (now - t0) / TOTAL) * circ;
-      let busy = (now - t0) < TOTAL;
-      for (const o of jobs) {
-        const vis = Math.max(0, Math.min(o.da, swept - o.start));
-        o.c.style.strokeDasharray = vis.toFixed(2) + " " + (circ - vis).toFixed(2);
-        if (vis < o.da - .01) busy = true;
-      }
-      if (busy) requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
   }
   function replayCoverage() {
     const cov = $("#coverage");
