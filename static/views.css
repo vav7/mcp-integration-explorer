@@ -986,8 +986,10 @@ html[data-theme="dark"] .nav.scrolled{ background:#04060B; box-shadow:0 10px 30p
 
 /* the two shine loops respect reduced motion */
 @media (prefers-reduced-motion: reduce){
-  .logo-mark::after, .logo-txt b{ animation:none !important }
+  .logo-mark::after, .logo-txt b, .fbar-mid{ animation:none !important }
   .logo-txt b{ background:none; color:var(--t1); -webkit-text-fill-color:currentColor }
+  .fbar-mid{ background:none; color:var(--t3); -webkit-text-fill-color:currentColor }
+  .fbar-mid .goldshine{ color:#E9C25A; -webkit-text-fill-color:#E9C25A }
 }
 
 /* ==========================================================================
@@ -1187,61 +1189,101 @@ body.pv-on .vx2{ display:grid; place-items:center }
   .vx2{ top:calc(var(--nav-h) + 8px); right:10px; width:34px; height:34px; border-radius:10px }
 }
 
-/* ---- v3.28: phones skip paint-heavy ambient loops ---- */
+/* ---- v3.28: phones skip paint-heavy ambient loops ----
+   v3.33: the brand sheen + wordmark light stay ON on phones too - they are
+   tiny boxes (a 28px mark, one 13px line) and the shine is the signature.
+   Only the giant 58vmax orbs and the scanline stay parked. */
 @media (pointer:coarse){
   .amb-deep .orb{ animation:none !important }
-  .logo-mark::after{ animation:none !important }
-  .logo-txt b{ animation:none !important; background:none; color:var(--t1); -webkit-text-fill-color:currentColor }
   .sp-scan{ display:none !important }
 }
 
 /* ==========================================================================
-   31. v3.32 - the closing plate, dimmed to near-black + parallel phone cols.
-   A) From the brand line down to the very bottom edge the footer sits on its
-      own light. v3.31 ran these blooms far too hot - bright violet fog reads
-      cheap. The premium take is restraint: the ink at the bottom edge is
-      almost pure black, the two blooms are a whisper, and the breathe is slow
-      and dim. No backdrop-filter anywhere in here - the footer scrolls, and
+   31. v3.33 - the closing plate, ink-black.
+   A) v3.32 was still too loud. A faint violet bloom over near-black quantises
+      into visible rings on phone OLEDs - THAT is the "grainy, low quality"
+      read. The cure is less light, not more blur: every bloom drops to about
+      a third of its v3.32 alpha so the gradient steps hide inside single
+      8-bit levels, the base ink sits a hair below the page, and the breathe
+      is opacity-only (the old translate+scale re-rastered the gradient every
+      frame - shimmer reads as grain). No backdrop-filter anywhere in here -
       blur on a scrolling layer is the single biggest source of jank on phones.
-   B) The credit bar keeps its old centred phone stack - "Made with love by
-      vav7" and the snapshot stamp were perfect centred, so they stay there.
-   C) On phones the footer is two-up: "Windows" + "Data & tools" on the left,
-      "On this page" + "Live sources" on the right. The right pair carries one
-      more row each, so it gets a touch less type and a small indent - the two
-      sides now read as parallel blocks of the same visual height.
+   B) The credit bar keeps its centred phone stack.
+   C) On phones the footer is two-up: "Windows" + "Data & tools" left,
+      "On this page" + "Live sources" right. v3.32 shrank the right pair to
+      10.5px on a tighter leading - too small, and its rows floated above the
+      left rows. Now the pair keeps the SAME h5 margin as the left (so the
+      rows start level) at a readable 11.5px, indented a little further right.
    ========================================================================== */
 .footer{
   position:relative; isolation:isolate;
   margin-top:120px; padding-bottom:88px;
-  border-top:1px solid rgba(140,120,255,.11) }
+  border-top:1px solid rgba(140,120,255,.085) }
 .footer::before{
   background:
-    radial-gradient(118% 76% at 50% 118%, rgba(126,88,246,.13), transparent 62%),
-    radial-gradient(76% 50% at 9% 104%, rgba(84,104,255,.075), transparent 68%),
-    radial-gradient(70% 46% at 93% 96%, rgba(170,112,255,.06), transparent 70%),
-    linear-gradient(180deg, rgba(3,4,10,.94), rgba(4,4,11,.98) 46%, rgba(6,4,13,1)) !important }
+    radial-gradient(118% 76% at 50% 118%, rgba(126,88,246,.042), transparent 62%),
+    radial-gradient(76% 50% at 9% 104%, rgba(84,104,255,.026), transparent 68%),
+    radial-gradient(70% 46% at 93% 96%, rgba(170,112,255,.02), transparent 70%),
+    linear-gradient(180deg, rgba(3,3,8,.965), rgba(3,3,7,.99) 46%, rgba(2,2,5,1)) !important }
 .footer::after{
   content:""; position:absolute; left:0; right:0; bottom:-2px; height:300px;
   z-index:-1; pointer-events:none;
   background:
-    radial-gradient(56% 100% at 50% 100%, rgba(139,110,255,.10), transparent 72%),
-    radial-gradient(30% 68% at 21% 100%, rgba(92,120,255,.06), transparent 70%),
-    radial-gradient(28% 64% at 81% 100%, rgba(178,118,255,.05), transparent 70%),
-    linear-gradient(0deg, rgba(2,2,6,.30), transparent 34%);
-  animation:footBreathe 12s var(--ease-soft) infinite alternate }
+    radial-gradient(56% 100% at 50% 100%, rgba(139,110,255,.03), transparent 72%),
+    radial-gradient(30% 68% at 21% 100%, rgba(92,120,255,.019), transparent 70%),
+    radial-gradient(28% 64% at 81% 100%, rgba(178,118,255,.015), transparent 70%),
+    linear-gradient(0deg, rgba(1,1,3,.28), transparent 34%);
+  animation:footBreathe 14s var(--ease-soft) infinite alternate }
 @keyframes footBreathe{
-  from{ opacity:.40; transform:translate3d(0,8px,0) scale(1) }
-  to  { opacity:.70; transform:translate3d(0,0,0) scale(1.02) } }
-.footer .fb-home{ text-shadow:0 0 24px rgba(139,120,255,.15) }
+  from{ opacity:.55 }
+  to  { opacity:.85 } }
+.footer .fb-home{ text-shadow:none }
 .footer h5{ color:#D8DCFF }
-.fbar{ border-top-color:rgba(140,120,255,.09) }
+.fbar{ border-top-color:rgba(140,120,255,.075) }
 @media (prefers-reduced-motion:reduce){
   .footer::after{ animation:none } }
 @media (max-width:640px){
-  .fgrid>div:nth-child(3), .fgrid>div:nth-child(5){ padding-left:12px }
-  .fgrid>div:nth-child(3) h5, .fgrid>div:nth-child(5) h5{ margin-bottom:8px }
-  .fgrid>div:nth-child(3) ul, .fgrid>div:nth-child(5) ul{ gap:5px }
-  .fgrid>div:nth-child(3) li, .fgrid>div:nth-child(5) li{ font-size:10.5px; line-height:1.35 }
+  .fgrid>div:nth-child(3), .fgrid>div:nth-child(5){ padding-left:18px }
+  .fgrid>div:nth-child(3) ul, .fgrid>div:nth-child(5) ul{ gap:7px }
+  .fgrid>div:nth-child(3) li, .fgrid>div:nth-child(5) li{ font-size:11.5px; line-height:1.55 }
   /* .footer ul a pins 12.5px on every link - out-specify it for this pair */
-  .fgrid>div:nth-child(3) li a, .fgrid>div:nth-child(5) li a{ font-size:10.5px }
+  .fgrid>div:nth-child(3) li a, .fgrid>div:nth-child(5) li a{ font-size:11.5px }
 }
+
+/* ==========================================================================
+   32. v3.33 - the brand light travels everywhere the brand speaks.
+   A) Phones <=400px used to drop the nav wordmark entirely; it fits down
+      there (pill, bell, export and theme are already parked), so from now on
+      it stays - and shines, because the coarse-pointer kill list no longer
+      touches it (see the v3.28 note above).
+   B) The footer credit wears the SAME travelling light as the nav wordmark
+      (logoTextShine in silver - the old gold foil stays dead). The parent
+      paints one gradient clipped to all of its text; the existing
+      `.fbar-mid .goldshine{background-image:none}` override is exactly what
+      lets "vav7" show the parent's light through its glyphs, at its heavier
+      weight. The heart keeps its own red fill - replaced content is never
+      touched by background-clip:text.
+      Careful with the box: a clipped-text grid item that shrink-wraps
+      collapses to its longest single word - the credit came out 59px wide
+      and three lines tall. `inline-flex` + `width:max-content` measures the
+      whole line (142px) instead, and the heart keeps its 8px gap.
+   C) The <=400px nav used to drop the wordmark entirely. It comes back at
+      10.5px with tighter brand/nav gaps - 154px of room at 390px against the
+      ~148px the full "MCP Integration Explorer" needs there. Below that it
+      ellipsises rather than pushing the icons off the edge.
+   ========================================================================== */
+@media (max-width:400px){
+  .logo-txt{ display:block; min-width:0 }
+  .logo{ flex:0 1 auto; min-width:0; gap:8px }
+  .nav-inner{ gap:6px; padding:0 8px }
+  .logo-txt b{ font-size:10.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+}
+.fbar-mid{
+  display:inline-flex; align-items:center; gap:8px;
+  width:max-content; max-width:100%;
+  white-space:nowrap;
+  background:linear-gradient(100deg, #8E97AC 0%, #8E97AC 42%, #F4F7FF 50%, #8E97AC 58%, #8E97AC 100%);
+  background-size:220% 100%;
+  -webkit-background-clip:text; background-clip:text;
+  color:transparent;
+  animation:logoTextShine 7s linear infinite }
