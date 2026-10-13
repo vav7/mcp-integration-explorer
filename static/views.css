@@ -380,10 +380,18 @@
 #methodologyView .mt2-ladder{ position:relative; list-style:none; margin:30px 0 0; padding:0; gap:14px; display:grid }
 /* the legacy vertical rail line is gone too - nothing falls, nothing chases */
 #methodologyView .pipeline::before, #methodologyView .pipeline::after{ content:none !important }
-/* rungs wait off-stage until they enter the window, then fall into place */
-#methodologyView .mt2-pipe{ opacity:0; transform:translateY(-30px) scale(.985) }
+/* rungs wait just off-stage LEFT, then glide in one after another as the
+   window scrolls - a quick lateral slide, never a fall, never a stack */
+#methodologyView .mt2-pipe{ opacity:0; transform:translateX(-30px) }
 #methodologyView .mt2-pipe.in-view{ opacity:1; transform:none;
-  animation:mt2rung .5s var(--spring) both }
+  animation:mt2rung .38s cubic-bezier(.22,.9,.3,1) backwards }
+/* the rung's coin flips in right behind its box, same stagger lane */
+#methodologyView .mt2-pipe.in-view .pipe-n{ animation:coinIn .5s var(--spring) backwards;
+  animation-delay:calc(60ms + var(--i,0)*70ms) }
+@media (prefers-reduced-motion:reduce){
+  #methodologyView .mt2-pipe{ opacity:1; transform:none; animation:none }
+  #methodologyView .mt2-pipe.in-view .pipe-n{ animation:none }
+}
 #methodologyView .mt2-pipe{
   position:relative; display:block; padding:0; border-radius:var(--rf);
   border:1px solid var(--boxln); background-image:var(--boxg); box-shadow:var(--boxsh);
@@ -525,7 +533,7 @@
    re-triggered by toggling .stack when the window opens. No JS clock,
    no line to fall out of sync, nothing to lag. */
 @keyframes mt2rung{
-  0%{ opacity:0; transform:scale(.985) }
+  0%{ opacity:0; transform:translateX(-30px) }
   100%{ opacity:1; transform:none } }
 /* the clicked rung's number: same dark-glass glow as the Refresh button */
 #methodologyView .pipe-n{ position:relative }
@@ -623,9 +631,12 @@
 #methodologyView .mt2-foot-btns{
   display:flex; gap:10px; flex-wrap:wrap; padding:18px 22px; margin-left:auto; order:2 }
 @media (max-width:900px){
-  #methodologyView .mt2-foot{ flex-direction:column; align-items:stretch }
-  #methodologyView .mt2-foot-btns{ order:2; padding:4px 18px 18px }
-  #methodologyView .mt2-foot > span{ order:1; padding:20px 18px 6px }
+  #methodologyView .mt2-foot{ flex-direction:column; align-items:stretch; margin-top:16px }
+  #methodologyView .mt2-foot-btns{ order:2; padding:4px 16px 12px; gap:8px }
+  #methodologyView .mt2-foot > span{ order:1; padding:16px 16px 2px; flex:0 0 auto }
+  /* v3.34: no dead air under the field-guide button on phones - the view's
+     bottom padding used to leave a ~54px void after the last box */
+  #methodologyView .pview-in{ padding-bottom:20px }
 }
 
 /* ==========================================================================

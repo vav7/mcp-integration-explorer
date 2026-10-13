@@ -4,7 +4,7 @@
  * real snapshot. All derived views (leaderboard, opportunities, export) are
  * computed client-side so they work with or without the backend.
  */
-  window.__MCPC_VERSION__ = "3.33.0-onyx";   /* type this in console to verify your build */
+  window.__MCPC_VERSION__ = "3.34.0-ember";   /* type this in console to verify your build */
 (() => {
   "use strict";
   const $ = (s, r = document) => r.querySelector(s);
@@ -2749,7 +2749,14 @@
        added and the only extra track is the slim "add" rail on the right, so
        there is never a reserved empty slot waiting for the next pick */
     const narrow = narrowGrid();
-    const cols = narrow ? `88px repeat(${n}, minmax(80px,1fr)) 26px` : `104px repeat(${n}, minmax(96px,1fr)) 40px`;
+    /* v3.34: a full board owns every pixel. The slim "+" rail - and the empty
+       head/cell column that went with it - only exists while a slot is still
+       free, so a complete 4-up comparison never shows a dead sliver at the
+       right edge (desktop) or an off-screen ghost column (phones). */
+    const full = n >= 4;
+    const cols = full
+      ? (narrow ? `84px repeat(${n}, minmax(74px,1fr))` : `104px repeat(${n}, minmax(96px,1fr))`)
+      : (narrow ? `88px repeat(${n}, minmax(80px,1fr)) 26px` : `104px repeat(${n}, minmax(96px,1fr)) 40px`);
     const daysSince = iso => iso ? (Date.now() - new Date(iso).getTime()) / 86400000 : null;
     const rows = [
       ["Readiness", a => a.readiness.score, a => `<b class="cv-num" data-num="${a.readiness.score}">${a.readiness.score}</b> <span class="cv-grade ${a.readiness.grade}">${a.readiness.grade}</span>`, true],
@@ -2766,14 +2773,14 @@
       <div class="cmp2-corner">Compare</div>
       ${apps.map(a => `<div class="cmp2-app">${logoHtml(a, "lg")}<span class="cmp2-name">${esc(a.app.name)}</span>
         <span class="cmp2-score">${a.readiness.score}<small>/100</small></span></div>`).join("")}
-      <div class="cmp2-addhead">${n < 4 ? `<button class="cac-plus" type="button" data-caddfocus title="Add another application">+</button><span class="cac-s">${4 - n} left</span>` : ""}</div></div>`;
+      ${full ? "" : `<div class="cmp2-addhead">${n < 4 ? `<button class="cac-plus" type="button" data-caddfocus title="Add another application">+</button><span class="cac-s">${4 - n} left</span>` : ""}</div>`}</div>`;
     const body = rows.map(([label, num, disp, best], ri) => {
       const vals = apps.map(num); const mx = Math.max(...vals); const unique = vals.filter(v => v === mx).length === 1;
       return `<div class="cmp2-row" style="grid-template-columns:${cols}">
         <div class="cmp2-label">${label}</div>
         ${apps.map((a, i) => { const isBest = showBest && best && mx > 0 && unique && vals[i] === mx;
           return `<div class="cmp2-cell${isBest ? " best" : ""}" style="animation-delay:${narrow ? 0 : (ri * 22 + i * 34)}ms">${disp(a)}${isBest ? `<span class="best-tag">Best</span>` : ""}</div>`; }).join("")}
-        <div class="cmp2-cell cmp2-addcell"></div></div>`;
+        ${full ? "" : `<div class="cmp2-cell cmp2-addcell"></div>`}</div>`;
     }).join("");
     return head + body;
   }
@@ -3329,6 +3336,7 @@
     const closeDropdowns = () => $$(".dropdown").forEach(d => d.classList.remove("open"));
     $("#exportBtn").onclick = e => { e.stopPropagation(); const d = $("#exportBtn").closest(".dropdown"); const o = d.classList.contains("open"); closeDropdowns(); d.classList.toggle("open", !o); };
     $("#bellBtn").onclick = e => { e.stopPropagation(); const d = $("#bellWrap"); const o = d.classList.contains("open"); closeDropdowns(); d.classList.toggle("open", !o); if (!o) { renderAlerts(); if (state.unread) markAlertsRead(); } };
+    window.__bellNative = true;
     $("#markRead").onclick = e => { e.stopPropagation(); markAlertsRead(); };
     document.addEventListener("click", closeDropdowns);
     $$("#exportMenu a").forEach(a => a.addEventListener("click", e => { e.preventDefault(); doExport(a.dataset.fmt); closeDropdowns(); }));
@@ -3465,6 +3473,7 @@
     const dwj = $("#dwJson"); if (dwj) dwj.onclick = () => doExport("json");
     const dwt = $("#dwTheme"); if (dwt) dwt.onclick = () => toggleTheme();
     const dwa = $("#dwAlerts"); if (dwa) dwa.onclick = (e) => { e.stopPropagation(); setDrawer(false); const bw = $("#bellWrap"); if (bw) { bw.classList.add("open"); renderAlerts(); if (state.unread) markAlertsRead(); } };
+    window.__dwAlertsNative = true;
     const dwgo = $("#dwCompare"); if (dwgo) dwgo.onclick = () => { setDrawer(false); setTimeout(openCompare, 300); };
     const dwcl = $("#dwClear"); if (dwcl) dwcl.onclick = () => { state.compare = []; renderCompareBar(); renderView(); };
     let rszW = 0; try { rszW = window.innerWidth || 0; } catch (e) {}
@@ -3490,6 +3499,26 @@
     loadRecent(); themeIcon();
     await loadSnapshot();
     try { bind(); } catch (e) { if (window.console) console.error("bind failed:", e); window.__bindErr = e.message + " || " + String(e.stack || "").slice(0, 300); }
+    /* v3.34: belt-and-braces for the alerts bell. If an earlier binding ever
+       throws mid-bind (a missing node, a weird embed host), the bell and the
+       drawer's Alerts item must still work - they are the one surface users
+       trust for "something happened". This capture-phase delegate only acts
+       when the native handler never got attached. */
+    document.addEventListener("click", (e) => {
+      const t = e.target && e.target.closest ? e.target : null;
+      if (!t) return;
+      const bell = t.closest("#bellBtn"), dwa = t.closest("#dwAlerts");
+      if (bell && window.__bellNative) return;
+      if (dwa && window.__dwAlertsNative) return;
+      if (!bell && !dwa) return;
+      e.stopPropagation(); e.preventDefault();
+      const bw = $("#bellWrap"); if (!bw) return;
+      if (dwa) setDrawer(false);
+      const o = bw.classList.contains("open");
+      $$(".dropdown").forEach(d => d.classList.remove("open"));
+      bw.classList.toggle("open", dwa ? true : !o);
+      if (bw.classList.contains("open")) { renderAlerts(); if (state.unread) markAlertsRead(); }
+    }, true);
     await loadActivity(); observeReveal();
     const mm = location.pathname.match(/\/app\/(\d+)/); if (mm) openModal(+mm[1]);
     const h0 = (location.hash || "").replace(/^#/, "");

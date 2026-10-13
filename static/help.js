@@ -433,7 +433,7 @@
       let k = 0;
       es.forEach(en => {
         if (!en.isIntersecting) return;
-        en.target.style.animationDelay = (k++ * 90) + "ms";
+        en.target.style.animationDelay = (k++ * 70) + "ms";   /* v3.34: tighter stagger */
         en.target.classList.add("in-view");
         ladderIO.unobserve(en.target);
       });

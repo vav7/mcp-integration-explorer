@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="build" content="v3.33.0-onyx">
+<meta name="build" content="v3.34.0-ember">
 <title>MCP Integration Explorer · integration intelligence</title>
 <meta name="description" content="Live, evidence-backed MCP / agent integration readiness across applications. Real registry data, endpoint probes, GitHub, package adoption and liveness, with every signal traceable to its source.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,8 +13,8 @@
 <script>
   (function(){try{localStorage.setItem('mcp_theme','dark');}catch(e){}document.documentElement.setAttribute('data-theme','dark');})();
 </script>
-<link rel="stylesheet" href="/styles.css?v=3.33.0-onyx">
-<link rel="stylesheet" href="/views.css?v=3.33.0-onyx">
+<link rel="stylesheet" href="/styles.css?v=3.34.0-ember">
+<link rel="stylesheet" href="/views.css?v=3.34.0-ember">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%238B9DFF'/><stop offset='1' stop-color='%238B5CF6'/></linearGradient></defs><rect width='32' height='32' rx='8' fill='%2305070D'/><rect x='.5' y='.5' width='31' height='31' rx='7.5' fill='none' stroke='%23253140'/><circle cx='10' cy='10' r='2.6' fill='none' stroke='url(%23g)' stroke-width='1.8'/><circle cx='10' cy='22' r='2.6' fill='none' stroke='url(%23g)' stroke-width='1.8'/><circle cx='22' cy='16' r='2.6' fill='none' stroke='url(%23g)' stroke-width='1.8'/><path d='M12 11l8 4M12 21l8-4' stroke='url(%23g)' stroke-width='1.8'/></svg>">
 </head>
 <body>
@@ -24,7 +24,7 @@
     <span class="boot-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="7" cy="7" r="2.1"/><circle cx="7" cy="17" r="2.1"/><circle cx="17" cy="12" r="2.1"/><path d="M9 8l6 3M9 16l6-3"/></svg></span>
     <b class="boot-name">MCP Integration Explorer</b>
     <div class="boot-log" id="bootLog"></div>
-    <span class="boot-bar"><i id="bootFill"></i></span>
+    <span class="boot-bar"><i id="bootFill"></i><b class="boot-tail" id="bootTail"></b></span>
     <span class="boot-row"><span class="boot-msg" id="bootMsg">waking up</span><span class="boot-pct" id="bootPct">0%</span></span>
   </div>
 </div>
@@ -37,6 +37,7 @@
   (function () {
     var boot = document.getElementById("boot"),
         fill = document.getElementById("bootFill"),
+        tail = document.getElementById("bootTail"),
         msg  = document.getElementById("bootMsg"),
         pct  = document.getElementById("bootPct"),
         log  = document.getElementById("bootLog");
@@ -86,6 +87,7 @@
       cancelAnimationFrame(raf);
       if (tick) { clearInterval(tick); tick = 0; }
       if (fill) fill.style.transform = "scaleX(1)";
+      if (tail) { tail.style.left = "100%"; tail.classList.add("live"); }
       if (pct) pct.textContent = "100%";
       boot.classList.add("boot-done");
       setTimeout(function () { if (boot.parentNode) boot.parentNode.removeChild(boot); }, 500);
@@ -96,6 +98,8 @@
       var p = Math.round(shown);
       if (p !== lastP) { lastP = p;
         if (fill) fill.style.transform = "scaleX(" + (shown / 100).toFixed(4) + ")";
+        /* v3.34: the spark rides the fill head, frame-accurate */
+        if (tail) { tail.style.left = shown.toFixed(2) + "%"; tail.classList.add("live"); }
         if (pct) pct.textContent = p + "%"; }
       if (closing && shown >= 100) { finish(); return; }
       raf = requestAnimationFrame(paint);
@@ -1149,9 +1153,9 @@
 <!-- NOTE: data.snapshot.js (~2MB) is NOT loaded up front. The live API is the
      primary data source; the embedded snapshot is injected on demand only when
      the backend is unreachable, so a normal visit never parses it. -->
-<script src="/app.js?v=3.33.0-onyx"></script>
-<script src="/motion.js?v=3.33.0-onyx"></script>
-<script src="/help.js?v=3.33.0-onyx"></script>
-<script src="/premium.js?v=3.33.0-onyx"></script>
+<script src="/app.js?v=3.34.0-ember"></script>
+<script src="/motion.js?v=3.34.0-ember"></script>
+<script src="/help.js?v=3.34.0-ember"></script>
+<script src="/premium.js?v=3.34.0-ember"></script>
 </body>
 </html>
