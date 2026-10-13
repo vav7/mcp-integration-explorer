@@ -559,16 +559,16 @@
     "avg_readiness": 45.7
   },
   {
-    "ts": "2026-10-13T06:25:12Z",
+    "ts": "2026-10-13T00:49:00Z",
     "official": 14,
-    "community": 66,
-    "none": 20,
-    "servers": 495,
-    "tools": 319,
-    "downloads": 1176492,
-    "stars": 23617,
+    "community": 70,
+    "none": 16,
+    "servers": 539,
+    "tools": 323,
+    "downloads": 1174027,
+    "stars": 23711,
     "responding": 100,
     "reachable": 94,
-    "avg_readiness": 47.7
+    "avg_readiness": 48.7
   }
 ]

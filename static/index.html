@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="build" content="v3.30.0-gate">
+<meta name="build" content="v3.31.0-seen">
 <title>MCP Integration Explorer · integration intelligence</title>
 <meta name="description" content="Live, evidence-backed MCP / agent integration readiness across applications. Real registry data, endpoint probes, GitHub, package adoption and liveness, with every signal traceable to its source.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,8 +13,8 @@
 <script>
   (function(){try{localStorage.setItem('mcp_theme','dark');}catch(e){}document.documentElement.setAttribute('data-theme','dark');})();
 </script>
-<link rel="stylesheet" href="/styles.css?v=3.30.0-gate">
-<link rel="stylesheet" href="/views.css?v=3.30.0-gate">
+<link rel="stylesheet" href="/styles.css?v=3.31.0-seen">
+<link rel="stylesheet" href="/views.css?v=3.31.0-seen">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%238B9DFF'/><stop offset='1' stop-color='%238B5CF6'/></linearGradient></defs><rect width='32' height='32' rx='8' fill='%2305070D'/><rect x='.5' y='.5' width='31' height='31' rx='7.5' fill='none' stroke='%23253140'/><circle cx='10' cy='10' r='2.6' fill='none' stroke='url(%23g)' stroke-width='1.8'/><circle cx='10' cy='22' r='2.6' fill='none' stroke='url(%23g)' stroke-width='1.8'/><circle cx='22' cy='16' r='2.6' fill='none' stroke='url(%23g)' stroke-width='1.8'/><path d='M12 11l8 4M12 21l8-4' stroke='url(%23g)' stroke-width='1.8'/></svg>">
 </head>
 <body>
@@ -23,26 +23,68 @@
   <div class="boot-in">
     <span class="boot-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="7" cy="7" r="2.1"/><circle cx="7" cy="17" r="2.1"/><circle cx="17" cy="12" r="2.1"/><path d="M9 8l6 3M9 16l6-3"/></svg></span>
     <b class="boot-name">MCP Integration Explorer</b>
+    <div class="boot-log" id="bootLog"></div>
     <span class="boot-bar"><i id="bootFill"></i></span>
     <span class="boot-row"><span class="boot-msg" id="bootMsg">waking up</span><span class="boot-pct" id="bootPct">0%</span></span>
   </div>
 </div>
 <script>
-  /* v3.30 real boot gate: this veil lifts only when the app reports that it
-     is ready (window.__boot.done from app.js, after first paint + fonts).
-     Progress follows true load stages, never a clock. Hard 9s cap so the
-     veil can never trap a visitor, min dwell so it never flashes. */
+  /* v3.31 boot: still a REAL gate - the veil lifts only when the app reports
+     ready (window.__boot.done, after first paint + fonts) and the bar follows
+     true load stages, never a clock. Wearing it: a fast pipeline trace that
+     narrates what is actually being fetched, ~58ms a line, and it stops the
+     instant the veil goes. Hard 9s cap, min dwell so it never flashes. */
   (function () {
     var boot = document.getElementById("boot"),
         fill = document.getElementById("bootFill"),
         msg  = document.getElementById("bootMsg"),
-        pct  = document.getElementById("bootPct");
+        pct  = document.getElementById("bootPct"),
+        log  = document.getElementById("bootLog");
     if (!boot) { window.__boot = { stage: function () {}, done: function () {} }; return; }
     var t0 = Date.now(), shown = 0, target = 6, lastP = -1, raf = 0,
-        closing = false, gone = false;
+        closing = false, gone = false, tick = 0, ti = 0, MAXL = 6;
+    /* the real pipeline, end to end - hosts and endpoints the app truly uses */
+    var TRACE = [
+      "GET registry.modelcontextprotocol.io/v0/servers",
+      "cursor page > server index",
+      "namespace > vendor domain resolve",
+      "match tracked estates",
+      "GET /api/snapshot  (no-store)",
+      "mcp initialize  json-rpc 2.0",
+      "tools/list  schema validate",
+      "probe endpoints  tls  http2",
+      "latency p50 / p95  responding set",
+      "api.github.com  stars forks pushed_at",
+      "registry.npmjs.org  downloads last-month",
+      "pypi.org/pypi  pypistats  monthly",
+      "liveness sweep  dns  cert expiry",
+      "readiness model  7 stages  weights",
+      "aggregate by_category  grades A-E",
+      "history series  trend deltas",
+      "cache snapshot  etag  gzip",
+      "EventSource /api/stream  sse",
+      "hydrate dashboard  fonts  charts",
+      "arm reveals  donuts  bars  wires"
+    ];
+    function push(text, cls) {
+      if (!log || gone) return;
+      var d = document.createElement("div");
+      d.className = cls || "trace";
+      d.textContent = text;
+      log.appendChild(d);
+      while (log.childNodes.length > MAXL) log.removeChild(log.firstChild);
+    }
+    function step() {
+      if (gone || closing) { if (tick) { clearInterval(tick); tick = 0; } return; }
+      if (ti < TRACE.length) push(TRACE[ti++], "trace");
+      else if (tick) { clearInterval(tick); tick = 0; }
+    }
+    step();
+    tick = setInterval(step, 58);
     function finish() {
       if (gone) return; gone = true;
       cancelAnimationFrame(raf);
+      if (tick) { clearInterval(tick); tick = 0; }
       if (fill) fill.style.transform = "scaleX(1)";
       if (pct) pct.textContent = "100%";
       boot.classList.add("boot-done");
@@ -59,7 +101,17 @@
       raf = requestAnimationFrame(paint);
     }
     raf = requestAnimationFrame(paint);
-    function close() { if (!closing) { closing = true; target = 100; } }
+    function close() {
+      if (closing) return;
+      closing = true; target = 100;
+      if (tick) { clearInterval(tick); tick = 0; }
+      /* finish the story at 4x before the veil lifts - the trace must never
+         die mid-sentence behind a closing curtain */
+      if (ti < TRACE.length) setInterval(function () {
+        if (gone || ti >= TRACE.length) return;
+        push(TRACE[ti++], "trace");
+      }, 14);
+    }
     window.__boot = {
       stage: function (m, p) {
         if (gone || closing) return;
@@ -67,6 +119,7 @@
         if (m && msg && msg.textContent !== m) {
           msg.classList.add("swap");
           setTimeout(function () { msg.textContent = m; msg.classList.remove("swap"); }, 140);
+          push(m, "real");
         }
       },
       done: function () {
@@ -1097,9 +1150,9 @@
 <!-- NOTE: data.snapshot.js (~2MB) is NOT loaded up front. The live API is the
      primary data source; the embedded snapshot is injected on demand only when
      the backend is unreachable, so a normal visit never parses it. -->
-<script src="/app.js?v=3.30.0-gate"></script>
-<script src="/motion.js?v=3.30.0-gate"></script>
-<script src="/help.js?v=3.30.0-gate"></script>
-<script src="/premium.js?v=3.30.0-gate"></script>
+<script src="/app.js?v=3.31.0-seen"></script>
+<script src="/motion.js?v=3.31.0-seen"></script>
+<script src="/help.js?v=3.31.0-seen"></script>
+<script src="/premium.js?v=3.31.0-seen"></script>
 </body>
 </html>

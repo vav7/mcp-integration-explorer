@@ -4,7 +4,7 @@
  * real snapshot. All derived views (leaderboard, opportunities, export) are
  * computed client-side so they work with or without the backend.
  */
-  window.__MCPC_VERSION__ = "3.30.0-gate";   /* type this in console to verify your build */
+  window.__MCPC_VERSION__ = "3.31.0-seen";   /* type this in console to verify your build */
 (() => {
   "use strict";
   const $ = (s, r = document) => r.querySelector(s);
@@ -144,6 +144,31 @@
      element id) the memo lets a live update roll prev -> new like a ticker. */
   const NUMMEMO = Object.create(null);
   const BARMEMO = Object.create(null);
+  /* v3.31 - witnessed-on-screen ledgers. A live refresh rebuilds the DOM long
+     before the reader scrolls that far, and the memos alone republished every
+     final value off-screen: by the time a block arrived it had already
+     finished performing. Anything never WITNESSED now waits - pre-rolled to
+     zero, it performs the first time it actually enters the viewport, so on a
+     phone the pies, the line, the bars and the % tiles each show as you reach
+     them instead of all at once at load. */
+  const NUMSEEN = new Set(), BARSEEN = new Set(), REVEALSEEN = new Set();
+  let numPending = [], barPending = [], barObs = null;
+  function isOnScreen(el, cut) {
+    if (!el || !el.getBoundingClientRect) return false;
+    let r; try { r = el.getBoundingClientRect(); } catch (e) { return false; }
+    const vh = window.innerHeight || 800, c = cut == null ? .8 : cut;
+    return r.width > 0 && r.height > 0 && r.top < vh * c && r.bottom > 0;
+  }
+  /* observed-but-unseen nodes are dropped by the next rebuild; prune them so
+     the shared observers never accumulate dead targets */
+  function pruneObserved(list, obs) {
+    for (let i = list.length - 1; i >= 0; i--) {
+      const el = list[i];
+      if (el && el.isConnected) continue;
+      try { obs.unobserve(el); } catch (e) {}
+      list.splice(i, 1);
+    }
+  }
   /* Stable identity for the value memo: an explicit data-nk, else the element
      id, else a positional path under the nearest ided ancestor (re-renders
      rebuild identical structure, so the path is stable across refreshes). */
@@ -171,6 +196,7 @@
   const numFmt = (f) => f === "k" ? (v => fmtNum(v)) : f === "pct" ? (v => v + "%") : f === "dec1" ? (v => (v / 10).toFixed(1)) : null;
   function scanNums(root) {
     const scope = root || document; if (!scope) return;
+    if (numObs && numPending.length) pruneObserved(numPending, numObs);
     let els = [];
     try { if (scope.querySelectorAll) els = Array.from(scope.querySelectorAll("[data-num]")); } catch (e) { els = []; }
     try { if (scope.matches && scope.matches("[data-num]")) els.unshift(scope); } catch (e) {}
@@ -181,9 +207,12 @@
       if (!el || !el.dataset) return;
       const to = Number(el.dataset.num) || 0, fmt = numFmt(el.dataset.fmt);
       const key = numKeyOf(el);
+      /* v3.31: a rebuilt node whose figure was never witnessed keeps its
+         first-view juggle instead of publishing the final value unseen */
+      const unwitnessed = el._numv == null && !!key && !NUMSEEN.has(key);
       /* Seen before (or refreshed in place): tick from the remembered figure.
          Never seen: keep the first-time count-up from zero. */
-      if (key && (key in NUMMEMO)) {
+      if (key && (key in NUMMEMO) && !unwitnessed) {
         const prev = NUMMEMO[key];
         el._numv = prev;
         setNum(el, to, fmt);
@@ -192,30 +221,57 @@
       }
       if (key) NUMMEMO[key] = to;      /* remember the true value for the next render */
       if (!hasIO || reduced) {
+        if (key) NUMSEEN.add(key);
         if (el._numv == null) { el.textContent = fmt ? fmt(to) : to.toLocaleString(); el._numv = to; }
         else if (el._numv !== to) setNum(el, to, fmt);
         return;
       }
-      if (el._numReg) { if (el._numv != null && el._numv !== to) setNum(el, to, fmt); return; }
+      if (el._numReg) {
+        /* parked, waiting for the reader: never publish the figure early, even
+           if this same render scans the tree a second time */
+        if (el._numv != null && el._numv !== to) setNum(el, to, fmt);
+        return;
+      }
       el._numReg = 1; el.textContent = fmt ? fmt(0) : "0";
       if (!numObs) numObs = new IntersectionObserver((es) => {
         const fire = (e) => { if (e && e.isIntersecting && e.target && e.target.dataset) {
           try { numObs.unobserve(e.target); } catch (x) {}
-          const k = numKeyOf(e.target);
-          setNum(e.target, Number(e.target.dataset.num) || 0, numFmt(e.target.dataset.fmt));
-          if (k) NUMMEMO[k] = Number(e.target.dataset.num) || 0; } };
+          const k = numKeyOf(e.target), t2 = Number(e.target.dataset.num) || 0;
+          const pi = numPending.indexOf(e.target); if (pi >= 0) numPending.splice(pi, 1);
+          if (k) { NUMSEEN.add(k); NUMMEMO[k] = t2; }
+          setNum(e.target, t2, numFmt(e.target.dataset.fmt)); } };
         if (es && es.forEach) es.forEach(fire); else if (es) for (let i = 0; i < es.length; i++) fire(es[i]);
       }, { threshold: .3, rootMargin: "0px 0px -4px" });
-      try { numObs.observe(el); } catch (e) { el.textContent = fmt ? fmt(to) : to.toLocaleString(); el._numv = to; }
+      try { numObs.observe(el); numPending.push(el); }
+      catch (e) { if (key) NUMSEEN.add(key); el.textContent = fmt ? fmt(to) : to.toLocaleString(); el._numv = to; }
     });
   }
   /* Bars slide from their previous width to the new one on live updates, and
      draw straight in the first time. [data-bar] carries the target percent. */
   const BAR_SEL = "[data-bar], .bar-track i, .score .sbar i, .sbar i, .sb-bar i, .lb-bar i, .rcomp-row .rt i, .an-ftrack i";
+  function growBar(el, w) {
+    el.style.transition = "none"; el.style.width = "0%"; void el.offsetWidth; el.style.transition = "";
+    requestAnimationFrame(() => { el.style.width = w + "%"; });
+  }
+  function onBarSeen(es) {
+    const fire = (e) => {
+      if (!e || !e.isIntersecting || !e.target) return;
+      const el = e.target;
+      try { barObs.unobserve(el); } catch (x) {}
+      const i = barPending.indexOf(el); if (i >= 0) barPending.splice(i, 1);
+      const k = numKeyOf(el); if (k) BARSEEN.add(k);
+      const w = Math.max(0, Math.min(100, Number(el.dataset.bar) || 0));
+      growBar(el, w);
+      if (k) BARMEMO[k] = w;
+    };
+    if (es && es.forEach) es.forEach(fire); else if (es) for (let i = 0; i < es.length; i++) fire(es[i]);
+  }
   function scanBars(root) {
     const scope = root || document; if (!scope || !scope.querySelectorAll) return;
+    if (barObs && barPending.length) pruneObserved(barPending, barObs);
     let els = [];
     try { els = Array.from(scope.querySelectorAll(BAR_SEL)); } catch (e) { return; }
+    let hasIO = false; try { hasIO = "IntersectionObserver" in window; } catch (e) {}
     els.forEach((el) => {
       /* Latch the intended width on first sight. Without this, a second pass in
          the same tick reads the transient draw-in width ("0%") as the target and
@@ -225,6 +281,22 @@
       const nw = Math.max(0, Math.min(100, Number(el.dataset.bar) || 0));
       const key = numKeyOf(el);
       const prev = key ? BARMEMO[key] : undefined;
+      /* v3.31: first draw of a node nobody has seen yet waits for the reader -
+         parked at 0%, it grows the moment the bar enters the viewport */
+      if (el._barReg == null && key && !BARSEEN.has(key) && hasIO && !reducedMotion) {
+        el._barReg = 1;
+        el.style.transition = "none"; el.style.width = "0%";
+        if (!barObs) barObs = new IntersectionObserver(onBarSeen, { threshold: .12, rootMargin: "0px 0px -6px" });
+        try { barObs.observe(el); barPending.push(el); } catch (e) { growBar(el, nw); BARSEEN.add(key); }
+        BARMEMO[key] = nw;
+        return;
+      }
+      if (el._barReg === 1 && key && !BARSEEN.has(key)) {
+        /* parked at 0% until this exact bar enters the viewport */
+        BARMEMO[key] = nw;
+        return;
+      }
+      if (key) BARSEEN.add(key);
       if (prev != null && Math.abs(prev - nw) > 0.01) {
         /* live update: slide from the remembered width to the new one */
         el.style.transition = "none";
@@ -535,7 +607,7 @@
     const least = entries.reduce((a, b) => cov(b) < cov(a) ? b : a);
     const ready = entries.reduce((a, b) => (b[1].avg_readiness || 0) > (a[1].avg_readiness || 0) ? b : a);
     /* metric-first: the figure is the hero, the category rides as a chip */
-    const cell = (l, metric, fmt, sub, cat, i, accent) => `<div class="ins${insDone ? "" : " ins-rev reveal"} ins-${accent}" style="--i:${i}" data-cat="${esc(cat)}" role="link" tabindex="0" title="Filter the explorer to ${esc(cat)}">
+    const cell = (l, metric, fmt, sub, cat, i, accent) => `<div class="ins${REVEALSEEN.has("ins:" + i) ? "" : " ins-rev reveal"} ins-${accent}" style="--i:${i}" data-rvk="ins:${i}" data-cat="${esc(cat)}" role="link" tabindex="0" title="Filter the explorer to ${esc(cat)}">
       <span class="ins-n" aria-hidden="true">0${i + 1}</span>
       <span class="ins-l">${l}</span>
       <span class="ins-v" data-num="${metric}" data-fmt="${fmt}" data-nk="ins:${i}">-</span>
@@ -546,7 +618,6 @@
       cell("Widest gap", Math.round(cov(least) * 100), "pct", "coverage here - the clearest build opportunity", least[0], 2, "c");
     bindInsCards(); observeReveal();
   }
-  let insDone = false;
   function filterToCategory(cat) {
     state.cat = cat || ""; state.view = "explorer";
     const sel = $("#catFilter"); if (sel) sel.value = state.cat;
@@ -574,7 +645,6 @@
     official_mcp: { icon: "shield", cls: "st", group: "alerts", label: "Alert" },
     score: { icon: "gauge", cls: "score", group: "alerts", label: "Alert" },
   };
-  let sigDone = false;
   function renderSignals() {
     const s = state.snap, el = $("#signalList"); if (!s || !el) return;
     const ch = s.changes || [], al = s.alerts || [];
@@ -588,7 +658,8 @@
     const cnt = $("#sigCount"); if (cnt) cnt.textContent = `${items.length} signal${items.length === 1 ? "" : "s"} · newest first`;
     el.innerHTML = list.slice(0, 6).map((it, i) => {
       const m = SIG_META[it.kind] || { icon: "bolt", cls: "score", label: "Signal" };
-      return `<div class="sig${sigDone ? "" : " reveal"}" style="--i:${Math.min(i, 9)}"${it.id ? ` data-id="${it.id}"` : ""}>
+      const rk = "sig:" + (it.kind || "") + ":" + (it.id != null ? it.id : "") + ":" + (it.ts || "") + ":" + i;
+      return `<div class="sig${REVEALSEEN.has(rk) ? "" : " reveal"}" style="--i:${Math.min(i, 9)}" data-rvk="${rk}"${it.id ? ` data-id="${it.id}"` : ""}>
         <span class="sig-ic ${m.cls}">${svg(m.icon, 1.8)}</span>
         <div class="sig-b"><div class="sig-top"><span class="sig-app">${esc(it.app)}</span><span class="sig-tag">${m.label}</span><span class="sig-ts">${esc(timeAgo(it.ts))}</span></div>
         <div class="sig-msg">${esc(it.msg)}</div></div>${it.id ? `<span class="sig-go">Open dossier →</span>` : ""}</div>`;
@@ -889,32 +960,39 @@
     }, { once: true }));
     setTimeout(provRestore, reducedMotion ? 60 : 2100);
   }
-  function replayCoverage() {
-    const cov = $("#coverage");
-    const box = $("#catbars");
-    if (box) {
-      box.classList.add("drawn");
-      drawDonutsClockwise(box);
-    }
-    if (cov) {
-      Array.from(cov.querySelectorAll(BAR_SEL)).forEach(el => {
-        const k = numKeyOf(el); if (k) delete BARMEMO[k];
-        el.style.transition = "none"; el.style.width = "0%"; void el.offsetWidth; el.style.transition = "";
-      });
-      requestAnimationFrame(() => scanBars(cov));
-    }
+  /* v3.31 - scenes. Every block that performs (sweep, grow, juggle, draw)
+     owns its own trigger, so on a phone the page reads as a sequence: the
+     pies circle in as they arrive, the readiness bars grow under them, the
+     line draws when the chart is actually on screen and the % tiles juggle as
+     each one is reached. A block performs once; if a refresh rebuilds it
+     while the reader is watching, it publishes silently instead of replaying
+     in their face. */
+  const sceneDone = Object.create(null);
+  function afterBoot(fn) {
+    let tries = 0;
+    const t = setInterval(() => {
+      const b = document.getElementById("boot");
+      if (!b || b.classList.contains("boot-done") || ++tries > 25) { clearInterval(t); requestAnimationFrame(fn); }
+    }, 60);
+  }
+  function scene(key, el, fn, th) {
+    if (!el || sceneDone[key]) return;
+    if (isOnScreen(el, .82)) { sceneDone[key] = 1; afterBoot(fn); return; }
+    if (typeof el._seenCancel === "function") { try { el._seenCancel(); } catch (e) {} }
+    el._seenCancel = whenSeen(el, () => {
+      if (sceneDone[key]) return;
+      sceneDone[key] = 1; el._seenCancel = null; fn();
+    }, th == null ? .3 : th);
   }
   function armCoverageReplay() {
-    /* ONE trigger for the pies AND the adjacent readiness bars: they start
-       on the same frame and run the same 1.8s, so the whole plate loads as
-       a single synced instrument. Armed on the grid that holds both. */
-    const box = $("#catbars");
-    const gb = $("#gradebars");
-    const target = (box && box.closest(".insight-grid")) || box;
-    if (target && !target._replayArm) {
-      target._replayArm = true;
-      whenSeen(target, () => { replayCoverage(); if (gb) replayBars(gb); }, .25);
-    }
+    scene("donuts", $("#catbars"), () => {
+      const box = $("#catbars"); if (!box) return;
+      box.classList.add("drawn");
+      drawDonutsClockwise(box);
+    }, .3);
+    /* the readiness bars, the estate tiles and the % cards need no trigger of
+       their own: scanBars()/scanNums() now hold every unwitnessed value at
+       zero and release it the moment that exact element enters the viewport */
   }
 
   function armTrendDraw(wrap) {
@@ -928,9 +1006,17 @@
     line.style.strokeDasharray = L + " " + L;
     line.style.strokeDashoffset = String(L);
     if (area) area.style.opacity = "0";
-    const sec = $("#trends") || wrap;
-    sec._seenArm = 0;              /* a rebuilt line gets a fresh reveal */
-    whenSeen(sec, () => {
+    /* v3.31: armed on the CHART, not the section - on a phone the heading
+       enters the viewport a screen above the canvas, which used to consume the
+       draw unseen. Watched + refreshed = published, never re-animated. */
+    if (isOnScreen(wrap, .82)) {
+      try { line.style.strokeDashoffset = "0"; } catch (e) {}
+      if (area) area.style.opacity = "";
+      return;
+    }
+    /* a rebuilt line gets a fresh reveal - and the stale arm is released */
+    if (typeof wrap._seenCancel === "function") { try { wrap._seenCancel(); } catch (e) {} }
+    wrap._seenCancel = whenSeen(wrap, () => { wrap._seenCancel = null;
       try {
         line.animate([{ strokeDashoffset: L }, { strokeDashoffset: 0 }],
           { duration: reducedMotion ? 1 : 2400, easing: "cubic-bezier(.25,.7,.3,1)", fill: "forwards" });
@@ -1139,7 +1225,7 @@
      is on screen in ANY browser, even with starved observers/rAF; the
      observer and scroll listener are just fast paths. Fires once. */
   function whenSeen(el, fn, th) {
-    if (!el || el._seenArm) return;
+    if (!el || el._seenArm) return el && el._seenCancel ? el._seenCancel : null;
     el._seenArm = 1;
     const cut = th ? (1 - th) : .88;      /* how much of the viewport deep the
                                             top may sit before we call it seen */
@@ -1151,19 +1237,32 @@
       const vh = window.innerHeight || 800;
       if (r.width > 0 && r.height > 0 && r.top < vh * cut && r.bottom > 0) {
         done = true;
-        if (iv) clearInterval(iv);
+        finishRun();
         requestAnimationFrame(fn);
       }
+    };
+    let onScroll = null, obs = null;
+    const finishRun = () => {
+      if (iv) clearInterval(iv);
+      if (obs) { try { obs.disconnect(); } catch (e) {} obs = null; }
+      if (onScroll) { try { removeEventListener("scroll", onScroll, { capture: true }); } catch (e) {} onScroll = null; }
     };
     iv = setInterval(tryRun, 500);
     setTimeout(() => { if (!done && iv) clearInterval(iv); }, 120000);
     if ("IntersectionObserver" in window) {
-      const io = new IntersectionObserver((es) => {
-        es.forEach(en => { if (en.isIntersecting) { tryRun(); io.disconnect(); } });
+      obs = new IntersectionObserver((es) => {
+        es.forEach(en => { if (en.isIntersecting) { tryRun(); if (obs) { try { obs.disconnect(); } catch (e) {} } } });
       }, { threshold: th || .15 });
-      io.observe(el);
+      obs.observe(el);
     }
-    addEventListener("scroll", () => { if (!done) requestAnimationFrame(tryRun); }, { passive: true, capture: true });
+    /* v3.31: the scroll fast path is released once the scene has fired - an
+       armed-per-render listener that never detaches is a slow leak */
+    onScroll = () => { if (!done) requestAnimationFrame(tryRun); else finishRun(); };
+    addEventListener("scroll", onScroll, { passive: true, capture: true });
+    /* v3.31: re-arming after a refresh must release the previous arm, or a
+       page left open all day stacks one poller per render */
+    el._seenCancel = () => { done = true; finishRun(); el._seenArm = 0; el._seenCancel = null; };
+    return el._seenCancel;
     /* no arm-time probe: during load the layout can momentarily report an
        element as visible, which would consume the one-shot reveal unseen */
   }
@@ -1175,7 +1274,11 @@
   function replayBars(root) {
     if (!root) return;
     Array.from(root.querySelectorAll(BAR_SEL)).forEach(el => {
-      const k = numKeyOf(el); if (k) delete BARMEMO[k];
+      const k = numKeyOf(el); if (k) { delete BARMEMO[k]; BARSEEN.add(k); }
+      /* this block performs NOW: pull it out of the deferred queue */
+      el._barReg = 1;
+      const i = barPending.indexOf(el);
+      if (i >= 0) { barPending.splice(i, 1); try { barObs.unobserve(el); } catch (e) {} }
       el.style.transition = "none"; el.style.width = "0%"; void el.offsetWidth; el.style.transition = "";
     });
     requestAnimationFrame(() => scanBars(root));
@@ -3207,8 +3310,10 @@
     e.classList.remove("out");
     e.classList.add("in");
     rearmListCache = null;   /* it now belongs in the re-arm set */
-    if (e.classList.contains("ins-rev")) insDone = true;
-    if (e.classList.contains("sig")) sigDone = true;
+    /* v3.31: witness is per block, not a global flag. One card entering the
+       viewport used to switch off the entrance for every sibling on the next
+       refresh - which is why the blocks below arrived already finished. */
+    if (e.dataset && e.dataset.rvk) REVEALSEEN.add(e.dataset.rvk);
   };
   /* Only elements that opted in with [data-replay] ever re-arm, so nothing that
      is mid-read can flicker: the whole page never re-animates, the hero panels,
