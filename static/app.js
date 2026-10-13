@@ -4,7 +4,7 @@
  * real snapshot. All derived views (leaderboard, opportunities, export) are
  * computed client-side so they work with or without the backend.
  */
-  window.__MCPC_VERSION__ = "3.31.0-seen";   /* type this in console to verify your build */
+  window.__MCPC_VERSION__ = "3.32.0-noir";   /* type this in console to verify your build */
 (() => {
   "use strict";
   const $ = (s, r = document) => r.querySelector(s);
@@ -402,14 +402,6 @@
      suggestion, a recent fetch, or a brand-new app typed into the palette. */
   function domainLogo(dom, name, cls = "") {
     return `<div class="applogo ${cls}"><span class="ini">${esc(initials(String(name || dom || "?")))}</span>${logoImg(dom)}</div>`;
-  }
-  function gaugeHtml(score, grade) {
-    const r = 50, c = 2 * Math.PI * r, off = c * (1 - Math.max(0, Math.min(100, score)) / 100);
-    return `<div class="gauge"><svg width="118" height="118" viewBox="0 0 118 118">
-      <defs><linearGradient id="gg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5b8cff"/><stop offset=".55" stop-color="#8b5cf6"/><stop offset="1" stop-color="#22d3ee"/></linearGradient></defs>
-      <circle cx="59" cy="59" r="${r}" fill="none" stroke="rgba(140,150,180,.25)" stroke-width="9"/>
-      <circle cx="59" cy="59" r="${r}" fill="none" stroke="url(#gg)" stroke-width="9" stroke-linecap="round" stroke-dasharray="${c.toFixed(1)}" stroke-dashoffset="${off.toFixed(1)}" style="transition:stroke-dashoffset 1s cubic-bezier(.16,1,.3,1)"/>
-    </svg><div class="gv"><div><b>${score}</b><span>GRADE ${esc(grade)}</span></div></div></div>`;
   }
   /* the hero search ticker: three app marks rotate like a card shuffler */
   let tickerTimer = 0;
@@ -995,7 +987,7 @@
        zero and release it the moment that exact element enters the viewport */
   }
 
-  function armTrendDraw(wrap) {
+  function armTrendDraw(wrap, replay) {
     const line = wrap && wrap.querySelector(".ct-line");
     const area = wrap && wrap.querySelector(".ct-area");
     if (!line) return;
@@ -1006,6 +998,20 @@
     line.style.strokeDasharray = L + " " + L;
     line.style.strokeDashoffset = String(L);
     if (area) area.style.opacity = "0";
+    const drawNow = (dur) => {
+      try {
+        line.animate([{ strokeDashoffset: L }, { strokeDashoffset: 0 }],
+          { duration: reducedMotion ? 1 : dur, easing: "cubic-bezier(.25,.7,.3,1)", fill: "forwards" });
+        if (area) area.animate([{ opacity: 0 }, { opacity: 1 }],
+          { duration: reducedMotion ? 1 : Math.round(dur * .45), delay: reducedMotion ? 0 : Math.round(dur * .3), fill: "forwards" });
+      } catch (e) { line.style.strokeDashoffset = "0"; if (area) area.style.opacity = ""; }
+    };
+    /* a rebuilt line gets a fresh reveal - and the stale arm is released */
+    if (typeof wrap._seenCancel === "function") { try { wrap._seenCancel(); } catch (e) {} }
+    /* v3.32: a mode switch is the reader ASKING to see the line - it draws
+       again every time, quick and deliberate (1.15s). Only silent live
+       refreshes publish the finished graph without re-animating. */
+    if (replay && isOnScreen(wrap, .82)) { drawNow(1150); return; }
     /* v3.31: armed on the CHART, not the section - on a phone the heading
        enters the viewport a screen above the canvas, which used to consume the
        draw unseen. Watched + refreshed = published, never re-animated. */
@@ -1014,16 +1020,7 @@
       if (area) area.style.opacity = "";
       return;
     }
-    /* a rebuilt line gets a fresh reveal - and the stale arm is released */
-    if (typeof wrap._seenCancel === "function") { try { wrap._seenCancel(); } catch (e) {} }
-    wrap._seenCancel = whenSeen(wrap, () => { wrap._seenCancel = null;
-      try {
-        line.animate([{ strokeDashoffset: L }, { strokeDashoffset: 0 }],
-          { duration: reducedMotion ? 1 : 2400, easing: "cubic-bezier(.25,.7,.3,1)", fill: "forwards" });
-        if (area) area.animate([{ opacity: 0 }, { opacity: 1 }],
-          { duration: reducedMotion ? 1 : 1000, delay: 700, fill: "forwards" });
-      } catch (e) { line.style.strokeDashoffset = "0"; if (area) area.style.opacity = ""; }
-    }, .18);
+    wrap._seenCancel = whenSeen(wrap, () => { wrap._seenCancel = null; drawNow(2400); }, .18);
   }
   let catbarsBound = false;
   function bindCatbars() {
@@ -1076,10 +1073,10 @@
     const el = $("#trendTabs"); if (!el) return;
     el.innerHTML = Object.entries(METRICS).map(([k, m]) =>
       `<button data-metric="${k}" class="${state.trendMetric === k ? "active" : ""}">${m.label}</button>`).join("");
-    $$("#trendTabs button").forEach(b => b.onclick = () => { state.trendMetric = b.dataset.metric; renderTrendTabs(); renderTrend(); });
+    $$("#trendTabs button").forEach(b => b.onclick = () => { state.trendMetric = b.dataset.metric; renderTrendTabs(); renderTrend(false, true); });
   }
   let trendSig = "";
-  function renderTrend(force) {
+  function renderTrend(force, replay) {
     const hist = (state.snap && state.snap.history) || [];
     const wrap = $("#chart"); if (!wrap) return;
     const M = METRICS[state.trendMetric] || METRICS.official;
@@ -1129,8 +1126,8 @@
         ${line ? `<path class="ct-line" d="${line}"/>` : ""}${single}${dots}${hits}
       </svg><div class="chart-tip" id="chartTip"></div>`;
     /* stock-chart reveal: the line draws left->right the first time the chart
-       scrolls into view; later re-renders (metric switches, live updates)
-       redraw near-instantly so it never feels slow */
+       scrolls into view; silent live updates publish the finished graph, but
+       a metric switch re-draws on purpose - the reader asked to see it */
     const lineEl = wrap.querySelector(".ct-line");
     if (lineEl) { try { const L = lineEl.getTotalLength(); lineEl.style.strokeDasharray = L.toFixed(0); lineEl.style.strokeDashoffset = L.toFixed(0); } catch (e) {} }
     /* v3.13.2: the legacy #chart.drawn + ctDraw reveal never fired reliably
@@ -1138,7 +1135,7 @@
        draw is now a WAAPI animation armed by an IntersectionObserver on
        #trends: guaranteed left-to-right, 1.6s, once per rebuild, only when
        the chart is actually seen. */
-    armTrendDraw(wrap);
+    armTrendDraw(wrap, replay);
     if (!wrap._drawObs && "IntersectionObserver" in window) {
       wrap._drawObs = new IntersectionObserver((es) => { es.forEach(en => {
         if (en.isIntersecting) { wrap.classList.add("drawn"); wrap.dataset.drawn = "1"; wrap._drawObs.disconnect(); } });
@@ -2139,7 +2136,6 @@
   /* ---------------- modal ---------------- */
   function openModal(id, srcEl) { const a = (state.snap.apps || []).find(x => x.app.id === id); if (a) openModalData(a, { pinned: true, src: srcEl }); }
   function openModalData(a, opts = {}) {
-    closeCommCard();
     const pinned = opts.pinned !== false;
     const m = a.mcp || {}, gh = a.github || {}, lv = a.liveness, r = a.readiness || {};
     const servers = (m.servers || []).slice().sort((x, y) => (x.classification === "vendor_official" ? -1 : 1) - (y.classification === "vendor_official" ? -1 : 1));
@@ -2298,7 +2294,7 @@
     try { if (pinned && history.pushState) history.pushState({}, "", "/app/" + a.app.id); } catch (e) {}
   }
   function closeModal() {
-    if (state.lkTimer) { clearInterval(state.lkTimer); state.lkTimer = null; } closeCommCard(); $("#modal").classList.remove("open", "cmpwin"); $("#backdrop").classList.remove("open"); unlockWindowScroll("modal"); try { if (history.pushState && location.pathname.startsWith("/app/")) history.pushState({}, "", "/"); } catch (e) {} }
+    if (state.lkTimer) { clearInterval(state.lkTimer); state.lkTimer = null; } $("#modal").classList.remove("open", "cmpwin"); $("#backdrop").classList.remove("open"); unlockWindowScroll("modal"); try { if (history.pushState && location.pathname.startsWith("/app/")) history.pushState({}, "", "/"); } catch (e) {} }
 
   /* ---------------- historical diff / breaking changes (client side) ---------------- */
   const CHG_ICON = { add: `<span class="cg-ic ok">+</span>`, rem: `<span class="cg-ic bad">✗</span>`,
@@ -2483,8 +2479,6 @@
     }
   }
 
-  /* ---------------- floating community card (draggable · no dimming, no blur) ---------------- */
-  function closeCommCard() { const c = $("#commCard"); if (c) c.classList.remove("open"); }
   /* Community servers listed INLINE in the app dossier - styled like the app
      rows in the explorer (dark glass, violet tint, hover lift). No floating
      card, no extra click, nothing whitish. */
@@ -2517,61 +2511,6 @@
       <div class="ci-side">${tools}${links.length ? `<div class="ci-links">${links.join("")}</div>` : ""}</div>
     </div>`;
   }
-  function commSrvRow(s) {
-    const pr = s.probe;
-    let tools = "";
-    if (pr && pr.result === "open") tools = `<span class="cc-tools open">${pr.tools_count} live tools${pr.generic_gateway ? " · gw" : ""}</span>`;
-    else if (pr && ["auth_required", "payment_required", "forbidden"].includes(pr.result)) tools = `<span class="cc-tools gated">auth gated</span>`;
-    else if (pr && (pr.result === "timeout" || pr.result === "error")) tools = `<span class="cc-tools err">no answer</span>`;
-    const links = [];
-    if (s.repository_url) links.push(`<a class="lnk" href="${esc(s.repository_url)}" target="_blank" rel="noopener">${svg("box", 2)} repo</a>`);
-    (s.remote_urls || []).slice(0, 1).forEach(u => links.push(`<a class="lnk" href="${esc(u)}" target="_blank" rel="noopener">${svg("globe", 2)} endpoint</a>`));
-    (s.packages || []).slice(0, 2).forEach(p => links.push(`<span class="lnk">${svg("download", 2)} ${esc(p)}</span>`));
-    const chips = pr && pr.result === "open" && pr.tool_names && pr.tool_names.length
-      ? `<div class="toolchips">${pr.tool_names.slice(0, 10).map(t => `<span class="toolchip"><span class="tdot"></span>${esc(t)}</span>`).join("")}${pr.tool_names.length > 10 ? `<span class="toolchip more">+${pr.tool_names.length - 10}</span>` : ""}</div>` : "";
-    return `<div class="cc-srv"><div class="cc-top"><span class="cc-name">${esc(s.name)}</span>${tools}</div>
-      ${s.description ? `<div class="cc-desc">${esc(s.description)}</div>` : ""}${chips}
-      ${links.length ? `<div class="cc-links">${links.join("")}</div>` : ""}</div>`;
-  }
-  function openCommCard(servers, appName, anchor) {
-    let c = $("#commCard");
-    if (!c) { c = document.createElement("div"); c.id = "commCard"; c.className = "comm-card"; document.body.appendChild(c); }
-    c.innerHTML = `<div class="cc-head">
-        <span class="cc-grip" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
-        <div class="cc-t"><b>Community servers</b><span>${esc(appName)} · ${servers.length} matched</span></div>
-        <span class="cc-move">drag to move</span>
-        <button class="cc-x" type="button" aria-label="Close card">✕</button></div>
-      <div class="cc-body">${servers.map(commSrvRow).join("")}</div>`;
-    c.classList.add("open");
-    try {
-      const w = c.offsetWidth || 430, h = c.offsetHeight || 320;
-      const b = anchor && anchor.getBoundingClientRect ? anchor.getBoundingClientRect() : null;
-      let x = b ? b.left - 80 : (window.innerWidth - w) / 2, y = b ? b.bottom + 12 : (window.innerHeight - h) / 2;
-      x = Math.max(10, Math.min(window.innerWidth - w - 10, x));
-      y = Math.max(10, Math.min(Math.max(10, window.innerHeight - h - 10), y));
-      c.style.left = Math.round(x) + "px"; c.style.top = Math.round(y) + "px";
-    } catch (e) {}
-  }
-  function bindCommCard() {
-    const c = $("#commCard"); if (!c || c._bound) return; c._bound = true;
-    c.addEventListener("click", (e) => { if (e.target.closest && e.target.closest(".cc-x")) closeCommCard(); });
-    c.addEventListener("pointerdown", (e) => {
-      const head = e.target.closest ? e.target.closest(".cc-head") : null;
-      if (!head || (e.target.closest && e.target.closest(".cc-x"))) return;
-      e.preventDefault();
-      const r = c.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top, w = r.width;
-      c.classList.add("drag");
-      const move = (ev) => {
-        let x = ev.clientX - dx, y = ev.clientY - dy;
-        x = Math.max(8, Math.min(window.innerWidth - w - 8, x));
-        y = Math.max(8, Math.min(window.innerHeight - 46, y));
-        c.style.left = Math.round(x) + "px"; c.style.top = Math.round(y) + "px";
-      };
-      const up = () => { c.classList.remove("drag"); window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); };
-      window.addEventListener("pointermove", move); window.addEventListener("pointerup", up);
-    });
-  }
-
   /* ---------------- fetch ANY app live ---------------- */
   const LOOKUP_STEPS = [
     ["Searching the MCP registry", "box"],
@@ -3254,7 +3193,7 @@
   function openView(name, tab) {
     if (VIEWS.indexOf(name) < 0) return;
     if (name === "pricing") { openPricing(); return; }
-    closeModal(); closeCommCard(); setDrawer(false); closeCmdk();
+    closeModal(); setDrawer(false); closeCmdk();
     VIEWS.forEach(v => { const el = $(VIEW_EL[v]); if (el) el.classList.toggle("open", v === name); });
     const nav0 = $("#nav"); if (nav0) nav0.classList.remove("nav-hide");
     document.body.classList.remove("nav-hidden");
@@ -3288,10 +3227,9 @@
   }
 
   /* ---------------- pricing view (full-screen; header + chrome stay) ---------------- */
-  function pricingOpen() { const v = $("#pricingView"); return !!(v && v.classList.contains("open")); }
   function openPricing() {
     const v = $("#pricingView"); if (!v) return;
-    closeModal(); closeCommCard(); setDrawer(false); closeCmdk();
+    closeModal(); setDrawer(false); closeCmdk();
     VIEWS.forEach(x => { const el = $(VIEW_EL[x]); if (el && x !== "pricing") el.classList.remove("open"); });
     state.view_open = "pricing";
     v.scrollTop = 0; v.classList.add("open");
@@ -3411,7 +3349,7 @@
     const pvBack = $("#pvBack"); if (pvBack) pvBack.onclick = closePricing;
     document.addEventListener("keydown", e => {
       if ((e.key === "k" && (e.metaKey || e.ctrlKey)) || (e.key === "/" && !/input|textarea/i.test(document.activeElement.tagName) && !state.cmdk.open)) { e.preventDefault(); state.cmdk.open ? closeCmdk() : openCmdk(); return; }
-      if (e.key === "Escape") { if (viewOpen()) closeView(); else if (drawerOpen()) setDrawer(false); else { const cc = $("#commCard"); if (cc && cc.classList.contains("open")) closeCommCard(); else if (state.cmdk.open) closeCmdk(); else closeModal(); } }
+      if (e.key === "Escape") { if (viewOpen()) closeView(); else if (drawerOpen()) setDrawer(false); else if (state.cmdk.open) closeCmdk(); else closeModal(); }
       if (state.cmdk.open) {
         if (e.key === "ArrowDown") { e.preventDefault(); cmdkMove(1); }
         else if (e.key === "ArrowUp") { e.preventDefault(); cmdkMove(-1); }
@@ -3475,7 +3413,7 @@
     $("#heroSearch").onclick = openCmdk;
     /* ---- home: the one obvious way back to the top of the dashboard ---- */
     const goHome = () => {
-      closeAllViews(); closeModal(); closeCommCard(); setDrawer(false);
+      closeAllViews(); closeModal(); setDrawer(false);
       /* instant, exact top - no smooth glide, no anchor jump, no residue */
       try { document.documentElement.style.scrollBehavior = "auto"; } catch (e) {}
       window.scrollTo({ top: 0, behavior: "instant" });
@@ -3511,7 +3449,7 @@
     /* the methodology window scrolls its own container, not the page */
     const mv = $("#methodologyView");
     if (mv) mv.addEventListener("scroll", () => updateSpine(), { passive: true });
-    bindCmdk(); bindCommCard(); syncViewChrome();
+    bindCmdk(); syncViewChrome();
     /* ---- dashboard drawer ---- */
     let dwOpen = false;
     try { dwOpen = localStorage.getItem("mcp_drawer") === "1"; } catch (e) {}

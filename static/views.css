@@ -1196,45 +1196,52 @@ body.pv-on .vx2{ display:grid; place-items:center }
 }
 
 /* ==========================================================================
-   31. v3.31 - the closing plate + honest mobile credits.
-   A) From the brand line down to the very bottom edge of the page the footer
-      sits on its own light: near-black ink, two violet blooms that breathe,
-      a hot underglow along the bottom edge, a glowing hairline on top.
-      No backdrop-filter anywhere in here - the footer scrolls, and blur on a
-      scrolling layer is the single biggest source of jank on phones.
-   B) On a phone the credit bar used to centre all three ends, which pulled
-      "Made with love by vav7" and the snapshot stamp away from the right
-      edge. The two right-hand ends now sit right; the legal line stays put.
+   31. v3.32 - the closing plate, dimmed to near-black + parallel phone cols.
+   A) From the brand line down to the very bottom edge the footer sits on its
+      own light. v3.31 ran these blooms far too hot - bright violet fog reads
+      cheap. The premium take is restraint: the ink at the bottom edge is
+      almost pure black, the two blooms are a whisper, and the breathe is slow
+      and dim. No backdrop-filter anywhere in here - the footer scrolls, and
+      blur on a scrolling layer is the single biggest source of jank on phones.
+   B) The credit bar keeps its old centred phone stack - "Made with love by
+      vav7" and the snapshot stamp were perfect centred, so they stay there.
+   C) On phones the footer is two-up: "Windows" + "Data & tools" on the left,
+      "On this page" + "Live sources" on the right. The right pair carries one
+      more row each, so it gets a touch less type and a small indent - the two
+      sides now read as parallel blocks of the same visual height.
    ========================================================================== */
 .footer{
   position:relative; isolation:isolate;
   margin-top:120px; padding-bottom:88px;
-  border-top:1px solid rgba(140,120,255,.20) }
+  border-top:1px solid rgba(140,120,255,.11) }
 .footer::before{
   background:
-    radial-gradient(118% 76% at 50% 118%, rgba(126,88,246,.42), transparent 62%),
-    radial-gradient(76% 50% at 9% 104%, rgba(84,104,255,.26), transparent 68%),
-    radial-gradient(70% 46% at 93% 96%, rgba(170,112,255,.22), transparent 70%),
-    linear-gradient(180deg, rgba(3,4,10,.94), rgba(6,5,16,.98) 46%, rgba(10,6,24,1)) !important }
+    radial-gradient(118% 76% at 50% 118%, rgba(126,88,246,.13), transparent 62%),
+    radial-gradient(76% 50% at 9% 104%, rgba(84,104,255,.075), transparent 68%),
+    radial-gradient(70% 46% at 93% 96%, rgba(170,112,255,.06), transparent 70%),
+    linear-gradient(180deg, rgba(3,4,10,.94), rgba(4,4,11,.98) 46%, rgba(6,4,13,1)) !important }
 .footer::after{
   content:""; position:absolute; left:0; right:0; bottom:-2px; height:300px;
   z-index:-1; pointer-events:none;
   background:
-    radial-gradient(56% 100% at 50% 100%, rgba(139,110,255,.32), transparent 72%),
-    radial-gradient(30% 68% at 21% 100%, rgba(92,120,255,.22), transparent 70%),
-    radial-gradient(28% 64% at 81% 100%, rgba(178,118,255,.20), transparent 70%),
-    linear-gradient(0deg, rgba(2,2,6,.42), transparent 34%);
-  animation:footBreathe 8.5s var(--ease-soft) infinite alternate }
+    radial-gradient(56% 100% at 50% 100%, rgba(139,110,255,.10), transparent 72%),
+    radial-gradient(30% 68% at 21% 100%, rgba(92,120,255,.06), transparent 70%),
+    radial-gradient(28% 64% at 81% 100%, rgba(178,118,255,.05), transparent 70%),
+    linear-gradient(0deg, rgba(2,2,6,.30), transparent 34%);
+  animation:footBreathe 12s var(--ease-soft) infinite alternate }
 @keyframes footBreathe{
-  from{ opacity:.68; transform:translate3d(0,8px,0) scale(1) }
-  to  { opacity:1;   transform:translate3d(0,0,0) scale(1.035) } }
-.footer .fb-home{ text-shadow:0 0 28px rgba(139,120,255,.40) }
+  from{ opacity:.40; transform:translate3d(0,8px,0) scale(1) }
+  to  { opacity:.70; transform:translate3d(0,0,0) scale(1.02) } }
+.footer .fb-home{ text-shadow:0 0 24px rgba(139,120,255,.15) }
 .footer h5{ color:#D8DCFF }
-.fbar{ border-top-color:rgba(140,120,255,.16) }
+.fbar{ border-top-color:rgba(140,120,255,.09) }
 @media (prefers-reduced-motion:reduce){
   .footer::after{ animation:none } }
-@media (max-width:520px){
-  .fbar{ gap:10px; padding-bottom:4px }
-  .fbar>span:first-child{ justify-self:center; text-align:center; white-space:normal }
-  .fbar-mid, .fbar-r{ justify-self:end; text-align:right; padding-right:2px }
+@media (max-width:640px){
+  .fgrid>div:nth-child(3), .fgrid>div:nth-child(5){ padding-left:12px }
+  .fgrid>div:nth-child(3) h5, .fgrid>div:nth-child(5) h5{ margin-bottom:8px }
+  .fgrid>div:nth-child(3) ul, .fgrid>div:nth-child(5) ul{ gap:5px }
+  .fgrid>div:nth-child(3) li, .fgrid>div:nth-child(5) li{ font-size:10.5px; line-height:1.35 }
+  /* .footer ul a pins 12.5px on every link - out-specify it for this pair */
+  .fgrid>div:nth-child(3) li a, .fgrid>div:nth-child(5) li a{ font-size:10.5px }
 }
