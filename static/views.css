@@ -1204,41 +1204,28 @@ body.pv-on #scrollProgress{
   transition:opacity .22s var(--ease), visibility 0s .22s }
 
 /* ==========================================================================
-   27. v3.26 - the nav strip bows out inside windows, returns at top
+   27. v3.29 - the top strip is permanent inside every window.
+   (v3.26 made the nav bow out on scroll and glide the whole window up with
+   it; readers found the moving header unstable, so the transform machinery
+   is retired: the nav stays flush at the top of Help / Intelligence /
+   Methodology / Pricing, and the close button simply rides under it.)
    ========================================================================== */
 .nav{ transition:transform .32s var(--ease) }
-body.pv-on .nav.nav-hide{ transform:translateY(-102%) }
-/* views keep their original geometry; when the nav bows out the whole
-   window glides up with it (compositor-only transform) - no gaps, no
-   sticky/fixed fights, identical on phone and desktop */
-body.pv-on .pview{ transition:transform .32s var(--ease) }
-.pview{ bottom:calc(-1 * var(--nav-h)) }   /* extra height hangs off-screen: no bottom gap when the window glides up */
-body.pv-on.nav-hidden .pview{ transform:translateY(calc(-1 * var(--nav-h))) }
 
-/* v3.26.1 - the close button rides with the nav: parked under it while the
-   nav is up, gliding into the true corner when the nav bows out */
-.pv-x{ transition:top .32s var(--ease), background-color .2s, border-color .2s, color .2s }
-body.nav-hidden .pv-x{ top:14px }
-
-/* v3.26.1 - the close button: a fixed viewport anchor that rides with the
-   nav (parked under it while the nav is up, gliding into the true corner
-   when the nav bows out). Overrides the legacy sticky!important hack that
-   left it floating mid-air. */
+/* v3.26.1 - the close button: a fixed viewport anchor parked under the nav.
+   Overrides the legacy sticky!important hack that left it floating mid-air. */
 .pv-x, .pview.open .pv-x{
   position:fixed !important; right:16px !important; margin:0 !important;
   top:calc(var(--nav-h) + 12px) !important;
   transition:top .32s var(--ease), color .18s ease, border-color .18s ease,
              background-color .18s ease !important }
-body.nav-hidden .pv-x{ top:12px !important }
 @media (max-width:860px){
   .pv-x, .pview.open .pv-x{ top:calc(var(--nav-h) + 8px) !important; right:10px !important }
-  body.nav-hidden .pv-x{ top:10px !important }
 }
 
 /* v3.26.2 - our own close control: the legacy .pv-x sits under a v2.0
    sticky!important straitjacket that fights every override, so it retires.
-   .vx2 is a fixed viewport anchor that rides with the nav: parked under it
-   while the nav is up, gliding into the true corner when the nav bows out. */
+   .vx2 is a fixed viewport anchor parked just under the permanent nav. */
 .pv-x{ display:none !important }
 .vx2{
   display:none;
@@ -1251,14 +1238,12 @@ body.nav-hidden .pv-x{ top:12px !important }
              background-color .18s ease, transform .2s var(--spring) }
 body.pv-on .vx2{ display:grid; place-items:center }
 .vx2 svg{ width:16px; height:16px; display:block }
-body.nav-hidden .vx2{ top:12px }
 .vx2:hover{ color:#F2F6FF; border-color:rgba(139,157,255,.45);
   background:rgba(13,18,32,.94); transform:rotate(90deg) }
 .vx2:active{ transform:rotate(90deg) scale(.92) }
 .vx2:focus-visible{ outline:2px solid var(--acc); outline-offset:2px }
 @media (max-width:860px){
   .vx2{ top:calc(var(--nav-h) + 8px); right:10px; width:34px; height:34px; border-radius:10px }
-  body.nav-hidden .vx2{ top:10px }
 }
 
 /* ---- v3.28: phones skip paint-heavy ambient loops ---- */

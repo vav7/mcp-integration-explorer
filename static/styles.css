@@ -2087,8 +2087,8 @@ body.pv-on .comparebar{display:none}
 /* provenance donut */
 .an-donutwrap{position:relative;display:grid;place-items:center;padding:2px 0 4px}
 .an-donut{transform-origin:50% 50%}
-.an-card.in .an-donut{animation:anDonut 1s var(--spring) backwards}
-@keyframes anDonut{from{opacity:0;transform:rotate(-75deg) scale(.82)}}
+.an-card.in .an-donut{animation:anDonut .45s var(--ease) backwards}
+@keyframes anDonut{from{opacity:0}}
 .an-seg{cursor:pointer;transition:stroke-width .2s var(--ease),opacity .2s}
 .an-seg:hover{stroke-width:16.5}
 .an-dc{position:absolute;inset:0;display:grid;place-content:center;text-align:center;pointer-events:none}
@@ -2216,6 +2216,17 @@ body.pv-on .comparebar{display:none}
   transition:color .16s,background .16s}
 .pv-tabs button:hover{color:var(--t1)}
 .pv-tabs button.active{background:var(--s2);color:var(--t1);box-shadow:var(--sh1)}
+/* v3.29 - the intelligence tab strip docks on a full-bleed scrim: sticky
+   like before, but instruments passing underneath now fade out behind an
+   opaque band instead of colliding with the buttons. The pill itself gets
+   a solid glass bed so nothing ever shows through it. */
+.iv-tabdock{position:sticky;top:0;z-index:6;margin:0 0 30px;padding:14px 0 16px}
+.iv-tabdock::before{content:"";position:absolute;left:-24px;right:-24px;top:0;bottom:0;
+  z-index:-1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(5,7,11,.99) 0%,rgba(5,7,11,.97) 58%,rgba(5,7,11,0) 100%)}
+.iv-tabdock .pv-tabs{position:static;margin:0;background:rgba(16,21,30,.92);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  box-shadow:0 18px 36px -28px rgba(0,0,0,.95),inset 0 1px 0 rgba(255,255,255,.045)}
 .iv-pane{animation:ivIn .4s var(--ease) both}
 .iv-pane[hidden]{display:none}
 @keyframes ivIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
@@ -2374,6 +2385,10 @@ body.pv-on .comparebar{display:none}
   .sect-head{margin:56px 0 22px}
   .pview-in{padding:30px 18px 72px}
   .pv-tabs{width:100%;overflow:auto}
+  /* v3.29: keep the sticky pill clear of the parked close button and keep
+     the scrim inside the narrower phone gutter (no horizontal overflow) */
+  .iv-tabdock{padding-right:54px}
+  .iv-tabdock::before{left:-14px;right:-14px}
   .cmp3{grid-template-columns:1fr}
 }
 
@@ -2737,6 +2752,15 @@ body.pv-on .comparebar{display:none}
 .an-seg{transition:stroke-dasharray .8s var(--ease),stroke-dashoffset .8s var(--ease)}
 .an-lgn,.an-lgp,.an-dc b{font-variant-numeric:tabular-nums}
 @media(prefers-reduced-motion:reduce){.an-seg{transition:none}}
+
+/* ============================================================================
+   v3.29 LAYER - settled instruments: once a card has revealed, a live data
+   tick rebuilds its contents IN PLACE - no re-pop, no re-draw, no blink.
+   Only an explicit open or tab switch clears .settled and replays the show.
+   ========================================================================== */
+.an-card.settled .an-pt,
+.an-card.settled .an-donut,
+.an-card.settled .an-ftrack i{animation:none !important}
 
 /* ============================================================================
    v26 LAYER - the alerts dropdown finally gets its layout. The rows and their

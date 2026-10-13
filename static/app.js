@@ -4,7 +4,7 @@
  * real snapshot. All derived views (leaderboard, opportunities, export) are
  * computed client-side so they work with or without the backend.
  */
-  window.__MCPC_VERSION__ = "3.28.0-boot";   /* type this in console to verify your build */
+  window.__MCPC_VERSION__ = "3.29.0-steady";   /* type this in console to verify your build */
 (() => {
   "use strict";
   const $ = (s, r = document) => r.querySelector(s);
@@ -613,7 +613,7 @@
     if (cAll && cAll.dataset) { cAll._numReg = null; cAll._numv = null; cAll.dataset.num = String((s.apps || []).length); cAll.textContent = cAll.dataset.num; }
     if (cOpp && cOpp.dataset) { const no = (s.apps || []).filter(a => opportunityScore(a) >= 0).length; cOpp._numReg = null; cOpp._numv = null; cOpp.dataset.num = String(no); cOpp.textContent = cOpp.dataset.num; }
     renderView(); renderChanges(s.changes || []); renderAnalytics(); scanBars(document); syncOpenDossier();
-    if (viewOpen() === "intelligence") { try { renderAnalytics(); setIvPart(state.ivPart || "supply"); } catch (e) {} }
+    if (viewOpen() === "intelligence") { try { renderAnalytics(); setIvPart(state.ivPart || "supply", true); } catch (e) {} }
     if (viewOpen() === "methodology") { try { populateMethodology(); } catch (e) {} }
     setLive(state.live, s.refresh_running);
     startSearchTicker();
@@ -789,11 +789,12 @@
      pie, 70ms stagger, linear so it reads as a constant clock hand. */
   function drawDonutsClockwise(box) {
     if (!box) return;
-    let di = 0;
+    let di = 0, touched = [], total = 500;
     Array.prototype.forEach.call(box.querySelectorAll(".donut"), (don) => {
       const circ = parseFloat(don.style.getPropertyValue("--circ")) || 0;
       if (!circ) return;
       const delay0 = di++ * 60;
+      total = Math.max(total, 500 + delay0);
       Array.prototype.forEach.call(don.querySelectorAll(".dn-arc"), (arc) => {
         if (arc.classList.contains("dn-track")) return;
         const da = parseFloat(arc.style.getPropertyValue("--da")) || 0;
@@ -806,6 +807,11 @@
         const del = delay0 + (start / circ) * 500;
         const fin = da.toFixed(1) + " " + Math.max(0, circ - da).toFixed(1);
         arc.style.transition = "none";
+        /* v3.29: butt caps while sweeping - a zero-length dash with a round
+           cap paints a stray DOT at the segment start (the "grey dot"
+           glitch). Butt = invisible until the hand actually arrives. */
+        arc.style.strokeLinecap = "butt";
+        touched.push(arc);
         arc.style.strokeDashoffset = doff.toFixed(1);
         arc.style.strokeDasharray = "0 " + circ.toFixed(1);
         void arc.getBoundingClientRect();
@@ -815,6 +821,22 @@
         arc.style.strokeDasharray = fin;
       });
     });
+    /* v3.29: restore the soft round caps when the LAST arc finishes - a
+       wall-clock timer can fire early on a janky phone (throttled timers,
+       late transition start) and pop round caps mid-sweep. transitionend
+       is exact; the timeout is only a safety net. */
+    if (touched.length) {
+      let restored = false;
+      const restore = () => {
+        if (restored) return; restored = true;
+        touched.forEach(a => { try { a.style.strokeLinecap = ""; } catch (e) {} });
+      };
+      let ended = 0;
+      touched.forEach(a => a.addEventListener("transitionend", () => {
+        if (++ended >= touched.length) restore();
+      }, { once: true }));
+      setTimeout(restore, reducedMotion ? 60 : total + 1600);
+    }
   }
   function drawProvClockwise(el) {
     const svg = el && el.querySelector("svg.an-donut");
@@ -831,12 +853,39 @@
       const del = (start / circ) * 500;
       const fin = da.toFixed(1) + " " + Math.max(0, circ - da).toFixed(1);
       c.style.transition = "none";
+      /* v3.29: butt caps during the wipe - with round caps every waiting
+         segment paints a stray dot at its start (the grey "No server yet"
+         dot the reader saw before the arc landed). One clean clock hand
+         from 12 o'clock, nothing else on the ring until it arrives. */
+      c.style.strokeLinecap = "butt";
       c.style.strokeDasharray = "0 " + circ.toFixed(1);
       void c.getBoundingClientRect();
       c.style.transition = reducedMotion ? "none"
         : "stroke-dasharray " + dur + "ms linear " + del + "ms";
       c.style.strokeDasharray = fin;
     });
+    /* v3.29: when the LAST segment lands, publish the final length to the
+       ATTRIBUTE and free the inline styles, so a live data slide (which
+       writes attributes) still takes effect and the soft round caps return.
+       transitionend is exact on janky phones; the timer is a safety net. */
+    let provRestored = false;
+    const provRestore = () => {
+      if (provRestored) return; provRestored = true;
+      segs.forEach(c => {
+        try {
+          const fin = c.style.strokeDasharray;
+          if (fin) c.setAttribute("stroke-dasharray", fin);
+          c.style.strokeDasharray = "";
+          c.style.strokeLinecap = "";
+          c.style.transition = "";
+        } catch (e) {}
+      });
+    };
+    let provEnded = 0;
+    segs.forEach(c => c.addEventListener("transitionend", () => {
+      if (++provEnded >= segs.length) provRestore();
+    }, { once: true }));
+    setTimeout(provRestore, reducedMotion ? 60 : 2100);
   }
   function replayCoverage() {
     const cov = $("#coverage");
@@ -1209,6 +1258,10 @@
       const pane = $(sel);
       if (pane && !pane._barsArmed) { pane._barsArmed = 1; whenSeen(pane, () => replayBars(pane)); }
     });
+    /* v3.29: a card that has already revealed is SETTLED - a live data tick
+       rebuilds its instruments in place, with no entrance show. Only an
+       explicit open or tab switch (which clear .settled) replays the draw. */
+    $$("#intelligenceView .an-card.in").forEach(c => c.classList.add("settled"));
   }
   function renderAnScore(apps, st) {
     const el = $("#anScoreBody"); if (!el) return;
@@ -3055,7 +3108,7 @@
   }
   /* Intelligence now groups its six instruments into three tabs of two, so the
      window reads as three compact spreads instead of one long stack. */
-  function setIvPart(part) {
+  function setIvPart(part, soft) {
     const next = ["supply", "health", "adoption"].indexOf(part) >= 0 ? part : "supply";
     state.ivPart = next;
     $$("#ivTabs [data-ivpart]").forEach(b => {
@@ -3065,13 +3118,17 @@
     [["supply", "#ivpSupply"], ["health", "#ivpHealth"], ["adoption", "#ivpAdoption"]].forEach(([k, sel]) => {
       const p = $(sel); if (p) p.hidden = k !== next;
     });
+    /* v3.29 soft path: a background render() while the reader sits on this
+       pane syncs the tab state only - the wire/bars must NOT replay. The
+       show runs on open and on tab clicks, never on a data tick. */
+    if (soft) return;
     const pane = next === "supply" ? $("#ivpSupply") : next === "health" ? $("#ivpHealth") : $("#ivpAdoption");
     if (pane) {
       /* deterministic: a tab flip must always redraw that pane's wire and
          regrow its bars, even if an observer is a frame late */
       requestAnimationFrame(() => { drawLines(pane); replayBars(pane); });
       scanNums(pane);
-      $$(".reveal", pane).forEach(e => { e.classList.remove("out"); e.classList.add("in"); });
+      $$(".reveal", pane).forEach(e => { e.classList.remove("out", "settled"); e.classList.add("in"); });
       if (next === "adoption") requestAnimationFrame(() => { try { if (state.snap && state.snap.apps) renderAnScatter(state.snap.apps); } catch (e) {} });
     }
   }
@@ -3092,8 +3149,9 @@
     if (name === "methodology") { try { populateMethodology(); } catch (e) {} requestAnimationFrame(updateSpine); }
     const el = $(VIEW_EL[name]); if (el) el.scrollTop = 0;
     try { if (history.replaceState) history.replaceState(null, "", "#" + name); } catch (e) {}
-    /* replay the entrance motion every single time the window is opened */
-    $$(".reveal", el).forEach(e => { e.classList.remove("in"); e.classList.add("out"); });
+    /* replay the entrance motion every single time the window is opened
+       (v3.29: clearing .settled re-arms the instruments' entrance show) */
+    $$(".reveal", el).forEach(e => { e.classList.remove("in", "settled"); e.classList.add("out"); });
     void (el && el.offsetWidth);
     requestAnimationFrame(() => { $$(".reveal", el).forEach(e => e.classList.remove("out")); revealVisible(); observeReveal(); });
     syncViewChrome();
@@ -3257,18 +3315,13 @@
       const p = max > 0 ? Math.min(1, (window.scrollY || h.scrollTop) / max) : 0;
       if (sp) sp.style.transform = "scaleX(" + p + ")";
     };
-    /* v3.26: inside a full-screen window the nav strip bows out on scroll
-       and returns at the top - smoothly, transform-only */
-    addEventListener("scroll", (e) => {
-      const v = viewOpen();
-      if (!v) return;
-      const el = $(VIEW_EL[v]);
-      if (!el || e.target !== el) return;
-      const hid = el.scrollTop > 12;
-      const nav = $("#nav");
-      if (nav) nav.classList.toggle("nav-hide", hid);
-      document.body.classList.toggle("nav-hidden", hid);   /* the close button rides with the nav */
-    }, { passive: true, capture: true });
+    /* v3.29: the top strip is a permanent instrument - it no longer bows
+       out on scroll inside Help / Intelligence / Methodology / Pricing.
+       (v3.26 auto-hid it here; readers found the moving header unstable,
+       so the strip now simply stays flush at the top of every window.) */
+    const navStrip = $("#nav");
+    if (navStrip) navStrip.classList.remove("nav-hide");
+    document.body.classList.remove("nav-hidden");
     /* ---- scrollspy: nav always mirrors where you are ---- */
     const SPY = [["overview", "#overview"], ["explorer", "#apps"], ["insights", "#insights"], ["dive", "#dive"]];
     const updateSpy = () => {
@@ -3360,10 +3413,15 @@
     let rszW = 0; try { rszW = window.innerWidth || 0; } catch (e) {}
     window.addEventListener("resize", debounce(() => {
       /* v39: URL-bar toggles change only the height; never redraw or
-         rebuild while the reader is mid-scroll on a phone. */
+         rebuild while the reader is mid-scroll on a phone.
+         v3.29: the intelligence instruments obey the same rule - only a
+         real WIDTH change re-measures them, so the phone's collapsing
+         address bar can never make the panes blink mid-read. */
       let w = 0; try { w = window.innerWidth || 0; } catch (e) {}
-      if (w !== rszW) { rszW = w; renderTrend(true); }
-      if (viewOpen() === "intelligence") renderChartsNow();
+      if (w !== rszW) {
+        rszW = w; renderTrend(true);
+        if (viewOpen() === "intelligence") renderChartsNow();
+      }
       const md = $("#modal");
       if (md && md.classList.contains("cmpwin") && narrowGrid() !== cmpGridNarrow) renderCmp3View();
     }, 200), { passive: true });
