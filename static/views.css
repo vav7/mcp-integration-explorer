@@ -822,57 +822,20 @@ body.pv-on .snap-panel::before, body.pv-on .sp-scan{ animation-play-state:paused
        ORB FILTER PURGE
    ========================================================================== */
 
-/* ---- the leading screen: fully dark, sleek, terminal-fast --------------- */
-#boot{
-  background:rgba(5,7,13,.62);
-  backdrop-filter:blur(18px) saturate(130%);
-  -webkit-backdrop-filter:blur(18px) saturate(130%);
-  transition:opacity .3s var(--ease), visibility 0s .3s }
-#boot::before{ content:none }
-#boot .boot-in{ gap:0 }
-#boot .boot-mark{
-  width:52px; height:52px; border-radius:14px; color:#A5B4FF;
-  background:linear-gradient(180deg, rgba(139,157,255,.14), rgba(139,92,246,.06)), rgba(9,13,22,.9);
-  border:1px solid rgba(139,157,255,.30);
-  box-shadow:0 1px 0 rgba(255,255,255,.06) inset, 0 10px 30px rgba(0,0,0,.5);
-  animation:none }
-#boot .boot-mark svg{ width:24px; height:24px }
-#boot .boot-name{
-  margin-top:16px; font:700 21px var(--font-display); letter-spacing:-.02em;
-  color:#EDF1F8; background:none; -webkit-background-clip:border-box;
-  background-clip:border-box; -webkit-text-fill-color:currentColor; filter:none }
-#boot .boot-bar{
-  margin-top:16px; width:180px; height:2px; border-radius:2px;
-  background:rgba(148,180,255,.10); box-shadow:none; overflow:hidden }
-#boot .boot-bar i{
-  width:38%; border-radius:2px;
-  background:#8B9DFF;                      /* solid HD violet - no gradient */
-  box-shadow:0 0 12px rgba(139,157,255,.65), 0 0 3px rgba(207,224,255,.8);
-  animation:bootSlide 1s cubic-bezier(.45,.05,.55,.95) infinite }
-@keyframes bootSlide{ 0%{ transform:translateX(-110%) } 100%{ transform:translateX(320%) } }
-#boot .boot-log{
-  margin-top:16px; width:300px; max-width:74vw; min-height:84px;
-  display:flex; flex-direction:column; gap:6px; text-align:left;
-  font:500 10px/1.45 var(--mono); letter-spacing:.05em; color:#4A5670 }
-#boot .boot-log span{ animation:bootLine .22s var(--ease) both }
-#boot .boot-log span:last-child{ color:#9AA8C7 }
-@keyframes bootLine{ from{ opacity:0; transform:translateY(3px) } to{ opacity:1; transform:none } }
-@media (prefers-reduced-motion: reduce){
-  #boot .boot-bar i{ animation:none; transform:none; width:100% }
-  #boot .boot-log span{ animation:none }
+/* ---- the leading screen (v3.30): authored in styles.css - ambient violet
+       veil, real progress bar, real readiness gate. Mobile touch-ups only. -- */
+@media (max-width:520px){
+  #boot .boot-name{ font-size:15px }
+  #boot .boot-bar, #boot .boot-row{ width:min(220px,66vw) }
 }
 /* ---- drawer: ink glass, blur lands AFTER the slide (no re-blur lag) ---- */
-.drawer{
-  background:linear-gradient(180deg, rgba(5,7,12,.86), rgba(2,3,7,.92));
-  transition:transform .26s cubic-bezier(.2,.7,.25,1);
+.drawer, .drawer.open{
+  background:linear-gradient(180deg, #080C16, #04060B 62%, #03050A);
   backdrop-filter:none; -webkit-backdrop-filter:none;
-  box-shadow:24px 0 70px rgba(0,0,0,.62) }
-.drawer.open{
-  background:linear-gradient(180deg, rgba(5,7,12,.78), rgba(2,3,7,.84));
-  backdrop-filter:blur(16px) saturate(140%);
-  -webkit-backdrop-filter:blur(16px) saturate(140%);
-  transition:transform .26s cubic-bezier(.2,.7,.25,1),
-             backdrop-filter 0s .26s, -webkit-backdrop-filter 0s .26s }
+  transition:transform .26s cubic-bezier(.2,.7,.25,1);
+  box-shadow:24px 0 70px rgba(0,0,0,.66), 1px 0 0 rgba(148,180,255,.09) }
+[data-theme="light"] .drawer, [data-theme="light"] .drawer.open{
+  background:linear-gradient(180deg, #FFFFFF, #F1F4FB) }
 .dw-head{ background:linear-gradient(180deg, rgba(139,157,255,.06), transparent 78%) }
 .dw-foot{ background:rgba(2,3,7,.55) }
 
@@ -907,12 +870,19 @@ button{ background-color:transparent }
    overlays keep a blur; everything else gets near-opaque ink, which reads
    identical on this dark canvas.
    ========================================================================== */
-*:not(.modal):not(.cmdk):not(.cmdk-backdrop):not(.dropdown-menu):not(.backdrop):not(.drawer.open){
+*:not(.modal):not(.cmdk):not(.cmdk-backdrop):not(.dropdown-menu):not(.backdrop):not(.drawer.open):not(#boot){
   backdrop-filter:none !important;
   -webkit-backdrop-filter:none !important }
 /* compensate with density so the look stays premium */
 .nav{ background:rgba(6,9,15,.97) }
 html[data-theme="dark"] .nav{ background:rgba(5,8,15,.97) }
+/* v3.30: zero see-through - the bar is solid ink at rest and on scroll */
+.nav{ background:#06090F }
+html[data-theme="dark"] .nav{ background:#05080F }
+.nav.scrolled{ background:#04060B; box-shadow:0 10px 30px rgba(0,0,0,.38) }
+html[data-theme="dark"] .nav.scrolled{ background:#04060B; box-shadow:0 10px 30px rgba(0,0,0,.42) }
+[data-theme="light"] .nav{ background:#FBFCFF }
+[data-theme="light"] .nav.scrolled{ background:#FFFFFF; box-shadow:0 10px 26px rgba(13,22,38,.10) }
 .snap-panel{ background-image:linear-gradient(168deg, rgba(15,21,36,.93), rgba(7,10,17,.97)) }
 .ins, .dive-card, .sig-compact{
   background-image:linear-gradient(170deg, rgba(18,25,41,.90), rgba(8,12,20,.95)) }
@@ -1135,34 +1105,6 @@ h1,h2,h3,h4,.pv-head h1,.sect-head h2,.fg2-h1,.mt2-head h1,.hero h1,
              0 0 14px rgba(139,92,246,.14) }
 .cmpbtn.on:hover{ color:#C4D0FF; border-color:rgba(139,157,255,.55) }
 
-/* boot: high-end HD colour - jewel gradient bar with travelling hue + glow */
-#boot .boot-bar{
-  height:5px; border-radius:6px; background:rgba(148,180,255,.07);
-  box-shadow:0 0 0 1px rgba(148,180,255,.09), inset 0 2px 6px rgba(0,0,0,.55),
-             0 0 24px rgba(139,92,246,.10) }
-#boot .boot-bar i{
-  border-radius:6px;
-  background:linear-gradient(90deg, #34D399 0%, #5EEAD4 14%, #7DE7F8 30%,
-             #8B9DFF 50%, #8B5CF6 70%, #C4B5FD 86%, #34D399 100%);
-  background-size:220% 100%;
-  box-shadow:0 0 16px rgba(125,231,248,.50), 0 0 36px rgba(139,92,246,.34),
-             inset 0 1px 0 rgba(255,255,255,.55);
-  animation:bootSlide 1.6s cubic-bezier(.45,.05,.55,.95) infinite,
-            bootHue 3.4s linear infinite }
-@keyframes bootHue{ 0%{ background-position:0% 0 } 100%{ background-position:-220% 0 } }
-#boot .boot-name{
-  background:linear-gradient(178deg, #FFFFFF 16%, #E4EBFF 48%, #A9BCE9 100%);
-  -webkit-background-clip:text; background-clip:text; color:transparent;
-  filter:drop-shadow(0 0 20px rgba(139,157,255,.28)) }
-#boot .boot-tag{ color:#55617A; letter-spacing:.34em }
-#boot .boot-mark{
-  box-shadow:0 1px 0 rgba(255,255,255,.10) inset, 0 18px 44px rgba(0,0,0,.6),
-             0 0 40px rgba(139,92,246,.30), 0 0 0 1px rgba(139,157,255,.30) }
-#boot .boot-steps i{ background:rgba(148,180,255,.22) }
-@keyframes bootDot{
-  0%,100%{ background:rgba(148,180,255,.22); transform:scale(1) }
-  40%{ background:#8B9DFF; transform:scale(1.45); box-shadow:0 0 12px rgba(139,157,255,.9) } }
-
 /* atlas ambient: two dim nebulae drifting under the discs + edge vignette.
    Transform-only, 26s, barely there - dark, premium, cool. */
 .atlas-field::before{
@@ -1180,7 +1122,6 @@ h1,h2,h3,h4,.pv-head h1,.sect-head h2,.fg2-h1,.mt2-head h1,.hero h1,
   background:radial-gradient(120% 92% at 50% 46%, transparent 52%, rgba(2,4,8,.5) 100%) }
 
 @media (prefers-reduced-motion: reduce){
-  #boot .boot-bar i{ animation:bootSlide 1.6s cubic-bezier(.45,.05,.55,.95) infinite }
   .atlas-field::before{ animation:none }
 }
 

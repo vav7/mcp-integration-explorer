@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="build" content="v3.29.0-steady">
+<meta name="build" content="v3.30.0-gate">
 <title>MCP Integration Explorer · integration intelligence</title>
 <meta name="description" content="Live, evidence-backed MCP / agent integration readiness across applications. Real registry data, endpoint probes, GitHub, package adoption and liveness, with every signal traceable to its source.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,54 +13,73 @@
 <script>
   (function(){try{localStorage.setItem('mcp_theme','dark');}catch(e){}document.documentElement.setAttribute('data-theme','dark');})();
 </script>
-<link rel="stylesheet" href="/styles.css?v=3.29.0-steady">
-<link rel="stylesheet" href="/views.css?v=3.29.0-steady">
+<link rel="stylesheet" href="/styles.css?v=3.30.0-gate">
+<link rel="stylesheet" href="/views.css?v=3.30.0-gate">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%238B9DFF'/><stop offset='1' stop-color='%238B5CF6'/></linearGradient></defs><rect width='32' height='32' rx='8' fill='%2305070D'/><rect x='.5' y='.5' width='31' height='31' rx='7.5' fill='none' stroke='%23253140'/><circle cx='10' cy='10' r='2.6' fill='none' stroke='url(%23g)' stroke-width='1.8'/><circle cx='10' cy='22' r='2.6' fill='none' stroke='url(%23g)' stroke-width='1.8'/><circle cx='22' cy='16' r='2.6' fill='none' stroke='url(%23g)' stroke-width='1.8'/><path d='M12 11l8 4M12 21l8-4' stroke='url(%23g)' stroke-width='1.8'/></svg>">
 </head>
 <body>
-<div id="boot" aria-hidden="true"><div class="boot-in">
-  <span class="boot-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="7" cy="7" r="2.1"/><circle cx="7" cy="17" r="2.1"/><circle cx="17" cy="12" r="2.1"/><path d="M9 8l6 3M9 16l6-3"/></svg></span>
-  <b class="boot-name">MCP Integration Explorer</b>
-  <span class="boot-bar"><i></i></span>
-  <span class="boot-log" id="bootLog"></span>
+<div id="boot" aria-hidden="true">
+  <div class="boot-amb"><i></i><i></i><i></i></div>
+  <div class="boot-in">
+    <span class="boot-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="7" cy="7" r="2.1"/><circle cx="7" cy="17" r="2.1"/><circle cx="17" cy="12" r="2.1"/><path d="M9 8l6 3M9 16l6-3"/></svg></span>
+    <b class="boot-name">MCP Integration Explorer</b>
+    <span class="boot-bar"><i id="bootFill"></i></span>
+    <span class="boot-row"><span class="boot-msg" id="bootMsg">waking up</span><span class="boot-pct" id="bootPct">0%</span></span>
+  </div>
 </div>
 <script>
-  /* sleek terminal boot: first visit of a session only, hard 2s cap,
-     technical lines append every 150ms, last four stay */
+  /* v3.30 real boot gate: this veil lifts only when the app reports that it
+     is ready (window.__boot.done from app.js, after first paint + fonts).
+     Progress follows true load stages, never a clock. Hard 9s cap so the
+     veil can never trap a visitor, min dwell so it never flashes. */
   (function () {
-    var boot = document.getElementById("boot");
-    var seen = false;
-    try { seen = sessionStorage.getItem("mcpx_boot") === "1";
-          sessionStorage.setItem("mcpx_boot", "1"); } catch (e) {}
-    var L = ["> GET registry.modelcontextprotocol.io - 200",
-             "> resolve com.stripe/mcp -> stripe.com",
-             "> handshake initialize -> tools/list",
-             "> probe endpoints - auth gates flagged",
-             "> github / npm / pypi adoption signals",
-             "> liveness: status + latency per site",
-             "> score 100 estates - grade A-E",
-             "> attach live change stream"];
-    var el = document.getElementById("bootLog"), i = 0, dead = seen;
-    if (seen && boot) boot.classList.add("boot-done");
-    function push() {
-      if (dead || !el || !el.isConnected) return;
-      var s = document.createElement("span");
-      s.textContent = L[i % L.length];
-      el.appendChild(s);
-      while (el.children.length > 4) el.removeChild(el.firstChild);
-      i++;
-      setTimeout(push, 150);
+    var boot = document.getElementById("boot"),
+        fill = document.getElementById("bootFill"),
+        msg  = document.getElementById("bootMsg"),
+        pct  = document.getElementById("bootPct");
+    if (!boot) { window.__boot = { stage: function () {}, done: function () {} }; return; }
+    var t0 = Date.now(), shown = 0, target = 6, lastP = -1, raf = 0,
+        closing = false, gone = false;
+    function finish() {
+      if (gone) return; gone = true;
+      cancelAnimationFrame(raf);
+      if (fill) fill.style.transform = "scaleX(1)";
+      if (pct) pct.textContent = "100%";
+      boot.classList.add("boot-done");
+      setTimeout(function () { if (boot.parentNode) boot.parentNode.removeChild(boot); }, 500);
     }
-    if (!seen) setTimeout(push, 80);
-    /* never longer than 2 seconds, whatever the network does */
-    setTimeout(function () {
-      if (boot && !boot.classList.contains("boot-done")) boot.classList.add("boot-done");
-      dead = true;
-    }, 2000);
-    window.__bootStop = function () {
-      dead = true;
-      if (boot && !boot.classList.contains("boot-done")) boot.classList.add("boot-done");
+    function paint() {
+      shown += (target - shown) * 0.14;
+      if (closing && 100 - shown < 0.6) shown = 100;
+      var p = Math.round(shown);
+      if (p !== lastP) { lastP = p;
+        if (fill) fill.style.transform = "scaleX(" + (shown / 100).toFixed(4) + ")";
+        if (pct) pct.textContent = p + "%"; }
+      if (closing && shown >= 100) { finish(); return; }
+      raf = requestAnimationFrame(paint);
+    }
+    raf = requestAnimationFrame(paint);
+    function close() { if (!closing) { closing = true; target = 100; } }
+    window.__boot = {
+      stage: function (m, p) {
+        if (gone || closing) return;
+        if (typeof p === "number" && p > target) target = Math.min(p, 96);
+        if (m && msg && msg.textContent !== m) {
+          msg.classList.add("swap");
+          setTimeout(function () { msg.textContent = m; msg.classList.remove("swap"); }, 140);
+        }
+      },
+      done: function () {
+        if (gone || closing) return;
+        var wait = Math.max(0, 620 - (Date.now() - t0));   /* never a flash */
+        setTimeout(function () {
+          var f = (document.fonts && document.fonts.ready) ? document.fonts.ready : null;
+          if (f) { Promise.race([f, new Promise(function (r) { setTimeout(r, 1200); })]).then(close, close); }
+          else close();
+        }, wait);
+      }
     };
+    setTimeout(function () { if (!gone) close(); }, 9000);  /* safety cap */
   })();
 </script></div>
 <div id="scrollProgress" aria-hidden="true"></div>
@@ -71,7 +90,7 @@
 <header class="nav" id="nav">
   <div class="nav-inner">
     <button class="iconbtn" id="drawerBtn" aria-label="Toggle dashboard menu" aria-expanded="false" title="Dashboard menu">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="butt" aria-hidden="true"><path d="M3 4h10M3 8h10M3 12h10"/></svg>
     </button>
     <a class="logo" href="#top" id="logoLink" style="text-decoration:none;color:inherit">
       <span class="logo-mark" aria-hidden="true">
@@ -115,18 +134,6 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 10-2.3 6.3M20 5v6h-6"/></svg>
         <span id="refreshLabel">Refresh</span>
       </button>
-      <div class="dropdown navdrop">
-        <button class="iconbtn nav-toggle" id="navToggle" aria-label="Menu">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-        </button>
-        <div class="dropdown-menu nav-menu" id="navMenu">
-          <a href="#top" data-home>Home</a>
-          <a href="#overview">Overview</a><a href="#apps">Explorer</a><a href="#insights">Insights</a>
-          <a href="#intelligence" data-view="intelligence">Intelligence</a>
-          <a href="#methodology" data-view="methodology">Methodology</a>
-          <a href="#pricing" data-pricing>Pricing</a>
-        </div>
-      </div>
     </div>
   </div>
 </header>
@@ -1090,9 +1097,9 @@
 <!-- NOTE: data.snapshot.js (~2MB) is NOT loaded up front. The live API is the
      primary data source; the embedded snapshot is injected on demand only when
      the backend is unreachable, so a normal visit never parses it. -->
-<script src="/app.js?v=3.29.0-steady"></script>
-<script src="/motion.js?v=3.29.0-steady"></script>
-<script src="/help.js?v=3.29.0-steady"></script>
-<script src="/premium.js?v=3.29.0-steady"></script>
+<script src="/app.js?v=3.30.0-gate"></script>
+<script src="/motion.js?v=3.30.0-gate"></script>
+<script src="/help.js?v=3.30.0-gate"></script>
+<script src="/premium.js?v=3.30.0-gate"></script>
 </body>
 </html>

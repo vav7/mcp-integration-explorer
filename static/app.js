@@ -4,7 +4,7 @@
  * real snapshot. All derived views (leaderboard, opportunities, export) are
  * computed client-side so they work with or without the backend.
  */
-  window.__MCPC_VERSION__ = "3.29.0-steady";   /* type this in console to verify your build */
+  window.__MCPC_VERSION__ = "3.30.0-gate";   /* type this in console to verify your build */
 (() => {
   "use strict";
   const $ = (s, r = document) => r.querySelector(s);
@@ -406,6 +406,7 @@
     // Pure offline builds (demo.html) carry the real snapshot inline and skip
     // the network entirely for an instant, robust render.
     if (window.__OFFLINE_DEMO__ && window.__SNAPSHOT__) {
+      bootStage("unpacking snapshot", 46);
       state.snap = window.__SNAPSHOT__; state.live = false; render(); return;
     }
     // Abort after a short timeout: in offline/sandboxed contexts the fetch can
@@ -413,10 +414,12 @@
     // embedded real snapshot in that case.
     const ctl = typeof AbortController !== "undefined" ? new AbortController() : null;
     const timer = ctl ? setTimeout(() => ctl.abort(), 6000) : null;
+    bootStage("fetching live registry", 32);
     try {
       const r = await fetch("/api/snapshot", { cache: "no-store", signal: ctl ? ctl.signal : undefined });
       clearTimeout(timer);
       if (!r.ok) throw new Error("HTTP " + r.status);
+      bootStage("scoring 100 estates", 58);
       state.snap = sanitizeDashes(await r.json()); if (!state.live) { state.live = true; connectStream(); } render();
     } catch (e) {
       clearTimeout(timer);
@@ -426,6 +429,7 @@
       } catch (e2) {}
       if (window.__SNAPSHOT__) { state.snap = sanitizeDashes(window.__SNAPSHOT__); state.live = false; render(); }
       else $("#viewContent").innerHTML = `<div class="empty" style="padding:30px">No backend reachable and no snapshot embedded. Run <code class="mono">uvicorn src.app:app</code> then reload.</div>`;
+      releaseBoot();
     }
   }
   function retryLive() {
@@ -600,9 +604,7 @@
 
   function render(keepScroll) {
     const s = state.snap; if (!s) return;
-    const boot = document.getElementById("boot");
-    if (boot) { try { if (window.__bootStop) window.__bootStop(); } catch (e) {}
-      boot.classList.add("boot-done"); setTimeout(() => boot.remove(), 460); }
+    if (!bootReleased) bootStage("rendering dashboard", 82);
     invalidateScrollCaches();
     const y = keepScroll ? window.scrollY : null;
     $("#tagline").textContent = "Live integration readiness";
@@ -2655,12 +2657,26 @@
       b.classList.toggle("on", on); b.textContent = on ? "✓" : "+"; });
     renderDrawerCompare(apps);
   }
+  /* ---------------- v3.30 boot gate: real stages, real release ---------- */
+  function bootStage(m, p) { try { if (window.__boot) window.__boot.stage(m, p); } catch (e) {} }
+  let bootReleased = false;
+  function releaseBoot() {
+    if (bootReleased) return; bootReleased = true;
+    bootStage("ready", 100);
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      try { if (window.__boot) window.__boot.done(); } catch (e) {}
+    }));
+  }
+
   /* ---------------- dashboard drawer (hamburger) ---------------- */
   function setDrawer(open) {
     const d = $("#drawer"); if (!d) return;
     d.classList.toggle("open", !!open);
     const sc = $("#drawerScrim"); if (sc) sc.classList.toggle("open", !!open);
     const b = $("#drawerBtn"); if (b && b.setAttribute) b.setAttribute("aria-expanded", open ? "true" : "false");
+    /* v3.30: freeze the page behind the drawer - no scroll resampling, no
+       ghosting, and the menu reads as a solid layer of the app */
+    if (open) lockWindowScroll("drawer"); else unlockWindowScroll("drawer");
     try { localStorage.setItem("mcp_drawer", open ? "1" : "0"); } catch (e) {}
   }
   function drawerOpen() { const d = $("#drawer"); return !!(d && d.classList.contains("open")); }
@@ -3408,8 +3424,6 @@
     const dwa = $("#dwAlerts"); if (dwa) dwa.onclick = (e) => { e.stopPropagation(); setDrawer(false); const bw = $("#bellWrap"); if (bw) { bw.classList.add("open"); renderAlerts(); if (state.unread) markAlertsRead(); } };
     const dwgo = $("#dwCompare"); if (dwgo) dwgo.onclick = () => { setDrawer(false); setTimeout(openCompare, 300); };
     const dwcl = $("#dwClear"); if (dwcl) dwcl.onclick = () => { state.compare = []; renderCompareBar(); renderView(); };
-    $("#navToggle").onclick = e => { e.stopPropagation(); const d = $("#navToggle").closest(".dropdown"); const o = d.classList.contains("open"); closeDropdowns(); d.classList.toggle("open", !o); };
-    $$("#navMenu a").forEach(a => a.addEventListener("click", () => closeDropdowns()));
     let rszW = 0; try { rszW = window.innerWidth || 0; } catch (e) {}
     window.addEventListener("resize", debounce(() => {
       /* v39: URL-bar toggles change only the height; never redraw or
@@ -3429,7 +3443,7 @@
 
   async function init() {
     /* v40 build stamp: the first thing a verifying console sees */
-    try { console.info("MCP Integration Explorer build v40"); } catch (e) {}
+    try { console.info("MCP Integration Explorer build v41"); } catch (e) {}
     loadRecent(); themeIcon();
     await loadSnapshot();
     try { bind(); } catch (e) { if (window.console) console.error("bind failed:", e); window.__bindErr = e.message + " || " + String(e.stack || "").slice(0, 300); }
@@ -3442,6 +3456,7 @@
     else if (h0 === "methodology") openView("methodology");
     else if (h0 === "analytics" || h0 === "intelligence") openView("intelligence");
     else if (h0 === "help") openView("help");
+    releaseBoot();
     if (!state.live) retryLive();
     // hero snapshot numbers keep juggling with live data between full renders
     setInterval(() => {

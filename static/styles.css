@@ -81,10 +81,6 @@ svg{display:block}
 .nav-links a.active{color:var(--t1);background:var(--s1)}
 .nav-links a.active::before{content:"";position:absolute;left:5px;top:50%;transform:translateY(-50%);width:3px;height:3px;border-radius:50%;background:var(--acc)}
 .nav-right{display:flex;align-items:center;gap:8px;margin-left:auto}
-.navdrop{display:none}
-.nav-menu{min-width:170px}
-.nav-menu a{display:block;padding:9px 12px;border-radius:7px;color:var(--t1);font:500 13px var(--font)}
-.nav-menu a:hover{background:var(--s2);text-decoration:none}
 .searchbtn{display:flex;align-items:center;gap:9px;height:34px;padding:0 11px 0 12px;min-width:220px;
   background:var(--s1);border:1px solid var(--line);border-radius:var(--rc);color:var(--t3);font-size:13px;cursor:pointer;transition:border-color .14s,color .14s}
 .searchbtn:hover{border-color:var(--line2);color:var(--t2)}
@@ -555,7 +551,7 @@ table.grid tbody tr:hover .cmpbtn,table.grid tbody tr:focus-within .cmpbtn,.cmpb
   .searchbtn{min-width:0;width:34px;padding:0;justify-content:center}.searchbtn span,.searchbtn .kbd{display:none}
 }
 @media(max-width:900px){
-  .nav-links{display:none}.navdrop{display:block}
+  .nav-links{display:none}
   .fgrid{grid-template-columns:1fr;gap:36px}
   .price-grid{grid-template-columns:1fr}
   .insight-strip{grid-template-columns:1fr;gap:28px}
@@ -1161,17 +1157,17 @@ table.grid tbody tr{background-image:none}
 .opp-stat b{font-family:var(--font-display)}
 
 /* ---- 4. DASHBOARD DRAWER (hamburger, toggleable, remembers state) ---- */
-.navdrop{display:none!important}
 #drawerBtn{flex:0 0 auto;margin-right:-12px}
 #drawerBtn[aria-expanded="true"]{color:#C7D2FF;border-color:rgba(139,157,255,.4);background:var(--acc-bg)}
-.dw-scrim{position:fixed;inset:0;z-index:94;background:rgba(3,5,10,.5);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);
+.dw-scrim{position:fixed;inset:0;z-index:94;background:rgba(2,4,9,.68);
   opacity:0;pointer-events:none;transition:opacity .26s var(--ease)}
 .dw-scrim.open{opacity:1;pointer-events:auto}
 .drawer{position:fixed;top:0;left:0;bottom:0;width:294px;max-width:88vw;z-index:95;display:flex;flex-direction:column;
   transform:translateX(-105%);transition:transform .3s var(--ease);
-  background:linear-gradient(180deg,rgba(13,19,32,.97),rgba(6,9,16,.985));
-  border-right:1px solid var(--line2);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);
-  box-shadow:24px 0 80px rgba(0,0,0,.5)}
+  background:linear-gradient(180deg,#0D1320,#060910);
+  border-right:1px solid var(--line2);
+  box-shadow:24px 0 80px rgba(0,0,0,.55)}
+[data-theme="light"] .drawer{background:linear-gradient(180deg,#FFFFFF,#F1F4FB)}
 .drawer.open{transform:none}
 .dw-head{display:flex;align-items:center;gap:11px;padding:15px 14px 14px 16px;border-bottom:1px solid var(--line);flex:0 0 auto;
   background:radial-gradient(340px 90px at 10% -60%,rgba(139,157,255,.12),transparent 70%)}
@@ -3006,7 +3002,6 @@ table.grid tbody tr:hover{background:rgba(62,123,250,.055)}
 html{overflow-x:hidden}
 @media(max-width:860px){
   .nav-links{display:none}                 /* the drawer owns navigation */
-  .navdrop{display:block}
   .nav-inner{gap:12px;padding:0 14px}
   .shell{padding:0 16px}
   .hero{padding:64px 0 4px}
@@ -3085,7 +3080,7 @@ html{overflow-x:hidden}
    Theme + export stay available in the drawer's Actions group. */
 @media(max-width:560px){
   .nav-right>#themeBtn,
-  .nav-right>.dropdown:not(#bellWrap):not(.navdrop){display:none}
+  .nav-right>.dropdown:not(#bellWrap){display:none}
   .nav-right{gap:6px}
   .amb-deep{overflow:hidden}
 }
@@ -4242,7 +4237,6 @@ html[data-theme="dark"] .ambient{background:
   .nav-right .dropdown:has(#exportBtn){display:none}
   #refreshBtn{padding:0 11px}
   #refreshBtn #refreshLabel{display:none}
-  .navdrop{display:block}
   .logo-txt span{display:none}
   .logo-txt b{font-size:14.5px}
   .logo-mark{width:34px;height:34px;border-radius:11px}
@@ -4867,21 +4861,60 @@ html[data-theme="dark"] .ambient{background:
    ========================================================================== */
 
 /* ---- boot skeleton: the site never looks broken while data loads ---- */
-#boot{position:fixed;inset:0;z-index:500;display:grid;place-items:center;background:var(--bg);
-  transition:opacity .4s var(--ease-soft)}
+/* ---- v3.30 boot gate: ambient bluish-violet veil over the maximally blurred
+       app. Real progress, real readiness, removed from the DOM when ready. ---- */
+#boot{position:fixed;inset:0;z-index:500;display:grid;place-items:center;overflow:hidden;
+  background:
+    radial-gradient(130% 92% at 50% -18%, rgba(86,110,255,.16), transparent 58%),
+    radial-gradient(105% 80% at 50% 118%, rgba(146,102,255,.18), transparent 62%),
+    rgba(6,8,17,.74);
+  backdrop-filter:blur(44px) saturate(135%);-webkit-backdrop-filter:blur(44px) saturate(135%);
+  transition:opacity .44s var(--ease-soft)}
 #boot.boot-done{opacity:0;pointer-events:none}
-.boot-in{display:flex;flex-direction:column;align-items:center;gap:12px;
-  font:600 13px var(--font);color:var(--t2)}
-.boot-mark{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;color:#C7D2FF;
-  background:linear-gradient(150deg,rgba(139,157,255,.2),rgba(10,14,26,.7));
-  border:1px solid rgba(139,157,255,.45);animation:bootPulse 1.6s ease-in-out infinite}
+.boot-amb{position:absolute;inset:-10%;pointer-events:none}
+.boot-amb i{position:absolute;border-radius:50%;opacity:.72;will-change:transform}
+.boot-amb i:nth-child(1){width:58vmax;height:58vmax;left:-16vmax;top:-22vmax;
+  background:radial-gradient(circle, rgba(93,118,255,.26), rgba(93,118,255,.08) 42%, transparent 66%);
+  animation:bootDriftA 17s var(--ease-soft) infinite alternate}
+.boot-amb i:nth-child(2){width:50vmax;height:50vmax;right:-14vmax;bottom:-18vmax;
+  background:radial-gradient(circle, rgba(152,108,246,.26), rgba(152,108,246,.08) 42%, transparent 66%);
+  animation:bootDriftB 21s var(--ease-soft) infinite alternate}
+.boot-amb i:nth-child(3){width:30vmax;height:30vmax;left:56%;top:-12vmax;
+  background:radial-gradient(circle, rgba(120,146,255,.18), transparent 62%);
+  animation:bootDriftA 26s var(--ease-soft) infinite alternate-reverse}
+@keyframes bootDriftA{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(6vmax,4vmax,0) scale(1.1)}}
+@keyframes bootDriftB{from{transform:translate3d(0,0,0) scale(1.08)}to{transform:translate3d(-5vmax,-3vmax,0) scale(1)}}
+.boot-in{position:relative;display:flex;flex-direction:column;align-items:center;gap:14px}
+.boot-mark{position:relative;width:54px;height:54px;border-radius:17px;display:grid;place-items:center;color:#D7DFFF;
+  background:linear-gradient(155deg, rgba(120,142,255,.20), rgba(9,12,24,.85));
+  border:1px solid rgba(139,157,255,.38);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08), 0 12px 36px rgba(3,5,14,.55)}
+.boot-mark::after{content:"";position:absolute;inset:-16px;border-radius:30px;z-index:-1;
+  background:radial-gradient(closest-side, rgba(122,142,255,.30), transparent 72%);
+  animation:bootHalo 2.6s ease-in-out infinite}
+@keyframes bootHalo{0%,100%{opacity:.4}50%{opacity:1}}
 .boot-mark svg{width:26px;height:26px}
-@keyframes bootPulse{0%,100%{box-shadow:0 0 0 0 rgba(139,157,255,.25)}50%{box-shadow:0 0 26px rgba(139,157,255,.4)}}
-.boot-bar{width:150px;height:3px;border-radius:3px;background:rgba(148,180,255,.12);overflow:hidden}
-.boot-bar i{display:block;height:100%;width:40%;border-radius:3px;background:linear-gradient(90deg,#8B9DFF,#B49CFF);
-  animation:bootSlide 1.1s ease-in-out infinite}
-@keyframes bootSlide{0%{transform:translateX(-110%)}100%{transform:translateX(400%)}}
-.boot-msg{font:500 10.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--t4)}
+.boot-name{font:600 17px var(--font-display);letter-spacing:-.02em;color:#F2F6FF}
+.boot-bar{position:relative;width:min(248px,62vw);height:4px;border-radius:4px;overflow:hidden;
+  background:rgba(148,180,255,.10);box-shadow:inset 0 0 0 1px rgba(148,180,255,.07)}
+.boot-bar i{position:absolute;inset:0;border-radius:4px;transform-origin:0 50%;transform:scaleX(0);
+  background:linear-gradient(90deg,#5F7CFF,#8B9DFF 55%,#B49CFF);
+  box-shadow:0 0 16px rgba(120,142,255,.55)}
+.boot-row{display:flex;justify-content:space-between;align-items:baseline;width:min(248px,62vw)}
+.boot-msg{font:500 10px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#8D9AC0;
+  transition:opacity .14s var(--ease)}
+.boot-msg.swap{opacity:0}
+.boot-pct{font:600 10.5px var(--mono);letter-spacing:.08em;color:#C7D2FF;font-variant-numeric:tabular-nums}
+
+/* ---- v3.30 solid bar: nav + its buttons never show through, never shimmer ---- */
+.nav{transition:background-color .22s var(--ease), box-shadow .22s var(--ease)}
+.nav.scrolled{background:rgba(4,6,11,.97);box-shadow:0 10px 30px rgba(0,0,0,.38)}
+.nav .iconbtn{background:var(--bg-2);border-color:rgba(148,180,255,.16)}
+.nav .iconbtn:hover{transform:none}
+#drawerBtn[aria-expanded="true"]{background:#16203C;border-color:rgba(139,157,255,.45);color:#C7D2FF}
+[data-theme="light"] .nav.scrolled{background:rgba(255,255,255,.97);box-shadow:0 10px 26px rgba(13,22,38,.10)}
+[data-theme="light"] .nav .iconbtn{background:#FFFFFF;border-color:rgba(13,22,38,.18)}
+[data-theme="light"] #drawerBtn[aria-expanded="true"]{background:#E8EDFB;border-color:rgba(37,99,235,.42);color:#1D4ED8}
 
 /* ---- help tokens ---- */
 #helpView{
@@ -5024,7 +5057,7 @@ html[data-theme="dark"] .ambient{background:
   border:1px solid rgba(124,108,255,.45)}
 
 @media(prefers-reduced-motion:reduce){
-  .fg-gold,.fg-dot::after,.sp-live .led::after,.boot-mark,.boot-bar i,.hero-search::after{animation:none!important}
+  .fg-gold,.fg-dot::after,.sp-live .led::after,.boot-mark::after,.boot-amb i,.hero-search::after{animation:none!important}
   .fg-ind{transition:none}
   #fgOrb{display:none}
 }
@@ -5105,9 +5138,9 @@ html[data-theme="dark"] .pview{background:
 .tint,.an-card h3{color:inherit}
 /* constellation canvases + boot: violet */
 #prConstellation, #fgOrb{opacity:.8}
-.boot-mark{color:#A59BF2;border-color:rgba(124,111,224,.45);
-  background:linear-gradient(150deg,rgba(124,111,224,.2),rgba(10,10,20,.7))}
-.boot-bar i{background:linear-gradient(90deg,#7C6FE0,#A59BF2)}
+.boot-mark{color:#B9AEFF;border-color:rgba(124,111,224,.42);
+  background:linear-gradient(155deg,rgba(124,111,224,.20),rgba(9,10,20,.85))}
+.boot-bar i{background:linear-gradient(90deg,#6C63E8,#8B9DFF 45%,#A59BF2)}
 
 /* help page: gold is extinct - violet is the single accent */
 #helpView{--fg-gold:#A59BF2;--fg-gold2:#7C6FE0;--fg-indigo:#7C6FE0;--fg-live:#4DE2C5}
@@ -5219,10 +5252,8 @@ html[data-theme="dark"] .pview{background:
   transition-duration:.2s}
 
 /* the boot screen: sharper, faster, HD type */
-#boot{background:radial-gradient(600px 300px at 50% 42%,rgba(124,111,224,.08),transparent 70%),var(--bg-0)}
-.boot-in b{font:600 17px var(--font-display);letter-spacing:-.02em;color:#F2F6FF}
-.boot-msg{color:#8B89A3}
-#boot.boot-done{transition-duration:.3s}
+#boot .boot-msg{color:#8B89A3}
+#boot.boot-done{transition-duration:.4s}
 
 /* reduced motion: glass stays, motion goes */
 @media(prefers-reduced-motion:reduce){
