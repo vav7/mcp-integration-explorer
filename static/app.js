@@ -1229,6 +1229,10 @@
     let done = false, iv = 0;
     const tryRun = () => {
       if (done) return;
+      /* v3.39: an open dossier/palette means the page itself is not scrolling;
+         skip the rect probe instead of layout-thrashing behind the modal */
+      const mo = document.getElementById("modal");
+      if (mo && mo.classList.contains("open")) return;
       let r;
       try { r = el.getBoundingClientRect(); } catch (e) { return; }
       const vh = window.innerHeight || 800;
@@ -1253,8 +1257,16 @@
       obs.observe(el);
     }
     /* v3.31: the scroll fast path is released once the scene has fired - an
-       armed-per-render listener that never detaches is a slow leak */
-    onScroll = () => { if (!done) requestAnimationFrame(tryRun); else finishRun(); };
+       armed-per-render listener that never detaches is a slow leak.
+       v3.39: ignore scrolls that happen INSIDE overlays (dossier, palette,
+       drawer, compare) - those events used to force a layout probe per tick,
+       which is exactly the up-down jank readers felt in the modal. */
+    onScroll = (ev) => {
+      if (done) { finishRun(); return; }
+      const t = ev && ev.target;
+      if (t && t.nodeType === 1 && t.closest && t.closest("#modal,#cmdk,.drawer,.cmp3,#viewContent")) return;
+      requestAnimationFrame(tryRun);
+    };
     addEventListener("scroll", onScroll, { passive: true, capture: true });
     /* v3.31: re-arming after a refresh must release the previous arm, or a
        page left open all day stacks one poller per render */
