@@ -4,7 +4,7 @@
  * real snapshot. All derived views (leaderboard, opportunities, export) are
  * computed client-side so they work with or without the backend.
  */
-  window.__MCPC_VERSION__ = "3.35.11-ember";   /* type this in console to verify your build */
+  window.__MCPC_VERSION__ = "3.34.0-ember";   /* type this in console to verify your build */
 (() => {
   "use strict";
   const $ = (s, r = document) => r.querySelector(s);
@@ -73,7 +73,7 @@
   }
   /* One shared rAF driver for every rolling number. A refresh can tick ~170
      values at once; a rAF chain per element meant ~170 layout-writing loops
-     per frame. One eased 700ms callback updates all of them. */
+     per frame. Same easing, same 780ms, one callback. */
   const TWEENS = new Set();
   let tweenRaf = 0;
   function tickTweens(t) {
@@ -82,10 +82,7 @@
          background-tab wake-up or a long main-thread task. */
       const p = Math.min(1, Math.max(0, (t - tw.t0) / tw.dur)), e = 1 - Math.pow(1 - p, 3);
       const v = Math.round(tw.from + (tw.to - tw.from) * e);
-      if (tw.el.isConnected) {
-        const value = tw.fmt ? tw.fmt(v) : v.toLocaleString();
-        if (tw.el.textContent !== value) tw.el.textContent = value;
-      }
+      if (tw.el.isConnected) tw.el.textContent = tw.fmt ? tw.fmt(v) : v.toLocaleString();
       else TWEENS.delete(tw);
       if (p >= 1) TWEENS.delete(tw);
     });
@@ -95,7 +92,7 @@
     if (!el) return; to = Number(to) || 0;
     const start = from == null ? 0 : Number(from) || 0;
     TWEENS.forEach(tw => { if (tw.el === el) TWEENS.delete(tw); });
-    TWEENS.add({ el, to, fmt, from: start, t0: performance.now(), dur: 700 });
+    TWEENS.add({ el, to, fmt, from: start, t0: performance.now(), dur: 780 });
     if (!tweenRaf) tweenRaf = requestAnimationFrame(tickTweens);
   }
   /* "juggling" numbers - when live data changes a value it rolls from the old
@@ -106,7 +103,7 @@
     if (prev == null) countUp(el, to, fmt, 0);
     else if (prev !== to) {
       countUp(el, to, fmt, prev);
-      /* Values roll from the last witnessed figure and receive a cool blue tick. */
+      /* stock-ticker tick: green when it climbs, red when it slips */
       const dir = to > prev ? "numup" : "numdown";
       el.classList.remove("numup", "numdown", "numflash"); void el.offsetWidth; el.classList.add(dir);
     } else el.textContent = fmt ? fmt(to) : to.toLocaleString();

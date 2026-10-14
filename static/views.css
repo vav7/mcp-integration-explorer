@@ -900,14 +900,14 @@ html[data-theme="dark"] .nav.scrolled{ background:#04060B; box-shadow:0 10px 30p
 .pv-x{ background:rgba(15,21,35,.94) }
 .comparebar{ background:rgba(10,14,24,.97) }
 .dropdown-menu{ background:rgba(12,17,28,.97) }
-.cmdk{ background:rgba(10,14,24,.97) }
+/* v3.35: a touch darker than the modal ink - premium, matches the site theme */
+.cmdk{ background:linear-gradient(170deg, rgba(9,12,21,.99), rgba(4,6,11,.995)) }
 .modal{ background:linear-gradient(170deg, rgba(16,22,34,.985), rgba(8,11,18,.99)) }
 /* mobile: the fade mask on the list plate costs a repaint per scroll frame */
 #viewContent.scroller{ -webkit-mask-image:none !important; mask-image:none !important }
 /* skip painting whole home sections until they approach the viewport */
 #signals, #trends{
   content-visibility:auto; contain-intrinsic-size:auto 720px }
-
 
 /* ==========================================================================
    19. v3.8 - BUNDLE DECK GUIDE + DEEPER INK, LESS BLUE
@@ -1299,10 +1299,3 @@ body.pv-on .vx2{ display:grid; place-items:center }
   -webkit-background-clip:text; background-clip:text;
   color:transparent;
   animation:logoTextShine 7s linear infinite }
-
-/* v3.35: let the closing footer carry a richer, still low-cost violet glow. */
-.footer::before{background:
-  radial-gradient(118% 76% at 50% 118%,rgba(126,88,246,.078),transparent 62%),
-  radial-gradient(76% 50% at 9% 104%,rgba(84,104,255,.05),transparent 68%),
-  radial-gradient(70% 46% at 93% 96%,rgba(170,112,255,.042),transparent 70%),
-  linear-gradient(180deg,rgba(7,4,14,.96),rgba(4,3,10,.99) 46%,rgba(2,2,6,1)) !important}

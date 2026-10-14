@@ -1,0 +1,1301 @@
+/* ============================================================================
+   PREMIUM VIEWS LAYER (v2.1) - Help / Field Guide + Methodology
+   Scoped to #helpView and #methodologyView so the 425KB of legacy view CSS
+   can never leak in. Design language = the Pricing window: glass boxes
+   (--boxg / --boxln / --boxsh), gradient display type, mono microcopy,
+   spring entrances, GPU-only motion (transform / opacity).
+   ========================================================================== */
+
+/* ---------- shared primitives ------------------------------------------ */
+#helpView, #methodologyView{ -webkit-font-smoothing:antialiased }
+#helpView .fg2-k, #methodologyView .mt2-k{
+  font:800 11px var(--font-display); letter-spacing:.22em; text-transform:uppercase;
+  color:var(--acc); display:inline-flex; align-items:center; gap:9px; width:fit-content; margin-bottom:16px }
+#helpView .fg2-k::before, #methodologyView .mt2-k::before{
+  content:""; width:6px; height:6px; border-radius:50%; flex:0 0 auto; background:var(--acc);
+  box-shadow:0 0 10px rgba(139,157,255,.85); animation:kpulse 2.8s var(--ease) infinite }
+@keyframes kpulse{ 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.45;transform:scale(.8)} }
+/* neutralise the legacy golden 3D book: here the mark is a quiet inline icon */
+#helpView .help-book{
+  position:static; width:15px; height:15px; border-radius:0; flex:0 0 auto;
+  display:inline-grid; place-items:center; color:var(--acc2);
+  background:none; border:0; box-shadow:none; transform-style:flat;
+  animation:none !important }
+#helpView .help-book::before, #helpView .help-book::after{ content:none !important; animation:none !important }
+#helpView .help-book svg{ position:static; width:15px; height:15px; filter:none; z-index:auto }
+
+/* gradient display headline, identical voice to pricing */
+#helpView .fg2-h1, #methodologyView .mt2-head h1{
+  margin:0; font-family:var(--font-display); font-weight:800; letter-spacing:-.04em; line-height:1.04;
+  background:linear-gradient(178deg,#F6F9FF 26%,#B7C7EA 96%);
+  -webkit-background-clip:text; background-clip:text; color:transparent }
+#helpView .fg2-h1 em{
+  font-style:normal;
+  background:linear-gradient(100deg,#8B9DFF 0%,#B49CFF 45%,#7DE7F8 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent }
+
+/* ==========================================================================
+   1. HELP - hero
+   ========================================================================== */
+#helpView .fg2-hero{
+  display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+  gap:56px; align-items:center; padding:26px 0 8px }
+#helpView .fg2-back{ display:inline-flex; margin-bottom:28px }
+#helpView .fg2-k{ display:flex }
+#helpView .fg2-h1{ font-size:clamp(38px,4.6vw,60px) }
+#helpView .fg2-sub{ margin:20px 0 0; color:var(--t2); font-size:15px; line-height:1.75; max-width:56ch }
+#helpView .fg2-chips{ display:flex; flex-wrap:wrap; gap:10px; margin-top:26px }
+#helpView .fg2-chips button{
+  font:600 12px var(--font-display); letter-spacing:.01em; color:var(--t2); cursor:pointer;
+  padding:9px 16px; border-radius:var(--pill); border:1px solid var(--boxln);
+  background-image:var(--boxg-in);
+  transition:color .18s, border-color .18s, transform .22s var(--spring), box-shadow .22s }
+#helpView .fg2-chips button:hover{
+  color:var(--t1); border-color:rgba(139,157,255,.42); transform:translateY(-2px);
+  box-shadow:0 8px 22px rgba(0,0,0,.35), 0 0 0 1px rgba(139,157,255,.14) }
+#helpView .fg2-live{
+  margin-top:22px; display:flex; align-items:center; gap:9px;
+  font:600 10.5px var(--mono); letter-spacing:.1em; text-transform:uppercase; color:var(--t3) }
+#helpView .fg2-live .led{ width:7px; height:7px }
+
+/* --- the orb: glass instrument panel ----------------------------------- */
+#helpView .fg2-orbwrap{
+  position:relative; aspect-ratio:1/1; max-width:470px; margin-left:auto; width:100%;
+  border-radius:26px; border:1px solid var(--boxln); background-image:var(--boxg);
+  box-shadow:var(--boxsh), inset 0 1px 0 rgba(255,255,255,.03);
+  overflow:hidden }
+#helpView .fg2-orbwrap::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(70% 55% at 50% 0%, rgba(139,157,255,.10), transparent 60%),
+             linear-gradient(180deg, transparent 62%, rgba(4,6,11,.55)); }
+#helpView .fg2-orb-glow{
+  position:absolute; left:50%; top:50%; width:66%; aspect-ratio:1; transform:translate(-50%,-50%);
+  background:radial-gradient(circle, rgba(139,92,246,.30), rgba(59,130,246,.14) 46%, transparent 70%);
+  filter:blur(6px); animation:fg2breathe 6.5s var(--ease) infinite }
+@keyframes fg2breathe{ 0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.85} 50%{transform:translate(-50%,-50%) scale(1.12);opacity:1} }
+#helpView .fg2-rings{ position:absolute; inset:5%; width:90%; height:90%; opacity:.8;
+  animation:fg2spin 90s linear infinite }
+#helpView .fg2-rings circle{ stroke:rgba(148,180,255,.38); stroke-width:1 }
+@keyframes fg2spin{ to{ transform:rotate(360deg) } }
+#helpView #fgOrb{ position:absolute; inset:0; width:100%; height:100% }
+#helpView .fg2-float{
+  position:absolute; display:flex; align-items:center; gap:8px; padding:8px 13px;
+  border-radius:var(--pill); border:1px solid var(--boxln);
+  background:rgba(8,12,20,.72); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+  font:600 9.5px var(--mono); letter-spacing:.12em; text-transform:uppercase; color:var(--t3);
+  box-shadow:0 10px 26px rgba(0,0,0,.4); z-index:2 }
+#helpView .fg2-float b{ color:var(--t1); font:700 11px var(--font-display); letter-spacing:-.01em; text-transform:none }
+#helpView .fg2-float i{ width:6px; height:6px; border-radius:50%; background:var(--acc); box-shadow:0 0 9px var(--acc) }
+#helpView .fg2-float.f1{ left:6%; top:10%; animation:fg2float 7s ease-in-out infinite }
+#helpView .fg2-float.f2{ right:5%; top:44%; animation:fg2float 8.4s ease-in-out .8s infinite }
+#helpView .fg2-float.f2 i{ background:var(--acc2); box-shadow:0 0 9px var(--acc2) }
+#helpView .fg2-float.f3{ left:12%; bottom:9%; animation:fg2float 7.8s ease-in-out 1.6s infinite }
+#helpView .fg2-float.f3 i{ background:var(--ok); box-shadow:0 0 9px var(--ok) }
+@keyframes fg2float{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(-9px)} }
+
+/* ==========================================================================
+   2. HELP - signal pipeline (the fixed "balls" animation, now a wire)
+   ========================================================================== */
+#helpView .fg2-how{
+  margin-top:64px; padding:34px 34px 30px; border-radius:var(--rf);
+  border:1px solid var(--boxln); background-image:var(--boxg); box-shadow:var(--boxsh) }
+#helpView .fg2-how-head{ display:grid; grid-template-columns:minmax(0,1fr) auto; gap:8px 30px; align-items:end }
+#helpView .fg2-how-head .fg2-k{ margin-bottom:10px }
+#helpView .fg2-how-head h3{
+  margin:0; grid-column:1; font:800 clamp(22px,2.4vw,30px)/1.15 var(--font-display); letter-spacing:-.03em; color:var(--t1) }
+#helpView .fg2-how-head p{ margin:10px 0 0; grid-column:1; color:var(--t3); font-size:13px; line-height:1.7; max-width:62ch }
+#helpView .fg2-wire{
+  position:relative; height:2px; margin:34px 6px 0; border-radius:2px;
+  background:linear-gradient(90deg, transparent, rgba(139,157,255,.22) 10%, rgba(139,92,246,.22) 90%, transparent) }
+/* the laser: one compositor-only element, positioned by transform */
+#helpView .fg2-laser{
+  position:absolute; top:50%; left:0; width:64px; height:2px; margin-top:-1px; border-radius:2px;
+  background:linear-gradient(90deg, rgba(139,157,255,0), #8B9DFF 55%, #EAF0FF);
+  box-shadow:0 0 10px rgba(139,157,255,.85), 0 0 26px rgba(139,92,246,.45);
+  transform:translate3d(0,-0px,0); opacity:0;
+  transition:transform .26s cubic-bezier(.5,.05,.2,1), opacity .2s linear; will-change:transform }
+#helpView .fg2-laser.live{ opacity:1 }
+#helpView .fg2-laser::after{
+  content:""; position:absolute; right:-3px; top:50%; width:7px; height:7px; margin-top:-3.5px; border-radius:50%;
+  background:#EAF0FF; box-shadow:0 0 12px 3px rgba(139,157,255,.9) }
+#helpView .fg2-laser.sweep{ transition:transform .18s cubic-bezier(.6,0,.4,1), opacity .18s linear }
+#helpView .fg2-stages{
+  list-style:none; margin:0; padding:26px 0 0; display:grid;
+  grid-template-columns:repeat(6,minmax(0,1fr)); gap:12px }
+#helpView .fg2-stage-hit{
+  position:relative; width:100%; display:flex; flex-direction:column; align-items:flex-start; gap:10px;
+  padding:16px 14px 15px; border-radius:14px; cursor:pointer; text-align:left;
+  border:1px solid var(--line); background-image:var(--boxg-in);
+  transition:transform .24s var(--spring), border-color .2s, box-shadow .24s, background-color .2s }
+#helpView .fg2-stage-hit::before{
+  content:""; position:absolute; left:14px; right:14px; top:-14px; height:9px; border-radius:50%;
+  background:radial-gradient(closest-side, rgba(139,157,255,.55), transparent 72%); opacity:0; transition:opacity .25s }
+#helpView .fg2-sn{
+  font:800 10px var(--mono); letter-spacing:.14em; color:var(--t4);
+  border:1px solid var(--line); border-radius:7px; padding:3px 7px; background:rgba(255,255,255,.02);
+  transition:color .2s, border-color .2s, background-color .2s }
+#helpView .fg2-sico{ width:34px; height:34px; border-radius:10px; display:grid; place-items:center;
+  color:var(--acc); background:rgba(139,157,255,.10); border:1px solid rgba(139,157,255,.22);
+  transition:transform .26s var(--spring), color .2s, background-color .2s, border-color .2s }
+#helpView .fg2-sico svg{ width:17px; height:17px }
+#helpView .fg2-stage-hit b{ font:700 13.5px var(--font-display); letter-spacing:-.015em; color:var(--t1) }
+#helpView .fg2-sfig{ font:600 9.5px var(--mono); letter-spacing:.1em; text-transform:uppercase; color:var(--t4) }
+#helpView .fg2-stage-hit:hover{ transform:translateY(-4px); border-color:rgba(139,157,255,.36);
+  box-shadow:0 16px 34px rgba(0,0,0,.4) }
+#helpView .fg2-stage.on .fg2-stage-hit{
+  border-color:rgba(139,157,255,.5);
+  background-image:linear-gradient(165deg, rgba(139,157,255,.14), rgba(139,92,246,.05) 55%, transparent), var(--boxg-in);
+  box-shadow:0 18px 40px rgba(0,0,0,.45), 0 0 0 1px rgba(139,157,255,.14), 0 0 30px rgba(139,157,255,.10) }
+#helpView .fg2-stage.on .fg2-stage-hit::before{ opacity:1 }
+#helpView .fg2-stage.on .fg2-sn{ color:#0B1220; background:var(--grad-acc); border-color:transparent }
+#helpView .fg2-stage.on .fg2-sico{ color:#fff; background:var(--grad-acc); border-color:transparent; transform:scale(1.06) }
+#helpView .fg2-stage.on .fg2-sfig{ color:var(--acc) }
+#helpView .fg2-sdetail{ margin-top:18px; border-radius:14px; border:1px solid var(--boxln);
+  background-image:var(--boxg-in); overflow:hidden }
+#helpView .fg2-sdetail .hd-in{ display:grid; grid-template-columns:64px minmax(0,1fr) auto; gap:20px;
+  align-items:center; padding:20px 24px; animation:fg2det .34s var(--ease) both }
+@keyframes fg2det{ from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:none} }
+#helpView .fg2-sdetail .hd-n{ font:800 26px var(--font-display); letter-spacing:-.03em; color:var(--acc) }
+#helpView .fg2-sdetail .hd-b b{ display:block; font:700 15px var(--font-display); letter-spacing:-.015em; color:var(--t1) }
+#helpView .fg2-sdetail .hd-b p{ margin:6px 0 0; color:var(--t2); font-size:12.8px; line-height:1.7; max-width:78ch }
+#helpView .fg2-sdetail .hd-p{ margin-top:9px; display:inline-block; font:600 9.5px var(--mono);
+  letter-spacing:.12em; text-transform:uppercase; color:var(--acc);
+  background:var(--acc-bg); border:1px solid rgba(139,157,255,.25); border-radius:var(--pill); padding:4px 10px }
+#helpView .fg2-a11y-list{ position:absolute; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden;
+  clip:rect(0 0 0 0); white-space:nowrap; border:0 }
+
+/* ==========================================================================
+   3. HELP - most asked
+   ========================================================================== */
+#helpView .fg2-feat{ margin-top:64px }
+#helpView .fg2-feat-head{ display:flex; align-items:baseline; gap:16px; margin-bottom:20px }
+#helpView .fg2-feat-head .fg2-k{ margin-bottom:0 }
+#helpView .fg2-feat-head h3{ margin:0; font:800 clamp(20px,2.2vw,27px) var(--font-display); letter-spacing:-.03em; color:var(--t1) }
+#helpView .fg2-feat-grid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px }
+#helpView .fg2-fcard{
+  position:relative; display:flex; flex-direction:column; align-items:flex-start; gap:9px;
+  padding:24px 24px 22px; border-radius:var(--rf); cursor:pointer; text-align:left;
+  border:1px solid var(--boxln); background-image:var(--boxg); box-shadow:var(--boxsh);
+  transition:transform .26s var(--spring), border-color .2s, box-shadow .26s }
+#helpView .fg2-fcard::after{
+  content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none; opacity:0;
+  background:radial-gradient(120% 90% at 50% -20%, rgba(139,157,255,.16), transparent 62%);
+  transition:opacity .26s }
+#helpView .fg2-fcard:hover{ transform:translateY(-5px); border-color:rgba(139,157,255,.4) }
+#helpView .fg2-fcard:hover::after{ opacity:1 }
+#helpView .fg2-fn{ font:800 10px var(--mono); letter-spacing:.16em; color:var(--acc);
+  background:var(--acc-bg); border:1px solid rgba(139,157,255,.25); border-radius:7px; padding:4px 8px }
+#helpView .fg2-fcard b{ font:700 16px/1.3 var(--font-display); letter-spacing:-.02em; color:var(--t1) }
+#helpView .fg2-fd{ color:var(--t3); font-size:12.5px; line-height:1.6 }
+#helpView .fg2-fgo{ margin-top:auto; padding-top:12px; display:inline-flex; align-items:center; gap:7px;
+  font:700 11px var(--font-display); letter-spacing:.1em; text-transform:uppercase; color:var(--acc) }
+#helpView .fg2-fgo i{ font-style:normal; transition:transform .24s var(--spring) }
+#helpView .fg2-fcard:hover .fg2-fgo i{ transform:translateX(5px) }
+
+/* ==========================================================================
+   4. HELP - guide shell (rail + accordion)
+   ========================================================================== */
+#helpView .fg2-shell{ display:grid; grid-template-columns:246px minmax(0,1fr); gap:34px; margin-top:64px; align-items:start }
+#helpView .fg2-rail{
+  position:sticky; top:12px; padding:18px 14px 14px; border-radius:var(--rf);
+  border:1px solid var(--boxln); background-image:var(--boxg); box-shadow:var(--boxsh) }
+#helpView .fg2-rail-title{ font:800 10px var(--font-display); letter-spacing:.2em; color:var(--t4); padding:0 10px 12px }
+#helpView .fg2-nav-item{
+  position:relative; display:flex; align-items:center; gap:10px; width:100%; padding:11px 12px;
+  border:0; border-radius:10px; background:none; cursor:pointer; text-align:left;
+  font:600 13px var(--font-display); letter-spacing:-.01em; color:var(--t3);
+  transition:color .18s, background-color .18s }
+#helpView .fg2-nav-item b{ font:800 9.5px var(--mono); letter-spacing:.1em; color:var(--t4); transition:color .18s }
+#helpView .fg2-nav-item span{ margin-left:auto; font:700 9.5px var(--mono); color:var(--t4);
+  background:rgba(255,255,255,.04); border:1px solid var(--line); border-radius:var(--pill); padding:2px 7px }
+#helpView .fg2-nav-item:hover{ color:var(--t1); background:rgba(139,157,255,.06) }
+#helpView .fg2-nav-item.active{ color:var(--t1); background:rgba(139,157,255,.10) }
+#helpView .fg2-nav-item.active b{ color:var(--acc) }
+#helpView .fg2-nav-item.active span{ color:var(--acc); border-color:rgba(139,157,255,.3); background:var(--acc-bg) }
+#helpView .fg2-nav-item.active::before{
+  content:""; position:absolute; left:-1px; top:9px; bottom:9px; width:2px; border-radius:2px;
+  background:var(--grad-acc); box-shadow:0 0 10px rgba(139,157,255,.7) }
+#helpView .fg2-rail-foot{ margin-top:12px; padding:12px 10px 4px; border-top:1px solid var(--line);
+  display:flex; flex-direction:column; gap:8px }
+#helpView .fg2-expand{
+  width:100%; padding:9px 12px; border-radius:9px; cursor:pointer;
+  border:1px solid var(--boxln); background-image:var(--boxg-in);
+  font:700 11px var(--font-display); letter-spacing:.06em; color:var(--t2);
+  transition:color .18s, border-color .18s, transform .2s var(--spring) }
+#helpView .fg2-expand:hover{ color:var(--t1); border-color:rgba(139,157,255,.4); transform:translateY(-1px) }
+#helpView .fg2-count{ font:600 9.5px var(--mono); letter-spacing:.1em; text-transform:uppercase; color:var(--t4); text-align:center }
+
+#helpView .fg2-group{ margin-bottom:34px }
+#helpView .fg2-gt{
+  display:flex; align-items:center; gap:12px; margin-bottom:14px;
+  font:800 12px var(--font-display); letter-spacing:.16em; text-transform:uppercase; color:var(--t2) }
+#helpView .fg2-gt span{ font:800 10px var(--mono); letter-spacing:.1em; color:var(--acc);
+  background:var(--acc-bg); border:1px solid rgba(139,157,255,.25); border-radius:6px; padding:3px 7px }
+#helpView .fg2-gt::after{ content:""; flex:1; height:1px;
+  background:linear-gradient(90deg, rgba(139,157,255,.28), transparent) }
+
+#helpView .fg2-item{
+  position:relative; overflow:hidden; margin-bottom:10px; border-radius:16px;
+  border:1px solid var(--line); background:linear-gradient(170deg, rgba(18,25,41,.55), rgba(8,12,20,.8));
+  transition:border-color .2s, transform .24s var(--spring), box-shadow .24s }
+#helpView .fg2-item::before{
+  content:""; position:absolute; left:0; top:0; bottom:0; width:2px; opacity:0;
+  background:var(--grad-acc); transition:opacity .22s }
+#helpView .fg2-item:hover{ border-color:rgba(139,157,255,.32); transform:translateY(-2px);
+  box-shadow:0 14px 32px rgba(0,0,0,.35) }
+#helpView .fg2-item.open{ border-color:rgba(139,157,255,.45);
+  box-shadow:0 18px 42px rgba(0,0,0,.42), 0 0 0 1px rgba(139,157,255,.10) }
+#helpView .fg2-item.open::before, #helpView .fg2-item:hover::before{ opacity:.9 }
+#helpView .fg2-item.ping{ animation:fg2ping 1.1s var(--ease) }
+@keyframes fg2ping{
+  0%{ box-shadow:0 0 0 0 rgba(139,157,255,.45) } 100%{ box-shadow:0 0 0 22px rgba(139,157,255,0) } }
+
+#helpView .fg2-q{
+  display:flex; align-items:center; gap:14px; width:100%; padding:16px 18px;
+  background:none; border:0; cursor:pointer; text-align:left }
+#helpView .fg2-qn{
+  flex:0 0 auto; width:28px; height:28px; display:grid; place-items:center; border-radius:9px;
+  font:800 10px var(--mono); color:var(--t4); background:rgba(255,255,255,.03); border:1px solid var(--line);
+  transition:color .2s, background-color .2s, border-color .2s, transform .26s var(--spring) }
+#helpView .fg2-item:hover .fg2-qn{ transform:scale(1.08) rotate(-4deg) }
+#helpView .fg2-item.open .fg2-qn{ color:#0B1220; background:var(--grad-acc); border-color:transparent }
+#helpView .fg2-qt{ flex:1; min-width:0; font:600 14.5px/1.4 var(--font-display); letter-spacing:-.015em; color:var(--t1) }
+#helpView .fg2-chev{ flex:0 0 auto; width:18px; height:18px; color:var(--t4);
+  transition:transform .34s var(--spring), color .2s }
+#helpView .fg2-chev svg{ width:18px; height:18px }
+#helpView .fg2-item.open .fg2-chev{ transform:rotate(180deg); color:var(--acc) }
+
+/* answer panel: smooth grid-rows expansion (overrides legacy display:none) */
+#helpView .ha{ display:grid !important; grid-template-rows:0fr;
+  transition:grid-template-rows .42s var(--ease) }
+#helpView .hq-item.open .ha{ grid-template-rows:1fr }
+#helpView .ha-in{ min-height:0; overflow:hidden }
+#helpView .fg2-ain{ border-top:1px solid var(--line);
+  background:linear-gradient(180deg, rgba(139,157,255,.05), rgba(139,157,255,.015)) }
+#helpView .fg2-ain p{ margin:0; padding:16px 20px 18px 60px; color:var(--t2); font-size:13px; line-height:1.78 }
+#helpView .fg2-ain p + p{ padding-top:0 }
+#helpView .fg2-ain .ha-pills{ padding-top:4px; display:flex; gap:8px; flex-wrap:wrap }
+#helpView .fg2-ain .fg-demo{ margin:4px 20px 20px 60px }
+
+/* --- demo widgets, restyled -------------------------------------------- */
+#helpView .fg-demo{ border-radius:12px; border:1px solid var(--line); background:rgba(6,9,16,.5); padding:16px }
+#helpView .fg-sliders{ display:grid; grid-template-columns:1fr 1fr; gap:10px 22px }
+#helpView .fg-sliders label{ display:grid; gap:6px; font:600 10.5px var(--mono); letter-spacing:.08em;
+  text-transform:uppercase; color:var(--t3) }
+#helpView .fg-sliders label em{ font-style:normal; color:var(--acc) }
+#helpView .fg-sliders input[type=range]{ width:100%; accent-color:var(--acc); height:18px }
+#helpView .fg-gauge{ display:flex; align-items:center; gap:16px; margin-top:16px; padding-top:16px;
+  border-top:1px solid var(--line) }
+#helpView .fg-gauge svg{ width:76px; height:76px; flex:0 0 auto }
+#helpView .fg-gauge .g-track{ fill:none; stroke:rgba(148,180,255,.14); stroke-width:8 }
+#helpView .fg-gauge .g-val{ fill:none; stroke:url(#fgGaugeGrad); stroke-width:8; stroke-linecap:round;
+  transform:rotate(-90deg); transform-origin:50% 50%; transition:stroke-dashoffset .5s var(--ease) }
+#helpView .fg-gauge b{ display:block; font:800 30px var(--font-display); letter-spacing:-.03em; color:var(--t1) }
+#helpView .fg-gauge span{ font:700 10px var(--mono); letter-spacing:.14em; text-transform:uppercase; color:var(--acc) }
+#helpView .fg-seg{ display:inline-flex; gap:4px; padding:4px; border-radius:var(--pill);
+  border:1px solid var(--line); background:rgba(255,255,255,.03); margin-bottom:14px }
+#helpView .fg-seg button{ border:0; border-radius:var(--pill); padding:7px 14px; cursor:pointer;
+  font:700 11px var(--font-display); letter-spacing:.04em; color:var(--t3); background:none;
+  transition:color .18s, background-color .18s }
+#helpView .fg-seg button.on{ color:var(--t1); background:rgba(139,157,255,.16) }
+#helpView .fg-appcard{ border-radius:12px; border:1px solid var(--line); padding:14px 16px;
+  background:linear-gradient(170deg, rgba(18,25,41,.7), rgba(8,12,20,.85));
+  transition:border-color .25s }
+#helpView .fg-appcard b{ display:block; font:700 15px var(--font-display); color:var(--t1); margin:8px 0 4px }
+#helpView .fg-appcard p{ margin:0; padding:0 !important; color:var(--t3); font-size:12.5px; line-height:1.65 }
+#helpView .fg-appcard.official{ border-color:rgba(52,211,153,.4) }
+#helpView .fg-appcard.community{ border-color:rgba(139,92,246,.4) }
+#helpView .fg-appcard.none{ border-color:rgba(248,113,113,.35) }
+#helpView .fg-fresh{ display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  font:600 11px var(--mono); letter-spacing:.08em; text-transform:uppercase; color:var(--t3) }
+#helpView .fg-fresh b{ color:var(--t1) }
+#helpView .fg-fresh i{ font-style:normal; color:var(--ok) }
+
+/* ==========================================================================
+   5. HELP - closing CTA
+   ========================================================================== */
+#helpView .fg2-cta{ margin-top:56px; position:relative; border-radius:var(--rf); padding:1px;
+  background:linear-gradient(120deg, rgba(139,157,255,.5), rgba(139,92,246,.28) 40%, rgba(52,211,153,.32)) }
+#helpView .fg2-cta-in{
+  display:flex; align-items:center; justify-content:space-between; gap:26px; flex-wrap:wrap;
+  border-radius:calc(var(--rf) - 1px); padding:28px 30px;
+  background:linear-gradient(168deg, rgba(15,21,36,.96), rgba(7,10,17,.98)) }
+#helpView .fg2-cta b{ font:800 17px var(--font-display); letter-spacing:-.02em; color:var(--t1) }
+#helpView .fg2-cta p{ margin:7px 0 0; color:var(--t3); font-size:13px; max-width:52ch; line-height:1.65 }
+#helpView .fg2-cta-btns{ display:flex; gap:10px; flex-wrap:wrap }
+
+/* ==========================================================================
+   6. METHODOLOGY - head, instrument strip, spectrum, ladder
+   ========================================================================== */
+#methodologyView .mt2-head{ max-width:820px; margin:34px 0 44px }
+#methodologyView .mt2-head h1{ font-size:clamp(38px,4.8vw,62px) }
+#methodologyView .mt2-head p{ margin:18px 0 0; color:var(--t2); font-size:15px; line-height:1.7; max-width:64ch }
+
+#methodologyView .mt2-strip{
+  display:grid; grid-template-columns:auto minmax(0,1fr) auto; gap:34px; align-items:center;
+  padding:26px 30px; border-radius:var(--rf); border:1px solid var(--boxln);
+  background-image:var(--boxg); box-shadow:var(--boxsh) }
+#methodologyView .mt2-gauge{ position:relative; width:118px; height:118px }
+#methodologyView .mt2-gauge svg{ width:118px; height:118px; display:block }
+#methodologyView .mt2-gv{ position:absolute; inset:0; display:grid; place-content:center; text-align:center }
+#methodologyView .mt2-gv b{ font:800 27px var(--font-display); letter-spacing:-.035em; color:var(--t1);
+  font-variant-numeric:tabular-nums }
+#methodologyView .mt2-gv span{ font:700 8.5px var(--mono); letter-spacing:.16em; text-transform:uppercase; color:var(--t4) }
+#methodologyView .mt2-facts{ display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:0 }
+#methodologyView .mt2-fact{ position:relative; padding:4px 22px; text-align:left }
+#methodologyView .mt2-fact + .mt2-fact{ border-left:1px solid var(--line) }
+#methodologyView .mt2-fact b{ display:block; font:800 30px/1 var(--font-display); letter-spacing:-.035em;
+  color:var(--t1); font-variant-numeric:tabular-nums }
+#methodologyView .mt2-fact span{ display:block; margin-top:7px; font:700 9px var(--mono); letter-spacing:.14em;
+  text-transform:uppercase; color:var(--t4) }
+#methodologyView .mt2-bar{ display:block; margin-top:11px; height:3px; border-radius:3px;
+  background:linear-gradient(90deg, var(--c), transparent); opacity:.85 }
+#methodologyView .mt2-hint{ margin:0; max-width:200px; color:var(--t4); font-size:11.5px; line-height:1.65 }
+
+#methodologyView .mt2-spec{ margin-top:22px; padding:22px 26px 20px; border-radius:var(--rf);
+  border:1px solid var(--boxln); background-image:var(--boxg); box-shadow:var(--boxsh) }
+#methodologyView .mt2-spec-head{ display:flex; align-items:baseline; justify-content:space-between; gap:18px; margin-bottom:14px }
+#methodologyView .mt2-spec-t{ font:800 11px var(--font-display); letter-spacing:.18em; text-transform:uppercase; color:var(--t2) }
+#methodologyView .mt2-spec-hint{ font:600 9.5px var(--mono); letter-spacing:.1em; text-transform:uppercase; color:var(--t4) }
+#methodologyView .mt2-spectrum{ display:flex; gap:3px; height:38px; border-radius:10px; overflow:hidden }
+#methodologyView .mt2-spectrum span{
+  position:relative; cursor:pointer; border-radius:7px;
+  background:linear-gradient(180deg, var(--c1, rgba(139,157,255,.20)), var(--c2, rgba(139,157,255,.07)));
+  border:1px solid var(--cb, rgba(139,157,255,.14));
+  transition:transform .24s var(--spring), filter .2s, box-shadow .24s }
+#methodologyView .mt2-spectrum span:hover{ transform:scaleY(1.14); filter:brightness(1.3) }
+#methodologyView .mt2-spectrum span.on{
+  filter:brightness(1.5) saturate(1.15); transform:scaleY(1.14);
+  box-shadow:0 0 22px var(--cb, rgba(139,157,255,.35)) }
+#methodologyView .mt2-legend{ display:flex; flex-wrap:wrap; gap:8px 18px; margin-top:14px }
+#methodologyView .mt2-legend button{
+  display:inline-flex; align-items:center; gap:8px; border:0; background:none; cursor:pointer;
+  font:600 10px var(--mono); letter-spacing:.1em; text-transform:uppercase; color:var(--t3);
+  padding:2px 0; transition:color .18s }
+#methodologyView .mt2-legend button i{ width:8px; height:8px; border-radius:3px; background:var(--c); flex:0 0 auto }
+#methodologyView .mt2-legend button b{ color:var(--t2); font-weight:700 }
+#methodologyView .mt2-legend button:hover, #methodologyView .mt2-legend button.on{ color:var(--t1) }
+
+/* --- the ladder ---------------------------------------------------------- */
+#methodologyView .mt2-ladder{ position:relative; list-style:none; margin:30px 0 0; padding:0; gap:14px; display:grid }
+/* the legacy vertical rail line is gone too - nothing falls, nothing chases */
+#methodologyView .pipeline::before, #methodologyView .pipeline::after{ content:none !important }
+/* rungs wait just off-stage LEFT, then glide in one after another as the
+   window scrolls - a quick lateral slide, never a fall, never a stack */
+#methodologyView .mt2-pipe{ opacity:0; transform:translateX(-30px) }
+#methodologyView .mt2-pipe.in-view{ opacity:1; transform:none;
+  animation:mt2rung .38s cubic-bezier(.22,.9,.3,1) backwards }
+/* the rung's coin flips in right behind its box, same stagger lane */
+#methodologyView .mt2-pipe.in-view .pipe-n{ animation:coinIn .5s var(--spring) backwards;
+  animation-delay:calc(60ms + var(--i,0)*70ms) }
+@media (prefers-reduced-motion:reduce){
+  #methodologyView .mt2-pipe{ opacity:1; transform:none; animation:none }
+  #methodologyView .mt2-pipe.in-view .pipe-n{ animation:none }
+}
+#methodologyView .mt2-pipe{
+  position:relative; display:block; padding:0; border-radius:var(--rf);
+  border:1px solid var(--boxln); background-image:var(--boxg); box-shadow:var(--boxsh);
+  transition:transform .24s var(--spring), border-color .2s, box-shadow .24s }
+#methodologyView .mt2-pipe::before{ display:none }
+#methodologyView .mt2-pipe:hover{ transform:translateY(-3px); border-color:rgba(139,157,255,.38);
+  box-shadow:0 20px 46px rgba(0,0,0,.45) }
+#methodologyView .mt2-pipe.open{ border-color:rgba(139,157,255,.5);
+  box-shadow:0 22px 52px rgba(0,0,0,.5), 0 0 0 1px rgba(139,157,255,.14), 0 0 34px rgba(139,157,255,.10) }
+#methodologyView .pipe-hit{
+  display:grid; grid-template-columns:64px minmax(0,1fr) auto 26px; gap:20px; align-items:center;
+  width:100%; padding:20px 24px; background:none; border:0; cursor:pointer; text-align:left }
+#methodologyView .pipe-n{
+  width:46px; height:46px; border-radius:14px; display:grid; place-items:center;
+  font:800 13px var(--mono); letter-spacing:.02em; color:var(--t2);
+  background:rgba(255,255,255,.03); border:1px solid var(--line);
+  transition:color .22s, background-color .22s, border-color .22s, transform .28s var(--spring) }
+#methodologyView .mt2-pipe:hover .pipe-n{ transform:scale(1.07) rotate(-3deg) }
+#methodologyView .mt2-pipe.open .pipe-n{ color:#0B1220; background:var(--grad-acc); border-color:transparent;
+  box-shadow:0 6px 18px rgba(139,157,255,.35) }
+#methodologyView .pipe-b h4{ margin:0 0 5px; font:700 16.5px var(--font-display); letter-spacing:-.02em; color:var(--t1) }
+#methodologyView .pipe-b p{ margin:0; color:var(--t3); font-size:12.5px; line-height:1.65; max-width:70ch }
+#methodologyView .pipe-b code{ font:500 11.5px var(--mono); color:var(--t2) }
+#methodologyView .pipe-m{ display:flex; flex-direction:column; gap:5px; align-items:flex-end }
+#methodologyView .pipe-m span{ font:600 9.5px var(--mono); letter-spacing:.1em; text-transform:uppercase; color:var(--t4) }
+#methodologyView .pipe-m span:last-child{ color:var(--acc) }
+#methodologyView .pipe-chev{ width:18px; height:18px; color:var(--t4);
+  transition:transform .34s var(--spring), color .2s }
+#methodologyView .pipe-chev svg{ width:18px; height:18px }
+#methodologyView .mt2-pipe.open .pipe-chev{ transform:rotate(180deg); color:var(--acc) }
+#methodologyView .pipe-x{ display:grid; grid-template-rows:0fr; transition:grid-template-rows .4s var(--ease) }
+#methodologyView .mt2-pipe.open .pipe-x{ grid-template-rows:1fr }
+#methodologyView .pipe-xin{ min-height:0; overflow:hidden }
+#methodologyView .mt2-live{
+  display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin:0 24px 22px 108px;
+  padding:16px 20px; border-radius:12px; border:1px solid var(--line);
+  background:linear-gradient(180deg, rgba(139,157,255,.07), rgba(139,157,255,.02)) }
+#methodologyView .mt2-live b{ font:800 32px/1 var(--font-display); letter-spacing:-.04em; color:var(--t1);
+  font-variant-numeric:tabular-nums }
+#methodologyView .mt2-live span{ color:var(--t3); font-size:12px; line-height:1.5; max-width:44ch }
+#methodologyView .mt2-live .lnk{ margin-left:auto }
+#methodologyView .mt2-final{ border-color:rgba(139,157,255,.34);
+  background-image:linear-gradient(150deg, rgba(139,157,255,.10), rgba(139,92,246,.04) 45%, transparent), var(--boxg) }
+#methodologyView .mt2-final .mt2-live b{
+  background:var(--grad-acc); -webkit-background-clip:text; background-clip:text; color:transparent }
+#methodologyView .mt2-foot{ margin-top:30px }
+#methodologyView .mt2-foot code{ font:500 11.5px var(--mono); color:var(--t2) }
+
+/* ==========================================================================
+   7. entrances, responsive, motion prefs, light theme
+   ========================================================================== */
+#helpView.open .fg2-hero > *{ animation:pvUp .55s var(--ease) both }
+#helpView.open .fg2-copy > *{ animation:pvUp .5s var(--ease) both }
+#helpView.open .fg2-copy > *:nth-child(1){ animation-delay:.02s }
+#helpView.open .fg2-copy > *:nth-child(2){ animation-delay:.06s }
+#helpView.open .fg2-copy > *:nth-child(3){ animation-delay:.12s }
+#helpView.open .fg2-copy > *:nth-child(4){ animation-delay:.18s }
+#helpView.open .fg2-copy > *:nth-child(5){ animation-delay:.24s }
+#helpView.open .fg2-orbwrap{ animation:pvCard .7s var(--spring) .1s both }
+#helpView.open .fg2-how{ animation:pvUp .55s var(--ease) .16s both }
+#helpView.open .fg2-stage{ animation:pvCard .55s var(--spring) both; animation-delay:calc(.26s + var(--si, 0) * 70ms) }
+#helpView.open .fg2-feat{ animation:pvUp .55s var(--ease) .2s both }
+#helpView.open .fg2-fcard{ animation:pvCard .6s var(--spring) both; animation-delay:calc(.3s + var(--fi, 0) * 90ms) }
+#helpView.open .fg2-shell{ animation:pvUp .55s var(--ease) .24s both }
+#helpView.open .fg2-cta{ animation:pvUp .55s var(--ease) .3s both }
+#methodologyView.open .mt2-strip{ animation:pvUp .55s var(--ease) .12s both }
+#methodologyView.open .mt2-spec{ animation:pvUp .55s var(--ease) .18s both }
+#methodologyView.open .mt2-foot{ animation:pvUp .5s var(--ease) .5s both }
+
+@media (max-width:1120px){
+  #helpView .fg2-stages{ grid-template-columns:repeat(3,minmax(0,1fr)) }
+  #methodologyView .mt2-facts{ grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px 0 }
+  #methodologyView .mt2-fact:nth-child(4){ border-left:0 }
+}
+@media (max-width:980px){
+  #helpView .fg2-hero{ grid-template-columns:1fr; gap:34px }
+  #helpView .fg2-orbwrap{ margin:0 auto; max-width:420px }
+  #helpView .fg2-shell{ grid-template-columns:1fr; gap:22px }
+  #helpView .fg2-rail{ position:static; display:grid; grid-template-columns:1fr 1fr; gap:4px 10px; padding:14px }
+  #helpView .fg2-rail-title{ grid-column:1/-1; padding-bottom:6px }
+  #helpView .fg2-rail-foot{ grid-column:1/-1; flex-direction:row; align-items:center; justify-content:space-between }
+  #helpView .fg2-feat-grid{ grid-template-columns:1fr }
+  #methodologyView .mt2-strip{ grid-template-columns:1fr; gap:22px }
+  #methodologyView .mt2-hint{ max-width:none }
+  #methodologyView .mt2-live{ margin-left:24px }
+}
+@media (max-width:700px){
+  #helpView .fg2-stages{ grid-template-columns:repeat(2,minmax(0,1fr)) }
+  #helpView .fg2-how{ padding:24px 20px }
+  #helpView .fg2-sdetail .hd-in{ grid-template-columns:1fr; gap:10px }
+  #helpView .fg2-ain p{ padding:14px 16px 16px }
+  #helpView .fg2-ain .fg-demo{ margin:4px 16px 16px }
+  #helpView .fg2-sliders{ grid-template-columns:1fr }
+  #methodologyView .pipe-hit{ grid-template-columns:48px minmax(0,1fr) 22px; gap:14px; padding:16px }
+  #methodologyView .pipe-m{ display:none }
+  #methodologyView .mt2-facts{ grid-template-columns:1fr 1fr }
+  #methodologyView .mt2-fact + .mt2-fact{ border-left:0 }
+  #methodologyView .mt2-ladder::before, #methodologyView .mt2-ladder::after{ left:23px }
+}
+@media (prefers-reduced-motion: reduce){
+  #helpView *, #methodologyView *{ animation-duration:.01ms !important; animation-iteration-count:1 !important;
+    transition-duration:.01ms !important }
+  #helpView .fg2-laser, #helpView .fg2-rings, #helpView .fg2-orb-glow, #helpView .fg2-float{ animation:none !important }
+}
+[data-theme="light"] #helpView .fg2-orbwrap,
+[data-theme="light"] #helpView .fg2-how,
+[data-theme="light"] #helpView .fg2-fcard,
+[data-theme="light"] #helpView .fg2-rail,
+[data-theme="light"] #methodologyView .mt2-strip,
+[data-theme="light"] #methodologyView .mt2-spec,
+[data-theme="light"] #methodologyView .mt2-pipe{ background-image:var(--boxg) }
+[data-theme="light"] #helpView .fg2-h1,
+[data-theme="light"] #methodologyView .mt2-head h1{
+  background:linear-gradient(178deg,#0B1220 30%,#3B4A68); -webkit-background-clip:text; background-clip:text }
+[data-theme="light"] #helpView .fg2-item{ background:#fff }
+[data-theme="light"] #helpView .fg2-ain{ background:rgba(37,99,235,.03) }
+
+/* ==========================================================================
+   8. SEQUENCERS: laser wire (help) + rope ladder (methodology)
+   ========================================================================== */
+/* --- help stages: unseen -> revealed -> lit -> zap flash ---------------- */
+#helpView .fg2-stage{ position:relative }
+#helpView .fg2-stage.dim .fg2-stage-hit{
+  opacity:.30; filter:saturate(.35) brightness(.85); box-shadow:none; transform:none }
+#helpView .fg2-stage.dim .fg2-sico{ background:rgba(148,180,255,.05); border-color:var(--line); color:var(--t4) }
+#helpView .fg2-stage.seen .fg2-stage-hit{ opacity:1; filter:none;
+  animation:fg2pop .4s var(--spring) both }
+@keyframes fg2pop{ from{ opacity:0; transform:translateY(16px) scale(.95) } to{ opacity:1; transform:none } }
+#helpView .fg2-stage.zap .fg2-stage-hit::after{
+  content:""; position:absolute; inset:-1px; border-radius:14px; pointer-events:none;
+  border:1px solid rgba(139,157,255,.9);
+  box-shadow:0 0 22px rgba(139,157,255,.55), inset 0 0 18px rgba(139,157,255,.28);
+  animation:fg2zap .6s var(--ease) forwards }
+@keyframes fg2zap{ from{ opacity:1; transform:scale(1) } to{ opacity:0; transform:scale(1.14) } }
+
+/* --- methodology: ladder-fall entrance (pure CSS, zero timers) ----------
+   Each rung drops in from above, one after another - a ladder unrolling
+   top to bottom. Compositor-only (opacity/transform), staggered by --i,
+   re-triggered by toggling .stack when the window opens. No JS clock,
+   no line to fall out of sync, nothing to lag. */
+@keyframes mt2rung{
+  0%{ opacity:0; transform:translateX(-30px) }
+  100%{ opacity:1; transform:none } }
+/* the clicked rung's number: same dark-glass glow as the Refresh button */
+#methodologyView .pipe-n{ position:relative }
+#methodologyView .mt2-pipe.open .pipe-n{
+  color:#F4F8FF;
+  background-image:
+    linear-gradient(180deg, rgba(139,157,255,.42), rgba(139,92,246,.20) 55%, rgba(139,92,246,.07)),
+    linear-gradient(180deg, rgba(18,26,46,.95), rgba(9,13,22,.97));
+  border-color:rgba(139,157,255,.72);
+  box-shadow:0 1px 0 rgba(255,255,255,.12) inset,
+             0 0 0 1px rgba(139,157,255,.20),
+             0 0 26px rgba(139,157,255,.62),
+             0 0 60px rgba(139,92,246,.28),
+             0 8px 22px rgba(0,0,0,.5) }
+#methodologyView .mt2-pipe.open .pipe-n::after{
+  content:""; position:absolute; inset:-4px; border-radius:17px; pointer-events:none;
+  border:1px solid rgba(139,157,255,.65);
+  box-shadow:0 0 18px rgba(139,157,255,.5);
+  animation:mt2ring .7s var(--ease) forwards }
+@keyframes mt2ring{ from{ opacity:.9; transform:scale(.92) } to{ opacity:0; transform:scale(1.35) } }
+
+/* ==========================================================================
+   9. PREMIUM CONTROL KIT - one button language for the whole product
+   ========================================================================== */
+.btn{
+  position:relative; overflow:hidden; isolation:isolate;
+  display:inline-flex; align-items:center; gap:9px;
+  font:700 12.5px/1 var(--font-display); letter-spacing:.01em;
+  padding:11px 18px; border-radius:12px; cursor:pointer;
+  transition:transform .2s var(--spring), box-shadow .24s var(--ease),
+             border-color .2s, background-color .2s, color .2s }
+.btn svg{ width:15px; height:15px; flex:0 0 auto; transition:transform .3s var(--spring) }
+.btn:active{ transform:translateY(1px) scale(.985) }
+.btn:focus-visible{ outline:2px solid var(--acc); outline-offset:3px }
+/* sheen sweep - compositor only */
+.btn::after{
+  content:""; position:absolute; top:0; bottom:0; left:-70%; width:45%; z-index:1;
+  transform:translateX(0) skewX(-18deg); opacity:0; pointer-events:none;
+  background:linear-gradient(100deg, transparent, rgba(255,255,255,.34), transparent) }
+.btn:hover::after{ animation:btnSheen .7s var(--ease) }
+@keyframes btnSheen{ from{ transform:translateX(0) skewX(-18deg); opacity:1 }
+  to{ transform:translateX(340%) skewX(-18deg); opacity:0 } }
+
+.btn-primary{
+  color:#071021; border:1px solid rgba(139,157,255,.5);
+  background-image:linear-gradient(135deg,#A5B4FF 0%,#8B9DFF 34%,#8B5CF6 100%);
+  box-shadow:0 2px 10px rgba(139,157,255,.34), 0 10px 30px rgba(139,92,246,.22),
+             inset 0 1px 0 rgba(255,255,255,.55), inset 0 -1px 0 rgba(7,16,33,.25) }
+.btn-primary:hover{ transform:translateY(-2px);
+  box-shadow:0 4px 14px rgba(139,157,255,.44), 0 16px 40px rgba(139,92,246,.30),
+             inset 0 1px 0 rgba(255,255,255,.6), inset 0 -1px 0 rgba(7,16,33,.25) }
+.btn-primary::after{ background:linear-gradient(100deg, transparent, rgba(255,255,255,.55), transparent) }
+
+.btn-ghost{
+  color:var(--t2); border:1px solid var(--boxln); background-image:var(--boxg-in);
+  box-shadow:0 1px 0 rgba(255,255,255,.03) inset, 0 6px 18px rgba(0,0,0,.28) }
+.btn-ghost:hover{ color:var(--t1); border-color:rgba(139,157,255,.42); transform:translateY(-2px);
+  box-shadow:0 1px 0 rgba(255,255,255,.05) inset, 0 12px 28px rgba(0,0,0,.38),
+             0 0 0 1px rgba(139,157,255,.12), 0 0 22px rgba(139,157,255,.10) }
+.btn-ghost:hover svg{ transform:translateX(-2px) }
+.btn-primary:hover svg{ transform:rotate(-8deg) scale(1.06) }
+
+/* nav refresh: the product's heartbeat control */
+#refreshBtn{ padding:10px 16px; border-radius:12px }
+#refreshBtn svg{ transition:transform .5s var(--spring) }
+#refreshBtn:hover svg{ transform:rotate(180deg) }
+#refreshBtn::before{
+  content:""; position:absolute; inset:-1px; border-radius:inherit; z-index:-1; opacity:.55;
+  background:radial-gradient(60% 120% at 50% 100%, rgba(139,157,255,.55), transparent 70%);
+  transition:opacity .25s }
+#refreshBtn:hover::before{ opacity:1 }
+#refreshBtn.refreshing svg{ animation:btnSpin 1s linear infinite }
+@keyframes btnSpin{ to{ transform:rotate(360deg) } }
+
+/* icon buttons + links get the same care */
+.iconbtn{ transition:color .18s, border-color .18s, background-color .18s, transform .2s var(--spring), box-shadow .22s }
+.iconbtn:hover{ transform:translateY(-1px); border-color:rgba(139,157,255,.4);
+  box-shadow:0 8px 20px rgba(0,0,0,.35), 0 0 0 1px rgba(139,157,255,.12) }
+.lnk{ transition:color .18s, border-color .18s, background-color .18s, transform .2s var(--spring) }
+.lnk:hover{ transform:translateY(-1px); border-color:rgba(139,157,255,.45); text-decoration:none }
+.dw-item{ transition:color .16s, background-color .16s, transform .18s var(--spring) }
+.dw-item:hover{ transform:translateX(3px) }
+
+/* methodology closing bar: note + actions, one premium plate */
+#methodologyView .mt2-foot{
+  display:flex; align-items:center; justify-content:space-between; gap:22px; flex-wrap:wrap;
+  position:relative; overflow:hidden; margin-top:30px; padding:0; border-radius:var(--rf);
+  border:1px solid var(--boxln); background:linear-gradient(168deg, rgba(15,21,36,.96), rgba(7,10,17,.98));
+  box-shadow:var(--boxsh) }
+#methodologyView .mt2-foot::before{
+  content:""; position:absolute; left:0; right:0; top:0; height:1px; pointer-events:none;
+  background:linear-gradient(90deg, transparent, rgba(139,157,255,.75) 30%, rgba(139,92,246,.55) 62%, transparent) }
+#methodologyView .mt2-foot > span{
+  flex:1 1 420px; padding:22px 26px; border-radius:0; background:none }
+#methodologyView .mt2-foot-btns{
+  display:flex; gap:10px; flex-wrap:wrap; padding:18px 22px; margin-left:auto; order:2 }
+@media (max-width:900px){
+  #methodologyView .mt2-foot{ flex-direction:column; align-items:stretch; margin-top:16px }
+  #methodologyView .mt2-foot-btns{ order:2; padding:4px 16px 12px; gap:8px }
+  #methodologyView .mt2-foot > span{ order:1; padding:16px 16px 2px; flex:0 0 auto }
+  /* v3.34: no dead air under the field-guide button on phones - the view's
+     bottom padding used to leave a ~54px void after the last box */
+  #methodologyView .pview-in{ padding-bottom:20px }
+}
+
+/* ==========================================================================
+   10. PERFORMANCE: kill the repaint monsters, pause what nobody sees
+   ========================================================================== */
+/* a 100vw x full-height 48px-blur layer repainting on every scroll frame */
+#methodologyView #methodology::before,
+#methodologyView #methodology::after{ content:none !important }
+/* the hero halo animated a masked conic-gradient through a registered custom
+   property = full repaint every frame, forever. Static hairline instead. */
+.snap-panel::before{ animation:none !important; opacity:.42; will-change:opacity }
+/* blend-mode scanline over the snapshot panel repainted the panel each frame */
+.sp-scan{ mix-blend-mode:normal !important }
+/* blurred floating chips sat on top of an animating canvas: re-blur per frame */
+#helpView .fg2-float{ backdrop-filter:none; -webkit-backdrop-filter:none;
+  background:rgba(8,12,20,.86) }
+#helpView .fg2-orb-glow{ filter:none }
+/* nothing behind an opaque full-screen view needs to animate */
+body.pv-on .amb-deep .orb{ animation-play-state:paused }
+body.pv-on #prConstellation{ visibility:hidden }
+body.pv-on .snap-panel::before, body.pv-on .sp-scan{ animation-play-state:paused }
+
+/* ---- intelligence: equal instruments, filled charts -------------------- */
+#intelligenceView .an-grid.an-2up{ grid-auto-rows:1fr }
+#intelligenceView .an-card{ display:flex; flex-direction:column; height:100% }
+#intelligenceView .an-card .an-b{ flex:1 1 auto; min-height:0 }
+#intelligenceView .an-card .an-h{ align-items:flex-start }
+#intelligenceView .iv-spark .ivs-box{ height:96px }
+#intelligenceView .iv-spark .ivs-box svg{ display:block; width:100%; height:96px }
+#intelligenceView .an-note{ margin-top:auto }
+
+/* ==========================================================================
+   11. v2.3 - DARK PREMIUM CONTROLS + INK DRAWER + STEPPED ROPE
+   No candy-bright gradients: controls are dark glass with a violet edge,
+   exactly the site's own voice.
+   ========================================================================== */
+.btn-primary{
+  color:var(--t1);
+  border:1px solid rgba(139,157,255,.34);
+  background-image:
+    linear-gradient(180deg, rgba(139,157,255,.20), rgba(139,92,246,.10) 52%, rgba(139,92,246,.03)),
+    linear-gradient(180deg, rgba(13,19,34,.94), rgba(7,10,18,.96));
+  box-shadow:0 1px 0 rgba(255,255,255,.05) inset, 0 10px 26px rgba(0,0,0,.44),
+             0 0 0 1px rgba(139,157,255,.05), 0 0 20px rgba(139,92,246,.10) }
+.btn-primary:hover{
+  color:#F2F6FF; border-color:rgba(139,157,255,.52);
+  background-image:
+    linear-gradient(180deg, rgba(139,157,255,.28), rgba(139,92,246,.15) 52%, rgba(139,92,246,.05)),
+    linear-gradient(180deg, rgba(16,23,40,.95), rgba(8,12,20,.97));
+  box-shadow:0 1px 0 rgba(255,255,255,.07) inset, 0 14px 32px rgba(0,0,0,.52),
+             0 0 0 1px rgba(139,157,255,.10), 0 0 26px rgba(139,92,246,.16) }
+.btn-primary::after{ background:linear-gradient(100deg, transparent, rgba(190,210,255,.20), transparent) }
+.btn-primary:disabled, .btn-primary[disabled]{ opacity:.5; box-shadow:none; transform:none }
+.btn-primary:disabled:hover, .btn-primary[disabled]:hover{ transform:none; border-color:rgba(139,157,255,.34) }
+#refreshBtn::before{ background:radial-gradient(60% 120% at 50% 100%, rgba(139,157,255,.26), transparent 70%) }
+.btn-ghost{ background-image:linear-gradient(180deg, rgba(10,15,26,.85), rgba(6,9,15,.9)) }
+
+/* ---- the drawer: ink black glass -------------------------------------- */
+.drawer{
+  background:linear-gradient(180deg, rgba(7,10,17,.99), rgba(3,5,9,.995));
+  border-right:1px solid rgba(148,180,255,.09);
+  box-shadow:24px 0 90px rgba(0,0,0,.66), inset -1px 0 0 rgba(255,255,255,.02) }
+.dw-head{ background:radial-gradient(340px 90px at 10% -60%, rgba(139,157,255,.07), transparent 70%);
+  border-bottom:1px solid rgba(148,180,255,.07) }
+.dw-x{ background:rgba(255,255,255,.03) }
+.dw-item:hover{ background:rgba(139,157,255,.06); color:var(--t1) }
+.dw-item:active{ background:rgba(139,157,255,.10) }
+.dw-sep{ background:rgba(148,180,255,.07) }
+.dw-foot{ background:rgba(3,5,9,.72); border-top:1px solid rgba(148,180,255,.07) }
+.dw-scrim{ background:rgba(1,2,5,.76) }
+.dw-chips .dw-empty{ color:var(--t4) }
+
+
+
+/* ==========================================================================
+   12. v2.5 - atlas discs: covered glass, premium depth
+   ========================================================================== */
+.atlas-node{
+  border-radius:50%;
+  background:radial-gradient(circle at 32% 26%, rgba(255,255,255,.16), rgba(13,19,34,.55) 52%, rgba(6,9,16,.78));
+  box-shadow:0 10px 26px rgba(0,0,0,.52), inset 0 1px 0 rgba(255,255,255,.10),
+             inset 0 -6px 14px rgba(0,0,0,.42);
+  transition:transform .22s var(--spring), box-shadow .24s, filter .2s }
+.atlas-node .applogo{ border-radius:50%; overflow:hidden;
+  box-shadow:0 2px 8px rgba(0,0,0,.45) }
+.atlas-node:hover{ scale:1.12; filter:none; z-index:6;
+  box-shadow:0 16px 36px rgba(0,0,0,.6), 0 0 0 1px rgba(139,157,255,.35),
+             0 0 26px rgba(139,157,255,.28), inset 0 1px 0 rgba(255,255,255,.14) }
+/* glass cover over each disc so the field reads as instruments, not stickers */
+.atlas-node .applogo::before{
+  content:""; position:absolute; inset:0; border-radius:50%; pointer-events:none; z-index:2;
+  background:linear-gradient(180deg, rgba(255,255,255,.20), rgba(255,255,255,.03) 44%, transparent 58%),
+             radial-gradient(130% 95% at 50% 118%, rgba(3,6,12,.62), transparent 62%) }
+
+/* ==========================================================================
+   13. v2.7 - DARK-GLASS NUMBERING + DARK-GLOW STAGES + GLASS DRAWER
+   Every numbered tile wears the Refresh-button language: dark glass,
+   violet edge, inner top light; lit/open states glow instead of filling
+   with candy gradient.
+   ========================================================================== */
+#helpView .fg2-sn, #helpView .fg2-qn, #helpView .fg2-fn, #helpView .fg2-gt span,
+#helpView .fg2-sico{
+  color:var(--t2);
+  background-image:
+    linear-gradient(180deg, rgba(139,157,255,.13), rgba(139,92,246,.05) 60%, rgba(139,92,246,.02)),
+    linear-gradient(180deg, rgba(13,19,34,.92), rgba(7,10,18,.95));
+  border:1px solid rgba(139,157,255,.26);
+  box-shadow:0 1px 0 rgba(255,255,255,.05) inset, 0 4px 12px rgba(0,0,0,.42) }
+#helpView .fg2-sico{ color:#B9C6FF }
+/* lit / open: dark glass with a bright halo - never a flat bright fill */
+#helpView .fg2-stage.on .fg2-sn,
+#helpView .fg2-item.open .fg2-qn,
+#helpView .fg2-stage.on .fg2-sico{
+  color:#F4F8FF;
+  border-color:rgba(139,157,255,.68);
+  background-image:
+    linear-gradient(180deg, rgba(139,157,255,.38), rgba(139,92,246,.17) 55%, rgba(139,92,246,.06)),
+    linear-gradient(180deg, rgba(18,26,46,.95), rgba(9,13,22,.97));
+  box-shadow:0 1px 0 rgba(255,255,255,.10) inset,
+             0 0 0 1px rgba(139,157,255,.16),
+             0 0 22px rgba(139,157,255,.50),
+             0 0 54px rgba(139,92,246,.22),
+             0 6px 18px rgba(0,0,0,.5) }
+/* the lit stage card: dark glow, not violet wash */
+#helpView .fg2-stage.on .fg2-stage-hit{
+  border-color:rgba(139,157,255,.46);
+  background-image:
+    linear-gradient(165deg, rgba(139,157,255,.10), rgba(139,92,246,.04) 55%, transparent),
+    var(--boxg-in);
+  box-shadow:0 18px 40px rgba(0,0,0,.5),
+             0 0 0 1px rgba(139,157,255,.10),
+             0 0 34px rgba(139,92,246,.14) }
+#helpView .fg2-item.open .fg2-qn{ color:#F4F8FF }
+/* group chips + most-asked chips stay quiet until hovered */
+#helpView .fg2-fcard:hover .fg2-fn{
+  color:#F4F8FF; border-color:rgba(139,157,255,.6);
+  box-shadow:0 1px 0 rgba(255,255,255,.08) inset, 0 0 18px rgba(139,157,255,.4) }
+
+/* ---- drawer: true glassmorphism, blur only while parked (no slide lag) -- */
+.drawer{
+  background:linear-gradient(180deg, rgba(9,13,22,.84), rgba(4,6,11,.88));
+  border-right:1px solid rgba(148,180,255,.10);
+  backdrop-filter:none; -webkit-backdrop-filter:none }
+.drawer.open{
+  backdrop-filter:blur(18px) saturate(150%);
+  -webkit-backdrop-filter:blur(18px) saturate(150%);
+  background:linear-gradient(180deg, rgba(9,13,22,.78), rgba(4,6,11,.84));
+  box-shadow:24px 0 90px rgba(0,0,0,.62), inset -1px 0 0 rgba(255,255,255,.03) }
+.dw-head{
+  background:linear-gradient(180deg, rgba(139,157,255,.07), transparent 78%);
+  border-bottom:1px solid rgba(148,180,255,.08) }
+.dw-foot{ background:rgba(3,5,9,.55); border-top:1px solid rgba(148,180,255,.08) }
+.dw-sep{ background:rgba(148,180,255,.08) }
+.dw-item{ border-color:transparent }
+.dw-item:hover{ background:rgba(139,157,255,.07); border-color:rgba(139,157,255,.16) }
+.dw-scrim{ background:rgba(1,2,5,.70) }
+
+/* ---- scroll chaining: the plate must hand over to the page ------------- */
+#viewContent.scroller{ overscroll-behavior-y:auto }
+.atlas-field, .atlas-node{ touch-action:pan-y; -webkit-overflow-scrolling:touch }
+
+
+/* ==========================================================================
+   14. v2.8 - canvas atlas surface
+   ========================================================================== */
+#atlasCanvas{ position:absolute; inset:0; width:100%; height:100%; display:block;
+  touch-action:pan-y; -webkit-overflow-scrolling:touch }
+.atlas-field{ cursor:crosshair }
+/* legacy contain:paint + overscroll:contain turned the field into a
+   zero-range touch trap: the gesture died inside it on phones. The field
+   must let the page scroll under fingers and wheels alike. */
+.atlas-field{ contain:none; overscroll-behavior:auto; touch-action:pan-y }
+
+/* a fitting plate is not a scroll container - touch reaches the page.
+   BOTH axes: overflow-y:visible computes back to auto if x stays auto.
+   !important because a legacy mobile layer locks the plate with
+   !important (styles.css ~5386) - a fitting plate must win. */
+#viewContent.scroller.fits{ overflow:visible !important; max-height:none !important }
+
+/* ==========================================================================
+   15. v2.9 - the atlas is a poster: no inner scrollbar, ever
+   ========================================================================== */
+#viewContent.scroller.atlas-flat{
+  overflow:visible !important; max-height:none !important;
+  -webkit-mask-image:none !important; mask-image:none !important }
+#viewContent.scroller.atlas-flat .atlas-field{ height:clamp(340px, 56vh, 620px) }
+@media (max-width:700px){
+  #viewContent.scroller.atlas-flat .atlas-field{ height:clamp(300px, 66vw, 460px) }
+}
+
+
+/* ==========================================================================
+   16. v3.0 - PREMIUM LEADING SCREEN, INK DRAWER GLASS, DARKER METHODOLOGY,
+       ORB FILTER PURGE
+   ========================================================================== */
+
+/* ---- the leading screen (v3.30): authored in styles.css - ambient violet
+       veil, real progress bar, real readiness gate. Mobile touch-ups only. -- */
+@media (max-width:520px){
+  #boot .boot-name{ font-size:15px }
+  #boot .boot-bar, #boot .boot-row{ width:min(220px,66vw) }
+}
+/* ---- drawer: ink glass, blur lands AFTER the slide (no re-blur lag) ---- */
+.drawer, .drawer.open{
+  background:linear-gradient(180deg, #080C16, #04060B 62%, #03050A);
+  backdrop-filter:none; -webkit-backdrop-filter:none;
+  transition:transform .26s cubic-bezier(.2,.7,.25,1);
+  box-shadow:24px 0 70px rgba(0,0,0,.66), 1px 0 0 rgba(148,180,255,.09) }
+[data-theme="light"] .drawer, [data-theme="light"] .drawer.open{
+  background:linear-gradient(180deg, #FFFFFF, #F1F4FB) }
+.dw-head{ background:linear-gradient(180deg, rgba(139,157,255,.06), transparent 78%) }
+.dw-foot{ background:rgba(2,3,7,.55) }
+
+/* ---- methodology: deeper ink boxes ---- */
+#methodologyView .mt2-pipe{
+  background-image:linear-gradient(168deg, rgba(9,13,22,.94), rgba(4,6,10,.97)) }
+#methodologyView .mt2-strip, #methodologyView .mt2-spec{
+  background-image:linear-gradient(168deg, rgba(9,13,22,.92), rgba(4,6,10,.96)) }
+#methodologyView .mt2-live{
+  background:linear-gradient(180deg, rgba(139,157,255,.05), rgba(139,157,255,.012)) }
+#methodologyView .mt2-foot{
+  background:linear-gradient(168deg, rgba(9,13,22,.95), rgba(3,5,9,.98)) }
+
+/* ---- ambient orbs: the 70px blur added nothing the gradients don't do --- */
+.amb-deep .orb{ filter:none !important; opacity:.55 }
+
+/* ==========================================================================
+   17. v3.5 - kill the UA grey button face
+   Chrome's dark color-scheme paints every <button> with a #6B6B6B face when
+   no author background-COLOR is set. Our glass buttons only set translucent
+   background-IMAGES, so the grey bled through the stage cards, hero chips,
+   expand button and ghost buttons. Glass or nothing:
+   ========================================================================== */
+button{ background-color:transparent }
+
+/* ==========================================================================
+   18. v3.7 - BLUR WHITELIST: glass only where nothing scrolls underneath
+   A backdrop-filter re-blurs its whole region on EVERY frame anything
+   behind it moves. The sticky nav, hero snapshot panel, insight cards and
+   the entire help accordion were blurring per scroll frame - the single
+   biggest source of jank left. From now on only true open-and-static
+   overlays keep a blur; everything else gets near-opaque ink, which reads
+   identical on this dark canvas.
+   ========================================================================== */
+*:not(.modal):not(.cmdk):not(.cmdk-backdrop):not(.dropdown-menu):not(.backdrop):not(.drawer.open):not(#boot){
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important }
+/* compensate with density so the look stays premium */
+.nav{ background:rgba(6,9,15,.97) }
+html[data-theme="dark"] .nav{ background:rgba(5,8,15,.97) }
+/* v3.30: zero see-through - the bar is solid ink at rest and on scroll */
+.nav{ background:#06090F }
+html[data-theme="dark"] .nav{ background:#05080F }
+.nav.scrolled{ background:#04060B; box-shadow:0 10px 30px rgba(0,0,0,.38) }
+html[data-theme="dark"] .nav.scrolled{ background:#04060B; box-shadow:0 10px 30px rgba(0,0,0,.42) }
+[data-theme="light"] .nav{ background:#FBFCFF }
+[data-theme="light"] .nav.scrolled{ background:#FFFFFF; box-shadow:0 10px 26px rgba(13,22,38,.10) }
+.snap-panel{ background-image:linear-gradient(168deg, rgba(15,21,36,.93), rgba(7,10,17,.97)) }
+.ins, .dive-card, .sig-compact{
+  background-image:linear-gradient(170deg, rgba(18,25,41,.90), rgba(8,12,20,.95)) }
+.pv-x{ background:rgba(15,21,35,.94) }
+.comparebar{ background:rgba(10,14,24,.97) }
+.dropdown-menu{ background:rgba(12,17,28,.97) }
+/* v3.35: a touch darker than the modal ink - premium, matches the site theme */
+.cmdk{ background:linear-gradient(170deg, rgba(9,12,21,.99), rgba(4,6,11,.995)) }
+.modal{ background:linear-gradient(170deg, rgba(16,22,34,.985), rgba(8,11,18,.99)) }
+/* mobile: the fade mask on the list plate costs a repaint per scroll frame */
+#viewContent.scroller{ -webkit-mask-image:none !important; mask-image:none !important }
+/* skip painting whole home sections until they approach the viewport */
+#signals, #trends{
+  content-visibility:auto; contain-intrinsic-size:auto 720px }
+
+/* ==========================================================================
+   19. v3.8 - BUNDLE DECK GUIDE + DEEPER INK, LESS BLUE
+   ========================================================================== */
+/* the four guide groups are a deck: one bundle on screen, items rise in
+   staggered - the 18-question marathon scroll is gone */
+#helpView .hq-group{ display:none }
+#helpView .hq-group.tab-on{ display:block }
+#helpView .hq-group.tab-on .fg2-gt{ animation:fg2bundle .4s var(--ease) both }
+#helpView .hq-group.tab-on .fg2-item{ animation:fg2bundle .42s var(--spring) both }
+#helpView .hq-group.tab-on .fg2-item:nth-child(2){ animation-delay:.05s }
+#helpView .hq-group.tab-on .fg2-item:nth-child(3){ animation-delay:.10s }
+#helpView .hq-group.tab-on .fg2-item:nth-child(4){ animation-delay:.15s }
+#helpView .hq-group.tab-on .fg2-item:nth-child(5){ animation-delay:.20s }
+#helpView .hq-group.tab-on .fg2-item:nth-child(6){ animation-delay:.25s }
+#helpView .hq-group.tab-on .fg2-item:nth-child(7){ animation-delay:.30s }
+#helpView .hq-group.tab-on .fg2-item:nth-child(8){ animation-delay:.35s }
+@keyframes fg2bundle{
+  from{ opacity:0; transform:translateY(18px) scale(.985) }
+  to{ opacity:1; transform:none } }
+/* rail becomes the deck switcher: no scrolling needed to change bundle */
+#helpView .fg2-rail{ top:12px }
+
+/* ---- deeper ink everywhere: darker canvas, quieter blues ---- */
+:root{
+  --bg:#04060B; --atmo:#070A11;
+  --s1:rgba(11,15,22,.72); --s2:rgba(15,20,28,.82); --s3:rgba(19,24,33,.90);
+  --line:rgba(255,255,255,.045); --line2:rgba(255,255,255,.085);
+  --t2:#8B96AA; --t3:#5A6577; --t4:#3F4956;
+  --boxln:rgba(148,163,196,.10);
+  --boxg:linear-gradient(168deg, rgba(11,15,23,.94), rgba(5,7,11,.97));
+  --boxg-in:linear-gradient(160deg, rgba(9,13,21,.72), rgba(5,7,11,.58));
+}
+.ambient{
+  background:
+    radial-gradient(1200px 560px at 86% -10%, rgba(99,125,255,.05), transparent 62%),
+    radial-gradient(1000px 560px at -8% 110%, rgba(112,88,235,.04), transparent 62%),
+    linear-gradient(180deg, var(--bg), var(--atmo) 42%, var(--bg)) }
+.pview{
+  background:
+    radial-gradient(920px 430px at 50% -10%, rgba(99,125,255,.07), transparent 62%),
+    radial-gradient(700px 400px at 88% 110%, rgba(120,90,240,.045), transparent 60%),
+    linear-gradient(180deg, rgba(5,7,11,.99), rgba(3,5,8,.995)) }
+
+/* ==========================================================================
+   20. v3.9 - shine, dominance, white 07, darker tips & trends
+   ========================================================================== */
+/* nav links: a little more presence */
+.nav-links a{ color:#C7D0DE; font-weight:600; font-size:13.5px; letter-spacing:.005em }
+.nav-links a:hover{ color:#F2F6FF; background:rgba(139,157,255,.08) }
+.nav-links a.active{ color:#FFFFFF; background:rgba(139,157,255,.12) }
+
+/* brand: the mark sweeps a sheen, the wordmark carries a travelling light */
+.logo-mark{ position:relative; overflow:hidden }
+.logo-mark::after{
+  content:""; position:absolute; top:-60%; left:-70%; width:45%; height:220%;
+  transform:translateX(0) skewX(-18deg); opacity:0; pointer-events:none;
+  background:linear-gradient(100deg, transparent, rgba(255,255,255,.55), transparent) }
+#helpView, #methodologyView, #intelligenceView, #pricingView{ }
+.logo-mark::after{ animation:logoSheen 5.2s var(--ease) infinite }
+@keyframes logoSheen{
+  0%,70%{ transform:translateX(0) skewX(-18deg); opacity:0 }
+  76%{ opacity:1 }
+  92%,100%{ transform:translateX(340%) skewX(-18deg); opacity:0 } }
+.logo-txt b{
+  background:linear-gradient(100deg, #EDF1F8 0%, #EDF1F8 42%, #C4CEFF 50%, #EDF1F8 58%, #EDF1F8 100%);
+  background-size:220% 100%;
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  animation:logoTextShine 7s linear infinite }
+@keyframes logoTextShine{ 0%{ background-position:130% 0 } 100%{ background-position:-130% 0 } }
+
+/* methodology: clean rung heads, and the final figure reads WHITE */
+#methodologyView .pipe-b h4{ font-weight:700; letter-spacing:-.012em; color:#EEF2F9 }
+#methodologyView .mt2-final .mt2-live b{
+  background:none; -webkit-background-clip:border-box; background-clip:border-box;
+  color:#F2F6FF; -webkit-text-fill-color:#F2F6FF }
+
+/* atlas hover card + logo shine: darker, quieter */
+.atlas-tip{
+  background:linear-gradient(170deg, rgba(9,12,19,.985), rgba(4,6,10,.99));
+  border-color:rgba(148,180,255,.14) }
+.applogo::after{ background:linear-gradient(90deg, transparent, rgba(255,255,255,.10), transparent) }
+
+/* trends: dim the wire to premium */
+#trends .ct-line{ opacity:.78 }
+#trends .ct-dot{ opacity:.85 }
+#trends .chart-wrap{ background:linear-gradient(180deg, rgba(9,13,21,.55), rgba(5,7,11,.7)) }
+
+/* the two shine loops respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .logo-mark::after, .logo-txt b, .fbar-mid{ animation:none !important }
+  .logo-txt b{ background:none; color:var(--t1); -webkit-text-fill-color:currentColor }
+  .fbar-mid{ background:none; color:var(--t3); -webkit-text-fill-color:currentColor }
+  .fbar-mid .goldshine{ color:#E9C25A; -webkit-text-fill-color:#E9C25A }
+}
+
+/* ==========================================================================
+   21. v3.10 - HD TYPE + ATLAS INK & CRISP RINGS
+   ========================================================================== */
+/* type renders crisp: real Outfit/Inter/JetBrains now load (display=swap),
+   plus subpixel discipline everywhere */
+html{ -webkit-text-size-adjust:100% }
+body{
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  font-synthesis-weight:none }
+.mono, .hint, .fg2-sfig, .pipe-m span, .mt2-fact span, .fg2-rail-title,
+.fg2-count, .dw-label, .sp-meta span{ -webkit-font-smoothing:antialiased }
+
+/* atlas: the field goes near-black so the discs read as instruments */
+.atlas-field{
+  background:
+    radial-gradient(900px 420px at 70% -10%, rgba(139,157,255,.045), transparent 60%),
+    radial-gradient(700px 380px at 8% 110%, rgba(139,92,246,.04), transparent 60%),
+    linear-gradient(175deg, rgba(7,10,16,.82), rgba(2,4,8,.94)) !important;
+  border-color:rgba(148,180,255,.10) }
+.atlas-gridbg{ opacity:.55 }
+.atlas-legend{ color:var(--t3) }
+
+/* ---- v3.10 type stack, decided ONCE, last sheet wins --------------------
+   Clash Display only ships 500/600/700: every 800 on a display face was
+   synthesised fake-bold = the soft "not HD" look. Real weights only. */
+:root{
+  --font:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --font-display:"Clash Display","Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+h1,h2,h3,h4,.pv-head h1,.sect-head h2,.fg2-h1,.mt2-head h1,.hero h1,
+.fg2-how-head h3,.fg2-feat-head h3,.dw-title,.sp-head,.estate-title,
+.rail-title,.insight-col-title,.sb-title,.msect-h,.fg2-gt,.mt2-spec-t,
+.mt2-fact b,.pv-name,.fg2-rail-title,.opp h4,.pipe-b h4,.fg2-fcard b,
+.logo-txt b,.footer h5{ font-weight:700 }
+
+/* ==========================================================================
+   22. v3.11 - MOBILE: instant compositor-only expansion, no layout anims
+   grid-template-rows transitions re-layout every frame - on phones that
+   reads as jitter when a Q&A or a methodology rung opens. On touch/small
+   screens the panel now snaps open and its CONTENT plays a 260ms
+   opacity/transform rise (compositor only). Sticky tap-hover transforms
+   and shine sweeps are killed too. Containment keeps any remaining layout
+   local to the panel.
+   ========================================================================== */
+#helpView .ha-in{ contain:layout paint }
+#methodologyView .pipe-xin{ contain:layout paint }
+@keyframes fg2ans{ from{ opacity:0; transform:translateY(9px) } to{ opacity:1; transform:none } }
+@media (pointer:coarse), (max-width:900px){
+  #helpView .ha{ transition:none !important }
+  #helpView .hq-item.open .fg2-ain{ animation:fg2ans .26s var(--ease) both }
+  #methodologyView .pipe-x{ transition:none !important }
+  #methodologyView .mt2-pipe.open .mt2-live{ animation:fg2ans .26s var(--ease) both }
+  /* taps must not leave hover motion running */
+  .fg2-item:hover, .fg2-fcard:hover, .mt2-pipe:hover, .fg2-stage-hit:hover,
+  .fg2-item:hover .fg2-qn, .mt2-pipe:hover .pipe-n, .fg2-fcard:hover .fg2-fn{
+    transform:none !important }
+  .fg2-item::after, .fg2-fcard::after{ content:none !important }
+  .fg2-item:hover, .mt2-pipe:hover{ box-shadow:none !important }
+  /* snap the rung/stage glow instead of transitioning it */
+  .fg2-stage-hit, .fg2-qn, .fg2-sico, .pipe-n, .mt2-pipe{ transition-duration:.12s !important }
+}
+
+/* ==========================================================================
+   23. v3.12 - compare feedback without geometry; atlas hover de-bloomed
+   ========================================================================== */
+.cb-chip.pop{ animation:cbpop .3s var(--spring) both }
+@keyframes cbpop{ from{ opacity:0; transform:scale(.72) } to{ opacity:1; transform:scale(1) } }
+.applogo.send{ animation:logoSend .34s var(--ease) }
+@keyframes logoSend{
+  0%{ transform:scale(1) }
+  35%{ transform:scale(.84); box-shadow:0 0 0 3px rgba(139,157,255,.35), 0 6px 16px rgba(0,0,0,.45) }
+  100%{ transform:scale(1) } }
+/* atlas hover: a crisp lift + hairline ring, not a purple bloom */
+.atlas-node:hover{
+  box-shadow:0 12px 28px rgba(0,0,0,.55), 0 0 0 1px rgba(139,157,255,.26),
+             0 0 14px rgba(139,92,246,.10) }
+.atlas-node:hover::before{ transform:scale(1.10); border-color:rgba(139,157,255,.42) }
+.atlas-node:hover .applogo{ box-shadow:0 6px 16px rgba(0,0,0,.50) }
+
+/* ---- v3.13: hover halo, premium-small ---- */
+.atlas-node::before{ inset:-4px }
+.atlas-node:hover{ scale:1.06;
+  box-shadow:0 10px 24px rgba(0,0,0,.52), 0 0 0 1px rgba(139,157,255,.22),
+             0 0 8px rgba(139,92,246,.08) }
+.atlas-node:hover::before{ transform:scale(1.04); border-color:rgba(139,157,255,.38) }
+
+/* ==========================================================================
+   24. v3.17 - SLOW THE REVEALS TO A WATCHABLE PACE
+   Donuts circle in ~2s with a 90ms per-donut stagger; reveal-plate bars
+   grow in 1.4s. Live table/score bars elsewhere keep their snappy .7s.
+   ========================================================================== */
+/* v3.20.1: NO transition on the arcs - the clockwise sweep is rAF-driven;
+   an !important transition here made every frame restart a 2s ease, so the
+   head raced ahead while the arcs crawled (the "not working" desync). */
+#catbars .dn-arc{ transition:stroke-width .2s var(--ease-soft) }
+#gradebars .bar-track i, #coverage .bar-track i,
+.an-card .bar-track i, .an-ftrack i{
+  transition:width 1.1s cubic-bezier(.25,.7,.3,1) }   /* matches the pie sweep */
+/* keep each donut's repaint inside its own box while the sweep runs */
+#catbars .dn-wrap{ contain:layout paint }
+
+/* ==========================================================================
+   25. v3.18 - dark-blue tick, HD boot, atlas ambient, compact brand
+   ========================================================================== */
+/* compare tick: dark glass chip with a deep blue check - no neon anywhere */
+.cmpbtn.on{
+  color:#9DB1FF;
+  background:linear-gradient(180deg, rgba(139,157,255,.16), rgba(139,92,246,.07)), rgba(10,14,24,.92);
+  border-color:rgba(139,157,255,.40);
+  box-shadow:0 0 0 1px rgba(139,157,255,.10), 0 4px 12px rgba(0,0,0,.42),
+             0 0 14px rgba(139,92,246,.14) }
+.cmpbtn.on:hover{ color:#C4D0FF; border-color:rgba(139,157,255,.55) }
+
+/* atlas ambient: two dim nebulae drifting under the discs + edge vignette.
+   Transform-only, 26s, barely there - dark, premium, cool. */
+.atlas-field::before{
+  content:""; position:absolute; inset:-18%; pointer-events:none;
+  background:
+    radial-gradient(38% 30% at 28% 32%, rgba(99,125,255,.055), transparent 70%),
+    radial-gradient(34% 28% at 72% 64%, rgba(139,92,246,.050), transparent 70%),
+    radial-gradient(26% 22% at 52% 16%, rgba(52,211,153,.035), transparent 70%);
+  animation:atlasAmb 26s ease-in-out infinite alternate }
+@keyframes atlasAmb{
+  from{ transform:translate3d(-2%, -1%, 0) scale(1) }
+  to{ transform:translate3d(2%, 1.5%, 0) scale(1.07) } }
+.atlas-field::after{
+  content:""; position:absolute; inset:0; pointer-events:none; border-radius:inherit;
+  background:radial-gradient(120% 92% at 50% 46%, transparent 52%, rgba(2,4,8,.5) 100%) }
+
+@media (prefers-reduced-motion: reduce){
+  .atlas-field::before{ animation:none }
+}
+
+/* footer wordmark = the home button */
+.fb-home{ color:inherit; text-decoration:none; transition:color .18s }
+.fb-home:hover{ color:var(--acc); text-decoration:none }
+
+/* ==========================================================================
+   26. v3.24 - the seek bar, jewel-grade
+   ========================================================================== */
+/* premium dark instrument: one violet-ink stroke ending in a white-hot tip,
+   and ABSENT inside full-screen windows (body.pv-on) so it never reads stuck */
+#scrollProgress{
+  height:2px;
+  background:linear-gradient(90deg, rgba(139,157,255,.16), rgba(139,157,255,.82) 58%,
+             #CFE0FF 90%, #FFFFFF 100%);
+  box-shadow:0 0 8px rgba(139,157,255,.38), 0 0 2px rgba(207,224,255,.55);
+  transition:opacity .22s var(--ease) }
+body.pv-on #scrollProgress{
+  opacity:0; visibility:hidden;
+  transition:opacity .22s var(--ease), visibility 0s .22s }
+
+/* ==========================================================================
+   27. v3.29 - the top strip is permanent inside every window.
+   (v3.26 made the nav bow out on scroll and glide the whole window up with
+   it; readers found the moving header unstable, so the transform machinery
+   is retired: the nav stays flush at the top of Help / Intelligence /
+   Methodology / Pricing, and the close button simply rides under it.)
+   ========================================================================== */
+.nav{ transition:transform .32s var(--ease) }
+
+/* v3.26.1 - the close button: a fixed viewport anchor parked under the nav.
+   Overrides the legacy sticky!important hack that left it floating mid-air. */
+.pv-x, .pview.open .pv-x{
+  position:fixed !important; right:16px !important; margin:0 !important;
+  top:calc(var(--nav-h) + 12px) !important;
+  transition:top .32s var(--ease), color .18s ease, border-color .18s ease,
+             background-color .18s ease !important }
+@media (max-width:860px){
+  .pv-x, .pview.open .pv-x{ top:calc(var(--nav-h) + 8px) !important; right:10px !important }
+}
+
+/* v3.26.2 - our own close control: the legacy .pv-x sits under a v2.0
+   sticky!important straitjacket that fights every override, so it retires.
+   .vx2 is a fixed viewport anchor parked just under the permanent nav. */
+.pv-x{ display:none !important }
+.vx2{
+  display:none;
+  position:fixed; top:calc(var(--nav-h) + 12px); right:16px; z-index:80;
+  width:40px; height:40px; border-radius:12px; place-items:center;
+  cursor:pointer; border:1px solid rgba(148,180,255,.16);
+  background:rgba(9,13,24,.88); color:#AEB8D4;
+  box-shadow:0 8px 20px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.04);
+  transition:top .32s var(--ease), color .18s ease, border-color .18s ease,
+             background-color .18s ease, transform .2s var(--spring) }
+body.pv-on .vx2{ display:grid; place-items:center }
+.vx2 svg{ width:16px; height:16px; display:block }
+.vx2:hover{ color:#F2F6FF; border-color:rgba(139,157,255,.45);
+  background:rgba(13,18,32,.94); transform:rotate(90deg) }
+.vx2:active{ transform:rotate(90deg) scale(.92) }
+.vx2:focus-visible{ outline:2px solid var(--acc); outline-offset:2px }
+@media (max-width:860px){
+  .vx2{ top:calc(var(--nav-h) + 8px); right:10px; width:34px; height:34px; border-radius:10px }
+}
+
+/* ---- v3.28: phones skip paint-heavy ambient loops ----
+   v3.33: the brand sheen + wordmark light stay ON on phones too - they are
+   tiny boxes (a 28px mark, one 13px line) and the shine is the signature.
+   Only the giant 58vmax orbs and the scanline stay parked. */
+@media (pointer:coarse){
+  .amb-deep .orb{ animation:none !important }
+  .sp-scan{ display:none !important }
+}
+
+/* ==========================================================================
+   31. v3.33 - the closing plate, ink-black.
+   A) v3.32 was still too loud. A faint violet bloom over near-black quantises
+      into visible rings on phone OLEDs - THAT is the "grainy, low quality"
+      read. The cure is less light, not more blur: every bloom drops to about
+      a third of its v3.32 alpha so the gradient steps hide inside single
+      8-bit levels, the base ink sits a hair below the page, and the breathe
+      is opacity-only (the old translate+scale re-rastered the gradient every
+      frame - shimmer reads as grain). No backdrop-filter anywhere in here -
+      blur on a scrolling layer is the single biggest source of jank on phones.
+   B) The credit bar keeps its centred phone stack.
+   C) On phones the footer is two-up: "Windows" + "Data & tools" left,
+      "On this page" + "Live sources" right. v3.32 shrank the right pair to
+      10.5px on a tighter leading - too small, and its rows floated above the
+      left rows. Now the pair keeps the SAME h5 margin as the left (so the
+      rows start level) at a readable 11.5px, indented a little further right.
+   ========================================================================== */
+.footer{
+  position:relative; isolation:isolate;
+  margin-top:120px; padding-bottom:88px;
+  border-top:1px solid rgba(140,120,255,.085) }
+.footer::before{
+  background:
+    radial-gradient(118% 76% at 50% 118%, rgba(126,88,246,.042), transparent 62%),
+    radial-gradient(76% 50% at 9% 104%, rgba(84,104,255,.026), transparent 68%),
+    radial-gradient(70% 46% at 93% 96%, rgba(170,112,255,.02), transparent 70%),
+    linear-gradient(180deg, rgba(3,3,8,.965), rgba(3,3,7,.99) 46%, rgba(2,2,5,1)) !important }
+.footer::after{
+  content:""; position:absolute; left:0; right:0; bottom:-2px; height:300px;
+  z-index:-1; pointer-events:none;
+  background:
+    radial-gradient(56% 100% at 50% 100%, rgba(139,110,255,.03), transparent 72%),
+    radial-gradient(30% 68% at 21% 100%, rgba(92,120,255,.019), transparent 70%),
+    radial-gradient(28% 64% at 81% 100%, rgba(178,118,255,.015), transparent 70%),
+    linear-gradient(0deg, rgba(1,1,3,.28), transparent 34%);
+  animation:footBreathe 14s var(--ease-soft) infinite alternate }
+@keyframes footBreathe{
+  from{ opacity:.55 }
+  to  { opacity:.85 } }
+.footer .fb-home{ text-shadow:none }
+.footer h5{ color:#D8DCFF }
+.fbar{ border-top-color:rgba(140,120,255,.075) }
+@media (prefers-reduced-motion:reduce){
+  .footer::after{ animation:none } }
+@media (max-width:640px){
+  .fgrid>div:nth-child(3), .fgrid>div:nth-child(5){ padding-left:18px }
+  .fgrid>div:nth-child(3) ul, .fgrid>div:nth-child(5) ul{ gap:7px }
+  .fgrid>div:nth-child(3) li, .fgrid>div:nth-child(5) li{ font-size:11.5px; line-height:1.55 }
+  /* .footer ul a pins 12.5px on every link - out-specify it for this pair */
+  .fgrid>div:nth-child(3) li a, .fgrid>div:nth-child(5) li a{ font-size:11.5px }
+}
+
+/* ==========================================================================
+   32. v3.33 - the brand light travels everywhere the brand speaks.
+   A) Phones <=400px used to drop the nav wordmark entirely; it fits down
+      there (pill, bell, export and theme are already parked), so from now on
+      it stays - and shines, because the coarse-pointer kill list no longer
+      touches it (see the v3.28 note above).
+   B) The footer credit wears the SAME travelling light as the nav wordmark
+      (logoTextShine in silver - the old gold foil stays dead). The parent
+      paints one gradient clipped to all of its text; the existing
+      `.fbar-mid .goldshine{background-image:none}` override is exactly what
+      lets "vav7" show the parent's light through its glyphs, at its heavier
+      weight. The heart keeps its own red fill - replaced content is never
+      touched by background-clip:text.
+      Careful with the box: a clipped-text grid item that shrink-wraps
+      collapses to its longest single word - the credit came out 59px wide
+      and three lines tall. `inline-flex` + `width:max-content` measures the
+      whole line (142px) instead, and the heart keeps its 8px gap.
+   C) The <=400px nav used to drop the wordmark entirely. It comes back at
+      10.5px with tighter brand/nav gaps - 154px of room at 390px against the
+      ~148px the full "MCP Integration Explorer" needs there. Below that it
+      ellipsises rather than pushing the icons off the edge.
+   ========================================================================== */
+@media (max-width:400px){
+  .logo-txt{ display:block; min-width:0 }
+  .logo{ flex:0 1 auto; min-width:0; gap:8px }
+  .nav-inner{ gap:6px; padding:0 8px }
+  .logo-txt b{ font-size:10.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+}
+.fbar-mid{
+  display:inline-flex; align-items:center; gap:8px;
+  width:max-content; max-width:100%;
+  white-space:nowrap;
+  background:linear-gradient(100deg, #8E97AC 0%, #8E97AC 42%, #F4F7FF 50%, #8E97AC 58%, #8E97AC 100%);
+  background-size:220% 100%;
+  -webkit-background-clip:text; background-clip:text;
+  color:transparent;
+  animation:logoTextShine 7s linear infinite }

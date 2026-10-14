@@ -127,9 +127,8 @@
     }
 
     const viewsOpen = () => document.body.classList.contains("pv-on");
-    const bootOpen = () => !!document.getElementById("boot");
     function frame(now) {
-      if (!running || viewsOpen() || bootOpen()) { running = false; return; }
+      if (!running || viewsOpen()) { running = false; return; }
       const dt = Math.min(50, now - last); last = now;
       t += dt * 0.001;
       ctx.clearRect(0, 0, W, H);
@@ -194,7 +193,7 @@
       return;
     }
     const wake = () => {
-      if (document.hidden || viewsOpen() || bootOpen()) { running = false; return; }
+      if (document.hidden || viewsOpen()) { running = false; return; }
       if (!running) { running = true; last = performance.now(); requestAnimationFrame(frame); }
     };
     /* v3.23: a full-viewport canvas repainting during scroll is the home
@@ -209,7 +208,7 @@
     document.addEventListener("visibilitychange", wake);
     /* an opaque full-screen view hides this layer completely - do not burn
        frames painting underneath it */
-    new MutationObserver(wake).observe(document.body, { attributes: true, attributeFilter: ["class"], childList: true });
+    new MutationObserver(wake).observe(document.body, { attributes: true, attributeFilter: ["class"] });
     /* paint the first constellation frame synchronously so the page never
        exposes an empty canvas while the animation loop is being scheduled. */
     frame(performance.now());
