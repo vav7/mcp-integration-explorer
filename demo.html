@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="demo" content="offline-snapshot">
-<meta name="build" content="v3.37.0-ember">
+<meta name="build" content="v3.38.0-ember">
 <title>MCP Integration Explorer · integration intelligence</title>
 <meta name="description" content="Live, evidence-backed MCP / agent integration readiness across applications. Real registry data, endpoint probes, GitHub, package adoption and liveness, with every signal traceable to its source.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -4856,26 +4856,25 @@ html[data-theme="dark"] .ambient{background:
      at the horizon and a vignette pulling the eye to the mark and the trace.
      The app behind is smeared into nothing; the veil IS the room. */
   background:
-    radial-gradient(96rem 62rem at 50% 46%, rgba(70,36,160,.17), transparent 62%),
-    radial-gradient(120% 86% at 50% -16%, rgba(88,48,190,.12), transparent 56%),
-    radial-gradient(104% 78% at 50% 116%, rgba(120,52,208,.14), transparent 60%),
-    radial-gradient(130% 96% at 50% 50%, transparent 34%, rgba(0,0,0,.62) 100%),
+    radial-gradient(96rem 62rem at 50% 46%, rgba(28,48,130,.16), transparent 62%),
+    radial-gradient(120% 86% at 50% -16%, rgba(24,42,110,.12), transparent 56%),
+    radial-gradient(104% 78% at 50% 116%, rgba(18,32,86,.14), transparent 60%),
+    radial-gradient(130% 96% at 50% 50%, transparent 34%, rgba(0,0,0,.66) 100%),
     rgba(1,2,5,.985);
   backdrop-filter:blur(60px) saturate(112%) brightness(.82);-webkit-backdrop-filter:blur(60px) saturate(112%) brightness(.82);
   transition:opacity .44s var(--ease-soft)}
 #boot.boot-done{opacity:0;pointer-events:none}
-/* v3.36: the veil's aura is dark violet / deep purple now - a powerful
-   presence, never a bright blue wash */
+/* v3.38: the aura goes deep navy blue and a notch darker */
 .boot-amb{position:absolute;inset:-10%;pointer-events:none}
-.boot-amb i{position:absolute;border-radius:50%;opacity:.20;will-change:transform}
+.boot-amb i{position:absolute;border-radius:50%;opacity:.16;will-change:transform}
 .boot-amb i:nth-child(1){width:58vmax;height:58vmax;left:-16vmax;top:-22vmax;
-  background:radial-gradient(circle, rgba(88,52,214,.24), rgba(52,24,140,.09) 42%, transparent 66%);
+  background:radial-gradient(circle, rgba(36,70,190,.20), rgba(20,40,110,.08) 42%, transparent 66%);
   animation:bootDriftA 17s var(--ease-soft) infinite alternate}
 .boot-amb i:nth-child(2){width:50vmax;height:50vmax;right:-14vmax;bottom:-18vmax;
-  background:radial-gradient(circle, rgba(128,48,222,.22), rgba(78,24,152,.09) 42%, transparent 66%);
+  background:radial-gradient(circle, rgba(28,52,150,.18), rgba(16,30,84,.08) 42%, transparent 66%);
   animation:bootDriftB 21s var(--ease-soft) infinite alternate}
 .boot-amb i:nth-child(3){width:30vmax;height:30vmax;left:56%;top:-12vmax;
-  background:radial-gradient(circle, rgba(64,30,150,.22), rgba(40,16,100,.08) 46%, transparent 64%);
+  background:radial-gradient(circle, rgba(14,26,70,.22), rgba(10,18,52,.08) 46%, transparent 64%);
   animation:bootDriftA 26s var(--ease-soft) infinite alternate-reverse}
 @keyframes bootDriftA{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(6vmax,4vmax,0) scale(1.1)}}
 @keyframes bootDriftB{from{transform:translate3d(0,0,0) scale(1.08)}to{transform:translate3d(-5vmax,-3vmax,0) scale(1)}}
@@ -4886,18 +4885,18 @@ html[data-theme="dark"] .ambient{background:
    with a travelling sheen (transform-based, same logoSheen as the nav mark),
    not the old bright glass plate */
 .boot-mark{position:relative;width:66px;height:66px;border-radius:21px;display:grid;place-items:center;
-  color:#C9C2FF;overflow:hidden;
-  background:linear-gradient(160deg,rgba(40,30,80,.92),rgba(14,10,30,.96) 56%,rgba(8,6,18,.98));
-  border:1px solid rgba(124,111,224,.42);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.10), inset 0 -16px 26px rgba(5,3,12,.72),
-    0 14px 36px rgba(2,2,8,.72), 0 0 44px rgba(96,72,220,.26)}
+  color:#C7D5FF;overflow:hidden;
+  background:linear-gradient(160deg,rgba(24,40,96,.92),rgba(9,14,34,.96) 56%,rgba(6,9,22,.98));
+  border:1px solid rgba(90,130,240,.40);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.10), inset 0 -16px 26px rgba(4,6,16,.72),
+    0 14px 36px rgba(2,2,8,.72), 0 0 44px rgba(40,80,200,.26)}
 .boot-mark svg{position:relative;z-index:2}
 .bm-sheen{position:absolute;top:-60%;left:-70%;width:45%;height:220%;z-index:1;
   transform:translateX(0) skewX(-18deg);opacity:0;pointer-events:none;
   background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);
   animation:logoSheen 4.6s var(--ease) infinite}
 .boot-mark::after{content:"";position:absolute;inset:-18px;border-radius:32px;z-index:-1;
-  background:radial-gradient(closest-side, rgba(96,64,220,.34), rgba(58,28,130,.14) 55%, transparent 74%);
+  background:radial-gradient(closest-side, rgba(40,80,200,.32), rgba(20,40,110,.14) 55%, transparent 74%);
   animation:bootHalo 2.4s ease-in-out infinite}
 @keyframes bootHalo{0%,100%{opacity:.35}50%{opacity:.95}}
 .boot-mark svg{width:32px;height:32px;filter:drop-shadow(0 1px 6px rgba(139,157,255,.45))}
@@ -4921,36 +4920,26 @@ html[data-theme="dark"] .ambient{background:
 }
 .boot-bar{position:relative;width:min(300px,68vw);height:5px;border-radius:5px;overflow:visible;
   background:rgba(120,110,220,.12);box-shadow:inset 0 0 0 1px rgba(120,110,220,.10)}
-/* v3.35: the strip is a dark indigo wake - ink first, white-hot at the head,
-   the same jewel language as the home scroll bar */
+/* v3.38: dark-blue ink ramp that catches fire at the head - the strip itself
+   burns red-hot instead of wearing a dot */
 .boot-bar i{position:absolute;inset:0;border-radius:5px;transform-origin:0 50%;transform:scaleX(0);
-  background:linear-gradient(90deg,#241B4D,#332A6E 34%,#4B3BA8 66%,#6C5BE0 88%,#9F92F5 96%,#E7ECFF);
-  box-shadow:0 0 14px rgba(84,66,190,.55),0 0 30px rgba(60,44,150,.35)}
+  background:linear-gradient(90deg,#0A123E,#10265F 34%,#1B43A8 66%,#2F6BE0 84%,#B0354F 93%,#FF6A3D 98%,#FFD3B0);
+  box-shadow:0 0 14px rgba(40,80,200,.5),0 0 30px rgba(24,48,140,.35)}
 /* v3.35: the red dot floating over the line is GONE. The head now trails a
    long blur-ish indigo wake (like the home scroll strip) and wears one crisp
    dark-red ember spark that breathes and twinkles - premium, never chunky */
 .boot-tail{position:absolute;top:-1px;bottom:-1px;left:0;width:120px;margin-left:-120px;border-radius:99px;
-  background:linear-gradient(90deg,transparent,rgba(76,62,168,.08) 34%,rgba(108,92,232,.26) 64%,rgba(159,146,245,.58) 86%,rgba(231,236,255,.95));
+  background:linear-gradient(90deg,transparent,rgba(24,48,140,.10) 34%,rgba(47,107,224,.28) 62%,rgba(255,106,61,.55) 86%,rgba(255,211,176,.95));
   opacity:0;transition:opacity .3s var(--ease)}
 .boot-tail.live{opacity:1}
-/* the ember: a small deep-red jewel glowing ON the head - dark, crisp, never
-   a floating ball; its halo breathes softly */
-.boot-tail::before{content:"";position:absolute;right:-2.5px;top:50%;width:11px;height:11px;margin-top:-5.5px;border-radius:50%;
-  background:radial-gradient(circle at 42% 36%,rgba(240,104,126,.82),rgba(148,14,44,.95) 42%,rgba(96,8,28,.4) 66%,transparent 78%);
-  filter:blur(.3px);
-  animation:emberPulse 1.9s ease-in-out infinite}
-/* the sparkle: one crisp four-point star twinkling smoothly inside the ember */
-.boot-tail::after{content:"";position:absolute;right:-2px;top:50%;width:10px;height:10px;margin-top:-5px;
-  background:linear-gradient(140deg,#FFFFFF,#FFD9DF 40%,#FF8FA0);
-  clip-path:polygon(50% 0%,58% 42%,100% 50%,58% 58%,50% 100%,42% 58%,0% 50%,42% 42%);
-  filter:drop-shadow(0 0 4px rgba(255,116,141,.9)) drop-shadow(0 0 10px rgba(184,28,62,.55));
-  animation:emberTwinkle 2.3s ease-in-out infinite}
-/* v3.36: burning, not blinking - an irregular crackle so the ember reads as
-   a live coal, plus phooljhadi sparks: crisp 1-2px burning flecks that crack
-   off the head and die in the air (compositor-only transforms) */
-@keyframes emberPulse{0%,100%{opacity:.82;transform:scale(.94)}14%{opacity:1;transform:scale(1.07)}
-  30%{opacity:.86;transform:scale(.97)}48%{opacity:1;transform:scale(1.1)}
-  66%{opacity:.9;transform:scale(1.01)}84%{opacity:1;transform:scale(1.05)}}
+/* v3.38: no dot, no star - the head IS the burn: one soft red-hot glow with
+   blurred edges breathing smoothly, like a chingari strip catching fire */
+.boot-tail::before{content:"";position:absolute;right:-8px;top:50%;width:26px;height:26px;margin-top:-13px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,150,90,.80),rgba(226,58,42,.48) 38%,rgba(150,24,32,.20) 60%,transparent 76%);
+  filter:blur(2px);
+  animation:emberPulse 1.7s ease-in-out infinite}
+.boot-tail::after{display:none}
+@keyframes emberPulse{0%,100%{opacity:.75;transform:scale(.94)}50%{opacity:1;transform:scale(1.07)}}
 .boot-tail i{position:absolute;right:-1px;top:50%;width:2px;height:2px;margin-top:-1px;border-radius:50%;
   background:#FFD9A6;box-shadow:0 0 4px rgba(255,150,80,.9),0 0 9px rgba(255,90,50,.5);
   opacity:0;pointer-events:none}
@@ -5228,9 +5217,10 @@ html[data-theme="dark"] .pview{background:
 /* constellation canvases + boot: violet */
 #prConstellation, #fgOrb{opacity:.8}
 /* v3.36: tint only - the seal's sheen is a transform sweep on .bm-sheen now,
-   and its deep shadow stack lives in the base rule; never flatten it here */
-.boot-mark{color:#C9C2FF;border-color:rgba(124,111,224,.46)}
-.boot-bar i{background:linear-gradient(90deg,#2A2058,#40348A 40%,#5A49C8 68%,#7C6CF0 90%,#E7ECFF)}
+   and its deep shadow stack lives in the base rule; never flatten it here.
+   v3.38: tint follows the dark-blue veil. */
+.boot-mark{color:#C7D5FF;border-color:rgba(90,130,240,.44)}
+.boot-bar i{background:linear-gradient(90deg,#0A123E,#10265F 34%,#1B43A8 66%,#2F6BE0 84%,#B0354F 93%,#FF6A3D 98%,#FFD3B0)}
 
 /* help page: gold is extinct - violet is the single accent */
 #helpView{--fg-gold:#A59BF2;--fg-gold2:#7C6FE0;--fg-indigo:#7C6FE0;--fg-live:#4DE2C5}
@@ -5760,6 +5750,22 @@ html{scroll-behavior:auto}
   background:linear-gradient(140deg,rgba(124,111,224,.55),rgba(84,58,190,.45));
   border-color:rgba(165,155,242,.55);
   box-shadow:0 0 10px rgba(124,111,224,.45), inset 0 1px 0 rgba(255,255,255,.18)}
+
+/* ============================================================================
+   v3.38 - BADGES GO MATTE AGAIN, DOSSIER + COMPARE GET CHEAPER
+   1) the sweep belongs on the dossier's official server BOX only (v3.37).
+      The badge chips lose their ::after shine for good - a hundred sweeping
+      pills were also the single biggest repaint source in long lists.
+   2) scroll/open perf: offscreen server cards and picker rows skip painting
+      entirely (content-visibility), and the modal scrollers stop scroll
+      chaining so rubber-banding never fights the inner lists.
+   ========================================================================== */
+.badge.vendor_official::after,.badge.official::after,.badge.community::after{
+  display:none;animation:none}
+.srvcard{content-visibility:auto;contain-intrinsic-size:auto 170px}
+.cmp3-item{content-visibility:auto;contain-intrinsic-size:auto 40px}
+.modal-body{overscroll-behavior:contain}
+.cmp3-view{overscroll-behavior:contain}
 
 
 /* ===== views.css ===== */
@@ -10388,6 +10394,7 @@ window.__SNAPSHOT__ = {"generated_at": "2026-10-14T06:15:19Z", "app_name": "MCP 
         </button>
         <div class="ci-wrap"><div class="ci-wrapin"><div class="ci-rows">${comServers.map(commInlineRow).join("")}</div></div></div>
       </div>`;
+    else if (offServers.length) capCards += `<div class="empty">The registry lists no community servers for this app - the official server above is the only listing.</div>`;
 
     const compOrder = ["official_mcp", "capability", "adoption", "popularity", "maintenance", "availability"];
     const rcomp = compOrder.filter(k => r.components && r.components[k]).map((k, ri) => { const c = r.components[k];

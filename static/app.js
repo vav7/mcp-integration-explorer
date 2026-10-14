@@ -2176,6 +2176,7 @@
         </button>
         <div class="ci-wrap"><div class="ci-wrapin"><div class="ci-rows">${comServers.map(commInlineRow).join("")}</div></div></div>
       </div>`;
+    else if (offServers.length) capCards += `<div class="empty">The registry lists no community servers for this app - the official server above is the only listing.</div>`;
 
     const compOrder = ["official_mcp", "capability", "adoption", "popularity", "maintenance", "availability"];
     const rcomp = compOrder.filter(k => r.components && r.components[k]).map((k, ri) => { const c = r.components[k];
