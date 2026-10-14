@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-13T22:53:43Z",
+  "generated_at": "2026-10-14T06:15:19Z",
   "app_name": "MCP Integration Explorer",
   "tagline": "Live, source-traceable integration readiness for 100 apps",
   "stats": {
@@ -16,8 +16,8 @@
     "websites_checked": 100,
     "github_repos_found": 67,
     "total_stars": 23937,
-    "median_latency_ms": 440,
-    "total_downloads": 1181365,
+    "median_latency_ms": 448,
+    "total_downloads": 1181558,
     "total_tools": 323,
     "open_endpoints": 23,
     "generic_gateways": 12,
@@ -50,7 +50,7 @@
         "reachable": 10,
         "servers": 55,
         "stars": 128,
-        "downloads": 6048,
+        "downloads": 6170,
         "tools": 195,
         "avg_readiness": 44.8
       },
@@ -162,7 +162,7 @@
         "reachable": 10,
         "servers": 39,
         "stars": 175,
-        "downloads": 10755,
+        "downloads": 10826,
         "tools": 23,
         "avg_readiness": 43.1
       }
@@ -172,22 +172,22 @@
     {
       "name": "MCP Registry",
       "reachable": true,
-      "latency_ms": 262,
-      "last_check": "2026-10-13T22:49:52Z",
+      "latency_ms": 993,
+      "last_check": "2026-10-14T06:13:27Z",
       "detail": "HTTP 200"
     },
     {
       "name": "GitHub API",
       "reachable": true,
-      "latency_ms": 102,
-      "last_check": "2026-10-13T22:49:52Z",
+      "latency_ms": 22,
+      "last_check": "2026-10-14T06:13:26Z",
       "detail": "HTTP 200"
     },
     {
       "name": "npm Registry",
       "reachable": true,
-      "latency_ms": 159,
-      "last_check": "2026-10-13T22:49:52Z",
+      "latency_ms": 425,
+      "last_check": "2026-10-14T06:13:26Z",
       "detail": "HTTP 200"
     }
   ],
@@ -576,7 +576,7 @@
           "salesforce"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=salesforce&limit=50",
-        "fetched_at": "2026-10-13T22:50:03Z",
+        "fetched_at": "2026-10-14T06:13:41Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -594,17 +594,17 @@
         "description": "MCP Server for interacting with Salesforce instances",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/kodey-ai/salesforce-mcp",
-        "fetched_at": "2026-10-13T22:52:42Z",
+        "fetched_at": "2026-10-14T06:13:42Z",
         "error": null
       },
       "liveness": {
         "url": "https://salesforce.com",
         "status_code": 200,
-        "latency_ms": 413,
+        "latency_ms": 896,
         "reachable": true,
         "responded": true,
-        "final_url": "https://www.salesforce.com/",
-        "fetched_at": "2026-10-13T22:50:03Z",
+        "final_url": "https://www.salesforce.com/ap/?ir=1",
+        "fetched_at": "2026-10-14T06:13:41Z",
         "error": null
       },
       "packages": [
@@ -612,10 +612,10 @@
           "registry": "npm",
           "name": "sf-intelligence",
           "version": "0.4.0",
-          "downloads_last_month": 910,
+          "downloads_last_month": 933,
           "last_published": null,
           "url": "https://www.npmjs.com/package/sf-intelligence",
-          "fetched_at": "2026-10-13T14:18:19Z",
+          "fetched_at": "2026-10-14T06:13:42Z",
           "error": null
         }
       ],
@@ -635,8 +635,8 @@
           },
           "adoption": {
             "weight": 0.16,
-            "score": 0.592,
-            "detail": "910/mo downloads"
+            "score": 0.594,
+            "detail": "933/mo downloads"
           },
           "popularity": {
             "weight": 0.14,
@@ -667,7 +667,7 @@
       "tools_count": null,
       "auth_gated": true,
       "generic_gateway": false,
-      "last_fetched": "2026-10-13T22:50:03Z"
+      "last_fetched": "2026-10-14T06:13:41Z"
     },
     {
       "app": {
@@ -861,17 +861,17 @@
         "description": null,
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/Centrify-Internal/hubspot-mcp-server",
-        "fetched_at": "2026-10-13T22:52:43Z",
+        "fetched_at": "2026-10-14T06:14:32Z",
         "error": null
       },
       "liveness": {
         "url": "https://hubspot.com",
         "status_code": 200,
-        "latency_ms": 1246,
+        "latency_ms": 1443,
         "reachable": true,
         "responded": true,
         "final_url": "https://www.hubspot.com/",
-        "fetched_at": "2026-10-13T22:50:04Z",
+        "fetched_at": "2026-10-14T06:14:32Z",
         "error": null
       },
       "packages": [
@@ -882,17 +882,17 @@
           "downloads_last_month": null,
           "last_published": null,
           "url": "https://www.npmjs.com/package/hubspot-auditor",
-          "fetched_at": "2026-10-13T14:18:21Z",
+          "fetched_at": "2026-10-14T06:14:32Z",
           "error": null
         },
         {
           "registry": "npm",
           "name": "@mindstone/mcp-server-hubspot",
           "version": "0.4.1",
-          "downloads_last_month": 734,
+          "downloads_last_month": 726,
           "last_published": null,
           "url": "https://www.npmjs.com/package/@mindstone/mcp-server-hubspot",
-          "fetched_at": "2026-10-13T14:18:21Z",
+          "fetched_at": "2026-10-14T06:14:32Z",
           "error": null
         }
       ],
@@ -912,8 +912,8 @@
           },
           "adoption": {
             "weight": 0.16,
-            "score": 0.573,
-            "detail": "734/mo downloads"
+            "score": 0.572,
+            "detail": "726/mo downloads"
           },
           "popularity": {
             "weight": 0.14,
@@ -1088,7 +1088,7 @@
           "pipedrive"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=pipedrive&limit=50",
-        "fetched_at": "2026-10-13T22:50:03Z",
+        "fetched_at": "2026-10-14T06:14:29Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -1098,25 +1098,25 @@
         "html_url": "https://github.com/Servosity/msp-skills",
         "stars": 59,
         "forks": 12,
-        "open_issues": 5,
+        "open_issues": 9,
         "license": "NOASSERTION",
         "language": "Go",
         "archived": false,
-        "pushed_at": "2026-10-13T22:51:20Z",
+        "pushed_at": "2026-10-14T05:48:41Z",
         "description": "Free MCP servers + Claude Code Skills for MSP tools - PSA, RMM, backup, M365. Local-first: your data never leaves your network.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/servosity/msp-skills",
-        "fetched_at": "2026-10-13T22:52:43Z",
+        "fetched_at": "2026-10-14T06:14:30Z",
         "error": null
       },
       "liveness": {
         "url": "https://pipedrive.com",
         "status_code": 200,
-        "latency_ms": 407,
+        "latency_ms": 660,
         "reachable": true,
         "responded": true,
         "final_url": "https://www.pipedrive.com/",
-        "fetched_at": "2026-10-13T22:50:03Z",
+        "fetched_at": "2026-10-14T06:14:30Z",
         "error": null
       },
       "packages": [
@@ -1124,10 +1124,10 @@
           "registry": "npm",
           "name": "@ckalima/pipedrive-mcp-server",
           "version": "2.7.1",
-          "downloads_last_month": 1365,
+          "downloads_last_month": 1375,
           "last_published": null,
           "url": "https://www.npmjs.com/package/@ckalima/pipedrive-mcp-server",
-          "fetched_at": "2026-10-13T14:19:05Z",
+          "fetched_at": "2026-10-14T06:14:30Z",
           "error": null
         }
       ],
@@ -1147,8 +1147,8 @@
           },
           "adoption": {
             "weight": 0.16,
-            "score": 0.627,
-            "detail": "1,365/mo downloads"
+            "score": 0.628,
+            "detail": "1,375/mo downloads"
           },
           "popularity": {
             "weight": 0.14,
@@ -2954,7 +2954,7 @@
       "tools_count": 45,
       "auth_gated": false,
       "generic_gateway": true,
-      "last_fetched": "2026-10-13T22:50:03Z"
+      "last_fetched": "2026-10-14T06:14:29Z"
     },
     {
       "app": {
@@ -3085,17 +3085,17 @@
         "description": "Attio Model Context Protocol (MCP) server implementation",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/kesslerio/attio-mcp-server",
-        "fetched_at": "2026-10-13T22:52:44Z",
+        "fetched_at": "2026-10-14T06:14:31Z",
         "error": null
       },
       "liveness": {
         "url": "https://attio.com",
         "status_code": 200,
-        "latency_ms": 175,
+        "latency_ms": 117,
         "reachable": true,
         "responded": true,
         "final_url": "https://attio.com",
-        "fetched_at": "2026-10-13T22:49:54Z",
+        "fetched_at": "2026-10-14T06:14:31Z",
         "error": null
       },
       "packages": [
@@ -3103,10 +3103,10 @@
           "registry": "npm",
           "name": "attio-mcp",
           "version": "1.7.0",
-          "downloads_last_month": 2973,
+          "downloads_last_month": 3070,
           "last_published": null,
           "url": "https://www.npmjs.com/package/attio-mcp",
-          "fetched_at": "2026-10-13T14:18:46Z",
+          "fetched_at": "2026-10-14T06:14:31Z",
           "error": null
         }
       ],
@@ -3126,8 +3126,8 @@
           },
           "adoption": {
             "weight": 0.16,
-            "score": 0.695,
-            "detail": "2,973/mo downloads"
+            "score": 0.697,
+            "detail": "3,070/mo downloads"
           },
           "popularity": {
             "weight": 0.14,
@@ -3201,7 +3201,7 @@
           "twenty"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=twenty&limit=50",
-        "fetched_at": "2026-10-13T22:50:02Z",
+        "fetched_at": "2026-10-14T06:13:41Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -3219,17 +3219,17 @@
         "description": "231 hosted remote MCP servers for SaaS tools (CRM, scheduling, payments, messaging and more). Connect from Claude, Cursor or VS Code. Free tier.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/m190/usefulapi-mcp",
-        "fetched_at": "2026-10-13T22:52:45Z",
+        "fetched_at": "2026-10-14T06:13:43Z",
         "error": null
       },
       "liveness": {
         "url": "https://twenty.com",
         "status_code": 200,
-        "latency_ms": 1190,
+        "latency_ms": 1196,
         "reachable": true,
         "responded": true,
         "final_url": "https://twenty.com",
-        "fetched_at": "2026-10-13T22:50:04Z",
+        "fetched_at": "2026-10-14T06:13:42Z",
         "error": null
       },
       "packages": [],
@@ -4039,7 +4039,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-10-13T22:50:02Z"
+      "last_fetched": "2026-10-14T06:13:41Z"
     },
     {
       "app": {
@@ -4056,7 +4056,7 @@
           "podio"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=podio&limit=50",
-        "fetched_at": "2026-10-13T22:50:02Z",
+        "fetched_at": "2026-10-14T06:13:41Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -4080,11 +4080,11 @@
       "liveness": {
         "url": "https://podio.com",
         "status_code": 200,
-        "latency_ms": 705,
+        "latency_ms": 861,
         "reachable": true,
         "responded": true,
         "final_url": "https://podio.com",
-        "fetched_at": "2026-10-13T22:50:03Z",
+        "fetched_at": "2026-10-14T06:13:42Z",
         "error": null
       },
       "packages": [],
@@ -4129,7 +4129,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-10-13T22:50:02Z"
+      "last_fetched": "2026-10-14T06:13:41Z"
     },
     {
       "app": {
@@ -4534,7 +4534,7 @@
           "zoho"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=zoho+crm&limit=50",
-        "fetched_at": "2026-10-13T22:50:03Z",
+        "fetched_at": "2026-10-14T06:14:13Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -4552,17 +4552,17 @@
         "description": null,
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/chadrnewell-hash/outreachos",
-        "fetched_at": "2026-10-13T22:52:45Z",
+        "fetched_at": "2026-10-14T06:14:15Z",
         "error": null
       },
       "liveness": {
         "url": "https://zoho.com/crm",
         "status_code": 200,
-        "latency_ms": 532,
+        "latency_ms": 1130,
         "reachable": true,
         "responded": true,
         "final_url": "https://www.zoho.com/en-us/crm/",
-        "fetched_at": "2026-10-13T22:50:03Z",
+        "fetched_at": "2026-10-14T06:14:14Z",
         "error": null
       },
       "packages": [
@@ -4573,7 +4573,7 @@
           "downloads_last_month": 66,
           "last_published": "2025-12-31T01:13:49.218691Z",
           "url": "https://pypi.org/project/zoho-crm-mcp-server",
-          "fetched_at": "2026-10-13T14:19:09Z",
+          "fetched_at": "2026-10-14T06:14:15Z",
           "error": null
         }
       ],
@@ -11975,7 +11975,7 @@
       "tools_count": 195,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-10-13T22:50:03Z"
+      "last_fetched": "2026-10-14T06:14:13Z"
     },
     {
       "app": {
@@ -12067,7 +12067,7 @@
           "close"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=close&limit=50",
-        "fetched_at": "2026-10-13T22:50:17Z",
+        "fetched_at": "2026-10-14T06:14:14Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -12085,17 +12085,17 @@
         "description": null,
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/henryspatialanalysis/wtm.api",
-        "fetched_at": "2026-10-13T22:52:46Z",
+        "fetched_at": "2026-10-14T06:14:14Z",
         "error": null
       },
       "liveness": {
         "url": "https://close.com",
         "status_code": 200,
-        "latency_ms": 139,
+        "latency_ms": 48,
         "reachable": true,
         "responded": true,
         "final_url": "https://close.com",
-        "fetched_at": "2026-10-13T22:50:17Z",
+        "fetched_at": "2026-10-14T06:14:14Z",
         "error": null
       },
       "packages": [],
@@ -12147,7 +12147,7 @@
       "tools_count": null,
       "auth_gated": true,
       "generic_gateway": false,
-      "last_fetched": "2026-10-13T22:50:17Z"
+      "last_fetched": "2026-10-14T06:14:14Z"
     },
     {
       "app": {
@@ -12215,17 +12215,17 @@
         "description": "231 hosted remote MCP servers for SaaS tools (CRM, scheduling, payments, messaging and more). Connect from Claude, Cursor or VS Code. Free tier.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/m190/usefulapi-mcp",
-        "fetched_at": "2026-10-13T22:52:46Z",
+        "fetched_at": "2026-10-14T06:14:48Z",
         "error": null
       },
       "liveness": {
         "url": "https://copper.com",
         "status_code": 200,
-        "latency_ms": 660,
+        "latency_ms": 1258,
         "reachable": true,
         "responded": true,
         "final_url": "https://www.copper.com/",
-        "fetched_at": "2026-10-13T22:50:17Z",
+        "fetched_at": "2026-10-14T06:14:48Z",
         "error": null
       },
       "packages": [],
@@ -12287,7 +12287,7 @@
           "dealcloud"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=dealcloud&limit=50",
-        "fetched_at": "2026-10-13T22:50:17Z",
+        "fetched_at": "2026-10-14T06:14:26Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -12311,11 +12311,11 @@
       "liveness": {
         "url": "https://api.docs.dealcloud.com",
         "status_code": 200,
-        "latency_ms": 308,
+        "latency_ms": 705,
         "reachable": true,
         "responded": true,
         "final_url": "https://api.docs.dealcloud.com",
-        "fetched_at": "2026-10-13T22:50:17Z",
+        "fetched_at": "2026-10-14T06:14:27Z",
         "error": null
       },
       "packages": [],
@@ -12360,7 +12360,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-10-13T22:50:17Z"
+      "last_fetched": "2026-10-14T06:14:26Z"
     },
     {
       "app": {
@@ -12510,7 +12510,7 @@
           "zendesk"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=zendesk&limit=50",
-        "fetched_at": "2026-10-13T22:50:16Z",
+        "fetched_at": "2026-10-14T06:14:47Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -12528,17 +12528,17 @@
         "description": "Bring Zendesk deep into your AI assistant: find answers and draft, update and translate Help Center articles, and manage Support tickets end to end: comments, triage and attachments. All in plain language.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/fruggr/zendesk-mcp-server",
-        "fetched_at": "2026-10-13T22:52:47Z",
+        "fetched_at": "2026-10-14T06:14:48Z",
         "error": null
       },
       "liveness": {
         "url": "https://zendesk.com",
         "status_code": 200,
-        "latency_ms": 270,
+        "latency_ms": 369,
         "reachable": true,
         "responded": true,
-        "final_url": "https://www.zendesk.com/",
-        "fetched_at": "2026-10-13T22:50:16Z",
+        "final_url": "https://www.zendesk.com/sg/#georedirect",
+        "fetched_at": "2026-10-14T06:14:47Z",
         "error": null
       },
       "packages": [
@@ -12546,20 +12546,20 @@
           "registry": "npm",
           "name": "@fruggr/zendesk-mcp-server",
           "version": "3.3.0",
-          "downloads_last_month": 7724,
+          "downloads_last_month": 7791,
           "last_published": null,
           "url": "https://www.npmjs.com/package/@fruggr/zendesk-mcp-server",
-          "fetched_at": "2026-10-13T14:19:33Z",
+          "fetched_at": "2026-10-14T06:14:48Z",
           "error": null
         },
         {
           "registry": "npm",
           "name": "@markusvankempen/zendesk-mcp-server",
           "version": "1.0.2",
-          "downloads_last_month": 484,
+          "downloads_last_month": 492,
           "last_published": null,
           "url": "https://www.npmjs.com/package/@markusvankempen/zendesk-mcp-server",
-          "fetched_at": "2026-10-13T14:19:33Z",
+          "fetched_at": "2026-10-14T06:14:48Z",
           "error": null
         },
         {
@@ -12569,7 +12569,7 @@
           "downloads_last_month": 708,
           "last_published": "2026-10-08T19:39:07.100823Z",
           "url": "https://pypi.org/project/zendesk-mcp",
-          "fetched_at": "2026-10-13T14:19:33Z",
+          "fetched_at": "2026-10-14T06:14:48Z",
           "error": null
         }
       ],
@@ -12589,8 +12589,8 @@
           },
           "adoption": {
             "weight": 0.16,
-            "score": 0.79,
-            "detail": "8,916/mo downloads"
+            "score": 0.791,
+            "detail": "8,991/mo downloads"
           },
           "popularity": {
             "weight": 0.14,
@@ -12600,7 +12600,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 1.0,
-            "detail": "committed 0d ago"
+            "detail": "committed 1d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -14341,7 +14341,7 @@
       "tools_count": 45,
       "auth_gated": false,
       "generic_gateway": true,
-      "last_fetched": "2026-10-13T22:50:16Z"
+      "last_fetched": "2026-10-14T06:14:47Z"
     },
     {
       "app": {
@@ -14428,7 +14428,7 @@
           "intercom"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=intercom&limit=50",
-        "fetched_at": "2026-10-13T22:50:17Z",
+        "fetched_at": "2026-10-14T06:14:36Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -14446,17 +14446,17 @@
         "description": "Two-way communication bridge between Claude Code sessions using the Channels API",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/MuhammadTalhaMT/claude-intercom",
-        "fetched_at": "2026-10-13T22:52:48Z",
+        "fetched_at": "2026-10-14T06:14:37Z",
         "error": null
       },
       "liveness": {
         "url": "https://intercom.com",
         "status_code": 200,
-        "latency_ms": 920,
+        "latency_ms": 1174,
         "reachable": true,
         "responded": true,
         "final_url": "https://www.intercom.com/",
-        "fetched_at": "2026-10-13T22:50:18Z",
+        "fetched_at": "2026-10-14T06:14:37Z",
         "error": null
       },
       "packages": [
@@ -14464,10 +14464,10 @@
           "registry": "npm",
           "name": "claude-intercom",
           "version": "2.1.0",
-          "downloads_last_month": 166,
+          "downloads_last_month": 162,
           "last_published": null,
           "url": "https://www.npmjs.com/package/claude-intercom",
-          "fetched_at": "2026-10-13T14:19:03Z",
+          "fetched_at": "2026-10-14T06:14:37Z",
           "error": null
         }
       ],
@@ -14487,8 +14487,8 @@
           },
           "adoption": {
             "weight": 0.16,
-            "score": 0.445,
-            "detail": "166/mo downloads"
+            "score": 0.442,
+            "detail": "162/mo downloads"
           },
           "popularity": {
             "weight": 0.14,
@@ -16247,7 +16247,7 @@
       "tools_count": 45,
       "auth_gated": false,
       "generic_gateway": true,
-      "last_fetched": "2026-10-13T22:50:17Z"
+      "last_fetched": "2026-10-14T06:14:36Z"
     },
     {
       "app": {
@@ -19530,7 +19530,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 1.0,
-            "detail": "committed 0d ago"
+            "detail": "committed 1d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -20355,7 +20355,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 1.0,
-            "detail": "committed 14d ago"
+            "detail": "committed 15d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -25127,7 +25127,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 0.35,
-            "detail": "committed 221d ago"
+            "detail": "committed 222d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -25480,7 +25480,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 0.15,
-            "detail": "committed 394d ago"
+            "detail": "committed 395d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -27261,7 +27261,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 0.35,
-            "detail": "committed 302d ago"
+            "detail": "committed 303d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -28813,7 +28813,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 0.8,
-            "detail": "committed 50d ago"
+            "detail": "committed 51d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -29128,7 +29128,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 0.35,
-            "detail": "committed 286d ago"
+            "detail": "committed 287d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -42221,7 +42221,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 1.0,
-            "detail": "committed 2d ago"
+            "detail": "committed 3d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -42968,7 +42968,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 0.35,
-            "detail": "committed 272d ago"
+            "detail": "committed 273d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -43367,7 +43367,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 1.0,
-            "detail": "committed 4d ago"
+            "detail": "committed 5d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -50993,7 +50993,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 1.0,
-            "detail": "committed 16d ago"
+            "detail": "committed 17d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -60716,6 +60716,19 @@
       "servers": 540,
       "tools": 323,
       "downloads": 1181365,
+      "stars": 23937,
+      "responding": 100,
+      "reachable": 94,
+      "avg_readiness": 49.0
+    },
+    {
+      "ts": "2026-10-14T06:15:19Z",
+      "official": 14,
+      "community": 70,
+      "none": 16,
+      "servers": 540,
+      "tools": 323,
+      "downloads": 1181558,
       "stars": 23937,
       "responding": 100,
       "reachable": 94,

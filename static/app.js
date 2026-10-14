@@ -3335,7 +3335,7 @@
     $$(".nav-links a").forEach(a => a.addEventListener("click", () => { const v = a.dataset.nav; if (["explorer", "leaderboard", "opportunities"].includes(v)) { state.view = v; renderView(); } }));
     const closeDropdowns = () => $$(".dropdown").forEach(d => d.classList.remove("open"));
     $("#exportBtn").onclick = e => { e.stopPropagation(); const d = $("#exportBtn").closest(".dropdown"); const o = d.classList.contains("open"); closeDropdowns(); d.classList.toggle("open", !o); };
-    $("#bellBtn").onclick = e => { e.stopPropagation(); const d = $("#bellWrap"); const o = d.classList.contains("open"); closeDropdowns(); d.classList.toggle("open", !o); if (!o) { renderAlerts(); if (state.unread) markAlertsRead(); } };
+    $("#bellBtn").onclick = e => { e.stopPropagation(); const d = $("#bellWrap"); const o = d.classList.contains("open"); closeDropdowns(); d.classList.toggle("open", !o); if (!o) renderAlerts(); };
     window.__bellNative = true;
     $("#markRead").onclick = e => { e.stopPropagation(); markAlertsRead(); };
     document.addEventListener("click", closeDropdowns);
