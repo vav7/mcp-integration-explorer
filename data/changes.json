@@ -1,5 +1,12 @@
 [
   {
+    "ts": "2026-10-14T21:49:05Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 11,197 → 11,229 (+32)"
+  },
+  {
     "ts": "2026-10-14T17:22:07Z",
     "app_id": 55,
     "app": "Apify",
@@ -1391,12 +1398,5 @@
     "app": "Zoho CRM",
     "kind": "tools",
     "message": "live tools 182 → 183"
-  },
-  {
-    "ts": "2026-09-27T12:19:07Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 8,606 → 8,674 (+68)"
   }
 ]
