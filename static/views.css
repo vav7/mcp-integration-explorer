@@ -908,6 +908,7 @@ html[data-theme="dark"] .nav.scrolled{ background:#04060B; box-shadow:0 10px 30p
 #signals, #trends{
   content-visibility:auto; contain-intrinsic-size:auto 720px }
 
+
 /* ==========================================================================
    19. v3.8 - BUNDLE DECK GUIDE + DEEPER INK, LESS BLUE
    ========================================================================== */
@@ -1298,3 +1299,10 @@ body.pv-on .vx2{ display:grid; place-items:center }
   -webkit-background-clip:text; background-clip:text;
   color:transparent;
   animation:logoTextShine 7s linear infinite }
+
+/* v3.35: let the closing footer carry a richer, still low-cost violet glow. */
+.footer::before{background:
+  radial-gradient(118% 76% at 50% 118%,rgba(126,88,246,.078),transparent 62%),
+  radial-gradient(76% 50% at 9% 104%,rgba(84,104,255,.05),transparent 68%),
+  radial-gradient(70% 46% at 93% 96%,rgba(170,112,255,.042),transparent 70%),
+  linear-gradient(180deg,rgba(7,4,14,.96),rgba(4,3,10,.99) 46%,rgba(2,2,6,1)) !important}

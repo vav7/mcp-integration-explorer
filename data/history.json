@@ -585,6 +585,7 @@
     "avg_readiness": 48.7
   },
   {
+<<<<<<< HEAD
     "ts": "2026-10-13T22:53:43Z",
     "official": 14,
     "community": 70,
@@ -609,5 +610,18 @@
     "responding": 100,
     "reachable": 94,
     "avg_readiness": 48.3
+=======
+    "ts": "2026-10-13T19:28:41Z",
+    "official": 14,
+    "community": 68,
+    "none": 18,
+    "servers": 525,
+    "tools": 323,
+    "downloads": 1181365,
+    "stars": 23838,
+    "responding": 44,
+    "reachable": 41,
+    "avg_readiness": 42.7
+>>>>>>> 44a5f34 (update)
   }
 ]
