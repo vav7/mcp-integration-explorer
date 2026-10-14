@@ -1,5 +1,19 @@
 [
   {
+    "ts": "2026-10-14T17:22:07Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 11,146 → 11,197 (+51)"
+  },
+  {
+    "ts": "2026-10-14T17:22:07Z",
+    "app_id": 74,
+    "app": "Jira",
+    "kind": "servers",
+    "message": "registry servers 8 → 9 (+1)"
+  },
+  {
     "ts": "2026-10-14T12:05:45Z",
     "app_id": 3,
     "app": "Pipedrive",
@@ -1384,19 +1398,5 @@
     "app": "Apify",
     "kind": "stars",
     "message": "repo ★ 8,606 → 8,674 (+68)"
-  },
-  {
-    "ts": "2026-09-27T12:19:07Z",
-    "app_id": 64,
-    "app": "Cloudflare",
-    "kind": "stars",
-    "message": "repo ★ 4,316 → 4,321 (+5)"
-  },
-  {
-    "ts": "2026-09-27T12:19:07Z",
-    "app_id": 81,
-    "app": "Stripe",
-    "kind": "servers",
-    "message": "registry servers 14 → 15 (+1)"
   }
 ]
