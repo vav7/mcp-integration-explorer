@@ -1,5 +1,138 @@
 [
   {
+    "ts": "2026-10-14T12:05:45Z",
+    "app_id": 3,
+    "app": "Pipedrive",
+    "kind": "tools",
+    "message": "live tools 45 → 46"
+  },
+  {
+    "ts": "2026-10-14T12:05:45Z",
+    "app_id": 11,
+    "app": "Zendesk",
+    "kind": "tools",
+    "message": "live tools 45 → 46"
+  },
+  {
+    "ts": "2026-10-14T12:05:45Z",
+    "app_id": 12,
+    "app": "Intercom",
+    "kind": "tools",
+    "message": "live tools 45 → 46"
+  },
+  {
+    "ts": "2026-10-14T12:05:45Z",
+    "app_id": 13,
+    "app": "Freshdesk",
+    "kind": "tools",
+    "message": "live tools 45 → 46"
+  },
+  {
+    "ts": "2026-10-14T12:05:45Z",
+    "app_id": 22,
+    "app": "Twilio",
+    "kind": "tools",
+    "message": "live tools 45 → 46"
+  },
+  {
+    "ts": "2026-10-14T12:05:45Z",
+    "app_id": 23,
+    "app": "Zoho Cliq",
+    "kind": "tools",
+    "message": "live tools 45 → 46"
+  },
+  {
+    "ts": "2026-10-14T12:05:45Z",
+    "app_id": 28,
+    "app": "WhatsApp Business",
+    "kind": "servers",
+    "message": "registry servers 7 → 6 (-1)"
+  },
+  {
+    "ts": "2026-10-14T12:05:45Z",
+    "app_id": 35,
+    "app": "Mailchimp",
+    "kind": "tools",
+    "message": "live tools 45 → 46"
+  },
+  {
+    "ts": "2026-10-14T12:05:45Z",
+    "app_id": 36,
+    "app": "Klaviyo",
+    "kind": "tools",
+    "message": "live tools 45 → 46"
+  },
+  {
+    "ts": "2026-10-14T12:05:45Z",
+    "app_id": 40,
+    "app": "SendGrid",
+    "kind": "tools",
+    "message": "live tools 43 → 44"
+  },
+  {
+    "ts": "2026-10-14T12:05:45Z",
+    "app_id": 42,
+    "app": "WooCommerce",
+    "kind": "tools",
+    "message": "live tools 45 → 46"
+  },
+  {
+    "ts": "2026-10-14T12:05:45Z",
+    "app_id": 52,
+    "app": "SE Ranking",
+    "kind": "servers",
+    "message": "registry servers 3 → 5 (+2)"
+  },
+  {
+    "ts": "2026-10-14T12:05:45Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 11,024 → 11,146 (+122)"
+  },
+  {
+    "ts": "2026-10-14T12:05:45Z",
+    "app_id": 75,
+    "app": "Asana",
+    "kind": "tools",
+    "message": "live tools 46 → 47"
+  },
+  {
+    "ts": "2026-10-14T12:05:45Z",
+    "app_id": 80,
+    "app": "Harvest",
+    "kind": "servers",
+    "message": "registry servers 4 → 5 (+1)"
+  },
+  {
+    "ts": "2026-10-14T12:05:45Z",
+    "app_id": 80,
+    "app": "Harvest",
+    "kind": "tools",
+    "message": "live tools 0 → 3"
+  },
+  {
+    "ts": "2026-10-14T12:05:45Z",
+    "app_id": 81,
+    "app": "Stripe",
+    "kind": "stars",
+    "message": "repo ★ 1,932 → 1,937 (+5)"
+  },
+  {
+    "ts": "2026-10-14T12:05:45Z",
+    "app_id": 82,
+    "app": "Plaid",
+    "kind": "tools",
+    "message": "live tools 43 → 44"
+  },
+  {
+    "ts": "2026-10-14T12:05:45Z",
+    "app_id": 99,
+    "app": "YouTube Transcript",
+    "kind": "servers",
+    "message": "registry servers 36 → 34 (-2)"
+  },
+  {
     "ts": "2026-10-13T22:53:43Z",
     "app_id": 28,
     "app": "WhatsApp Business",
@@ -1265,138 +1398,5 @@
     "app": "Stripe",
     "kind": "servers",
     "message": "registry servers 14 → 15 (+1)"
-  },
-  {
-    "ts": "2026-09-26T20:49:16Z",
-    "app_id": 18,
-    "app": "Help Scout",
-    "kind": "servers",
-    "message": "registry servers 16 → 15 (-1)"
-  },
-  {
-    "ts": "2026-09-26T20:49:16Z",
-    "app_id": 33,
-    "app": "LinkedIn Ads",
-    "kind": "servers",
-    "message": "registry servers 29 → 28 (-1)"
-  },
-  {
-    "ts": "2026-09-26T20:49:16Z",
-    "app_id": 49,
-    "app": "Amazon Selling Partner",
-    "kind": "servers",
-    "message": "registry servers 9 → 8 (-1)"
-  },
-  {
-    "ts": "2026-09-26T20:49:16Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 8,484 → 8,604 (+120)"
-  },
-  {
-    "ts": "2026-09-26T20:49:16Z",
-    "app_id": 62,
-    "app": "Vercel",
-    "kind": "tools",
-    "message": "live tools 46 → 0"
-  },
-  {
-    "ts": "2026-09-26T20:49:16Z",
-    "app_id": 64,
-    "app": "Cloudflare",
-    "kind": "stars",
-    "message": "repo ★ 4,283 → 4,316 (+33)"
-  },
-  {
-    "ts": "2026-09-26T20:49:16Z",
-    "app_id": 74,
-    "app": "Jira",
-    "kind": "stars",
-    "message": "repo ★ 1,064 → 1,069 (+5)"
-  },
-  {
-    "ts": "2026-09-26T20:49:16Z",
-    "app_id": 79,
-    "app": "Smartsheet",
-    "kind": "site",
-    "message": "site came up"
-  },
-  {
-    "ts": "2026-09-26T20:49:16Z",
-    "app_id": 80,
-    "app": "Harvest",
-    "kind": "servers",
-    "message": "registry servers 3 → 4 (+1)"
-  },
-  {
-    "ts": "2026-09-26T20:49:16Z",
-    "app_id": 87,
-    "app": "Xero",
-    "kind": "servers",
-    "message": "registry servers 9 → 10 (+1)"
-  },
-  {
-    "ts": "2026-09-25T18:42:53Z",
-    "app_id": 1,
-    "app": "Salesforce",
-    "kind": "servers",
-    "message": "registry servers 13 → 16 (+3)"
-  },
-  {
-    "ts": "2026-09-25T18:42:53Z",
-    "app_id": 7,
-    "app": "Zoho CRM",
-    "kind": "servers",
-    "message": "registry servers 13 → 16 (+3)"
-  },
-  {
-    "ts": "2026-09-25T18:42:53Z",
-    "app_id": 8,
-    "app": "Close",
-    "kind": "servers",
-    "message": "registry servers 2 → 3 (+1)"
-  },
-  {
-    "ts": "2026-09-25T18:42:53Z",
-    "app_id": 11,
-    "app": "Zendesk",
-    "kind": "servers",
-    "message": "registry servers 1 → 6 (+5)"
-  },
-  {
-    "ts": "2026-09-25T18:42:53Z",
-    "app_id": 11,
-    "app": "Zendesk",
-    "kind": "tools",
-    "message": "live tools 0 → 41"
-  },
-  {
-    "ts": "2026-09-25T18:42:53Z",
-    "app_id": 14,
-    "app": "Front",
-    "kind": "servers",
-    "message": "registry servers 2 → 3 (+1)"
-  },
-  {
-    "ts": "2026-09-25T18:42:53Z",
-    "app_id": 17,
-    "app": "Plain",
-    "kind": "servers",
-    "message": "registry servers 3 → 4 (+1)"
-  },
-  {
-    "ts": "2026-09-25T18:42:53Z",
-    "app_id": 18,
-    "app": "Help Scout",
-    "kind": "servers",
-    "message": "registry servers 13 → 16 (+3)"
-  },
-  {
-    "ts": "2026-09-25T18:42:53Z",
-    "app_id": 21,
-    "app": "Slack",
-    "kind": "servers",
-    "message": "registry servers 6 → 11 (+5)"
   }
 ]
