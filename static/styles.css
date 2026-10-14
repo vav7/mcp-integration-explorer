@@ -4901,49 +4901,29 @@ html[data-theme="dark"] .ambient{background:
 }
 .boot-bar{position:relative;width:min(300px,68vw);height:5px;border-radius:5px;overflow:visible;
   background:rgba(120,110,220,.12);box-shadow:inset 0 0 0 1px rgba(120,110,220,.10)}
-/* v3.38: dark-blue ink ramp that catches fire at the head - the strip itself
-   burns red-hot instead of wearing a dot */
+/* v3.39: dark-blue ink ramp ending in a clean white-hot tip - no red left */
 .boot-bar i{position:absolute;inset:0;border-radius:5px;transform-origin:0 50%;transform:scaleX(0);
-  background:linear-gradient(90deg,#0A123E,#10265F 34%,#1B43A8 66%,#2F6BE0 84%,#B0354F 93%,#FF6A3D 98%,#FFD3B0);
+  background:linear-gradient(90deg,#0A123E,#10265F 34%,#1B43A8 66%,#2F6BE0 86%,#7FB0FF 96%,#EAF2FF);
   box-shadow:0 0 14px rgba(40,80,200,.5),0 0 30px rgba(24,48,140,.35)}
 /* v3.35: the red dot floating over the line is GONE. The head now trails a
    long blur-ish indigo wake (like the home scroll strip) and wears one crisp
    dark-red ember spark that breathes and twinkles - premium, never chunky */
+/* v3.39: clean instrument - no red, no sparks, no head animation at all.
+   A still blue-white wake rides the fill head (JS positions it) and ends in
+   one bright tip with a soft static glow: the home scroll-bar language,
+   at rest. Everything else about the veil stays exactly as designed. */
 .boot-tail{position:absolute;top:-1px;bottom:-1px;left:0;width:120px;margin-left:-120px;border-radius:99px;
-  background:linear-gradient(90deg,transparent,rgba(24,48,140,.10) 34%,rgba(47,107,224,.28) 62%,rgba(255,106,61,.55) 86%,rgba(255,211,176,.95));
+  background:linear-gradient(90deg,transparent,rgba(24,48,140,.10) 34%,rgba(47,107,224,.30) 66%,rgba(127,176,255,.65) 88%,rgba(234,242,255,.95));
   opacity:0;transition:opacity .3s var(--ease)}
 .boot-tail.live{opacity:1}
-/* v3.38: no dot, no star - the head IS the burn: one soft red-hot glow with
-   blurred edges breathing smoothly, like a chingari strip catching fire */
-.boot-tail::before{content:"";position:absolute;right:-8px;top:50%;width:26px;height:26px;margin-top:-13px;border-radius:50%;
-  background:radial-gradient(circle,rgba(255,150,90,.80),rgba(226,58,42,.48) 38%,rgba(150,24,32,.20) 60%,transparent 76%);
-  filter:blur(2px);
-  animation:emberPulse 1.7s ease-in-out infinite}
+.boot-tail::before{content:"";position:absolute;right:-7px;top:50%;width:22px;height:22px;margin-top:-11px;border-radius:50%;
+  background:radial-gradient(circle,rgba(190,220,255,.55),rgba(90,140,255,.28) 42%,rgba(40,80,200,.12) 62%,transparent 76%);
+  filter:blur(2px)}
 .boot-tail::after{display:none}
-@keyframes emberPulse{0%,100%{opacity:.75;transform:scale(.94)}50%{opacity:1;transform:scale(1.07)}}
-.boot-tail i{position:absolute;right:-1px;top:50%;width:2px;height:2px;margin-top:-1px;border-radius:50%;
-  background:#FFD9A6;box-shadow:0 0 4px rgba(255,150,80,.9),0 0 9px rgba(255,90,50,.5);
-  opacity:0;pointer-events:none}
-.boot-tail i:nth-child(1){animation:sparkA 1.05s cubic-bezier(.2,.6,.4,1) infinite}
-.boot-tail i:nth-child(2){width:1.5px;height:1.5px;background:#FFB37C;
-  animation:sparkB 1.35s cubic-bezier(.2,.6,.4,1) .32s infinite}
-.boot-tail i:nth-child(3){width:2.5px;height:2.5px;background:#FFE7C2;
-  animation:sparkC .9s cubic-bezier(.2,.6,.4,1) .58s infinite}
-.boot-tail i:nth-child(4){width:1.5px;height:1.5px;background:#FF8E5E;
-  animation:sparkB 1.5s cubic-bezier(.2,.6,.4,1) .8s infinite}
-@keyframes sparkA{0%{opacity:0;transform:translate3d(0,0,0) scale(1)}12%{opacity:1}
-  100%{opacity:0;transform:translate3d(9px,-14px,0) scale(.4)}}
-@keyframes sparkB{0%{opacity:0;transform:translate3d(0,0,0) scale(1)}14%{opacity:.95}
-  100%{opacity:0;transform:translate3d(-6px,-12px,0) scale(.35)}}
-@keyframes sparkC{0%{opacity:0;transform:translate3d(0,0,0) scale(1)}10%{opacity:1}
-  60%{opacity:.85;transform:translate3d(5px,-6px,0) scale(.7)}
-  100%{opacity:0;transform:translate3d(8px,-10px,0) scale(.3)}}
+.boot-tail i{display:none}
 @keyframes emberTwinkle{0%,100%{opacity:.4;transform:scale(.6) rotate(-14deg)}
   46%{opacity:1;transform:scale(1) rotate(10deg)}62%{opacity:.86;transform:scale(.92) rotate(16deg)}}
 @media(prefers-reduced-motion:reduce){
-  .boot-tail::before,.boot-tail::after{animation:none}
-  .boot-tail::after{opacity:.85;transform:none}
-  .boot-tail i{display:none}
   .bm-sheen{animation:none}
 }
 #boot.boot-done .boot-tail{opacity:0}
@@ -5201,7 +5181,7 @@ html[data-theme="dark"] .pview{background:
    and its deep shadow stack lives in the base rule; never flatten it here.
    v3.38: tint follows the dark-blue veil. */
 .boot-mark{color:#C7D5FF;border-color:rgba(90,130,240,.44)}
-.boot-bar i{background:linear-gradient(90deg,#0A123E,#10265F 34%,#1B43A8 66%,#2F6BE0 84%,#B0354F 93%,#FF6A3D 98%,#FFD3B0)}
+.boot-bar i{background:linear-gradient(90deg,#0A123E,#10265F 34%,#1B43A8 66%,#2F6BE0 86%,#7FB0FF 96%,#EAF2FF)}
 
 /* help page: gold is extinct - violet is the single accent */
 #helpView{--fg-gold:#A59BF2;--fg-gold2:#7C6FE0;--fg-indigo:#7C6FE0;--fg-live:#4DE2C5}
@@ -5747,3 +5727,10 @@ html{scroll-behavior:auto}
 .cmp3-item{content-visibility:auto;contain-intrinsic-size:auto 40px}
 .modal-body{overscroll-behavior:contain}
 .cmp3-view{overscroll-behavior:contain}
+
+/* ---- v3.39 perf, no visual change ----
+   The dossier/palette backgrounds are 98.5-99% opaque ink; the 14px backdrop
+   blur behind them was re-blurring the live atlas canvas every frame while
+   the modal opened and while its body scrolled. Killing the filter is
+   pixel-identical at that opacity and removes the worst per-frame cost. */
+#modal{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}

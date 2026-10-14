@@ -127,8 +127,15 @@
     }
 
     const viewsOpen = () => document.body.classList.contains("pv-on");
+    /* v3.39: an open dossier/palette sits over the canvas; drawing 60fps of
+       points behind a near-opaque modal only heats the device and re-blurs
+       the backdrop - pause the field until the overlay closes. */
+    const overlayOpen = () => {
+      const m = document.getElementById("modal"), c = document.getElementById("cmdk");
+      return !!(m && m.classList.contains("open")) || !!(c && c.classList.contains("open"));
+    };
     function frame(now) {
-      if (!running || viewsOpen()) { running = false; return; }
+      if (!running || viewsOpen() || overlayOpen()) { running = false; return; }
       const dt = Math.min(50, now - last); last = now;
       t += dt * 0.001;
       ctx.clearRect(0, 0, W, H);
@@ -193,7 +200,7 @@
       return;
     }
     const wake = () => {
-      if (document.hidden || viewsOpen()) { running = false; return; }
+      if (document.hidden || viewsOpen() || overlayOpen()) { running = false; return; }
       if (!running) { running = true; last = performance.now(); requestAnimationFrame(frame); }
     };
     /* v3.23: a full-viewport canvas repainting during scroll is the home
@@ -207,8 +214,13 @@
     }, { passive: true });
     document.addEventListener("visibilitychange", wake);
     /* an opaque full-screen view hides this layer completely - do not burn
-       frames painting underneath it */
-    new MutationObserver(wake).observe(document.body, { attributes: true, attributeFilter: ["class"] });
+       frames painting underneath it; same for an open dossier/palette */
+    const mo = new MutationObserver(wake);
+    mo.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+    ["modal", "cmdk"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) mo.observe(el, { attributes: true, attributeFilter: ["class"] });
+    });
     /* paint the first constellation frame synchronously so the page never
        exposes an empty canvas while the animation loop is being scheduled. */
     frame(performance.now());
