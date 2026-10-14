@@ -1,614 +1,47 @@
 [
   {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    "ts": "2026-10-14T05:14:03Z",
-    "app_id": 3,
-    "app": "Pipedrive",
-    "kind": "tools",
-    "message": "live tools 45 → 46"
-  },
-  {
-    "ts": "2026-10-14T05:14:03Z",
-=======
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 1,
-    "app": "Salesforce",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 6,
-    "app": "Podio",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
->>>>>>> 44a5f34 (update)
-    "app_id": 7,
-    "app": "Zoho CRM",
-    "kind": "servers",
-    "message": "registry servers 17 → 14 (-3)"
-  },
-  {
-<<<<<<< HEAD
-    "ts": "2026-10-14T05:14:03Z",
-    "app_id": 11,
-    "app": "Zendesk",
-    "kind": "tools",
-    "message": "live tools 45 → 46"
-  },
-  {
-    "ts": "2026-10-14T05:14:03Z",
-    "app_id": 12,
-    "app": "Intercom",
-    "kind": "tools",
-    "message": "live tools 45 → 46"
-  },
-  {
-    "ts": "2026-10-14T05:14:03Z",
-    "app_id": 13,
-    "app": "Freshdesk",
-    "kind": "tools",
-    "message": "live tools 45 → 46"
-  },
-  {
-    "ts": "2026-10-14T05:14:03Z",
-    "app_id": 22,
-    "app": "Twilio",
-    "kind": "tools",
-    "message": "live tools 45 → 46"
-  },
-  {
-    "ts": "2026-10-14T05:14:03Z",
-=======
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 7,
-    "app": "Zoho CRM",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 8,
-    "app": "Close",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 9,
-    "app": "Copper",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 10,
-    "app": "DealCloud",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 11,
-    "app": "Zendesk",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 12,
-    "app": "Intercom",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 13,
-    "app": "Freshdesk",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 15,
-    "app": "Pylon",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 16,
-    "app": "LiveAgent",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 17,
-    "app": "Plain",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 18,
-    "app": "Help Scout",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 19,
-    "app": "Gorgias",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 21,
-    "app": "Slack",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
->>>>>>> 44a5f34 (update)
-    "app_id": 23,
-    "app": "Zoho Cliq",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-<<<<<<< HEAD
-    "ts": "2026-10-14T05:14:03Z",
-=======
-    "ts": "2026-10-13T19:28:41Z",
->>>>>>> 44a5f34 (update)
-    "app_id": 23,
-    "app": "Zoho Cliq",
-    "kind": "servers",
-    "message": "registry servers 4 → 0 (-4)"
-  },
-  {
-<<<<<<< HEAD
-    "ts": "2026-10-14T05:14:03Z",
-=======
-    "ts": "2026-10-13T19:28:41Z",
->>>>>>> 44a5f34 (update)
-    "app_id": 23,
-    "app": "Zoho Cliq",
-    "kind": "tools",
-    "message": "live tools 45 → 0"
-  },
-  {
-<<<<<<< HEAD
-    "ts": "2026-10-14T05:14:03Z",
-    "app_id": 28,
-    "app": "WhatsApp Business",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-10-14T05:14:03Z",
-    "app_id": 28,
-    "app": "WhatsApp Business",
-    "kind": "servers",
-    "message": "registry servers 7 → 0 (-7)"
-  },
-  {
-    "ts": "2026-10-14T05:14:03Z",
-    "app_id": 31,
-    "app": "Google Ads",
-    "kind": "servers",
-    "message": "registry servers 19 → 17 (-2)"
-  },
-  {
-    "ts": "2026-10-14T05:14:03Z",
-    "app_id": 35,
-    "app": "Mailchimp",
-    "kind": "tools",
-    "message": "live tools 45 → 46"
-  },
-  {
-    "ts": "2026-10-14T05:14:03Z",
-    "app_id": 36,
-    "app": "Klaviyo",
-    "kind": "tools",
-    "message": "live tools 45 → 46"
-  },
-  {
-    "ts": "2026-10-14T05:14:03Z",
-    "app_id": 39,
-    "app": "Threads (Meta)",
-    "kind": "servers",
-    "message": "registry servers 9 → 7 (-2)"
-  },
-  {
-    "ts": "2026-10-14T05:14:03Z",
-    "app_id": 40,
-    "app": "SendGrid",
-    "kind": "tools",
-    "message": "live tools 43 → 44"
-  },
-  {
-    "ts": "2026-10-14T05:14:03Z",
-    "app_id": 42,
-    "app": "WooCommerce",
-    "kind": "tools",
-    "message": "live tools 45 → 46"
-  },
-  {
-    "ts": "2026-10-14T05:14:03Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 11,024 → 11,079 (+55)"
-  },
-  {
-    "ts": "2026-10-14T05:14:03Z",
-    "app_id": 57,
-    "app": "Bright Data",
-    "kind": "servers",
-    "message": "registry servers 3 → 2 (-1)"
-  },
-  {
-    "ts": "2026-10-14T05:14:03Z",
-    "app_id": 75,
-    "app": "Asana",
-    "kind": "tools",
-    "message": "live tools 46 → 47"
-  },
-  {
-    "ts": "2026-10-14T05:14:03Z",
-    "app_id": 76,
-    "app": "Monday.com",
-    "kind": "servers",
-    "message": "registry servers 3 → 1 (-2)"
-  },
-  {
-    "ts": "2026-10-14T05:14:03Z",
-    "app_id": 82,
-    "app": "Plaid",
-    "kind": "tools",
-    "message": "live tools 43 → 44"
-  },
-  {
-    "ts": "2026-10-14T05:14:03Z",
-    "app_id": 86,
-    "app": "QuickBooks",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-10-14T05:14:03Z",
-    "app_id": 86,
-    "app": "QuickBooks",
-    "kind": "servers",
-    "message": "registry servers 11 → 0 (-11)"
-  },
-  {
-    "ts": "2026-10-14T05:14:03Z",
-    "app_id": 99,
-    "app": "YouTube Transcript",
-    "kind": "servers",
-    "message": "registry servers 36 → 34 (-2)"
-  },
-  {
     "ts": "2026-10-13T22:53:43Z",
-=======
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 23,
-    "app": "Zoho Cliq",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 24,
-    "app": "Lark (Larksuite)",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 25,
-    "app": "Pumble",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 26,
-    "app": "Discord",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
->>>>>>> 44a5f34 (update)
-=======
-    "ts": "2026-10-13T22:53:43Z",
->>>>>>> e49d4b4 ()
     "app_id": 28,
     "app": "WhatsApp Business",
     "kind": "status",
     "message": "MCP status none → community"
   },
   {
-<<<<<<< HEAD
-<<<<<<< HEAD
     "ts": "2026-10-13T22:53:43Z",
-=======
-    "ts": "2026-10-13T19:28:41Z",
->>>>>>> 44a5f34 (update)
-=======
-    "ts": "2026-10-13T22:53:43Z",
->>>>>>> e49d4b4 ()
     "app_id": 28,
     "app": "WhatsApp Business",
     "kind": "servers",
     "message": "registry servers 0 → 7 (+7)"
   },
   {
-<<<<<<< HEAD
-<<<<<<< HEAD
     "ts": "2026-10-13T22:53:43Z",
-=======
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 30,
-    "app": "Vonage",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 31,
-    "app": "Google Ads",
-    "kind": "servers",
-    "message": "registry servers 19 → 17 (-2)"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 35,
-    "app": "Mailchimp",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 37,
-    "app": "systeme.io",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 38,
-    "app": "Pinterest",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 39,
-    "app": "Threads (Meta)",
-    "kind": "servers",
-    "message": "registry servers 9 → 7 (-2)"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 40,
-    "app": "SendGrid",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 41,
-    "app": "Shopify",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 42,
-    "app": "WooCommerce",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 44,
-    "app": "Salesforce Commerce Cloud",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 45,
-    "app": "Magento (Adobe Commerce)",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 45,
-    "app": "Magento (Adobe Commerce)",
-    "kind": "servers",
-    "message": "registry servers 4 → 0 (-4)"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 45,
-    "app": "Magento (Adobe Commerce)",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 47,
-    "app": "Ecwid",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 49,
-    "app": "Amazon Selling Partner",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 50,
-    "app": "fanbasis",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 51,
-    "app": "DataForSEO",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
->>>>>>> 44a5f34 (update)
-=======
-    "ts": "2026-10-13T22:53:43Z",
->>>>>>> e49d4b4 ()
     "app_id": 52,
     "app": "SE Ranking",
     "kind": "servers",
     "message": "registry servers 1 → 3 (+2)"
   },
   {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> e49d4b4 ()
     "ts": "2026-10-13T22:53:43Z",
     "app_id": 55,
     "app": "Apify",
     "kind": "stars",
     "message": "repo ★ 10,940 → 11,024 (+84)"
-<<<<<<< HEAD
   },
   {
     "ts": "2026-10-13T22:53:43Z",
-=======
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 56,
-    "app": "Firecrawl",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
->>>>>>> 44a5f34 (update)
-=======
-  },
-  {
-    "ts": "2026-10-13T22:53:43Z",
->>>>>>> e49d4b4 ()
     "app_id": 57,
     "app": "Bright Data",
     "kind": "servers",
     "message": "registry servers 2 → 3 (+1)"
   },
   {
-<<<<<<< HEAD
-<<<<<<< HEAD
     "ts": "2026-10-13T22:53:43Z",
-=======
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 57,
-    "app": "Bright Data",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 58,
-    "app": "Sherlock",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 59,
-    "app": "Waterfall.io",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 60,
-    "app": "Clay",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 62,
-    "app": "Vercel",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 65,
-    "app": "Supabase",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 67,
-    "app": "Snowflake",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 68,
-    "app": "MongoDB Atlas",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 70,
-    "app": "Sentry",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 71,
-    "app": "Notion",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
->>>>>>> 44a5f34 (update)
-=======
-    "ts": "2026-10-13T22:53:43Z",
->>>>>>> e49d4b4 ()
     "app_id": 74,
     "app": "Jira",
     "kind": "servers",
     "message": "registry servers 5 → 8 (+3)"
   },
   {
-<<<<<<< HEAD
-<<<<<<< HEAD
     "ts": "2026-10-13T22:53:43Z",
     "app_id": 79,
     "app": "Smartsheet",
@@ -624,74 +57,6 @@
   },
   {
     "ts": "2026-10-13T22:53:43Z",
-=======
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 74,
-    "app": "Jira",
-=======
-    "ts": "2026-10-13T22:53:43Z",
-    "app_id": 79,
-    "app": "Smartsheet",
->>>>>>> e49d4b4 ()
-    "kind": "site",
-    "message": "site came up"
-  },
-  {
-    "ts": "2026-10-13T22:53:43Z",
-    "app_id": 81,
-    "app": "Stripe",
-    "kind": "stars",
-    "message": "repo ★ 1,924 → 1,932 (+8)"
-  },
-  {
-<<<<<<< HEAD
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 86,
-    "app": "QuickBooks",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 87,
-    "app": "Xero",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 88,
-    "app": "Brex",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 95,
-    "app": "Reducto",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 96,
-    "app": "Devin",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
-    "app_id": 98,
-    "app": "Mermaid CLI",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-13T19:28:41Z",
->>>>>>> 44a5f34 (update)
-=======
-    "ts": "2026-10-13T22:53:43Z",
->>>>>>> e49d4b4 ()
     "app_id": 99,
     "app": "YouTube Transcript",
     "kind": "servers",
@@ -1634,10 +999,6 @@
     "app": "Pipedrive",
     "kind": "tools",
     "message": "live tools 0 → 41"
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> e49d4b4 ()
   },
   {
     "ts": "2026-09-27T21:26:00Z",
@@ -1862,10 +1223,6 @@
     "app": "Binance",
     "kind": "servers",
     "message": "registry servers 4 → 0 (-4)"
-<<<<<<< HEAD
-=======
->>>>>>> 44a5f34 (update)
-=======
   },
   {
     "ts": "2026-09-27T12:59:10Z",
@@ -2041,6 +1398,5 @@
     "app": "Slack",
     "kind": "servers",
     "message": "registry servers 6 → 11 (+5)"
->>>>>>> e49d4b4 ()
   }
 ]

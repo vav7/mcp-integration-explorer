@@ -585,8 +585,6 @@
     "avg_readiness": 48.7
   },
   {
-<<<<<<< HEAD
-<<<<<<< HEAD
     "ts": "2026-10-13T22:53:43Z",
     "official": 14,
     "community": 70,
@@ -598,41 +596,5 @@
     "responding": 100,
     "reachable": 94,
     "avg_readiness": 49.0
-  },
-  {
-    "ts": "2026-10-14T05:14:03Z",
-    "official": 14,
-    "community": 67,
-    "none": 19,
-    "servers": 506,
-    "tools": 323,
-    "downloads": 1196100,
-    "stars": 23996,
-    "responding": 100,
-    "reachable": 94,
-    "avg_readiness": 48.3
-=======
-    "ts": "2026-10-13T19:28:41Z",
-=======
-    "ts": "2026-10-13T22:53:43Z",
->>>>>>> e49d4b4 ()
-    "official": 14,
-    "community": 70,
-    "none": 16,
-    "servers": 540,
-    "tools": 323,
-    "downloads": 1181365,
-<<<<<<< HEAD
-    "stars": 23838,
-    "responding": 44,
-    "reachable": 41,
-    "avg_readiness": 42.7
->>>>>>> 44a5f34 (update)
-=======
-    "stars": 23937,
-    "responding": 100,
-    "reachable": 94,
-    "avg_readiness": 49.0
->>>>>>> e49d4b4 ()
   }
 ]
