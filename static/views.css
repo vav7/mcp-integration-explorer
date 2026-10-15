@@ -1299,3 +1299,22 @@ body.pv-on .vx2{ display:grid; place-items:center }
   -webkit-background-clip:text; background-clip:text;
   color:transparent;
   animation:logoTextShine 7s linear infinite }
+
+/* ============================================================================
+   v3.47 - THE END BOX, CURVED
+   The footer's dark backdrop was a rectangle: straight top edge, straight
+   sides. Now the box itself is the curve - one wide panel stretched 4% past
+   each side, its top a single elliptical arc, edge softened by blur and a
+   transparent-first gradient. Colours untouched: same ink, same faint violet
+   radials, same ambient breathe.
+   ========================================================================== */
+.footer{border-top:0}
+.footer::before{
+  left:-4%;right:-4%;width:auto;transform:none;top:-150px;
+  border-radius:100% 100% 0 0 / 150px 150px 0 0;
+  filter:blur(16px);
+  background:
+    radial-gradient(118% 76% at 50% 118%, rgba(126,88,246,.042), transparent 62%),
+    radial-gradient(76% 50% at 9% 104%, rgba(84,104,255,.026), transparent 68%),
+    radial-gradient(70% 46% at 93% 96%, rgba(170,112,255,.02), transparent 70%),
+    linear-gradient(180deg, rgba(3,3,8,0) 0%, rgba(3,3,8,.965) 26%, rgba(3,3,7,.99) 60%, rgba(2,2,5,1) 100%) !important}

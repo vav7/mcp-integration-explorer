@@ -5755,4 +5755,20 @@ table.grid tbody tr{content-visibility:auto;contain-intrinsic-size:auto 64px}
    ========================================================================== */
 .applogo img{opacity:0;transition:opacity .25s var(--ease)}
 .applogo img.on{opacity:1}
-.footer{content-visibility:auto;contain-intrinsic-size:auto 460px}
+
+/* ---- v3.43: an empty trend series must not look like a glitch ----
+   With no history the chart box used to keep its full 280px black slab and
+   centre one grey line in it - read as a broken panel. Collapse it to a
+   compact dashed note instead; the moment real points arrive the class goes
+   and the full instrument returns unchanged. */
+.chart-wrap.is-empty{height:auto;min-height:0;background:none;
+  border:1px dashed rgba(148,180,255,.16);border-radius:14px;padding:22px 16px}
+.chart-wrap.is-empty .chart-empty{height:auto;
+  font:500 12px var(--mono);letter-spacing:.06em;color:var(--t3)}
+
+/* ---- v3.44: let the page exhale into the footer ----
+   Below the trend chart the ambient starfield used to run bright all the way
+   to the footer seam, which read as a weird floating band. From mid-trends
+   down through the 120px gap the page now dims smoothly into the footer's
+   ink, with one deep-blue ambient breath at the very bottom - dark, calm,
+   intentional. Pointer-transparent, purely paint. */

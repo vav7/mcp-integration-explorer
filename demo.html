@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="demo" content="offline-snapshot">
-<meta name="build" content="v3.41.0-ember">
+<meta name="build" content="v3.47.0-ember">
 <title>MCP Integration Explorer · integration intelligence</title>
 <meta name="description" content="Live, evidence-backed MCP / agent integration readiness across applications. Real registry data, endpoint probes, GitHub, package adoption and liveness, with every signal traceable to its source.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -5774,7 +5774,23 @@ table.grid tbody tr{content-visibility:auto;contain-intrinsic-size:auto 64px}
    ========================================================================== */
 .applogo img{opacity:0;transition:opacity .25s var(--ease)}
 .applogo img.on{opacity:1}
-.footer{content-visibility:auto;contain-intrinsic-size:auto 460px}
+
+/* ---- v3.43: an empty trend series must not look like a glitch ----
+   With no history the chart box used to keep its full 280px black slab and
+   centre one grey line in it - read as a broken panel. Collapse it to a
+   compact dashed note instead; the moment real points arrive the class goes
+   and the full instrument returns unchanged. */
+.chart-wrap.is-empty{height:auto;min-height:0;background:none;
+  border:1px dashed rgba(148,180,255,.16);border-radius:14px;padding:22px 16px}
+.chart-wrap.is-empty .chart-empty{height:auto;
+  font:500 12px var(--mono);letter-spacing:.06em;color:var(--t3)}
+
+/* ---- v3.44: let the page exhale into the footer ----
+   Below the trend chart the ambient starfield used to run bright all the way
+   to the footer seam, which read as a weird floating band. From mid-trends
+   down through the 120px gap the page now dims smoothly into the footer's
+   ink, with one deep-blue ambient breath at the very bottom - dark, calm,
+   intentional. Pointer-transparent, purely paint. */
 
 
 /* ===== views.css ===== */
@@ -7079,6 +7095,25 @@ body.pv-on .vx2{ display:grid; place-items:center }
   -webkit-background-clip:text; background-clip:text;
   color:transparent;
   animation:logoTextShine 7s linear infinite }
+
+/* ============================================================================
+   v3.47 - THE END BOX, CURVED
+   The footer's dark backdrop was a rectangle: straight top edge, straight
+   sides. Now the box itself is the curve - one wide panel stretched 4% past
+   each side, its top a single elliptical arc, edge softened by blur and a
+   transparent-first gradient. Colours untouched: same ink, same faint violet
+   radials, same ambient breathe.
+   ========================================================================== */
+.footer{border-top:0}
+.footer::before{
+  left:-4%;right:-4%;width:auto;transform:none;top:-150px;
+  border-radius:100% 100% 0 0 / 150px 150px 0 0;
+  filter:blur(16px);
+  background:
+    radial-gradient(118% 76% at 50% 118%, rgba(126,88,246,.042), transparent 62%),
+    radial-gradient(76% 50% at 9% 104%, rgba(84,104,255,.026), transparent 68%),
+    radial-gradient(70% 46% at 93% 96%, rgba(170,112,255,.02), transparent 70%),
+    linear-gradient(180deg, rgba(3,3,8,0) 0%, rgba(3,3,8,.965) 26%, rgba(3,3,7,.99) 60%, rgba(2,2,5,1) 100%) !important}
 
 </style>
 </head>
@@ -9360,7 +9395,8 @@ window.__SNAPSHOT__ = {"generated_at": "2026-10-15T17:13:16Z", "app_name": "MCP 
     if (!force && sig === trendSig && wrap.firstChild) return;
     trendSig = sig;
     $("#trendTitle").textContent = M.label + " over time";
-    if (!hist.length) { $("#trendHint").textContent = ""; wrap.innerHTML = `<div class="chart-empty">No history yet; it builds with each live refresh.</div>`; return; }
+    if (!hist.length) { $("#trendHint").textContent = ""; wrap.classList.add("is-empty"); wrap.innerHTML = `<div class="chart-empty">No history yet; it builds with each live refresh.</div>`; return; }
+    wrap.classList.remove("is-empty");
     $("#trendHint").textContent = hist.length + " point" + (hist.length > 1 ? "s" : "") + " · real snapshots";
     const W = Math.max(320, wrap.clientWidth || 760), H = wrap.clientHeight || 288;
     const pad = { l: 52, r: 22, t: 22, b: 30 }, iw = W - pad.l - pad.r, ih = H - pad.t - pad.b;

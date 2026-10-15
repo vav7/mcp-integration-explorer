@@ -1133,7 +1133,8 @@
     if (!force && sig === trendSig && wrap.firstChild) return;
     trendSig = sig;
     $("#trendTitle").textContent = M.label + " over time";
-    if (!hist.length) { $("#trendHint").textContent = ""; wrap.innerHTML = `<div class="chart-empty">No history yet; it builds with each live refresh.</div>`; return; }
+    if (!hist.length) { $("#trendHint").textContent = ""; wrap.classList.add("is-empty"); wrap.innerHTML = `<div class="chart-empty">No history yet; it builds with each live refresh.</div>`; return; }
+    wrap.classList.remove("is-empty");
     $("#trendHint").textContent = hist.length + " point" + (hist.length > 1 ? "s" : "") + " · real snapshots";
     const W = Math.max(320, wrap.clientWidth || 760), H = wrap.clientHeight || 288;
     const pad = { l: 52, r: 22, t: 22, b: 30 }, iw = W - pad.l - pad.r, ih = H - pad.t - pad.b;
