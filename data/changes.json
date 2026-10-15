@@ -1,5 +1,68 @@
 [
   {
+    "ts": "2026-10-15T04:53:57Z",
+    "app_id": 28,
+    "app": "WhatsApp Business",
+    "kind": "servers",
+    "message": "registry servers 6 → 5 (-1)"
+  },
+  {
+    "ts": "2026-10-15T04:53:57Z",
+    "app_id": 45,
+    "app": "Magento (Adobe Commerce)",
+    "kind": "servers",
+    "message": "registry servers 4 → 8 (+4)"
+  },
+  {
+    "ts": "2026-10-15T04:53:57Z",
+    "app_id": 45,
+    "app": "Magento (Adobe Commerce)",
+    "kind": "tools",
+    "message": "live tools 0 → 13"
+  },
+  {
+    "ts": "2026-10-15T04:53:57Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 11,229 → 11,271 (+42)"
+  },
+  {
+    "ts": "2026-10-15T04:53:57Z",
+    "app_id": 91,
+    "app": "NotebookLM",
+    "kind": "status",
+    "message": "MCP status community → none"
+  },
+  {
+    "ts": "2026-10-15T04:53:57Z",
+    "app_id": 91,
+    "app": "NotebookLM",
+    "kind": "servers",
+    "message": "registry servers 3 → 0 (-3)"
+  },
+  {
+    "ts": "2026-10-15T04:53:57Z",
+    "app_id": 91,
+    "app": "NotebookLM",
+    "kind": "tools",
+    "message": "live tools 43 → 0"
+  },
+  {
+    "ts": "2026-10-15T04:53:57Z",
+    "app_id": 98,
+    "app": "Mermaid CLI",
+    "kind": "status",
+    "message": "MCP status community → none"
+  },
+  {
+    "ts": "2026-10-15T04:53:57Z",
+    "app_id": 98,
+    "app": "Mermaid CLI",
+    "kind": "servers",
+    "message": "registry servers 5 → 0 (-5)"
+  },
+  {
     "ts": "2026-10-14T21:49:05Z",
     "app_id": 55,
     "app": "Apify",
@@ -1335,68 +1398,5 @@
     "app": "Zoho CRM",
     "kind": "servers",
     "message": "registry servers 13 → 16 (+3)"
-  },
-  {
-    "ts": "2026-09-27T13:26:35Z",
-    "app_id": 79,
-    "app": "Smartsheet",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-09-27T13:26:35Z",
-    "app_id": 80,
-    "app": "Harvest",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-09-27T13:26:35Z",
-    "app_id": 80,
-    "app": "Harvest",
-    "kind": "servers",
-    "message": "registry servers 4 → 0 (-4)"
-  },
-  {
-    "ts": "2026-09-27T13:26:35Z",
-    "app_id": 80,
-    "app": "Harvest",
-    "kind": "tools",
-    "message": "live tools 20 → 0"
-  },
-  {
-    "ts": "2026-09-27T13:26:35Z",
-    "app_id": 83,
-    "app": "Binance",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-09-27T13:26:35Z",
-    "app_id": 83,
-    "app": "Binance",
-    "kind": "servers",
-    "message": "registry servers 4 → 0 (-4)"
-  },
-  {
-    "ts": "2026-09-27T12:59:10Z",
-    "app_id": 7,
-    "app": "Zoho CRM",
-    "kind": "servers",
-    "message": "registry servers 16 → 13 (-3)"
-  },
-  {
-    "ts": "2026-09-27T12:59:10Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 8,674 → 8,682 (+8)"
-  },
-  {
-    "ts": "2026-09-27T12:19:07Z",
-    "app_id": 7,
-    "app": "Zoho CRM",
-    "kind": "tools",
-    "message": "live tools 182 → 183"
   }
 ]
