@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
   "generated_at": "2026-10-15T11:40:20Z",
-=======
-  "generated_at": "2026-10-15T16:24:07Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
   "app_name": "MCP Integration Explorer",
   "tagline": "Live, source-traceable integration readiness for 100 apps",
   "stats": {
@@ -14,28 +10,16 @@
     "mcp_none": 16,
     "mcp_unknown": 0,
     "mcp_pending": 0,
-<<<<<<< HEAD
     "total_mcp_servers": 545,
-=======
-    "total_mcp_servers": 542,
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
     "websites_reachable": 94,
     "websites_responding": 100,
     "websites_checked": 100,
     "github_repos_found": 67,
-<<<<<<< HEAD
     "total_stars": 24263,
     "median_latency_ms": 325,
     "total_downloads": 1195712,
     "total_tools": 339,
     "open_endpoints": 25,
-=======
-    "total_stars": 24123,
-    "median_latency_ms": 448,
-    "total_downloads": 1196166,
-    "total_tools": 326,
-    "open_endpoints": 24,
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
     "generic_gateways": 12,
     "auth_gated_endpoints": 30,
     "probed_endpoints": 71,
@@ -188,37 +172,22 @@
     {
       "name": "MCP Registry",
       "reachable": true,
-<<<<<<< HEAD
       "latency_ms": 215,
       "last_check": "2026-10-15T11:36:43Z",
-=======
-      "latency_ms": 1021,
-      "last_check": "2026-10-15T16:22:16Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
       "detail": "HTTP 200"
     },
     {
       "name": "GitHub API",
       "reachable": true,
-<<<<<<< HEAD
       "latency_ms": 85,
       "last_check": "2026-10-15T11:36:42Z",
-=======
-      "latency_ms": 77,
-      "last_check": "2026-10-15T16:22:15Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
       "detail": "HTTP 200"
     },
     {
       "name": "npm Registry",
       "reachable": true,
-<<<<<<< HEAD
       "latency_ms": 59,
       "last_check": "2026-10-15T11:36:42Z",
-=======
-      "latency_ms": 766,
-      "last_check": "2026-10-15T16:22:16Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
       "detail": "HTTP 200"
     }
   ],
@@ -607,11 +576,7 @@
           "salesforce"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=salesforce&limit=50",
-<<<<<<< HEAD
         "fetched_at": "2026-10-15T11:36:47Z",
-=======
-        "fetched_at": "2026-10-15T16:22:17Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
         "error": null,
         "empty_cycles": 0
       },
@@ -629,29 +594,17 @@
         "description": "MCP Server for interacting with Salesforce instances",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/kodey-ai/salesforce-mcp",
-<<<<<<< HEAD
         "fetched_at": "2026-10-15T11:39:22Z",
-=======
-        "fetched_at": "2026-10-15T16:20:12Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
         "error": null
       },
       "liveness": {
         "url": "https://salesforce.com",
         "status_code": 200,
-<<<<<<< HEAD
         "latency_ms": 796,
         "reachable": true,
         "responded": true,
         "final_url": "https://www.salesforce.com/",
         "fetched_at": "2026-10-15T11:36:48Z",
-=======
-        "latency_ms": 973,
-        "reachable": true,
-        "responded": true,
-        "final_url": "https://www.salesforce.com/ap/?ir=1",
-        "fetched_at": "2026-10-15T16:22:18Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
         "error": null
       },
       "packages": [
@@ -662,11 +615,7 @@
           "downloads_last_month": 933,
           "last_published": null,
           "url": "https://www.npmjs.com/package/sf-intelligence",
-<<<<<<< HEAD
           "fetched_at": "2026-10-15T11:36:48Z",
-=======
-          "fetched_at": "2026-10-15T16:20:12Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
           "error": null
         }
       ],
@@ -697,7 +646,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 0.35,
-            "detail": "committed 356d ago"
+            "detail": "committed 355d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -718,11 +667,7 @@
       "tools_count": null,
       "auth_gated": true,
       "generic_gateway": false,
-<<<<<<< HEAD
       "last_fetched": "2026-10-15T11:36:47Z"
-=======
-      "last_fetched": "2026-10-15T16:22:17Z"
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
     },
     {
       "app": {
@@ -898,11 +843,7 @@
           "hubspot"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=hubspot&limit=50",
-<<<<<<< HEAD
         "fetched_at": "2026-10-15T11:36:47Z",
-=======
-        "fetched_at": "2026-10-15T16:22:17Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
         "error": null,
         "empty_cycles": 0
       },
@@ -920,29 +861,17 @@
         "description": null,
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/Centrify-Internal/hubspot-mcp-server",
-<<<<<<< HEAD
         "fetched_at": "2026-10-15T11:39:23Z",
-=======
-        "fetched_at": "2026-10-15T16:20:20Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
         "error": null
       },
       "liveness": {
         "url": "https://hubspot.com",
         "status_code": 200,
-<<<<<<< HEAD
         "latency_ms": 898,
         "reachable": true,
         "responded": true,
         "final_url": "https://www.hubspot.com/",
         "fetched_at": "2026-10-15T11:36:48Z",
-=======
-        "latency_ms": 1369,
-        "reachable": true,
-        "responded": true,
-        "final_url": "https://www.hubspot.com/",
-        "fetched_at": "2026-10-15T16:22:19Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
         "error": null
       },
       "packages": [
@@ -953,11 +882,7 @@
           "downloads_last_month": null,
           "last_published": null,
           "url": "https://www.npmjs.com/package/hubspot-auditor",
-<<<<<<< HEAD
           "fetched_at": "2026-10-15T11:36:48Z",
-=======
-          "fetched_at": "2026-10-15T16:20:20Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
           "error": null
         },
         {
@@ -967,11 +892,7 @@
           "downloads_last_month": 726,
           "last_published": null,
           "url": "https://www.npmjs.com/package/@mindstone/mcp-server-hubspot",
-<<<<<<< HEAD
           "fetched_at": "2026-10-15T11:36:48Z",
-=======
-          "fetched_at": "2026-10-15T16:20:20Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
           "error": null
         }
       ],
@@ -1016,11 +937,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-<<<<<<< HEAD
       "last_fetched": "2026-10-15T11:36:47Z"
-=======
-      "last_fetched": "2026-10-15T16:22:17Z"
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
     },
     {
       "app": {
@@ -1171,11 +1088,7 @@
           "pipedrive"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=pipedrive&limit=50",
-<<<<<<< HEAD
         "fetched_at": "2026-10-15T11:36:47Z",
-=======
-        "fetched_at": "2026-10-15T16:22:17Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
         "error": null,
         "empty_cycles": 0
       },
@@ -1185,7 +1098,6 @@
         "html_url": "https://github.com/Servosity/msp-skills",
         "stars": 59,
         "forks": 13,
-<<<<<<< HEAD
         "open_issues": 11,
         "license": "NOASSERTION",
         "language": "Go",
@@ -1195,35 +1107,16 @@
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/servosity/msp-skills",
         "fetched_at": "2026-10-15T11:39:23Z",
-=======
-        "open_issues": 8,
-        "license": "NOASSERTION",
-        "language": "Go",
-        "archived": false,
-        "pushed_at": "2026-10-15T14:18:45Z",
-        "description": "Free MCP servers + Claude Code Skills for MSP tools - PSA, RMM, backup, M365. Local-first: your data never leaves your network.",
-        "via": "registry_repository",
-        "source_url": "https://api.github.com/repos/servosity/msp-skills",
-        "fetched_at": "2026-10-15T16:20:20Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
         "error": null
       },
       "liveness": {
         "url": "https://pipedrive.com",
         "status_code": 200,
-<<<<<<< HEAD
         "latency_ms": 262,
         "reachable": true,
         "responded": true,
         "final_url": "https://www.pipedrive.com/",
         "fetched_at": "2026-10-15T11:36:47Z",
-=======
-        "latency_ms": 1291,
-        "reachable": true,
-        "responded": true,
-        "final_url": "https://www.pipedrive.com/",
-        "fetched_at": "2026-10-15T16:22:18Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
         "error": null
       },
       "packages": [
@@ -1234,11 +1127,7 @@
           "downloads_last_month": 1375,
           "last_published": null,
           "url": "https://www.npmjs.com/package/@ckalima/pipedrive-mcp-server",
-<<<<<<< HEAD
           "fetched_at": "2026-10-15T11:36:47Z",
-=======
-          "fetched_at": "2026-10-15T16:20:20Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
           "error": null
         }
       ],
@@ -3118,11 +3007,7 @@
       "tools_count": 46,
       "auth_gated": false,
       "generic_gateway": true,
-<<<<<<< HEAD
       "last_fetched": "2026-10-15T11:36:47Z"
-=======
-      "last_fetched": "2026-10-15T16:22:17Z"
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
     },
     {
       "app": {
@@ -3235,11 +3120,7 @@
           "attio"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=attio&limit=50",
-<<<<<<< HEAD
         "fetched_at": "2026-10-15T11:36:47Z",
-=======
-        "fetched_at": "2026-10-15T16:22:17Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
         "error": null,
         "empty_cycles": 0
       },
@@ -3257,29 +3138,17 @@
         "description": "Attio Model Context Protocol (MCP) server implementation",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/kesslerio/attio-mcp-server",
-<<<<<<< HEAD
         "fetched_at": "2026-10-15T11:39:24Z",
-=======
-        "fetched_at": "2026-10-15T16:20:10Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
         "error": null
       },
       "liveness": {
         "url": "https://attio.com",
         "status_code": 200,
-<<<<<<< HEAD
         "latency_ms": 233,
         "reachable": true,
         "responded": true,
         "final_url": "https://attio.com",
         "fetched_at": "2026-10-15T11:36:47Z",
-=======
-        "latency_ms": 115,
-        "reachable": true,
-        "responded": true,
-        "final_url": "https://attio.com",
-        "fetched_at": "2026-10-15T16:22:17Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
         "error": null
       },
       "packages": [
@@ -3290,11 +3159,7 @@
           "downloads_last_month": 3070,
           "last_published": null,
           "url": "https://www.npmjs.com/package/attio-mcp",
-<<<<<<< HEAD
           "fetched_at": "2026-10-15T11:36:47Z",
-=======
-          "fetched_at": "2026-10-15T16:20:10Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
           "error": null
         }
       ],
@@ -3339,11 +3204,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-<<<<<<< HEAD
       "last_fetched": "2026-10-15T11:36:47Z"
-=======
-      "last_fetched": "2026-10-15T16:22:17Z"
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
     },
     {
       "app": {
@@ -3393,11 +3254,7 @@
           "twenty"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=twenty&limit=50",
-<<<<<<< HEAD
         "fetched_at": "2026-10-15T11:36:47Z",
-=======
-        "fetched_at": "2026-10-15T16:22:32Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
         "error": null,
         "empty_cycles": 0
       },
@@ -3415,29 +3272,17 @@
         "description": "231 hosted remote MCP servers for SaaS tools (CRM, scheduling, payments, messaging and more). Connect from Claude, Cursor or VS Code. Free tier.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/m190/usefulapi-mcp",
-<<<<<<< HEAD
         "fetched_at": "2026-10-15T11:39:25Z",
-=======
-        "fetched_at": "2026-10-15T16:20:19Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
         "error": null
       },
       "liveness": {
         "url": "https://twenty.com",
         "status_code": 200,
-<<<<<<< HEAD
         "latency_ms": 1599,
         "reachable": true,
         "responded": true,
         "final_url": "https://twenty.com",
         "fetched_at": "2026-10-15T11:36:49Z",
-=======
-        "latency_ms": 313,
-        "reachable": true,
-        "responded": true,
-        "final_url": "https://twenty.com",
-        "fetched_at": "2026-10-15T16:22:32Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
         "error": null
       },
       "packages": [],
@@ -4247,11 +4092,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-<<<<<<< HEAD
       "last_fetched": "2026-10-15T11:36:47Z"
-=======
-      "last_fetched": "2026-10-15T16:22:32Z"
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
     },
     {
       "app": {
@@ -4268,11 +4109,7 @@
           "podio"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=podio&limit=50",
-<<<<<<< HEAD
         "fetched_at": "2026-10-15T11:36:47Z",
-=======
-        "fetched_at": "2026-10-15T16:22:17Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
         "error": null,
         "empty_cycles": 0
       },
@@ -4296,19 +4133,11 @@
       "liveness": {
         "url": "https://podio.com",
         "status_code": 200,
-<<<<<<< HEAD
         "latency_ms": 762,
         "reachable": true,
         "responded": true,
         "final_url": "https://podio.com",
         "fetched_at": "2026-10-15T11:36:48Z",
-=======
-        "latency_ms": 957,
-        "reachable": true,
-        "responded": true,
-        "final_url": "https://podio.com",
-        "fetched_at": "2026-10-15T16:22:18Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
         "error": null
       },
       "packages": [],
@@ -4353,11 +4182,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-<<<<<<< HEAD
       "last_fetched": "2026-10-15T11:36:47Z"
-=======
-      "last_fetched": "2026-10-15T16:22:17Z"
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
     },
     {
       "app": {
@@ -4696,11 +4521,7 @@
             "path": "mcp",
             "title": "Obriym CRM",
             "description": "Operate Obriym CRM from your AI assistant: leads, deals, orders, catalog, stock, marketplaces.",
-<<<<<<< HEAD
             "version": "1.16.0",
-=======
-            "version": "1.16.2",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
             "repository_url": null,
             "website_url": "https://obriym-crm.com/integrations/mcp",
             "remote_urls": [
@@ -4708,11 +4529,7 @@
             ],
             "packages": [],
             "is_latest": true,
-<<<<<<< HEAD
             "published_at": "2026-10-14T20:49:29.308977Z",
-=======
-            "published_at": "2026-10-15T12:55:04.803194Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
             "namespace_matches_vendor": false,
             "classification": "community",
             "probe": null,
@@ -4770,11 +4587,7 @@
           "zoho"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=zoho+crm&limit=50",
-<<<<<<< HEAD
         "fetched_at": "2026-10-15T11:36:53Z",
-=======
-        "fetched_at": "2026-10-15T16:23:13Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
         "error": null,
         "empty_cycles": 0
       },
@@ -4792,29 +4605,17 @@
         "description": null,
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/chadrnewell-hash/outreachos",
-<<<<<<< HEAD
         "fetched_at": "2026-10-15T11:39:25Z",
-=======
-        "fetched_at": "2026-10-15T16:20:29Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
         "error": null
       },
       "liveness": {
         "url": "https://zoho.com/crm",
         "status_code": 200,
-<<<<<<< HEAD
         "latency_ms": 296,
         "reachable": true,
         "responded": true,
         "final_url": "https://www.zoho.com/en-us/crm/",
         "fetched_at": "2026-10-15T11:36:54Z",
-=======
-        "latency_ms": 1002,
-        "reachable": true,
-        "responded": true,
-        "final_url": "https://www.zoho.com/crm/",
-        "fetched_at": "2026-10-15T16:23:14Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
         "error": null
       },
       "packages": [
@@ -4825,11 +4626,7 @@
           "downloads_last_month": 66,
           "last_published": "2025-12-31T01:13:49.218691Z",
           "url": "https://pypi.org/project/zoho-crm-mcp-server",
-<<<<<<< HEAD
           "fetched_at": "2026-10-15T11:36:54Z",
-=======
-          "fetched_at": "2026-10-15T16:20:29Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
           "error": null
         }
       ],
@@ -12231,11 +12028,7 @@
       "tools_count": 195,
       "auth_gated": false,
       "generic_gateway": false,
-<<<<<<< HEAD
       "last_fetched": "2026-10-15T11:36:53Z"
-=======
-      "last_fetched": "2026-10-15T16:23:13Z"
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
     },
     {
       "app": {
@@ -12327,11 +12120,7 @@
           "close"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=close&limit=50",
-<<<<<<< HEAD
         "fetched_at": "2026-10-15T11:36:53Z",
-=======
-        "fetched_at": "2026-10-15T16:22:40Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
         "error": null,
         "empty_cycles": 0
       },
@@ -12349,29 +12138,17 @@
         "description": null,
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/henryspatialanalysis/wtm.api",
-<<<<<<< HEAD
         "fetched_at": "2026-10-15T11:39:26Z",
-=======
-        "fetched_at": "2026-10-15T16:21:17Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
         "error": null
       },
       "liveness": {
         "url": "https://close.com",
         "status_code": 200,
-<<<<<<< HEAD
         "latency_ms": 67,
         "reachable": true,
         "responded": true,
         "final_url": "https://close.com",
         "fetched_at": "2026-10-15T11:36:53Z",
-=======
-        "latency_ms": 35,
-        "reachable": true,
-        "responded": true,
-        "final_url": "https://close.com",
-        "fetched_at": "2026-10-15T16:22:40Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
         "error": null
       },
       "packages": [],
@@ -12423,11 +12200,7 @@
       "tools_count": null,
       "auth_gated": true,
       "generic_gateway": false,
-<<<<<<< HEAD
       "last_fetched": "2026-10-15T11:36:53Z"
-=======
-      "last_fetched": "2026-10-15T16:22:40Z"
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
     },
     {
       "app": {
@@ -12495,29 +12268,17 @@
         "description": "231 hosted remote MCP servers for SaaS tools (CRM, scheduling, payments, messaging and more). Connect from Claude, Cursor or VS Code. Free tier.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/m190/usefulapi-mcp",
-<<<<<<< HEAD
         "fetched_at": "2026-10-15T11:39:26Z",
-=======
-        "fetched_at": "2026-10-15T16:21:24Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
         "error": null
       },
       "liveness": {
         "url": "https://copper.com",
         "status_code": 200,
-<<<<<<< HEAD
         "latency_ms": 380,
         "reachable": true,
         "responded": true,
         "final_url": "https://www.copper.com/",
         "fetched_at": "2026-10-15T11:36:54Z",
-=======
-        "latency_ms": 1632,
-        "reachable": true,
-        "responded": true,
-        "final_url": "https://www.copper.com/",
-        "fetched_at": "2026-10-15T16:23:23Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
         "error": null
       },
       "packages": [],
@@ -12579,11 +12340,7 @@
           "dealcloud"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=dealcloud&limit=50",
-<<<<<<< HEAD
         "fetched_at": "2026-10-15T11:36:56Z",
-=======
-        "fetched_at": "2026-10-15T16:22:33Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
         "error": null,
         "empty_cycles": 0
       },
@@ -12607,19 +12364,11 @@
       "liveness": {
         "url": "https://api.docs.dealcloud.com",
         "status_code": 200,
-<<<<<<< HEAD
         "latency_ms": 217,
         "reachable": true,
         "responded": true,
         "final_url": "https://api.docs.dealcloud.com",
         "fetched_at": "2026-10-15T11:36:56Z",
-=======
-        "latency_ms": 731,
-        "reachable": true,
-        "responded": true,
-        "final_url": "https://api.docs.dealcloud.com",
-        "fetched_at": "2026-10-15T16:22:34Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
         "error": null
       },
       "packages": [],
@@ -12664,11 +12413,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-<<<<<<< HEAD
       "last_fetched": "2026-10-15T11:36:56Z"
-=======
-      "last_fetched": "2026-10-15T16:22:33Z"
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
     },
     {
       "app": {
@@ -12697,7 +12442,6 @@
             "published_at": "2026-10-15T08:47:46.171632Z",
             "namespace_matches_vendor": false,
             "classification": "community",
-<<<<<<< HEAD
             "probe": {
               "url": "https://mcp.swifteq.com/api/mcp/mcp",
               "result": "auth_required",
@@ -12710,9 +12454,6 @@
               "probed_at": "2026-10-15T11:40:14Z",
               "error": null
             },
-=======
-            "probe": null,
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
             "stale": false,
             "last_seen": null
           },
@@ -12854,11 +12595,7 @@
           "zendesk"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=zendesk&limit=50",
-<<<<<<< HEAD
         "fetched_at": "2026-10-15T11:36:56Z",
-=======
-        "fetched_at": "2026-10-15T16:22:20Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
         "error": null,
         "empty_cycles": 0
       },
@@ -12876,29 +12613,17 @@
         "description": "Bring Zendesk deep into your AI assistant: find answers and draft, update and translate Help Center articles, and manage Support tickets end to end: comments, triage and attachments. All in plain language.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/fruggr/zendesk-mcp-server",
-<<<<<<< HEAD
         "fetched_at": "2026-10-15T11:39:27Z",
-=======
-        "fetched_at": "2026-10-15T16:20:32Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
         "error": null
       },
       "liveness": {
         "url": "https://zendesk.com",
         "status_code": 200,
-<<<<<<< HEAD
         "latency_ms": 172,
         "reachable": true,
         "responded": true,
         "final_url": "https://www.zendesk.com/",
         "fetched_at": "2026-10-15T11:36:56Z",
-=======
-        "latency_ms": 467,
-        "reachable": true,
-        "responded": true,
-        "final_url": "https://www.zendesk.com/sg/#georedirect",
-        "fetched_at": "2026-10-15T16:22:20Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
         "error": null
       },
       "packages": [
@@ -12909,11 +12634,7 @@
           "downloads_last_month": 7791,
           "last_published": null,
           "url": "https://www.npmjs.com/package/@fruggr/zendesk-mcp-server",
-<<<<<<< HEAD
           "fetched_at": "2026-10-15T11:36:56Z",
-=======
-          "fetched_at": "2026-10-15T16:20:32Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
           "error": null
         },
         {
@@ -12923,11 +12644,7 @@
           "downloads_last_month": 492,
           "last_published": null,
           "url": "https://www.npmjs.com/package/@markusvankempen/zendesk-mcp-server",
-<<<<<<< HEAD
           "fetched_at": "2026-10-15T11:36:56Z",
-=======
-          "fetched_at": "2026-10-15T16:20:32Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
           "error": null
         },
         {
@@ -12937,11 +12654,7 @@
           "downloads_last_month": 708,
           "last_published": "2026-10-08T19:39:07.100823Z",
           "url": "https://pypi.org/project/zendesk-mcp",
-<<<<<<< HEAD
           "fetched_at": "2026-10-15T11:36:56Z",
-=======
-          "fetched_at": "2026-10-15T16:20:32Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
           "error": null
         }
       ],
@@ -12993,11 +12706,7 @@
       "tools_count": 46,
       "auth_gated": true,
       "generic_gateway": true,
-<<<<<<< HEAD
       "last_fetched": "2026-10-15T11:36:56Z"
-=======
-      "last_fetched": "2026-10-15T16:22:20Z"
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
     },
     {
       "app": {
@@ -13102,29 +12811,17 @@
         "description": "Two-way communication bridge between Claude Code sessions using the Channels API",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/MuhammadTalhaMT/claude-intercom",
-<<<<<<< HEAD
         "fetched_at": "2026-10-15T11:39:27Z",
-=======
-        "fetched_at": "2026-10-15T16:21:27Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
         "error": null
       },
       "liveness": {
         "url": "https://intercom.com",
         "status_code": 200,
-<<<<<<< HEAD
         "latency_ms": 578,
         "reachable": true,
         "responded": true,
         "final_url": "https://www.intercom.com/",
         "fetched_at": "2026-10-15T11:36:56Z",
-=======
-        "latency_ms": 1723,
-        "reachable": true,
-        "responded": true,
-        "final_url": "https://www.intercom.com/",
-        "fetched_at": "2026-10-15T16:23:25Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
         "error": null
       },
       "packages": [
@@ -13135,11 +12832,7 @@
           "downloads_last_month": 162,
           "last_published": null,
           "url": "https://www.npmjs.com/package/claude-intercom",
-<<<<<<< HEAD
           "fetched_at": "2026-10-15T11:36:56Z",
-=======
-          "fetched_at": "2026-10-15T16:21:27Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
           "error": null
         }
       ],
@@ -13170,7 +12863,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 0.8,
-            "detail": "committed 57d ago"
+            "detail": "committed 56d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -15192,7 +14885,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 1.0,
-            "detail": "committed 1d ago"
+            "detail": "committed 0d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -18339,11 +18032,7 @@
           "liveagent"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=liveagent&limit=50",
-<<<<<<< HEAD
         "fetched_at": "2026-10-15T11:37:06Z",
-=======
-        "fetched_at": "2026-10-15T16:23:45Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
         "error": null,
         "empty_cycles": 0
       },
@@ -18367,19 +18056,11 @@
       "liveness": {
         "url": "https://liveagent.com",
         "status_code": 200,
-<<<<<<< HEAD
         "latency_ms": 284,
         "reachable": true,
         "responded": true,
         "final_url": "https://www.liveagent.com/",
         "fetched_at": "2026-10-15T11:37:07Z",
-=======
-        "latency_ms": 231,
-        "reachable": true,
-        "responded": true,
-        "final_url": "https://www.liveagent.com/",
-        "fetched_at": "2026-10-15T16:23:46Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
         "error": null
       },
       "packages": [],
@@ -18424,11 +18105,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-<<<<<<< HEAD
       "last_fetched": "2026-10-15T11:37:06Z"
-=======
-      "last_fetched": "2026-10-15T16:23:45Z"
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
     },
     {
       "app": {
@@ -24952,11 +24629,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 1.0,
-<<<<<<< HEAD
             "detail": "committed 0d ago"
-=======
-            "detail": "committed 15d ago"
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
           },
           "availability": {
             "weight": 0.12,
@@ -30035,7 +29708,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 0.6,
-            "detail": "committed 156d ago"
+            "detail": "committed 155d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -32791,7 +32464,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 0.8,
-            "detail": "committed 43d ago"
+            "detail": "committed 42d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -35221,7 +34894,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 1.0,
-            "detail": "committed 3d ago"
+            "detail": "committed 2d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -37914,7 +37587,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 0.35,
-            "detail": "committed 356d ago"
+            "detail": "committed 355d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -38239,7 +37912,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 1.0,
-            "detail": "committed 21d ago"
+            "detail": "committed 20d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -40131,7 +39804,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 0.8,
-            "detail": "committed 42d ago"
+            "detail": "committed 41d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -40351,11 +40024,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 1.0,
-<<<<<<< HEAD
             "detail": "committed 0d ago"
-=======
-            "detail": "committed 8d ago"
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
           },
           "availability": {
             "weight": 0.12,
@@ -40740,7 +40409,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 0.6,
-            "detail": "committed 156d ago"
+            "detail": "committed 155d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -41188,7 +40857,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 1.0,
-            "detail": "committed 1d ago"
+            "detail": "committed 0d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -41405,7 +41074,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 0.6,
-            "detail": "committed 156d ago"
+            "detail": "committed 155d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -41696,7 +41365,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 1.0,
-            "detail": "committed 10d ago"
+            "detail": "committed 9d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -42339,7 +42008,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 0.35,
-            "detail": "committed 321d ago"
+            "detail": "committed 320d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -43282,7 +42951,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 1.0,
-            "detail": "committed 1d ago"
+            "detail": "committed 0d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -46218,7 +45887,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 0.6,
-            "detail": "committed 156d ago"
+            "detail": "committed 155d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -46428,7 +46097,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 0.6,
-            "detail": "committed 156d ago"
+            "detail": "committed 155d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -47350,7 +47019,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 1.0,
-            "detail": "committed 26d ago"
+            "detail": "committed 25d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -47904,7 +47573,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 0.6,
-            "detail": "committed 156d ago"
+            "detail": "committed 155d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -49915,7 +49584,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 1.0,
-            "detail": "committed 1d ago"
+            "detail": "committed 0d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -51291,7 +50960,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 1.0,
-            "detail": "committed 1d ago"
+            "detail": "committed 0d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -53440,7 +53109,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 0.35,
-            "detail": "committed 200d ago"
+            "detail": "committed 199d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -54510,7 +54179,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 1.0,
-            "detail": "committed 1d ago"
+            "detail": "committed 0d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -54731,7 +54400,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 0.6,
-            "detail": "committed 156d ago"
+            "detail": "committed 155d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -57806,7 +57475,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 0.6,
-            "detail": "committed 153d ago"
+            "detail": "committed 152d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -58652,7 +58321,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 1.0,
-            "detail": "committed 24d ago"
+            "detail": "committed 23d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -58903,25 +58572,13 @@
   ],
   "changes": [
     {
-<<<<<<< HEAD
       "ts": "2026-10-15T11:40:20Z",
-=======
-      "ts": "2026-10-15T16:21:36Z",
-      "app_id": 7,
-      "app": "Zoho CRM",
-      "kind": "servers",
-      "message": "registry servers 14 → 17 (+3)"
-    },
-    {
-      "ts": "2026-10-15T16:21:36Z",
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
       "app_id": 11,
       "app": "Zendesk",
       "kind": "servers",
       "message": "registry servers 5 → 6 (+1)"
     },
     {
-<<<<<<< HEAD
       "ts": "2026-10-15T11:40:20Z",
       "app_id": 55,
       "app": "Apify",
@@ -59032,13 +58689,6 @@
       "app": "Apify",
       "kind": "stars",
       "message": "repo ★ 11,197 → 11,229 (+32)"
-=======
-      "ts": "2026-10-14T18:43:48Z",
-      "app_id": 7,
-      "app": "Zoho CRM",
-      "kind": "servers",
-      "message": "registry servers 17 → 14 (-3)"
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
     },
     {
       "ts": "2026-10-14T17:22:07Z",
@@ -59340,107 +58990,6 @@
       "app": "Twenty",
       "kind": "tools",
       "message": "live tools 20 → 0"
-<<<<<<< HEAD
-=======
-    },
-    {
-      "ts": "2026-10-13T00:49:00Z",
-      "app_id": 7,
-      "app": "Zoho CRM",
-      "kind": "servers",
-      "message": "registry servers 16 → 17 (+1)"
-    },
-    {
-      "ts": "2026-10-13T00:49:00Z",
-      "app_id": 7,
-      "app": "Zoho CRM",
-      "kind": "tools",
-      "message": "live tools 183 → 195"
-    },
-    {
-      "ts": "2026-10-13T00:49:00Z",
-      "app_id": 9,
-      "app": "Copper",
-      "kind": "status",
-      "message": "MCP status none → community"
-    },
-    {
-      "ts": "2026-10-13T00:49:00Z",
-      "app_id": 9,
-      "app": "Copper",
-      "kind": "servers",
-      "message": "registry servers 0 → 1 (+1)"
-    },
-    {
-      "ts": "2026-10-13T00:49:00Z",
-      "app_id": 11,
-      "app": "Zendesk",
-      "kind": "servers",
-      "message": "registry servers 6 → 5 (-1)"
-    },
-    {
-      "ts": "2026-10-13T00:49:00Z",
-      "app_id": 11,
-      "app": "Zendesk",
-      "kind": "tools",
-      "message": "live tools 41 → 45"
-    },
-    {
-      "ts": "2026-10-13T00:49:00Z",
-      "app_id": 12,
-      "app": "Intercom",
-      "kind": "tools",
-      "message": "live tools 41 → 45"
-    },
-    {
-      "ts": "2026-10-13T00:49:00Z",
-      "app_id": 13,
-      "app": "Freshdesk",
-      "kind": "tools",
-      "message": "live tools 41 → 45"
-    },
-    {
-      "ts": "2026-10-13T00:49:00Z",
-      "app_id": 14,
-      "app": "Front",
-      "kind": "servers",
-      "message": "registry servers 3 → 4 (+1)"
-    },
-    {
-      "ts": "2026-10-13T00:49:00Z",
-      "app_id": 15,
-      "app": "Pylon",
-      "kind": "servers",
-      "message": "registry servers 1 → 2 (+1)"
-    },
-    {
-      "ts": "2026-10-13T00:49:00Z",
-      "app_id": 18,
-      "app": "Help Scout",
-      "kind": "servers",
-      "message": "registry servers 15 → 16 (+1)"
-    },
-    {
-      "ts": "2026-10-13T00:49:00Z",
-      "app_id": 18,
-      "app": "Help Scout",
-      "kind": "tools",
-      "message": "live tools 0 → 6"
-    },
-    {
-      "ts": "2026-10-13T00:49:00Z",
-      "app_id": 21,
-      "app": "Slack",
-      "kind": "servers",
-      "message": "registry servers 11 → 9 (-2)"
-    },
-    {
-      "ts": "2026-10-13T00:49:00Z",
-      "app_id": 22,
-      "app": "Twilio",
-      "kind": "tools",
-      "message": "live tools 41 → 45"
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
     }
   ],
   "history": [
@@ -60082,7 +59631,6 @@
       "avg_readiness": 49.0
     },
     {
-<<<<<<< HEAD
       "ts": "2026-10-14T21:49:05Z",
       "official": 14,
       "community": 70,
@@ -60091,35 +59639,11 @@
       "tools": 326,
       "downloads": 1196166,
       "stars": 24159,
-=======
-      "ts": "2026-10-14T18:43:48Z",
-      "official": 14,
-      "community": 70,
-      "none": 16,
-      "servers": 538,
-      "tools": 326,
-      "downloads": 1196100,
-      "stars": 24123,
-      "responding": 100,
-      "reachable": 94,
-      "avg_readiness": 48.9
-    },
-    {
-      "ts": "2026-10-15T16:21:36Z",
-      "official": 14,
-      "community": 70,
-      "none": 16,
-      "servers": 542,
-      "tools": 326,
-      "downloads": 1196166,
-      "stars": 24123,
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
       "responding": 100,
       "reachable": 94,
       "avg_readiness": 49.0
     },
     {
-<<<<<<< HEAD
       "ts": "2026-10-15T04:53:57Z",
       "official": 14,
       "community": 68,
@@ -60144,19 +59668,6 @@
       "responding": 100,
       "reachable": 94,
       "avg_readiness": 49.1
-=======
-      "ts": "2026-10-15T16:24:07Z",
-      "official": 14,
-      "community": 70,
-      "none": 16,
-      "servers": 542,
-      "tools": 326,
-      "downloads": 1196166,
-      "stars": 24123,
-      "responding": 100,
-      "reachable": 94,
-      "avg_readiness": 49.0
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
     }
   ],
   "alerts": [

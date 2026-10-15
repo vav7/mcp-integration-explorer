@@ -448,10 +448,13 @@
       const apps = state.snap.apps || [];
       if (!apps.length) return;
       /* v3.41: the shuffler is hero decor - don't flip DOM once the hero has
-         scrolled away or the tab is hidden */
+         scrolled away or the tab is hidden. (v3.42: test visibility properly -
+         isOnScreen(el, 0) means "top above the viewport top", which is never
+         true at rest; use a plain in-viewport rect test.) */
       if (document.hidden) return;
       const hs = document.querySelector(".hero-search");
-      if (hs && !isOnScreen(hs, 0)) return;
+      if (hs) { const r = hs.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > (window.innerHeight || 0)) return; }
       slots.forEach((s, i) => fill(s, apps[Math.floor(Math.random() * apps.length)]));
     };
     tick();

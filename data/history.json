@@ -637,7 +637,6 @@
     "avg_readiness": 49.0
   },
   {
-<<<<<<< HEAD
     "ts": "2026-10-14T21:49:05Z",
     "official": 14,
     "community": 70,
@@ -646,35 +645,11 @@
     "tools": 326,
     "downloads": 1196166,
     "stars": 24159,
-=======
-    "ts": "2026-10-14T18:43:48Z",
-    "official": 14,
-    "community": 70,
-    "none": 16,
-    "servers": 538,
-    "tools": 326,
-    "downloads": 1196100,
-    "stars": 24123,
-    "responding": 100,
-    "reachable": 94,
-    "avg_readiness": 48.9
-  },
-  {
-    "ts": "2026-10-15T16:21:36Z",
-    "official": 14,
-    "community": 70,
-    "none": 16,
-    "servers": 542,
-    "tools": 326,
-    "downloads": 1196166,
-    "stars": 24123,
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
     "responding": 100,
     "reachable": 94,
     "avg_readiness": 49.0
   },
   {
-<<<<<<< HEAD
     "ts": "2026-10-15T04:53:57Z",
     "official": 14,
     "community": 68,
@@ -699,18 +674,5 @@
     "responding": 100,
     "reachable": 94,
     "avg_readiness": 49.1
-=======
-    "ts": "2026-10-15T16:24:07Z",
-    "official": 14,
-    "community": 70,
-    "none": 16,
-    "servers": 542,
-    "tools": 326,
-    "downloads": 1196166,
-    "stars": 24123,
-    "responding": 100,
-    "reachable": 94,
-    "avg_readiness": 49.0
->>>>>>> 74b32a7 (atlas,app scroll enchancement)
   }
 ]
