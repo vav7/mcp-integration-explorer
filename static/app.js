@@ -368,7 +368,34 @@
     if (!(dom in FAV)) FAV[dom] = "https://www.google.com/s2/favicons?sz=64&domain=" + encodeURIComponent(dom);
     return FAV[dom];
   };
-  const logoImg = (dom) => dom ? `<img src="${favUrl(dom)}" alt="" loading="lazy" decoding="async" onerror="this.remove()">` : "";
+  const logoImg = (dom) => dom ? `<img src="${favUrl(dom)}" alt="" loading="lazy" decoding="async" onload="this.classList.add('on')" onerror="this.remove()">` : "";
+  /* v3.40: the boot veil already owns the screen for ~600ms+ - spend its idle
+     tail warming the favicon cache (fetch + decode) so by the time the reader
+     reaches the atlas or the 100-app list every mark is already local and the
+     icons paint on the first frame instead of popping in one by one.
+     Live mode only; trickled so first paint never fights for sockets. */
+  let warmStarted = false;
+  function warmLogos() {
+    if (warmStarted || !state.live || !(state.snap && state.snap.apps)) return;
+    warmStarted = true;
+    const idle = window.requestIdleCallback
+      ? (fn) => requestIdleCallback(fn, { timeout: 3500 })
+      : (fn) => setTimeout(fn, 900);
+    idle(() => {
+      (state.snap.apps || []).forEach((a, i) => setTimeout(() => {
+        try {
+          const dom = logoDomain(a); if (!dom) return;
+          /* both variants in play: sz=64 for DOM tiles, sz=128 for the atlas
+             canvas - warming only one left the other fetching cold */
+          const im = new Image(); im.decoding = "async"; im.src = favUrl(dom);
+          if (im.decode) im.decode().catch(() => {});
+          const im2 = new Image(); im2.decoding = "async";
+          im2.src = "https://www.google.com/s2/favicons?domain=" + encodeURIComponent(dom) + "&sz=128";
+          if (im2.decode) im2.decode().catch(() => {});
+        } catch (e) {}
+      }, i * 10));
+    });
+  }
   /* Best available favicon domain for an app: its own website, then the site
      the registry publishes for one of its servers (this is what makes a
      looked-up app like "nvidia" show a real logo), then a dotted name. */
@@ -420,6 +447,11 @@
     const tick = () => {
       const apps = state.snap.apps || [];
       if (!apps.length) return;
+      /* v3.41: the shuffler is hero decor - don't flip DOM once the hero has
+         scrolled away or the tab is hidden */
+      if (document.hidden) return;
+      const hs = document.querySelector(".hero-search");
+      if (hs && !isOnScreen(hs, 0)) return;
       slots.forEach((s, i) => fill(s, apps[Math.floor(Math.random() * apps.length)]));
     };
     tick();
@@ -485,6 +517,10 @@
       if (!r.ok) throw new Error("HTTP " + r.status);
       bootStage("scoring 100 estates", 58);
       state.snap = sanitizeDashes(await r.json()); if (!state.live) { state.live = true; connectStream(); } render();
+      /* v3.41: the veil is still up for a few hundred ms after first paint -
+         start warming the favicon cache in that window instead of waiting for
+         the veil to lift, so logos are decoded before any list is seen. */
+      warmLogos();
     } catch (e) {
       clearTimeout(timer);
       try {
@@ -980,6 +1016,13 @@
     scene("donuts", $("#catbars"), () => {
       const box = $("#catbars"); if (!box) return;
       box.classList.add("drawn");
+      /* v3.40: the sweep is a first-impression, not a loop. Same snapshot as
+         the previous draw (view switch, silent refresh, re-render) lands the
+         rings instantly at their true values - no zero re-roll, so the pies
+         always read fresh. A new generated_at still performs the sweep. */
+      const gen = state.snap && state.snap.generated_at;
+      if (donutGen && gen && donutGen === gen) return;
+      donutGen = gen || donutGen;
       drawDonutsClockwise(box);
     }, .3);
     /* the readiness bars, the estate tiles and the % cards need no trigger of
@@ -1023,6 +1066,7 @@
     wrap._seenCancel = whenSeen(wrap, () => { wrap._seenCancel = null; drawNow(2400); }, .18);
   }
   let catbarsBound = false;
+  let donutGen = "";
   function bindCatbars() {
     if (catbarsBound) return; catbarsBound = true;
     const el = $("#catbars"); if (!el || !el.addEventListener) return;
@@ -2720,6 +2764,7 @@
     bootStage("ready", 100);
     requestAnimationFrame(() => requestAnimationFrame(() => {
       try { if (window.__boot) window.__boot.done(); } catch (e) {}
+      warmLogos();
     }));
   }
 

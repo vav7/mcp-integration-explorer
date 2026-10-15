@@ -5734,3 +5734,25 @@ html{scroll-behavior:auto}
    the modal opened and while its body scrolled. Killing the filter is
    pixel-identical at that opacity and removes the worst per-frame cost. */
 #modal{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+
+/* ---- v3.40: the 100-row explorer plate ----
+   Offscreen rows skip paint AND layout entirely; `auto` intrinsic sizing
+   remembers each row's real height after its first paint, so the scrollbar
+   stays stable in both directions. Visual output is byte-identical - this
+   only changes what the renderer bothers to do outside the viewport. */
+table.grid tbody tr{content-visibility:auto;contain-intrinsic-size:auto 64px}
+
+/* ============================================================================
+   v3.41 - WAKE-UP POLISH, NO VISUAL DELTAS
+   1) logos crossfade in over their initials instead of hard-swapping (the
+      initials-then-pop flash was the "bad first impression" on cold wakes);
+      with the boot-time favicon warm-up they are usually already decoded and
+      paint on the first frame at full opacity.
+   2) leaderboard rows get the same offscreen paint/layout skip as the
+      explorer table (auto intrinsic size keeps the scrollbar honest).
+   3) the footer parks itself: content-visibility stops the gold-foil shine
+      and the heartbeat from animating at all while nobody can see them.
+   ========================================================================== */
+.applogo img{opacity:0;transition:opacity .25s var(--ease)}
+.applogo img.on{opacity:1}
+.footer{content-visibility:auto;contain-intrinsic-size:auto 460px}
