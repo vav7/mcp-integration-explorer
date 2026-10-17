@@ -1,5 +1,117 @@
 [
   {
+    "ts": "2026-10-17T11:00:59Z",
+    "app_id": 2,
+    "app": "HubSpot",
+    "kind": "servers",
+    "message": "registry servers 7 → 8 (+1)"
+  },
+  {
+    "ts": "2026-10-17T11:00:59Z",
+    "app_id": 7,
+    "app": "Zoho CRM",
+    "kind": "servers",
+    "message": "registry servers 17 → 14 (-3)"
+  },
+  {
+    "ts": "2026-10-17T11:00:59Z",
+    "app_id": 13,
+    "app": "Freshdesk",
+    "kind": "servers",
+    "message": "registry servers 5 → 6 (+1)"
+  },
+  {
+    "ts": "2026-10-17T11:00:59Z",
+    "app_id": 15,
+    "app": "Pylon",
+    "kind": "status",
+    "message": "MCP status community → none"
+  },
+  {
+    "ts": "2026-10-17T11:00:59Z",
+    "app_id": 15,
+    "app": "Pylon",
+    "kind": "servers",
+    "message": "registry servers 2 → 0 (-2)"
+  },
+  {
+    "ts": "2026-10-17T11:00:59Z",
+    "app_id": 18,
+    "app": "Help Scout",
+    "kind": "servers",
+    "message": "registry servers 17 → 16 (-1)"
+  },
+  {
+    "ts": "2026-10-17T11:00:59Z",
+    "app_id": 28,
+    "app": "WhatsApp Business",
+    "kind": "status",
+    "message": "MCP status community → none"
+  },
+  {
+    "ts": "2026-10-17T11:00:59Z",
+    "app_id": 28,
+    "app": "WhatsApp Business",
+    "kind": "servers",
+    "message": "registry servers 2 → 0 (-2)"
+  },
+  {
+    "ts": "2026-10-17T11:00:59Z",
+    "app_id": 35,
+    "app": "Mailchimp",
+    "kind": "servers",
+    "message": "registry servers 4 → 5 (+1)"
+  },
+  {
+    "ts": "2026-10-17T11:00:59Z",
+    "app_id": 36,
+    "app": "Klaviyo",
+    "kind": "servers",
+    "message": "registry servers 3 → 4 (+1)"
+  },
+  {
+    "ts": "2026-10-17T11:00:59Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 11,610 → 11,650 (+40)"
+  },
+  {
+    "ts": "2026-10-17T11:00:59Z",
+    "app_id": 62,
+    "app": "Vercel",
+    "kind": "servers",
+    "message": "registry servers 6 → 7 (+1)"
+  },
+  {
+    "ts": "2026-10-17T11:00:59Z",
+    "app_id": 65,
+    "app": "Supabase",
+    "kind": "servers",
+    "message": "registry servers 6 → 7 (+1)"
+  },
+  {
+    "ts": "2026-10-17T11:00:59Z",
+    "app_id": 70,
+    "app": "Sentry",
+    "kind": "servers",
+    "message": "registry servers 4 → 5 (+1)"
+  },
+  {
+    "ts": "2026-10-17T11:00:59Z",
+    "app_id": 72,
+    "app": "Airtable",
+    "kind": "servers",
+    "message": "registry servers 6 → 7 (+1)"
+  },
+  {
+    "ts": "2026-10-17T11:00:59Z",
+    "app_id": 81,
+    "app": "Stripe",
+    "kind": "servers",
+    "message": "registry servers 15 → 16 (+1)"
+  },
+  {
     "ts": "2026-10-17T04:42:09Z",
     "app_id": 7,
     "app": "Zoho CRM",
@@ -1286,117 +1398,5 @@
     "app": "Amazon Selling Partner",
     "kind": "servers",
     "message": "registry servers 8 → 5 (-3)"
-  },
-  {
-    "ts": "2026-10-13T00:49:00Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 8,893 → 10,825 (+1,932)"
-  },
-  {
-    "ts": "2026-10-13T00:49:00Z",
-    "app_id": 57,
-    "app": "Bright Data",
-    "kind": "servers",
-    "message": "registry servers 5 → 3 (-2)"
-  },
-  {
-    "ts": "2026-10-13T00:49:00Z",
-    "app_id": 64,
-    "app": "Cloudflare",
-    "kind": "servers",
-    "message": "registry servers 13 → 7 (-6)"
-  },
-  {
-    "ts": "2026-10-13T00:49:00Z",
-    "app_id": 64,
-    "app": "Cloudflare",
-    "kind": "stars",
-    "message": "repo ★ 4,329 → 4,373 (+44)"
-  },
-  {
-    "ts": "2026-10-13T00:49:00Z",
-    "app_id": 65,
-    "app": "Supabase",
-    "kind": "stars",
-    "message": "repo ★ 2,925 → 2,947 (+22)"
-  },
-  {
-    "ts": "2026-10-13T00:49:00Z",
-    "app_id": 68,
-    "app": "MongoDB Atlas",
-    "kind": "servers",
-    "message": "registry servers 22 → 23 (+1)"
-  },
-  {
-    "ts": "2026-10-13T00:49:00Z",
-    "app_id": 71,
-    "app": "Notion",
-    "kind": "servers",
-    "message": "registry servers 8 → 9 (+1)"
-  },
-  {
-    "ts": "2026-10-13T00:49:00Z",
-    "app_id": 73,
-    "app": "Linear",
-    "kind": "servers",
-    "message": "registry servers 9 → 10 (+1)"
-  },
-  {
-    "ts": "2026-10-13T00:49:00Z",
-    "app_id": 74,
-    "app": "Jira",
-    "kind": "stars",
-    "message": "repo ★ 1,072 → 1,089 (+17)"
-  },
-  {
-    "ts": "2026-10-13T00:49:00Z",
-    "app_id": 75,
-    "app": "Asana",
-    "kind": "tools",
-    "message": "live tools 42 → 46"
-  },
-  {
-    "ts": "2026-10-13T00:49:00Z",
-    "app_id": 80,
-    "app": "Harvest",
-    "kind": "tools",
-    "message": "live tools 20 → 0"
-  },
-  {
-    "ts": "2026-10-13T00:49:00Z",
-    "app_id": 81,
-    "app": "Stripe",
-    "kind": "stars",
-    "message": "repo ★ 1,845 → 1,915 (+70)"
-  },
-  {
-    "ts": "2026-10-13T00:49:00Z",
-    "app_id": 82,
-    "app": "Plaid",
-    "kind": "servers",
-    "message": "registry servers 1 → 2 (+1)"
-  },
-  {
-    "ts": "2026-10-13T00:49:00Z",
-    "app_id": 82,
-    "app": "Plaid",
-    "kind": "tools",
-    "message": "live tools 39 → 43"
-  },
-  {
-    "ts": "2026-10-13T00:49:00Z",
-    "app_id": 86,
-    "app": "QuickBooks",
-    "kind": "servers",
-    "message": "registry servers 10 → 11 (+1)"
-  },
-  {
-    "ts": "2026-10-13T00:49:00Z",
-    "app_id": 87,
-    "app": "Xero",
-    "kind": "stars",
-    "message": "repo ★ 45 → 59 (+14)"
   }
 ]
