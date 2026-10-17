@@ -1,5 +1,75 @@
 [
   {
+    "ts": "2026-10-17T04:42:09Z",
+    "app_id": 7,
+    "app": "Zoho CRM",
+    "kind": "servers",
+    "message": "registry servers 14 → 17 (+3)"
+  },
+  {
+    "ts": "2026-10-17T04:42:09Z",
+    "app_id": 31,
+    "app": "Google Ads",
+    "kind": "servers",
+    "message": "registry servers 17 → 19 (+2)"
+  },
+  {
+    "ts": "2026-10-17T04:42:09Z",
+    "app_id": 32,
+    "app": "Meta Ads",
+    "kind": "servers",
+    "message": "registry servers 3 → 7 (+4)"
+  },
+  {
+    "ts": "2026-10-17T04:42:09Z",
+    "app_id": 33,
+    "app": "LinkedIn Ads",
+    "kind": "status",
+    "message": "MCP status none → community"
+  },
+  {
+    "ts": "2026-10-17T04:42:09Z",
+    "app_id": 33,
+    "app": "LinkedIn Ads",
+    "kind": "servers",
+    "message": "registry servers 0 → 23 (+23)"
+  },
+  {
+    "ts": "2026-10-17T04:42:09Z",
+    "app_id": 39,
+    "app": "Threads (Meta)",
+    "kind": "servers",
+    "message": "registry servers 3 → 9 (+6)"
+  },
+  {
+    "ts": "2026-10-17T04:42:09Z",
+    "app_id": 45,
+    "app": "Magento (Adobe Commerce)",
+    "kind": "status",
+    "message": "MCP status none → community"
+  },
+  {
+    "ts": "2026-10-17T04:42:09Z",
+    "app_id": 45,
+    "app": "Magento (Adobe Commerce)",
+    "kind": "servers",
+    "message": "registry servers 0 → 8 (+8)"
+  },
+  {
+    "ts": "2026-10-17T04:42:09Z",
+    "app_id": 45,
+    "app": "Magento (Adobe Commerce)",
+    "kind": "tools",
+    "message": "live tools 0 → 13"
+  },
+  {
+    "ts": "2026-10-17T04:42:09Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 11,577 → 11,610 (+33)"
+  },
+  {
     "ts": "2026-10-16T21:28:48Z",
     "app_id": 7,
     "app": "Zoho CRM",
@@ -1328,75 +1398,5 @@
     "app": "Xero",
     "kind": "stars",
     "message": "repo ★ 45 → 59 (+14)"
-  },
-  {
-    "ts": "2026-10-13T00:49:00Z",
-    "app_id": 89,
-    "app": "Ramp",
-    "kind": "servers",
-    "message": "registry servers 2 → 1 (-1)"
-  },
-  {
-    "ts": "2026-10-13T00:49:00Z",
-    "app_id": 92,
-    "app": "Otter AI",
-    "kind": "servers",
-    "message": "registry servers 1 → 2 (+1)"
-  },
-  {
-    "ts": "2026-10-13T00:49:00Z",
-    "app_id": 93,
-    "app": "Fathom",
-    "kind": "servers",
-    "message": "registry servers 5 → 6 (+1)"
-  },
-  {
-    "ts": "2026-10-13T00:49:00Z",
-    "app_id": 94,
-    "app": "Consensus",
-    "kind": "servers",
-    "message": "registry servers 6 → 7 (+1)"
-  },
-  {
-    "ts": "2026-10-13T00:49:00Z",
-    "app_id": 96,
-    "app": "Devin",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-10-13T00:49:00Z",
-    "app_id": 96,
-    "app": "Devin",
-    "kind": "servers",
-    "message": "registry servers 0 → 1 (+1)"
-  },
-  {
-    "ts": "2026-10-13T00:49:00Z",
-    "app_id": 99,
-    "app": "YouTube Transcript",
-    "kind": "servers",
-    "message": "registry servers 33 → 35 (+2)"
-  },
-  {
-    "ts": "2026-09-29T05:50:51Z",
-    "app_id": 22,
-    "app": "Twilio",
-    "kind": "tools",
-    "message": "live tools 0 → 41"
-  },
-  {
-    "ts": "2026-09-29T05:50:51Z",
-    "app_id": 23,
-    "app": "Zoho Cliq",
-    "kind": "tools",
-    "message": "live tools 0 → 41"
-  },
-  {
-    "ts": "2026-09-29T05:50:51Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 8,862 → 8,893 (+31)"
   }
 ]
