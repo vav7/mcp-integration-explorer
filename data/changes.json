@@ -1,5 +1,138 @@
 [
   {
+    "ts": "2026-10-18T21:01:19Z",
+    "app_id": 18,
+    "app": "Help Scout",
+    "kind": "servers",
+    "message": "registry servers 10 → 17 (+7)"
+  },
+  {
+    "ts": "2026-10-18T21:01:19Z",
+    "app_id": 22,
+    "app": "Twilio",
+    "kind": "tools",
+    "message": "live tools 0 → 46"
+  },
+  {
+    "ts": "2026-10-18T21:01:19Z",
+    "app_id": 31,
+    "app": "Google Ads",
+    "kind": "servers",
+    "message": "registry servers 17 → 19 (+2)"
+  },
+  {
+    "ts": "2026-10-18T21:01:19Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 11,829 → 11,870 (+41)"
+  },
+  {
+    "ts": "2026-10-18T21:01:19Z",
+    "app_id": 57,
+    "app": "Bright Data",
+    "kind": "servers",
+    "message": "registry servers 2 → 3 (+1)"
+  },
+  {
+    "ts": "2026-10-18T21:01:19Z",
+    "app_id": 58,
+    "app": "Sherlock",
+    "kind": "status",
+    "message": "MCP status community → none"
+  },
+  {
+    "ts": "2026-10-18T21:01:19Z",
+    "app_id": 58,
+    "app": "Sherlock",
+    "kind": "servers",
+    "message": "registry servers 1 → 0 (-1)"
+  },
+  {
+    "ts": "2026-10-18T21:01:19Z",
+    "app_id": 59,
+    "app": "Waterfall.io",
+    "kind": "status",
+    "message": "MCP status none → community"
+  },
+  {
+    "ts": "2026-10-18T21:01:19Z",
+    "app_id": 59,
+    "app": "Waterfall.io",
+    "kind": "servers",
+    "message": "registry servers 0 → 2 (+2)"
+  },
+  {
+    "ts": "2026-10-18T21:01:19Z",
+    "app_id": 68,
+    "app": "MongoDB Atlas",
+    "kind": "status",
+    "message": "MCP status none → community"
+  },
+  {
+    "ts": "2026-10-18T21:01:19Z",
+    "app_id": 68,
+    "app": "MongoDB Atlas",
+    "kind": "servers",
+    "message": "registry servers 0 → 25 (+25)"
+  },
+  {
+    "ts": "2026-10-18T21:01:19Z",
+    "app_id": 74,
+    "app": "Jira",
+    "kind": "servers",
+    "message": "registry servers 5 → 9 (+4)"
+  },
+  {
+    "ts": "2026-10-18T21:01:19Z",
+    "app_id": 75,
+    "app": "Asana",
+    "kind": "tools",
+    "message": "live tools 0 → 47"
+  },
+  {
+    "ts": "2026-10-18T21:01:19Z",
+    "app_id": 76,
+    "app": "Monday.com",
+    "kind": "servers",
+    "message": "registry servers 1 → 4 (+3)"
+  },
+  {
+    "ts": "2026-10-18T21:01:19Z",
+    "app_id": 83,
+    "app": "Binance",
+    "kind": "status",
+    "message": "MCP status none → community"
+  },
+  {
+    "ts": "2026-10-18T21:01:19Z",
+    "app_id": 83,
+    "app": "Binance",
+    "kind": "servers",
+    "message": "registry servers 0 → 4 (+4)"
+  },
+  {
+    "ts": "2026-10-18T21:01:19Z",
+    "app_id": 98,
+    "app": "Mermaid CLI",
+    "kind": "status",
+    "message": "MCP status community → none"
+  },
+  {
+    "ts": "2026-10-18T21:01:19Z",
+    "app_id": 98,
+    "app": "Mermaid CLI",
+    "kind": "servers",
+    "message": "registry servers 5 → 0 (-5)"
+  },
+  {
+    "ts": "2026-10-18T21:01:19Z",
+    "app_id": 99,
+    "app": "YouTube Transcript",
+    "kind": "servers",
+    "message": "registry servers 33 → 35 (+2)"
+  },
+  {
     "ts": "2026-10-18T16:08:54Z",
     "app_id": 7,
     "app": "Zoho CRM",
@@ -1265,138 +1398,5 @@
     "app": "QuickBooks",
     "kind": "servers",
     "message": "registry servers 0 → 11 (+11)"
-  },
-  {
-    "ts": "2026-10-16T11:39:09Z",
-    "app_id": 91,
-    "app": "NotebookLM",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-10-16T11:39:09Z",
-    "app_id": 91,
-    "app": "NotebookLM",
-    "kind": "servers",
-    "message": "registry servers 0 → 3 (+3)"
-  },
-  {
-    "ts": "2026-10-16T11:39:09Z",
-    "app_id": 91,
-    "app": "NotebookLM",
-    "kind": "tools",
-    "message": "live tools 0 → 43"
-  },
-  {
-    "ts": "2026-10-16T11:39:09Z",
-    "app_id": 98,
-    "app": "Mermaid CLI",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-10-16T11:39:09Z",
-    "app_id": 98,
-    "app": "Mermaid CLI",
-    "kind": "servers",
-    "message": "registry servers 0 → 5 (+5)"
-  },
-  {
-    "ts": "2026-10-16T11:39:09Z",
-    "app_id": 99,
-    "app": "YouTube Transcript",
-    "kind": "servers",
-    "message": "registry servers 34 → 33 (-1)"
-  },
-  {
-    "ts": "2026-10-16T04:55:50Z",
-    "app_id": 7,
-    "app": "Zoho CRM",
-    "kind": "servers",
-    "message": "registry servers 17 → 14 (-3)"
-  },
-  {
-    "ts": "2026-10-16T04:55:50Z",
-    "app_id": 28,
-    "app": "WhatsApp Business",
-    "kind": "servers",
-    "message": "registry servers 4 → 3 (-1)"
-  },
-  {
-    "ts": "2026-10-16T04:55:50Z",
-    "app_id": 31,
-    "app": "Google Ads",
-    "kind": "servers",
-    "message": "registry servers 19 → 17 (-2)"
-  },
-  {
-    "ts": "2026-10-16T04:55:50Z",
-    "app_id": 32,
-    "app": "Meta Ads",
-    "kind": "servers",
-    "message": "registry servers 7 → 3 (-4)"
-  },
-  {
-    "ts": "2026-10-16T04:55:50Z",
-    "app_id": 39,
-    "app": "Threads (Meta)",
-    "kind": "servers",
-    "message": "registry servers 9 → 7 (-2)"
-  },
-  {
-    "ts": "2026-10-16T04:55:50Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 11,415 → 11,458 (+43)"
-  },
-  {
-    "ts": "2026-10-16T04:55:50Z",
-    "app_id": 74,
-    "app": "Jira",
-    "kind": "servers",
-    "message": "registry servers 9 → 5 (-4)"
-  },
-  {
-    "ts": "2026-10-16T04:55:50Z",
-    "app_id": 76,
-    "app": "Monday.com",
-    "kind": "servers",
-    "message": "registry servers 3 → 1 (-2)"
-  },
-  {
-    "ts": "2026-10-16T04:55:50Z",
-    "app_id": 98,
-    "app": "Mermaid CLI",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-10-16T04:55:50Z",
-    "app_id": 98,
-    "app": "Mermaid CLI",
-    "kind": "servers",
-    "message": "registry servers 5 → 0 (-5)"
-  },
-  {
-    "ts": "2026-10-15T21:43:28Z",
-    "app_id": 12,
-    "app": "Intercom",
-    "kind": "tools",
-    "message": "live tools 0 → 46"
-  },
-  {
-    "ts": "2026-10-15T21:43:28Z",
-    "app_id": 14,
-    "app": "Front",
-    "kind": "servers",
-    "message": "registry servers 4 → 5 (+1)"
-  },
-  {
-    "ts": "2026-10-15T21:43:28Z",
-    "app_id": 28,
-    "app": "WhatsApp Business",
-    "kind": "servers",
-    "message": "registry servers 5 → 4 (-1)"
   }
 ]
