@@ -1,5 +1,145 @@
 [
   {
+    "ts": "2026-10-20T05:09:59Z",
+    "app_id": 15,
+    "app": "Pylon",
+    "kind": "status",
+    "message": "MCP status community → none"
+  },
+  {
+    "ts": "2026-10-20T05:09:59Z",
+    "app_id": 15,
+    "app": "Pylon",
+    "kind": "servers",
+    "message": "registry servers 2 → 0 (-2)"
+  },
+  {
+    "ts": "2026-10-20T05:09:59Z",
+    "app_id": 24,
+    "app": "Lark (Larksuite)",
+    "kind": "status",
+    "message": "MCP status community → none"
+  },
+  {
+    "ts": "2026-10-20T05:09:59Z",
+    "app_id": 24,
+    "app": "Lark (Larksuite)",
+    "kind": "servers",
+    "message": "registry servers 1 → 0 (-1)"
+  },
+  {
+    "ts": "2026-10-20T05:09:59Z",
+    "app_id": 33,
+    "app": "LinkedIn Ads",
+    "kind": "status",
+    "message": "MCP status community → none"
+  },
+  {
+    "ts": "2026-10-20T05:09:59Z",
+    "app_id": 33,
+    "app": "LinkedIn Ads",
+    "kind": "servers",
+    "message": "registry servers 23 → 0 (-23)"
+  },
+  {
+    "ts": "2026-10-20T05:09:59Z",
+    "app_id": 39,
+    "app": "Threads (Meta)",
+    "kind": "servers",
+    "message": "registry servers 9 → 7 (-2)"
+  },
+  {
+    "ts": "2026-10-20T05:09:59Z",
+    "app_id": 45,
+    "app": "Magento (Adobe Commerce)",
+    "kind": "servers",
+    "message": "registry servers 9 → 3 (-6)"
+  },
+  {
+    "ts": "2026-10-20T05:09:59Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 12,064 → 12,107 (+43)"
+  },
+  {
+    "ts": "2026-10-20T05:09:59Z",
+    "app_id": 57,
+    "app": "Bright Data",
+    "kind": "servers",
+    "message": "registry servers 3 → 2 (-1)"
+  },
+  {
+    "ts": "2026-10-20T05:09:59Z",
+    "app_id": 68,
+    "app": "MongoDB Atlas",
+    "kind": "servers",
+    "message": "registry servers 25 → 19 (-6)"
+  },
+  {
+    "ts": "2026-10-20T05:09:59Z",
+    "app_id": 69,
+    "app": "Datadog",
+    "kind": "status",
+    "message": "MCP status community → none"
+  },
+  {
+    "ts": "2026-10-20T05:09:59Z",
+    "app_id": 69,
+    "app": "Datadog",
+    "kind": "servers",
+    "message": "registry servers 3 → 0 (-3)"
+  },
+  {
+    "ts": "2026-10-20T05:09:59Z",
+    "app_id": 74,
+    "app": "Jira",
+    "kind": "servers",
+    "message": "registry servers 9 → 5 (-4)"
+  },
+  {
+    "ts": "2026-10-20T05:09:59Z",
+    "app_id": 76,
+    "app": "Monday.com",
+    "kind": "servers",
+    "message": "registry servers 4 → 2 (-2)"
+  },
+  {
+    "ts": "2026-10-20T05:09:59Z",
+    "app_id": 80,
+    "app": "Harvest",
+    "kind": "status",
+    "message": "MCP status community → none"
+  },
+  {
+    "ts": "2026-10-20T05:09:59Z",
+    "app_id": 80,
+    "app": "Harvest",
+    "kind": "servers",
+    "message": "registry servers 5 → 0 (-5)"
+  },
+  {
+    "ts": "2026-10-20T05:09:59Z",
+    "app_id": 80,
+    "app": "Harvest",
+    "kind": "tools",
+    "message": "live tools 3 → 0"
+  },
+  {
+    "ts": "2026-10-20T05:09:59Z",
+    "app_id": 83,
+    "app": "Binance",
+    "kind": "status",
+    "message": "MCP status community → none"
+  },
+  {
+    "ts": "2026-10-20T05:09:59Z",
+    "app_id": 83,
+    "app": "Binance",
+    "kind": "servers",
+    "message": "registry servers 5 → 0 (-5)"
+  },
+  {
     "ts": "2026-10-19T22:28:00Z",
     "app_id": 12,
     "app": "Intercom",
@@ -1258,145 +1398,5 @@
     "app": "Mailchimp",
     "kind": "servers",
     "message": "registry servers 4 → 5 (+1)"
-  },
-  {
-    "ts": "2026-10-17T11:00:59Z",
-    "app_id": 36,
-    "app": "Klaviyo",
-    "kind": "servers",
-    "message": "registry servers 3 → 4 (+1)"
-  },
-  {
-    "ts": "2026-10-17T11:00:59Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 11,610 → 11,650 (+40)"
-  },
-  {
-    "ts": "2026-10-17T11:00:59Z",
-    "app_id": 62,
-    "app": "Vercel",
-    "kind": "servers",
-    "message": "registry servers 6 → 7 (+1)"
-  },
-  {
-    "ts": "2026-10-17T11:00:59Z",
-    "app_id": 65,
-    "app": "Supabase",
-    "kind": "servers",
-    "message": "registry servers 6 → 7 (+1)"
-  },
-  {
-    "ts": "2026-10-17T11:00:59Z",
-    "app_id": 70,
-    "app": "Sentry",
-    "kind": "servers",
-    "message": "registry servers 4 → 5 (+1)"
-  },
-  {
-    "ts": "2026-10-17T11:00:59Z",
-    "app_id": 72,
-    "app": "Airtable",
-    "kind": "servers",
-    "message": "registry servers 6 → 7 (+1)"
-  },
-  {
-    "ts": "2026-10-17T11:00:59Z",
-    "app_id": 81,
-    "app": "Stripe",
-    "kind": "servers",
-    "message": "registry servers 15 → 16 (+1)"
-  },
-  {
-    "ts": "2026-10-17T04:42:09Z",
-    "app_id": 7,
-    "app": "Zoho CRM",
-    "kind": "servers",
-    "message": "registry servers 14 → 17 (+3)"
-  },
-  {
-    "ts": "2026-10-17T04:42:09Z",
-    "app_id": 31,
-    "app": "Google Ads",
-    "kind": "servers",
-    "message": "registry servers 17 → 19 (+2)"
-  },
-  {
-    "ts": "2026-10-17T04:42:09Z",
-    "app_id": 32,
-    "app": "Meta Ads",
-    "kind": "servers",
-    "message": "registry servers 3 → 7 (+4)"
-  },
-  {
-    "ts": "2026-10-17T04:42:09Z",
-    "app_id": 33,
-    "app": "LinkedIn Ads",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-10-17T04:42:09Z",
-    "app_id": 33,
-    "app": "LinkedIn Ads",
-    "kind": "servers",
-    "message": "registry servers 0 → 23 (+23)"
-  },
-  {
-    "ts": "2026-10-17T04:42:09Z",
-    "app_id": 39,
-    "app": "Threads (Meta)",
-    "kind": "servers",
-    "message": "registry servers 3 → 9 (+6)"
-  },
-  {
-    "ts": "2026-10-17T04:42:09Z",
-    "app_id": 45,
-    "app": "Magento (Adobe Commerce)",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-10-17T04:42:09Z",
-    "app_id": 45,
-    "app": "Magento (Adobe Commerce)",
-    "kind": "servers",
-    "message": "registry servers 0 → 8 (+8)"
-  },
-  {
-    "ts": "2026-10-17T04:42:09Z",
-    "app_id": 45,
-    "app": "Magento (Adobe Commerce)",
-    "kind": "tools",
-    "message": "live tools 0 → 13"
-  },
-  {
-    "ts": "2026-10-17T04:42:09Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 11,577 → 11,610 (+33)"
-  },
-  {
-    "ts": "2026-10-16T21:28:48Z",
-    "app_id": 7,
-    "app": "Zoho CRM",
-    "kind": "servers",
-    "message": "registry servers 17 → 14 (-3)"
-  },
-  {
-    "ts": "2026-10-16T21:28:48Z",
-    "app_id": 24,
-    "app": "Lark (Larksuite)",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-10-16T21:28:48Z",
-    "app_id": 24,
-    "app": "Lark (Larksuite)",
-    "kind": "servers",
-    "message": "registry servers 0 → 1 (+1)"
   }
 ]
