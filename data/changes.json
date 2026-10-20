@@ -1,5 +1,138 @@
 [
   {
+    "ts": "2026-10-20T11:54:52Z",
+    "app_id": 24,
+    "app": "Lark (Larksuite)",
+    "kind": "status",
+    "message": "MCP status none → community"
+  },
+  {
+    "ts": "2026-10-20T11:54:52Z",
+    "app_id": 24,
+    "app": "Lark (Larksuite)",
+    "kind": "servers",
+    "message": "registry servers 0 → 1 (+1)"
+  },
+  {
+    "ts": "2026-10-20T11:54:52Z",
+    "app_id": 33,
+    "app": "LinkedIn Ads",
+    "kind": "status",
+    "message": "MCP status none → community"
+  },
+  {
+    "ts": "2026-10-20T11:54:52Z",
+    "app_id": 33,
+    "app": "LinkedIn Ads",
+    "kind": "servers",
+    "message": "registry servers 0 → 23 (+23)"
+  },
+  {
+    "ts": "2026-10-20T11:54:52Z",
+    "app_id": 39,
+    "app": "Threads (Meta)",
+    "kind": "servers",
+    "message": "registry servers 7 → 9 (+2)"
+  },
+  {
+    "ts": "2026-10-20T11:54:52Z",
+    "app_id": 42,
+    "app": "WooCommerce",
+    "kind": "servers",
+    "message": "registry servers 3 → 4 (+1)"
+  },
+  {
+    "ts": "2026-10-20T11:54:52Z",
+    "app_id": 54,
+    "app": "MrScraper",
+    "kind": "status",
+    "message": "MCP status none → community"
+  },
+  {
+    "ts": "2026-10-20T11:54:52Z",
+    "app_id": 54,
+    "app": "MrScraper",
+    "kind": "servers",
+    "message": "registry servers 0 → 1 (+1)"
+  },
+  {
+    "ts": "2026-10-20T11:54:52Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 12,107 → 12,159 (+52)"
+  },
+  {
+    "ts": "2026-10-20T11:54:52Z",
+    "app_id": 57,
+    "app": "Bright Data",
+    "kind": "servers",
+    "message": "registry servers 2 → 3 (+1)"
+  },
+  {
+    "ts": "2026-10-20T11:54:52Z",
+    "app_id": 69,
+    "app": "Datadog",
+    "kind": "status",
+    "message": "MCP status none → community"
+  },
+  {
+    "ts": "2026-10-20T11:54:52Z",
+    "app_id": 69,
+    "app": "Datadog",
+    "kind": "servers",
+    "message": "registry servers 0 → 3 (+3)"
+  },
+  {
+    "ts": "2026-10-20T11:54:52Z",
+    "app_id": 74,
+    "app": "Jira",
+    "kind": "servers",
+    "message": "registry servers 5 → 10 (+5)"
+  },
+  {
+    "ts": "2026-10-20T11:54:52Z",
+    "app_id": 76,
+    "app": "Monday.com",
+    "kind": "servers",
+    "message": "registry servers 2 → 4 (+2)"
+  },
+  {
+    "ts": "2026-10-20T11:54:52Z",
+    "app_id": 80,
+    "app": "Harvest",
+    "kind": "status",
+    "message": "MCP status none → community"
+  },
+  {
+    "ts": "2026-10-20T11:54:52Z",
+    "app_id": 80,
+    "app": "Harvest",
+    "kind": "servers",
+    "message": "registry servers 0 → 5 (+5)"
+  },
+  {
+    "ts": "2026-10-20T11:54:52Z",
+    "app_id": 80,
+    "app": "Harvest",
+    "kind": "tools",
+    "message": "live tools 0 → 3"
+  },
+  {
+    "ts": "2026-10-20T11:54:52Z",
+    "app_id": 83,
+    "app": "Binance",
+    "kind": "status",
+    "message": "MCP status none → community"
+  },
+  {
+    "ts": "2026-10-20T11:54:52Z",
+    "app_id": 83,
+    "app": "Binance",
+    "kind": "servers",
+    "message": "registry servers 0 → 5 (+5)"
+  },
+  {
     "ts": "2026-10-20T05:09:59Z",
     "app_id": 15,
     "app": "Pylon",
@@ -1265,138 +1398,5 @@
     "app": "Google Ads",
     "kind": "servers",
     "message": "registry servers 19 → 17 (-2)"
-  },
-  {
-    "ts": "2026-10-17T15:51:18Z",
-    "app_id": 32,
-    "app": "Meta Ads",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-10-17T15:51:18Z",
-    "app_id": 32,
-    "app": "Meta Ads",
-    "kind": "servers",
-    "message": "registry servers 7 → 0 (-7)"
-  },
-  {
-    "ts": "2026-10-17T15:51:18Z",
-    "app_id": 33,
-    "app": "LinkedIn Ads",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-10-17T15:51:18Z",
-    "app_id": 33,
-    "app": "LinkedIn Ads",
-    "kind": "servers",
-    "message": "registry servers 23 → 0 (-23)"
-  },
-  {
-    "ts": "2026-10-17T15:51:18Z",
-    "app_id": 39,
-    "app": "Threads (Meta)",
-    "kind": "servers",
-    "message": "registry servers 9 → 3 (-6)"
-  },
-  {
-    "ts": "2026-10-17T15:51:18Z",
-    "app_id": 45,
-    "app": "Magento (Adobe Commerce)",
-    "kind": "servers",
-    "message": "registry servers 8 → 6 (-2)"
-  },
-  {
-    "ts": "2026-10-17T15:51:18Z",
-    "app_id": 45,
-    "app": "Magento (Adobe Commerce)",
-    "kind": "tools",
-    "message": "live tools 13 → 0"
-  },
-  {
-    "ts": "2026-10-17T15:51:18Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 11,650 → 11,685 (+35)"
-  },
-  {
-    "ts": "2026-10-17T15:51:18Z",
-    "app_id": 57,
-    "app": "Bright Data",
-    "kind": "servers",
-    "message": "registry servers 3 → 2 (-1)"
-  },
-  {
-    "ts": "2026-10-17T15:51:18Z",
-    "app_id": 99,
-    "app": "YouTube Transcript",
-    "kind": "servers",
-    "message": "registry servers 33 → 34 (+1)"
-  },
-  {
-    "ts": "2026-10-17T11:00:59Z",
-    "app_id": 2,
-    "app": "HubSpot",
-    "kind": "servers",
-    "message": "registry servers 7 → 8 (+1)"
-  },
-  {
-    "ts": "2026-10-17T11:00:59Z",
-    "app_id": 7,
-    "app": "Zoho CRM",
-    "kind": "servers",
-    "message": "registry servers 17 → 14 (-3)"
-  },
-  {
-    "ts": "2026-10-17T11:00:59Z",
-    "app_id": 13,
-    "app": "Freshdesk",
-    "kind": "servers",
-    "message": "registry servers 5 → 6 (+1)"
-  },
-  {
-    "ts": "2026-10-17T11:00:59Z",
-    "app_id": 15,
-    "app": "Pylon",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-10-17T11:00:59Z",
-    "app_id": 15,
-    "app": "Pylon",
-    "kind": "servers",
-    "message": "registry servers 2 → 0 (-2)"
-  },
-  {
-    "ts": "2026-10-17T11:00:59Z",
-    "app_id": 18,
-    "app": "Help Scout",
-    "kind": "servers",
-    "message": "registry servers 17 → 16 (-1)"
-  },
-  {
-    "ts": "2026-10-17T11:00:59Z",
-    "app_id": 28,
-    "app": "WhatsApp Business",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-10-17T11:00:59Z",
-    "app_id": 28,
-    "app": "WhatsApp Business",
-    "kind": "servers",
-    "message": "registry servers 2 → 0 (-2)"
-  },
-  {
-    "ts": "2026-10-17T11:00:59Z",
-    "app_id": 35,
-    "app": "Mailchimp",
-    "kind": "servers",
-    "message": "registry servers 4 → 5 (+1)"
   }
 ]
