@@ -1,5 +1,75 @@
 [
   {
+    "ts": "2026-10-20T21:49:53Z",
+    "app_id": 18,
+    "app": "Help Scout",
+    "kind": "servers",
+    "message": "registry servers 17 → 16 (-1)"
+  },
+  {
+    "ts": "2026-10-20T21:49:53Z",
+    "app_id": 24,
+    "app": "Lark (Larksuite)",
+    "kind": "status",
+    "message": "MCP status community → none"
+  },
+  {
+    "ts": "2026-10-20T21:49:53Z",
+    "app_id": 24,
+    "app": "Lark (Larksuite)",
+    "kind": "servers",
+    "message": "registry servers 1 → 0 (-1)"
+  },
+  {
+    "ts": "2026-10-20T21:49:53Z",
+    "app_id": 31,
+    "app": "Google Ads",
+    "kind": "servers",
+    "message": "registry servers 19 → 17 (-2)"
+  },
+  {
+    "ts": "2026-10-20T21:49:53Z",
+    "app_id": 33,
+    "app": "LinkedIn Ads",
+    "kind": "servers",
+    "message": "registry servers 23 → 22 (-1)"
+  },
+  {
+    "ts": "2026-10-20T21:49:53Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 12,223 → 12,264 (+41)"
+  },
+  {
+    "ts": "2026-10-20T21:49:53Z",
+    "app_id": 68,
+    "app": "MongoDB Atlas",
+    "kind": "servers",
+    "message": "registry servers 25 → 19 (-6)"
+  },
+  {
+    "ts": "2026-10-20T21:49:53Z",
+    "app_id": 69,
+    "app": "Datadog",
+    "kind": "status",
+    "message": "MCP status community → none"
+  },
+  {
+    "ts": "2026-10-20T21:49:53Z",
+    "app_id": 69,
+    "app": "Datadog",
+    "kind": "servers",
+    "message": "registry servers 3 → 0 (-3)"
+  },
+  {
+    "ts": "2026-10-20T21:49:53Z",
+    "app_id": 76,
+    "app": "Monday.com",
+    "kind": "servers",
+    "message": "registry servers 1 → 4 (+3)"
+  },
+  {
     "ts": "2026-10-20T17:22:36Z",
     "app_id": 15,
     "app": "Pylon",
@@ -1328,75 +1398,5 @@
     "app": "Waterfall.io",
     "kind": "servers",
     "message": "registry servers 2 → 0 (-2)"
-  },
-  {
-    "ts": "2026-10-17T20:50:26Z",
-    "app_id": 68,
-    "app": "MongoDB Atlas",
-    "kind": "servers",
-    "message": "registry servers 26 → 6 (-20)"
-  },
-  {
-    "ts": "2026-10-17T20:50:26Z",
-    "app_id": 68,
-    "app": "MongoDB Atlas",
-    "kind": "tools",
-    "message": "live tools 0 → 2"
-  },
-  {
-    "ts": "2026-10-17T20:50:26Z",
-    "app_id": 74,
-    "app": "Jira",
-    "kind": "servers",
-    "message": "registry servers 9 → 5 (-4)"
-  },
-  {
-    "ts": "2026-10-17T20:50:26Z",
-    "app_id": 76,
-    "app": "Monday.com",
-    "kind": "servers",
-    "message": "registry servers 3 → 1 (-2)"
-  },
-  {
-    "ts": "2026-10-17T20:50:26Z",
-    "app_id": 83,
-    "app": "Binance",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-10-17T20:50:26Z",
-    "app_id": 83,
-    "app": "Binance",
-    "kind": "servers",
-    "message": "registry servers 4 → 0 (-4)"
-  },
-  {
-    "ts": "2026-10-17T20:50:26Z",
-    "app_id": 91,
-    "app": "NotebookLM",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-10-17T20:50:26Z",
-    "app_id": 91,
-    "app": "NotebookLM",
-    "kind": "servers",
-    "message": "registry servers 3 → 0 (-3)"
-  },
-  {
-    "ts": "2026-10-17T20:50:26Z",
-    "app_id": 91,
-    "app": "NotebookLM",
-    "kind": "tools",
-    "message": "live tools 43 → 0"
-  },
-  {
-    "ts": "2026-10-17T20:50:26Z",
-    "app_id": 98,
-    "app": "Mermaid CLI",
-    "kind": "status",
-    "message": "MCP status community → none"
   }
 ]
