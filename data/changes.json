@@ -1,5 +1,68 @@
 [
   {
+    "ts": "2026-10-20T17:22:36Z",
+    "app_id": 15,
+    "app": "Pylon",
+    "kind": "status",
+    "message": "MCP status none → community"
+  },
+  {
+    "ts": "2026-10-20T17:22:36Z",
+    "app_id": 15,
+    "app": "Pylon",
+    "kind": "servers",
+    "message": "registry servers 0 → 2 (+2)"
+  },
+  {
+    "ts": "2026-10-20T17:22:36Z",
+    "app_id": 32,
+    "app": "Meta Ads",
+    "kind": "servers",
+    "message": "registry servers 7 → 8 (+1)"
+  },
+  {
+    "ts": "2026-10-20T17:22:36Z",
+    "app_id": 39,
+    "app": "Threads (Meta)",
+    "kind": "servers",
+    "message": "registry servers 9 → 10 (+1)"
+  },
+  {
+    "ts": "2026-10-20T17:22:36Z",
+    "app_id": 45,
+    "app": "Magento (Adobe Commerce)",
+    "kind": "servers",
+    "message": "registry servers 3 → 12 (+9)"
+  },
+  {
+    "ts": "2026-10-20T17:22:36Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 12,159 → 12,223 (+64)"
+  },
+  {
+    "ts": "2026-10-20T17:22:36Z",
+    "app_id": 68,
+    "app": "MongoDB Atlas",
+    "kind": "servers",
+    "message": "registry servers 19 → 25 (+6)"
+  },
+  {
+    "ts": "2026-10-20T17:22:36Z",
+    "app_id": 76,
+    "app": "Monday.com",
+    "kind": "servers",
+    "message": "registry servers 4 → 1 (-3)"
+  },
+  {
+    "ts": "2026-10-20T17:22:36Z",
+    "app_id": 94,
+    "app": "Consensus",
+    "kind": "servers",
+    "message": "registry servers 7 → 8 (+1)"
+  },
+  {
     "ts": "2026-10-20T11:54:52Z",
     "app_id": 24,
     "app": "Lark (Larksuite)",
@@ -1335,68 +1398,5 @@
     "app": "Mermaid CLI",
     "kind": "status",
     "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-10-17T20:50:26Z",
-    "app_id": 98,
-    "app": "Mermaid CLI",
-    "kind": "servers",
-    "message": "registry servers 5 → 0 (-5)"
-  },
-  {
-    "ts": "2026-10-17T15:51:18Z",
-    "app_id": 15,
-    "app": "Pylon",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-10-17T15:51:18Z",
-    "app_id": 15,
-    "app": "Pylon",
-    "kind": "servers",
-    "message": "registry servers 0 → 2 (+2)"
-  },
-  {
-    "ts": "2026-10-17T15:51:18Z",
-    "app_id": 18,
-    "app": "Help Scout",
-    "kind": "servers",
-    "message": "registry servers 16 → 6 (-10)"
-  },
-  {
-    "ts": "2026-10-17T15:51:18Z",
-    "app_id": 18,
-    "app": "Help Scout",
-    "kind": "stars",
-    "message": "repo ★ 137 → 0 (-137)"
-  },
-  {
-    "ts": "2026-10-17T15:51:18Z",
-    "app_id": 18,
-    "app": "Help Scout",
-    "kind": "tools",
-    "message": "live tools 6 → 2"
-  },
-  {
-    "ts": "2026-10-17T15:51:18Z",
-    "app_id": 28,
-    "app": "WhatsApp Business",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-10-17T15:51:18Z",
-    "app_id": 28,
-    "app": "WhatsApp Business",
-    "kind": "servers",
-    "message": "registry servers 0 → 2 (+2)"
-  },
-  {
-    "ts": "2026-10-17T15:51:18Z",
-    "app_id": 31,
-    "app": "Google Ads",
-    "kind": "servers",
-    "message": "registry servers 19 → 17 (-2)"
   }
 ]
