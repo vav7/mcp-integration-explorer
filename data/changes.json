@@ -1,5 +1,166 @@
 [
   {
+    "ts": "2026-10-21T05:12:50Z",
+    "app_id": 7,
+    "app": "Zoho CRM",
+    "kind": "servers",
+    "message": "registry servers 17 → 14 (-3)"
+  },
+  {
+    "ts": "2026-10-21T05:12:50Z",
+    "app_id": 18,
+    "app": "Help Scout",
+    "kind": "servers",
+    "message": "registry servers 16 → 7 (-9)"
+  },
+  {
+    "ts": "2026-10-21T05:12:50Z",
+    "app_id": 18,
+    "app": "Help Scout",
+    "kind": "stars",
+    "message": "repo ★ 138 → 0 (-138)"
+  },
+  {
+    "ts": "2026-10-21T05:12:50Z",
+    "app_id": 18,
+    "app": "Help Scout",
+    "kind": "tools",
+    "message": "live tools 6 → 0"
+  },
+  {
+    "ts": "2026-10-21T05:12:50Z",
+    "app_id": 23,
+    "app": "Zoho Cliq",
+    "kind": "status",
+    "message": "MCP status community → none"
+  },
+  {
+    "ts": "2026-10-21T05:12:50Z",
+    "app_id": 23,
+    "app": "Zoho Cliq",
+    "kind": "servers",
+    "message": "registry servers 4 → 0 (-4)"
+  },
+  {
+    "ts": "2026-10-21T05:12:50Z",
+    "app_id": 23,
+    "app": "Zoho Cliq",
+    "kind": "tools",
+    "message": "live tools 46 → 0"
+  },
+  {
+    "ts": "2026-10-21T05:12:50Z",
+    "app_id": 27,
+    "app": "Telegram",
+    "kind": "servers",
+    "message": "registry servers 20 → 21 (+1)"
+  },
+  {
+    "ts": "2026-10-21T05:12:50Z",
+    "app_id": 32,
+    "app": "Meta Ads",
+    "kind": "servers",
+    "message": "registry servers 8 → 3 (-5)"
+  },
+  {
+    "ts": "2026-10-21T05:12:50Z",
+    "app_id": 39,
+    "app": "Threads (Meta)",
+    "kind": "servers",
+    "message": "registry servers 10 → 3 (-7)"
+  },
+  {
+    "ts": "2026-10-21T05:12:50Z",
+    "app_id": 42,
+    "app": "WooCommerce",
+    "kind": "servers",
+    "message": "registry servers 4 → 5 (+1)"
+  },
+  {
+    "ts": "2026-10-21T05:12:50Z",
+    "app_id": 45,
+    "app": "Magento (Adobe Commerce)",
+    "kind": "servers",
+    "message": "registry servers 12 → 9 (-3)"
+  },
+  {
+    "ts": "2026-10-21T05:12:50Z",
+    "app_id": 45,
+    "app": "Magento (Adobe Commerce)",
+    "kind": "tools",
+    "message": "live tools 13 → 0"
+  },
+  {
+    "ts": "2026-10-21T05:12:50Z",
+    "app_id": 52,
+    "app": "SE Ranking",
+    "kind": "servers",
+    "message": "registry servers 7 → 1 (-6)"
+  },
+  {
+    "ts": "2026-10-21T05:12:50Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 12,264 → 12,309 (+45)"
+  },
+  {
+    "ts": "2026-10-21T05:12:50Z",
+    "app_id": 57,
+    "app": "Bright Data",
+    "kind": "servers",
+    "message": "registry servers 3 → 2 (-1)"
+  },
+  {
+    "ts": "2026-10-21T05:12:50Z",
+    "app_id": 71,
+    "app": "Notion",
+    "kind": "servers",
+    "message": "registry servers 9 → 10 (+1)"
+  },
+  {
+    "ts": "2026-10-21T05:12:50Z",
+    "app_id": 86,
+    "app": "QuickBooks",
+    "kind": "status",
+    "message": "MCP status community → none"
+  },
+  {
+    "ts": "2026-10-21T05:12:50Z",
+    "app_id": 86,
+    "app": "QuickBooks",
+    "kind": "servers",
+    "message": "registry servers 12 → 0 (-12)"
+  },
+  {
+    "ts": "2026-10-21T05:12:50Z",
+    "app_id": 91,
+    "app": "NotebookLM",
+    "kind": "status",
+    "message": "MCP status community → none"
+  },
+  {
+    "ts": "2026-10-21T05:12:50Z",
+    "app_id": 91,
+    "app": "NotebookLM",
+    "kind": "servers",
+    "message": "registry servers 3 → 0 (-3)"
+  },
+  {
+    "ts": "2026-10-21T05:12:50Z",
+    "app_id": 91,
+    "app": "NotebookLM",
+    "kind": "tools",
+    "message": "live tools 43 → 0"
+  },
+  {
+    "ts": "2026-10-21T05:12:50Z",
+    "app_id": 99,
+    "app": "YouTube Transcript",
+    "kind": "servers",
+    "message": "registry servers 36 → 37 (+1)"
+  },
+  {
     "ts": "2026-10-20T21:49:53Z",
     "app_id": 18,
     "app": "Help Scout",
@@ -1237,166 +1398,5 @@
     "app": "QuickBooks",
     "kind": "servers",
     "message": "registry servers 11 → 12 (+1)"
-  },
-  {
-    "ts": "2026-10-18T04:45:30Z",
-    "app_id": 91,
-    "app": "NotebookLM",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-10-18T04:45:30Z",
-    "app_id": 91,
-    "app": "NotebookLM",
-    "kind": "servers",
-    "message": "registry servers 0 → 3 (+3)"
-  },
-  {
-    "ts": "2026-10-18T04:45:30Z",
-    "app_id": 91,
-    "app": "NotebookLM",
-    "kind": "tools",
-    "message": "live tools 0 → 43"
-  },
-  {
-    "ts": "2026-10-18T04:45:30Z",
-    "app_id": 98,
-    "app": "Mermaid CLI",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-10-18T04:45:30Z",
-    "app_id": 98,
-    "app": "Mermaid CLI",
-    "kind": "servers",
-    "message": "registry servers 0 → 5 (+5)"
-  },
-  {
-    "ts": "2026-10-17T20:50:26Z",
-    "app_id": 7,
-    "app": "Zoho CRM",
-    "kind": "servers",
-    "message": "registry servers 14 → 17 (+3)"
-  },
-  {
-    "ts": "2026-10-17T20:50:26Z",
-    "app_id": 18,
-    "app": "Help Scout",
-    "kind": "servers",
-    "message": "registry servers 6 → 16 (+10)"
-  },
-  {
-    "ts": "2026-10-17T20:50:26Z",
-    "app_id": 18,
-    "app": "Help Scout",
-    "kind": "stars",
-    "message": "repo ★ 0 → 137 (+137)"
-  },
-  {
-    "ts": "2026-10-17T20:50:26Z",
-    "app_id": 18,
-    "app": "Help Scout",
-    "kind": "tools",
-    "message": "live tools 2 → 6"
-  },
-  {
-    "ts": "2026-10-17T20:50:26Z",
-    "app_id": 27,
-    "app": "Telegram",
-    "kind": "servers",
-    "message": "registry servers 21 → 22 (+1)"
-  },
-  {
-    "ts": "2026-10-17T20:50:26Z",
-    "app_id": 31,
-    "app": "Google Ads",
-    "kind": "servers",
-    "message": "registry servers 17 → 19 (+2)"
-  },
-  {
-    "ts": "2026-10-17T20:50:26Z",
-    "app_id": 32,
-    "app": "Meta Ads",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-10-17T20:50:26Z",
-    "app_id": 32,
-    "app": "Meta Ads",
-    "kind": "servers",
-    "message": "registry servers 0 → 7 (+7)"
-  },
-  {
-    "ts": "2026-10-17T20:50:26Z",
-    "app_id": 33,
-    "app": "LinkedIn Ads",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-10-17T20:50:26Z",
-    "app_id": 33,
-    "app": "LinkedIn Ads",
-    "kind": "servers",
-    "message": "registry servers 0 → 23 (+23)"
-  },
-  {
-    "ts": "2026-10-17T20:50:26Z",
-    "app_id": 39,
-    "app": "Threads (Meta)",
-    "kind": "servers",
-    "message": "registry servers 3 → 9 (+6)"
-  },
-  {
-    "ts": "2026-10-17T20:50:26Z",
-    "app_id": 45,
-    "app": "Magento (Adobe Commerce)",
-    "kind": "servers",
-    "message": "registry servers 6 → 9 (+3)"
-  },
-  {
-    "ts": "2026-10-17T20:50:26Z",
-    "app_id": 45,
-    "app": "Magento (Adobe Commerce)",
-    "kind": "tools",
-    "message": "live tools 0 → 13"
-  },
-  {
-    "ts": "2026-10-17T20:50:26Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 11,685 → 11,715 (+30)"
-  },
-  {
-    "ts": "2026-10-17T20:50:26Z",
-    "app_id": 58,
-    "app": "Sherlock",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-10-17T20:50:26Z",
-    "app_id": 58,
-    "app": "Sherlock",
-    "kind": "servers",
-    "message": "registry servers 1 → 0 (-1)"
-  },
-  {
-    "ts": "2026-10-17T20:50:26Z",
-    "app_id": 59,
-    "app": "Waterfall.io",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-10-17T20:50:26Z",
-    "app_id": 59,
-    "app": "Waterfall.io",
-    "kind": "servers",
-    "message": "registry servers 2 → 0 (-2)"
   }
 ]
