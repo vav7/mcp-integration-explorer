@@ -1,5 +1,47 @@
 [
   {
+    "ts": "2026-10-22T21:49:58Z",
+    "app_id": 27,
+    "app": "Telegram",
+    "kind": "servers",
+    "message": "registry servers 21 → 22 (+1)"
+  },
+  {
+    "ts": "2026-10-22T21:49:58Z",
+    "app_id": 31,
+    "app": "Google Ads",
+    "kind": "servers",
+    "message": "registry servers 24 → 22 (-2)"
+  },
+  {
+    "ts": "2026-10-22T21:49:58Z",
+    "app_id": 32,
+    "app": "Meta Ads",
+    "kind": "servers",
+    "message": "registry servers 3 → 9 (+6)"
+  },
+  {
+    "ts": "2026-10-22T21:49:58Z",
+    "app_id": 45,
+    "app": "Magento (Adobe Commerce)",
+    "kind": "servers",
+    "message": "registry servers 4 → 13 (+9)"
+  },
+  {
+    "ts": "2026-10-22T21:49:58Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 12,602 → 12,646 (+44)"
+  },
+  {
+    "ts": "2026-10-22T21:49:58Z",
+    "app_id": 68,
+    "app": "MongoDB Atlas",
+    "kind": "servers",
+    "message": "registry servers 25 → 19 (-6)"
+  },
+  {
     "ts": "2026-10-22T17:23:57Z",
     "app_id": 7,
     "app": "Zoho CRM",
@@ -1356,47 +1398,5 @@
     "app": "Consensus",
     "kind": "servers",
     "message": "registry servers 7 → 8 (+1)"
-  },
-  {
-    "ts": "2026-10-20T11:54:52Z",
-    "app_id": 24,
-    "app": "Lark (Larksuite)",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-10-20T11:54:52Z",
-    "app_id": 24,
-    "app": "Lark (Larksuite)",
-    "kind": "servers",
-    "message": "registry servers 0 → 1 (+1)"
-  },
-  {
-    "ts": "2026-10-20T11:54:52Z",
-    "app_id": 33,
-    "app": "LinkedIn Ads",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-10-20T11:54:52Z",
-    "app_id": 33,
-    "app": "LinkedIn Ads",
-    "kind": "servers",
-    "message": "registry servers 0 → 23 (+23)"
-  },
-  {
-    "ts": "2026-10-20T11:54:52Z",
-    "app_id": 39,
-    "app": "Threads (Meta)",
-    "kind": "servers",
-    "message": "registry servers 7 → 9 (+2)"
-  },
-  {
-    "ts": "2026-10-20T11:54:52Z",
-    "app_id": 42,
-    "app": "WooCommerce",
-    "kind": "servers",
-    "message": "registry servers 3 → 4 (+1)"
   }
 ]
