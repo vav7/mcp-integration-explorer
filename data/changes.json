@@ -1,5 +1,152 @@
 [
   {
+    "ts": "2026-10-23T12:02:38Z",
+    "app_id": 7,
+    "app": "Zoho CRM",
+    "kind": "servers",
+    "message": "registry servers 14 → 17 (+3)"
+  },
+  {
+    "ts": "2026-10-23T12:02:38Z",
+    "app_id": 18,
+    "app": "Help Scout",
+    "kind": "status",
+    "message": "MCP status community → none"
+  },
+  {
+    "ts": "2026-10-23T12:02:38Z",
+    "app_id": 18,
+    "app": "Help Scout",
+    "kind": "servers",
+    "message": "registry servers 16 → 0 (-16)"
+  },
+  {
+    "ts": "2026-10-23T12:02:38Z",
+    "app_id": 18,
+    "app": "Help Scout",
+    "kind": "tools",
+    "message": "live tools 6 → 0"
+  },
+  {
+    "ts": "2026-10-23T12:02:38Z",
+    "app_id": 24,
+    "app": "Lark (Larksuite)",
+    "kind": "status",
+    "message": "MCP status community → none"
+  },
+  {
+    "ts": "2026-10-23T12:02:38Z",
+    "app_id": 24,
+    "app": "Lark (Larksuite)",
+    "kind": "servers",
+    "message": "registry servers 1 → 0 (-1)"
+  },
+  {
+    "ts": "2026-10-23T12:02:38Z",
+    "app_id": 31,
+    "app": "Google Ads",
+    "kind": "servers",
+    "message": "registry servers 22 → 24 (+2)"
+  },
+  {
+    "ts": "2026-10-23T12:02:38Z",
+    "app_id": 44,
+    "app": "Salesforce Commerce Cloud",
+    "kind": "status",
+    "message": "MCP status community → none"
+  },
+  {
+    "ts": "2026-10-23T12:02:38Z",
+    "app_id": 44,
+    "app": "Salesforce Commerce Cloud",
+    "kind": "servers",
+    "message": "registry servers 18 → 0 (-18)"
+  },
+  {
+    "ts": "2026-10-23T12:02:38Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 12,701 → 12,749 (+48)"
+  },
+  {
+    "ts": "2026-10-23T12:02:38Z",
+    "app_id": 58,
+    "app": "Sherlock",
+    "kind": "status",
+    "message": "MCP status community → none"
+  },
+  {
+    "ts": "2026-10-23T12:02:38Z",
+    "app_id": 58,
+    "app": "Sherlock",
+    "kind": "servers",
+    "message": "registry servers 1 → 0 (-1)"
+  },
+  {
+    "ts": "2026-10-23T12:02:38Z",
+    "app_id": 83,
+    "app": "Binance",
+    "kind": "status",
+    "message": "MCP status community → none"
+  },
+  {
+    "ts": "2026-10-23T12:02:38Z",
+    "app_id": 83,
+    "app": "Binance",
+    "kind": "servers",
+    "message": "registry servers 5 → 0 (-5)"
+  },
+  {
+    "ts": "2026-10-23T12:02:38Z",
+    "app_id": 86,
+    "app": "QuickBooks",
+    "kind": "status",
+    "message": "MCP status community → none"
+  },
+  {
+    "ts": "2026-10-23T12:02:38Z",
+    "app_id": 86,
+    "app": "QuickBooks",
+    "kind": "servers",
+    "message": "registry servers 11 → 0 (-11)"
+  },
+  {
+    "ts": "2026-10-23T12:02:38Z",
+    "app_id": 92,
+    "app": "Otter AI",
+    "kind": "status",
+    "message": "MCP status community → none"
+  },
+  {
+    "ts": "2026-10-23T12:02:38Z",
+    "app_id": 92,
+    "app": "Otter AI",
+    "kind": "servers",
+    "message": "registry servers 3 → 0 (-3)"
+  },
+  {
+    "ts": "2026-10-23T12:02:38Z",
+    "app_id": 92,
+    "app": "Otter AI",
+    "kind": "tools",
+    "message": "live tools 7 → 0"
+  },
+  {
+    "ts": "2026-10-23T12:02:38Z",
+    "app_id": 98,
+    "app": "Mermaid CLI",
+    "kind": "status",
+    "message": "MCP status community → none"
+  },
+  {
+    "ts": "2026-10-23T12:02:38Z",
+    "app_id": 98,
+    "app": "Mermaid CLI",
+    "kind": "servers",
+    "message": "registry servers 6 → 0 (-6)"
+  },
+  {
     "ts": "2026-10-23T05:16:02Z",
     "app_id": 7,
     "app": "Zoho CRM",
@@ -1251,152 +1398,5 @@
     "app": "SE Ranking",
     "kind": "servers",
     "message": "registry servers 7 → 1 (-6)"
-  },
-  {
-    "ts": "2026-10-21T05:12:50Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 12,264 → 12,309 (+45)"
-  },
-  {
-    "ts": "2026-10-21T05:12:50Z",
-    "app_id": 57,
-    "app": "Bright Data",
-    "kind": "servers",
-    "message": "registry servers 3 → 2 (-1)"
-  },
-  {
-    "ts": "2026-10-21T05:12:50Z",
-    "app_id": 71,
-    "app": "Notion",
-    "kind": "servers",
-    "message": "registry servers 9 → 10 (+1)"
-  },
-  {
-    "ts": "2026-10-21T05:12:50Z",
-    "app_id": 86,
-    "app": "QuickBooks",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-10-21T05:12:50Z",
-    "app_id": 86,
-    "app": "QuickBooks",
-    "kind": "servers",
-    "message": "registry servers 12 → 0 (-12)"
-  },
-  {
-    "ts": "2026-10-21T05:12:50Z",
-    "app_id": 91,
-    "app": "NotebookLM",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-10-21T05:12:50Z",
-    "app_id": 91,
-    "app": "NotebookLM",
-    "kind": "servers",
-    "message": "registry servers 3 → 0 (-3)"
-  },
-  {
-    "ts": "2026-10-21T05:12:50Z",
-    "app_id": 91,
-    "app": "NotebookLM",
-    "kind": "tools",
-    "message": "live tools 43 → 0"
-  },
-  {
-    "ts": "2026-10-21T05:12:50Z",
-    "app_id": 99,
-    "app": "YouTube Transcript",
-    "kind": "servers",
-    "message": "registry servers 36 → 37 (+1)"
-  },
-  {
-    "ts": "2026-10-20T21:49:53Z",
-    "app_id": 18,
-    "app": "Help Scout",
-    "kind": "servers",
-    "message": "registry servers 17 → 16 (-1)"
-  },
-  {
-    "ts": "2026-10-20T21:49:53Z",
-    "app_id": 24,
-    "app": "Lark (Larksuite)",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-10-20T21:49:53Z",
-    "app_id": 24,
-    "app": "Lark (Larksuite)",
-    "kind": "servers",
-    "message": "registry servers 1 → 0 (-1)"
-  },
-  {
-    "ts": "2026-10-20T21:49:53Z",
-    "app_id": 31,
-    "app": "Google Ads",
-    "kind": "servers",
-    "message": "registry servers 19 → 17 (-2)"
-  },
-  {
-    "ts": "2026-10-20T21:49:53Z",
-    "app_id": 33,
-    "app": "LinkedIn Ads",
-    "kind": "servers",
-    "message": "registry servers 23 → 22 (-1)"
-  },
-  {
-    "ts": "2026-10-20T21:49:53Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 12,223 → 12,264 (+41)"
-  },
-  {
-    "ts": "2026-10-20T21:49:53Z",
-    "app_id": 68,
-    "app": "MongoDB Atlas",
-    "kind": "servers",
-    "message": "registry servers 25 → 19 (-6)"
-  },
-  {
-    "ts": "2026-10-20T21:49:53Z",
-    "app_id": 69,
-    "app": "Datadog",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-10-20T21:49:53Z",
-    "app_id": 69,
-    "app": "Datadog",
-    "kind": "servers",
-    "message": "registry servers 3 → 0 (-3)"
-  },
-  {
-    "ts": "2026-10-20T21:49:53Z",
-    "app_id": 76,
-    "app": "Monday.com",
-    "kind": "servers",
-    "message": "registry servers 1 → 4 (+3)"
-  },
-  {
-    "ts": "2026-10-20T17:22:36Z",
-    "app_id": 15,
-    "app": "Pylon",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-10-20T17:22:36Z",
-    "app_id": 15,
-    "app": "Pylon",
-    "kind": "servers",
-    "message": "registry servers 0 → 2 (+2)"
   }
 ]
