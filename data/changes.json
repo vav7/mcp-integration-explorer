@@ -1,5 +1,12 @@
 [
   {
+    "ts": "2026-10-23T21:29:28Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 12,787 → 12,817 (+30)"
+  },
+  {
     "ts": "2026-10-23T17:14:36Z",
     "app_id": 14,
     "app": "Front",
@@ -1391,12 +1398,5 @@
     "app": "Shopify",
     "kind": "servers",
     "message": "registry servers 24 → 25 (+1)"
-  },
-  {
-    "ts": "2026-10-21T12:08:58Z",
-    "app_id": 51,
-    "app": "DataForSEO",
-    "kind": "servers",
-    "message": "registry servers 1 → 2 (+1)"
   }
 ]
