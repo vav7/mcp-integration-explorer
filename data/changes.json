@@ -1,5 +1,33 @@
 [
   {
+    "ts": "2026-10-24T04:44:29Z",
+    "app_id": 18,
+    "app": "Help Scout",
+    "kind": "servers",
+    "message": "registry servers 16 → 15 (-1)"
+  },
+  {
+    "ts": "2026-10-24T04:44:29Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 12,817 → 12,850 (+33)"
+  },
+  {
+    "ts": "2026-10-24T04:44:29Z",
+    "app_id": 62,
+    "app": "Vercel",
+    "kind": "servers",
+    "message": "registry servers 7 → 6 (-1)"
+  },
+  {
+    "ts": "2026-10-24T04:44:29Z",
+    "app_id": 67,
+    "app": "Snowflake",
+    "kind": "servers",
+    "message": "registry servers 8 → 9 (+1)"
+  },
+  {
     "ts": "2026-10-23T21:29:28Z",
     "app_id": 55,
     "app": "Apify",
@@ -1370,33 +1398,5 @@
     "app": "Mailchimp",
     "kind": "servers",
     "message": "registry servers 5 → 6 (+1)"
-  },
-  {
-    "ts": "2026-10-21T12:08:58Z",
-    "app_id": 36,
-    "app": "Klaviyo",
-    "kind": "servers",
-    "message": "registry servers 4 → 5 (+1)"
-  },
-  {
-    "ts": "2026-10-21T12:08:58Z",
-    "app_id": 36,
-    "app": "Klaviyo",
-    "kind": "stars",
-    "message": "repo ★ 32 → 0 (-32)"
-  },
-  {
-    "ts": "2026-10-21T12:08:58Z",
-    "app_id": 39,
-    "app": "Threads (Meta)",
-    "kind": "servers",
-    "message": "registry servers 3 → 11 (+8)"
-  },
-  {
-    "ts": "2026-10-21T12:08:58Z",
-    "app_id": 41,
-    "app": "Shopify",
-    "kind": "servers",
-    "message": "registry servers 24 → 25 (+1)"
   }
 ]
