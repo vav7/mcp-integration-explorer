@@ -1,5 +1,26 @@
 [
   {
+    "ts": "2026-10-24T20:55:58Z",
+    "app_id": 11,
+    "app": "Zendesk",
+    "kind": "servers",
+    "message": "registry servers 5 → 4 (-1)"
+  },
+  {
+    "ts": "2026-10-24T20:55:58Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 12,930 → 12,972 (+42)"
+  },
+  {
+    "ts": "2026-10-24T20:55:58Z",
+    "app_id": 61,
+    "app": "GitHub",
+    "kind": "servers",
+    "message": "registry servers 11 → 12 (+1)"
+  },
+  {
     "ts": "2026-10-24T16:02:47Z",
     "app_id": 27,
     "app": "Telegram",
@@ -1377,26 +1398,5 @@
     "app": "Slack",
     "kind": "servers",
     "message": "registry servers 9 → 10 (+1)"
-  },
-  {
-    "ts": "2026-10-21T12:08:58Z",
-    "app_id": 23,
-    "app": "Zoho Cliq",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-10-21T12:08:58Z",
-    "app_id": 23,
-    "app": "Zoho Cliq",
-    "kind": "servers",
-    "message": "registry servers 0 → 4 (+4)"
-  },
-  {
-    "ts": "2026-10-21T12:08:58Z",
-    "app_id": 23,
-    "app": "Zoho Cliq",
-    "kind": "tools",
-    "message": "live tools 0 → 46"
   }
 ]
