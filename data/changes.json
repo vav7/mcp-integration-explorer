@@ -1,5 +1,33 @@
 [
   {
+    "ts": "2026-10-24T11:10:49Z",
+    "app_id": 38,
+    "app": "Pinterest",
+    "kind": "servers",
+    "message": "registry servers 9 → 10 (+1)"
+  },
+  {
+    "ts": "2026-10-24T11:10:49Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 12,850 → 12,891 (+41)"
+  },
+  {
+    "ts": "2026-10-24T11:10:49Z",
+    "app_id": 62,
+    "app": "Vercel",
+    "kind": "servers",
+    "message": "registry servers 6 → 5 (-1)"
+  },
+  {
+    "ts": "2026-10-24T11:10:49Z",
+    "app_id": 84,
+    "app": "Paygent Connect",
+    "kind": "site",
+    "message": "site came up"
+  },
+  {
     "ts": "2026-10-24T04:44:29Z",
     "app_id": 18,
     "app": "Help Scout",
@@ -1370,33 +1398,5 @@
     "app": "Lark (Larksuite)",
     "kind": "servers",
     "message": "registry servers 0 → 1 (+1)"
-  },
-  {
-    "ts": "2026-10-21T12:08:58Z",
-    "app_id": 32,
-    "app": "Meta Ads",
-    "kind": "servers",
-    "message": "registry servers 3 → 9 (+6)"
-  },
-  {
-    "ts": "2026-10-21T12:08:58Z",
-    "app_id": 33,
-    "app": "LinkedIn Ads",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-10-21T12:08:58Z",
-    "app_id": 33,
-    "app": "LinkedIn Ads",
-    "kind": "servers",
-    "message": "registry servers 22 → 0 (-22)"
-  },
-  {
-    "ts": "2026-10-21T12:08:58Z",
-    "app_id": 35,
-    "app": "Mailchimp",
-    "kind": "servers",
-    "message": "registry servers 5 → 6 (+1)"
   }
 ]
