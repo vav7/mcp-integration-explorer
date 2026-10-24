@@ -1,5 +1,19 @@
 [
   {
+    "ts": "2026-10-24T16:02:47Z",
+    "app_id": 27,
+    "app": "Telegram",
+    "kind": "servers",
+    "message": "registry servers 22 → 23 (+1)"
+  },
+  {
+    "ts": "2026-10-24T16:02:47Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 12,891 → 12,930 (+39)"
+  },
+  {
     "ts": "2026-10-24T11:10:49Z",
     "app_id": 38,
     "app": "Pinterest",
@@ -1384,19 +1398,5 @@
     "app": "Zoho Cliq",
     "kind": "tools",
     "message": "live tools 0 → 46"
-  },
-  {
-    "ts": "2026-10-21T12:08:58Z",
-    "app_id": 24,
-    "app": "Lark (Larksuite)",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-10-21T12:08:58Z",
-    "app_id": 24,
-    "app": "Lark (Larksuite)",
-    "kind": "servers",
-    "message": "registry servers 0 → 1 (+1)"
   }
 ]
