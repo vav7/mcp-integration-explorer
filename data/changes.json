@@ -1,5 +1,26 @@
 [
   {
+    "ts": "2026-10-25T04:50:34Z",
+    "app_id": 41,
+    "app": "Shopify",
+    "kind": "servers",
+    "message": "registry servers 25 → 26 (+1)"
+  },
+  {
+    "ts": "2026-10-25T04:50:34Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 12,972 → 13,019 (+47)"
+  },
+  {
+    "ts": "2026-10-25T04:50:34Z",
+    "app_id": 84,
+    "app": "Paygent Connect",
+    "kind": "site",
+    "message": "site went down"
+  },
+  {
     "ts": "2026-10-24T20:55:58Z",
     "app_id": 11,
     "app": "Zendesk",
@@ -1377,26 +1398,5 @@
     "app": "Help Scout",
     "kind": "servers",
     "message": "registry servers 7 → 16 (+9)"
-  },
-  {
-    "ts": "2026-10-21T12:08:58Z",
-    "app_id": 18,
-    "app": "Help Scout",
-    "kind": "stars",
-    "message": "repo ★ 0 → 138 (+138)"
-  },
-  {
-    "ts": "2026-10-21T12:08:58Z",
-    "app_id": 18,
-    "app": "Help Scout",
-    "kind": "tools",
-    "message": "live tools 0 → 6"
-  },
-  {
-    "ts": "2026-10-21T12:08:58Z",
-    "app_id": 21,
-    "app": "Slack",
-    "kind": "servers",
-    "message": "registry servers 9 → 10 (+1)"
   }
 ]
