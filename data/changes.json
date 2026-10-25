@@ -1,5 +1,26 @@
 [
   {
+    "ts": "2026-10-25T16:30:17Z",
+    "app_id": 7,
+    "app": "Zoho CRM",
+    "kind": "servers",
+    "message": "registry servers 17 → 18 (+1)"
+  },
+  {
+    "ts": "2026-10-25T16:30:17Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 13,059 → 13,093 (+34)"
+  },
+  {
+    "ts": "2026-10-25T16:30:17Z",
+    "app_id": 94,
+    "app": "Consensus",
+    "kind": "servers",
+    "message": "registry servers 8 → 9 (+1)"
+  },
+  {
     "ts": "2026-10-25T11:40:53Z",
     "app_id": 41,
     "app": "Shopify",
@@ -1377,26 +1398,5 @@
     "app": "YouTube Transcript",
     "kind": "status",
     "message": "MCP status vendor_official → community"
-  },
-  {
-    "ts": "2026-10-21T17:33:34Z",
-    "app_id": 99,
-    "app": "YouTube Transcript",
-    "kind": "servers",
-    "message": "registry servers 37 → 3 (-34)"
-  },
-  {
-    "ts": "2026-10-21T17:33:34Z",
-    "app_id": 99,
-    "app": "YouTube Transcript",
-    "kind": "stars",
-    "message": "repo ★ 13 → 27 (+14)"
-  },
-  {
-    "ts": "2026-10-21T17:33:34Z",
-    "app_id": 99,
-    "app": "YouTube Transcript",
-    "kind": "tools",
-    "message": "live tools 0 → 8"
   }
 ]
