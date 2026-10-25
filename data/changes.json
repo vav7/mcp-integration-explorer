@@ -1,5 +1,19 @@
 [
   {
+    "ts": "2026-10-25T11:40:53Z",
+    "app_id": 41,
+    "app": "Shopify",
+    "kind": "servers",
+    "message": "registry servers 26 → 25 (-1)"
+  },
+  {
+    "ts": "2026-10-25T11:40:53Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 13,019 → 13,059 (+40)"
+  },
+  {
     "ts": "2026-10-25T04:50:34Z",
     "app_id": 41,
     "app": "Shopify",
@@ -1384,19 +1398,5 @@
     "app": "YouTube Transcript",
     "kind": "tools",
     "message": "live tools 0 → 8"
-  },
-  {
-    "ts": "2026-10-21T12:08:58Z",
-    "app_id": 7,
-    "app": "Zoho CRM",
-    "kind": "servers",
-    "message": "registry servers 14 → 17 (+3)"
-  },
-  {
-    "ts": "2026-10-21T12:08:58Z",
-    "app_id": 18,
-    "app": "Help Scout",
-    "kind": "servers",
-    "message": "registry servers 7 → 16 (+9)"
   }
 ]
