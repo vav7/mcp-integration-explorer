@@ -1,5 +1,19 @@
 [
   {
+    "ts": "2026-10-25T20:56:36Z",
+    "app_id": 52,
+    "app": "SE Ranking",
+    "kind": "servers",
+    "message": "registry servers 7 → 8 (+1)"
+  },
+  {
+    "ts": "2026-10-25T20:56:36Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 13,093 → 13,132 (+39)"
+  },
+  {
     "ts": "2026-10-25T16:30:17Z",
     "app_id": 7,
     "app": "Zoho CRM",
@@ -1384,19 +1398,5 @@
     "app": "Mermaid CLI",
     "kind": "status",
     "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-10-21T17:33:34Z",
-    "app_id": 98,
-    "app": "Mermaid CLI",
-    "kind": "servers",
-    "message": "registry servers 0 → 6 (+6)"
-  },
-  {
-    "ts": "2026-10-21T17:33:34Z",
-    "app_id": 99,
-    "app": "YouTube Transcript",
-    "kind": "status",
-    "message": "MCP status vendor_official → community"
   }
 ]
