@@ -1,5 +1,19 @@
 [
   {
+    "ts": "2026-10-26T13:13:12Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 13,177 → 13,245 (+68)"
+  },
+  {
+    "ts": "2026-10-26T13:13:12Z",
+    "app_id": 71,
+    "app": "Notion",
+    "kind": "servers",
+    "message": "registry servers 10 → 11 (+1)"
+  },
+  {
     "ts": "2026-10-26T04:55:38Z",
     "app_id": 33,
     "app": "LinkedIn Ads",
@@ -1384,19 +1398,5 @@
     "app": "Binance",
     "kind": "servers",
     "message": "registry servers 5 → 0 (-5)"
-  },
-  {
-    "ts": "2026-10-21T17:33:34Z",
-    "app_id": 86,
-    "app": "QuickBooks",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-10-21T17:33:34Z",
-    "app_id": 86,
-    "app": "QuickBooks",
-    "kind": "servers",
-    "message": "registry servers 12 → 0 (-12)"
   }
 ]
