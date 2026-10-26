@@ -1,5 +1,33 @@
 [
   {
+    "ts": "2026-10-26T04:55:38Z",
+    "app_id": 33,
+    "app": "LinkedIn Ads",
+    "kind": "servers",
+    "message": "registry servers 25 → 24 (-1)"
+  },
+  {
+    "ts": "2026-10-26T04:55:38Z",
+    "app_id": 45,
+    "app": "Magento (Adobe Commerce)",
+    "kind": "servers",
+    "message": "registry servers 13 → 14 (+1)"
+  },
+  {
+    "ts": "2026-10-26T04:55:38Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 13,132 → 13,177 (+45)"
+  },
+  {
+    "ts": "2026-10-26T04:55:38Z",
+    "app_id": 93,
+    "app": "Fathom",
+    "kind": "servers",
+    "message": "registry servers 7 → 8 (+1)"
+  },
+  {
     "ts": "2026-10-25T20:56:36Z",
     "app_id": 52,
     "app": "SE Ranking",
@@ -1370,33 +1398,5 @@
     "app": "QuickBooks",
     "kind": "servers",
     "message": "registry servers 12 → 0 (-12)"
-  },
-  {
-    "ts": "2026-10-21T17:33:34Z",
-    "app_id": 91,
-    "app": "NotebookLM",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-10-21T17:33:34Z",
-    "app_id": 91,
-    "app": "NotebookLM",
-    "kind": "servers",
-    "message": "registry servers 0 → 3 (+3)"
-  },
-  {
-    "ts": "2026-10-21T17:33:34Z",
-    "app_id": 91,
-    "app": "NotebookLM",
-    "kind": "tools",
-    "message": "live tools 0 → 43"
-  },
-  {
-    "ts": "2026-10-21T17:33:34Z",
-    "app_id": 98,
-    "app": "Mermaid CLI",
-    "kind": "status",
-    "message": "MCP status none → community"
   }
 ]
