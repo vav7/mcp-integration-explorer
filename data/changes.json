@@ -1,5 +1,19 @@
 [
   {
+    "ts": "2026-10-27T05:13:26Z",
+    "app_id": 7,
+    "app": "Zoho CRM",
+    "kind": "tools",
+    "message": "live tools 195 → 196"
+  },
+  {
+    "ts": "2026-10-27T05:13:26Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 13,329 → 13,354 (+25)"
+  },
+  {
     "ts": "2026-10-26T22:44:48Z",
     "app_id": 33,
     "app": "LinkedIn Ads",
@@ -1384,19 +1398,5 @@
     "app": "Sherlock",
     "kind": "servers",
     "message": "registry servers 1 → 0 (-1)"
-  },
-  {
-    "ts": "2026-10-21T17:33:34Z",
-    "app_id": 69,
-    "app": "Datadog",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-10-21T17:33:34Z",
-    "app_id": 69,
-    "app": "Datadog",
-    "kind": "servers",
-    "message": "registry servers 3 → 0 (-3)"
   }
 ]

@@ -1246,5 +1246,18 @@
     "responding": 100,
     "reachable": 94,
     "avg_readiness": 48.9
+  },
+  {
+    "ts": "2026-10-27T05:13:26Z",
+    "official": 14,
+    "community": 72,
+    "none": 14,
+    "servers": 607,
+    "tools": 344,
+    "downloads": 1065337,
+    "stars": 26400,
+    "responding": 100,
+    "reachable": 94,
+    "avg_readiness": 48.4
   }
 ]
