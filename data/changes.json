@@ -1,5 +1,47 @@
 [
   {
+    "ts": "2026-10-28T05:51:02Z",
+    "app_id": 18,
+    "app": "Help Scout",
+    "kind": "servers",
+    "message": "registry servers 17 → 18 (+1)"
+  },
+  {
+    "ts": "2026-10-28T05:51:02Z",
+    "app_id": 27,
+    "app": "Telegram",
+    "kind": "servers",
+    "message": "registry servers 24 → 23 (-1)"
+  },
+  {
+    "ts": "2026-10-28T05:51:02Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 13,497 → 13,532 (+35)"
+  },
+  {
+    "ts": "2026-10-28T05:51:02Z",
+    "app_id": 74,
+    "app": "Jira",
+    "kind": "servers",
+    "message": "registry servers 10 → 11 (+1)"
+  },
+  {
+    "ts": "2026-10-28T05:51:02Z",
+    "app_id": 84,
+    "app": "Paygent Connect",
+    "kind": "site",
+    "message": "site came up"
+  },
+  {
+    "ts": "2026-10-28T05:51:02Z",
+    "app_id": 99,
+    "app": "YouTube Transcript",
+    "kind": "servers",
+    "message": "registry servers 36 → 35 (-1)"
+  },
+  {
     "ts": "2026-10-27T22:21:12Z",
     "app_id": 3,
     "app": "Pipedrive",
@@ -1356,47 +1398,5 @@
     "app": "Magento (Adobe Commerce)",
     "kind": "servers",
     "message": "registry servers 0 → 13 (+13)"
-  },
-  {
-    "ts": "2026-10-21T21:58:25Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 12,417 → 12,453 (+36)"
-  },
-  {
-    "ts": "2026-10-21T21:58:25Z",
-    "app_id": 57,
-    "app": "Bright Data",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-10-21T21:58:25Z",
-    "app_id": 57,
-    "app": "Bright Data",
-    "kind": "servers",
-    "message": "registry servers 0 → 2 (+2)"
-  },
-  {
-    "ts": "2026-10-21T21:58:25Z",
-    "app_id": 69,
-    "app": "Datadog",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-10-21T21:58:25Z",
-    "app_id": 69,
-    "app": "Datadog",
-    "kind": "servers",
-    "message": "registry servers 0 → 3 (+3)"
-  },
-  {
-    "ts": "2026-10-21T21:58:25Z",
-    "app_id": 76,
-    "app": "Monday.com",
-    "kind": "servers",
-    "message": "registry servers 1 → 2 (+1)"
   }
 ]
