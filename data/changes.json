@@ -1,5 +1,33 @@
 [
   {
+    "ts": "2026-10-28T22:40:35Z",
+    "app_id": 18,
+    "app": "Help Scout",
+    "kind": "servers",
+    "message": "registry servers 18 → 19 (+1)"
+  },
+  {
+    "ts": "2026-10-28T22:40:35Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 13,586 → 13,668 (+82)"
+  },
+  {
+    "ts": "2026-10-28T22:40:35Z",
+    "app_id": 68,
+    "app": "MongoDB Atlas",
+    "kind": "servers",
+    "message": "registry servers 21 → 20 (-1)"
+  },
+  {
+    "ts": "2026-10-28T22:40:35Z",
+    "app_id": 80,
+    "app": "Harvest",
+    "kind": "tools",
+    "message": "live tools 3 → 0"
+  },
+  {
     "ts": "2026-10-28T13:04:34Z",
     "app_id": 7,
     "app": "Zoho CRM",
@@ -1370,33 +1398,5 @@
     "app": "Zoho Cliq",
     "kind": "tools",
     "message": "live tools 0 → 46"
-  },
-  {
-    "ts": "2026-10-21T21:58:25Z",
-    "app_id": 38,
-    "app": "Pinterest",
-    "kind": "servers",
-    "message": "registry servers 7 → 9 (+2)"
-  },
-  {
-    "ts": "2026-10-21T21:58:25Z",
-    "app_id": 39,
-    "app": "Threads (Meta)",
-    "kind": "servers",
-    "message": "registry servers 9 → 11 (+2)"
-  },
-  {
-    "ts": "2026-10-21T21:58:25Z",
-    "app_id": 44,
-    "app": "Salesforce Commerce Cloud",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-10-21T21:58:25Z",
-    "app_id": 44,
-    "app": "Salesforce Commerce Cloud",
-    "kind": "servers",
-    "message": "registry servers 0 → 18 (+18)"
   }
 ]
