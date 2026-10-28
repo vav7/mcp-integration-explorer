@@ -1,5 +1,19 @@
 [
   {
+    "ts": "2026-10-28T13:04:34Z",
+    "app_id": 7,
+    "app": "Zoho CRM",
+    "kind": "servers",
+    "message": "registry servers 18 → 19 (+1)"
+  },
+  {
+    "ts": "2026-10-28T13:04:34Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 13,532 → 13,586 (+54)"
+  },
+  {
     "ts": "2026-10-28T05:51:02Z",
     "app_id": 18,
     "app": "Help Scout",
@@ -1384,19 +1398,5 @@
     "app": "Salesforce Commerce Cloud",
     "kind": "servers",
     "message": "registry servers 0 → 18 (+18)"
-  },
-  {
-    "ts": "2026-10-21T21:58:25Z",
-    "app_id": 45,
-    "app": "Magento (Adobe Commerce)",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-10-21T21:58:25Z",
-    "app_id": 45,
-    "app": "Magento (Adobe Commerce)",
-    "kind": "servers",
-    "message": "registry servers 0 → 13 (+13)"
   }
 ]
