@@ -1,5 +1,47 @@
 [
   {
+    "ts": "2026-10-29T13:11:37Z",
+    "app_id": 7,
+    "app": "Zoho CRM",
+    "kind": "servers",
+    "message": "registry servers 20 → 21 (+1)"
+  },
+  {
+    "ts": "2026-10-29T13:11:37Z",
+    "app_id": 41,
+    "app": "Shopify",
+    "kind": "servers",
+    "message": "registry servers 26 → 27 (+1)"
+  },
+  {
+    "ts": "2026-10-29T13:11:37Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 13,702 → 13,744 (+42)"
+  },
+  {
+    "ts": "2026-10-29T13:11:37Z",
+    "app_id": 62,
+    "app": "Vercel",
+    "kind": "servers",
+    "message": "registry servers 2 → 1 (-1)"
+  },
+  {
+    "ts": "2026-10-29T13:11:37Z",
+    "app_id": 68,
+    "app": "MongoDB Atlas",
+    "kind": "servers",
+    "message": "registry servers 20 → 18 (-2)"
+  },
+  {
+    "ts": "2026-10-29T13:11:37Z",
+    "app_id": 81,
+    "app": "Stripe",
+    "kind": "stars",
+    "message": "repo ★ 1,988 → 1,993 (+5)"
+  },
+  {
     "ts": "2026-10-29T05:55:27Z",
     "app_id": 7,
     "app": "Zoho CRM",
@@ -1356,47 +1398,5 @@
     "app": "Jira",
     "kind": "stars",
     "message": "repo ★ 1,111 → 64 (-1,047)"
-  },
-  {
-    "ts": "2026-10-22T05:06:54Z",
-    "app_id": 75,
-    "app": "Asana",
-    "kind": "tools",
-    "message": "live tools 47 → 48"
-  },
-  {
-    "ts": "2026-10-22T05:06:54Z",
-    "app_id": 76,
-    "app": "Monday.com",
-    "kind": "servers",
-    "message": "registry servers 2 → 4 (+2)"
-  },
-  {
-    "ts": "2026-10-22T05:06:54Z",
-    "app_id": 82,
-    "app": "Plaid",
-    "kind": "tools",
-    "message": "live tools 44 → 45"
-  },
-  {
-    "ts": "2026-10-22T05:06:54Z",
-    "app_id": 83,
-    "app": "Binance",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-10-22T05:06:54Z",
-    "app_id": 83,
-    "app": "Binance",
-    "kind": "servers",
-    "message": "registry servers 0 → 5 (+5)"
-  },
-  {
-    "ts": "2026-10-22T05:06:54Z",
-    "app_id": 86,
-    "app": "QuickBooks",
-    "kind": "servers",
-    "message": "registry servers 12 → 11 (-1)"
   }
 ]
