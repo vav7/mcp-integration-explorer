@@ -1,5 +1,61 @@
 [
   {
+    "ts": "2026-10-29T05:55:27Z",
+    "app_id": 7,
+    "app": "Zoho CRM",
+    "kind": "servers",
+    "message": "registry servers 19 → 20 (+1)"
+  },
+  {
+    "ts": "2026-10-29T05:55:27Z",
+    "app_id": 27,
+    "app": "Telegram",
+    "kind": "servers",
+    "message": "registry servers 23 → 24 (+1)"
+  },
+  {
+    "ts": "2026-10-29T05:55:27Z",
+    "app_id": 33,
+    "app": "LinkedIn Ads",
+    "kind": "servers",
+    "message": "registry servers 23 → 22 (-1)"
+  },
+  {
+    "ts": "2026-10-29T05:55:27Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 13,668 → 13,702 (+34)"
+  },
+  {
+    "ts": "2026-10-29T05:55:27Z",
+    "app_id": 62,
+    "app": "Vercel",
+    "kind": "status",
+    "message": "MCP status vendor_official → community"
+  },
+  {
+    "ts": "2026-10-29T05:55:27Z",
+    "app_id": 62,
+    "app": "Vercel",
+    "kind": "servers",
+    "message": "registry servers 4 → 2 (-2)"
+  },
+  {
+    "ts": "2026-10-29T05:55:27Z",
+    "app_id": 81,
+    "app": "Stripe",
+    "kind": "stars",
+    "message": "repo ★ 1,982 → 1,988 (+6)"
+  },
+  {
+    "ts": "2026-10-29T05:55:27Z",
+    "app_id": 84,
+    "app": "Paygent Connect",
+    "kind": "site",
+    "message": "site went down"
+  },
+  {
     "ts": "2026-10-28T22:40:35Z",
     "app_id": 18,
     "app": "Help Scout",
@@ -1342,61 +1398,5 @@
     "app": "QuickBooks",
     "kind": "servers",
     "message": "registry servers 12 → 11 (-1)"
-  },
-  {
-    "ts": "2026-10-22T05:06:54Z",
-    "app_id": 98,
-    "app": "Mermaid CLI",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-10-22T05:06:54Z",
-    "app_id": 98,
-    "app": "Mermaid CLI",
-    "kind": "servers",
-    "message": "registry servers 0 → 6 (+6)"
-  },
-  {
-    "ts": "2026-10-22T05:06:54Z",
-    "app_id": 99,
-    "app": "YouTube Transcript",
-    "kind": "servers",
-    "message": "registry servers 27 → 38 (+11)"
-  },
-  {
-    "ts": "2026-10-21T21:58:25Z",
-    "app_id": 2,
-    "app": "HubSpot",
-    "kind": "servers",
-    "message": "registry servers 8 → 9 (+1)"
-  },
-  {
-    "ts": "2026-10-21T21:58:25Z",
-    "app_id": 7,
-    "app": "Zoho CRM",
-    "kind": "servers",
-    "message": "registry servers 14 → 17 (+3)"
-  },
-  {
-    "ts": "2026-10-21T21:58:25Z",
-    "app_id": 23,
-    "app": "Zoho Cliq",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-10-21T21:58:25Z",
-    "app_id": 23,
-    "app": "Zoho Cliq",
-    "kind": "servers",
-    "message": "registry servers 0 → 4 (+4)"
-  },
-  {
-    "ts": "2026-10-21T21:58:25Z",
-    "app_id": 23,
-    "app": "Zoho Cliq",
-    "kind": "tools",
-    "message": "live tools 0 → 46"
   }
 ]
