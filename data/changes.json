@@ -1,5 +1,26 @@
 [
   {
+    "ts": "2026-10-30T13:04:16Z",
+    "app_id": 18,
+    "app": "Help Scout",
+    "kind": "stars",
+    "message": "repo ★ 146 → 151 (+5)"
+  },
+  {
+    "ts": "2026-10-30T13:04:16Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 13,855 → 13,896 (+41)"
+  },
+  {
+    "ts": "2026-10-30T13:04:16Z",
+    "app_id": 81,
+    "app": "Stripe",
+    "kind": "stars",
+    "message": "repo ★ 2,000 → 2,005 (+5)"
+  },
+  {
     "ts": "2026-10-30T05:56:39Z",
     "app_id": 45,
     "app": "Magento (Adobe Commerce)",
@@ -1377,26 +1398,5 @@
     "app": "Zoho Cliq",
     "kind": "tools",
     "message": "live tools 46 → 47"
-  },
-  {
-    "ts": "2026-10-22T05:06:54Z",
-    "app_id": 33,
-    "app": "LinkedIn Ads",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-10-22T05:06:54Z",
-    "app_id": 33,
-    "app": "LinkedIn Ads",
-    "kind": "servers",
-    "message": "registry servers 0 → 24 (+24)"
-  },
-  {
-    "ts": "2026-10-22T05:06:54Z",
-    "app_id": 40,
-    "app": "SendGrid",
-    "kind": "tools",
-    "message": "live tools 44 → 45"
   }
 ]
