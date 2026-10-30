@@ -1,5 +1,26 @@
 [
   {
+    "ts": "2026-10-30T05:56:39Z",
+    "app_id": 45,
+    "app": "Magento (Adobe Commerce)",
+    "kind": "servers",
+    "message": "registry servers 14 → 15 (+1)"
+  },
+  {
+    "ts": "2026-10-30T05:56:39Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 13,819 → 13,855 (+36)"
+  },
+  {
+    "ts": "2026-10-30T05:56:39Z",
+    "app_id": 57,
+    "app": "Bright Data",
+    "kind": "site",
+    "message": "site came up"
+  },
+  {
     "ts": "2026-10-29T22:49:52Z",
     "app_id": 27,
     "app": "Telegram",
@@ -1377,26 +1398,5 @@
     "app": "SendGrid",
     "kind": "tools",
     "message": "live tools 44 → 45"
-  },
-  {
-    "ts": "2026-10-22T05:06:54Z",
-    "app_id": 45,
-    "app": "Magento (Adobe Commerce)",
-    "kind": "servers",
-    "message": "registry servers 13 → 4 (-9)"
-  },
-  {
-    "ts": "2026-10-22T05:06:54Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 12,453 → 12,489 (+36)"
-  },
-  {
-    "ts": "2026-10-22T05:06:54Z",
-    "app_id": 59,
-    "app": "Waterfall.io",
-    "kind": "status",
-    "message": "MCP status community → none"
   }
 ]
