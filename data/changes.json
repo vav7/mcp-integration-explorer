@@ -1,5 +1,47 @@
 [
   {
+    "ts": "2026-10-31T21:42:00Z",
+    "app_id": 11,
+    "app": "Zendesk",
+    "kind": "servers",
+    "message": "registry servers 4 → 3 (-1)"
+  },
+  {
+    "ts": "2026-10-31T21:42:00Z",
+    "app_id": 20,
+    "app": "Gladly",
+    "kind": "status",
+    "message": "MCP status none → community"
+  },
+  {
+    "ts": "2026-10-31T21:42:00Z",
+    "app_id": 20,
+    "app": "Gladly",
+    "kind": "servers",
+    "message": "registry servers 0 → 1 (+1)"
+  },
+  {
+    "ts": "2026-10-31T21:42:00Z",
+    "app_id": 41,
+    "app": "Shopify",
+    "kind": "servers",
+    "message": "registry servers 26 → 25 (-1)"
+  },
+  {
+    "ts": "2026-10-31T21:42:00Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 14,032 → 14,084 (+52)"
+  },
+  {
+    "ts": "2026-10-31T21:42:00Z",
+    "app_id": 61,
+    "app": "GitHub",
+    "kind": "servers",
+    "message": "registry servers 12 → 13 (+1)"
+  },
+  {
     "ts": "2026-10-31T12:42:05Z",
     "app_id": 26,
     "app": "Discord",
@@ -1356,47 +1398,5 @@
     "app": "Meta Ads",
     "kind": "servers",
     "message": "registry servers 9 → 3 (-6)"
-  },
-  {
-    "ts": "2026-10-22T12:13:14Z",
-    "app_id": 39,
-    "app": "Threads (Meta)",
-    "kind": "servers",
-    "message": "registry servers 11 → 9 (-2)"
-  },
-  {
-    "ts": "2026-10-22T12:13:14Z",
-    "app_id": 45,
-    "app": "Magento (Adobe Commerce)",
-    "kind": "servers",
-    "message": "registry servers 4 → 13 (+9)"
-  },
-  {
-    "ts": "2026-10-22T12:13:14Z",
-    "app_id": 49,
-    "app": "Amazon Selling Partner",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-10-22T12:13:14Z",
-    "app_id": 49,
-    "app": "Amazon Selling Partner",
-    "kind": "servers",
-    "message": "registry servers 5 → 0 (-5)"
-  },
-  {
-    "ts": "2026-10-22T12:13:14Z",
-    "app_id": 52,
-    "app": "SE Ranking",
-    "kind": "servers",
-    "message": "registry servers 7 → 1 (-6)"
-  },
-  {
-    "ts": "2026-10-22T12:13:14Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 12,489 → 12,547 (+58)"
   }
 ]
