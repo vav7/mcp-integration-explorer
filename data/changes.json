@@ -1,5 +1,19 @@
 [
   {
+    "ts": "2026-11-01T06:16:31Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 14,084 → 14,124 (+40)"
+  },
+  {
+    "ts": "2026-11-01T06:16:31Z",
+    "app_id": 100,
+    "app": "Grain",
+    "kind": "servers",
+    "message": "registry servers 5 → 4 (-1)"
+  },
+  {
     "ts": "2026-10-31T21:42:00Z",
     "app_id": 11,
     "app": "Zendesk",
@@ -1384,19 +1398,5 @@
     "app": "Zoho Cliq",
     "kind": "servers",
     "message": "registry servers 4 → 0 (-4)"
-  },
-  {
-    "ts": "2026-10-22T12:13:14Z",
-    "app_id": 23,
-    "app": "Zoho Cliq",
-    "kind": "tools",
-    "message": "live tools 47 → 0"
-  },
-  {
-    "ts": "2026-10-22T12:13:14Z",
-    "app_id": 32,
-    "app": "Meta Ads",
-    "kind": "servers",
-    "message": "registry servers 9 → 3 (-6)"
   }
 ]
