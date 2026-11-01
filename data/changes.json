@@ -1,5 +1,40 @@
 [
   {
+    "ts": "2026-11-01T13:37:50Z",
+    "app_id": 39,
+    "app": "Threads (Meta)",
+    "kind": "servers",
+    "message": "registry servers 12 → 13 (+1)"
+  },
+  {
+    "ts": "2026-11-01T13:37:50Z",
+    "app_id": 41,
+    "app": "Shopify",
+    "kind": "servers",
+    "message": "registry servers 25 → 24 (-1)"
+  },
+  {
+    "ts": "2026-11-01T13:37:50Z",
+    "app_id": 50,
+    "app": "fanbasis",
+    "kind": "site",
+    "message": "site came up"
+  },
+  {
+    "ts": "2026-11-01T13:37:50Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 14,124 → 14,173 (+49)"
+  },
+  {
+    "ts": "2026-11-01T13:37:50Z",
+    "app_id": 93,
+    "app": "Fathom",
+    "kind": "servers",
+    "message": "registry servers 8 → 9 (+1)"
+  },
+  {
     "ts": "2026-11-01T06:16:31Z",
     "app_id": 55,
     "app": "Apify",
@@ -1363,40 +1398,5 @@
     "app": "Mermaid CLI",
     "kind": "servers",
     "message": "registry servers 0 → 6 (+6)"
-  },
-  {
-    "ts": "2026-10-22T17:23:57Z",
-    "app_id": 99,
-    "app": "YouTube Transcript",
-    "kind": "servers",
-    "message": "registry servers 38 → 37 (-1)"
-  },
-  {
-    "ts": "2026-10-22T12:13:14Z",
-    "app_id": 3,
-    "app": "Pipedrive",
-    "kind": "servers",
-    "message": "registry servers 5 → 6 (+1)"
-  },
-  {
-    "ts": "2026-10-22T12:13:14Z",
-    "app_id": 7,
-    "app": "Zoho CRM",
-    "kind": "servers",
-    "message": "registry servers 17 → 14 (-3)"
-  },
-  {
-    "ts": "2026-10-22T12:13:14Z",
-    "app_id": 23,
-    "app": "Zoho Cliq",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-10-22T12:13:14Z",
-    "app_id": 23,
-    "app": "Zoho Cliq",
-    "kind": "servers",
-    "message": "registry servers 4 → 0 (-4)"
   }
 ]
