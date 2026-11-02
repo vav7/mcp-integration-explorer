@@ -1,5 +1,68 @@
 [
   {
+    "ts": "2026-11-02T16:19:42Z",
+    "app_id": 21,
+    "app": "Slack",
+    "kind": "servers",
+    "message": "registry servers 10 → 11 (+1)"
+  },
+  {
+    "ts": "2026-11-02T16:19:42Z",
+    "app_id": 26,
+    "app": "Discord",
+    "kind": "servers",
+    "message": "registry servers 9 → 10 (+1)"
+  },
+  {
+    "ts": "2026-11-02T16:19:42Z",
+    "app_id": 31,
+    "app": "Google Ads",
+    "kind": "servers",
+    "message": "registry servers 24 → 29 (+5)"
+  },
+  {
+    "ts": "2026-11-02T16:19:42Z",
+    "app_id": 49,
+    "app": "Amazon Selling Partner",
+    "kind": "servers",
+    "message": "registry servers 5 → 6 (+1)"
+  },
+  {
+    "ts": "2026-11-02T16:19:42Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 14,287 → 14,374 (+87)"
+  },
+  {
+    "ts": "2026-11-02T16:19:42Z",
+    "app_id": 56,
+    "app": "Firecrawl",
+    "kind": "servers",
+    "message": "registry servers 3 → 4 (+1)"
+  },
+  {
+    "ts": "2026-11-02T16:19:42Z",
+    "app_id": 56,
+    "app": "Firecrawl",
+    "kind": "tools",
+    "message": "live tools 0 → 31"
+  },
+  {
+    "ts": "2026-11-02T16:19:42Z",
+    "app_id": 68,
+    "app": "MongoDB Atlas",
+    "kind": "servers",
+    "message": "registry servers 18 → 14 (-4)"
+  },
+  {
+    "ts": "2026-11-02T16:19:42Z",
+    "app_id": 73,
+    "app": "Linear",
+    "kind": "servers",
+    "message": "registry servers 10 → 11 (+1)"
+  },
+  {
     "ts": "2026-11-02T06:18:23Z",
     "app_id": 55,
     "app": "Apify",
@@ -1335,68 +1398,5 @@
     "app": "Zoho Cliq",
     "kind": "servers",
     "message": "registry servers 0 → 4 (+4)"
-  },
-  {
-    "ts": "2026-10-22T17:23:57Z",
-    "app_id": 23,
-    "app": "Zoho Cliq",
-    "kind": "tools",
-    "message": "live tools 0 → 47"
-  },
-  {
-    "ts": "2026-10-22T17:23:57Z",
-    "app_id": 33,
-    "app": "LinkedIn Ads",
-    "kind": "servers",
-    "message": "registry servers 24 → 25 (+1)"
-  },
-  {
-    "ts": "2026-10-22T17:23:57Z",
-    "app_id": 39,
-    "app": "Threads (Meta)",
-    "kind": "servers",
-    "message": "registry servers 9 → 11 (+2)"
-  },
-  {
-    "ts": "2026-10-22T17:23:57Z",
-    "app_id": 45,
-    "app": "Magento (Adobe Commerce)",
-    "kind": "servers",
-    "message": "registry servers 13 → 4 (-9)"
-  },
-  {
-    "ts": "2026-10-22T17:23:57Z",
-    "app_id": 49,
-    "app": "Amazon Selling Partner",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-10-22T17:23:57Z",
-    "app_id": 49,
-    "app": "Amazon Selling Partner",
-    "kind": "servers",
-    "message": "registry servers 0 → 5 (+5)"
-  },
-  {
-    "ts": "2026-10-22T17:23:57Z",
-    "app_id": 52,
-    "app": "SE Ranking",
-    "kind": "servers",
-    "message": "registry servers 1 → 7 (+6)"
-  },
-  {
-    "ts": "2026-10-22T17:23:57Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 12,547 → 12,602 (+55)"
-  },
-  {
-    "ts": "2026-10-22T17:23:57Z",
-    "app_id": 56,
-    "app": "Firecrawl",
-    "kind": "servers",
-    "message": "registry servers 4 → 3 (-1)"
   }
 ]
