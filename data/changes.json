@@ -1,5 +1,26 @@
 [
   {
+    "ts": "2026-11-02T06:18:23Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 14,249 → 14,287 (+38)"
+  },
+  {
+    "ts": "2026-11-02T06:18:23Z",
+    "app_id": 91,
+    "app": "NotebookLM",
+    "kind": "tools",
+    "message": "live tools 0 → 43"
+  },
+  {
+    "ts": "2026-11-02T06:18:23Z",
+    "app_id": 100,
+    "app": "Grain",
+    "kind": "servers",
+    "message": "registry servers 4 → 3 (-1)"
+  },
+  {
     "ts": "2026-11-01T22:08:02Z",
     "app_id": 8,
     "app": "Close",
@@ -1377,26 +1398,5 @@
     "app": "Firecrawl",
     "kind": "servers",
     "message": "registry servers 4 → 3 (-1)"
-  },
-  {
-    "ts": "2026-10-22T17:23:57Z",
-    "app_id": 68,
-    "app": "MongoDB Atlas",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-10-22T17:23:57Z",
-    "app_id": 68,
-    "app": "MongoDB Atlas",
-    "kind": "servers",
-    "message": "registry servers 0 → 25 (+25)"
-  },
-  {
-    "ts": "2026-10-22T17:23:57Z",
-    "app_id": 74,
-    "app": "Jira",
-    "kind": "status",
-    "message": "MCP status community → vendor_official"
   }
 ]
