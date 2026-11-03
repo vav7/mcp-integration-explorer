@@ -1,5 +1,12 @@
 [
   {
+    "ts": "2026-11-03T23:28:52Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 14,525 → 14,597 (+72)"
+  },
+  {
     "ts": "2026-11-03T14:25:37Z",
     "app_id": 14,
     "app": "Front",
@@ -1391,12 +1398,5 @@
     "app": "NotebookLM",
     "kind": "status",
     "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-10-23T05:16:02Z",
-    "app_id": 91,
-    "app": "NotebookLM",
-    "kind": "servers",
-    "message": "registry servers 3 → 0 (-3)"
   }
 ]
