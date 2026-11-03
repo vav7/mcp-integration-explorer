@@ -1,5 +1,33 @@
 [
   {
+    "ts": "2026-11-03T14:25:37Z",
+    "app_id": 14,
+    "app": "Front",
+    "kind": "servers",
+    "message": "registry servers 7 → 6 (-1)"
+  },
+  {
+    "ts": "2026-11-03T14:25:37Z",
+    "app_id": 17,
+    "app": "Plain",
+    "kind": "servers",
+    "message": "registry servers 4 → 5 (+1)"
+  },
+  {
+    "ts": "2026-11-03T14:25:37Z",
+    "app_id": 18,
+    "app": "Help Scout",
+    "kind": "servers",
+    "message": "registry servers 20 → 19 (-1)"
+  },
+  {
+    "ts": "2026-11-03T14:25:37Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 14,421 → 14,525 (+104)"
+  },
+  {
     "ts": "2026-11-03T01:03:52Z",
     "app_id": 7,
     "app": "Zoho CRM",
@@ -1370,33 +1398,5 @@
     "app": "NotebookLM",
     "kind": "servers",
     "message": "registry servers 3 → 0 (-3)"
-  },
-  {
-    "ts": "2026-10-23T05:16:02Z",
-    "app_id": 91,
-    "app": "NotebookLM",
-    "kind": "tools",
-    "message": "live tools 43 → 0"
-  },
-  {
-    "ts": "2026-10-22T21:49:58Z",
-    "app_id": 27,
-    "app": "Telegram",
-    "kind": "servers",
-    "message": "registry servers 21 → 22 (+1)"
-  },
-  {
-    "ts": "2026-10-22T21:49:58Z",
-    "app_id": 31,
-    "app": "Google Ads",
-    "kind": "servers",
-    "message": "registry servers 24 → 22 (-2)"
-  },
-  {
-    "ts": "2026-10-22T21:49:58Z",
-    "app_id": 32,
-    "app": "Meta Ads",
-    "kind": "servers",
-    "message": "registry servers 3 → 9 (+6)"
   }
 ]
