@@ -1,5 +1,75 @@
 [
   {
+    "ts": "2026-11-04T19:50:49Z",
+    "app_id": 27,
+    "app": "Telegram",
+    "kind": "servers",
+    "message": "registry servers 21 → 22 (+1)"
+  },
+  {
+    "ts": "2026-11-04T19:50:49Z",
+    "app_id": 39,
+    "app": "Threads (Meta)",
+    "kind": "servers",
+    "message": "registry servers 13 → 14 (+1)"
+  },
+  {
+    "ts": "2026-11-04T19:50:49Z",
+    "app_id": 53,
+    "app": "Ahrefs",
+    "kind": "status",
+    "message": "MCP status community → vendor_official"
+  },
+  {
+    "ts": "2026-11-04T19:50:49Z",
+    "app_id": 53,
+    "app": "Ahrefs",
+    "kind": "servers",
+    "message": "registry servers 2 → 3 (+1)"
+  },
+  {
+    "ts": "2026-11-04T19:50:49Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 14,632 → 14,762 (+130)"
+  },
+  {
+    "ts": "2026-11-04T19:50:49Z",
+    "app_id": 81,
+    "app": "Stripe",
+    "kind": "stars",
+    "message": "repo ★ 2,035 → 2,041 (+6)"
+  },
+  {
+    "ts": "2026-11-04T19:50:49Z",
+    "app_id": 82,
+    "app": "Plaid",
+    "kind": "tools",
+    "message": "live tools 47 → 0"
+  },
+  {
+    "ts": "2026-11-04T19:50:49Z",
+    "app_id": 86,
+    "app": "QuickBooks",
+    "kind": "servers",
+    "message": "registry servers 11 → 13 (+2)"
+  },
+  {
+    "ts": "2026-11-04T19:50:49Z",
+    "app_id": 87,
+    "app": "Xero",
+    "kind": "servers",
+    "message": "registry servers 10 → 11 (+1)"
+  },
+  {
+    "ts": "2026-11-04T19:50:49Z",
+    "app_id": 99,
+    "app": "YouTube Transcript",
+    "kind": "servers",
+    "message": "registry servers 35 → 36 (+1)"
+  },
+  {
     "ts": "2026-11-04T06:34:43Z",
     "app_id": 7,
     "app": "Zoho CRM",
@@ -1328,75 +1398,5 @@
     "app": "Binance",
     "kind": "status",
     "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-10-23T12:02:38Z",
-    "app_id": 83,
-    "app": "Binance",
-    "kind": "servers",
-    "message": "registry servers 5 → 0 (-5)"
-  },
-  {
-    "ts": "2026-10-23T12:02:38Z",
-    "app_id": 86,
-    "app": "QuickBooks",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-10-23T12:02:38Z",
-    "app_id": 86,
-    "app": "QuickBooks",
-    "kind": "servers",
-    "message": "registry servers 11 → 0 (-11)"
-  },
-  {
-    "ts": "2026-10-23T12:02:38Z",
-    "app_id": 92,
-    "app": "Otter AI",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-10-23T12:02:38Z",
-    "app_id": 92,
-    "app": "Otter AI",
-    "kind": "servers",
-    "message": "registry servers 3 → 0 (-3)"
-  },
-  {
-    "ts": "2026-10-23T12:02:38Z",
-    "app_id": 92,
-    "app": "Otter AI",
-    "kind": "tools",
-    "message": "live tools 7 → 0"
-  },
-  {
-    "ts": "2026-10-23T12:02:38Z",
-    "app_id": 98,
-    "app": "Mermaid CLI",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-10-23T12:02:38Z",
-    "app_id": 98,
-    "app": "Mermaid CLI",
-    "kind": "servers",
-    "message": "registry servers 6 → 0 (-6)"
-  },
-  {
-    "ts": "2026-10-23T05:16:02Z",
-    "app_id": 7,
-    "app": "Zoho CRM",
-    "kind": "servers",
-    "message": "registry servers 17 → 14 (-3)"
-  },
-  {
-    "ts": "2026-10-23T05:16:02Z",
-    "app_id": 8,
-    "app": "Close",
-    "kind": "servers",
-    "message": "registry servers 3 → 4 (+1)"
   }
 ]
