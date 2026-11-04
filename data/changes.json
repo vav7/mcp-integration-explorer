@@ -1,5 +1,26 @@
 [
   {
+    "ts": "2026-11-04T06:34:43Z",
+    "app_id": 7,
+    "app": "Zoho CRM",
+    "kind": "tools",
+    "message": "live tools 197 → 198"
+  },
+  {
+    "ts": "2026-11-04T06:34:43Z",
+    "app_id": 17,
+    "app": "Plain",
+    "kind": "servers",
+    "message": "registry servers 5 → 6 (+1)"
+  },
+  {
+    "ts": "2026-11-04T06:34:43Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 14,597 → 14,632 (+35)"
+  },
+  {
     "ts": "2026-11-03T23:28:52Z",
     "app_id": 55,
     "app": "Apify",
@@ -1377,26 +1398,5 @@
     "app": "Close",
     "kind": "servers",
     "message": "registry servers 3 → 4 (+1)"
-  },
-  {
-    "ts": "2026-10-23T05:16:02Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 12,646 → 12,701 (+55)"
-  },
-  {
-    "ts": "2026-10-23T05:16:02Z",
-    "app_id": 87,
-    "app": "Xero",
-    "kind": "tools",
-    "message": "live tools 0 → 7"
-  },
-  {
-    "ts": "2026-10-23T05:16:02Z",
-    "app_id": 91,
-    "app": "NotebookLM",
-    "kind": "status",
-    "message": "MCP status community → none"
   }
 ]
