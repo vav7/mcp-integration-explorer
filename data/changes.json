@@ -1,5 +1,89 @@
 [
   {
+    "ts": "2026-11-05T06:56:30Z",
+    "app_id": 1,
+    "app": "Salesforce",
+    "kind": "servers",
+    "message": "registry servers 18 → 19 (+1)"
+  },
+  {
+    "ts": "2026-11-05T06:56:30Z",
+    "app_id": 21,
+    "app": "Slack",
+    "kind": "servers",
+    "message": "registry servers 11 → 12 (+1)"
+  },
+  {
+    "ts": "2026-11-05T06:56:30Z",
+    "app_id": 31,
+    "app": "Google Ads",
+    "kind": "servers",
+    "message": "registry servers 29 → 27 (-2)"
+  },
+  {
+    "ts": "2026-11-05T06:56:30Z",
+    "app_id": 32,
+    "app": "Meta Ads",
+    "kind": "servers",
+    "message": "registry servers 9 → 11 (+2)"
+  },
+  {
+    "ts": "2026-11-05T06:56:30Z",
+    "app_id": 39,
+    "app": "Threads (Meta)",
+    "kind": "servers",
+    "message": "registry servers 14 → 16 (+2)"
+  },
+  {
+    "ts": "2026-11-05T06:56:30Z",
+    "app_id": 44,
+    "app": "Salesforce Commerce Cloud",
+    "kind": "servers",
+    "message": "registry servers 18 → 19 (+1)"
+  },
+  {
+    "ts": "2026-11-05T06:56:30Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 14,762 → 14,826 (+64)"
+  },
+  {
+    "ts": "2026-11-05T06:56:30Z",
+    "app_id": 68,
+    "app": "MongoDB Atlas",
+    "kind": "servers",
+    "message": "registry servers 13 → 12 (-1)"
+  },
+  {
+    "ts": "2026-11-05T06:56:30Z",
+    "app_id": 79,
+    "app": "Smartsheet",
+    "kind": "servers",
+    "message": "registry servers 1 → 2 (+1)"
+  },
+  {
+    "ts": "2026-11-05T06:56:30Z",
+    "app_id": 79,
+    "app": "Smartsheet",
+    "kind": "tools",
+    "message": "live tools 0 → 2"
+  },
+  {
+    "ts": "2026-11-05T06:56:30Z",
+    "app_id": 82,
+    "app": "Plaid",
+    "kind": "tools",
+    "message": "live tools 0 → 47"
+  },
+  {
+    "ts": "2026-11-05T06:56:30Z",
+    "app_id": 99,
+    "app": "YouTube Transcript",
+    "kind": "servers",
+    "message": "registry servers 36 → 35 (-1)"
+  },
+  {
     "ts": "2026-11-04T19:50:49Z",
     "app_id": 27,
     "app": "Telegram",
@@ -1314,89 +1398,5 @@
     "app": "Zoho CRM",
     "kind": "servers",
     "message": "registry servers 14 → 17 (+3)"
-  },
-  {
-    "ts": "2026-10-23T12:02:38Z",
-    "app_id": 18,
-    "app": "Help Scout",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-10-23T12:02:38Z",
-    "app_id": 18,
-    "app": "Help Scout",
-    "kind": "servers",
-    "message": "registry servers 16 → 0 (-16)"
-  },
-  {
-    "ts": "2026-10-23T12:02:38Z",
-    "app_id": 18,
-    "app": "Help Scout",
-    "kind": "tools",
-    "message": "live tools 6 → 0"
-  },
-  {
-    "ts": "2026-10-23T12:02:38Z",
-    "app_id": 24,
-    "app": "Lark (Larksuite)",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-10-23T12:02:38Z",
-    "app_id": 24,
-    "app": "Lark (Larksuite)",
-    "kind": "servers",
-    "message": "registry servers 1 → 0 (-1)"
-  },
-  {
-    "ts": "2026-10-23T12:02:38Z",
-    "app_id": 31,
-    "app": "Google Ads",
-    "kind": "servers",
-    "message": "registry servers 22 → 24 (+2)"
-  },
-  {
-    "ts": "2026-10-23T12:02:38Z",
-    "app_id": 44,
-    "app": "Salesforce Commerce Cloud",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-10-23T12:02:38Z",
-    "app_id": 44,
-    "app": "Salesforce Commerce Cloud",
-    "kind": "servers",
-    "message": "registry servers 18 → 0 (-18)"
-  },
-  {
-    "ts": "2026-10-23T12:02:38Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 12,701 → 12,749 (+48)"
-  },
-  {
-    "ts": "2026-10-23T12:02:38Z",
-    "app_id": 58,
-    "app": "Sherlock",
-    "kind": "status",
-    "message": "MCP status community → none"
-  },
-  {
-    "ts": "2026-10-23T12:02:38Z",
-    "app_id": 58,
-    "app": "Sherlock",
-    "kind": "servers",
-    "message": "registry servers 1 → 0 (-1)"
-  },
-  {
-    "ts": "2026-10-23T12:02:38Z",
-    "app_id": 83,
-    "app": "Binance",
-    "kind": "status",
-    "message": "MCP status community → none"
   }
 ]
