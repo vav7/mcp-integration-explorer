@@ -1,5 +1,47 @@
 [
   {
+    "ts": "2026-11-05T20:01:47Z",
+    "app_id": 27,
+    "app": "Telegram",
+    "kind": "servers",
+    "message": "registry servers 22 → 21 (-1)"
+  },
+  {
+    "ts": "2026-11-05T20:01:47Z",
+    "app_id": 33,
+    "app": "LinkedIn Ads",
+    "kind": "servers",
+    "message": "registry servers 23 → 22 (-1)"
+  },
+  {
+    "ts": "2026-11-05T20:01:47Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 14,826 → 14,919 (+93)"
+  },
+  {
+    "ts": "2026-11-05T20:01:47Z",
+    "app_id": 68,
+    "app": "MongoDB Atlas",
+    "kind": "servers",
+    "message": "registry servers 12 → 11 (-1)"
+  },
+  {
+    "ts": "2026-11-05T20:01:47Z",
+    "app_id": 79,
+    "app": "Smartsheet",
+    "kind": "tools",
+    "message": "live tools 2 → 3"
+  },
+  {
+    "ts": "2026-11-05T20:01:47Z",
+    "app_id": 99,
+    "app": "YouTube Transcript",
+    "kind": "servers",
+    "message": "registry servers 35 → 33 (-2)"
+  },
+  {
     "ts": "2026-11-05T06:56:30Z",
     "app_id": 1,
     "app": "Salesforce",
@@ -1356,47 +1398,5 @@
     "app": "Otter AI",
     "kind": "status",
     "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-10-23T17:14:36Z",
-    "app_id": 92,
-    "app": "Otter AI",
-    "kind": "servers",
-    "message": "registry servers 0 → 3 (+3)"
-  },
-  {
-    "ts": "2026-10-23T17:14:36Z",
-    "app_id": 92,
-    "app": "Otter AI",
-    "kind": "tools",
-    "message": "live tools 0 → 6"
-  },
-  {
-    "ts": "2026-10-23T17:14:36Z",
-    "app_id": 98,
-    "app": "Mermaid CLI",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-10-23T17:14:36Z",
-    "app_id": 98,
-    "app": "Mermaid CLI",
-    "kind": "servers",
-    "message": "registry servers 0 → 6 (+6)"
-  },
-  {
-    "ts": "2026-10-23T17:14:36Z",
-    "app_id": 99,
-    "app": "YouTube Transcript",
-    "kind": "servers",
-    "message": "registry servers 37 → 36 (-1)"
-  },
-  {
-    "ts": "2026-10-23T12:02:38Z",
-    "app_id": 7,
-    "app": "Zoho CRM",
-    "kind": "servers",
-    "message": "registry servers 14 → 17 (+3)"
   }
 ]
