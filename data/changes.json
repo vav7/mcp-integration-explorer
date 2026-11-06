@@ -1,5 +1,26 @@
 [
   {
+    "ts": "2026-11-06T19:29:56Z",
+    "app_id": 38,
+    "app": "Pinterest",
+    "kind": "servers",
+    "message": "registry servers 10 → 11 (+1)"
+  },
+  {
+    "ts": "2026-11-06T19:29:56Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 14,975 → 15,062 (+87)"
+  },
+  {
+    "ts": "2026-11-06T19:29:56Z",
+    "app_id": 56,
+    "app": "Firecrawl",
+    "kind": "tools",
+    "message": "live tools 31 → 32"
+  },
+  {
     "ts": "2026-11-06T06:55:57Z",
     "app_id": 55,
     "app": "Apify",
@@ -1377,26 +1398,5 @@
     "app": "QuickBooks",
     "kind": "servers",
     "message": "registry servers 0 → 10 (+10)"
-  },
-  {
-    "ts": "2026-10-23T17:14:36Z",
-    "app_id": 91,
-    "app": "NotebookLM",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-10-23T17:14:36Z",
-    "app_id": 91,
-    "app": "NotebookLM",
-    "kind": "servers",
-    "message": "registry servers 0 → 3 (+3)"
-  },
-  {
-    "ts": "2026-10-23T17:14:36Z",
-    "app_id": 91,
-    "app": "NotebookLM",
-    "kind": "tools",
-    "message": "live tools 0 → 43"
   }
 ]
