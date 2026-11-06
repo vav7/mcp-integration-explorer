@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-05T20:01:47Z",
+  "generated_at": "2026-11-06T06:55:57Z",
   "app_name": "MCP Integration Explorer",
   "tagline": "Live, source-traceable integration readiness for 100 apps",
   "stats": {
@@ -15,8 +15,8 @@
     "websites_responding": 100,
     "websites_checked": 100,
     "github_repos_found": 70,
-    "total_stars": 28204,
-    "median_latency_ms": 320,
+    "total_stars": 28267,
+    "median_latency_ms": 415,
     "total_downloads": 144772,
     "total_tools": 370,
     "open_endpoints": 26,
@@ -35,7 +35,7 @@
         "pending": 0,
         "reachable": 9,
         "servers": 67,
-        "stars": 749,
+        "stars": 750,
         "downloads": 1135,
         "tools": 57,
         "avg_readiness": 45.8
@@ -77,7 +77,7 @@
         "pending": 0,
         "reachable": 9,
         "servers": 28,
-        "stars": 14994,
+        "stars": 15050,
         "downloads": 2141,
         "tools": 42,
         "avg_readiness": 53.3
@@ -91,7 +91,7 @@
         "pending": 0,
         "reachable": 9,
         "servers": 63,
-        "stars": 7999,
+        "stars": 8001,
         "downloads": 81355,
         "tools": 33,
         "avg_readiness": 54.8
@@ -119,7 +119,7 @@
         "pending": 0,
         "reachable": 7,
         "servers": 51,
-        "stars": 2145,
+        "stars": 2148,
         "downloads": 1432,
         "tools": 4,
         "avg_readiness": 41.5
@@ -147,7 +147,7 @@
         "pending": 0,
         "reachable": 10,
         "servers": 66,
-        "stars": 1687,
+        "stars": 1688,
         "downloads": 6914,
         "tools": 6,
         "avg_readiness": 59.4
@@ -172,22 +172,22 @@
     {
       "name": "MCP Registry",
       "reachable": true,
-      "latency_ms": 127,
-      "last_check": "2026-11-05T20:00:32Z",
+      "latency_ms": 411,
+      "last_check": "2026-11-06T06:54:46Z",
       "detail": "HTTP 200"
     },
     {
       "name": "GitHub API",
       "reachable": true,
-      "latency_ms": 19,
-      "last_check": "2026-11-05T20:00:32Z",
+      "latency_ms": 17,
+      "last_check": "2026-11-06T06:54:45Z",
       "detail": "HTTP 200"
     },
     {
       "name": "npm Registry",
       "reachable": true,
-      "latency_ms": 122,
-      "last_check": "2026-11-05T20:00:32Z",
+      "latency_ms": 51,
+      "last_check": "2026-11-06T06:54:45Z",
       "detail": "HTTP 200"
     }
   ],
@@ -227,8 +227,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 667,
-              "probed_at": "2026-11-05T20:01:38Z",
+              "latency_ms": 1085,
+              "probed_at": "2026-11-06T06:55:48Z",
               "error": null
             },
             "stale": false,
@@ -620,7 +620,7 @@
           "salesforce"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=salesforce&limit=50",
-        "fetched_at": "2026-11-05T20:00:32Z",
+        "fetched_at": "2026-11-06T06:54:46Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -638,17 +638,17 @@
         "description": "MCP Server for interacting with Salesforce instances",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/kodey-ai/salesforce-mcp",
-        "fetched_at": "2026-11-05T20:00:47Z",
+        "fetched_at": "2026-11-06T06:54:59Z",
         "error": null
       },
       "liveness": {
         "url": "https://salesforce.com",
         "status_code": 200,
-        "latency_ms": 2274,
+        "latency_ms": 1371,
         "reachable": true,
         "responded": true,
         "final_url": "https://www.salesforce.com/",
-        "fetched_at": "2026-11-05T20:00:34Z",
+        "fetched_at": "2026-11-06T06:54:47Z",
         "error": null
       },
       "packages": [
@@ -711,7 +711,7 @@
       "tools_count": null,
       "auth_gated": true,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:32Z"
+      "last_fetched": "2026-11-06T06:54:46Z"
     },
     {
       "app": {
@@ -748,8 +748,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 294,
-              "probed_at": "2026-11-05T20:01:37Z",
+              "latency_ms": 685,
+              "probed_at": "2026-11-06T06:55:48Z",
               "error": null
             },
             "stale": false,
@@ -931,7 +931,7 @@
           "hubspot"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=hubspot&limit=50",
-        "fetched_at": "2026-11-05T20:00:32Z",
+        "fetched_at": "2026-11-06T06:54:46Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -949,17 +949,17 @@
         "description": null,
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/Centrify-Internal/hubspot-mcp-server",
-        "fetched_at": "2026-11-05T20:00:47Z",
+        "fetched_at": "2026-11-06T06:54:59Z",
         "error": null
       },
       "liveness": {
         "url": "https://hubspot.com",
         "status_code": 200,
-        "latency_ms": 1174,
+        "latency_ms": 1309,
         "reachable": true,
         "responded": true,
         "final_url": "https://www.hubspot.com/",
-        "fetched_at": "2026-11-05T20:00:34Z",
+        "fetched_at": "2026-11-06T06:54:47Z",
         "error": null
       },
       "packages": [
@@ -1025,7 +1025,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:32Z"
+      "last_fetched": "2026-11-06T06:54:46Z"
     },
     {
       "app": {
@@ -1086,15 +1086,15 @@
             "path": "pipedrive-mcp",
             "title": "",
             "description": "Pipedrive CRM as MCP tools: find deals, people and companies, and move deals through a pipeline.",
-            "version": "1.3.0",
+            "version": "1.3.1",
             "repository_url": "https://github.com/mmedum/pipedrive-mcp",
             "website_url": "https://github.com/mmedum/pipedrive-mcp#readme",
             "remote_urls": [],
             "packages": [
-              "mcpb:https://github.com/mmedum/pipedrive-mcp/releases/download/v1.3.0/pipedrive-mcp_1.3.0.mcpb"
+              "mcpb:https://github.com/mmedum/pipedrive-mcp/releases/download/v1.3.1/pipedrive-mcp_1.3.1.mcpb"
             ],
             "is_latest": true,
-            "published_at": "2026-10-25T05:42:36.640581Z",
+            "published_at": "2026-11-05T21:16:51.385896Z",
             "namespace_matches_vendor": false,
             "classification": "community",
             "probe": null,
@@ -1165,8 +1165,8 @@
               ],
               "generic_gateway": true,
               "protocol_version": "2025-06-18",
-              "latency_ms": 1875,
-              "probed_at": "2026-11-05T20:01:39Z",
+              "latency_ms": 2121,
+              "probed_at": "2026-11-06T06:55:49Z",
               "error": null
             },
             "stale": false,
@@ -1199,7 +1199,7 @@
           "pipedrive"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=pipedrive&limit=50",
-        "fetched_at": "2026-11-05T20:00:32Z",
+        "fetched_at": "2026-11-06T06:54:46Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -1209,25 +1209,25 @@
         "html_url": "https://github.com/Servosity/msp-skills",
         "stars": 70,
         "forks": 17,
-        "open_issues": 30,
+        "open_issues": 31,
         "license": "NOASSERTION",
         "language": "Go",
         "archived": false,
-        "pushed_at": "2026-11-05T19:59:38Z",
+        "pushed_at": "2026-11-06T06:54:13Z",
         "description": "Free MCP servers + Claude Code Skills for MSP tools - PSA, RMM, backup, M365. Local-first: your data never leaves your network.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/servosity/msp-skills",
-        "fetched_at": "2026-11-05T20:00:48Z",
+        "fetched_at": "2026-11-06T06:55:00Z",
         "error": null
       },
       "liveness": {
         "url": "https://pipedrive.com",
         "status_code": 200,
-        "latency_ms": 315,
+        "latency_ms": 472,
         "reachable": true,
         "responded": true,
         "final_url": "https://www.pipedrive.com/",
-        "fetched_at": "2026-11-05T20:00:33Z",
+        "fetched_at": "2026-11-06T06:54:46Z",
         "error": null
       },
       "packages": [
@@ -3270,12 +3270,12 @@
           "agricultural_commodity_brief",
           "environmental_risk"
         ],
-        "fetched_at": "2026-11-05T20:01:40Z"
+        "fetched_at": "2026-11-06T06:55:50Z"
       },
       "tools_count": 49,
       "auth_gated": false,
       "generic_gateway": true,
-      "last_fetched": "2026-11-05T20:00:32Z"
+      "last_fetched": "2026-11-06T06:54:46Z"
     },
     {
       "app": {
@@ -3312,8 +3312,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 446,
-              "probed_at": "2026-11-05T20:01:38Z",
+              "latency_ms": 702,
+              "probed_at": "2026-11-06T06:55:48Z",
               "error": null
             },
             "stale": false,
@@ -3388,7 +3388,7 @@
           "attio"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=attio&limit=50",
-        "fetched_at": "2026-11-05T20:00:32Z",
+        "fetched_at": "2026-11-06T06:54:46Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -3406,17 +3406,17 @@
         "description": "MCP server exposing Attio CRM records, deals, and pipelines to agent clients. Needs Node and an Attio API key.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/kesslerio/attio-mcp-server",
-        "fetched_at": "2026-11-05T20:00:49Z",
+        "fetched_at": "2026-11-06T06:55:01Z",
         "error": null
       },
       "liveness": {
         "url": "https://attio.com",
         "status_code": 200,
-        "latency_ms": 234,
+        "latency_ms": 263,
         "reachable": true,
         "responded": true,
         "final_url": "https://attio.com",
-        "fetched_at": "2026-11-05T20:00:33Z",
+        "fetched_at": "2026-11-06T06:54:46Z",
         "error": null
       },
       "packages": [
@@ -3472,7 +3472,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:32Z"
+      "last_fetched": "2026-11-06T06:54:46Z"
     },
     {
       "app": {
@@ -3509,8 +3509,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 1421,
-              "probed_at": "2026-11-05T20:01:39Z",
+              "latency_ms": 1548,
+              "probed_at": "2026-11-06T06:55:49Z",
               "error": "no tools in response"
             },
             "stale": false,
@@ -3522,7 +3522,7 @@
           "twenty"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=twenty&limit=50",
-        "fetched_at": "2026-11-05T20:00:32Z",
+        "fetched_at": "2026-11-06T06:54:46Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -3540,17 +3540,17 @@
         "description": "231 hosted remote MCP servers for SaaS tools (CRM, scheduling, payments, messaging and more). Connect from Claude, Cursor or VS Code. Free tier.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/m190/usefulapi-mcp",
-        "fetched_at": "2026-11-05T20:00:49Z",
+        "fetched_at": "2026-11-06T06:55:01Z",
         "error": null
       },
       "liveness": {
         "url": "https://twenty.com",
         "status_code": 200,
-        "latency_ms": 253,
+        "latency_ms": 1393,
         "reachable": true,
         "responded": true,
         "final_url": "https://twenty.com",
-        "fetched_at": "2026-11-05T20:00:33Z",
+        "fetched_at": "2026-11-06T06:54:47Z",
         "error": null
       },
       "packages": [],
@@ -4360,7 +4360,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:32Z"
+      "last_fetched": "2026-11-06T06:54:46Z"
     },
     {
       "app": {
@@ -4377,7 +4377,7 @@
           "podio"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=podio&limit=50",
-        "fetched_at": "2026-11-05T20:00:32Z",
+        "fetched_at": "2026-11-06T06:54:46Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -4401,11 +4401,11 @@
       "liveness": {
         "url": "https://podio.com",
         "status_code": 200,
-        "latency_ms": 539,
+        "latency_ms": 889,
         "reachable": true,
         "responded": true,
         "final_url": "https://podio.com",
-        "fetched_at": "2026-11-05T20:00:33Z",
+        "fetched_at": "2026-11-06T06:54:47Z",
         "error": null
       },
       "packages": [],
@@ -4450,7 +4450,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:32Z"
+      "last_fetched": "2026-11-06T06:54:46Z"
     },
     {
       "app": {
@@ -4503,8 +4503,8 @@
               ],
               "generic_gateway": false,
               "protocol_version": "2025-06-18",
-              "latency_ms": 638,
-              "probed_at": "2026-11-05T20:01:38Z",
+              "latency_ms": 2400,
+              "probed_at": "2026-11-06T06:55:50Z",
               "error": null
             },
             "stale": false,
@@ -4962,7 +4962,7 @@
           "zoho"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=zoho+crm&limit=50",
-        "fetched_at": "2026-11-05T20:00:33Z",
+        "fetched_at": "2026-11-06T06:54:46Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -4980,17 +4980,17 @@
         "description": null,
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/chadrnewell-hash/outreachos",
-        "fetched_at": "2026-11-05T20:00:50Z",
+        "fetched_at": "2026-11-06T06:55:02Z",
         "error": null
       },
       "liveness": {
         "url": "https://zoho.com/crm",
         "status_code": 200,
-        "latency_ms": 591,
+        "latency_ms": 203,
         "reachable": true,
         "responded": true,
         "final_url": "https://www.zoho.com/en-us/crm/",
-        "fetched_at": "2026-11-05T20:00:33Z",
+        "fetched_at": "2026-11-06T06:54:46Z",
         "error": null
       },
       "packages": [
@@ -12651,12 +12651,12 @@
           "review-and-fix-running-ads/SKILL.md"
         ],
         "prompts": null,
-        "fetched_at": "2026-11-05T20:01:39Z"
+        "fetched_at": "2026-11-06T06:55:51Z"
       },
       "tools_count": 198,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:33Z"
+      "last_fetched": "2026-11-06T06:54:46Z"
     },
     {
       "app": {
@@ -12693,8 +12693,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 460,
-              "probed_at": "2026-11-05T20:01:38Z",
+              "latency_ms": 621,
+              "probed_at": "2026-11-06T06:55:48Z",
               "error": null
             },
             "stale": false,
@@ -12748,7 +12748,7 @@
           "close"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=close&limit=50",
-        "fetched_at": "2026-11-05T20:00:33Z",
+        "fetched_at": "2026-11-06T06:54:46Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -12766,17 +12766,17 @@
         "description": null,
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/henryspatialanalysis/wtm.api",
-        "fetched_at": "2026-11-05T20:00:50Z",
+        "fetched_at": "2026-11-06T06:55:02Z",
         "error": null
       },
       "liveness": {
         "url": "https://close.com",
         "status_code": 200,
-        "latency_ms": 197,
+        "latency_ms": 185,
         "reachable": true,
         "responded": true,
         "final_url": "https://close.com",
-        "fetched_at": "2026-11-05T20:00:33Z",
+        "fetched_at": "2026-11-06T06:54:47Z",
         "error": null
       },
       "packages": [],
@@ -12828,7 +12828,7 @@
       "tools_count": null,
       "auth_gated": true,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:33Z"
+      "last_fetched": "2026-11-06T06:54:46Z"
     },
     {
       "app": {
@@ -12865,8 +12865,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 1369,
-              "probed_at": "2026-11-05T20:01:39Z",
+              "latency_ms": 1245,
+              "probed_at": "2026-11-06T06:55:49Z",
               "error": "no tools in response"
             },
             "stale": false,
@@ -12878,7 +12878,7 @@
           "copper"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=copper&limit=50",
-        "fetched_at": "2026-11-05T20:00:33Z",
+        "fetched_at": "2026-11-06T06:54:46Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -12896,17 +12896,17 @@
         "description": "231 hosted remote MCP servers for SaaS tools (CRM, scheduling, payments, messaging and more). Connect from Claude, Cursor or VS Code. Free tier.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/m190/usefulapi-mcp",
-        "fetched_at": "2026-11-05T20:00:51Z",
+        "fetched_at": "2026-11-06T06:55:03Z",
         "error": null
       },
       "liveness": {
         "url": "https://copper.com",
         "status_code": 200,
-        "latency_ms": 150,
+        "latency_ms": 926,
         "reachable": true,
         "responded": true,
         "final_url": "https://www.copper.com/",
-        "fetched_at": "2026-11-05T20:00:33Z",
+        "fetched_at": "2026-11-06T06:54:47Z",
         "error": null
       },
       "packages": [],
@@ -12951,7 +12951,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:33Z"
+      "last_fetched": "2026-11-06T06:54:46Z"
     },
     {
       "app": {
@@ -12968,7 +12968,7 @@
           "dealcloud"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=dealcloud&limit=50",
-        "fetched_at": "2026-11-05T20:00:33Z",
+        "fetched_at": "2026-11-06T06:54:47Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -12992,11 +12992,11 @@
       "liveness": {
         "url": "https://api.docs.dealcloud.com",
         "status_code": 200,
-        "latency_ms": 34,
+        "latency_ms": 342,
         "reachable": true,
         "responded": true,
         "final_url": "https://api.docs.dealcloud.com",
-        "fetched_at": "2026-11-05T20:00:33Z",
+        "fetched_at": "2026-11-06T06:54:47Z",
         "error": null
       },
       "packages": [],
@@ -13041,7 +13041,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:33Z"
+      "last_fetched": "2026-11-06T06:54:47Z"
     },
     {
       "app": {
@@ -13078,8 +13078,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 247,
-              "probed_at": "2026-11-05T20:01:38Z",
+              "latency_ms": 521,
+              "probed_at": "2026-11-06T06:55:48Z",
               "error": null
             },
             "stale": false,
@@ -13133,7 +13133,7 @@
           "zendesk"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=zendesk&limit=50",
-        "fetched_at": "2026-11-05T20:00:33Z",
+        "fetched_at": "2026-11-06T06:54:47Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -13147,21 +13147,21 @@
         "license": "MIT",
         "language": "TypeScript",
         "archived": false,
-        "pushed_at": "2026-11-05T19:40:35Z",
+        "pushed_at": "2026-11-06T02:20:12Z",
         "description": "Bring Zendesk deep into your AI assistant: find answers and draft, update and translate Help Center articles, and manage Support tickets end to end: comments, triage and attachments. All in plain language.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/fruggr/zendesk-mcp-server",
-        "fetched_at": "2026-11-05T20:00:52Z",
+        "fetched_at": "2026-11-06T06:55:03Z",
         "error": null
       },
       "liveness": {
         "url": "https://zendesk.com",
         "status_code": 200,
-        "latency_ms": 175,
+        "latency_ms": 458,
         "reachable": true,
         "responded": true,
         "final_url": "https://www.zendesk.com/",
-        "fetched_at": "2026-11-05T20:00:33Z",
+        "fetched_at": "2026-11-06T06:54:47Z",
         "error": null
       },
       "packages": [
@@ -13234,7 +13234,7 @@
       "tools_count": null,
       "auth_gated": true,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:33Z"
+      "last_fetched": "2026-11-06T06:54:47Z"
     },
     {
       "app": {
@@ -13331,8 +13331,8 @@
               ],
               "generic_gateway": true,
               "protocol_version": "2025-06-18",
-              "latency_ms": 1063,
-              "probed_at": "2026-11-05T20:01:39Z",
+              "latency_ms": 1409,
+              "probed_at": "2026-11-06T06:55:49Z",
               "error": null
             },
             "stale": false,
@@ -13344,7 +13344,7 @@
           "intercom"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=intercom&limit=50",
-        "fetched_at": "2026-11-05T20:00:33Z",
+        "fetched_at": "2026-11-06T06:54:47Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -13362,17 +13362,17 @@
         "description": "Two-way communication bridge between Claude Code sessions using the Channels API",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/MuhammadTalhaMT/claude-intercom",
-        "fetched_at": "2026-11-05T20:00:52Z",
+        "fetched_at": "2026-11-06T06:55:04Z",
         "error": null
       },
       "liveness": {
         "url": "https://intercom.com",
         "status_code": 200,
-        "latency_ms": 494,
+        "latency_ms": 887,
         "reachable": true,
         "responded": true,
         "final_url": "https://www.intercom.com/",
-        "fetched_at": "2026-11-05T20:00:34Z",
+        "fetched_at": "2026-11-06T06:54:48Z",
         "error": null
       },
       "packages": [
@@ -15388,12 +15388,12 @@
           "agricultural_commodity_brief",
           "environmental_risk"
         ],
-        "fetched_at": "2026-11-05T20:01:39Z"
+        "fetched_at": "2026-11-06T06:55:50Z"
       },
       "tools_count": 49,
       "auth_gated": false,
       "generic_gateway": true,
-      "last_fetched": "2026-11-05T20:00:33Z"
+      "last_fetched": "2026-11-06T06:54:47Z"
     },
     {
       "app": {
@@ -15511,8 +15511,8 @@
               ],
               "generic_gateway": true,
               "protocol_version": "2025-06-18",
-              "latency_ms": 1348,
-              "probed_at": "2026-11-05T20:01:39Z",
+              "latency_ms": 1416,
+              "probed_at": "2026-11-06T06:55:49Z",
               "error": null
             },
             "stale": false,
@@ -15566,7 +15566,7 @@
           "freshdesk"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=freshdesk&limit=50",
-        "fetched_at": "2026-11-05T20:00:33Z",
+        "fetched_at": "2026-11-06T06:54:47Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -15584,17 +15584,17 @@
         "description": "MCP server for Freshdesk — tickets, contacts, companies, agents, groups, knowledge base, SLA policies",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/WYRE-AI/freshdesk-mcp",
-        "fetched_at": "2026-11-05T20:00:53Z",
+        "fetched_at": "2026-11-06T06:55:05Z",
         "error": null
       },
       "liveness": {
         "url": "https://freshdesk.com",
         "status_code": 200,
-        "latency_ms": 114,
+        "latency_ms": 269,
         "reachable": true,
         "responded": true,
         "final_url": "https://www.freshworks.com/freshdesk/",
-        "fetched_at": "2026-11-05T20:00:33Z",
+        "fetched_at": "2026-11-06T06:54:48Z",
         "error": null
       },
       "packages": [
@@ -17683,12 +17683,12 @@
           "agricultural_commodity_brief",
           "environmental_risk"
         ],
-        "fetched_at": "2026-11-05T20:01:39Z"
+        "fetched_at": "2026-11-06T06:55:50Z"
       },
       "tools_count": 49,
       "auth_gated": false,
       "generic_gateway": true,
-      "last_fetched": "2026-11-05T20:00:33Z"
+      "last_fetched": "2026-11-06T06:54:47Z"
     },
     {
       "app": {
@@ -17741,8 +17741,8 @@
               ],
               "generic_gateway": false,
               "protocol_version": "2025-06-18",
-              "latency_ms": 740,
-              "probed_at": "2026-11-05T20:01:38Z",
+              "latency_ms": 767,
+              "probed_at": "2026-11-06T06:55:49Z",
               "error": null
             },
             "stale": false,
@@ -17859,7 +17859,7 @@
           "front"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=front&limit=50",
-        "fetched_at": "2026-11-05T20:00:34Z",
+        "fetched_at": "2026-11-06T06:54:47Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -17877,17 +17877,17 @@
         "description": null,
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/ee324/a2awire",
-        "fetched_at": "2026-11-05T20:00:53Z",
+        "fetched_at": "2026-11-06T06:55:05Z",
         "error": null
       },
       "liveness": {
         "url": "https://front.com",
         "status_code": 200,
-        "latency_ms": 372,
+        "latency_ms": 395,
         "reachable": true,
         "responded": true,
         "final_url": "https://front.com",
-        "fetched_at": "2026-11-05T20:00:34Z",
+        "fetched_at": "2026-11-06T06:54:48Z",
         "error": null
       },
       "packages": [],
@@ -18862,12 +18862,12 @@
         ],
         "resources": [],
         "prompts": [],
-        "fetched_at": "2026-11-05T20:01:39Z"
+        "fetched_at": "2026-11-06T06:55:50Z"
       },
       "tools_count": 16,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:34Z"
+      "last_fetched": "2026-11-06T06:54:47Z"
     },
     {
       "app": {
@@ -18925,8 +18925,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 532,
-              "probed_at": "2026-11-05T20:01:39Z",
+              "latency_ms": 870,
+              "probed_at": "2026-11-06T06:55:50Z",
               "error": null
             },
             "stale": false,
@@ -18939,7 +18939,7 @@
           "usepylon"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=pylon&limit=50",
-        "fetched_at": "2026-11-05T20:00:34Z",
+        "fetched_at": "2026-11-06T06:54:48Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -18953,21 +18953,21 @@
         "license": "MIT",
         "language": "TypeScript",
         "archived": false,
-        "pushed_at": "2026-11-03T22:51:29Z",
+        "pushed_at": "2026-11-06T04:30:06Z",
         "description": "MCP server for Pylon customer support platform",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/JustinBeckwith/pylon-mcp",
-        "fetched_at": "2026-11-05T20:00:54Z",
+        "fetched_at": "2026-11-06T06:55:06Z",
         "error": null
       },
       "liveness": {
         "url": "https://usepylon.com",
         "status_code": 200,
-        "latency_ms": 261,
+        "latency_ms": 550,
         "reachable": true,
         "responded": true,
         "final_url": "https://www.usepylon.com/",
-        "fetched_at": "2026-11-05T20:00:34Z",
+        "fetched_at": "2026-11-06T06:54:48Z",
         "error": null
       },
       "packages": [
@@ -19009,7 +19009,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 1.0,
-            "detail": "committed 1d ago"
+            "detail": "committed 0d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -19023,7 +19023,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:34Z"
+      "last_fetched": "2026-11-06T06:54:48Z"
     },
     {
       "app": {
@@ -19040,7 +19040,7 @@
           "liveagent"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=liveagent&limit=50",
-        "fetched_at": "2026-11-05T20:00:34Z",
+        "fetched_at": "2026-11-06T06:54:48Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -19064,11 +19064,11 @@
       "liveness": {
         "url": "https://liveagent.com",
         "status_code": 200,
-        "latency_ms": 406,
+        "latency_ms": 514,
         "reachable": true,
         "responded": true,
         "final_url": "https://www.liveagent.com/",
-        "fetched_at": "2026-11-05T20:00:34Z",
+        "fetched_at": "2026-11-06T06:54:48Z",
         "error": null
       },
       "packages": [],
@@ -19113,7 +19113,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:34Z"
+      "last_fetched": "2026-11-06T06:54:48Z"
     },
     {
       "app": {
@@ -19152,8 +19152,8 @@
               ],
               "generic_gateway": false,
               "protocol_version": "2025-06-18",
-              "latency_ms": 639,
-              "probed_at": "2026-11-05T20:01:39Z",
+              "latency_ms": 681,
+              "probed_at": "2026-11-06T06:55:50Z",
               "error": null
             },
             "stale": false,
@@ -19270,7 +19270,7 @@
           "plain"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=plain&limit=50",
-        "fetched_at": "2026-11-05T20:00:34Z",
+        "fetched_at": "2026-11-06T06:54:48Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -19288,17 +19288,17 @@
         "description": null,
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/bwalvoord/gumball",
-        "fetched_at": "2026-11-05T20:00:54Z",
+        "fetched_at": "2026-11-06T06:55:06Z",
         "error": null
       },
       "liveness": {
         "url": "https://plain.com",
         "status_code": 200,
-        "latency_ms": 363,
+        "latency_ms": 464,
         "reachable": true,
         "responded": true,
         "final_url": "https://www.plain.com/",
-        "fetched_at": "2026-11-05T20:00:35Z",
+        "fetched_at": "2026-11-06T06:54:48Z",
         "error": null
       },
       "packages": [
@@ -19381,12 +19381,12 @@
         ],
         "resources": null,
         "prompts": null,
-        "fetched_at": "2026-11-05T20:01:40Z"
+        "fetched_at": "2026-11-06T06:55:50Z"
       },
       "tools_count": 1,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:34Z"
+      "last_fetched": "2026-11-06T06:54:48Z"
     },
     {
       "app": {
@@ -19430,8 +19430,8 @@
               ],
               "generic_gateway": false,
               "protocol_version": "2025-06-18",
-              "latency_ms": 215,
-              "probed_at": "2026-11-05T20:01:39Z",
+              "latency_ms": 384,
+              "probed_at": "2026-11-06T06:55:49Z",
               "error": null
             },
             "stale": false,
@@ -19824,7 +19824,7 @@
           "scout"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=help+scout&limit=50",
-        "fetched_at": "2026-11-05T20:00:34Z",
+        "fetched_at": "2026-11-06T06:54:48Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -19842,17 +19842,17 @@
         "description": "An MCP server providing web search and content extraction capabilities. Integrates DuckDuckGo search functionality and URL content extraction into your MCP environment, enabling AI assistants to search the web and extract webpage content.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/pinkpixel-dev/web-scout-mcp",
-        "fetched_at": "2026-11-05T20:00:55Z",
+        "fetched_at": "2026-11-06T06:55:07Z",
         "error": null
       },
       "liveness": {
         "url": "https://helpscout.com",
         "status_code": 200,
-        "latency_ms": 584,
+        "latency_ms": 409,
         "reachable": true,
         "responded": true,
         "final_url": "https://www.helpscout.com/",
-        "fetched_at": "2026-11-05T20:00:35Z",
+        "fetched_at": "2026-11-06T06:54:48Z",
         "error": null
       },
       "packages": [
@@ -19894,7 +19894,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 1.0,
-            "detail": "committed 3d ago"
+            "detail": "committed 4d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -20044,12 +20044,12 @@
         ],
         "resources": null,
         "prompts": null,
-        "fetched_at": "2026-11-05T20:01:39Z"
+        "fetched_at": "2026-11-06T06:55:50Z"
       },
       "tools_count": 6,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:34Z"
+      "last_fetched": "2026-11-06T06:54:48Z"
     },
     {
       "app": {
@@ -20066,7 +20066,7 @@
           "gorgias"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=gorgias&limit=50",
-        "fetched_at": "2026-11-05T20:00:34Z",
+        "fetched_at": "2026-11-06T06:54:48Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -20090,11 +20090,11 @@
       "liveness": {
         "url": "https://gorgias.com",
         "status_code": 200,
-        "latency_ms": 424,
+        "latency_ms": 389,
         "reachable": true,
         "responded": true,
         "final_url": "https://www.gorgias.com/",
-        "fetched_at": "2026-11-05T20:00:35Z",
+        "fetched_at": "2026-11-06T06:54:48Z",
         "error": null
       },
       "packages": [],
@@ -20139,7 +20139,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:34Z"
+      "last_fetched": "2026-11-06T06:54:48Z"
     },
     {
       "app": {
@@ -20176,8 +20176,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 846,
-              "probed_at": "2026-11-05T20:01:40Z",
+              "latency_ms": 412,
+              "probed_at": "2026-11-06T06:55:50Z",
               "error": "no tools in response"
             },
             "stale": false,
@@ -20189,7 +20189,7 @@
           "gladly"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=gladly&limit=50",
-        "fetched_at": "2026-11-05T20:00:34Z",
+        "fetched_at": "2026-11-06T06:54:48Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -20207,17 +20207,17 @@
         "description": "231 hosted remote MCP servers for SaaS tools (CRM, scheduling, payments, messaging and more). Connect from Claude, Cursor or VS Code. Free tier.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/m190/usefulapi-mcp",
-        "fetched_at": "2026-11-05T20:00:56Z",
+        "fetched_at": "2026-11-06T06:55:07Z",
         "error": null
       },
       "liveness": {
         "url": "https://gladly.com",
         "status_code": 200,
-        "latency_ms": 318,
+        "latency_ms": 274,
         "reachable": true,
         "responded": true,
         "final_url": "https://www.gladly.ai/",
-        "fetched_at": "2026-11-05T20:00:35Z",
+        "fetched_at": "2026-11-06T06:54:48Z",
         "error": null
       },
       "packages": [],
@@ -20262,7 +20262,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:34Z"
+      "last_fetched": "2026-11-06T06:54:48Z"
     },
     {
       "app": {
@@ -20299,8 +20299,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 207,
-              "probed_at": "2026-11-05T20:01:39Z",
+              "latency_ms": 78,
+              "probed_at": "2026-11-06T06:55:50Z",
               "error": null
             },
             "stale": false,
@@ -20545,7 +20545,7 @@
           "slack"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=slack&limit=50",
-        "fetched_at": "2026-11-05T20:00:35Z",
+        "fetched_at": "2026-11-06T06:54:48Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -20563,17 +20563,17 @@
         "description": null,
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/smithery-ai/mcp-servers",
-        "fetched_at": "2026-11-05T20:00:56Z",
+        "fetched_at": "2026-11-06T06:55:08Z",
         "error": null
       },
       "liveness": {
         "url": "https://slack.com",
         "status_code": 200,
-        "latency_ms": 133,
+        "latency_ms": 194,
         "reachable": true,
         "responded": true,
         "final_url": "https://slack.com",
-        "fetched_at": "2026-11-05T20:00:35Z",
+        "fetched_at": "2026-11-06T06:54:48Z",
         "error": null
       },
       "packages": [
@@ -20639,7 +20639,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:35Z"
+      "last_fetched": "2026-11-06T06:54:48Z"
     },
     {
       "app": {
@@ -20699,7 +20699,7 @@
             "path": "twilio",
             "title": "Twilio",
             "description": "Twilio MCP Pack — send SMS, list messages, make calls via Twilio REST API.",
-            "version": "0.2.0",
+            "version": "0.2.1",
             "repository_url": "https://github.com/pipeworx-io/mcp-twilio",
             "website_url": "https://pipeworx.io/packs/twilio",
             "remote_urls": [
@@ -20709,7 +20709,7 @@
               "npm:@pipeworx/mcp-twilio"
             ],
             "is_latest": true,
-            "published_at": "2026-10-29T06:47:46.674671Z",
+            "published_at": "2026-11-05T21:08:22.288072Z",
             "namespace_matches_vendor": false,
             "classification": "community",
             "probe": {
@@ -20736,8 +20736,8 @@
               ],
               "generic_gateway": true,
               "protocol_version": "2025-06-18",
-              "latency_ms": 873,
-              "probed_at": "2026-11-05T20:01:40Z",
+              "latency_ms": 485,
+              "probed_at": "2026-11-06T06:55:50Z",
               "error": null
             },
             "stale": false,
@@ -20749,7 +20749,7 @@
           "twilio"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=twilio&limit=50",
-        "fetched_at": "2026-11-05T20:00:35Z",
+        "fetched_at": "2026-11-06T06:54:48Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -20767,17 +20767,17 @@
         "description": "Open-source MCP servers for Latin American commerce — Pix, NF-e, banking, fiscal, logistics, and messaging across Brazil, Mexico, Argentina, Colombia, Chile, and Peru. MIT, on npm.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/codespar/mcp-dev-latam",
-        "fetched_at": "2026-11-05T20:00:57Z",
+        "fetched_at": "2026-11-06T06:55:08Z",
         "error": null
       },
       "liveness": {
         "url": "https://twilio.com",
         "status_code": 200,
-        "latency_ms": 331,
+        "latency_ms": 1022,
         "reachable": true,
         "responded": true,
         "final_url": "https://www.twilio.com/en-us",
-        "fetched_at": "2026-11-05T20:00:35Z",
+        "fetched_at": "2026-11-06T06:54:49Z",
         "error": null
       },
       "packages": [
@@ -22888,12 +22888,12 @@
           "agricultural_commodity_brief",
           "environmental_risk"
         ],
-        "fetched_at": "2026-11-05T20:01:40Z"
+        "fetched_at": "2026-11-06T06:55:51Z"
       },
       "tools_count": 49,
       "auth_gated": false,
       "generic_gateway": true,
-      "last_fetched": "2026-11-05T20:00:35Z"
+      "last_fetched": "2026-11-06T06:54:48Z"
     },
     {
       "app": {
@@ -23011,8 +23011,8 @@
               ],
               "generic_gateway": true,
               "protocol_version": "2025-06-18",
-              "latency_ms": 868,
-              "probed_at": "2026-11-05T20:01:40Z",
+              "latency_ms": 462,
+              "probed_at": "2026-11-06T06:55:50Z",
               "error": null
             },
             "stale": false,
@@ -23027,7 +23027,7 @@
           "zoho"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=zoho+cliq&limit=50",
-        "fetched_at": "2026-11-05T20:00:35Z",
+        "fetched_at": "2026-11-06T06:54:48Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -23045,17 +23045,17 @@
         "description": "Self-hosted MCP server for secure AI access to Zoho CRM data.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/devart-ai-connectivity/devart-mcp-server-zoho-crm",
-        "fetched_at": "2026-11-05T20:00:57Z",
+        "fetched_at": "2026-11-06T06:55:09Z",
         "error": null
       },
       "liveness": {
         "url": "https://zoho.com/cliq",
         "status_code": 200,
-        "latency_ms": 577,
+        "latency_ms": 446,
         "reachable": true,
         "responded": true,
         "final_url": "https://www.zoho.com/cliq/",
-        "fetched_at": "2026-11-05T20:00:35Z",
+        "fetched_at": "2026-11-06T06:54:49Z",
         "error": null
       },
       "packages": [
@@ -25081,12 +25081,12 @@
           "agricultural_commodity_brief",
           "environmental_risk"
         ],
-        "fetched_at": "2026-11-05T20:01:41Z"
+        "fetched_at": "2026-11-06T06:55:51Z"
       },
       "tools_count": 49,
       "auth_gated": false,
       "generic_gateway": true,
-      "last_fetched": "2026-11-05T20:00:35Z"
+      "last_fetched": "2026-11-06T06:54:48Z"
     },
     {
       "app": {
@@ -25126,7 +25126,7 @@
           "larksuite"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=lark&limit=50",
-        "fetched_at": "2026-11-05T20:00:35Z",
+        "fetched_at": "2026-11-06T06:54:49Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -25144,17 +25144,17 @@
         "description": "MCP server with tools to build lark grammars compatible with llguidance",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/guidance-ai/guidance-lark-mcp",
-        "fetched_at": "2026-11-05T20:00:58Z",
+        "fetched_at": "2026-11-06T06:55:10Z",
         "error": null
       },
       "liveness": {
         "url": "https://open.larksuite.com",
         "status_code": 200,
-        "latency_ms": 819,
+        "latency_ms": 412,
         "reachable": true,
         "responded": true,
         "final_url": "https://open.larksuite.com",
-        "fetched_at": "2026-11-05T20:00:36Z",
+        "fetched_at": "2026-11-06T06:54:49Z",
         "error": null
       },
       "packages": [
@@ -25196,7 +25196,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 0.35,
-            "detail": "committed 244d ago"
+            "detail": "committed 245d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -25210,7 +25210,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:35Z"
+      "last_fetched": "2026-11-06T06:54:49Z"
     },
     {
       "app": {
@@ -25227,7 +25227,7 @@
           "pumble"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=pumble&limit=50",
-        "fetched_at": "2026-11-05T20:00:35Z",
+        "fetched_at": "2026-11-06T06:54:48Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -25251,11 +25251,11 @@
       "liveness": {
         "url": "https://pumble.com",
         "status_code": 200,
-        "latency_ms": 157,
+        "latency_ms": 701,
         "reachable": true,
         "responded": true,
         "final_url": "https://pumble.com",
-        "fetched_at": "2026-11-05T20:00:35Z",
+        "fetched_at": "2026-11-06T06:54:49Z",
         "error": null
       },
       "packages": [],
@@ -25300,7 +25300,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:35Z"
+      "last_fetched": "2026-11-06T06:54:48Z"
     },
     {
       "app": {
@@ -25337,8 +25337,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 201,
-              "probed_at": "2026-11-05T20:01:39Z",
+              "latency_ms": 137,
+              "probed_at": "2026-11-06T06:55:50Z",
               "error": null
             },
             "stale": false,
@@ -25542,7 +25542,7 @@
           "discord"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=discord&limit=50",
-        "fetched_at": "2026-11-05T20:00:35Z",
+        "fetched_at": "2026-11-06T06:54:49Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -25560,17 +25560,17 @@
         "description": "Implement Discord MCP server enabling AI assistants to interact with the Discord platform.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/Danushkumar-V/mcp-discord",
-        "fetched_at": "2026-11-05T20:00:58Z",
+        "fetched_at": "2026-11-06T06:55:10Z",
         "error": null
       },
       "liveness": {
         "url": "https://discord.com",
         "status_code": 200,
-        "latency_ms": 65,
+        "latency_ms": 290,
         "reachable": true,
         "responded": true,
         "final_url": "https://discord.com",
-        "fetched_at": "2026-11-05T20:00:35Z",
+        "fetched_at": "2026-11-06T06:54:49Z",
         "error": null
       },
       "packages": [
@@ -25612,7 +25612,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 0.15,
-            "detail": "committed 417d ago"
+            "detail": "committed 418d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -25626,7 +25626,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:35Z"
+      "last_fetched": "2026-11-06T06:54:49Z"
     },
     {
       "app": {
@@ -25663,8 +25663,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 688,
-              "probed_at": "2026-11-05T20:01:40Z",
+              "latency_ms": 836,
+              "probed_at": "2026-11-06T06:55:51Z",
               "error": null
             },
             "stale": false,
@@ -25771,6 +25771,27 @@
             "packages": [],
             "is_latest": true,
             "published_at": "2026-09-21T19:48:33.232667Z",
+            "namespace_matches_vendor": false,
+            "classification": "community",
+            "probe": null,
+            "stale": false,
+            "last_seen": null
+          },
+          {
+            "name": "io.github.AndreySukhanov/summarix-telegram",
+            "namespace": "io.github.AndreySukhanov",
+            "path": "summarix-telegram",
+            "title": "Summarix",
+            "description": "Your Telegram channels as MCP tools: posts with a link to each, search, live new channels.",
+            "version": "1.2.1",
+            "repository_url": "https://github.com/AndreySukhanov/summarix-telegram",
+            "website_url": null,
+            "remote_urls": [],
+            "packages": [
+              "pypi:summarix-telegram"
+            ],
+            "is_latest": true,
+            "published_at": "2026-11-06T00:08:25.956599Z",
             "namespace_matches_vendor": false,
             "classification": "community",
             "probe": null,
@@ -26071,27 +26092,6 @@
             "probe": null,
             "stale": false,
             "last_seen": null
-          },
-          {
-            "name": "io.github.cyuanxv/telegram-bot-mcp-server",
-            "namespace": "io.github.cyuanxv",
-            "path": "telegram-bot-mcp-server",
-            "title": "Telegram Bot MCP Server",
-            "description": "Self-hosted Telegram Bot MCP server for rich text, media and interactive buttons.",
-            "version": "1.0.0",
-            "repository_url": "https://github.com/cyuanxv/telegram-bot-mcp-server",
-            "website_url": null,
-            "remote_urls": [],
-            "packages": [
-              "npm:@cyuanxv/telegram-bot-mcp-server"
-            ],
-            "is_latest": false,
-            "published_at": "2026-10-22T13:28:21.952404Z",
-            "namespace_matches_vendor": false,
-            "classification": "community",
-            "probe": null,
-            "stale": false,
-            "last_seen": null
           }
         ],
         "matched": 21,
@@ -26099,7 +26099,7 @@
           "telegram"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=telegram&limit=50",
-        "fetched_at": "2026-11-05T20:00:35Z",
+        "fetched_at": "2026-11-06T06:54:49Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -26117,17 +26117,17 @@
         "description": "AwrAIter MCP server for Telegram: connection guide, reference for all 25 tools, and examples. Read analytics, draft from your own sources, plan and schedule posts for the channels you administer — no userbot.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/MediaZione/AwrAiter",
-        "fetched_at": "2026-11-05T20:00:59Z",
+        "fetched_at": "2026-11-06T06:55:11Z",
         "error": null
       },
       "liveness": {
         "url": "https://core.telegram.org",
         "status_code": 200,
-        "latency_ms": 325,
+        "latency_ms": 773,
         "reachable": true,
         "responded": true,
         "final_url": "https://core.telegram.org",
-        "fetched_at": "2026-11-05T20:00:36Z",
+        "fetched_at": "2026-11-06T06:54:49Z",
         "error": null
       },
       "packages": [
@@ -26179,7 +26179,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 1.0,
-            "detail": "committed 3d ago"
+            "detail": "committed 4d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -26200,7 +26200,7 @@
       "tools_count": null,
       "auth_gated": true,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:35Z"
+      "last_fetched": "2026-11-06T06:54:49Z"
     },
     {
       "app": {
@@ -26237,8 +26237,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 25,
-              "probed_at": "2026-11-05T20:01:39Z",
+              "latency_ms": 278,
+              "probed_at": "2026-11-06T06:55:50Z",
               "error": null
             },
             "stale": false,
@@ -26274,7 +26274,7 @@
           "facebook"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=whatsapp+business&limit=50",
-        "fetched_at": "2026-11-05T20:00:35Z",
+        "fetched_at": "2026-11-06T06:54:49Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -26292,17 +26292,17 @@
         "description": "Hosted MCP server for DarkFunnels: operate a WhatsApp AI sales agent (connected by QR, no Meta API) from Claude, ChatGPT or any MCP client. OAuth 2.1, 44 tools.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/darkfunnels-ai/darkfunnels-mcp",
-        "fetched_at": "2026-11-05T20:01:00Z",
+        "fetched_at": "2026-11-06T06:55:12Z",
         "error": null
       },
       "liveness": {
         "url": "https://developers.facebook.com/docs/whatsapp",
         "status_code": 200,
-        "latency_ms": 2089,
+        "latency_ms": 2565,
         "reachable": true,
         "responded": true,
         "final_url": "https://developers.facebook.com/documentation/business-messaging/whatsapp/overview",
-        "fetched_at": "2026-11-05T20:00:38Z",
+        "fetched_at": "2026-11-06T06:54:52Z",
         "error": null
       },
       "packages": [
@@ -26354,7 +26354,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 0.8,
-            "detail": "committed 61d ago"
+            "detail": "committed 62d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -26375,7 +26375,7 @@
       "tools_count": null,
       "auth_gated": true,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:35Z"
+      "last_fetched": "2026-11-06T06:54:49Z"
     },
     {
       "app": {
@@ -26412,8 +26412,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 1030,
-              "probed_at": "2026-11-05T20:01:40Z",
+              "latency_ms": 1016,
+              "probed_at": "2026-11-06T06:55:51Z",
               "error": "no tools in response"
             },
             "stale": false,
@@ -26425,7 +26425,7 @@
           "aircall"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=aircall&limit=50",
-        "fetched_at": "2026-11-05T20:00:35Z",
+        "fetched_at": "2026-11-06T06:54:49Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -26443,17 +26443,17 @@
         "description": "231 hosted remote MCP servers for SaaS tools (CRM, scheduling, payments, messaging and more). Connect from Claude, Cursor or VS Code. Free tier.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/m190/usefulapi-mcp",
-        "fetched_at": "2026-11-05T20:01:00Z",
+        "fetched_at": "2026-11-06T06:55:12Z",
         "error": null
       },
       "liveness": {
         "url": "https://aircall.io",
         "status_code": 200,
-        "latency_ms": 120,
+        "latency_ms": 186,
         "reachable": true,
         "responded": true,
         "final_url": "https://aircall.io",
-        "fetched_at": "2026-11-05T20:00:36Z",
+        "fetched_at": "2026-11-06T06:54:50Z",
         "error": null
       },
       "packages": [],
@@ -27166,7 +27166,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:35Z"
+      "last_fetched": "2026-11-06T06:54:49Z"
     },
     {
       "app": {
@@ -27211,8 +27211,8 @@
               ],
               "generic_gateway": false,
               "protocol_version": "2025-06-18",
-              "latency_ms": 342,
-              "probed_at": "2026-11-05T20:01:40Z",
+              "latency_ms": 1045,
+              "probed_at": "2026-11-06T06:55:51Z",
               "error": null
             },
             "stale": false,
@@ -27224,7 +27224,7 @@
           "vonage"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=vonage&limit=50",
-        "fetched_at": "2026-11-05T20:00:35Z",
+        "fetched_at": "2026-11-06T06:54:49Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -27242,17 +27242,17 @@
         "description": "Bridging the Vonage Developer Documentation to LLMs",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/Vonage/vonage-mcp-server-documentation",
-        "fetched_at": "2026-11-05T20:01:01Z",
+        "fetched_at": "2026-11-06T06:55:13Z",
         "error": null
       },
       "liveness": {
         "url": "https://developer.vonage.com",
         "status_code": 200,
-        "latency_ms": 560,
+        "latency_ms": 1062,
         "reachable": true,
         "responded": true,
         "final_url": "https://developer.vonage.com/en/home",
-        "fetched_at": "2026-11-05T20:00:36Z",
+        "fetched_at": "2026-11-06T06:54:50Z",
         "error": null
       },
       "packages": [],
@@ -27283,7 +27283,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 0.35,
-            "detail": "committed 325d ago"
+            "detail": "committed 326d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -27433,12 +27433,12 @@
         ],
         "resources": null,
         "prompts": null,
-        "fetched_at": "2026-11-05T20:01:40Z"
+        "fetched_at": "2026-11-06T06:55:52Z"
       },
       "tools_count": 7,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:35Z"
+      "last_fetched": "2026-11-06T06:54:49Z"
     },
     {
       "app": {
@@ -27475,8 +27475,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 66,
-              "probed_at": "2026-11-05T20:01:40Z",
+              "latency_ms": 203,
+              "probed_at": "2026-11-06T06:55:50Z",
               "error": null
             },
             "stale": false,
@@ -28036,7 +28036,7 @@
           "google"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=google+ads&limit=50",
-        "fetched_at": "2026-11-05T20:00:36Z",
+        "fetched_at": "2026-11-06T06:54:50Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -28054,17 +28054,17 @@
         "description": null,
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/data-mindset/sts-google-forms-mcp",
-        "fetched_at": "2026-11-05T20:01:01Z",
+        "fetched_at": "2026-11-06T06:55:13Z",
         "error": null
       },
       "liveness": {
         "url": "https://developers.google.com/google-ads",
         "status_code": 200,
-        "latency_ms": 666,
+        "latency_ms": 300,
         "reachable": true,
         "responded": true,
         "final_url": "https://developers.google.com/google-ads",
-        "fetched_at": "2026-11-05T20:00:36Z",
+        "fetched_at": "2026-11-06T06:54:50Z",
         "error": null
       },
       "packages": [],
@@ -28116,7 +28116,7 @@
       "tools_count": null,
       "auth_gated": true,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:36Z"
+      "last_fetched": "2026-11-06T06:54:50Z"
     },
     {
       "app": {
@@ -28153,8 +28153,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 267,
-              "probed_at": "2026-11-05T20:01:40Z",
+              "latency_ms": 436,
+              "probed_at": "2026-11-06T06:55:51Z",
               "error": null
             },
             "stale": false,
@@ -28379,7 +28379,7 @@
           "facebook"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=meta+ads&limit=50",
-        "fetched_at": "2026-11-05T20:00:36Z",
+        "fetched_at": "2026-11-06T06:54:50Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -28397,17 +28397,17 @@
         "description": "AdChat: hosted Meta Ads (Facebook + Instagram) MCP server. https://mcp.adchat.app",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/EricStrohmaier/adchat-mcp",
-        "fetched_at": "2026-11-05T20:01:02Z",
+        "fetched_at": "2026-11-06T06:55:14Z",
         "error": null
       },
       "liveness": {
         "url": "https://developers.facebook.com/docs/marketing-apis",
         "status_code": 200,
-        "latency_ms": 4013,
+        "latency_ms": 4196,
         "reachable": true,
         "responded": true,
         "final_url": "https://developers.facebook.com/documentation/ads-commerce/marketing-api",
-        "fetched_at": "2026-11-05T20:00:40Z",
+        "fetched_at": "2026-11-06T06:54:54Z",
         "error": null
       },
       "packages": [
@@ -28459,7 +28459,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 1.0,
-            "detail": "committed 0d ago"
+            "detail": "committed 1d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -28480,7 +28480,7 @@
       "tools_count": null,
       "auth_gated": true,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:36Z"
+      "last_fetched": "2026-11-06T06:54:50Z"
     },
     {
       "app": {
@@ -28517,8 +28517,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": "2025-06-18",
-              "latency_ms": 842,
-              "probed_at": "2026-11-05T20:01:41Z",
+              "latency_ms": 827,
+              "probed_at": "2026-11-06T06:55:51Z",
               "error": "no tools in response"
             },
             "stale": false,
@@ -28977,7 +28977,7 @@
           "microsoft"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=linkedin+ads&limit=50",
-        "fetched_at": "2026-11-05T20:00:36Z",
+        "fetched_at": "2026-11-06T06:54:50Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -28995,17 +28995,17 @@
         "description": "HAPI MCP Server 😁 - Adopt MCP without rewriting your backend (Brownfield). Start from scratch with an API-First and AI-Ready approach (Greenfield).",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/la-rebelion/hapimcp",
-        "fetched_at": "2026-11-05T20:01:03Z",
+        "fetched_at": "2026-11-06T06:55:14Z",
         "error": null
       },
       "liveness": {
         "url": "https://learn.microsoft.com/linkedin/marketing",
         "status_code": 200,
-        "latency_ms": 554,
+        "latency_ms": 444,
         "reachable": true,
         "responded": true,
         "final_url": "https://learn.microsoft.com/en-us/linkedin/marketing/?view=li-lms-2026-10",
-        "fetched_at": "2026-11-05T20:00:36Z",
+        "fetched_at": "2026-11-06T06:54:50Z",
         "error": null
       },
       "packages": [
@@ -29067,7 +29067,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 0.8,
-            "detail": "committed 73d ago"
+            "detail": "committed 74d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -29081,7 +29081,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:36Z"
+      "last_fetched": "2026-11-06T06:54:50Z"
     },
     {
       "app": {
@@ -29099,7 +29099,7 @@
           "stoplight"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=gohighlevel&limit=50",
-        "fetched_at": "2026-11-05T20:00:36Z",
+        "fetched_at": "2026-11-06T06:54:50Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -29123,11 +29123,11 @@
       "liveness": {
         "url": "https://highlevel.stoplight.io",
         "status_code": 200,
-        "latency_ms": 207,
+        "latency_ms": 174,
         "reachable": true,
         "responded": true,
         "final_url": "https://highlevel.stoplight.io",
-        "fetched_at": "2026-11-05T20:00:36Z",
+        "fetched_at": "2026-11-06T06:54:50Z",
         "error": null
       },
       "packages": [],
@@ -29172,7 +29172,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:36Z"
+      "last_fetched": "2026-11-06T06:54:50Z"
     },
     {
       "app": {
@@ -29209,8 +29209,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 117,
-              "probed_at": "2026-11-05T20:01:40Z",
+              "latency_ms": 497,
+              "probed_at": "2026-11-06T06:55:51Z",
               "error": null
             },
             "stale": false,
@@ -29357,7 +29357,7 @@
           "mailchimp"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=mailchimp&limit=50",
-        "fetched_at": "2026-11-05T20:00:36Z",
+        "fetched_at": "2026-11-06T06:54:50Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -29375,17 +29375,17 @@
         "description": "Mailchimp MCP server for Claude and ChatGPT: hosted, 231 actions for campaigns, audiences, automations and email reports, with changes only after you confirm. Also works in Cursor and Claude Code.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/Insightful-Pipe/mailchimp-mcp-server",
-        "fetched_at": "2026-11-05T20:01:03Z",
+        "fetched_at": "2026-11-06T06:55:15Z",
         "error": null
       },
       "liveness": {
         "url": "https://mailchimp.com/developer",
         "status_code": 200,
-        "latency_ms": 347,
+        "latency_ms": 257,
         "reachable": true,
         "responded": true,
         "final_url": "https://mailchimp.com/developer",
-        "fetched_at": "2026-11-05T20:00:36Z",
+        "fetched_at": "2026-11-06T06:54:50Z",
         "error": null
       },
       "packages": [
@@ -29447,7 +29447,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 1.0,
-            "detail": "committed 26d ago"
+            "detail": "committed 27d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -29468,7 +29468,7 @@
       "tools_count": 46,
       "auth_gated": true,
       "generic_gateway": true,
-      "last_fetched": "2026-11-05T20:00:36Z"
+      "last_fetched": "2026-11-06T06:54:50Z"
     },
     {
       "app": {
@@ -29505,8 +29505,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 366,
-              "probed_at": "2026-11-05T20:01:40Z",
+              "latency_ms": 398,
+              "probed_at": "2026-11-06T06:55:51Z",
               "error": null
             },
             "stale": false,
@@ -29633,7 +29633,7 @@
           "klaviyo"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=klaviyo&limit=50",
-        "fetched_at": "2026-11-05T20:00:36Z",
+        "fetched_at": "2026-11-06T06:54:50Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -29651,17 +29651,17 @@
         "description": "Klaviyo MCP server: connect Klaviyo to Claude, ChatGPT, Cursor and Claude Code. Hosted remote MCP for campaigns, flows, lists, segments and performance reports.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/Insightful-Pipe/klaviyo-mcp-server",
-        "fetched_at": "2026-11-05T20:01:04Z",
+        "fetched_at": "2026-11-06T06:55:16Z",
         "error": null
       },
       "liveness": {
         "url": "https://developers.klaviyo.com",
         "status_code": 200,
-        "latency_ms": 320,
+        "latency_ms": 218,
         "reachable": true,
         "responded": true,
         "final_url": "https://developers.klaviyo.com/en",
-        "fetched_at": "2026-11-05T20:00:37Z",
+        "fetched_at": "2026-11-06T06:54:50Z",
         "error": null
       },
       "packages": [
@@ -29713,7 +29713,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 1.0,
-            "detail": "committed 26d ago"
+            "detail": "committed 27d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -29734,7 +29734,7 @@
       "tools_count": 46,
       "auth_gated": true,
       "generic_gateway": true,
-      "last_fetched": "2026-11-05T20:00:36Z"
+      "last_fetched": "2026-11-06T06:54:50Z"
     },
     {
       "app": {
@@ -29752,7 +29752,7 @@
           "systeme"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=systeme.io&limit=50",
-        "fetched_at": "2026-11-05T20:00:36Z",
+        "fetched_at": "2026-11-06T06:54:50Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -29776,11 +29776,11 @@
       "liveness": {
         "url": "https://systeme.io",
         "status_code": 200,
-        "latency_ms": 511,
+        "latency_ms": 647,
         "reachable": true,
         "responded": true,
         "final_url": "https://systeme.io",
-        "fetched_at": "2026-11-05T20:00:37Z",
+        "fetched_at": "2026-11-06T06:54:51Z",
         "error": null
       },
       "packages": [],
@@ -29825,7 +29825,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:36Z"
+      "last_fetched": "2026-11-06T06:54:50Z"
     },
     {
       "app": {
@@ -29883,8 +29883,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 128,
-              "probed_at": "2026-11-05T20:01:40Z",
+              "latency_ms": 646,
+              "probed_at": "2026-11-06T06:55:52Z",
               "error": null
             },
             "stale": false,
@@ -30077,7 +30077,7 @@
           "pinterest"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=pinterest&limit=50",
-        "fetched_at": "2026-11-05T20:00:37Z",
+        "fetched_at": "2026-11-06T06:54:50Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -30095,17 +30095,17 @@
         "description": "Pinterest Ads MCP server: 29 read tools, 30 opt-in preview-first writes.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/get-mcp-ads/pinterest-ads-mcp-server",
-        "fetched_at": "2026-11-05T20:01:05Z",
+        "fetched_at": "2026-11-06T06:55:16Z",
         "error": null
       },
       "liveness": {
         "url": "https://developers.pinterest.com",
         "status_code": 200,
-        "latency_ms": 96,
+        "latency_ms": 351,
         "reachable": true,
         "responded": true,
         "final_url": "https://developers.pinterest.com",
-        "fetched_at": "2026-11-05T20:00:37Z",
+        "fetched_at": "2026-11-06T06:54:51Z",
         "error": null
       },
       "packages": [
@@ -30188,7 +30188,7 @@
       "tools_count": null,
       "auth_gated": true,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:37Z"
+      "last_fetched": "2026-11-06T06:54:50Z"
     },
     {
       "app": {
@@ -30225,8 +30225,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 55,
-              "probed_at": "2026-11-05T20:01:40Z",
+              "latency_ms": 59,
+              "probed_at": "2026-11-06T06:55:51Z",
               "error": null
             },
             "stale": false,
@@ -30555,7 +30555,7 @@
           "facebook"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=threads&limit=50",
-        "fetched_at": "2026-11-05T20:00:37Z",
+        "fetched_at": "2026-11-06T06:54:50Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -30573,17 +30573,17 @@
         "description": "AdChat: hosted Meta Ads (Facebook + Instagram) MCP server. https://mcp.adchat.app",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/EricStrohmaier/adchat-mcp",
-        "fetched_at": "2026-11-05T20:01:05Z",
+        "fetched_at": "2026-11-06T06:55:17Z",
         "error": null
       },
       "liveness": {
         "url": "https://developers.facebook.com/docs/threads",
         "status_code": 200,
-        "latency_ms": 1078,
+        "latency_ms": 1799,
         "reachable": true,
         "responded": true,
         "final_url": "https://developers.facebook.com/documentation/threads",
-        "fetched_at": "2026-11-05T20:00:38Z",
+        "fetched_at": "2026-11-06T06:54:52Z",
         "error": null
       },
       "packages": [
@@ -30645,7 +30645,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 1.0,
-            "detail": "committed 0d ago"
+            "detail": "committed 1d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -30666,7 +30666,7 @@
       "tools_count": null,
       "auth_gated": true,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:37Z"
+      "last_fetched": "2026-11-06T06:54:50Z"
     },
     {
       "app": {
@@ -30805,8 +30805,8 @@
               ],
               "generic_gateway": true,
               "protocol_version": "2025-06-18",
-              "latency_ms": 1055,
-              "probed_at": "2026-11-05T20:01:41Z",
+              "latency_ms": 539,
+              "probed_at": "2026-11-06T06:55:51Z",
               "error": null
             },
             "stale": false,
@@ -30839,7 +30839,7 @@
           "sendgrid"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=sendgrid&limit=50",
-        "fetched_at": "2026-11-05T20:00:37Z",
+        "fetched_at": "2026-11-06T06:54:51Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -30857,17 +30857,17 @@
         "description": "Security-first MCP server for SendGrid — recipient allowlists, send caps, review-mode, audit log, no silent BCC. Hardened against the postmark-mcp incident class.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/Choppaaahh/sendgrid-mcp-secure",
-        "fetched_at": "2026-11-05T20:01:06Z",
+        "fetched_at": "2026-11-06T06:55:17Z",
         "error": null
       },
       "liveness": {
         "url": "https://sendgrid.com",
         "status_code": 200,
-        "latency_ms": 171,
+        "latency_ms": 680,
         "reachable": true,
         "responded": true,
         "final_url": "https://www.twilio.com/en-us/sendgrid",
-        "fetched_at": "2026-11-05T20:00:37Z",
+        "fetched_at": "2026-11-06T06:54:51Z",
         "error": null
       },
       "packages": [
@@ -32859,12 +32859,12 @@
           "agricultural_commodity_brief",
           "environmental_risk"
         ],
-        "fetched_at": "2026-11-05T20:01:42Z"
+        "fetched_at": "2026-11-06T06:55:53Z"
       },
       "tools_count": 47,
       "auth_gated": false,
       "generic_gateway": true,
-      "last_fetched": "2026-11-05T20:00:37Z"
+      "last_fetched": "2026-11-06T06:54:51Z"
     },
     {
       "app": {
@@ -32902,8 +32902,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 527,
-              "probed_at": "2026-11-05T20:01:41Z",
+              "latency_ms": 687,
+              "probed_at": "2026-11-06T06:55:52Z",
               "error": null
             },
             "stale": false,
@@ -33405,7 +33405,7 @@
           "shopify"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=shopify&limit=50",
-        "fetched_at": "2026-11-05T20:00:37Z",
+        "fetched_at": "2026-11-06T06:54:51Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -33423,17 +33423,17 @@
         "description": "MCP server for Shopify storefronts: pull the public product catalogue and collections of any store by URL, with variants, SKUs and prices. No app, no merchant token. 1,000 free credits every month.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/HasData/shopify-mcp",
-        "fetched_at": "2026-11-05T20:01:06Z",
+        "fetched_at": "2026-11-06T06:55:18Z",
         "error": null
       },
       "liveness": {
         "url": "https://shopify.dev",
         "status_code": 200,
-        "latency_ms": 73,
+        "latency_ms": 118,
         "reachable": true,
         "responded": true,
         "final_url": "https://shopify.dev/docs",
-        "fetched_at": "2026-11-05T20:00:37Z",
+        "fetched_at": "2026-11-06T06:54:51Z",
         "error": null
       },
       "packages": [
@@ -33516,7 +33516,7 @@
       "tools_count": null,
       "auth_gated": true,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:37Z"
+      "last_fetched": "2026-11-06T06:54:51Z"
     },
     {
       "app": {
@@ -33553,8 +33553,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 1187,
-              "probed_at": "2026-11-05T20:01:42Z",
+              "latency_ms": 1234,
+              "probed_at": "2026-11-06T06:55:52Z",
               "error": null
             },
             "stale": false,
@@ -33700,7 +33700,7 @@
           "woocommerce"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=woocommerce&limit=50",
-        "fetched_at": "2026-11-05T20:00:38Z",
+        "fetched_at": "2026-11-06T06:54:51Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -33718,17 +33718,17 @@
         "description": "WooCommerce MCP server: connect WooCommerce to Claude, ChatGPT, Cursor and Claude Code. Hosted remote MCP for products, orders, customers, coupons and sales reports.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/Insightful-Pipe/woocommerce-mcp-server",
-        "fetched_at": "2026-11-05T20:01:07Z",
+        "fetched_at": "2026-11-06T06:55:19Z",
         "error": null
       },
       "liveness": {
         "url": "https://woocommerce.com/document/woocommerce-rest-api",
         "status_code": 200,
-        "latency_ms": 404,
+        "latency_ms": 820,
         "reachable": true,
         "responded": true,
         "final_url": "https://woocommerce.com/document/woocommerce-rest-api/",
-        "fetched_at": "2026-11-05T20:00:38Z",
+        "fetched_at": "2026-11-06T06:54:52Z",
         "error": null
       },
       "packages": [
@@ -33790,7 +33790,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 1.0,
-            "detail": "committed 26d ago"
+            "detail": "committed 27d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -33811,7 +33811,7 @@
       "tools_count": 46,
       "auth_gated": true,
       "generic_gateway": true,
-      "last_fetched": "2026-11-05T20:00:38Z"
+      "last_fetched": "2026-11-06T06:54:51Z"
     },
     {
       "app": {
@@ -33850,7 +33850,7 @@
           "bigcommerce"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=bigcommerce&limit=50",
-        "fetched_at": "2026-11-05T20:00:38Z",
+        "fetched_at": "2026-11-06T06:54:51Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -33868,17 +33868,17 @@
         "description": null,
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/mrfentmen/premium-mcps",
-        "fetched_at": "2026-11-05T20:01:08Z",
+        "fetched_at": "2026-11-06T06:55:19Z",
         "error": null
       },
       "liveness": {
         "url": "https://developer.bigcommerce.com",
         "status_code": 200,
-        "latency_ms": 459,
+        "latency_ms": 823,
         "reachable": true,
         "responded": true,
         "final_url": "https://docs.bigcommerce.com/developer/docs/overview/quick-start",
-        "fetched_at": "2026-11-05T20:00:38Z",
+        "fetched_at": "2026-11-06T06:54:52Z",
         "error": null
       },
       "packages": [
@@ -33934,7 +33934,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:38Z"
+      "last_fetched": "2026-11-06T06:54:51Z"
     },
     {
       "app": {
@@ -33971,8 +33971,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 857,
-              "probed_at": "2026-11-05T20:01:41Z",
+              "latency_ms": 602,
+              "probed_at": "2026-11-06T06:55:52Z",
               "error": null
             },
             "stale": false,
@@ -34366,7 +34366,7 @@
           "salesforce"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=salesforce+commerce+cloud&limit=50",
-        "fetched_at": "2026-11-05T20:00:38Z",
+        "fetched_at": "2026-11-06T06:54:51Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -34384,17 +34384,17 @@
         "description": "MCP Server for interacting with Salesforce instances",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/kodey-ai/salesforce-mcp",
-        "fetched_at": "2026-11-05T20:01:08Z",
+        "fetched_at": "2026-11-06T06:55:20Z",
         "error": null
       },
       "liveness": {
         "url": "https://developer.salesforce.com/docs/commerce",
         "status_code": 200,
-        "latency_ms": 1008,
+        "latency_ms": 816,
         "reachable": true,
         "responded": true,
         "final_url": "https://developer.salesforce.com/developer-centers/commerce-cloud",
-        "fetched_at": "2026-11-05T20:00:39Z",
+        "fetched_at": "2026-11-06T06:54:52Z",
         "error": null
       },
       "packages": [
@@ -34457,7 +34457,7 @@
       "tools_count": null,
       "auth_gated": true,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:38Z"
+      "last_fetched": "2026-11-06T06:54:51Z"
     },
     {
       "app": {
@@ -34494,8 +34494,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 405,
-              "probed_at": "2026-11-05T20:01:41Z",
+              "latency_ms": 201,
+              "probed_at": "2026-11-06T06:55:52Z",
               "error": null
             },
             "stale": false,
@@ -34804,7 +34804,7 @@
           "adobe"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=magento&limit=50",
-        "fetched_at": "2026-11-05T20:00:38Z",
+        "fetched_at": "2026-11-06T06:54:52Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -34822,17 +34822,17 @@
         "description": "Magento MCP server: connect Magento to Claude, ChatGPT, Cursor and Claude Code. Hosted remote MCP for products, orders, inventory and sales for Magento 2 and Adobe Commerce.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/Insightful-Pipe/magento-mcp-server",
-        "fetched_at": "2026-11-05T20:01:09Z",
+        "fetched_at": "2026-11-06T06:55:20Z",
         "error": null
       },
       "liveness": {
         "url": "https://developer.adobe.com/commerce",
         "status_code": 200,
-        "latency_ms": 49,
+        "latency_ms": 183,
         "reachable": true,
         "responded": true,
         "final_url": "https://developer.adobe.com/commerce/",
-        "fetched_at": "2026-11-05T20:00:38Z",
+        "fetched_at": "2026-11-06T06:54:52Z",
         "error": null
       },
       "packages": [
@@ -34894,7 +34894,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 1.0,
-            "detail": "committed 26d ago"
+            "detail": "committed 27d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -34915,7 +34915,7 @@
       "tools_count": null,
       "auth_gated": true,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:38Z"
+      "last_fetched": "2026-11-06T06:54:52Z"
     },
     {
       "app": {
@@ -34954,7 +34954,7 @@
           "squarespace"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=squarespace&limit=50",
-        "fetched_at": "2026-11-05T20:00:39Z",
+        "fetched_at": "2026-11-06T06:54:52Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -34972,17 +34972,17 @@
         "description": null,
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/mrfentmen/premium-mcps",
-        "fetched_at": "2026-11-05T20:01:10Z",
+        "fetched_at": "2026-11-06T06:55:21Z",
         "error": null
       },
       "liveness": {
         "url": "https://developers.squarespace.com",
         "status_code": 200,
-        "latency_ms": 154,
+        "latency_ms": 409,
         "reachable": true,
         "responded": true,
         "final_url": "https://developers.squarespace.com",
-        "fetched_at": "2026-11-05T20:00:39Z",
+        "fetched_at": "2026-11-06T06:54:53Z",
         "error": null
       },
       "packages": [
@@ -35038,7 +35038,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:39Z"
+      "last_fetched": "2026-11-06T06:54:52Z"
     },
     {
       "app": {
@@ -35075,8 +35075,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 1136,
-              "probed_at": "2026-11-05T20:01:42Z",
+              "latency_ms": 1293,
+              "probed_at": "2026-11-06T06:55:53Z",
               "error": "no tools in response"
             },
             "stale": false,
@@ -35088,7 +35088,7 @@
           "ecwid"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=ecwid&limit=50",
-        "fetched_at": "2026-11-05T20:00:39Z",
+        "fetched_at": "2026-11-06T06:54:52Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -35106,17 +35106,17 @@
         "description": "231 hosted remote MCP servers for SaaS tools (CRM, scheduling, payments, messaging and more). Connect from Claude, Cursor or VS Code. Free tier.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/m190/usefulapi-mcp",
-        "fetched_at": "2026-11-05T20:01:10Z",
+        "fetched_at": "2026-11-06T06:55:21Z",
         "error": null
       },
       "liveness": {
         "url": "https://api-docs.ecwid.com",
         "status_code": 200,
-        "latency_ms": 333,
+        "latency_ms": 326,
         "reachable": true,
         "responded": true,
         "final_url": "https://docs.ecwid.com",
-        "fetched_at": "2026-11-05T20:00:39Z",
+        "fetched_at": "2026-11-06T06:54:53Z",
         "error": null
       },
       "packages": [],
@@ -35597,7 +35597,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:39Z"
+      "last_fetched": "2026-11-06T06:54:52Z"
     },
     {
       "app": {
@@ -35655,8 +35655,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 1312,
-              "probed_at": "2026-11-05T20:01:42Z",
+              "latency_ms": 1632,
+              "probed_at": "2026-11-06T06:55:53Z",
               "error": "no tools in response"
             },
             "stale": false,
@@ -35668,7 +35668,7 @@
           "gumroad"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=gumroad&limit=50",
-        "fetched_at": "2026-11-05T20:00:39Z",
+        "fetched_at": "2026-11-06T06:54:52Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -35686,17 +35686,17 @@
         "description": "The Gumroad API v2 from chat: products, files, sales, refunds, licenses, plus niche scans. MCP server.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/marstudio360/gumroad-dna-mcp",
-        "fetched_at": "2026-11-05T20:01:11Z",
+        "fetched_at": "2026-11-06T06:55:22Z",
         "error": null
       },
       "liveness": {
         "url": "https://gumroad.com/api",
         "status_code": 200,
-        "latency_ms": 36,
+        "latency_ms": 132,
         "reachable": true,
         "responded": true,
         "final_url": "https://gumroad.com/api",
-        "fetched_at": "2026-11-05T20:00:39Z",
+        "fetched_at": "2026-11-06T06:54:52Z",
         "error": null
       },
       "packages": [],
@@ -35727,7 +35727,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 1.0,
-            "detail": "committed 7d ago"
+            "detail": "committed 8d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -36185,7 +36185,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:39Z"
+      "last_fetched": "2026-11-06T06:54:52Z"
     },
     {
       "app": {
@@ -36242,8 +36242,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 549,
-              "probed_at": "2026-11-05T20:01:42Z",
+              "latency_ms": 857,
+              "probed_at": "2026-11-06T06:55:53Z",
               "error": null
             },
             "stale": false,
@@ -36343,7 +36343,7 @@
           "amazon"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=amazon+selling+partner&limit=50",
-        "fetched_at": "2026-11-05T20:00:39Z",
+        "fetched_at": "2026-11-06T06:54:52Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -36361,17 +36361,17 @@
         "description": "Official MCP server for Amazon Ads by SellerMate — ask your account anything, act with guardrails. Remote, OAuth 2.1, no API keys.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/SellerMate-AI/amazon-ads-mcp",
-        "fetched_at": "2026-11-05T20:01:12Z",
+        "fetched_at": "2026-11-06T06:55:23Z",
         "error": null
       },
       "liveness": {
         "url": "https://developer-docs.amazon.com/sp-api",
         "status_code": 200,
-        "latency_ms": 326,
+        "latency_ms": 279,
         "reachable": true,
         "responded": true,
         "final_url": "https://developer-docs.amazon/sp-api",
-        "fetched_at": "2026-11-05T20:00:39Z",
+        "fetched_at": "2026-11-06T06:54:53Z",
         "error": null
       },
       "packages": [
@@ -36434,7 +36434,7 @@
       "tools_count": null,
       "auth_gated": true,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:39Z"
+      "last_fetched": "2026-11-06T06:54:52Z"
     },
     {
       "app": {
@@ -36451,7 +36451,7 @@
           "fanbasis"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=fanbasis&limit=50",
-        "fetched_at": "2026-11-05T20:00:39Z",
+        "fetched_at": "2026-11-06T06:54:52Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -36475,11 +36475,11 @@
       "liveness": {
         "url": "https://fanbasis.com",
         "status_code": 200,
-        "latency_ms": 692,
+        "latency_ms": 721,
         "reachable": true,
         "responded": true,
         "final_url": "https://commas.com/",
-        "fetched_at": "2026-11-05T20:00:40Z",
+        "fetched_at": "2026-11-06T06:54:53Z",
         "error": null
       },
       "packages": [],
@@ -36524,7 +36524,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:39Z"
+      "last_fetched": "2026-11-06T06:54:52Z"
     },
     {
       "app": {
@@ -36561,8 +36561,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 169,
-              "probed_at": "2026-11-05T20:01:41Z",
+              "latency_ms": 579,
+              "probed_at": "2026-11-06T06:55:52Z",
               "error": null
             },
             "stale": false,
@@ -36595,7 +36595,7 @@
           "dataforseo"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=dataforseo&limit=50",
-        "fetched_at": "2026-11-05T20:00:39Z",
+        "fetched_at": "2026-11-06T06:54:52Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -36613,17 +36613,17 @@
         "description": "DataForSEO MCP server: connect DataForSEO to Claude, ChatGPT, Cursor and Claude Code. Hosted remote MCP for SERP, keyword, backlink and AI search visibility data.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/Insightful-Pipe/dataforseo-mcp-server",
-        "fetched_at": "2026-11-05T20:01:12Z",
+        "fetched_at": "2026-11-06T06:55:23Z",
         "error": null
       },
       "liveness": {
         "url": "https://docs.dataforseo.com",
         "status_code": 200,
-        "latency_ms": 866,
+        "latency_ms": 1372,
         "reachable": true,
         "responded": true,
         "final_url": "https://docs.dataforseo.com/v3/",
-        "fetched_at": "2026-11-05T20:00:40Z",
+        "fetched_at": "2026-11-06T06:54:54Z",
         "error": null
       },
       "packages": [
@@ -36665,7 +36665,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 1.0,
-            "detail": "committed 26d ago"
+            "detail": "committed 27d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -36686,7 +36686,7 @@
       "tools_count": null,
       "auth_gated": true,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:39Z"
+      "last_fetched": "2026-11-06T06:54:52Z"
     },
     {
       "app": {
@@ -36723,8 +36723,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 522,
-              "probed_at": "2026-11-05T20:01:42Z",
+              "latency_ms": 751,
+              "probed_at": "2026-11-06T06:55:53Z",
               "error": null
             },
             "stale": false,
@@ -36886,7 +36886,7 @@
           "se"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=se+ranking&limit=50",
-        "fetched_at": "2026-11-05T20:00:39Z",
+        "fetched_at": "2026-11-06T06:54:53Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -36910,11 +36910,11 @@
       "liveness": {
         "url": "https://seranking.com/api",
         "status_code": 404,
-        "latency_ms": 607,
+        "latency_ms": 558,
         "reachable": false,
         "responded": true,
         "final_url": "https://seranking.com/api",
-        "fetched_at": "2026-11-05T20:00:40Z",
+        "fetched_at": "2026-11-06T06:54:53Z",
         "error": null
       },
       "packages": [],
@@ -36966,7 +36966,7 @@
       "tools_count": null,
       "auth_gated": true,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:39Z"
+      "last_fetched": "2026-11-06T06:54:53Z"
     },
     {
       "app": {
@@ -37003,8 +37003,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 200,
-              "probed_at": "2026-11-05T20:01:41Z",
+              "latency_ms": 111,
+              "probed_at": "2026-11-06T06:55:52Z",
               "error": null
             },
             "stale": false,
@@ -37082,7 +37082,7 @@
           "ahrefs"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=ahrefs&limit=50",
-        "fetched_at": "2026-11-05T20:00:39Z",
+        "fetched_at": "2026-11-06T06:54:53Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -37100,17 +37100,17 @@
         "description": "Production-ready MCP servers for 70+ APIs — GitHub, Google, Notion, Jira & more. Generated from OpenAPI specs, tested against live APIs. Works with Claude Desktop, Cursor, Codex & Claude Code.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/mcparmory/registry",
-        "fetched_at": "2026-11-05T20:01:13Z",
+        "fetched_at": "2026-11-06T06:55:24Z",
         "error": null
       },
       "liveness": {
         "url": "https://ahrefs.com/api",
         "status_code": 200,
-        "latency_ms": 89,
+        "latency_ms": 615,
         "reachable": true,
         "responded": true,
         "final_url": "https://docs.ahrefs.com",
-        "fetched_at": "2026-11-05T20:00:39Z",
+        "fetched_at": "2026-11-06T06:54:53Z",
         "error": null
       },
       "packages": [
@@ -37173,7 +37173,7 @@
       "tools_count": 11,
       "auth_gated": true,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:39Z"
+      "last_fetched": "2026-11-06T06:54:53Z"
     },
     {
       "app": {
@@ -37210,8 +37210,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 236,
-              "probed_at": "2026-11-05T20:01:42Z",
+              "latency_ms": 418,
+              "probed_at": "2026-11-06T06:55:53Z",
               "error": null
             },
             "stale": false,
@@ -37223,7 +37223,7 @@
           "mrscraper"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=mrscraper&limit=50",
-        "fetched_at": "2026-11-05T20:00:40Z",
+        "fetched_at": "2026-11-06T06:54:53Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -37241,17 +37241,17 @@
         "description": null,
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/mrscraper-com/mrscraper-mcp",
-        "fetched_at": "2026-11-05T20:01:14Z",
+        "fetched_at": "2026-11-06T06:55:24Z",
         "error": null
       },
       "liveness": {
         "url": "https://docs.mrscraper.com",
         "status_code": 200,
-        "latency_ms": 1251,
+        "latency_ms": 966,
         "reachable": true,
         "responded": true,
         "final_url": "https://docs.mrscraper.com/docs/getting-started/overview",
-        "fetched_at": "2026-11-05T20:00:41Z",
+        "fetched_at": "2026-11-06T06:54:54Z",
         "error": null
       },
       "packages": [],
@@ -37303,7 +37303,7 @@
       "tools_count": null,
       "auth_gated": true,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:40Z"
+      "last_fetched": "2026-11-06T06:54:53Z"
     },
     {
       "app": {
@@ -37340,8 +37340,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 51,
-              "probed_at": "2026-11-05T20:01:42Z",
+              "latency_ms": 250,
+              "probed_at": "2026-11-06T06:55:53Z",
               "error": null
             },
             "stale": false,
@@ -37353,7 +37353,7 @@
           "apify"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=apify&limit=50",
-        "fetched_at": "2026-11-05T20:00:40Z",
+        "fetched_at": "2026-11-06T06:54:53Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -37361,27 +37361,27 @@
         "status": "found",
         "full_name": "apify/apify-mcp-server",
         "html_url": "https://github.com/apify/apify-mcp-server",
-        "stars": 14919,
-        "forks": 432,
+        "stars": 14975,
+        "forks": 433,
         "open_issues": 258,
         "license": "MIT",
         "language": "TypeScript",
         "archived": false,
-        "pushed_at": "2026-11-05T17:18:25Z",
+        "pushed_at": "2026-11-05T22:57:48Z",
         "description": "The Apify MCP server enables your AI agents to extract data from social media, search engines, maps, e-commerce sites, or any other website using thousands of ready-made scrapers, crawlers, and automation tools available on the Apify Store.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/apify/apify-mcp-server",
-        "fetched_at": "2026-11-05T20:01:14Z",
+        "fetched_at": "2026-11-06T06:55:25Z",
         "error": null
       },
       "liveness": {
         "url": "https://docs.apify.com",
         "status_code": 200,
-        "latency_ms": 23,
+        "latency_ms": 240,
         "reachable": true,
         "responded": true,
         "final_url": "https://docs.apify.com",
-        "fetched_at": "2026-11-05T20:00:40Z",
+        "fetched_at": "2026-11-06T06:54:53Z",
         "error": null
       },
       "packages": [],
@@ -37407,7 +37407,7 @@
           "popularity": {
             "weight": 0.14,
             "score": 1.0,
-            "detail": "★14,919"
+            "detail": "★14,975"
           },
           "maintenance": {
             "weight": 0.16,
@@ -37433,7 +37433,7 @@
       "tools_count": null,
       "auth_gated": true,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:40Z"
+      "last_fetched": "2026-11-06T06:54:53Z"
     },
     {
       "app": {
@@ -37486,8 +37486,8 @@
               ],
               "generic_gateway": false,
               "protocol_version": "2025-06-18",
-              "latency_ms": 2679,
-              "probed_at": "2026-11-05T20:01:44Z",
+              "latency_ms": 1945,
+              "probed_at": "2026-11-06T06:55:55Z",
               "error": null
             },
             "stale": false,
@@ -37574,7 +37574,7 @@
           "firecrawl"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=firecrawl&limit=50",
-        "fetched_at": "2026-11-05T20:00:40Z",
+        "fetched_at": "2026-11-06T06:54:53Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -37592,17 +37592,17 @@
         "description": "Production-ready MCP servers for 70+ APIs — GitHub, Google, Notion, Jira & more. Generated from OpenAPI specs, tested against live APIs. Works with Claude Desktop, Cursor, Codex & Claude Code.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/mcparmory/registry",
-        "fetched_at": "2026-11-05T20:01:15Z",
+        "fetched_at": "2026-11-06T06:55:26Z",
         "error": null
       },
       "liveness": {
         "url": "https://firecrawl.dev",
         "status_code": 200,
-        "latency_ms": 350,
+        "latency_ms": 957,
         "reachable": true,
         "responded": true,
         "final_url": "https://www.firecrawl.dev/",
-        "fetched_at": "2026-11-05T20:00:40Z",
+        "fetched_at": "2026-11-06T06:54:54Z",
         "error": null
       },
       "packages": [
@@ -40295,12 +40295,12 @@
           "Firecrawl"
         ],
         "prompts": null,
-        "fetched_at": "2026-11-05T20:01:47Z"
+        "fetched_at": "2026-11-06T06:55:57Z"
       },
       "tools_count": 31,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:40Z"
+      "last_fetched": "2026-11-06T06:54:53Z"
     },
     {
       "app": {
@@ -40337,8 +40337,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 299,
-              "probed_at": "2026-11-05T20:01:42Z",
+              "latency_ms": 606,
+              "probed_at": "2026-11-06T06:55:53Z",
               "error": null
             },
             "stale": false,
@@ -40394,7 +40394,7 @@
           "bright"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=bright+data&limit=50",
-        "fetched_at": "2026-11-05T20:00:40Z",
+        "fetched_at": "2026-11-06T06:54:53Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -40412,17 +40412,17 @@
         "description": null,
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/brightdata/brightdata-mcp-sse",
-        "fetched_at": "2026-11-05T20:01:15Z",
+        "fetched_at": "2026-11-06T06:55:26Z",
         "error": null
       },
       "liveness": {
         "url": "https://brightdata.com",
         "status_code": 200,
-        "latency_ms": 258,
+        "latency_ms": 546,
         "reachable": true,
         "responded": true,
         "final_url": "https://brightdata.com",
-        "fetched_at": "2026-11-05T20:00:40Z",
+        "fetched_at": "2026-11-06T06:54:54Z",
         "error": null
       },
       "packages": [
@@ -40478,7 +40478,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:40Z"
+      "last_fetched": "2026-11-06T06:54:53Z"
     },
     {
       "app": {
@@ -40518,7 +40518,7 @@
           "github"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=sherlock&limit=50",
-        "fetched_at": "2026-11-05T20:00:40Z",
+        "fetched_at": "2026-11-06T06:54:54Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -40536,17 +40536,17 @@
         "description": "MCP server that uses reflection to provide LLM's with knowledger about dotnet classes, their members and their signatures",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/jcucci/dotnet-sherlock-mcp",
-        "fetched_at": "2026-11-05T20:01:16Z",
+        "fetched_at": "2026-11-06T06:55:27Z",
         "error": null
       },
       "liveness": {
         "url": "https://github.com/sherlock-project/sherlock",
         "status_code": 200,
-        "latency_ms": 542,
+        "latency_ms": 361,
         "reachable": true,
         "responded": true,
         "final_url": "https://github.com/sherlock-project/sherlock",
-        "fetched_at": "2026-11-05T20:00:41Z",
+        "fetched_at": "2026-11-06T06:54:54Z",
         "error": null
       },
       "packages": [],
@@ -40591,7 +40591,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:40Z"
+      "last_fetched": "2026-11-06T06:54:54Z"
     },
     {
       "app": {
@@ -40673,7 +40673,7 @@
           "waterfall"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=waterfall.io&limit=50",
-        "fetched_at": "2026-11-05T20:00:40Z",
+        "fetched_at": "2026-11-06T06:54:54Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -40691,17 +40691,17 @@
         "description": null,
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/mambalabsdev/mcp-email-waterfall-orchestrator",
-        "fetched_at": "2026-11-05T20:01:17Z",
+        "fetched_at": "2026-11-06T06:55:27Z",
         "error": null
       },
       "liveness": {
         "url": "https://waterfall.io",
         "status_code": 200,
-        "latency_ms": 290,
+        "latency_ms": 742,
         "reachable": true,
         "responded": true,
         "final_url": "https://www.waterfall.io/",
-        "fetched_at": "2026-11-05T20:00:41Z",
+        "fetched_at": "2026-11-06T06:54:55Z",
         "error": null
       },
       "packages": [
@@ -40777,7 +40777,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:40Z"
+      "last_fetched": "2026-11-06T06:54:54Z"
     },
     {
       "app": {
@@ -40837,7 +40837,7 @@
           "clay"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=clay&limit=50",
-        "fetched_at": "2026-11-05T20:00:40Z",
+        "fetched_at": "2026-11-06T06:54:54Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -40855,17 +40855,17 @@
         "description": "MCP server for the Mamba Labs Sequencer Lead Push actor on Apify. Push enriched leads into an Instantly or Smartlead campaign.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/mambalabsdev/mcp-clay-to-instantly-smartlead-push",
-        "fetched_at": "2026-11-05T20:01:17Z",
+        "fetched_at": "2026-11-06T06:55:28Z",
         "error": null
       },
       "liveness": {
         "url": "https://clay.com",
         "status_code": 200,
-        "latency_ms": 233,
+        "latency_ms": 375,
         "reachable": true,
         "responded": true,
         "final_url": "https://www.clay.com/",
-        "fetched_at": "2026-11-05T20:00:41Z",
+        "fetched_at": "2026-11-06T06:54:54Z",
         "error": null
       },
       "packages": [
@@ -40931,7 +40931,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:40Z"
+      "last_fetched": "2026-11-06T06:54:54Z"
     },
     {
       "app": {
@@ -40968,8 +40968,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 338,
-              "probed_at": "2026-11-05T20:01:42Z",
+              "latency_ms": 570,
+              "probed_at": "2026-11-06T06:55:53Z",
               "error": null
             },
             "stale": false,
@@ -41285,7 +41285,7 @@
           "github"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=github&limit=50",
-        "fetched_at": "2026-11-05T20:00:40Z",
+        "fetched_at": "2026-11-06T06:54:54Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -41303,17 +41303,17 @@
         "description": "MCP Server to search individual private Github Repositories",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/Hint-Services/obsidian-github-mcp",
-        "fetched_at": "2026-11-05T20:01:18Z",
+        "fetched_at": "2026-11-06T06:55:28Z",
         "error": null
       },
       "liveness": {
         "url": "https://docs.github.com/rest",
         "status_code": 200,
-        "latency_ms": 74,
+        "latency_ms": 173,
         "reachable": true,
         "responded": true,
         "final_url": "https://docs.github.com/en/rest",
-        "fetched_at": "2026-11-05T20:00:40Z",
+        "fetched_at": "2026-11-06T06:54:54Z",
         "error": null
       },
       "packages": [
@@ -41389,7 +41389,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:40Z"
+      "last_fetched": "2026-11-06T06:54:54Z"
     },
     {
       "app": {
@@ -41406,7 +41406,7 @@
           "vercel"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=vercel&limit=50",
-        "fetched_at": "2026-11-05T20:00:40Z",
+        "fetched_at": "2026-11-06T06:54:54Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -41430,11 +41430,11 @@
       "liveness": {
         "url": "https://vercel.com/docs/rest-api",
         "status_code": 200,
-        "latency_ms": 173,
+        "latency_ms": 573,
         "reachable": true,
         "responded": true,
         "final_url": "https://vercel.com/docs/rest-api",
-        "fetched_at": "2026-11-05T20:00:41Z",
+        "fetched_at": "2026-11-06T06:54:55Z",
         "error": null
       },
       "packages": [
@@ -41497,7 +41497,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:40Z"
+      "last_fetched": "2026-11-06T06:54:54Z"
     },
     {
       "app": {
@@ -41514,7 +41514,7 @@
           "netlify"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=netlify&limit=50",
-        "fetched_at": "2026-11-05T20:00:41Z",
+        "fetched_at": "2026-11-06T06:54:54Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -41538,11 +41538,11 @@
       "liveness": {
         "url": "https://docs.netlify.com/api",
         "status_code": 200,
-        "latency_ms": 144,
+        "latency_ms": 218,
         "reachable": true,
         "responded": true,
         "final_url": "https://docs.netlify.com/api-and-cli-guides/api-guides/get-started-with-api/",
-        "fetched_at": "2026-11-05T20:00:41Z",
+        "fetched_at": "2026-11-06T06:54:54Z",
         "error": null
       },
       "packages": [],
@@ -41587,7 +41587,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:41Z"
+      "last_fetched": "2026-11-06T06:54:54Z"
     },
     {
       "app": {
@@ -41656,8 +41656,8 @@
               ],
               "generic_gateway": false,
               "protocol_version": "2025-06-18",
-              "latency_ms": 265,
-              "probed_at": "2026-11-05T20:01:42Z",
+              "latency_ms": 246,
+              "probed_at": "2026-11-06T06:55:53Z",
               "error": null
             },
             "stale": false,
@@ -41793,7 +41793,7 @@
           "cloudflare"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=cloudflare&limit=50",
-        "fetched_at": "2026-11-05T20:00:41Z",
+        "fetched_at": "2026-11-06T06:54:54Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -41801,8 +41801,8 @@
         "status": "found",
         "full_name": "cloudflare/mcp-server-cloudflare",
         "html_url": "https://github.com/cloudflare/mcp-server-cloudflare",
-        "stars": 4448,
-        "forks": 570,
+        "stars": 4450,
+        "forks": 572,
         "open_issues": 62,
         "license": "Apache-2.0",
         "language": "TypeScript",
@@ -41811,17 +41811,17 @@
         "description": "Product specific Cloudflare MCP servers",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/cloudflare/mcp-server-cloudflare",
-        "fetched_at": "2026-11-05T20:01:18Z",
+        "fetched_at": "2026-11-06T06:55:29Z",
         "error": null
       },
       "liveness": {
         "url": "https://developers.cloudflare.com/api",
         "status_code": 200,
-        "latency_ms": 341,
+        "latency_ms": 207,
         "reachable": true,
         "responded": true,
         "final_url": "https://developers.cloudflare.com/api/",
-        "fetched_at": "2026-11-05T20:00:41Z",
+        "fetched_at": "2026-11-06T06:54:54Z",
         "error": null
       },
       "packages": [
@@ -41858,7 +41858,7 @@
           "popularity": {
             "weight": 0.14,
             "score": 0.912,
-            "detail": "★4,448"
+            "detail": "★4,450"
           },
           "maintenance": {
             "weight": 0.16,
@@ -41915,12 +41915,12 @@
         "prompts": [
           "workers-prompt-full"
         ],
-        "fetched_at": "2026-11-05T20:01:42Z"
+        "fetched_at": "2026-11-06T06:55:53Z"
       },
       "tools_count": 2,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:41Z"
+      "last_fetched": "2026-11-06T06:54:54Z"
     },
     {
       "app": {
@@ -41959,8 +41959,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 31,
-              "probed_at": "2026-11-05T20:01:42Z",
+              "latency_ms": 66,
+              "probed_at": "2026-11-06T06:55:53Z",
               "error": null
             },
             "stale": false,
@@ -42099,7 +42099,7 @@
           "supabase"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=supabase&limit=50",
-        "fetched_at": "2026-11-05T20:00:41Z",
+        "fetched_at": "2026-11-06T06:54:54Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -42109,25 +42109,25 @@
         "html_url": "https://github.com/supabase/mcp",
         "stars": 2994,
         "forks": 427,
-        "open_issues": 121,
+        "open_issues": 124,
         "license": "Apache-2.0",
         "language": "TypeScript",
         "archived": false,
-        "pushed_at": "2026-11-05T18:41:44Z",
+        "pushed_at": "2026-11-06T06:16:01Z",
         "description": "Connect Supabase to your AI assistants",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/supabase/mcp",
-        "fetched_at": "2026-11-05T20:01:19Z",
+        "fetched_at": "2026-11-06T06:55:30Z",
         "error": null
       },
       "liveness": {
         "url": "https://supabase.com/docs",
         "status_code": 200,
-        "latency_ms": 316,
+        "latency_ms": 357,
         "reachable": true,
         "responded": true,
         "final_url": "https://supabase.com/docs",
-        "fetched_at": "2026-11-05T20:00:42Z",
+        "fetched_at": "2026-11-06T06:54:55Z",
         "error": null
       },
       "packages": [
@@ -42200,7 +42200,7 @@
       "tools_count": null,
       "auth_gated": true,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:41Z"
+      "last_fetched": "2026-11-06T06:54:54Z"
     },
     {
       "app": {
@@ -42344,7 +42344,7 @@
           "neo4j"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=neo4j&limit=50",
-        "fetched_at": "2026-11-05T20:00:41Z",
+        "fetched_at": "2026-11-06T06:54:55Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -42354,7 +42354,7 @@
         "html_url": "https://github.com/neo4j-contrib/gds-agent",
         "stars": 99,
         "forks": 22,
-        "open_issues": 0,
+        "open_issues": 1,
         "license": "MIT",
         "language": "Python",
         "archived": false,
@@ -42362,17 +42362,17 @@
         "description": "Neo4j Graph Data Scientist Agent (MCP Server & Skills)",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/neo4j-contrib/gds-agent",
-        "fetched_at": "2026-11-05T20:01:20Z",
+        "fetched_at": "2026-11-06T06:55:30Z",
         "error": null
       },
       "liveness": {
         "url": "https://neo4j.com/docs/api",
         "status_code": 404,
-        "latency_ms": 466,
+        "latency_ms": 469,
         "reachable": false,
         "responded": true,
         "final_url": "https://neo4j.com/docs/api/",
-        "fetched_at": "2026-11-05T20:00:42Z",
+        "fetched_at": "2026-11-06T06:54:55Z",
         "error": null
       },
       "packages": [
@@ -42448,7 +42448,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:41Z"
+      "last_fetched": "2026-11-06T06:54:55Z"
     },
     {
       "app": {
@@ -42565,8 +42565,8 @@
               ],
               "generic_gateway": false,
               "protocol_version": "2025-03-26",
-              "latency_ms": 818,
-              "probed_at": "2026-11-05T20:01:43Z",
+              "latency_ms": 2142,
+              "probed_at": "2026-11-06T06:55:55Z",
               "error": null
             },
             "stale": false,
@@ -42683,7 +42683,7 @@
           "snowflake"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=snowflake&limit=50",
-        "fetched_at": "2026-11-05T20:00:41Z",
+        "fetched_at": "2026-11-06T06:54:55Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -42701,17 +42701,17 @@
         "description": "MCP Server for Snowflake including Cortex AI, object management, SQL orchestration, semantic view consumption, and more",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/Snowflake-Labs/mcp",
-        "fetched_at": "2026-11-05T20:01:20Z",
+        "fetched_at": "2026-11-06T06:55:31Z",
         "error": null
       },
       "liveness": {
         "url": "https://docs.snowflake.com",
         "status_code": 200,
-        "latency_ms": 354,
+        "latency_ms": 683,
         "reachable": true,
         "responded": true,
         "final_url": "https://docs.snowflake.com/en/",
-        "fetched_at": "2026-11-05T20:00:42Z",
+        "fetched_at": "2026-11-06T06:54:55Z",
         "error": null
       },
       "packages": [
@@ -44337,12 +44337,12 @@
         ],
         "resources": null,
         "prompts": null,
-        "fetched_at": "2026-11-05T20:01:43Z"
+        "fetched_at": "2026-11-06T06:55:55Z"
       },
       "tools_count": 31,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:41Z"
+      "last_fetched": "2026-11-06T06:54:55Z"
     },
     {
       "app": {
@@ -44379,8 +44379,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 136,
-              "probed_at": "2026-11-05T20:01:42Z",
+              "latency_ms": 213,
+              "probed_at": "2026-11-06T06:55:53Z",
               "error": null
             },
             "stale": false,
@@ -44607,7 +44607,7 @@
           "mongodb"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=mongodb+atlas&limit=50",
-        "fetched_at": "2026-11-05T20:00:42Z",
+        "fetched_at": "2026-11-06T06:54:55Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -44625,17 +44625,17 @@
         "description": "MCP server for the INITE AI visibility audit — see how ChatGPT, Claude, Gemini and Perplexity read a website, from inside your agent.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/inite-ai/inite-visibility",
-        "fetched_at": "2026-11-05T20:01:21Z",
+        "fetched_at": "2026-11-06T06:55:31Z",
         "error": null
       },
       "liveness": {
         "url": "https://mongodb.com/docs/atlas/api",
         "status_code": 200,
-        "latency_ms": 320,
+        "latency_ms": 1181,
         "reachable": true,
         "responded": true,
         "final_url": "https://www.mongodb.com/docs/atlas/api/",
-        "fetched_at": "2026-11-05T20:00:42Z",
+        "fetched_at": "2026-11-06T06:54:56Z",
         "error": null
       },
       "packages": [
@@ -44687,7 +44687,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 1.0,
-            "detail": "committed 16d ago"
+            "detail": "committed 17d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -44708,7 +44708,7 @@
       "tools_count": null,
       "auth_gated": true,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:42Z"
+      "last_fetched": "2026-11-06T06:54:55Z"
     },
     {
       "app": {
@@ -44791,7 +44791,7 @@
           "datadoghq"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=datadog&limit=50",
-        "fetched_at": "2026-11-05T20:00:41Z",
+        "fetched_at": "2026-11-06T06:54:55Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -44809,17 +44809,17 @@
         "description": "Production-ready MCP servers for 70+ APIs — GitHub, Google, Notion, Jira & more. Generated from OpenAPI specs, tested against live APIs. Works with Claude Desktop, Cursor, Codex & Claude Code.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/mcparmory/registry",
-        "fetched_at": "2026-11-05T20:01:21Z",
+        "fetched_at": "2026-11-06T06:55:32Z",
         "error": null
       },
       "liveness": {
         "url": "https://docs.datadoghq.com/api",
         "status_code": 200,
-        "latency_ms": 181,
+        "latency_ms": 379,
         "reachable": true,
         "responded": true,
         "final_url": "https://docs.datadoghq.com/api",
-        "fetched_at": "2026-11-05T20:00:42Z",
+        "fetched_at": "2026-11-06T06:54:55Z",
         "error": null
       },
       "packages": [
@@ -44885,7 +44885,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:41Z"
+      "last_fetched": "2026-11-06T06:54:55Z"
     },
     {
       "app": {
@@ -44946,7 +44946,7 @@
             "path": "sentry-mcp",
             "title": "",
             "description": "MCP server for Sentry - error monitoring, issue tracking, and debugging for AI assistants",
-            "version": "0.42.0",
+            "version": "0.48.0",
             "repository_url": "https://github.com/getsentry/sentry-mcp",
             "website_url": null,
             "remote_urls": [
@@ -44956,7 +44956,7 @@
               "npm:@sentry/mcp-server"
             ],
             "is_latest": true,
-            "published_at": "2026-09-25T14:49:17.516259Z",
+            "published_at": "2026-11-05T20:19:39.995386Z",
             "namespace_matches_vendor": false,
             "classification": "community",
             "probe": {
@@ -44967,8 +44967,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 84,
-              "probed_at": "2026-11-05T20:01:42Z",
+              "latency_ms": 49,
+              "probed_at": "2026-11-06T06:55:53Z",
               "error": null
             },
             "stale": false,
@@ -45022,7 +45022,7 @@
           "sentry"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=sentry&limit=50",
-        "fetched_at": "2026-11-05T20:00:42Z",
+        "fetched_at": "2026-11-06T06:54:55Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -45040,17 +45040,17 @@
         "description": "Production-ready MCP servers for 70+ APIs — GitHub, Google, Notion, Jira & more. Generated from OpenAPI specs, tested against live APIs. Works with Claude Desktop, Cursor, Codex & Claude Code.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/mcparmory/registry",
-        "fetched_at": "2026-11-05T20:01:22Z",
+        "fetched_at": "2026-11-06T06:55:33Z",
         "error": null
       },
       "liveness": {
         "url": "https://docs.sentry.io/api",
         "status_code": 200,
-        "latency_ms": 121,
+        "latency_ms": 223,
         "reachable": true,
         "responded": true,
         "final_url": "https://docs.sentry.io/api/",
-        "fetched_at": "2026-11-05T20:00:42Z",
+        "fetched_at": "2026-11-06T06:54:55Z",
         "error": null
       },
       "packages": [
@@ -45123,7 +45123,7 @@
       "tools_count": null,
       "auth_gated": true,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:42Z"
+      "last_fetched": "2026-11-06T06:54:55Z"
     },
     {
       "app": {
@@ -45161,8 +45161,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 268,
-              "probed_at": "2026-11-05T20:01:42Z",
+              "latency_ms": 85,
+              "probed_at": "2026-11-06T06:55:53Z",
               "error": null
             },
             "stale": false,
@@ -45280,16 +45280,16 @@
             "path": "notion-mcp-server",
             "title": "",
             "description": "Token-auth Notion MCP: pages, databases, blocks, comments, files. Runs headless in CI and agents.",
-            "version": "3.3.0",
+            "version": "3.3.1",
             "repository_url": "https://github.com/awkoy/notion-mcp-server",
             "website_url": null,
             "remote_urls": [],
             "packages": [
               "npm:notion-mcp-server",
-              "oci:ghcr.io/awkoy/notion-mcp-server:3.3.0"
+              "oci:ghcr.io/awkoy/notion-mcp-server:3.3.1"
             ],
             "is_latest": true,
-            "published_at": "2026-10-25T22:44:53.857971Z",
+            "published_at": "2026-11-05T21:51:15.87426Z",
             "namespace_matches_vendor": false,
             "classification": "community",
             "probe": null,
@@ -45386,7 +45386,7 @@
           "notion"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=notion&limit=50",
-        "fetched_at": "2026-11-05T20:00:42Z",
+        "fetched_at": "2026-11-06T06:54:55Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -45404,17 +45404,17 @@
         "description": null,
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/smithery-ai/mcp-servers",
-        "fetched_at": "2026-11-05T20:01:23Z",
+        "fetched_at": "2026-11-06T06:55:33Z",
         "error": null
       },
       "liveness": {
         "url": "https://developers.notion.com",
         "status_code": 200,
-        "latency_ms": 322,
+        "latency_ms": 416,
         "reachable": true,
         "responded": true,
         "final_url": "https://developers.notion.com/guides/notion-api/quick-start",
-        "fetched_at": "2026-11-05T20:00:42Z",
+        "fetched_at": "2026-11-06T06:54:56Z",
         "error": null
       },
       "packages": [
@@ -45487,7 +45487,7 @@
       "tools_count": null,
       "auth_gated": true,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:42Z"
+      "last_fetched": "2026-11-06T06:54:55Z"
     },
     {
       "app": {
@@ -45524,8 +45524,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 233,
-              "probed_at": "2026-11-05T20:01:42Z",
+              "latency_ms": 332,
+              "probed_at": "2026-11-06T06:55:53Z",
               "error": null
             },
             "stale": false,
@@ -45690,7 +45690,7 @@
           "airtable"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=airtable&limit=50",
-        "fetched_at": "2026-11-05T20:00:42Z",
+        "fetched_at": "2026-11-06T06:54:55Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -45708,17 +45708,17 @@
         "description": "The only MCP Server you need. Connect any MCP host with the tools you use daily through our no-code, secure integration hub.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/waystation-ai/mcp",
-        "fetched_at": "2026-11-05T20:01:23Z",
+        "fetched_at": "2026-11-06T06:55:34Z",
         "error": null
       },
       "liveness": {
         "url": "https://airtable.com/developers",
         "status_code": 200,
-        "latency_ms": 114,
+        "latency_ms": 340,
         "reachable": true,
         "responded": true,
         "final_url": "https://airtable.com/developers/agents",
-        "fetched_at": "2026-11-05T20:00:43Z",
+        "fetched_at": "2026-11-06T06:54:56Z",
         "error": null
       },
       "packages": [
@@ -45770,7 +45770,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 0.15,
-            "detail": "committed 421d ago"
+            "detail": "committed 422d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -45791,7 +45791,7 @@
       "tools_count": null,
       "auth_gated": true,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:42Z"
+      "last_fetched": "2026-11-06T06:54:55Z"
     },
     {
       "app": {
@@ -45829,8 +45829,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 69,
-              "probed_at": "2026-11-05T20:01:42Z",
+              "latency_ms": 58,
+              "probed_at": "2026-11-06T06:55:53Z",
               "error": null
             },
             "stale": false,
@@ -46055,7 +46055,7 @@
           "linear"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=linear&limit=50",
-        "fetched_at": "2026-11-05T20:00:42Z",
+        "fetched_at": "2026-11-06T06:54:55Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -46073,17 +46073,17 @@
         "description": "Multi-workspace Linear MCP — PAT auth, drop-in for the official OAuth-only Linear MCP.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/adelaidasofia/linear-mcp",
-        "fetched_at": "2026-11-05T20:01:24Z",
+        "fetched_at": "2026-11-06T06:55:34Z",
         "error": null
       },
       "liveness": {
         "url": "https://developers.linear.app",
         "status_code": 200,
-        "latency_ms": 306,
+        "latency_ms": 498,
         "reachable": true,
         "responded": true,
         "final_url": "https://linear.app/developers",
-        "fetched_at": "2026-11-05T20:00:43Z",
+        "fetched_at": "2026-11-06T06:54:56Z",
         "error": null
       },
       "packages": [
@@ -46135,7 +46135,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 1.0,
-            "detail": "committed 10d ago"
+            "detail": "committed 11d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -46156,7 +46156,7 @@
       "tools_count": null,
       "auth_gated": true,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:42Z"
+      "last_fetched": "2026-11-06T06:54:55Z"
     },
     {
       "app": {
@@ -46194,8 +46194,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 305,
-              "probed_at": "2026-11-05T20:01:43Z",
+              "latency_ms": 287,
+              "probed_at": "2026-11-06T06:55:53Z",
               "error": null
             },
             "stale": false,
@@ -46431,7 +46431,7 @@
           "atlassian"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=jira&limit=50",
-        "fetched_at": "2026-11-05T20:00:42Z",
+        "fetched_at": "2026-11-06T06:54:55Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -46439,9 +46439,9 @@
         "status": "found",
         "full_name": "atlassian/atlassian-mcp-server",
         "html_url": "https://github.com/atlassian/atlassian-mcp-server",
-        "stars": 1148,
-        "forks": 146,
-        "open_issues": 114,
+        "stars": 1149,
+        "forks": 148,
+        "open_issues": 103,
         "license": "Apache-2.0",
         "language": "JavaScript",
         "archived": false,
@@ -46449,17 +46449,17 @@
         "description": "Official remote MCP server for Atlassian. Securely connect Jira, Confluence, Jira Service Management, Bitbucket, and Compass to Claude, ChatGPT, Cursor, VS Code, and other AI tools using OAuth 2.1 or API tokens.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/atlassian/atlassian-mcp-server",
-        "fetched_at": "2026-11-05T20:01:24Z",
+        "fetched_at": "2026-11-06T06:55:35Z",
         "error": null
       },
       "liveness": {
         "url": "https://developer.atlassian.com",
         "status_code": 200,
-        "latency_ms": 109,
+        "latency_ms": 346,
         "reachable": true,
         "responded": true,
         "final_url": "https://developer.atlassian.com",
-        "fetched_at": "2026-11-05T20:00:42Z",
+        "fetched_at": "2026-11-06T06:54:56Z",
         "error": null
       },
       "packages": [
@@ -46506,7 +46506,7 @@
           "popularity": {
             "weight": 0.14,
             "score": 0.765,
-            "detail": "★1,148"
+            "detail": "★1,149"
           },
           "maintenance": {
             "weight": 0.16,
@@ -46532,7 +46532,7 @@
       "tools_count": null,
       "auth_gated": true,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:42Z"
+      "last_fetched": "2026-11-06T06:54:55Z"
     },
     {
       "app": {
@@ -46630,8 +46630,8 @@
               ],
               "generic_gateway": true,
               "protocol_version": "2025-06-18",
-              "latency_ms": 506,
-              "probed_at": "2026-11-05T20:01:43Z",
+              "latency_ms": 582,
+              "probed_at": "2026-11-06T06:55:54Z",
               "error": null
             },
             "stale": false,
@@ -46664,7 +46664,7 @@
           "asana"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=asana&limit=50",
-        "fetched_at": "2026-11-05T20:00:42Z",
+        "fetched_at": "2026-11-06T06:54:55Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -46682,17 +46682,17 @@
         "description": "Production-ready MCP servers for 70+ APIs — GitHub, Google, Notion, Jira & more. Generated from OpenAPI specs, tested against live APIs. Works with Claude Desktop, Cursor, Codex & Claude Code.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/mcparmory/registry",
-        "fetched_at": "2026-11-05T20:01:25Z",
+        "fetched_at": "2026-11-06T06:55:35Z",
         "error": null
       },
       "liveness": {
         "url": "https://developers.asana.com",
         "status_code": 200,
-        "latency_ms": 68,
+        "latency_ms": 63,
         "reachable": true,
         "responded": true,
         "final_url": "https://developers.asana.com",
-        "fetched_at": "2026-11-05T20:00:42Z",
+        "fetched_at": "2026-11-06T06:54:56Z",
         "error": null
       },
       "packages": [
@@ -48752,12 +48752,12 @@
           "agricultural_commodity_brief",
           "environmental_risk"
         ],
-        "fetched_at": "2026-11-05T20:01:44Z"
+        "fetched_at": "2026-11-06T06:55:54Z"
       },
       "tools_count": 50,
       "auth_gated": false,
       "generic_gateway": true,
-      "last_fetched": "2026-11-05T20:00:42Z"
+      "last_fetched": "2026-11-06T06:54:55Z"
     },
     {
       "app": {
@@ -48798,8 +48798,8 @@
               ],
               "generic_gateway": false,
               "protocol_version": "2025-06-18",
-              "latency_ms": 353,
-              "probed_at": "2026-11-05T20:01:43Z",
+              "latency_ms": 1023,
+              "probed_at": "2026-11-06T06:55:54Z",
               "error": null
             },
             "stale": false,
@@ -48880,7 +48880,7 @@
           "monday"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=monday.com&limit=50",
-        "fetched_at": "2026-11-05T20:00:42Z",
+        "fetched_at": "2026-11-06T06:54:56Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -48898,17 +48898,17 @@
         "description": "Enable AI agents to work reliably - giving them secure access to structured data, tools to take action, and the context needed to make smart decisions.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/mondaycom/mcp",
-        "fetched_at": "2026-11-05T20:01:26Z",
+        "fetched_at": "2026-11-06T06:55:36Z",
         "error": null
       },
       "liveness": {
         "url": "https://developer.monday.com",
         "status_code": 200,
-        "latency_ms": 140,
+        "latency_ms": 279,
         "reachable": true,
         "responded": true,
         "final_url": "https://developer.monday.com",
-        "fetched_at": "2026-11-05T20:00:43Z",
+        "fetched_at": "2026-11-06T06:54:56Z",
         "error": null
       },
       "packages": [
@@ -49040,12 +49040,12 @@
         ],
         "resources": null,
         "prompts": null,
-        "fetched_at": "2026-11-05T20:01:43Z"
+        "fetched_at": "2026-11-06T06:55:55Z"
       },
       "tools_count": 3,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:42Z"
+      "last_fetched": "2026-11-06T06:54:56Z"
     },
     {
       "app": {
@@ -49082,8 +49082,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 315,
-              "probed_at": "2026-11-05T20:01:43Z",
+              "latency_ms": 388,
+              "probed_at": "2026-11-06T06:55:54Z",
               "error": null
             },
             "stale": false,
@@ -49243,7 +49243,7 @@
           "clickup"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=clickup&limit=50",
-        "fetched_at": "2026-11-05T20:00:43Z",
+        "fetched_at": "2026-11-06T06:54:56Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -49261,17 +49261,17 @@
         "description": null,
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/skr-cloudify/clickup-mcp-server-new",
-        "fetched_at": "2026-11-05T20:01:26Z",
+        "fetched_at": "2026-11-06T06:55:36Z",
         "error": null
       },
       "liveness": {
         "url": "https://clickup.com/api",
         "status_code": 200,
-        "latency_ms": 351,
+        "latency_ms": 284,
         "reachable": true,
         "responded": true,
         "final_url": "https://developer.clickup.com",
-        "fetched_at": "2026-11-05T20:00:43Z",
+        "fetched_at": "2026-11-06T06:54:56Z",
         "error": null
       },
       "packages": [
@@ -49337,7 +49337,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:43Z"
+      "last_fetched": "2026-11-06T06:54:56Z"
     },
     {
       "app": {
@@ -49397,7 +49397,7 @@
           "coda"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=coda&limit=50",
-        "fetched_at": "2026-11-05T20:00:43Z",
+        "fetched_at": "2026-11-06T06:54:56Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -49415,17 +49415,17 @@
         "description": "MCP server for Coda.io API - enables AI assistants to read and write Coda documents",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/nkpar/coda-mcp",
-        "fetched_at": "2026-11-05T20:01:27Z",
+        "fetched_at": "2026-11-06T06:55:37Z",
         "error": null
       },
       "liveness": {
         "url": "https://coda.io/developers",
         "status_code": 200,
-        "latency_ms": 610,
+        "latency_ms": 464,
         "reachable": true,
         "responded": true,
         "final_url": "https://docs.superhuman.com/developers/apis/v1",
-        "fetched_at": "2026-11-05T20:00:43Z",
+        "fetched_at": "2026-11-06T06:54:56Z",
         "error": null
       },
       "packages": [
@@ -49481,7 +49481,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:43Z"
+      "last_fetched": "2026-11-06T06:54:56Z"
     },
     {
       "app": {
@@ -49522,8 +49522,8 @@
               ],
               "generic_gateway": false,
               "protocol_version": "2025-06-18",
-              "latency_ms": 401,
-              "probed_at": "2026-11-05T20:01:43Z",
+              "latency_ms": 538,
+              "probed_at": "2026-11-06T06:55:54Z",
               "error": null
             },
             "stale": false,
@@ -49556,7 +49556,7 @@
           "smartsheet"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=smartsheet&limit=50",
-        "fetched_at": "2026-11-05T20:00:43Z",
+        "fetched_at": "2026-11-06T06:54:56Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -49574,17 +49574,17 @@
         "description": "Enterprise MCP server for Resource Management by Smartsheet (10,000ft API). Automate timesheets, project schedules, and team capacity. (Not official/affiliated with Smartsheet, Inc.)",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/christianclaudio/mcp-server-smartsheet-rm",
-        "fetched_at": "2026-11-05T20:01:27Z",
+        "fetched_at": "2026-11-06T06:55:38Z",
         "error": null
       },
       "liveness": {
         "url": "https://smartsheet.com/developers",
         "status_code": 200,
-        "latency_ms": 446,
+        "latency_ms": 1017,
         "reachable": true,
         "responded": true,
         "final_url": "https://developers.smartsheet.com/",
-        "fetched_at": "2026-11-05T20:00:43Z",
+        "fetched_at": "2026-11-06T06:54:57Z",
         "error": null
       },
       "packages": [
@@ -49626,7 +49626,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 1.0,
-            "detail": "committed 0d ago"
+            "detail": "committed 1d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -49760,12 +49760,12 @@
         ],
         "resources": null,
         "prompts": null,
-        "fetched_at": "2026-11-05T20:01:43Z"
+        "fetched_at": "2026-11-06T06:55:54Z"
       },
       "tools_count": 3,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:43Z"
+      "last_fetched": "2026-11-06T06:54:56Z"
     },
     {
       "app": {
@@ -49802,8 +49802,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 172,
-              "probed_at": "2026-11-05T20:01:43Z",
+              "latency_ms": 227,
+              "probed_at": "2026-11-06T06:55:54Z",
               "error": null
             },
             "stale": false,
@@ -49900,7 +49900,7 @@
           "getharvest"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=harvest&limit=50",
-        "fetched_at": "2026-11-05T20:00:43Z",
+        "fetched_at": "2026-11-06T06:54:56Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -49918,17 +49918,17 @@
         "description": "Harvest — plain-English training-data scout: 12 experts fan out over HuggingFace + GitHub and compose coverage-scored training packs. MCP server, no API keys or Bridge required.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/The-Warl0ck/harvest-mcp",
-        "fetched_at": "2026-11-05T20:01:28Z",
+        "fetched_at": "2026-11-06T06:55:38Z",
         "error": null
       },
       "liveness": {
         "url": "https://help.getharvest.com/api-v2",
         "status_code": 200,
-        "latency_ms": 240,
+        "latency_ms": 394,
         "reachable": true,
         "responded": true,
         "final_url": "https://help.getharvest.com/api-v2/",
-        "fetched_at": "2026-11-05T20:00:43Z",
+        "fetched_at": "2026-11-06T06:54:56Z",
         "error": null
       },
       "packages": [
@@ -49990,7 +49990,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 0.8,
-            "detail": "committed 39d ago"
+            "detail": "committed 40d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -50011,7 +50011,7 @@
       "tools_count": null,
       "auth_gated": true,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:43Z"
+      "last_fetched": "2026-11-06T06:54:56Z"
     },
     {
       "app": {
@@ -50048,8 +50048,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 239,
-              "probed_at": "2026-11-05T20:01:43Z",
+              "latency_ms": 107,
+              "probed_at": "2026-11-06T06:55:54Z",
               "error": null
             },
             "stale": false,
@@ -50315,7 +50315,7 @@
             "path": "stripe_connect",
             "title": "Stripe_connect",
             "description": "Stripe MCP Pack — read-only access to Stripe data via API key.",
-            "version": "0.2.0",
+            "version": "0.2.1",
             "repository_url": "https://github.com/pipeworx-io/mcp-stripe_connect",
             "website_url": "https://pipeworx.io/packs/stripe_connect",
             "remote_urls": [
@@ -50325,7 +50325,7 @@
               "npm:@pipeworx/mcp-stripe_connect"
             ],
             "is_latest": true,
-            "published_at": "2026-10-29T06:33:46.142634Z",
+            "published_at": "2026-11-05T20:54:27.414773Z",
             "namespace_matches_vendor": false,
             "classification": "community",
             "probe": null,
@@ -50401,7 +50401,7 @@
           "stripe"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=stripe&limit=50",
-        "fetched_at": "2026-11-05T20:00:43Z",
+        "fetched_at": "2026-11-06T06:54:56Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -50409,27 +50409,27 @@
         "status": "found",
         "full_name": "stripe/ai",
         "html_url": "https://github.com/stripe/ai",
-        "stars": 2043,
+        "stars": 2046,
         "forks": 384,
         "open_issues": 111,
         "license": "MIT",
         "language": "TypeScript",
         "archived": false,
-        "pushed_at": "2026-11-05T00:31:00Z",
+        "pushed_at": "2026-11-06T00:30:55Z",
         "description": "One-stop shop for building AI-powered products and businesses with Stripe.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/stripe/agent-toolkit",
-        "fetched_at": "2026-11-05T20:01:29Z",
+        "fetched_at": "2026-11-06T06:55:39Z",
         "error": null
       },
       "liveness": {
         "url": "https://stripe.com/docs/api",
         "status_code": 200,
-        "latency_ms": 514,
+        "latency_ms": 481,
         "reachable": true,
         "responded": true,
         "final_url": "https://docs.stripe.com/api",
-        "fetched_at": "2026-11-05T20:00:44Z",
+        "fetched_at": "2026-11-06T06:54:57Z",
         "error": null
       },
       "packages": [
@@ -50486,7 +50486,7 @@
           "popularity": {
             "weight": 0.14,
             "score": 0.828,
-            "detail": "★2,043"
+            "detail": "★2,046"
           },
           "maintenance": {
             "weight": 0.16,
@@ -50512,7 +50512,7 @@
       "tools_count": null,
       "auth_gated": true,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:43Z"
+      "last_fetched": "2026-11-06T06:54:56Z"
     },
     {
       "app": {
@@ -50588,8 +50588,8 @@
               ],
               "generic_gateway": true,
               "protocol_version": "2025-06-18",
-              "latency_ms": 339,
-              "probed_at": "2026-11-05T20:01:43Z",
+              "latency_ms": 429,
+              "probed_at": "2026-11-06T06:55:54Z",
               "error": null
             },
             "stale": false,
@@ -50601,7 +50601,7 @@
           "plaid"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=plaid&limit=50",
-        "fetched_at": "2026-11-05T20:00:43Z",
+        "fetched_at": "2026-11-06T06:54:56Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -50619,17 +50619,17 @@
         "description": null,
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/mrfentmen/premium-mcps",
-        "fetched_at": "2026-11-05T20:01:29Z",
+        "fetched_at": "2026-11-06T06:55:39Z",
         "error": null
       },
       "liveness": {
         "url": "https://plaid.com/docs",
         "status_code": 200,
-        "latency_ms": 87,
+        "latency_ms": 404,
         "reachable": true,
         "responded": true,
         "final_url": "https://plaid.com/docs/",
-        "fetched_at": "2026-11-05T20:00:43Z",
+        "fetched_at": "2026-11-06T06:54:57Z",
         "error": null
       },
       "packages": [
@@ -52610,12 +52610,12 @@
           "agricultural_commodity_brief",
           "environmental_risk"
         ],
-        "fetched_at": "2026-11-05T20:01:43Z"
+        "fetched_at": "2026-11-06T06:55:55Z"
       },
       "tools_count": 47,
       "auth_gated": false,
       "generic_gateway": true,
-      "last_fetched": "2026-11-05T20:00:43Z"
+      "last_fetched": "2026-11-06T06:54:56Z"
     },
     {
       "app": {
@@ -52673,8 +52673,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 169,
-              "probed_at": "2026-11-05T20:01:43Z",
+              "latency_ms": 114,
+              "probed_at": "2026-11-06T06:55:54Z",
               "error": null
             },
             "stale": false,
@@ -52750,7 +52750,7 @@
           "github"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=binance&limit=50",
-        "fetched_at": "2026-11-05T20:00:44Z",
+        "fetched_at": "2026-11-06T06:54:56Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -52768,17 +52768,17 @@
         "description": "Binance MCP server — 340 tools for AI agent access to Binance (analytics). Hosted by Junct.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/junct-bot/binance-mcp",
-        "fetched_at": "2026-11-05T20:01:30Z",
+        "fetched_at": "2026-11-06T06:55:40Z",
         "error": null
       },
       "liveness": {
         "url": "https://binance-docs.github.io",
         "status_code": 404,
-        "latency_ms": 158,
+        "latency_ms": 107,
         "reachable": false,
         "responded": true,
         "final_url": "https://binance-docs.github.io",
-        "fetched_at": "2026-11-05T20:00:44Z",
+        "fetched_at": "2026-11-06T06:54:56Z",
         "error": null
       },
       "packages": [
@@ -52861,7 +52861,7 @@
       "tools_count": null,
       "auth_gated": true,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:44Z"
+      "last_fetched": "2026-11-06T06:54:56Z"
     },
     {
       "app": {
@@ -52881,7 +52881,7 @@
           "nmi"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=paygent+connect&limit=50",
-        "fetched_at": "2026-11-05T20:00:44Z",
+        "fetched_at": "2026-11-06T06:54:56Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -52905,11 +52905,11 @@
       "liveness": {
         "url": "https://nmi.com",
         "status_code": 403,
-        "latency_ms": 157,
+        "latency_ms": 415,
         "reachable": false,
         "responded": true,
         "final_url": "https://www.nmi.com/",
-        "fetched_at": "2026-11-05T20:00:44Z",
+        "fetched_at": "2026-11-06T06:54:57Z",
         "error": null
       },
       "packages": [],
@@ -52954,7 +52954,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:44Z"
+      "last_fetched": "2026-11-06T06:54:56Z"
     },
     {
       "app": {
@@ -52996,8 +52996,8 @@
               ],
               "generic_gateway": false,
               "protocol_version": "2025-03-26",
-              "latency_ms": 1309,
-              "probed_at": "2026-11-05T20:01:44Z",
+              "latency_ms": 483,
+              "probed_at": "2026-11-06T06:55:54Z",
               "error": null
             },
             "stale": false,
@@ -53009,7 +53009,7 @@
           "ipayx"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=ipayx&limit=50",
-        "fetched_at": "2026-11-05T20:00:44Z",
+        "fetched_at": "2026-11-06T06:54:56Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -53033,11 +53033,11 @@
       "liveness": {
         "url": "https://ipayx.ai/docs",
         "status_code": 200,
-        "latency_ms": 1134,
+        "latency_ms": 1479,
         "reachable": true,
         "responded": true,
         "final_url": "https://www.ipayx.ai/docs",
-        "fetched_at": "2026-11-05T20:00:45Z",
+        "fetched_at": "2026-11-06T06:54:58Z",
         "error": null
       },
       "packages": [],
@@ -53086,7 +53086,7 @@
           "description": "Forensic FX Audit Engine — Detecting hidden bank fees in real-time",
           "icon": "https://www.ipayx.ai/mcp-logo-512.png",
           "build": "hvujzsdwcoweirroubeh_880f33c9-9fed-48a2-b54a-aab868d0dba1_313",
-          "deployedAt": "2026-11-05T20:01:44.957Z"
+          "deployedAt": "2026-11-06T06:52:58.718Z"
         },
         "capabilities": [
           "resources",
@@ -53244,12 +53244,12 @@
           "FX Audit Result Card"
         ],
         "prompts": [],
-        "fetched_at": "2026-11-05T20:01:45Z"
+        "fetched_at": "2026-11-06T06:55:55Z"
       },
       "tools_count": 4,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:44Z"
+      "last_fetched": "2026-11-06T06:54:56Z"
     },
     {
       "app": {
@@ -53286,8 +53286,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 185,
-              "probed_at": "2026-11-05T20:01:43Z",
+              "latency_ms": 238,
+              "probed_at": "2026-11-06T06:55:54Z",
               "error": null
             },
             "stale": false,
@@ -53557,7 +53557,7 @@
           "intuit"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=quickbooks&limit=50",
-        "fetched_at": "2026-11-05T20:00:44Z",
+        "fetched_at": "2026-11-06T06:54:57Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -53575,17 +53575,17 @@
         "description": "Self-hosted MCP server for secure AI access to QuickBooks Online accounting data.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/devart-ai-connectivity/devart-mcp-server-quickbooks-online",
-        "fetched_at": "2026-11-05T20:01:30Z",
+        "fetched_at": "2026-11-06T06:55:40Z",
         "error": null
       },
       "liveness": {
         "url": "https://developer.intuit.com",
         "status_code": 200,
-        "latency_ms": 762,
+        "latency_ms": 744,
         "reachable": true,
         "responded": true,
         "final_url": "https://developer.intuit.com/app/developer/homepage",
-        "fetched_at": "2026-11-05T20:00:45Z",
+        "fetched_at": "2026-11-06T06:54:58Z",
         "error": null
       },
       "packages": [],
@@ -53637,7 +53637,7 @@
       "tools_count": null,
       "auth_gated": true,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:44Z"
+      "last_fetched": "2026-11-06T06:54:57Z"
     },
     {
       "app": {
@@ -53674,8 +53674,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 189,
-              "probed_at": "2026-11-05T20:01:43Z",
+              "latency_ms": 57,
+              "probed_at": "2026-11-06T06:55:54Z",
               "error": null
             },
             "stale": false,
@@ -53899,7 +53899,7 @@
           "xero"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=xero&limit=50",
-        "fetched_at": "2026-11-05T20:00:44Z",
+        "fetched_at": "2026-11-06T06:54:57Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -53909,25 +53909,25 @@
         "html_url": "https://github.com/Servosity/msp-skills",
         "stars": 70,
         "forks": 17,
-        "open_issues": 30,
+        "open_issues": 31,
         "license": "NOASSERTION",
         "language": "Go",
         "archived": false,
-        "pushed_at": "2026-11-05T19:59:38Z",
+        "pushed_at": "2026-11-06T06:54:13Z",
         "description": "Free MCP servers + Claude Code Skills for MSP tools - PSA, RMM, backup, M365. Local-first: your data never leaves your network.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/servosity/msp-skills",
-        "fetched_at": "2026-11-05T20:01:31Z",
+        "fetched_at": "2026-11-06T06:55:41Z",
         "error": null
       },
       "liveness": {
         "url": "https://developer.xero.com",
         "status_code": 200,
-        "latency_ms": 755,
+        "latency_ms": 385,
         "reachable": true,
         "responded": true,
         "final_url": "https://developer.xero.com",
-        "fetched_at": "2026-11-05T20:00:45Z",
+        "fetched_at": "2026-11-06T06:54:57Z",
         "error": null
       },
       "packages": [
@@ -53990,7 +53990,7 @@
       "tools_count": null,
       "auth_gated": true,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:44Z"
+      "last_fetched": "2026-11-06T06:54:57Z"
     },
     {
       "app": {
@@ -54029,7 +54029,7 @@
           "brex"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=brex&limit=50",
-        "fetched_at": "2026-11-05T20:00:44Z",
+        "fetched_at": "2026-11-06T06:54:57Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -54047,17 +54047,17 @@
         "description": null,
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/shuji-bonji/s1000d-brex-mcp",
-        "fetched_at": "2026-11-05T20:01:32Z",
+        "fetched_at": "2026-11-06T06:55:42Z",
         "error": null
       },
       "liveness": {
         "url": "https://developer.brex.com",
         "status_code": 200,
-        "latency_ms": 121,
+        "latency_ms": 542,
         "reachable": true,
         "responded": true,
         "final_url": "https://developer.brex.com",
-        "fetched_at": "2026-11-05T20:00:44Z",
+        "fetched_at": "2026-11-06T06:54:57Z",
         "error": null
       },
       "packages": [
@@ -54113,7 +54113,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:44Z"
+      "last_fetched": "2026-11-06T06:54:57Z"
     },
     {
       "app": {
@@ -54153,7 +54153,7 @@
           "ramp"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=ramp&limit=50",
-        "fetched_at": "2026-11-05T20:00:44Z",
+        "fetched_at": "2026-11-06T06:54:57Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -54171,17 +54171,17 @@
         "description": "Production-ready MCP servers for 70+ APIs — GitHub, Google, Notion, Jira & more. Generated from OpenAPI specs, tested against live APIs. Works with Claude Desktop, Cursor, Codex & Claude Code.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/mcparmory/registry",
-        "fetched_at": "2026-11-05T20:01:32Z",
+        "fetched_at": "2026-11-06T06:55:42Z",
         "error": null
       },
       "liveness": {
         "url": "https://docs.ramp.com",
         "status_code": 200,
-        "latency_ms": 72,
+        "latency_ms": 133,
         "reachable": true,
         "responded": true,
         "final_url": "https://docs.ramp.com",
-        "fetched_at": "2026-11-05T20:00:44Z",
+        "fetched_at": "2026-11-06T06:54:57Z",
         "error": null
       },
       "packages": [
@@ -54237,7 +54237,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:44Z"
+      "last_fetched": "2026-11-06T06:54:57Z"
     },
     {
       "app": {
@@ -54254,7 +54254,7 @@
           "pitchbook"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=pitchbook&limit=50",
-        "fetched_at": "2026-11-05T20:00:44Z",
+        "fetched_at": "2026-11-06T06:54:57Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -54278,11 +54278,11 @@
       "liveness": {
         "url": "https://pitchbook.com",
         "status_code": 403,
-        "latency_ms": 57,
+        "latency_ms": 102,
         "reachable": false,
         "responded": true,
         "final_url": "https://pitchbook.com",
-        "fetched_at": "2026-11-05T20:00:44Z",
+        "fetched_at": "2026-11-06T06:54:57Z",
         "error": null
       },
       "packages": [],
@@ -54327,7 +54327,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:44Z"
+      "last_fetched": "2026-11-06T06:54:57Z"
     },
     {
       "app": {
@@ -54401,8 +54401,8 @@
               ],
               "generic_gateway": false,
               "protocol_version": "2025-06-18",
-              "latency_ms": 381,
-              "probed_at": "2026-11-05T20:01:43Z",
+              "latency_ms": 568,
+              "probed_at": "2026-11-06T06:55:55Z",
               "error": null
             },
             "stale": false,
@@ -54436,7 +54436,7 @@
           "google"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=notebooklm&limit=50",
-        "fetched_at": "2026-11-05T20:00:44Z",
+        "fetched_at": "2026-11-06T06:54:57Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -54454,17 +54454,17 @@
         "description": "Secure NotebookLM MCP Server - Query Google NotebookLM from Claude/AI agents with 17 security hardening layers",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/Pantheon-Security/notebooklm-mcp-secure",
-        "fetched_at": "2026-11-05T20:01:33Z",
+        "fetched_at": "2026-11-06T06:55:43Z",
         "error": null
       },
       "liveness": {
         "url": "https://cloud.google.com/gemini",
         "status_code": 200,
-        "latency_ms": 677,
+        "latency_ms": 410,
         "reachable": true,
         "responded": true,
         "final_url": "https://cloud.google.com/ai/gemini",
-        "fetched_at": "2026-11-05T20:00:45Z",
+        "fetched_at": "2026-11-06T06:54:58Z",
         "error": null
       },
       "packages": [
@@ -54516,7 +54516,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 0.8,
-            "detail": "committed 63d ago"
+            "detail": "committed 64d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -55859,12 +55859,12 @@
         ],
         "resources": null,
         "prompts": null,
-        "fetched_at": "2026-11-05T20:01:44Z"
+        "fetched_at": "2026-11-06T06:55:55Z"
       },
       "tools_count": 43,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:44Z"
+      "last_fetched": "2026-11-06T06:54:57Z"
     },
     {
       "app": {
@@ -55908,8 +55908,8 @@
               ],
               "generic_gateway": false,
               "protocol_version": "2025-06-18",
-              "latency_ms": 286,
-              "probed_at": "2026-11-05T20:01:43Z",
+              "latency_ms": 628,
+              "probed_at": "2026-11-06T06:55:55Z",
               "error": null
             },
             "stale": false,
@@ -55921,7 +55921,7 @@
             "path": "stay-otter",
             "title": "Stay Otter",
             "description": "Vetted stays, ground intelligence and price monitoring, with live totals and the block checked.",
-            "version": "1.3.1",
+            "version": "1.4.0",
             "repository_url": null,
             "website_url": "https://stayotter.com/connect",
             "remote_urls": [
@@ -55929,7 +55929,7 @@
             ],
             "packages": [],
             "is_latest": true,
-            "published_at": "2026-10-28T01:31:56.144695Z",
+            "published_at": "2026-11-06T04:27:48.712436Z",
             "namespace_matches_vendor": false,
             "classification": "community",
             "probe": null,
@@ -55965,7 +55965,7 @@
           "otter"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=otter+ai&limit=50",
-        "fetched_at": "2026-11-05T20:00:44Z",
+        "fetched_at": "2026-11-06T06:54:57Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -55989,11 +55989,11 @@
       "liveness": {
         "url": "https://help.otter.ai",
         "status_code": 403,
-        "latency_ms": 355,
+        "latency_ms": 460,
         "reachable": false,
         "responded": true,
         "final_url": "https://help.otter.ai/hc/en-us",
-        "fetched_at": "2026-11-05T20:00:45Z",
+        "fetched_at": "2026-11-06T06:54:58Z",
         "error": null
       },
       "packages": [],
@@ -56239,12 +56239,12 @@
           "Word search player"
         ],
         "prompts": null,
-        "fetched_at": "2026-11-05T20:01:44Z"
+        "fetched_at": "2026-11-06T06:55:55Z"
       },
       "tools_count": 6,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:44Z"
+      "last_fetched": "2026-11-06T06:54:57Z"
     },
     {
       "app": {
@@ -56281,8 +56281,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 91,
-              "probed_at": "2026-11-05T20:01:43Z",
+              "latency_ms": 129,
+              "probed_at": "2026-11-06T06:55:54Z",
               "error": null
             },
             "stale": false,
@@ -56460,7 +56460,7 @@
           "fathom"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=fathom&limit=50",
-        "fetched_at": "2026-11-05T20:00:45Z",
+        "fetched_at": "2026-11-06T06:54:57Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -56478,17 +56478,17 @@
         "description": "Spec-led Rust port of REA — reverse-engineering tool provider for agents (MCP/A2A), with evidence-carrying findings and a fail-closed policy gate.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/qompassai/fathom",
-        "fetched_at": "2026-11-05T20:01:33Z",
+        "fetched_at": "2026-11-06T06:55:43Z",
         "error": null
       },
       "liveness": {
         "url": "https://fathom.video",
         "status_code": 200,
-        "latency_ms": 271,
+        "latency_ms": 521,
         "reachable": true,
         "responded": true,
         "final_url": "https://www.fathom.ai/",
-        "fetched_at": "2026-11-05T20:00:45Z",
+        "fetched_at": "2026-11-06T06:54:58Z",
         "error": null
       },
       "packages": [
@@ -56551,7 +56551,7 @@
       "tools_count": null,
       "auth_gated": true,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:45Z"
+      "last_fetched": "2026-11-06T06:54:57Z"
     },
     {
       "app": {
@@ -56588,8 +56588,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 288,
-              "probed_at": "2026-11-05T20:01:43Z",
+              "latency_ms": 465,
+              "probed_at": "2026-11-06T06:55:55Z",
               "error": null
             },
             "stale": false,
@@ -56769,7 +56769,7 @@
           "consensus"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=consensus&limit=50",
-        "fetched_at": "2026-11-05T20:00:45Z",
+        "fetched_at": "2026-11-06T06:54:57Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -56787,17 +56787,17 @@
         "description": "Official MCP server for the RyeCentral Consensus Score: independent, confidence-rated rye whiskey ratings with citations.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/RyeCentral/ryecentral-consensus-mcp",
-        "fetched_at": "2026-11-05T20:01:34Z",
+        "fetched_at": "2026-11-06T06:55:44Z",
         "error": null
       },
       "liveness": {
         "url": "https://consensus.app",
         "status_code": 200,
-        "latency_ms": 129,
+        "latency_ms": 128,
         "reachable": true,
         "responded": true,
         "final_url": "https://consensus.app",
-        "fetched_at": "2026-11-05T20:00:45Z",
+        "fetched_at": "2026-11-06T06:54:58Z",
         "error": null
       },
       "packages": [
@@ -56849,7 +56849,7 @@
           "maintenance": {
             "weight": 0.16,
             "score": 1.0,
-            "detail": "committed 10d ago"
+            "detail": "committed 11d ago"
           },
           "availability": {
             "weight": 0.12,
@@ -56870,7 +56870,7 @@
       "tools_count": null,
       "auth_gated": true,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:45Z"
+      "last_fetched": "2026-11-06T06:54:57Z"
     },
     {
       "app": {
@@ -56887,7 +56887,7 @@
           "reducto"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=reducto&limit=50",
-        "fetched_at": "2026-11-05T20:00:45Z",
+        "fetched_at": "2026-11-06T06:54:58Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -56911,11 +56911,11 @@
       "liveness": {
         "url": "https://reducto.ai",
         "status_code": 200,
-        "latency_ms": 275,
+        "latency_ms": 276,
         "reachable": true,
         "responded": true,
         "final_url": "https://reducto.ai",
-        "fetched_at": "2026-11-05T20:00:45Z",
+        "fetched_at": "2026-11-06T06:54:58Z",
         "error": null
       },
       "packages": [],
@@ -56960,7 +56960,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:45Z"
+      "last_fetched": "2026-11-06T06:54:58Z"
     },
     {
       "app": {
@@ -56999,7 +56999,7 @@
           "devin"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=devin&limit=50",
-        "fetched_at": "2026-11-05T20:00:45Z",
+        "fetched_at": "2026-11-06T06:54:58Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -57017,17 +57017,17 @@
         "description": "Anti-poisoning memory store for agents: provenance, versioning, quarantine gate",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/Icaro0310/devin-memory",
-        "fetched_at": "2026-11-05T20:01:35Z",
+        "fetched_at": "2026-11-06T06:55:45Z",
         "error": null
       },
       "liveness": {
         "url": "https://docs.devin.ai",
         "status_code": 200,
-        "latency_ms": 504,
+        "latency_ms": 685,
         "reachable": true,
         "responded": true,
         "final_url": "https://docs.devin.ai/get-started/devin-intro",
-        "fetched_at": "2026-11-05T20:00:45Z",
+        "fetched_at": "2026-11-06T06:54:58Z",
         "error": null
       },
       "packages": [
@@ -57083,7 +57083,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:45Z"
+      "last_fetched": "2026-11-06T06:54:58Z"
     },
     {
       "app": {
@@ -57100,7 +57100,7 @@
           "higgsfield"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=higgsfield&limit=50",
-        "fetched_at": "2026-11-05T20:00:45Z",
+        "fetched_at": "2026-11-06T06:54:58Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -57124,11 +57124,11 @@
       "liveness": {
         "url": "https://higgsfield.ai",
         "status_code": 200,
-        "latency_ms": 65,
+        "latency_ms": 89,
         "reachable": true,
         "responded": true,
         "final_url": "https://higgsfield.ai",
-        "fetched_at": "2026-11-05T20:00:45Z",
+        "fetched_at": "2026-11-06T06:54:58Z",
         "error": null
       },
       "packages": [],
@@ -57173,7 +57173,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:45Z"
+      "last_fetched": "2026-11-06T06:54:58Z"
     },
     {
       "app": {
@@ -57210,8 +57210,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 257,
-              "probed_at": "2026-11-05T20:01:43Z",
+              "latency_ms": 102,
+              "probed_at": "2026-11-06T06:55:55Z",
               "error": null
             },
             "stale": false,
@@ -57334,7 +57334,7 @@
           "github"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=mermaid+cli&limit=50",
-        "fetched_at": "2026-11-05T20:00:45Z",
+        "fetched_at": "2026-11-06T06:54:58Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -57342,7 +57342,7 @@
         "status": "found",
         "full_name": "hustcc/mcp-mermaid",
         "html_url": "https://github.com/hustcc/mcp-mermaid",
-        "stars": 647,
+        "stars": 648,
         "forks": 60,
         "open_issues": 11,
         "license": "MIT",
@@ -57352,17 +57352,17 @@
         "description": "❤️ Generate mermaid diagram and chart with AI MCP dynamically.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/hustcc/mcp-mermaid",
-        "fetched_at": "2026-11-05T20:01:35Z",
+        "fetched_at": "2026-11-06T06:55:45Z",
         "error": null
       },
       "liveness": {
         "url": "https://github.com/mermaid-js/mermaid-cli",
         "status_code": 200,
-        "latency_ms": 432,
+        "latency_ms": 418,
         "reachable": true,
         "responded": true,
         "final_url": "https://github.com/mermaid-js/mermaid-cli",
-        "fetched_at": "2026-11-05T20:00:46Z",
+        "fetched_at": "2026-11-06T06:54:58Z",
         "error": null
       },
       "packages": [
@@ -57409,7 +57409,7 @@
           "popularity": {
             "weight": 0.14,
             "score": 0.703,
-            "detail": "★647"
+            "detail": "★648"
           },
           "maintenance": {
             "weight": 0.16,
@@ -57428,7 +57428,7 @@
       "tools_count": null,
       "auth_gated": false,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:45Z"
+      "last_fetched": "2026-11-06T06:54:58Z"
     },
     {
       "app": {
@@ -57465,8 +57465,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 263,
-              "probed_at": "2026-11-05T20:01:44Z",
+              "latency_ms": 624,
+              "probed_at": "2026-11-06T06:55:55Z",
               "error": null
             },
             "stale": false,
@@ -58182,7 +58182,7 @@
           "transcriptapi"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=youtube+transcript&limit=50",
-        "fetched_at": "2026-11-05T20:00:45Z",
+        "fetched_at": "2026-11-06T06:54:58Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -58200,17 +58200,17 @@
         "description": "The fastest YouTube transcript + YouTube search MCP for AI agents. Try for free.",
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/ZeroPointRepo/youtube-mcp",
-        "fetched_at": "2026-11-05T20:01:36Z",
+        "fetched_at": "2026-11-06T06:55:46Z",
         "error": null
       },
       "liveness": {
         "url": "https://transcriptapi.com",
         "status_code": 200,
-        "latency_ms": 427,
+        "latency_ms": 40,
         "reachable": true,
         "responded": true,
         "final_url": "https://transcriptapi.com",
-        "fetched_at": "2026-11-05T20:00:46Z",
+        "fetched_at": "2026-11-06T06:54:58Z",
         "error": null
       },
       "packages": [
@@ -58283,7 +58283,7 @@
       "tools_count": 8,
       "auth_gated": true,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:45Z"
+      "last_fetched": "2026-11-06T06:54:58Z"
     },
     {
       "app": {
@@ -58320,8 +58320,8 @@
               "tool_names": [],
               "generic_gateway": false,
               "protocol_version": null,
-              "latency_ms": 821,
-              "probed_at": "2026-11-05T20:01:44Z",
+              "latency_ms": 538,
+              "probed_at": "2026-11-06T06:55:55Z",
               "error": null
             },
             "stale": false,
@@ -58375,7 +58375,7 @@
           "grain"
         ],
         "source_url": "https://registry.modelcontextprotocol.io/v0/servers?search=grain&limit=50",
-        "fetched_at": "2026-11-05T20:00:45Z",
+        "fetched_at": "2026-11-06T06:54:58Z",
         "error": null,
         "empty_cycles": 0
       },
@@ -58393,17 +58393,17 @@
         "description": null,
         "via": "registry_repository",
         "source_url": "https://api.github.com/repos/purplegrain/api",
-        "fetched_at": "2026-11-05T20:01:36Z",
+        "fetched_at": "2026-11-06T06:55:46Z",
         "error": null
       },
       "liveness": {
         "url": "https://grain.com",
         "status_code": 200,
-        "latency_ms": 80,
+        "latency_ms": 129,
         "reachable": true,
         "responded": true,
         "final_url": "https://grain.com",
-        "fetched_at": "2026-11-05T20:00:45Z",
+        "fetched_at": "2026-11-06T06:54:58Z",
         "error": null
       },
       "packages": [
@@ -58466,10 +58466,17 @@
       "tools_count": null,
       "auth_gated": true,
       "generic_gateway": false,
-      "last_fetched": "2026-11-05T20:00:45Z"
+      "last_fetched": "2026-11-06T06:54:58Z"
     }
   ],
   "changes": [
+    {
+      "ts": "2026-11-06T06:55:57Z",
+      "app_id": 55,
+      "app": "Apify",
+      "kind": "stars",
+      "message": "repo ★ 14,919 → 14,975 (+56)"
+    },
     {
       "ts": "2026-11-05T20:01:47Z",
       "app_id": 27,
@@ -58882,29 +58889,9 @@
       "app": "NotebookLM",
       "kind": "tools",
       "message": "live tools 43 → 0"
-    },
-    {
-      "ts": "2026-11-01T13:37:50Z",
-      "app_id": 39,
-      "app": "Threads (Meta)",
-      "kind": "servers",
-      "message": "registry servers 12 → 13 (+1)"
     }
   ],
   "history": [
-    {
-      "ts": "2026-09-21T18:31:12Z",
-      "official": 14,
-      "community": 65,
-      "none": 20,
-      "servers": 351,
-      "tools": 223,
-      "downloads": 959034,
-      "stars": 23092,
-      "responding": 100,
-      "reachable": 94,
-      "avg_readiness": 46.7
-    },
     {
       "ts": "2026-09-22T17:20:08Z",
       "official": 14,
@@ -60448,6 +60435,19 @@
       "tools": 370,
       "downloads": 144772,
       "stars": 28204,
+      "responding": 100,
+      "reachable": 94,
+      "avg_readiness": 48.4
+    },
+    {
+      "ts": "2026-11-06T06:55:57Z",
+      "official": 14,
+      "community": 72,
+      "none": 14,
+      "servers": 619,
+      "tools": 370,
+      "downloads": 144772,
+      "stars": 28267,
       "responding": 100,
       "reachable": 94,
       "avg_readiness": 48.4
