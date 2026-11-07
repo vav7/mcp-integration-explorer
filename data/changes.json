@@ -1,5 +1,26 @@
 [
   {
+    "ts": "2026-11-07T21:57:03Z",
+    "app_id": 14,
+    "app": "Front",
+    "kind": "tools",
+    "message": "live tools 16 → 17"
+  },
+  {
+    "ts": "2026-11-07T21:57:03Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 15,139 → 15,187 (+48)"
+  },
+  {
+    "ts": "2026-11-07T21:57:03Z",
+    "app_id": 99,
+    "app": "YouTube Transcript",
+    "kind": "servers",
+    "message": "registry servers 33 → 34 (+1)"
+  },
+  {
     "ts": "2026-11-07T13:12:30Z",
     "app_id": 55,
     "app": "Apify",
@@ -1377,26 +1398,5 @@
     "app": "Salesforce Commerce Cloud",
     "kind": "servers",
     "message": "registry servers 0 → 18 (+18)"
-  },
-  {
-    "ts": "2026-10-23T17:14:36Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 12,749 → 12,787 (+38)"
-  },
-  {
-    "ts": "2026-10-23T17:14:36Z",
-    "app_id": 58,
-    "app": "Sherlock",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-10-23T17:14:36Z",
-    "app_id": 58,
-    "app": "Sherlock",
-    "kind": "servers",
-    "message": "registry servers 0 → 1 (+1)"
   }
 ]
