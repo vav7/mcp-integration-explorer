@@ -1,5 +1,33 @@
 [
   {
+    "ts": "2026-11-07T06:06:56Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 15,062 → 15,106 (+44)"
+  },
+  {
+    "ts": "2026-11-07T06:06:56Z",
+    "app_id": 56,
+    "app": "Firecrawl",
+    "kind": "tools",
+    "message": "live tools 32 → 34"
+  },
+  {
+    "ts": "2026-11-07T06:06:56Z",
+    "app_id": 73,
+    "app": "Linear",
+    "kind": "servers",
+    "message": "registry servers 11 → 10 (-1)"
+  },
+  {
+    "ts": "2026-11-07T06:06:56Z",
+    "app_id": 79,
+    "app": "Smartsheet",
+    "kind": "site",
+    "message": "site went down"
+  },
+  {
     "ts": "2026-11-06T19:29:56Z",
     "app_id": 38,
     "app": "Pinterest",
@@ -1370,33 +1398,5 @@
     "app": "MongoDB Atlas",
     "kind": "servers",
     "message": "registry servers 19 → 25 (+6)"
-  },
-  {
-    "ts": "2026-10-23T17:14:36Z",
-    "app_id": 83,
-    "app": "Binance",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-10-23T17:14:36Z",
-    "app_id": 83,
-    "app": "Binance",
-    "kind": "servers",
-    "message": "registry servers 0 → 5 (+5)"
-  },
-  {
-    "ts": "2026-10-23T17:14:36Z",
-    "app_id": 86,
-    "app": "QuickBooks",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-10-23T17:14:36Z",
-    "app_id": 86,
-    "app": "QuickBooks",
-    "kind": "servers",
-    "message": "registry servers 0 → 10 (+10)"
   }
 ]
