@@ -1,5 +1,26 @@
 [
   {
+    "ts": "2026-11-08T22:12:59Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 15,258 → 15,312 (+54)"
+  },
+  {
+    "ts": "2026-11-08T22:12:59Z",
+    "app_id": 61,
+    "app": "GitHub",
+    "kind": "servers",
+    "message": "registry servers 15 → 16 (+1)"
+  },
+  {
+    "ts": "2026-11-08T22:12:59Z",
+    "app_id": 77,
+    "app": "ClickUp",
+    "kind": "servers",
+    "message": "registry servers 9 → 10 (+1)"
+  },
+  {
     "ts": "2026-11-08T13:32:38Z",
     "app_id": 7,
     "app": "Zoho CRM",
@@ -1377,26 +1398,5 @@
     "app": "Snowflake",
     "kind": "servers",
     "message": "registry servers 8 → 9 (+1)"
-  },
-  {
-    "ts": "2026-10-23T21:29:28Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 12,787 → 12,817 (+30)"
-  },
-  {
-    "ts": "2026-10-23T17:14:36Z",
-    "app_id": 14,
-    "app": "Front",
-    "kind": "servers",
-    "message": "registry servers 5 → 7 (+2)"
-  },
-  {
-    "ts": "2026-10-23T17:14:36Z",
-    "app_id": 18,
-    "app": "Help Scout",
-    "kind": "status",
-    "message": "MCP status none → community"
   }
 ]
