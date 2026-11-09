@@ -1,5 +1,138 @@
 [
   {
+    "ts": "2026-11-09T22:27:57Z",
+    "app_id": 7,
+    "app": "Zoho CRM",
+    "kind": "servers",
+    "message": "registry servers 23 → 24 (+1)"
+  },
+  {
+    "ts": "2026-11-09T22:27:57Z",
+    "app_id": 9,
+    "app": "Copper",
+    "kind": "servers",
+    "message": "registry servers 1 → 2 (+1)"
+  },
+  {
+    "ts": "2026-11-09T22:27:57Z",
+    "app_id": 19,
+    "app": "Gorgias",
+    "kind": "status",
+    "message": "MCP status none → community"
+  },
+  {
+    "ts": "2026-11-09T22:27:57Z",
+    "app_id": 19,
+    "app": "Gorgias",
+    "kind": "servers",
+    "message": "registry servers 0 → 1 (+1)"
+  },
+  {
+    "ts": "2026-11-09T22:27:57Z",
+    "app_id": 20,
+    "app": "Gladly",
+    "kind": "servers",
+    "message": "registry servers 1 → 2 (+1)"
+  },
+  {
+    "ts": "2026-11-09T22:27:57Z",
+    "app_id": 26,
+    "app": "Discord",
+    "kind": "servers",
+    "message": "registry servers 10 → 11 (+1)"
+  },
+  {
+    "ts": "2026-11-09T22:27:57Z",
+    "app_id": 27,
+    "app": "Telegram",
+    "kind": "servers",
+    "message": "registry servers 21 → 20 (-1)"
+  },
+  {
+    "ts": "2026-11-09T22:27:57Z",
+    "app_id": 29,
+    "app": "Aircall",
+    "kind": "servers",
+    "message": "registry servers 1 → 2 (+1)"
+  },
+  {
+    "ts": "2026-11-09T22:27:57Z",
+    "app_id": 32,
+    "app": "Meta Ads",
+    "kind": "servers",
+    "message": "registry servers 11 → 12 (+1)"
+  },
+  {
+    "ts": "2026-11-09T22:27:57Z",
+    "app_id": 34,
+    "app": "GoHighLevel",
+    "kind": "status",
+    "message": "MCP status none → community"
+  },
+  {
+    "ts": "2026-11-09T22:27:57Z",
+    "app_id": 34,
+    "app": "GoHighLevel",
+    "kind": "servers",
+    "message": "registry servers 0 → 1 (+1)"
+  },
+  {
+    "ts": "2026-11-09T22:27:57Z",
+    "app_id": 37,
+    "app": "systeme.io",
+    "kind": "status",
+    "message": "MCP status none → community"
+  },
+  {
+    "ts": "2026-11-09T22:27:57Z",
+    "app_id": 37,
+    "app": "systeme.io",
+    "kind": "servers",
+    "message": "registry servers 0 → 1 (+1)"
+  },
+  {
+    "ts": "2026-11-09T22:27:57Z",
+    "app_id": 39,
+    "app": "Threads (Meta)",
+    "kind": "servers",
+    "message": "registry servers 16 → 17 (+1)"
+  },
+  {
+    "ts": "2026-11-09T22:27:57Z",
+    "app_id": 42,
+    "app": "WooCommerce",
+    "kind": "servers",
+    "message": "registry servers 6 → 7 (+1)"
+  },
+  {
+    "ts": "2026-11-09T22:27:57Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 15,338 → 15,461 (+123)"
+  },
+  {
+    "ts": "2026-11-09T22:27:57Z",
+    "app_id": 91,
+    "app": "NotebookLM",
+    "kind": "servers",
+    "message": "registry servers 3 → 4 (+1)"
+  },
+  {
+    "ts": "2026-11-09T22:27:57Z",
+    "app_id": 92,
+    "app": "Otter AI",
+    "kind": "servers",
+    "message": "registry servers 3 → 4 (+1)"
+  },
+  {
+    "ts": "2026-11-09T22:27:57Z",
+    "app_id": 93,
+    "app": "Fathom",
+    "kind": "servers",
+    "message": "registry servers 9 → 10 (+1)"
+  },
+  {
     "ts": "2026-11-09T06:45:27Z",
     "app_id": 55,
     "app": "Apify",
@@ -1265,138 +1398,5 @@
     "app": "Zoho CRM",
     "kind": "servers",
     "message": "registry servers 17 → 18 (+1)"
-  },
-  {
-    "ts": "2026-10-25T16:30:17Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 13,059 → 13,093 (+34)"
-  },
-  {
-    "ts": "2026-10-25T16:30:17Z",
-    "app_id": 94,
-    "app": "Consensus",
-    "kind": "servers",
-    "message": "registry servers 8 → 9 (+1)"
-  },
-  {
-    "ts": "2026-10-25T11:40:53Z",
-    "app_id": 41,
-    "app": "Shopify",
-    "kind": "servers",
-    "message": "registry servers 26 → 25 (-1)"
-  },
-  {
-    "ts": "2026-10-25T11:40:53Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 13,019 → 13,059 (+40)"
-  },
-  {
-    "ts": "2026-10-25T04:50:34Z",
-    "app_id": 41,
-    "app": "Shopify",
-    "kind": "servers",
-    "message": "registry servers 25 → 26 (+1)"
-  },
-  {
-    "ts": "2026-10-25T04:50:34Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 12,972 → 13,019 (+47)"
-  },
-  {
-    "ts": "2026-10-25T04:50:34Z",
-    "app_id": 84,
-    "app": "Paygent Connect",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-24T20:55:58Z",
-    "app_id": 11,
-    "app": "Zendesk",
-    "kind": "servers",
-    "message": "registry servers 5 → 4 (-1)"
-  },
-  {
-    "ts": "2026-10-24T20:55:58Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 12,930 → 12,972 (+42)"
-  },
-  {
-    "ts": "2026-10-24T20:55:58Z",
-    "app_id": 61,
-    "app": "GitHub",
-    "kind": "servers",
-    "message": "registry servers 11 → 12 (+1)"
-  },
-  {
-    "ts": "2026-10-24T16:02:47Z",
-    "app_id": 27,
-    "app": "Telegram",
-    "kind": "servers",
-    "message": "registry servers 22 → 23 (+1)"
-  },
-  {
-    "ts": "2026-10-24T16:02:47Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 12,891 → 12,930 (+39)"
-  },
-  {
-    "ts": "2026-10-24T11:10:49Z",
-    "app_id": 38,
-    "app": "Pinterest",
-    "kind": "servers",
-    "message": "registry servers 9 → 10 (+1)"
-  },
-  {
-    "ts": "2026-10-24T11:10:49Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 12,850 → 12,891 (+41)"
-  },
-  {
-    "ts": "2026-10-24T11:10:49Z",
-    "app_id": 62,
-    "app": "Vercel",
-    "kind": "servers",
-    "message": "registry servers 6 → 5 (-1)"
-  },
-  {
-    "ts": "2026-10-24T11:10:49Z",
-    "app_id": 84,
-    "app": "Paygent Connect",
-    "kind": "site",
-    "message": "site came up"
-  },
-  {
-    "ts": "2026-10-24T04:44:29Z",
-    "app_id": 18,
-    "app": "Help Scout",
-    "kind": "servers",
-    "message": "registry servers 16 → 15 (-1)"
-  },
-  {
-    "ts": "2026-10-24T04:44:29Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 12,817 → 12,850 (+33)"
-  },
-  {
-    "ts": "2026-10-24T04:44:29Z",
-    "app_id": 62,
-    "app": "Vercel",
-    "kind": "servers",
-    "message": "registry servers 7 → 6 (-1)"
   }
 ]
