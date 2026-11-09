@@ -1,5 +1,12 @@
 [
   {
+    "ts": "2026-11-09T06:45:27Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 15,312 → 15,338 (+26)"
+  },
+  {
     "ts": "2026-11-08T22:12:59Z",
     "app_id": 55,
     "app": "Apify",
@@ -1391,12 +1398,5 @@
     "app": "Vercel",
     "kind": "servers",
     "message": "registry servers 7 → 6 (-1)"
-  },
-  {
-    "ts": "2026-10-24T04:44:29Z",
-    "app_id": 67,
-    "app": "Snowflake",
-    "kind": "servers",
-    "message": "registry servers 8 → 9 (+1)"
   }
 ]
