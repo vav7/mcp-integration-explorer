@@ -1,5 +1,40 @@
 [
   {
+    "ts": "2026-11-10T07:26:49Z",
+    "app_id": 18,
+    "app": "Help Scout",
+    "kind": "servers",
+    "message": "registry servers 19 → 20 (+1)"
+  },
+  {
+    "ts": "2026-11-10T07:26:49Z",
+    "app_id": 45,
+    "app": "Magento (Adobe Commerce)",
+    "kind": "servers",
+    "message": "registry servers 15 → 16 (+1)"
+  },
+  {
+    "ts": "2026-11-10T07:26:49Z",
+    "app_id": 52,
+    "app": "SE Ranking",
+    "kind": "servers",
+    "message": "registry servers 8 → 9 (+1)"
+  },
+  {
+    "ts": "2026-11-10T07:26:49Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 15,461 → 15,513 (+52)"
+  },
+  {
+    "ts": "2026-11-10T07:26:49Z",
+    "app_id": 65,
+    "app": "Supabase",
+    "kind": "servers",
+    "message": "registry servers 7 → 8 (+1)"
+  },
+  {
     "ts": "2026-11-09T22:27:57Z",
     "app_id": 7,
     "app": "Zoho CRM",
@@ -1363,40 +1398,5 @@
     "app": "Magento (Adobe Commerce)",
     "kind": "servers",
     "message": "registry servers 13 → 14 (+1)"
-  },
-  {
-    "ts": "2026-10-26T04:55:38Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 13,132 → 13,177 (+45)"
-  },
-  {
-    "ts": "2026-10-26T04:55:38Z",
-    "app_id": 93,
-    "app": "Fathom",
-    "kind": "servers",
-    "message": "registry servers 7 → 8 (+1)"
-  },
-  {
-    "ts": "2026-10-25T20:56:36Z",
-    "app_id": 52,
-    "app": "SE Ranking",
-    "kind": "servers",
-    "message": "registry servers 7 → 8 (+1)"
-  },
-  {
-    "ts": "2026-10-25T20:56:36Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 13,093 → 13,132 (+39)"
-  },
-  {
-    "ts": "2026-10-25T16:30:17Z",
-    "app_id": 7,
-    "app": "Zoho CRM",
-    "kind": "servers",
-    "message": "registry servers 17 → 18 (+1)"
   }
 ]
