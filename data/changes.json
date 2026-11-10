@@ -1,5 +1,33 @@
 [
   {
+    "ts": "2026-11-10T19:49:44Z",
+    "app_id": 7,
+    "app": "Zoho CRM",
+    "kind": "servers",
+    "message": "registry servers 24 → 26 (+2)"
+  },
+  {
+    "ts": "2026-11-10T19:49:44Z",
+    "app_id": 27,
+    "app": "Telegram",
+    "kind": "servers",
+    "message": "registry servers 20 → 18 (-2)"
+  },
+  {
+    "ts": "2026-11-10T19:49:44Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 15,513 → 15,603 (+90)"
+  },
+  {
+    "ts": "2026-11-10T19:49:44Z",
+    "app_id": 99,
+    "app": "YouTube Transcript",
+    "kind": "servers",
+    "message": "registry servers 34 → 35 (+1)"
+  },
+  {
     "ts": "2026-11-10T07:26:49Z",
     "app_id": 18,
     "app": "Help Scout",
@@ -1370,33 +1398,5 @@
     "app": "Brex",
     "kind": "servers",
     "message": "registry servers 0 → 1 (+1)"
-  },
-  {
-    "ts": "2026-10-26T13:13:12Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 13,177 → 13,245 (+68)"
-  },
-  {
-    "ts": "2026-10-26T13:13:12Z",
-    "app_id": 71,
-    "app": "Notion",
-    "kind": "servers",
-    "message": "registry servers 10 → 11 (+1)"
-  },
-  {
-    "ts": "2026-10-26T04:55:38Z",
-    "app_id": 33,
-    "app": "LinkedIn Ads",
-    "kind": "servers",
-    "message": "registry servers 25 → 24 (-1)"
-  },
-  {
-    "ts": "2026-10-26T04:55:38Z",
-    "app_id": 45,
-    "app": "Magento (Adobe Commerce)",
-    "kind": "servers",
-    "message": "registry servers 13 → 14 (+1)"
   }
 ]
