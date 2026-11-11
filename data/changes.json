@@ -1,5 +1,68 @@
 [
   {
+    "ts": "2026-11-11T06:35:56Z",
+    "app_id": 7,
+    "app": "Zoho CRM",
+    "kind": "tools",
+    "message": "live tools 198 → 199"
+  },
+  {
+    "ts": "2026-11-11T06:35:56Z",
+    "app_id": 14,
+    "app": "Front",
+    "kind": "tools",
+    "message": "live tools 17 → 21"
+  },
+  {
+    "ts": "2026-11-11T06:35:56Z",
+    "app_id": 17,
+    "app": "Plain",
+    "kind": "servers",
+    "message": "registry servers 6 → 7 (+1)"
+  },
+  {
+    "ts": "2026-11-11T06:35:56Z",
+    "app_id": 27,
+    "app": "Telegram",
+    "kind": "servers",
+    "message": "registry servers 18 → 17 (-1)"
+  },
+  {
+    "ts": "2026-11-11T06:35:56Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 15,603 → 15,668 (+65)"
+  },
+  {
+    "ts": "2026-11-11T06:35:56Z",
+    "app_id": 56,
+    "app": "Firecrawl",
+    "kind": "tools",
+    "message": "live tools 34 → 35"
+  },
+  {
+    "ts": "2026-11-11T06:35:56Z",
+    "app_id": 71,
+    "app": "Notion",
+    "kind": "servers",
+    "message": "registry servers 11 → 12 (+1)"
+  },
+  {
+    "ts": "2026-11-11T06:35:56Z",
+    "app_id": 76,
+    "app": "Monday.com",
+    "kind": "servers",
+    "message": "registry servers 4 → 5 (+1)"
+  },
+  {
+    "ts": "2026-11-11T06:35:56Z",
+    "app_id": 83,
+    "app": "Binance",
+    "kind": "tools",
+    "message": "live tools 0 → 1"
+  },
+  {
     "ts": "2026-11-10T19:49:44Z",
     "app_id": 7,
     "app": "Zoho CRM",
@@ -1335,68 +1398,5 @@
     "app": "Xero",
     "kind": "tools",
     "message": "live tools 7 → 0"
-  },
-  {
-    "ts": "2026-10-27T12:21:04Z",
-    "app_id": 18,
-    "app": "Help Scout",
-    "kind": "servers",
-    "message": "registry servers 15 → 16 (+1)"
-  },
-  {
-    "ts": "2026-10-27T12:21:04Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 13,354 → 13,411 (+57)"
-  },
-  {
-    "ts": "2026-10-27T12:21:04Z",
-    "app_id": 68,
-    "app": "MongoDB Atlas",
-    "kind": "servers",
-    "message": "registry servers 25 → 23 (-2)"
-  },
-  {
-    "ts": "2026-10-27T05:13:26Z",
-    "app_id": 7,
-    "app": "Zoho CRM",
-    "kind": "tools",
-    "message": "live tools 195 → 196"
-  },
-  {
-    "ts": "2026-10-27T05:13:26Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 13,329 → 13,354 (+25)"
-  },
-  {
-    "ts": "2026-10-26T22:44:48Z",
-    "app_id": 33,
-    "app": "LinkedIn Ads",
-    "kind": "servers",
-    "message": "registry servers 24 → 23 (-1)"
-  },
-  {
-    "ts": "2026-10-26T22:44:48Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 13,245 → 13,329 (+84)"
-  },
-  {
-    "ts": "2026-10-26T22:44:48Z",
-    "app_id": 88,
-    "app": "Brex",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-10-26T22:44:48Z",
-    "app_id": 88,
-    "app": "Brex",
-    "kind": "servers",
-    "message": "registry servers 0 → 1 (+1)"
   }
 ]
