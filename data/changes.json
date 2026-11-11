@@ -1,5 +1,40 @@
 [
   {
+    "ts": "2026-11-11T19:41:05Z",
+    "app_id": 2,
+    "app": "HubSpot",
+    "kind": "servers",
+    "message": "registry servers 9 → 10 (+1)"
+  },
+  {
+    "ts": "2026-11-11T19:41:05Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 15,668 → 15,752 (+84)"
+  },
+  {
+    "ts": "2026-11-11T19:41:05Z",
+    "app_id": 56,
+    "app": "Firecrawl",
+    "kind": "tools",
+    "message": "live tools 35 → 36"
+  },
+  {
+    "ts": "2026-11-11T19:41:05Z",
+    "app_id": 86,
+    "app": "QuickBooks",
+    "kind": "servers",
+    "message": "registry servers 13 → 12 (-1)"
+  },
+  {
+    "ts": "2026-11-11T19:41:05Z",
+    "app_id": 94,
+    "app": "Consensus",
+    "kind": "servers",
+    "message": "registry servers 9 → 10 (+1)"
+  },
+  {
     "ts": "2026-11-11T06:35:56Z",
     "app_id": 7,
     "app": "Zoho CRM",
@@ -1363,40 +1398,5 @@
     "app": "Vercel",
     "kind": "servers",
     "message": "registry servers 5 → 4 (-1)"
-  },
-  {
-    "ts": "2026-10-27T22:21:12Z",
-    "app_id": 62,
-    "app": "Vercel",
-    "kind": "stars",
-    "message": "repo ★ 17 → 81 (+64)"
-  },
-  {
-    "ts": "2026-10-27T22:21:12Z",
-    "app_id": 68,
-    "app": "MongoDB Atlas",
-    "kind": "servers",
-    "message": "registry servers 23 → 21 (-2)"
-  },
-  {
-    "ts": "2026-10-27T22:21:12Z",
-    "app_id": 75,
-    "app": "Asana",
-    "kind": "tools",
-    "message": "live tools 48 → 50"
-  },
-  {
-    "ts": "2026-10-27T22:21:12Z",
-    "app_id": 82,
-    "app": "Plaid",
-    "kind": "tools",
-    "message": "live tools 45 → 47"
-  },
-  {
-    "ts": "2026-10-27T22:21:12Z",
-    "app_id": 87,
-    "app": "Xero",
-    "kind": "tools",
-    "message": "live tools 7 → 0"
   }
 ]
