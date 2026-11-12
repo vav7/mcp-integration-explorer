@@ -1,5 +1,40 @@
 [
   {
+    "ts": "2026-11-12T07:19:39Z",
+    "app_id": 27,
+    "app": "Telegram",
+    "kind": "servers",
+    "message": "registry servers 17 → 16 (-1)"
+  },
+  {
+    "ts": "2026-11-12T07:19:39Z",
+    "app_id": 41,
+    "app": "Shopify",
+    "kind": "servers",
+    "message": "registry servers 24 → 25 (+1)"
+  },
+  {
+    "ts": "2026-11-12T07:19:39Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 15,752 → 15,833 (+81)"
+  },
+  {
+    "ts": "2026-11-12T07:19:39Z",
+    "app_id": 75,
+    "app": "Asana",
+    "kind": "servers",
+    "message": "registry servers 4 → 5 (+1)"
+  },
+  {
+    "ts": "2026-11-12T07:19:39Z",
+    "app_id": 99,
+    "app": "YouTube Transcript",
+    "kind": "servers",
+    "message": "registry servers 35 → 36 (+1)"
+  },
+  {
     "ts": "2026-11-11T19:41:05Z",
     "app_id": 2,
     "app": "HubSpot",
@@ -1363,40 +1398,5 @@
     "app": "Telegram",
     "kind": "servers",
     "message": "registry servers 23 → 24 (+1)"
-  },
-  {
-    "ts": "2026-10-27T22:21:12Z",
-    "app_id": 39,
-    "app": "Threads (Meta)",
-    "kind": "servers",
-    "message": "registry servers 11 → 12 (+1)"
-  },
-  {
-    "ts": "2026-10-27T22:21:12Z",
-    "app_id": 40,
-    "app": "SendGrid",
-    "kind": "tools",
-    "message": "live tools 45 → 47"
-  },
-  {
-    "ts": "2026-10-27T22:21:12Z",
-    "app_id": 41,
-    "app": "Shopify",
-    "kind": "servers",
-    "message": "registry servers 25 → 26 (+1)"
-  },
-  {
-    "ts": "2026-10-27T22:21:12Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 13,411 → 13,497 (+86)"
-  },
-  {
-    "ts": "2026-10-27T22:21:12Z",
-    "app_id": 62,
-    "app": "Vercel",
-    "kind": "servers",
-    "message": "registry servers 5 → 4 (-1)"
   }
 ]
