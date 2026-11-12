@@ -1,5 +1,33 @@
 [
   {
+    "ts": "2026-11-12T20:01:24Z",
+    "app_id": 7,
+    "app": "Zoho CRM",
+    "kind": "servers",
+    "message": "registry servers 26 → 27 (+1)"
+  },
+  {
+    "ts": "2026-11-12T20:01:24Z",
+    "app_id": 26,
+    "app": "Discord",
+    "kind": "servers",
+    "message": "registry servers 11 → 12 (+1)"
+  },
+  {
+    "ts": "2026-11-12T20:01:24Z",
+    "app_id": 38,
+    "app": "Pinterest",
+    "kind": "servers",
+    "message": "registry servers 11 → 12 (+1)"
+  },
+  {
+    "ts": "2026-11-12T20:01:24Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 15,833 → 15,963 (+130)"
+  },
+  {
     "ts": "2026-11-12T07:19:39Z",
     "app_id": 27,
     "app": "Telegram",
@@ -1370,33 +1398,5 @@
     "app": "Freshdesk",
     "kind": "tools",
     "message": "live tools 47 → 49"
-  },
-  {
-    "ts": "2026-10-27T22:21:12Z",
-    "app_id": 18,
-    "app": "Help Scout",
-    "kind": "servers",
-    "message": "registry servers 16 → 17 (+1)"
-  },
-  {
-    "ts": "2026-10-27T22:21:12Z",
-    "app_id": 22,
-    "app": "Twilio",
-    "kind": "tools",
-    "message": "live tools 47 → 49"
-  },
-  {
-    "ts": "2026-10-27T22:21:12Z",
-    "app_id": 23,
-    "app": "Zoho Cliq",
-    "kind": "tools",
-    "message": "live tools 47 → 49"
-  },
-  {
-    "ts": "2026-10-27T22:21:12Z",
-    "app_id": 27,
-    "app": "Telegram",
-    "kind": "servers",
-    "message": "registry servers 23 → 24 (+1)"
   }
 ]
