@@ -1,5 +1,40 @@
 [
   {
+    "ts": "2026-11-13T19:49:03Z",
+    "app_id": 27,
+    "app": "Telegram",
+    "kind": "servers",
+    "message": "registry servers 16 → 12 (-4)"
+  },
+  {
+    "ts": "2026-11-13T19:49:03Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 16,026 → 16,125 (+99)"
+  },
+  {
+    "ts": "2026-11-13T19:49:03Z",
+    "app_id": 74,
+    "app": "Jira",
+    "kind": "stars",
+    "message": "repo ★ 1,157 → 1,162 (+5)"
+  },
+  {
+    "ts": "2026-11-13T19:49:03Z",
+    "app_id": 86,
+    "app": "QuickBooks",
+    "kind": "servers",
+    "message": "registry servers 12 → 13 (+1)"
+  },
+  {
+    "ts": "2026-11-13T19:49:03Z",
+    "app_id": 99,
+    "app": "YouTube Transcript",
+    "kind": "servers",
+    "message": "registry servers 36 → 35 (-1)"
+  },
+  {
     "ts": "2026-11-13T06:53:03Z",
     "app_id": 5,
     "app": "Twenty",
@@ -1363,40 +1398,5 @@
     "app": "Harvest",
     "kind": "tools",
     "message": "live tools 3 → 0"
-  },
-  {
-    "ts": "2026-10-28T13:04:34Z",
-    "app_id": 7,
-    "app": "Zoho CRM",
-    "kind": "servers",
-    "message": "registry servers 18 → 19 (+1)"
-  },
-  {
-    "ts": "2026-10-28T13:04:34Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 13,532 → 13,586 (+54)"
-  },
-  {
-    "ts": "2026-10-28T05:51:02Z",
-    "app_id": 18,
-    "app": "Help Scout",
-    "kind": "servers",
-    "message": "registry servers 17 → 18 (+1)"
-  },
-  {
-    "ts": "2026-10-28T05:51:02Z",
-    "app_id": 27,
-    "app": "Telegram",
-    "kind": "servers",
-    "message": "registry servers 24 → 23 (-1)"
-  },
-  {
-    "ts": "2026-10-28T05:51:02Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 13,497 → 13,532 (+35)"
   }
 ]
