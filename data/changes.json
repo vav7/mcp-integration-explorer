@@ -1,5 +1,54 @@
 [
   {
+    "ts": "2026-11-14T18:12:42Z",
+    "app_id": 14,
+    "app": "Front",
+    "kind": "tools",
+    "message": "live tools 21 → 30"
+  },
+  {
+    "ts": "2026-11-14T18:12:42Z",
+    "app_id": 26,
+    "app": "Discord",
+    "kind": "servers",
+    "message": "registry servers 12 → 13 (+1)"
+  },
+  {
+    "ts": "2026-11-14T18:12:42Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 16,172 → 16,251 (+79)"
+  },
+  {
+    "ts": "2026-11-14T18:12:42Z",
+    "app_id": 73,
+    "app": "Linear",
+    "kind": "servers",
+    "message": "registry servers 11 → 12 (+1)"
+  },
+  {
+    "ts": "2026-11-14T18:12:42Z",
+    "app_id": 84,
+    "app": "Paygent Connect",
+    "kind": "status",
+    "message": "MCP status none → community"
+  },
+  {
+    "ts": "2026-11-14T18:12:42Z",
+    "app_id": 84,
+    "app": "Paygent Connect",
+    "kind": "servers",
+    "message": "registry servers 0 → 1 (+1)"
+  },
+  {
+    "ts": "2026-11-14T18:12:42Z",
+    "app_id": 86,
+    "app": "QuickBooks",
+    "kind": "servers",
+    "message": "registry servers 13 → 12 (-1)"
+  },
+  {
     "ts": "2026-11-14T06:34:38Z",
     "app_id": 55,
     "app": "Apify",
@@ -1349,54 +1398,5 @@
     "app": "Telegram",
     "kind": "servers",
     "message": "registry servers 23 → 24 (+1)"
-  },
-  {
-    "ts": "2026-10-29T05:55:27Z",
-    "app_id": 33,
-    "app": "LinkedIn Ads",
-    "kind": "servers",
-    "message": "registry servers 23 → 22 (-1)"
-  },
-  {
-    "ts": "2026-10-29T05:55:27Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 13,668 → 13,702 (+34)"
-  },
-  {
-    "ts": "2026-10-29T05:55:27Z",
-    "app_id": 62,
-    "app": "Vercel",
-    "kind": "status",
-    "message": "MCP status vendor_official → community"
-  },
-  {
-    "ts": "2026-10-29T05:55:27Z",
-    "app_id": 62,
-    "app": "Vercel",
-    "kind": "servers",
-    "message": "registry servers 4 → 2 (-2)"
-  },
-  {
-    "ts": "2026-10-29T05:55:27Z",
-    "app_id": 81,
-    "app": "Stripe",
-    "kind": "stars",
-    "message": "repo ★ 1,982 → 1,988 (+6)"
-  },
-  {
-    "ts": "2026-10-29T05:55:27Z",
-    "app_id": 84,
-    "app": "Paygent Connect",
-    "kind": "site",
-    "message": "site went down"
-  },
-  {
-    "ts": "2026-10-28T22:40:35Z",
-    "app_id": 18,
-    "app": "Help Scout",
-    "kind": "servers",
-    "message": "registry servers 18 → 19 (+1)"
   }
 ]
