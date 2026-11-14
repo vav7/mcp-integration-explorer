@@ -1,5 +1,26 @@
 [
   {
+    "ts": "2026-11-14T06:34:38Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 16,125 → 16,172 (+47)"
+  },
+  {
+    "ts": "2026-11-14T06:34:38Z",
+    "app_id": 56,
+    "app": "Firecrawl",
+    "kind": "tools",
+    "message": "live tools 36 → 37"
+  },
+  {
+    "ts": "2026-11-14T06:34:38Z",
+    "app_id": 98,
+    "app": "Mermaid CLI",
+    "kind": "servers",
+    "message": "registry servers 6 → 7 (+1)"
+  },
+  {
     "ts": "2026-11-13T19:49:03Z",
     "app_id": 27,
     "app": "Telegram",
@@ -1377,26 +1398,5 @@
     "app": "Help Scout",
     "kind": "servers",
     "message": "registry servers 18 → 19 (+1)"
-  },
-  {
-    "ts": "2026-10-28T22:40:35Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 13,586 → 13,668 (+82)"
-  },
-  {
-    "ts": "2026-10-28T22:40:35Z",
-    "app_id": 68,
-    "app": "MongoDB Atlas",
-    "kind": "servers",
-    "message": "registry servers 21 → 20 (-1)"
-  },
-  {
-    "ts": "2026-10-28T22:40:35Z",
-    "app_id": 80,
-    "app": "Harvest",
-    "kind": "tools",
-    "message": "live tools 3 → 0"
   }
 ]
