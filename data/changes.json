@@ -1,5 +1,54 @@
 [
   {
+    "ts": "2026-11-16T22:13:39Z",
+    "app_id": 41,
+    "app": "Shopify",
+    "kind": "servers",
+    "message": "registry servers 26 → 24 (-2)"
+  },
+  {
+    "ts": "2026-11-16T22:13:39Z",
+    "app_id": 52,
+    "app": "SE Ranking",
+    "kind": "servers",
+    "message": "registry servers 9 → 8 (-1)"
+  },
+  {
+    "ts": "2026-11-16T22:13:39Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 16,436 → 16,558 (+122)"
+  },
+  {
+    "ts": "2026-11-16T22:13:39Z",
+    "app_id": 56,
+    "app": "Firecrawl",
+    "kind": "tools",
+    "message": "live tools 37 → 38"
+  },
+  {
+    "ts": "2026-11-16T22:13:39Z",
+    "app_id": 71,
+    "app": "Notion",
+    "kind": "servers",
+    "message": "registry servers 12 → 13 (+1)"
+  },
+  {
+    "ts": "2026-11-16T22:13:39Z",
+    "app_id": 86,
+    "app": "QuickBooks",
+    "kind": "servers",
+    "message": "registry servers 10 → 9 (-1)"
+  },
+  {
+    "ts": "2026-11-16T22:13:39Z",
+    "app_id": 99,
+    "app": "YouTube Transcript",
+    "kind": "servers",
+    "message": "registry servers 34 → 35 (+1)"
+  },
+  {
     "ts": "2026-11-16T06:40:33Z",
     "app_id": 55,
     "app": "Apify",
@@ -1349,54 +1398,5 @@
     "app": "Apify",
     "kind": "stars",
     "message": "repo ★ 13,855 → 13,896 (+41)"
-  },
-  {
-    "ts": "2026-10-30T13:04:16Z",
-    "app_id": 81,
-    "app": "Stripe",
-    "kind": "stars",
-    "message": "repo ★ 2,000 → 2,005 (+5)"
-  },
-  {
-    "ts": "2026-10-30T05:56:39Z",
-    "app_id": 45,
-    "app": "Magento (Adobe Commerce)",
-    "kind": "servers",
-    "message": "registry servers 14 → 15 (+1)"
-  },
-  {
-    "ts": "2026-10-30T05:56:39Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 13,819 → 13,855 (+36)"
-  },
-  {
-    "ts": "2026-10-30T05:56:39Z",
-    "app_id": 57,
-    "app": "Bright Data",
-    "kind": "site",
-    "message": "site came up"
-  },
-  {
-    "ts": "2026-10-29T22:49:52Z",
-    "app_id": 27,
-    "app": "Telegram",
-    "kind": "servers",
-    "message": "registry servers 24 → 22 (-2)"
-  },
-  {
-    "ts": "2026-10-29T22:49:52Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 13,744 → 13,819 (+75)"
-  },
-  {
-    "ts": "2026-10-29T22:49:52Z",
-    "app_id": 57,
-    "app": "Bright Data",
-    "kind": "site",
-    "message": "site went down"
   }
 ]
