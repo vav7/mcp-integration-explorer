@@ -1,5 +1,33 @@
 [
   {
+    "ts": "2026-11-17T08:01:31Z",
+    "app_id": 7,
+    "app": "Zoho CRM",
+    "kind": "servers",
+    "message": "registry servers 27 → 28 (+1)"
+  },
+  {
+    "ts": "2026-11-17T08:01:31Z",
+    "app_id": 41,
+    "app": "Shopify",
+    "kind": "servers",
+    "message": "registry servers 24 → 23 (-1)"
+  },
+  {
+    "ts": "2026-11-17T08:01:31Z",
+    "app_id": 45,
+    "app": "Magento (Adobe Commerce)",
+    "kind": "servers",
+    "message": "registry servers 16 → 17 (+1)"
+  },
+  {
+    "ts": "2026-11-17T08:01:31Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 16,558 → 16,601 (+43)"
+  },
+  {
     "ts": "2026-11-16T22:13:39Z",
     "app_id": 41,
     "app": "Shopify",
@@ -1370,33 +1398,5 @@
     "app": "Vercel",
     "kind": "servers",
     "message": "registry servers 1 → 0 (-1)"
-  },
-  {
-    "ts": "2026-10-30T22:26:48Z",
-    "app_id": 68,
-    "app": "MongoDB Atlas",
-    "kind": "servers",
-    "message": "registry servers 18 → 17 (-1)"
-  },
-  {
-    "ts": "2026-10-30T22:26:48Z",
-    "app_id": 86,
-    "app": "QuickBooks",
-    "kind": "servers",
-    "message": "registry servers 10 → 11 (+1)"
-  },
-  {
-    "ts": "2026-10-30T13:04:16Z",
-    "app_id": 18,
-    "app": "Help Scout",
-    "kind": "stars",
-    "message": "repo ★ 146 → 151 (+5)"
-  },
-  {
-    "ts": "2026-10-30T13:04:16Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 13,855 → 13,896 (+41)"
   }
 ]
