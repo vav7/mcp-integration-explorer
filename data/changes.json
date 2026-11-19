@@ -1,5 +1,61 @@
 [
   {
+    "ts": "2026-11-19T07:33:18Z",
+    "app_id": 4,
+    "app": "Attio",
+    "kind": "servers",
+    "message": "registry servers 4 → 5 (+1)"
+  },
+  {
+    "ts": "2026-11-19T07:33:18Z",
+    "app_id": 14,
+    "app": "Front",
+    "kind": "servers",
+    "message": "registry servers 5 → 6 (+1)"
+  },
+  {
+    "ts": "2026-11-19T07:33:18Z",
+    "app_id": 17,
+    "app": "Plain",
+    "kind": "servers",
+    "message": "registry servers 8 → 7 (-1)"
+  },
+  {
+    "ts": "2026-11-19T07:33:18Z",
+    "app_id": 38,
+    "app": "Pinterest",
+    "kind": "servers",
+    "message": "registry servers 13 → 14 (+1)"
+  },
+  {
+    "ts": "2026-11-19T07:33:18Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 16,888 → 16,941 (+53)"
+  },
+  {
+    "ts": "2026-11-19T07:33:18Z",
+    "app_id": 67,
+    "app": "Snowflake",
+    "kind": "tools",
+    "message": "live tools 0 → 31"
+  },
+  {
+    "ts": "2026-11-19T07:33:18Z",
+    "app_id": 72,
+    "app": "Airtable",
+    "kind": "servers",
+    "message": "registry servers 8 → 9 (+1)"
+  },
+  {
+    "ts": "2026-11-19T07:33:18Z",
+    "app_id": 86,
+    "app": "QuickBooks",
+    "kind": "servers",
+    "message": "registry servers 9 → 10 (+1)"
+  },
+  {
     "ts": "2026-11-18T20:38:59Z",
     "app_id": 3,
     "app": "Pipedrive",
@@ -1342,61 +1398,5 @@
     "app": "Telegram",
     "kind": "servers",
     "message": "registry servers 22 → 21 (-1)"
-  },
-  {
-    "ts": "2026-11-03T01:03:52Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 14,374 → 14,421 (+47)"
-  },
-  {
-    "ts": "2026-11-03T01:03:52Z",
-    "app_id": 61,
-    "app": "GitHub",
-    "kind": "servers",
-    "message": "registry servers 13 → 15 (+2)"
-  },
-  {
-    "ts": "2026-11-03T01:03:52Z",
-    "app_id": 68,
-    "app": "MongoDB Atlas",
-    "kind": "servers",
-    "message": "registry servers 14 → 13 (-1)"
-  },
-  {
-    "ts": "2026-11-02T16:19:42Z",
-    "app_id": 21,
-    "app": "Slack",
-    "kind": "servers",
-    "message": "registry servers 10 → 11 (+1)"
-  },
-  {
-    "ts": "2026-11-02T16:19:42Z",
-    "app_id": 26,
-    "app": "Discord",
-    "kind": "servers",
-    "message": "registry servers 9 → 10 (+1)"
-  },
-  {
-    "ts": "2026-11-02T16:19:42Z",
-    "app_id": 31,
-    "app": "Google Ads",
-    "kind": "servers",
-    "message": "registry servers 24 → 29 (+5)"
-  },
-  {
-    "ts": "2026-11-02T16:19:42Z",
-    "app_id": 49,
-    "app": "Amazon Selling Partner",
-    "kind": "servers",
-    "message": "registry servers 5 → 6 (+1)"
-  },
-  {
-    "ts": "2026-11-02T16:19:42Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 14,287 → 14,374 (+87)"
   }
 ]
