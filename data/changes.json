@@ -1,5 +1,54 @@
 [
   {
+    "ts": "2026-11-19T20:44:19Z",
+    "app_id": 7,
+    "app": "Zoho CRM",
+    "kind": "servers",
+    "message": "registry servers 28 → 29 (+1)"
+  },
+  {
+    "ts": "2026-11-19T20:44:19Z",
+    "app_id": 17,
+    "app": "Plain",
+    "kind": "status",
+    "message": "MCP status community → vendor_official"
+  },
+  {
+    "ts": "2026-11-19T20:44:19Z",
+    "app_id": 17,
+    "app": "Plain",
+    "kind": "servers",
+    "message": "registry servers 7 → 8 (+1)"
+  },
+  {
+    "ts": "2026-11-19T20:44:19Z",
+    "app_id": 33,
+    "app": "LinkedIn Ads",
+    "kind": "servers",
+    "message": "registry servers 23 → 24 (+1)"
+  },
+  {
+    "ts": "2026-11-19T20:44:19Z",
+    "app_id": 38,
+    "app": "Pinterest",
+    "kind": "servers",
+    "message": "registry servers 14 → 15 (+1)"
+  },
+  {
+    "ts": "2026-11-19T20:44:19Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 16,941 → 17,052 (+111)"
+  },
+  {
+    "ts": "2026-11-19T20:44:19Z",
+    "app_id": 80,
+    "app": "Harvest",
+    "kind": "servers",
+    "message": "registry servers 5 → 4 (-1)"
+  },
+  {
     "ts": "2026-11-19T07:33:18Z",
     "app_id": 4,
     "app": "Attio",
@@ -1349,54 +1398,5 @@
     "app": "Front",
     "kind": "servers",
     "message": "registry servers 7 → 6 (-1)"
-  },
-  {
-    "ts": "2026-11-03T14:25:37Z",
-    "app_id": 17,
-    "app": "Plain",
-    "kind": "servers",
-    "message": "registry servers 4 → 5 (+1)"
-  },
-  {
-    "ts": "2026-11-03T14:25:37Z",
-    "app_id": 18,
-    "app": "Help Scout",
-    "kind": "servers",
-    "message": "registry servers 20 → 19 (-1)"
-  },
-  {
-    "ts": "2026-11-03T14:25:37Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 14,421 → 14,525 (+104)"
-  },
-  {
-    "ts": "2026-11-03T01:03:52Z",
-    "app_id": 7,
-    "app": "Zoho CRM",
-    "kind": "servers",
-    "message": "registry servers 21 → 22 (+1)"
-  },
-  {
-    "ts": "2026-11-03T01:03:52Z",
-    "app_id": 7,
-    "app": "Zoho CRM",
-    "kind": "tools",
-    "message": "live tools 196 → 197"
-  },
-  {
-    "ts": "2026-11-03T01:03:52Z",
-    "app_id": 18,
-    "app": "Help Scout",
-    "kind": "servers",
-    "message": "registry servers 19 → 20 (+1)"
-  },
-  {
-    "ts": "2026-11-03T01:03:52Z",
-    "app_id": 27,
-    "app": "Telegram",
-    "kind": "servers",
-    "message": "registry servers 22 → 21 (-1)"
   }
 ]
