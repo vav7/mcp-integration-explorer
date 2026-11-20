@@ -1,5 +1,19 @@
 [
   {
+    "ts": "2026-11-20T07:25:13Z",
+    "app_id": 7,
+    "app": "Zoho CRM",
+    "kind": "servers",
+    "message": "registry servers 29 → 30 (+1)"
+  },
+  {
+    "ts": "2026-11-20T07:25:13Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 17,052 → 17,084 (+32)"
+  },
+  {
     "ts": "2026-11-19T20:44:19Z",
     "app_id": 7,
     "app": "Zoho CRM",
@@ -1384,19 +1398,5 @@
     "app": "Apify",
     "kind": "stars",
     "message": "repo ★ 14,597 → 14,632 (+35)"
-  },
-  {
-    "ts": "2026-11-03T23:28:52Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 14,525 → 14,597 (+72)"
-  },
-  {
-    "ts": "2026-11-03T14:25:37Z",
-    "app_id": 14,
-    "app": "Front",
-    "kind": "servers",
-    "message": "registry servers 7 → 6 (-1)"
   }
 ]
