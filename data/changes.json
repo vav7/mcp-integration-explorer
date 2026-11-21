@@ -1,5 +1,19 @@
 [
   {
+    "ts": "2026-11-21T07:18:37Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 17,164 → 17,208 (+44)"
+  },
+  {
+    "ts": "2026-11-21T07:18:37Z",
+    "app_id": 77,
+    "app": "ClickUp",
+    "kind": "servers",
+    "message": "registry servers 10 → 11 (+1)"
+  },
+  {
     "ts": "2026-11-20T20:28:44Z",
     "app_id": 18,
     "app": "Help Scout",
@@ -1384,19 +1398,5 @@
     "app": "Smartsheet",
     "kind": "tools",
     "message": "live tools 2 → 3"
-  },
-  {
-    "ts": "2026-11-05T20:01:47Z",
-    "app_id": 99,
-    "app": "YouTube Transcript",
-    "kind": "servers",
-    "message": "registry servers 35 → 33 (-2)"
-  },
-  {
-    "ts": "2026-11-05T06:56:30Z",
-    "app_id": 1,
-    "app": "Salesforce",
-    "kind": "servers",
-    "message": "registry servers 18 → 19 (+1)"
   }
 ]
