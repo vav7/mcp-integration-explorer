@@ -1,5 +1,33 @@
 [
   {
+    "ts": "2026-11-21T19:23:42Z",
+    "app_id": 31,
+    "app": "Google Ads",
+    "kind": "servers",
+    "message": "registry servers 32 → 33 (+1)"
+  },
+  {
+    "ts": "2026-11-21T19:23:42Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 17,208 → 17,284 (+76)"
+  },
+  {
+    "ts": "2026-11-21T19:23:42Z",
+    "app_id": 80,
+    "app": "Harvest",
+    "kind": "servers",
+    "message": "registry servers 4 → 3 (-1)"
+  },
+  {
+    "ts": "2026-11-21T19:23:42Z",
+    "app_id": 99,
+    "app": "YouTube Transcript",
+    "kind": "servers",
+    "message": "registry servers 36 → 35 (-1)"
+  },
+  {
     "ts": "2026-11-21T07:18:37Z",
     "app_id": 55,
     "app": "Apify",
@@ -1370,33 +1398,5 @@
     "app": "Telegram",
     "kind": "servers",
     "message": "registry servers 22 → 21 (-1)"
-  },
-  {
-    "ts": "2026-11-05T20:01:47Z",
-    "app_id": 33,
-    "app": "LinkedIn Ads",
-    "kind": "servers",
-    "message": "registry servers 23 → 22 (-1)"
-  },
-  {
-    "ts": "2026-11-05T20:01:47Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 14,826 → 14,919 (+93)"
-  },
-  {
-    "ts": "2026-11-05T20:01:47Z",
-    "app_id": 68,
-    "app": "MongoDB Atlas",
-    "kind": "servers",
-    "message": "registry servers 12 → 11 (-1)"
-  },
-  {
-    "ts": "2026-11-05T20:01:47Z",
-    "app_id": 79,
-    "app": "Smartsheet",
-    "kind": "tools",
-    "message": "live tools 2 → 3"
   }
 ]
