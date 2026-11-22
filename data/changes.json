@@ -1,5 +1,40 @@
 [
   {
+    "ts": "2026-11-22T06:59:02Z",
+    "app_id": 7,
+    "app": "Zoho CRM",
+    "kind": "servers",
+    "message": "registry servers 30 → 32 (+2)"
+  },
+  {
+    "ts": "2026-11-22T06:59:02Z",
+    "app_id": 18,
+    "app": "Help Scout",
+    "kind": "servers",
+    "message": "registry servers 21 → 20 (-1)"
+  },
+  {
+    "ts": "2026-11-22T06:59:02Z",
+    "app_id": 27,
+    "app": "Telegram",
+    "kind": "servers",
+    "message": "registry servers 15 → 16 (+1)"
+  },
+  {
+    "ts": "2026-11-22T06:59:02Z",
+    "app_id": 38,
+    "app": "Pinterest",
+    "kind": "servers",
+    "message": "registry servers 19 → 20 (+1)"
+  },
+  {
+    "ts": "2026-11-22T06:59:02Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 17,284 → 17,342 (+58)"
+  },
+  {
     "ts": "2026-11-21T19:23:42Z",
     "app_id": 31,
     "app": "Google Ads",
@@ -1363,40 +1398,5 @@
     "app": "Smartsheet",
     "kind": "site",
     "message": "site went down"
-  },
-  {
-    "ts": "2026-11-06T19:29:56Z",
-    "app_id": 38,
-    "app": "Pinterest",
-    "kind": "servers",
-    "message": "registry servers 10 → 11 (+1)"
-  },
-  {
-    "ts": "2026-11-06T19:29:56Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 14,975 → 15,062 (+87)"
-  },
-  {
-    "ts": "2026-11-06T19:29:56Z",
-    "app_id": 56,
-    "app": "Firecrawl",
-    "kind": "tools",
-    "message": "live tools 31 → 32"
-  },
-  {
-    "ts": "2026-11-06T06:55:57Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 14,919 → 14,975 (+56)"
-  },
-  {
-    "ts": "2026-11-05T20:01:47Z",
-    "app_id": 27,
-    "app": "Telegram",
-    "kind": "servers",
-    "message": "registry servers 22 → 21 (-1)"
   }
 ]
