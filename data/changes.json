@@ -1,5 +1,68 @@
 [
   {
+    "ts": "2026-11-22T19:47:05Z",
+    "app_id": 18,
+    "app": "Help Scout",
+    "kind": "servers",
+    "message": "registry servers 20 → 19 (-1)"
+  },
+  {
+    "ts": "2026-11-22T19:47:05Z",
+    "app_id": 26,
+    "app": "Discord",
+    "kind": "servers",
+    "message": "registry servers 15 → 16 (+1)"
+  },
+  {
+    "ts": "2026-11-22T19:47:05Z",
+    "app_id": 32,
+    "app": "Meta Ads",
+    "kind": "servers",
+    "message": "registry servers 15 → 16 (+1)"
+  },
+  {
+    "ts": "2026-11-22T19:47:05Z",
+    "app_id": 33,
+    "app": "LinkedIn Ads",
+    "kind": "servers",
+    "message": "registry servers 28 → 27 (-1)"
+  },
+  {
+    "ts": "2026-11-22T19:47:05Z",
+    "app_id": 39,
+    "app": "Threads (Meta)",
+    "kind": "servers",
+    "message": "registry servers 24 → 25 (+1)"
+  },
+  {
+    "ts": "2026-11-22T19:47:05Z",
+    "app_id": 41,
+    "app": "Shopify",
+    "kind": "servers",
+    "message": "registry servers 28 → 29 (+1)"
+  },
+  {
+    "ts": "2026-11-22T19:47:05Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 17,342 → 17,422 (+80)"
+  },
+  {
+    "ts": "2026-11-22T19:47:05Z",
+    "app_id": 68,
+    "app": "MongoDB Atlas",
+    "kind": "servers",
+    "message": "registry servers 11 → 12 (+1)"
+  },
+  {
+    "ts": "2026-11-22T19:47:05Z",
+    "app_id": 70,
+    "app": "Sentry",
+    "kind": "servers",
+    "message": "registry servers 3 → 2 (-1)"
+  },
+  {
     "ts": "2026-11-22T06:59:02Z",
     "app_id": 7,
     "app": "Zoho CRM",
@@ -1335,68 +1398,5 @@
     "app": "Apify",
     "kind": "stars",
     "message": "repo ★ 15,187 → 15,216 (+29)"
-  },
-  {
-    "ts": "2026-11-07T21:57:03Z",
-    "app_id": 14,
-    "app": "Front",
-    "kind": "tools",
-    "message": "live tools 16 → 17"
-  },
-  {
-    "ts": "2026-11-07T21:57:03Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 15,139 → 15,187 (+48)"
-  },
-  {
-    "ts": "2026-11-07T21:57:03Z",
-    "app_id": 99,
-    "app": "YouTube Transcript",
-    "kind": "servers",
-    "message": "registry servers 33 → 34 (+1)"
-  },
-  {
-    "ts": "2026-11-07T13:12:30Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 15,106 → 15,139 (+33)"
-  },
-  {
-    "ts": "2026-11-07T13:12:30Z",
-    "app_id": 79,
-    "app": "Smartsheet",
-    "kind": "site",
-    "message": "site came up"
-  },
-  {
-    "ts": "2026-11-07T06:06:56Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 15,062 → 15,106 (+44)"
-  },
-  {
-    "ts": "2026-11-07T06:06:56Z",
-    "app_id": 56,
-    "app": "Firecrawl",
-    "kind": "tools",
-    "message": "live tools 32 → 34"
-  },
-  {
-    "ts": "2026-11-07T06:06:56Z",
-    "app_id": 73,
-    "app": "Linear",
-    "kind": "servers",
-    "message": "registry servers 11 → 10 (-1)"
-  },
-  {
-    "ts": "2026-11-07T06:06:56Z",
-    "app_id": 79,
-    "app": "Smartsheet",
-    "kind": "site",
-    "message": "site went down"
   }
 ]
