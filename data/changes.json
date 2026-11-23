@@ -1,5 +1,96 @@
 [
   {
+    "ts": "2026-11-23T23:59:28Z",
+    "app_id": 7,
+    "app": "Zoho CRM",
+    "kind": "servers",
+    "message": "registry servers 32 → 33 (+1)"
+  },
+  {
+    "ts": "2026-11-23T23:59:28Z",
+    "app_id": 17,
+    "app": "Plain",
+    "kind": "servers",
+    "message": "registry servers 8 → 6 (-2)"
+  },
+  {
+    "ts": "2026-11-23T23:59:28Z",
+    "app_id": 27,
+    "app": "Telegram",
+    "kind": "servers",
+    "message": "registry servers 15 → 16 (+1)"
+  },
+  {
+    "ts": "2026-11-23T23:59:28Z",
+    "app_id": 31,
+    "app": "Google Ads",
+    "kind": "servers",
+    "message": "registry servers 33 → 35 (+2)"
+  },
+  {
+    "ts": "2026-11-23T23:59:28Z",
+    "app_id": 32,
+    "app": "Meta Ads",
+    "kind": "servers",
+    "message": "registry servers 16 → 17 (+1)"
+  },
+  {
+    "ts": "2026-11-23T23:59:28Z",
+    "app_id": 33,
+    "app": "LinkedIn Ads",
+    "kind": "servers",
+    "message": "registry servers 27 → 28 (+1)"
+  },
+  {
+    "ts": "2026-11-23T23:59:28Z",
+    "app_id": 39,
+    "app": "Threads (Meta)",
+    "kind": "servers",
+    "message": "registry servers 25 → 26 (+1)"
+  },
+  {
+    "ts": "2026-11-23T23:59:28Z",
+    "app_id": 41,
+    "app": "Shopify",
+    "kind": "servers",
+    "message": "registry servers 28 → 29 (+1)"
+  },
+  {
+    "ts": "2026-11-23T23:59:28Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 17,487 → 17,603 (+116)"
+  },
+  {
+    "ts": "2026-11-23T23:59:28Z",
+    "app_id": 60,
+    "app": "Clay",
+    "kind": "servers",
+    "message": "registry servers 2 → 3 (+1)"
+  },
+  {
+    "ts": "2026-11-23T23:59:28Z",
+    "app_id": 74,
+    "app": "Jira",
+    "kind": "servers",
+    "message": "registry servers 12 → 13 (+1)"
+  },
+  {
+    "ts": "2026-11-23T23:59:28Z",
+    "app_id": 80,
+    "app": "Harvest",
+    "kind": "servers",
+    "message": "registry servers 3 → 7 (+4)"
+  },
+  {
+    "ts": "2026-11-23T23:59:28Z",
+    "app_id": 98,
+    "app": "Mermaid CLI",
+    "kind": "servers",
+    "message": "registry servers 7 → 8 (+1)"
+  },
+  {
     "ts": "2026-11-23T07:48:21Z",
     "app_id": 27,
     "app": "Telegram",
@@ -1307,96 +1398,5 @@
     "app": "Aircall",
     "kind": "servers",
     "message": "registry servers 1 → 2 (+1)"
-  },
-  {
-    "ts": "2026-11-09T22:27:57Z",
-    "app_id": 32,
-    "app": "Meta Ads",
-    "kind": "servers",
-    "message": "registry servers 11 → 12 (+1)"
-  },
-  {
-    "ts": "2026-11-09T22:27:57Z",
-    "app_id": 34,
-    "app": "GoHighLevel",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-11-09T22:27:57Z",
-    "app_id": 34,
-    "app": "GoHighLevel",
-    "kind": "servers",
-    "message": "registry servers 0 → 1 (+1)"
-  },
-  {
-    "ts": "2026-11-09T22:27:57Z",
-    "app_id": 37,
-    "app": "systeme.io",
-    "kind": "status",
-    "message": "MCP status none → community"
-  },
-  {
-    "ts": "2026-11-09T22:27:57Z",
-    "app_id": 37,
-    "app": "systeme.io",
-    "kind": "servers",
-    "message": "registry servers 0 → 1 (+1)"
-  },
-  {
-    "ts": "2026-11-09T22:27:57Z",
-    "app_id": 39,
-    "app": "Threads (Meta)",
-    "kind": "servers",
-    "message": "registry servers 16 → 17 (+1)"
-  },
-  {
-    "ts": "2026-11-09T22:27:57Z",
-    "app_id": 42,
-    "app": "WooCommerce",
-    "kind": "servers",
-    "message": "registry servers 6 → 7 (+1)"
-  },
-  {
-    "ts": "2026-11-09T22:27:57Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 15,338 → 15,461 (+123)"
-  },
-  {
-    "ts": "2026-11-09T22:27:57Z",
-    "app_id": 91,
-    "app": "NotebookLM",
-    "kind": "servers",
-    "message": "registry servers 3 → 4 (+1)"
-  },
-  {
-    "ts": "2026-11-09T22:27:57Z",
-    "app_id": 92,
-    "app": "Otter AI",
-    "kind": "servers",
-    "message": "registry servers 3 → 4 (+1)"
-  },
-  {
-    "ts": "2026-11-09T22:27:57Z",
-    "app_id": 93,
-    "app": "Fathom",
-    "kind": "servers",
-    "message": "registry servers 9 → 10 (+1)"
-  },
-  {
-    "ts": "2026-11-09T06:45:27Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 15,312 → 15,338 (+26)"
-  },
-  {
-    "ts": "2026-11-08T22:12:59Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 15,258 → 15,312 (+54)"
   }
 ]
