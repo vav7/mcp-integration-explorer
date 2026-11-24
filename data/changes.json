@@ -1,5 +1,33 @@
 [
   {
+    "ts": "2026-11-24T10:00:55Z",
+    "app_id": 31,
+    "app": "Google Ads",
+    "kind": "servers",
+    "message": "registry servers 35 → 34 (-1)"
+  },
+  {
+    "ts": "2026-11-24T10:00:55Z",
+    "app_id": 33,
+    "app": "LinkedIn Ads",
+    "kind": "servers",
+    "message": "registry servers 28 → 27 (-1)"
+  },
+  {
+    "ts": "2026-11-24T10:00:55Z",
+    "app_id": 41,
+    "app": "Shopify",
+    "kind": "stars",
+    "message": "repo ★ 5 → 0 (-5)"
+  },
+  {
+    "ts": "2026-11-24T10:00:55Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 17,603 → 17,655 (+52)"
+  },
+  {
     "ts": "2026-11-23T23:59:28Z",
     "app_id": 7,
     "app": "Zoho CRM",
@@ -1370,33 +1398,5 @@
     "app": "Gorgias",
     "kind": "servers",
     "message": "registry servers 0 → 1 (+1)"
-  },
-  {
-    "ts": "2026-11-09T22:27:57Z",
-    "app_id": 20,
-    "app": "Gladly",
-    "kind": "servers",
-    "message": "registry servers 1 → 2 (+1)"
-  },
-  {
-    "ts": "2026-11-09T22:27:57Z",
-    "app_id": 26,
-    "app": "Discord",
-    "kind": "servers",
-    "message": "registry servers 10 → 11 (+1)"
-  },
-  {
-    "ts": "2026-11-09T22:27:57Z",
-    "app_id": 27,
-    "app": "Telegram",
-    "kind": "servers",
-    "message": "registry servers 21 → 20 (-1)"
-  },
-  {
-    "ts": "2026-11-09T22:27:57Z",
-    "app_id": 29,
-    "app": "Aircall",
-    "kind": "servers",
-    "message": "registry servers 1 → 2 (+1)"
   }
 ]
