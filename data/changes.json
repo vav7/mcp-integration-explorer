@@ -1,5 +1,47 @@
 [
   {
+    "ts": "2026-11-25T21:47:12Z",
+    "app_id": 2,
+    "app": "HubSpot",
+    "kind": "servers",
+    "message": "registry servers 11 → 10 (-1)"
+  },
+  {
+    "ts": "2026-11-25T21:47:12Z",
+    "app_id": 7,
+    "app": "Zoho CRM",
+    "kind": "servers",
+    "message": "registry servers 34 → 35 (+1)"
+  },
+  {
+    "ts": "2026-11-25T21:47:12Z",
+    "app_id": 14,
+    "app": "Front",
+    "kind": "servers",
+    "message": "registry servers 6 → 5 (-1)"
+  },
+  {
+    "ts": "2026-11-25T21:47:12Z",
+    "app_id": 23,
+    "app": "Zoho Cliq",
+    "kind": "servers",
+    "message": "registry servers 4 → 5 (+1)"
+  },
+  {
+    "ts": "2026-11-25T21:47:12Z",
+    "app_id": 31,
+    "app": "Google Ads",
+    "kind": "servers",
+    "message": "registry servers 33 → 34 (+1)"
+  },
+  {
+    "ts": "2026-11-25T21:47:12Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 17,793 → 17,888 (+95)"
+  },
+  {
     "ts": "2026-11-25T08:44:55Z",
     "app_id": 21,
     "app": "Slack",
@@ -1356,47 +1398,5 @@
     "app": "Apify",
     "kind": "stars",
     "message": "repo ★ 15,603 → 15,668 (+65)"
-  },
-  {
-    "ts": "2026-11-11T06:35:56Z",
-    "app_id": 56,
-    "app": "Firecrawl",
-    "kind": "tools",
-    "message": "live tools 34 → 35"
-  },
-  {
-    "ts": "2026-11-11T06:35:56Z",
-    "app_id": 71,
-    "app": "Notion",
-    "kind": "servers",
-    "message": "registry servers 11 → 12 (+1)"
-  },
-  {
-    "ts": "2026-11-11T06:35:56Z",
-    "app_id": 76,
-    "app": "Monday.com",
-    "kind": "servers",
-    "message": "registry servers 4 → 5 (+1)"
-  },
-  {
-    "ts": "2026-11-11T06:35:56Z",
-    "app_id": 83,
-    "app": "Binance",
-    "kind": "tools",
-    "message": "live tools 0 → 1"
-  },
-  {
-    "ts": "2026-11-10T19:49:44Z",
-    "app_id": 7,
-    "app": "Zoho CRM",
-    "kind": "servers",
-    "message": "registry servers 24 → 26 (+2)"
-  },
-  {
-    "ts": "2026-11-10T19:49:44Z",
-    "app_id": 27,
-    "app": "Telegram",
-    "kind": "servers",
-    "message": "registry servers 20 → 18 (-2)"
   }
 ]
