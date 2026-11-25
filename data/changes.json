@@ -1,5 +1,26 @@
 [
   {
+    "ts": "2026-11-25T08:44:55Z",
+    "app_id": 21,
+    "app": "Slack",
+    "kind": "servers",
+    "message": "registry servers 12 → 13 (+1)"
+  },
+  {
+    "ts": "2026-11-25T08:44:55Z",
+    "app_id": 42,
+    "app": "WooCommerce",
+    "kind": "servers",
+    "message": "registry servers 8 → 9 (+1)"
+  },
+  {
+    "ts": "2026-11-25T08:44:55Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 17,736 → 17,793 (+57)"
+  },
+  {
     "ts": "2026-11-24T22:32:31Z",
     "app_id": 7,
     "app": "Zoho CRM",
@@ -1377,26 +1398,5 @@
     "app": "Telegram",
     "kind": "servers",
     "message": "registry servers 20 → 18 (-2)"
-  },
-  {
-    "ts": "2026-11-10T19:49:44Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 15,513 → 15,603 (+90)"
-  },
-  {
-    "ts": "2026-11-10T19:49:44Z",
-    "app_id": 99,
-    "app": "YouTube Transcript",
-    "kind": "servers",
-    "message": "registry servers 34 → 35 (+1)"
-  },
-  {
-    "ts": "2026-11-10T07:26:49Z",
-    "app_id": 18,
-    "app": "Help Scout",
-    "kind": "servers",
-    "message": "registry servers 19 → 20 (+1)"
   }
 ]
