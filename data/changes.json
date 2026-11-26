@@ -1,5 +1,61 @@
 [
   {
+    "ts": "2026-11-26T21:40:36Z",
+    "app_id": 7,
+    "app": "Zoho CRM",
+    "kind": "servers",
+    "message": "registry servers 35 → 34 (-1)"
+  },
+  {
+    "ts": "2026-11-26T21:40:36Z",
+    "app_id": 8,
+    "app": "Close",
+    "kind": "servers",
+    "message": "registry servers 3 → 4 (+1)"
+  },
+  {
+    "ts": "2026-11-26T21:40:36Z",
+    "app_id": 18,
+    "app": "Help Scout",
+    "kind": "tools",
+    "message": "live tools 6 → 0"
+  },
+  {
+    "ts": "2026-11-26T21:40:36Z",
+    "app_id": 21,
+    "app": "Slack",
+    "kind": "servers",
+    "message": "registry servers 13 → 14 (+1)"
+  },
+  {
+    "ts": "2026-11-26T21:40:36Z",
+    "app_id": 26,
+    "app": "Discord",
+    "kind": "servers",
+    "message": "registry servers 15 → 16 (+1)"
+  },
+  {
+    "ts": "2026-11-26T21:40:36Z",
+    "app_id": 27,
+    "app": "Telegram",
+    "kind": "servers",
+    "message": "registry servers 16 → 17 (+1)"
+  },
+  {
+    "ts": "2026-11-26T21:40:36Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 17,937 → 18,041 (+104)"
+  },
+  {
+    "ts": "2026-11-26T21:40:36Z",
+    "app_id": 85,
+    "app": "iPayX",
+    "kind": "tools",
+    "message": "live tools 4 → 5"
+  },
+  {
     "ts": "2026-11-26T08:29:46Z",
     "app_id": 3,
     "app": "Pipedrive",
@@ -1342,61 +1398,5 @@
     "app": "Apify",
     "kind": "stars",
     "message": "repo ★ 16,026 → 16,125 (+99)"
-  },
-  {
-    "ts": "2026-11-13T19:49:03Z",
-    "app_id": 74,
-    "app": "Jira",
-    "kind": "stars",
-    "message": "repo ★ 1,157 → 1,162 (+5)"
-  },
-  {
-    "ts": "2026-11-13T19:49:03Z",
-    "app_id": 86,
-    "app": "QuickBooks",
-    "kind": "servers",
-    "message": "registry servers 12 → 13 (+1)"
-  },
-  {
-    "ts": "2026-11-13T19:49:03Z",
-    "app_id": 99,
-    "app": "YouTube Transcript",
-    "kind": "servers",
-    "message": "registry servers 36 → 35 (-1)"
-  },
-  {
-    "ts": "2026-11-13T06:53:03Z",
-    "app_id": 5,
-    "app": "Twenty",
-    "kind": "servers",
-    "message": "registry servers 1 → 2 (+1)"
-  },
-  {
-    "ts": "2026-11-13T06:53:03Z",
-    "app_id": 5,
-    "app": "Twenty",
-    "kind": "tools",
-    "message": "live tools 0 → 10"
-  },
-  {
-    "ts": "2026-11-13T06:53:03Z",
-    "app_id": 38,
-    "app": "Pinterest",
-    "kind": "servers",
-    "message": "registry servers 12 → 13 (+1)"
-  },
-  {
-    "ts": "2026-11-13T06:53:03Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 15,963 → 16,026 (+63)"
-  },
-  {
-    "ts": "2026-11-13T06:53:03Z",
-    "app_id": 84,
-    "app": "Paygent Connect",
-    "kind": "site",
-    "message": "site came up"
   }
 ]
