@@ -1,5 +1,145 @@
 [
   {
+    "ts": "2026-11-26T08:29:46Z",
+    "app_id": 3,
+    "app": "Pipedrive",
+    "kind": "tools",
+    "message": "live tools 49 → 53"
+  },
+  {
+    "ts": "2026-11-26T08:29:46Z",
+    "app_id": 4,
+    "app": "Attio",
+    "kind": "servers",
+    "message": "registry servers 5 → 6 (+1)"
+  },
+  {
+    "ts": "2026-11-26T08:29:46Z",
+    "app_id": 12,
+    "app": "Intercom",
+    "kind": "tools",
+    "message": "live tools 49 → 53"
+  },
+  {
+    "ts": "2026-11-26T08:29:46Z",
+    "app_id": 13,
+    "app": "Freshdesk",
+    "kind": "tools",
+    "message": "live tools 49 → 53"
+  },
+  {
+    "ts": "2026-11-26T08:29:46Z",
+    "app_id": 16,
+    "app": "LiveAgent",
+    "kind": "status",
+    "message": "MCP status none → community"
+  },
+  {
+    "ts": "2026-11-26T08:29:46Z",
+    "app_id": 16,
+    "app": "LiveAgent",
+    "kind": "servers",
+    "message": "registry servers 0 → 1 (+1)"
+  },
+  {
+    "ts": "2026-11-26T08:29:46Z",
+    "app_id": 22,
+    "app": "Twilio",
+    "kind": "servers",
+    "message": "registry servers 3 → 4 (+1)"
+  },
+  {
+    "ts": "2026-11-26T08:29:46Z",
+    "app_id": 22,
+    "app": "Twilio",
+    "kind": "tools",
+    "message": "live tools 49 → 53"
+  },
+  {
+    "ts": "2026-11-26T08:29:46Z",
+    "app_id": 23,
+    "app": "Zoho Cliq",
+    "kind": "tools",
+    "message": "live tools 49 → 53"
+  },
+  {
+    "ts": "2026-11-26T08:29:46Z",
+    "app_id": 26,
+    "app": "Discord",
+    "kind": "servers",
+    "message": "registry servers 16 → 15 (-1)"
+  },
+  {
+    "ts": "2026-11-26T08:29:46Z",
+    "app_id": 36,
+    "app": "Klaviyo",
+    "kind": "servers",
+    "message": "registry servers 5 → 6 (+1)"
+  },
+  {
+    "ts": "2026-11-26T08:29:46Z",
+    "app_id": 40,
+    "app": "SendGrid",
+    "kind": "tools",
+    "message": "live tools 47 → 51"
+  },
+  {
+    "ts": "2026-11-26T08:29:46Z",
+    "app_id": 42,
+    "app": "WooCommerce",
+    "kind": "servers",
+    "message": "registry servers 9 → 10 (+1)"
+  },
+  {
+    "ts": "2026-11-26T08:29:46Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 17,888 → 17,937 (+49)"
+  },
+  {
+    "ts": "2026-11-26T08:29:46Z",
+    "app_id": 57,
+    "app": "Bright Data",
+    "kind": "servers",
+    "message": "registry servers 3 → 4 (+1)"
+  },
+  {
+    "ts": "2026-11-26T08:29:46Z",
+    "app_id": 61,
+    "app": "GitHub",
+    "kind": "servers",
+    "message": "registry servers 18 → 19 (+1)"
+  },
+  {
+    "ts": "2026-11-26T08:29:46Z",
+    "app_id": 65,
+    "app": "Supabase",
+    "kind": "servers",
+    "message": "registry servers 8 → 9 (+1)"
+  },
+  {
+    "ts": "2026-11-26T08:29:46Z",
+    "app_id": 72,
+    "app": "Airtable",
+    "kind": "servers",
+    "message": "registry servers 9 → 10 (+1)"
+  },
+  {
+    "ts": "2026-11-26T08:29:46Z",
+    "app_id": 75,
+    "app": "Asana",
+    "kind": "tools",
+    "message": "live tools 50 → 54"
+  },
+  {
+    "ts": "2026-11-26T08:29:46Z",
+    "app_id": 82,
+    "app": "Plaid",
+    "kind": "tools",
+    "message": "live tools 47 → 51"
+  },
+  {
     "ts": "2026-11-25T21:47:12Z",
     "app_id": 2,
     "app": "HubSpot",
@@ -1258,145 +1398,5 @@
     "app": "Paygent Connect",
     "kind": "site",
     "message": "site came up"
-  },
-  {
-    "ts": "2026-11-13T06:53:03Z",
-    "app_id": 87,
-    "app": "Xero",
-    "kind": "tools",
-    "message": "live tools 0 → 7"
-  },
-  {
-    "ts": "2026-11-12T20:01:24Z",
-    "app_id": 7,
-    "app": "Zoho CRM",
-    "kind": "servers",
-    "message": "registry servers 26 → 27 (+1)"
-  },
-  {
-    "ts": "2026-11-12T20:01:24Z",
-    "app_id": 26,
-    "app": "Discord",
-    "kind": "servers",
-    "message": "registry servers 11 → 12 (+1)"
-  },
-  {
-    "ts": "2026-11-12T20:01:24Z",
-    "app_id": 38,
-    "app": "Pinterest",
-    "kind": "servers",
-    "message": "registry servers 11 → 12 (+1)"
-  },
-  {
-    "ts": "2026-11-12T20:01:24Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 15,833 → 15,963 (+130)"
-  },
-  {
-    "ts": "2026-11-12T07:19:39Z",
-    "app_id": 27,
-    "app": "Telegram",
-    "kind": "servers",
-    "message": "registry servers 17 → 16 (-1)"
-  },
-  {
-    "ts": "2026-11-12T07:19:39Z",
-    "app_id": 41,
-    "app": "Shopify",
-    "kind": "servers",
-    "message": "registry servers 24 → 25 (+1)"
-  },
-  {
-    "ts": "2026-11-12T07:19:39Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 15,752 → 15,833 (+81)"
-  },
-  {
-    "ts": "2026-11-12T07:19:39Z",
-    "app_id": 75,
-    "app": "Asana",
-    "kind": "servers",
-    "message": "registry servers 4 → 5 (+1)"
-  },
-  {
-    "ts": "2026-11-12T07:19:39Z",
-    "app_id": 99,
-    "app": "YouTube Transcript",
-    "kind": "servers",
-    "message": "registry servers 35 → 36 (+1)"
-  },
-  {
-    "ts": "2026-11-11T19:41:05Z",
-    "app_id": 2,
-    "app": "HubSpot",
-    "kind": "servers",
-    "message": "registry servers 9 → 10 (+1)"
-  },
-  {
-    "ts": "2026-11-11T19:41:05Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 15,668 → 15,752 (+84)"
-  },
-  {
-    "ts": "2026-11-11T19:41:05Z",
-    "app_id": 56,
-    "app": "Firecrawl",
-    "kind": "tools",
-    "message": "live tools 35 → 36"
-  },
-  {
-    "ts": "2026-11-11T19:41:05Z",
-    "app_id": 86,
-    "app": "QuickBooks",
-    "kind": "servers",
-    "message": "registry servers 13 → 12 (-1)"
-  },
-  {
-    "ts": "2026-11-11T19:41:05Z",
-    "app_id": 94,
-    "app": "Consensus",
-    "kind": "servers",
-    "message": "registry servers 9 → 10 (+1)"
-  },
-  {
-    "ts": "2026-11-11T06:35:56Z",
-    "app_id": 7,
-    "app": "Zoho CRM",
-    "kind": "tools",
-    "message": "live tools 198 → 199"
-  },
-  {
-    "ts": "2026-11-11T06:35:56Z",
-    "app_id": 14,
-    "app": "Front",
-    "kind": "tools",
-    "message": "live tools 17 → 21"
-  },
-  {
-    "ts": "2026-11-11T06:35:56Z",
-    "app_id": 17,
-    "app": "Plain",
-    "kind": "servers",
-    "message": "registry servers 6 → 7 (+1)"
-  },
-  {
-    "ts": "2026-11-11T06:35:56Z",
-    "app_id": 27,
-    "app": "Telegram",
-    "kind": "servers",
-    "message": "registry servers 18 → 17 (-1)"
-  },
-  {
-    "ts": "2026-11-11T06:35:56Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 15,603 → 15,668 (+65)"
   }
 ]
