@@ -1,5 +1,26 @@
 [
   {
+    "ts": "2026-11-27T08:44:08Z",
+    "app_id": 7,
+    "app": "Zoho CRM",
+    "kind": "servers",
+    "message": "registry servers 34 → 33 (-1)"
+  },
+  {
+    "ts": "2026-11-27T08:44:08Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 18,041 → 18,101 (+60)"
+  },
+  {
+    "ts": "2026-11-27T08:44:08Z",
+    "app_id": 80,
+    "app": "Harvest",
+    "kind": "servers",
+    "message": "registry servers 7 → 3 (-4)"
+  },
+  {
     "ts": "2026-11-26T21:40:36Z",
     "app_id": 7,
     "app": "Zoho CRM",
@@ -1377,26 +1398,5 @@
     "app": "Firecrawl",
     "kind": "tools",
     "message": "live tools 36 → 37"
-  },
-  {
-    "ts": "2026-11-14T06:34:38Z",
-    "app_id": 98,
-    "app": "Mermaid CLI",
-    "kind": "servers",
-    "message": "registry servers 6 → 7 (+1)"
-  },
-  {
-    "ts": "2026-11-13T19:49:03Z",
-    "app_id": 27,
-    "app": "Telegram",
-    "kind": "servers",
-    "message": "registry servers 16 → 12 (-4)"
-  },
-  {
-    "ts": "2026-11-13T19:49:03Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 16,026 → 16,125 (+99)"
   }
 ]
