@@ -1,5 +1,54 @@
 [
   {
+    "ts": "2026-11-28T20:13:27Z",
+    "app_id": 18,
+    "app": "Help Scout",
+    "kind": "tools",
+    "message": "live tools 0 → 6"
+  },
+  {
+    "ts": "2026-11-28T20:13:27Z",
+    "app_id": 55,
+    "app": "Apify",
+    "kind": "stars",
+    "message": "repo ★ 18,229 → 18,299 (+70)"
+  },
+  {
+    "ts": "2026-11-28T20:13:27Z",
+    "app_id": 61,
+    "app": "GitHub",
+    "kind": "servers",
+    "message": "registry servers 19 → 20 (+1)"
+  },
+  {
+    "ts": "2026-11-28T20:13:27Z",
+    "app_id": 74,
+    "app": "Jira",
+    "kind": "servers",
+    "message": "registry servers 13 → 15 (+2)"
+  },
+  {
+    "ts": "2026-11-28T20:13:27Z",
+    "app_id": 83,
+    "app": "Binance",
+    "kind": "servers",
+    "message": "registry servers 5 → 6 (+1)"
+  },
+  {
+    "ts": "2026-11-28T20:13:27Z",
+    "app_id": 83,
+    "app": "Binance",
+    "kind": "tools",
+    "message": "live tools 1 → 5"
+  },
+  {
+    "ts": "2026-11-28T20:13:27Z",
+    "app_id": 99,
+    "app": "YouTube Transcript",
+    "kind": "servers",
+    "message": "registry servers 35 → 36 (+1)"
+  },
+  {
     "ts": "2026-11-28T07:57:32Z",
     "app_id": 32,
     "app": "Meta Ads",
@@ -1349,54 +1398,5 @@
     "app": "Shopify",
     "kind": "servers",
     "message": "registry servers 24 → 23 (-1)"
-  },
-  {
-    "ts": "2026-11-17T08:01:31Z",
-    "app_id": 45,
-    "app": "Magento (Adobe Commerce)",
-    "kind": "servers",
-    "message": "registry servers 16 → 17 (+1)"
-  },
-  {
-    "ts": "2026-11-17T08:01:31Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 16,558 → 16,601 (+43)"
-  },
-  {
-    "ts": "2026-11-16T22:13:39Z",
-    "app_id": 41,
-    "app": "Shopify",
-    "kind": "servers",
-    "message": "registry servers 26 → 24 (-2)"
-  },
-  {
-    "ts": "2026-11-16T22:13:39Z",
-    "app_id": 52,
-    "app": "SE Ranking",
-    "kind": "servers",
-    "message": "registry servers 9 → 8 (-1)"
-  },
-  {
-    "ts": "2026-11-16T22:13:39Z",
-    "app_id": 55,
-    "app": "Apify",
-    "kind": "stars",
-    "message": "repo ★ 16,436 → 16,558 (+122)"
-  },
-  {
-    "ts": "2026-11-16T22:13:39Z",
-    "app_id": 56,
-    "app": "Firecrawl",
-    "kind": "tools",
-    "message": "live tools 37 → 38"
-  },
-  {
-    "ts": "2026-11-16T22:13:39Z",
-    "app_id": 71,
-    "app": "Notion",
-    "kind": "servers",
-    "message": "registry servers 12 → 13 (+1)"
   }
 ]
